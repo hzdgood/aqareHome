@@ -14,4 +14,4 @@ export default {
 .headDiv{
   height: 50px;
 }
-</style>>
+</style>
