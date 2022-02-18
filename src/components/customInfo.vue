@@ -49,20 +49,19 @@
         {{ item.title }}
       </button>
     </div>
-    
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Emit } from "vue-property-decorator";
-import { SearchInfo } from "@/config/interFace";
-import { table, field, user } from "@/config/config";
-import editTag from "@/components/editTag.vue";
+import { Component, Vue, Emit } from 'vue-property-decorator'
+import { SearchInfo } from '@/config/interFace'
+import { table, field, user } from '@/config/config'
+import editTag from '@/components/editTag.vue'
 
 @Component({
-  name: "customInfo",
+  name: 'customInfo',
   components: {
-    editTag: editTag,
-  },
+    editTag: editTag
+  }
 })
 export default class Actions extends Vue {
   houseInfo: any[] = [];
@@ -74,68 +73,68 @@ export default class Actions extends Vue {
   hometype: any[] = [];
   custominto: any[] = [];
   tableID = table.customerInfo;
-  ticket = localStorage.getItem("ticket");
+  ticket = localStorage.getItem('ticket');
   data = {
     where: {
       and: [
         {
           query: { or: [{ in: [user.userId] }] },
           query_option_mappings: [-1],
-          field: field.userTable,
-        },
-      ],
+          field: field.userTable
+        }
+      ]
     },
     offset: 0,
     limit: 20,
-    order_by: [{ field: field.userTable, sort: "desc" }],
+    order_by: [{ field: field.userTable, sort: 'desc' }]
   };
 
-  async mounted() {
-    this.loadFunction();
+  async mounted () {
+    this.loadFunction()
   }
 
-  async loadFunction() {
-    const res = await SearchInfo(this.ticket, this.tableID, this.data);
-    const fields = res[0].fields;
+  async loadFunction () {
+    const res = await SearchInfo(this.ticket, this.tableID, this.data)
+    const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
-      if (fields[i].field_id == field.houseInfo) {
-        const values = fields[i].values;
-        this.houseInfo = values;
+      if (fields[i].field_id === field.houseInfo) {
+        const values = fields[i].values
+        this.houseInfo = values
       }
-      if (fields[i].field_id == field.personInfo) {
-        const values = fields[i].values;
-        this.personInfo = values;
+      if (fields[i].field_id === field.personInfo) {
+        const values = fields[i].values
+        this.personInfo = values
       }
-      if (fields[i].field_id == field.cAttribute) {
-        const values = fields[i].values;
-        this.cAttribute = values;
+      if (fields[i].field_id === field.cAttribute) {
+        const values = fields[i].values
+        this.cAttribute = values
       }
-      if (fields[i].field_id == field.fitmentStage) {
-        const values = fields[i].values;
-        this.fitmentStage = values;
+      if (fields[i].field_id === field.fitmentStage) {
+        const values = fields[i].values
+        this.fitmentStage = values
       }
-      if (fields[i].field_id == field.oneCustom) {
-        const values = fields[i].values;
-        this.oneCustom = values;
+      if (fields[i].field_id === field.oneCustom) {
+        const values = fields[i].values
+        this.oneCustom = values
       }
-      if (fields[i].field_id == field.lostStatus) {
-        const values = fields[i].values;
-        this.lostStatus = values;
+      if (fields[i].field_id === field.lostStatus) {
+        const values = fields[i].values
+        this.lostStatus = values
       }
-      if (fields[i].field_id == field.custominto) {
-        const values = fields[i].values;
-        this.custominto = values;
+      if (fields[i].field_id === field.custominto) {
+        const values = fields[i].values
+        this.custominto = values
       }
-      if (fields[i].field_id == field.hometype) {
-        const values = fields[i].values;
-        this.hometype = values;
+      if (fields[i].field_id === field.hometype) {
+        const values = fields[i].values
+        this.hometype = values
       }
     }
   }
 
   @Emit()
-  async reloadFunction() {
-    setTimeout(this.loadFunction, 1000);
+  async reloadFunction () {
+    setTimeout(this.loadFunction, 1000)
   }
 }
 </script>
@@ -156,7 +155,7 @@ export default class Actions extends Vue {
   margin-left: 10px;
   font-weight: bold;
 }
-.inline{
+.inline {
   width: auto;
   display: inline-block;
 }
