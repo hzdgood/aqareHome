@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <user></user>
+    <customInfo></customInfo>
+    <stage></stage>
+    <sidebar-nav></sidebar-nav>
+    <router-view />
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
+<script lang="ts">
+import Nav from "@/components/Nav.vue";
+import user from "@/components/user.vue";
+import customInfo from "@/components/customInfo.vue";
+import stage from "@/components/stage.vue";
+import { Component, Vue } from "vue-property-decorator";
+@Component({
+  name: "App",
   components: {
-    HelloWorld
-  }
+    "sidebar-nav": Nav,
+    user: user,
+    customInfo: customInfo,
+    stage: stage,
+  },
+})
+export default class Actions extends Vue {
+  async mounted() {}
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="less"></style>
