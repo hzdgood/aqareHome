@@ -95,12 +95,6 @@ export default class Home extends Vue {
     const dom: any = document.getElementById(items.id)
     dom.className = 'select'
     // 发送请求
-
-    // if (dom.className === "select") {
-    //   dom.className = "";
-    // } else {
-    //
-    // }
   };
 }
 </script>
