@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="floatDiv">
     <button class="editTag" @click="showEdit()">编辑</button>
     <div v-show="editShow" id="customerDiv">
       <div class="tag" v-if="custominto.length != 0">
@@ -394,4 +394,9 @@ export default class Home extends Vue {
 .selected {
   background-color: aquamarine;
 }
+.floatDiv{
+  position: fixed;
+  bottom: 0;
+}
+
 </style>

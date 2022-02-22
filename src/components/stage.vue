@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>客户阶段</div>
+    <div v-if="customStage.length != 0">客户阶段</div>
     <div class="stageButton">
       <button
         v-for="item in customStage"
@@ -16,7 +16,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, updateTable } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -28,18 +28,17 @@ export default class Home extends Vue {
   itemId: any = '';
   async mounted () {
     const data = {
-      limit: 20,
-      offset: 0,
-      order_by: [{ field: field.tagId, sort: 'asc' }],
       where: {
-        and: [{ field: 2200000182035321, query: { in: [2300006457896616] } }]
-      }
+        and: [{ field: 2200000182035321, query: { in: [2300006479346393] } }]
+      },
+      offset: 0,
+      limit: 20
     }
     const result = await SearchInfo(this.ticket, this.tagInfo, data)
     this.taglist = result
     for (let i = 0; i < result.length; i++) {
       const name = result[i].fields[0].values[0].title
-      const value = result[i].fields[3].values[0].value
+      const value = result[i].fields[2].values[0].value
       const item_id = result[i].item_id
       const ob = {
         id: item_id,
@@ -49,7 +48,6 @@ export default class Home extends Vue {
       }
       this.customStage.push(ob)
     }
-    console.log(this.customStage)
     this.getCustomerTag()
   }
 
@@ -95,7 +93,18 @@ export default class Home extends Vue {
     const dom: any = document.getElementById(items.id)
     dom.className = 'select'
     // 发送请求
+    this.updateData(items)
   };
+
+  // fields: {2200000184312981: [2300006479350198]}
+  async updateData (items: any) {
+    const objs: any = {
+      fields: {}
+    }
+    var val = items.id
+    objs.fields[items.field] = [parseInt(val)]
+    const res = await updateTable(this.ticket, this.itemId, objs)
+  }
 }
 </script>
 <style scoped>
