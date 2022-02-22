@@ -18,7 +18,7 @@
         工单
       </router-link>
     </a-menu-item>
-    <a-menu-item key="发货">
+    <a-menu-item key="方案">
       <router-link to="/sendOut">
         <!-- <a-icon type="usergroup-add" /> -->
         发货

@@ -78,6 +78,10 @@ export default class Home extends Vue {
           const values = fields[i].values[0].value
           projectVillage = values
         }
+        if (fields[i].field_id === field.projectAddress) {
+          const values = fields[i].values[0].value
+          projectAddress = values
+        }
         if (fields[i].field_id === field.projectHometype) {
           const values = fields[i].values[0].name
           projectHometype = values
@@ -89,10 +93,6 @@ export default class Home extends Vue {
         if (fields[i].field_id === field.projectStage) {
           const values = fields[i].values[0].name
           projectStage = values
-        }
-        if (fields[i].field_id === field.projectAddress) {
-          const values = fields[i].values[0].value
-          projectAddress = values
         }
         if (fields[i].field_id === field.projectType) {
           const values = fields[i].values[0].name
