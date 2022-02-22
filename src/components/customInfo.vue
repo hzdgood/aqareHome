@@ -19,6 +19,12 @@
         {{ item.title }}
       </button>
     </div>
+    <div class="tag inline" v-if="houseNeed.length != 0">
+      <div>全屋需求</div>
+      <button v-for="item in houseNeed" :key="item.item_id">
+        {{ item.title }}
+      </button>
+    </div>
     <div class="tag inline" v-if="personInfo.length != 0">
       <div>人员属性</div>
       <button v-for="item in personInfo" :key="item.item_id">
@@ -72,6 +78,7 @@ export default class Actions extends Vue {
   lostStatus: any[] = [];
   hometype: any[] = [];
   custominto: any[] = [];
+  houseNeed: any[] = [];
   tableID = table.customerInfo;
   ticket = localStorage.getItem('ticket');
   data = {

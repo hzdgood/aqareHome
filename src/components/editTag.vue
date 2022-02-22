@@ -243,7 +243,6 @@ export default class Home extends Vue {
     const id: any = items.id
     const dom: any = document.getElementById(id)
     // 单选判断
-
     // 设置选中
     if (dom.className === 'selected') {
       dom.className = ''
