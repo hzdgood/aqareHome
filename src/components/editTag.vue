@@ -26,6 +26,18 @@
           {{ item.value }}
         </button>
       </div>
+      <div class="tag" v-if="houseNeed.length != 0">
+        <div>全屋需求</div>
+        <button
+          v-for="item in houseNeed"
+          :key="item.id"
+          :id="item.id"
+          :name="item.field"
+          @click="onchange(item)"
+        >
+          {{ item.value }}
+        </button>
+      </div>
       <div class="tag" v-if="hometype.length != 0">
         <div>房型</div>
         <button
@@ -51,7 +63,7 @@
         </button>
       </div>
       <div class="tag" v-if="cAttribute.length != 0">
-        <div>分类属性</div>
+        <div>客户属性</div>
         <button
           v-for="item in cAttribute"
           :key="item.id"
@@ -62,7 +74,7 @@
           {{ item.value }}
         </button>
       </div>
-      <div class="tag" v-if="fitmentStage.length != 0">
+      <div class="tag" v-if="fitmentStage.length != 0" style="display: none">
         <div>装修阶段</div>
         <button
           v-for="item in fitmentStage"
@@ -110,7 +122,7 @@ import { SearchInfo, updateTable } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   editShow = false;
-  taglist: any[] = [];// 标签list
+  taglist: any[] = []; // 标签list
   houseInfo: any[] = [];
   personInfo: any[] = [];
   cAttribute: any[] = [];
@@ -119,6 +131,7 @@ export default class Home extends Vue {
   lostStatus: any[] = [];
   hometype: any[] = [];
   custominto: any[] = [];
+  houseNeed: any[] = [];
   itemId: any = ''; // 行ID
   ticket = localStorage.getItem('ticket');
   tableID = table.tagInfo;
@@ -178,7 +191,7 @@ export default class Home extends Vue {
         }
         this.personInfo.push(ob)
       }
-      if (name === '分类属性') {
+      if (name === '客户属性') {
         const ob = {
           id: item_id,
           name: name,
@@ -187,15 +200,24 @@ export default class Home extends Vue {
         }
         this.cAttribute.push(ob)
       }
-      if (name === '装修阶段') {
+      if (name === '全屋需求') {
         const ob = {
           id: item_id,
           name: name,
           value: value,
-          field: field.fitmentStage
+          field: field.cAttribute
         }
-        this.fitmentStage.push(ob)
+        this.houseNeed.push(ob)
       }
+      // if (name === "装修阶段") {
+      //   const ob = {
+      //     id: item_id,
+      //     name: name,
+      //     value: value,
+      //     field: field.fitmentStage,
+      //   };
+      //   this.fitmentStage.push(ob);
+      // }
       if (name === '单品客户') {
         const ob = {
           id: item_id,
@@ -326,14 +348,14 @@ export default class Home extends Vue {
           dom.className = 'selected'
         }
       }
-      if (fields[i].field_id === field.fitmentStage) {
-        const values = fields[i].values
-        for (let j = 0; j < values.length; j++) {
-          const itemid = values[j].item_id
-          const dom: any = document.getElementById(itemid)
-          dom.className = 'selected'
-        }
-      }
+      // if (fields[i].field_id === field.fitmentStage) {
+      //   const values = fields[i].values;
+      //   for (let j = 0; j < values.length; j++) {
+      //     const itemid = values[j].item_id;
+      //     const dom: any = document.getElementById(itemid);
+      //     dom.className = "selected";
+      //   }
+      // }
       if (fields[i].field_id === field.oneCustom) {
         const values = fields[i].values
         for (let j = 0; j < values.length; j++) {

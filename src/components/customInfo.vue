@@ -26,12 +26,12 @@
       </button>
     </div>
     <div class="tag inline" v-if="cAttribute.length != 0">
-      <div>分类属性</div>
+      <div>客户属性</div>
       <button v-for="item in cAttribute" :key="item.item_id">
         {{ item.title }}
       </button>
     </div>
-    <div class="tag inline" v-if="fitmentStage.length != 0">
+    <div class="tag inline" v-if="fitmentStage.length != 0" style="display:none">
       <div>装修阶段</div>
       <button v-for="item in fitmentStage" :key="item.item_id">
         {{ item.title }}
@@ -109,10 +109,10 @@ export default class Actions extends Vue {
         const values = fields[i].values
         this.cAttribute = values
       }
-      if (fields[i].field_id === field.fitmentStage) {
-        const values = fields[i].values
-        this.fitmentStage = values
-      }
+      // if (fields[i].field_id === field.fitmentStage) {
+      //   const values = fields[i].values
+      //   this.fitmentStage = values
+      // }
       if (fields[i].field_id === field.oneCustom) {
         const values = fields[i].values
         this.oneCustom = values

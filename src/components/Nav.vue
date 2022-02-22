@@ -7,25 +7,25 @@
       </router-link>
     </a-menu-item>
     <a-menu-item key="跟进">
-      <router-link to="/actions">
+      <router-link to="/followUp">
         <!-- <a-icon type="setting" /> -->
         跟进
       </router-link>
     </a-menu-item>
     <a-menu-item key="工单">
-      <router-link to="/external-user">
+      <router-link to="/workSheet">
         <!-- <a-icon type="user" /> -->
         工单
       </router-link>
     </a-menu-item>
     <a-menu-item key="发货">
-      <router-link to="/external-chat">
+      <router-link to="/sendOut">
         <!-- <a-icon type="usergroup-add" /> -->
         发货
       </router-link>
     </a-menu-item>
     <a-menu-item key="工勘">
-      <router-link to="/external-chat">
+      <router-link to="/enginInvestiga">
         <!-- <a-icon type="usergroup-add" /> -->
         工勘
       </router-link>

@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { Button, Input, message } from 'ant-design-vue'
+import { Button, Input } from 'ant-design-vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { invoke } from 'wecom-sidebar-jssdk'
 
@@ -38,7 +38,7 @@ export default class Actions extends Vue {
         }
       })
     } catch (e) {
-      message.error(e.message)
+      // message.error(e.message)
     }
   }
 }
