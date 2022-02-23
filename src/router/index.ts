@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '@/views/projectInfo.vue'
-import sendOut from '@/views/sendOut.vue'
+import projectInfo from '@/views/projectInfo.vue'
 import followUp from '@/views/followUp.vue'
 import workSheet from '@/views/workSheet.vue'
+import sendOut from '@/views/sendOut.vue'
 import enginInvestiga from '@/views/enginInvestiga.vue'
 
 import Action from '@/views/test/Actions.vue'
@@ -16,7 +16,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/',
     name: 'projectInfo',
-    component: Home
+    component: projectInfo
   },
   {
     path: '/followUp',
