@@ -25,10 +25,13 @@ import { Icon, Menu } from 'ant-design-vue'
   }
 })
 export default class Home extends Vue {
-  ticket = localStorage.getItem('ticket');
-  async mounted () {
-    console.log(this.ticket)
-  }
+  // async mounted () {}
+  infoShow : any = false;
+  moneyShow : any = false;
+  followShow : any = false;
+  surveyShow : any = false;
+  schemeShow : any = false;
+  steetShow : any = false;
 
   clickInfo () {
     console.log(1111)

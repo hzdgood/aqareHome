@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <editTag @reload="reloadFunction"></editTag>
+    <customerTagEdit @reload="reloadFunction"></customerTagEdit>
     <div class="tag inline" v-if="custominto.length != 0">
       <div>客户来源</div>
       <button v-for="item in custominto" :key="item.item_id">
@@ -61,12 +61,12 @@
 import { Component, Vue, Emit } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
-import editTag from '@/components/infoEdit/editTag.vue'
+import customerTagEdit from '@/components/infoEdit/customerTagEdit.vue'
 
 @Component({
   name: 'customInfo',
   components: {
-    editTag: editTag
+    customerTagEdit: customerTagEdit
   }
 })
 export default class Actions extends Vue {

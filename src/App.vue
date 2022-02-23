@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <user></user>
-    <customInfo></customInfo>
+    <customerTag></customerTag>
     <stage></stage>
     <sidebar-nav></sidebar-nav>
     <router-view />
@@ -12,7 +12,7 @@
 <script lang="ts">
 import Nav from '@/components/nav/Nav.vue'
 import user from '@/components/user/user.vue'
-import customInfo from '@/components/infoEdit/customInfo.vue'
+import customerTag from '@/components/infoEdit/customerTag.vue'
 import stage from '@/components/infoEdit/stage.vue'
 import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
@@ -21,7 +21,7 @@ import { Component, Vue } from 'vue-property-decorator'
   components: {
     'sidebar-nav': Nav,
     user: user,
-    customInfo: customInfo,
+    customerTag: customerTag,
     stage: stage,
     footContent: footContent
   }
