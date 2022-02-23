@@ -104,6 +104,7 @@ export default class Home extends Vue {
     var val = items.id
     objs.fields[items.field] = [parseInt(val)]
     const res = await updateTable(this.ticket, this.itemId, objs)
+    console.log(res)
   }
 }
 </script>

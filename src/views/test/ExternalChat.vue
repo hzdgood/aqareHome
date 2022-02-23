@@ -23,7 +23,6 @@ import { ExternalChatResponse } from '@/api/types'
 import { Component, Vue } from 'vue-property-decorator'
 import { fetchExternalChat } from '@/api'
 import { invoke } from 'wecom-sidebar-jssdk'
-import { message } from 'ant-design-vue'
 
 @Component({
   name: 'ExternalChat'
@@ -38,7 +37,7 @@ export default class ExternalChat extends Vue {
         type
       })
     } catch (e) {
-      //message.error(e.message)
+      // message.error(e.message)
     }
   }
 
@@ -52,7 +51,7 @@ export default class ExternalChat extends Vue {
 
       this.externalChat = await fetchExternalChat(res.chatId || '')
     } catch (e) {
-      //message.error(e.message)
+      // message.error(e.message)
     }
   }
 

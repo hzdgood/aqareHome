@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import Home from '@/views/Home.vue'
-import Action from '@/views/Actions.vue'
+import Home from '@/views/projectInfo.vue'
+import sendOut from '@/views/sendOut.vue'
 import followUp from '@/views/followUp.vue'
 import workSheet from '@/views/workSheet.vue'
-import sendOut from '@/views/sendOut.vue'
 import enginInvestiga from '@/views/enginInvestiga.vue'
 
-import ExternalUser from '@/views/ExternalUser.vue'
-import ExternalChat from '@/views/ExternalChat.vue'
+import Action from '@/views/test/Actions.vue'
+import ExternalUser from '@/views/test/ExternalUser.vue'
+import ExternalChat from '@/views/test/ExternalChat.vue'
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Home',
+    name: 'projectInfo',
     component: Home
   },
   {

@@ -10,11 +10,11 @@
 </template>
 
 <script lang="ts">
-import Nav from '@/components/Nav.vue'
-import user from '@/components/user.vue'
-import customInfo from '@/components/customInfo.vue'
-import stage from '@/components/stage.vue'
-import footContent from '@/components/footContent.vue'
+import Nav from '@/components/nav/Nav.vue'
+import user from '@/components/user/user.vue'
+import customInfo from '@/components/infoEdit/customInfo.vue'
+import stage from '@/components/infoEdit/stage.vue'
+import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
 @Component({
   name: 'App',

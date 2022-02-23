@@ -61,7 +61,7 @@
 import { Component, Vue, Emit } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
-import editTag from '@/components/editTag.vue'
+import editTag from '@/components/infoEdit/editTag.vue'
 
 @Component({
   name: 'customInfo',

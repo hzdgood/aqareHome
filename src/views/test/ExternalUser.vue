@@ -41,7 +41,7 @@ export default class ExternalUser extends Vue {
 
       this.externalUser = await fetchExternalUser(res.userId)
     } catch (e) {
-      //message.error(e.message)
+      // message.error(e.message)
     }
   }
 
@@ -56,7 +56,7 @@ export default class ExternalUser extends Vue {
         type: this.externalUser.type
       })
     } catch (e) {
-      //message.error(e.message)
+      // message.error(e.message)
     }
   }
 
