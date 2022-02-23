@@ -37,7 +37,9 @@ export const field = {
   projectStage: 2200000149037697, // 项目装修阶段
 
   projectAddress: 2200000144970060, // 地址
-  projectType: 2200000148980437 // 项目类型
+  projectType: 2200000148980437, // 项目类型
+
+  masterProject: 2200000184791041// 主项目
 
 }
 export const wxInfo = {

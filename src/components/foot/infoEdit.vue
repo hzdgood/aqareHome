@@ -1,9 +1,12 @@
 <template>
   <div v-show="isShow">
-    <div v-for="project in projectList" :key="project.id">
+    <div id="projectList" v-for="project in projectList" :key="project.id">
       <div class="lineDiv">
         <span>项目类型：</span>
         <span><input type="text" :value="project.projectType" /></span>
+        <button>新增</button>
+        <button @click="bindClick(project)">绑定</button>
+        <button>删除</button>
       </div>
       <div class="lineDiv">
         <span>客户名称：</span>
@@ -27,13 +30,15 @@
         <span>客户地址：</span>
         <span><input type="text" :value="project.projectAddress" /></span>
       </div>
+      <button>保存</button>
     </div>
+
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, updateTable } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -41,7 +46,9 @@ export default class Home extends Vue {
   ticket = localStorage.getItem('ticket');
   projectInfo = table.projectInfo;
   projectList: any[] = [];
+  itemList: any[] = [];
   async mounted () {
+    // 查询当前客户的所有的项目-->userid
     const data = {
       where: {
         and: [
@@ -59,6 +66,8 @@ export default class Home extends Vue {
     const result = await SearchInfo(this.ticket, this.projectInfo, data)
     for (let j = 0; j < result.length; j++) {
       const fields = result[j].fields
+      const itemId: any = result[j].item_id
+      this.itemList.push(itemId)
       let projectCustom = ''
       let telephone = ''
       let projectVillage = ''
@@ -103,6 +112,7 @@ export default class Home extends Vue {
       }
       const obj = {
         id: j,
+        itemId: itemId,
         projectCustom: projectCustom,
         telephone: telephone,
         projectVillage: projectVillage,
@@ -114,6 +124,16 @@ export default class Home extends Vue {
       }
       this.projectList.push(obj)
     }
+  }
+
+  async bindClick (project: any) {
+    for (let i = 0; i < this.itemList.length; i++) {
+      const data = { fields: { [field.masterProject]: [2] } }
+      const res = await updateTable(this.ticket, this.itemList[i], data)
+    }
+    const data = { fields: { [field.masterProject]: [1] } }
+    const res = await updateTable(this.ticket, project.itemId, data)
+    console.log(res)
   }
 }
 </script>

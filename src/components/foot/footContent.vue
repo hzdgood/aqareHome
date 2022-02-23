@@ -37,27 +37,51 @@ export default class Home extends Vue {
   steetShow: any = false;
 
   clickInfo () {
-    this.infoShow = true
+    if (this.infoShow) {
+      this.infoShow = false
+    } else {
+      this.infoShow = true
+    }
   }
 
   clickCollect () {
-    console.log(1111)
+    if (this.collectShow) {
+      this.collectShow = false
+    } else {
+      this.collectShow = true
+    }
   }
 
   clickFollow () {
-    console.log(1111)
+    if (this.followShow) {
+      this.followShow = false
+    } else {
+      this.followShow = true
+    }
   }
 
   clickSurvey () {
-    console.log(1111)
+    if (this.surveyShow) {
+      this.surveyShow = false
+    } else {
+      this.surveyShow = true
+    }
   }
 
   clickScheme () {
-    console.log(1111)
+    if (this.schemeShow) {
+      this.schemeShow = false
+    } else {
+      this.schemeShow = true
+    }
   }
 
   clickSteet () {
-    console.log(1111)
+    if (this.steetShow) {
+      this.steetShow = false
+    } else {
+      this.steetShow = true
+    }
   }
 }
 </script>
