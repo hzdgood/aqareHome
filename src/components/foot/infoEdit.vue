@@ -4,66 +4,57 @@
     <div id="projectList" v-for="project in projectList" :key="project.id">
       <div class="lineDiv">
         <span>项目类型：</span>
-        <span
-          ><input id="projectType" type="text" :value="project.projectType"
-        /></span>
+        <span>
+          <input id="projectType" type="text" :value="project.projectType" />
+        </span>
         <button @click="bindClick(project)">绑定</button>
         <button @click="deleteClick(project)">删除</button>
       </div>
       <div class="lineDiv">
         <span>客户名称：</span>
-        <span
-          ><input id="projectCustom" type="text" :value="project.projectCustom"
-        /></span>
+        <span>
+          <input id="projectCustom" type="text" :value="project.customer" />
+        </span>
         <span>联系方式：</span>
-        <span
-          ><input id="telephone" type="text" :value="project.telephone"
-        /></span>
+        <span>
+          <input id="telephone" type="text" :value="project.telephone" />
+        </span>
       </div>
       <div class="lineDiv">
         <span>小区名称：</span>
-        <span
-          ><input
-            id="projectVillage"
-            type="text"
-            :value="project.projectVillage"
-        /></span>
+        <span>
+          <input id="projectVillage" type="text" :value="project.village" />
+        </span>
         <span>客户房型：</span>
-        <span
-          ><input
-            id="projectHometype"
-            type="text"
-            :value="project.projectHometype"
-        /></span>
+        <span>
+          <input id="projectHometype" type="text" :value="project.hometype" />
+        </span>
       </div>
       <div class="lineDiv">
         <span>销售人员：</span>
-        <span
-          ><input id="projectArea" type="text" :value="project.saleMan"
-        /></span>
+        <span>
+          <input id="projectArea" type="text" :value="project.saleMan" />
+        </span>
         <span>所属门店：</span>
-        <span
-          ><input id="projectStage" type="text" :value="project.department"
-        /></span>
+        <span>
+          <input id="projectStage" type="text" :value="project.department" />
+        </span>
       </div>
       <div class="lineDiv">
         <span>所在区域：</span>
-        <span
-          ><input id="projectArea" type="text" :value="project.projectArea"
-        /></span>
+        <span>
+          <input id="projectArea" type="text" :value="project.area" />
+        </span>
         <span>装修阶段：</span>
-        <span
-          ><input id="projectStage" type="text" :value="project.projectStage"
-        /></span>
+        <span>
+          <input id="projectStage" type="text" :value="project.stage" />
+        </span>
       </div>
       <div class="lineDivT">
         <span>客户地址：</span>
-        <span
-          ><input
-            id="projectAddress"
-            type="text"
-            :value="project.projectAddress"
-        /></span>
+        <span>
+          <input id="projectAddress" type="text" :value="project.address" />
+        </span>
       </div>
       <button @click="saveClick(project)">保存</button>
     </div>
@@ -159,13 +150,13 @@ export default class Home extends Vue {
       const obj = {
         id: j,
         itemId: itemId,
-        projectCustom: projectCustom,
+        customer: projectCustom,
         telephone: telephone,
-        projectVillage: projectVillage,
-        projectHometype: projectHometype,
-        projectArea: projectArea,
-        projectStage: projectStage,
-        projectAddress: projectAddress,
+        village: projectVillage,
+        hometype: projectHometype,
+        area: projectArea,
+        stage: projectStage,
+        address: projectAddress,
         projectType: projectType,
         saleMan: saleMan,
         department: department
