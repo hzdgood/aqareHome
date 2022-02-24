@@ -48,6 +48,7 @@ export const user = {
   userId: 'woZMyYCQAAKVX-wFMjmwX8IgoXvT09gg'
 }
 
+// 房屋类型
 export const houseType = [{
   name: '一室',
   value: '1'
@@ -70,6 +71,8 @@ export const houseType = [{
   name: '工装',
   value: '7'
 }]
+
+// 装修进度
 export const fitmentStage = [{
   name: '未开工',
   value: '9'
@@ -93,6 +96,7 @@ export const fitmentStage = [{
   value: '10'
 }]
 
+// 项目类型
 export const projectType = [{
   name: '全屋',
   value: '1'
