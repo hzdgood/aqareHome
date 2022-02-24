@@ -1,31 +1,45 @@
 <template>
   <div>
     <div v-for="project in projectList" :key="project.id">
-      <div class="lineDiv" >
+      <div class="lineDiv">
         <span>项目类型：</span>
-        <span><input type="text" readonly :value="project.projectType"/></span>
+        <span><input type="text" readonly :value="project.projectType" /></span>
+        <span>主项目：</span>
+        <span
+          ><input type="text" readonly :value="project.masterProject"
+        /></span>
       </div>
-      <div class="lineDiv" >
+      <div class="lineDiv">
         <span>客户名称：</span>
-        <span><input type="text" readonly :value="project.projectCustom"/></span>
+        <span
+          ><input type="text" readonly :value="project.projectCustom"
+        /></span>
         <span>联系方式：</span>
-        <span><input type="text" readonly :value="project.telephone"/></span>
+        <span><input type="text" readonly :value="project.telephone" /></span>
       </div>
       <div class="lineDiv">
         <span>小区名称：</span>
-        <span><input type="text" readonly :value="project.projectVillage"/></span>
+        <span
+          ><input type="text" readonly :value="project.projectVillage"
+        /></span>
         <span>客户房型：</span>
-        <span><input type="text" readonly :value="project.projectHometype"/></span>
+        <span
+          ><input type="text" readonly :value="project.projectHometype"
+        /></span>
       </div>
       <div class="lineDiv">
         <span>所在区域：</span>
-        <span><input type="text" readonly :value="project.projectArea"/></span>
+        <span><input type="text" readonly :value="project.projectArea" /></span>
         <span>装修阶段：</span>
-        <span><input type="text" readonly :value="project.projectStage"/></span>
+        <span
+          ><input type="text" readonly :value="project.projectStage"
+        /></span>
       </div>
       <div class="lineDivT">
         <span>客户地址：</span>
-        <span><input type="text" readonly :value="project.projectAddress"/></span>
+        <span
+          ><input type="text" readonly :value="project.projectAddress"
+        /></span>
       </div>
     </div>
   </div>
@@ -52,7 +66,10 @@ export default class Home extends Vue {
       },
       offset: 0,
       limit: 20,
-      order_by: [{ field: field.projectUUid, sort: 'desc' }]
+      order_by: [
+        { field: field.projectUUid, sort: 'desc' },
+        { field: field.masterProject, sort: 'asc' }
+      ]
     }
     const result = await SearchInfo(this.ticket, this.projectInfo, data)
     for (let j = 0; j < result.length; j++) {
@@ -65,6 +82,7 @@ export default class Home extends Vue {
       let projectStage = ''
       let projectAddress = ''
       let projectType = ''
+      let masterProject = ''
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].field_id === field.projectCustom) {
           const values = fields[i].values[0].value
@@ -98,6 +116,10 @@ export default class Home extends Vue {
           const values = fields[i].values[0].name
           projectType = values
         }
+        if (fields[i].field_id === field.masterProject) {
+          const values = fields[i].values[0].name
+          masterProject = values
+        }
       }
       const obj = {
         id: j,
@@ -108,7 +130,8 @@ export default class Home extends Vue {
         projectArea: projectArea,
         projectStage: projectStage,
         projectAddress: projectAddress,
-        projectType: projectType
+        projectType: projectType,
+        masterProject: masterProject
       }
       this.projectList.push(obj)
     }

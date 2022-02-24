@@ -10,7 +10,9 @@
         <a-menu-item key="workSteet" @click="clickSteet()">工单</a-menu-item>
       </a-menu>
     </div>
-    <infoEdit :isShow="infoShow"></infoEdit>
+    <div v-if="infoShow">
+      <infoEdit></infoEdit>
+    </div>
   </div>
 </template>
 

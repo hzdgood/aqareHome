@@ -1,14 +1,26 @@
 <template>
-  <div v-show="isShow">
+  <div>
     <button @click="addClick()">新增</button>
     <div id="projectList" v-for="project in projectList" :key="project.id">
       <div class="lineDiv">
         <span>项目类型：</span>
         <span>
-          <input id="projectType" type="text" :value="project.projectType" />
+          <select id="projectType">
+            <option :value="project.projectTypeId">
+              {{ project.projectType }}
+            </option>
+            <option
+              :key="projectType.value"
+              v-for="projectType in projectType"
+              :value="projectType.value"
+            >
+              {{ projectType.name }}
+            </option>
+          </select>
         </span>
         <button @click="bindClick(project)">绑定</button>
         <button @click="deleteClick(project)">删除</button>
+        <span>{{ project.masterProject }}</span>
       </div>
       <div class="lineDiv">
         <span>客户名称：</span>
@@ -27,7 +39,18 @@
         </span>
         <span>客户房型：</span>
         <span>
-          <input id="projectHometype" type="text" :value="project.hometype" />
+          <select id="projectHometype">
+            <option :value="project.hometypeId">
+              {{ project.hometype }}
+            </option>
+            <option
+              :key="houseType.value"
+              v-for="houseType in houseType"
+              :value="houseType.value"
+            >
+              {{ houseType.name }}
+            </option>
+          </select>
         </span>
       </div>
       <div class="lineDiv">
@@ -37,7 +60,7 @@
         </span>
         <span>所属门店：</span>
         <span>
-          <input id="projectStage" type="text" :value="project.department" />
+          <input id="department" readonly type="text" :value="project.department" />
         </span>
       </div>
       <div class="lineDiv">
@@ -47,7 +70,18 @@
         </span>
         <span>装修阶段：</span>
         <span>
-          <input id="projectStage" type="text" :value="project.stage" />
+          <select id="projectStage">
+            <option :value="project.stageId">
+              {{ project.stage }}
+            </option>
+            <option
+              :key="fitmentStage.value"
+              v-for="fitmentStage in fitmentStage"
+              :value="fitmentStage.value"
+            >
+              {{ fitmentStage.name }}
+            </option>
+          </select>
         </span>
       </div>
       <div class="lineDivT">
@@ -62,17 +96,26 @@
 </template>
 
 <script lang='ts'>
-import { Component, Vue, Prop } from 'vue-property-decorator'
-import { SearchInfo, updateTable } from '@/config/interFace'
-import { table, field, user } from '@/config/config'
+import { Component, Vue } from 'vue-property-decorator'
+import { SearchInfo, updateTable, deleteItem } from '@/config/interFace'
+import {
+  table,
+  field,
+  user,
+  houseType,
+  fitmentStage,
+  projectType
+} from '@/config/config'
 @Component({})
 export default class Home extends Vue {
-  @Prop({ default: false }) isShow!: boolean;
   ticket = localStorage.getItem('ticket');
   projectInfo = table.projectInfo;
   customerInfo = table.customerInfo;
   projectList: any[] = [];
   itemList: any[] = [];
+  houseType: any = houseType;
+  fitmentStage: any = fitmentStage;
+  projectType: any = projectType;
   async getInfoList () {
     // 查询当前客户的所有的项目-->userid
     this.projectList = []
@@ -88,7 +131,10 @@ export default class Home extends Vue {
       },
       offset: 0,
       limit: 20,
-      order_by: [{ field: field.projectUUid, sort: 'desc' }]
+      order_by: [
+        { field: field.projectUUid, sort: 'desc' },
+        { field: field.masterProject, sort: 'asc' }
+      ]
     }
     const result = await SearchInfo(this.ticket, this.projectInfo, data)
     for (let j = 0; j < result.length; j++) {
@@ -98,53 +144,50 @@ export default class Home extends Vue {
       let projectCustom = ''
       let telephone = ''
       let projectVillage = ''
-      let projectHometype = ''
-      let projectArea = ''
-      let projectStage = ''
       let projectAddress = ''
-      let projectType = ''
+      let masterProject = ''
+      let projectHometype = ''; let projectHometypeId = ''
+      let projectArea = ''
+      let projectStage = ''; let projectStageId = ''
+      let projectType = ''; let projectTypeId = ''
       let saleMan = ''
       let department = ''
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].field_id === field.projectCustom) {
-          const values = fields[i].values[0].value
-          projectCustom = values
+          projectCustom = fields[i].values[0].value
         }
         if (fields[i].field_id === field.telephone) {
-          const values = fields[i].values[0].value
-          telephone = values
+          telephone = fields[i].values[0].value
         }
         if (fields[i].field_id === field.projectVillage) {
-          const values = fields[i].values[0].value
-          projectVillage = values
+          projectVillage = fields[i].values[0].value
         }
         if (fields[i].field_id === field.projectAddress) {
-          const values = fields[i].values[0].value
-          projectAddress = values
+          projectAddress = fields[i].values[0].value
+        }
+        if (fields[i].field_id === field.masterProject) {
+          masterProject = fields[i].values[0].name
         }
         if (fields[i].field_id === field.projectHometype) {
-          const values = fields[i].values[0].name
-          projectHometype = values
-        }
-        if (fields[i].field_id === field.projectArea) {
-          const values = fields[i].values[0].title
-          projectArea = values
+          projectHometype = fields[i].values[0].name
+          projectHometypeId = fields[i].values[0].id
         }
         if (fields[i].field_id === field.projectStage) {
-          const values = fields[i].values[0].name
-          projectStage = values
+          projectStage = fields[i].values[0].name
+          projectStageId = fields[i].values[0].id
         }
         if (fields[i].field_id === field.projectType) {
-          const values = fields[i].values[0].name
-          projectType = values
+          projectType = fields[i].values[0].name
+          projectTypeId = fields[i].values[0].id
+        }
+        if (fields[i].field_id === field.projectArea) {
+          projectArea = fields[i].values[0].title
         }
         if (fields[i].field_id === field.saleMan) {
-          const values = fields[i].values[0].title
-          saleMan = values
+          saleMan = fields[i].values[0].title
         }
         if (fields[i].field_id === field.department) {
-          const values = fields[i].values[0].value
-          department = values
+          department = fields[i].values[0].value
         }
       }
       const obj = {
@@ -153,13 +196,21 @@ export default class Home extends Vue {
         customer: projectCustom,
         telephone: telephone,
         village: projectVillage,
-        hometype: projectHometype,
-        area: projectArea,
-        stage: projectStage,
         address: projectAddress,
-        projectType: projectType,
+        masterProject: masterProject,
+        area: projectArea,
+
         saleMan: saleMan,
-        department: department
+        department: department,
+
+        hometype: projectHometype,
+        hometypeId: projectHometypeId,
+
+        projectType: projectType,
+        projectTypeId: projectTypeId,
+
+        stage: projectStage,
+        stageId: projectStageId
       }
       this.projectList.push(obj)
     }
@@ -175,12 +226,8 @@ export default class Home extends Vue {
       await updateTable(this.ticket, this.itemList[i], data)
     }
     const data = { fields: { [field.masterProject]: [1] } }
-    const res = await updateTable(this.ticket, project.itemId, data)
-    console.log(res)
-  }
-
-  deleteClick (project: any) {
-    console.log(project.itemId)
+    await updateTable(this.ticket, project.itemId, data)
+    setTimeout(this.getInfoList, 1000)
   }
 
   async addClick () {
@@ -207,9 +254,40 @@ export default class Home extends Vue {
     }
   }
 
-  saveClick (project: any) {
-    console.log(project.itemId)
-    this.isShow = false
+  async deleteClick (project: any) {
+    if (project.masterProject === '是') {
+      console.log(11111)
+    } else {
+      const data = { item_ids: [project.itemId] }
+      await deleteItem(this.ticket, table.projectInfo, data)
+      setTimeout(this.getInfoList, 1000)
+    }
+  }
+
+  async saveClick (project: any) {
+    const telephone: any = document.getElementById('telephone')
+    const projectCustom: any = document.getElementById('projectCustom')
+    const address: any = document.getElementById('projectAddress')
+    const village: any = document.getElementById('projectVillage')
+    const stage: any = document.getElementById('projectStage')
+    const stageValue = stage.options[stage.selectedIndex].value
+    const hometype: any = document.getElementById('projectHometype')
+    const typeValue = hometype.options[hometype.selectedIndex].value
+    const Type: any = document.getElementById('projectType')
+    const TypeValue = Type.options[Type.selectedIndex].value
+
+    const data = {
+      fields: {
+        [field.projectCustom]: projectCustom.value,
+        [field.telephone]: telephone.value,
+        [field.projectAddress]: address.value,
+        [field.projectVillage]: village.value,
+        [field.projectStage]: [stageValue],
+        [field.projectHometype]: [typeValue],
+        [field.projectType]: [TypeValue]
+      }
+    }
+    await updateTable(this.ticket, project.itemId, data)
   }
 }
 </script>
