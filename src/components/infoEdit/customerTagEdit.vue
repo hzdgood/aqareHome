@@ -280,8 +280,7 @@ export default class Home extends Vue {
       }
     }
     // 发送伙伴云修改
-    const res = await updateTable(this.ticket, this.itemId, data)
-    console.log(res)
+    await updateTable(this.ticket, this.itemId, data)
     this.$emit('reload')
     this.editShow = false
   }

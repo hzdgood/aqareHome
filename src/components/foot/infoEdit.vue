@@ -209,7 +209,6 @@ export default class Home extends Vue {
   // 查询所有门店数据
   async getDepartmentList () {
     const result = await filterInfo(this.ticket)
-    console.log(result)
     for (let i = 0; i < result.length; i++) {
       const obj = {
         name: result[i].title,
@@ -217,7 +216,6 @@ export default class Home extends Vue {
       }
       this.departmentList.push(obj)
     }
-    console.log(this.departmentList)
   }
 
   // 查询当前人员项目信息
@@ -372,7 +370,6 @@ export default class Home extends Vue {
 
   async deleteClick (project: any) {
     if (project.masterProject === '是') {
-      console.log(11111)
     } else {
       const data = { item_ids: [project.itemId] }
       await deleteItem(this.ticket, table.projectInfo, data)
