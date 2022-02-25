@@ -7,7 +7,8 @@ export const table = {
   tagInfo: '2100000019532232', // 标签
   projectInfo: '2100000014956047', // 项目信息表
   saleManInfo: '2100000014955862', // 销售人员表
-  areaInfo: '2100000015998321' // 区域表
+  areaInfo: '2100000015998321', // 区域表
+  departmentInfo: '2100000016791383' // 部门表
 }
 export const field = {
   // 客户信息表
@@ -38,7 +39,7 @@ export const field = {
   projectType: 2200000148980437, // 项目类型
   masterProject: 2200000184791041, // 主项目
   saleMan: 2200000145489594, // 销售
-  department: 1294001101000000 // 部门
+  department: 2200000160830230 // 部门
 }
 export const wxInfo = {
   corpId: 'ww9a717b03b06063e3',

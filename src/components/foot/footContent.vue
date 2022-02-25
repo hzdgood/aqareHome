@@ -11,7 +11,7 @@
       </a-menu>
     </div>
     <div v-if="infoShow">
-      <infoEdit></infoEdit>
+      <infoEdit @reload="reload()"></infoEdit>
     </div>
   </div>
 </template>
@@ -37,6 +37,11 @@ export default class Home extends Vue {
   surveyShow: any = false;
   schemeShow: any = false;
   steetShow: any = false;
+
+  reload () {
+    this.$store.dispatch('updateReload')
+    this.infoShow = false
+  }
 
   clickInfo () {
     if (this.infoShow) {

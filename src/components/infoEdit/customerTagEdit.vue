@@ -400,7 +400,7 @@ export default class Home extends Vue {
   height: 100%;
   width: 100%;
   background-color: #eee;
-  opacity: 0.9;
+  opacity: 0.92;
   z-index: 10;
   top: 0;
 }

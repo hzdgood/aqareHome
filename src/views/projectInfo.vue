@@ -45,7 +45,7 @@
   </div>
 </template>
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
 @Component({})
@@ -53,7 +53,14 @@ export default class Home extends Vue {
   ticket = localStorage.getItem('ticket');
   projectInfo = table.projectInfo;
   projectList: any[] = [];
-  async mounted () {
+
+  @Watch('$store.state.reloadStatus')
+  reloadPage () {
+    setTimeout(this.onloadFunction, 1000)
+  }
+
+  async onloadFunction () {
+    this.projectList = []
     const data = {
       where: {
         and: [
@@ -135,6 +142,10 @@ export default class Home extends Vue {
       }
       this.projectList.push(obj)
     }
+  }
+
+  async mounted () {
+    this.onloadFunction()
   }
 }
 </script>

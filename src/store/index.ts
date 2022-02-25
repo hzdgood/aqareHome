@@ -4,10 +4,17 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 const state = {
+  reloadStatus: false
 }
 const mutations = {
+  updateReload () {
+    state.reloadStatus = true
+  }
 }
 const actions = {
+  updateReload () {
+    state.reloadStatus = true
+  }
 }
 const getters = {
 }
