@@ -38,6 +38,7 @@ export default class Home extends Vue {
   schemeShow: any = false;
   steetShow: any = false;
 
+  // 回调 infoEdit
   reload () {
     this.$store.dispatch('updateReload')
     this.infoShow = false

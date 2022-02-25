@@ -240,6 +240,7 @@ export default class Home extends Vue {
     }
   }
 
+  // 标签更新
   onchange = (items: any) => {
     const id: any = items.id
     const dom: any = document.getElementById(id)
@@ -252,6 +253,7 @@ export default class Home extends Vue {
     }
   };
 
+  // 保存客户数据
   async saveInfo () {
     const data: any = {
       fields: {}
@@ -285,6 +287,7 @@ export default class Home extends Vue {
     this.editShow = false
   }
 
+  // 编辑按钮触发
   async showEdit () {
     // 获取当前用户信息
     const data = {

@@ -56,7 +56,7 @@ export default class Home extends Vue {
 
   @Watch('$store.state.reloadStatus')
   reloadPage () {
-    setTimeout(this.onloadFunction, 1000)
+    setTimeout(this.onloadFunction, 2000)
   }
 
   async onloadFunction () {

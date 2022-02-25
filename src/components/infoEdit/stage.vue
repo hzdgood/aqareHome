@@ -51,6 +51,7 @@ export default class Home extends Vue {
     this.getCustomerTag()
   }
 
+  // 获取当前客户阶段
   async getCustomerTag () {
     const data = {
       where: {
@@ -96,7 +97,6 @@ export default class Home extends Vue {
     this.updateData(items)
   };
 
-  // fields: {2200000184312981: [2300006479350198]}
   async updateData (items: any) {
     const objs: any = {
       fields: {}

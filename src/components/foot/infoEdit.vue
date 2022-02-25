@@ -334,16 +334,21 @@ export default class Home extends Vue {
     this.getDepartmentList()
   }
 
+  // 主项目绑定
   async bindClick (project: any) {
     for (let i = 0; i < this.itemList.length; i++) {
-      const data = { fields: { [field.masterProject]: [2] } }
-      await updateTable(this.ticket, this.itemList[i], data)
+      const old = this.itemList[i]
+      if (old !== project.itemId) {
+        const data = { fields: { [field.masterProject]: [2] } }
+        await updateTable(this.ticket, this.itemList[i], data)
+      }
     }
     const data = { fields: { [field.masterProject]: [1] } }
     await updateTable(this.ticket, project.itemId, data)
     setTimeout(this.getInfoList, 1000)
   }
 
+  // 新增一条数据 主要就是修改伙伴云记录
   async addClick () {
     const data = {
       where: {
@@ -368,6 +373,7 @@ export default class Home extends Vue {
     }
   }
 
+  // 删除一条数据
   async deleteClick (project: any) {
     if (project.masterProject === '是') {
     } else {
@@ -377,6 +383,7 @@ export default class Home extends Vue {
     }
   }
 
+  // 保存按钮 获取当前项目全部数据
   async saveClick (project: any) {
     const telephone: any = document.getElementById('telephone')
     const projectCustom: any = document.getElementById('projectCustom')
@@ -392,9 +399,10 @@ export default class Home extends Vue {
     const areaValue = area.options[area.selectedIndex].value
     const saleMan: any = document.getElementById('saleMan')
     const saleManValue = saleMan.options[saleMan.selectedIndex].value
-
     const department: any = document.getElementById('department')
     const departmentValue = department.options[department.selectedIndex].value
+    // 加入校验
+
     const data = {
       fields: {
         [field.projectCustom]: projectCustom.value,

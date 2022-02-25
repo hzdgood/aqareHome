@@ -100,6 +100,7 @@ export default class Actions extends Vue {
     this.loadFunction()
   }
 
+  // 加载客户数据
   async loadFunction () {
     const res = await SearchInfo(this.ticket, this.tableID, this.data)
     const fields = res[0].fields
@@ -139,6 +140,7 @@ export default class Actions extends Vue {
     }
   }
 
+  // 回调 tagEdit
   @Emit()
   async reloadFunction () {
     setTimeout(this.loadFunction, 1000)
