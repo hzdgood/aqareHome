@@ -5,7 +5,7 @@
         <a-menu-item key="Info" @click="clickInfo()">信息</a-menu-item>
         <a-menu-item key="collect" @click="clickCollect()">收款</a-menu-item>
         <a-menu-item key="follow" @click="clickFollow()">跟进</a-menu-item>
-        <a-menu-item key="Survey" @click="clickSurvey()">工勘</a-menu-item>
+        <a-menu-item key="survey" @click="clickSurvey()">工勘</a-menu-item>
         <a-menu-item key="scheme" @click="clickScheme()">方案</a-menu-item>
         <a-menu-item key="workSteet" @click="clickSteet()">工单</a-menu-item>
       </a-menu>
@@ -13,20 +13,45 @@
     <div v-if="infoShow">
       <infoEdit @reload="reload()"></infoEdit>
     </div>
+    <div v-if="collectShow">
+      <collectEdit></collectEdit>
+    </div>
+    <div v-if="followShow">
+      <followEdit></followEdit>
+    </div>
+    <div v-if="surveyShow">
+      <surveyEdit></surveyEdit>
+    </div>
+    <div v-if="schemeShow">
+      <schemeEdit></schemeEdit>
+    </div>
+    <div v-if="steetShow">
+      <workSteetEdit></workSteetEdit>
+    </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { Icon, Menu } from 'ant-design-vue'
-import infoEdit from '@/components/foot/infoEdit.vue'
+import infoEdit from '@/components/foot/footEdit/infoEdit.vue'
+import collectEdit from '@/components/foot/footEdit/collectEdit.vue'
+import followEdit from '@/components/foot/footEdit/followEdit.vue'
+import surveyEdit from '@/components/foot/footEdit/surveyEdit.vue'
+import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
+import workSteetEdit from '@/components/foot/footEdit/workSteetEdit.vue'
 @Component({
   name: 'foot',
   components: {
     'a-menu': Menu,
     'a-menu-item': Menu.Item,
     'a-icon': Icon,
-    infoEdit: infoEdit
+    infoEdit: infoEdit,
+    collectEdit: collectEdit,
+    followEdit: followEdit,
+    surveyEdit: surveyEdit,
+    schemeEdit: schemeEdit,
+    workSteetEdit: workSteetEdit
   }
 })
 export default class Home extends Vue {
