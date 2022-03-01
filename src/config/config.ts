@@ -12,7 +12,8 @@ export const table = {
   workSheet: '2100000015054992', // 工单表
   customerPlan: '2100000014708369', // 客户方案表
   priceList: '2100000019332138', // 报价单
-  collectTable: '2100000015000019' // 收款表
+  collectTable: '2100000015000019', // 收款表
+  followTable: '2100000014956211' // 跟进表
 }
 export const field = {
   // 客户信息表
@@ -117,4 +118,22 @@ export const projectType = [{
 }, {
   name: '测试',
   value: '6'
+}]
+
+// 收款方式
+export const collectType = [{
+  name: '银联',
+  value: ''
+}, {
+  name: '对公',
+  value: ''
+}, {
+  name: '现金',
+  value: ''
+}, {
+  name: '其他',
+  value: ''
+}, {
+  name: 'SAAS导入',
+  value: ''
 }]

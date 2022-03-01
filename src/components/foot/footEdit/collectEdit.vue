@@ -5,8 +5,8 @@
       <input type="text" readonly />
     </div>
     <div>
-      <span>收款状态</span>
-      <input type="text" />
+      <span>收款类型</span>
+      <span>定金</span>
     </div>
     <div>
       <span>收款方式</span>
@@ -18,7 +18,7 @@
     </div>
     <div>
       <span>上传图片</span>
-      <input type="text" />
+      <input type="file" />
     </div>
   </div>
 </template>
