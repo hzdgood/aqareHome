@@ -4,10 +4,10 @@
       <a-menu mode="horizontal">
         <a-menu-item key="Info" @click="clickInfo()">信息</a-menu-item>
         <a-menu-item key="collect" @click="clickCollect()">收款</a-menu-item>
-        <a-menu-item key="follow" @click="clickFollow()">跟进</a-menu-item>
-        <a-menu-item key="survey" @click="clickSurvey()">工勘</a-menu-item>
         <a-menu-item key="scheme" @click="clickScheme()">方案</a-menu-item>
         <a-menu-item key="workSteet" @click="clickSteet()">工单</a-menu-item>
+        <!-- <a-menu-item key="follow" @click="clickFollow()">跟进</a-menu-item>
+        <a-menu-item key="survey" @click="clickSurvey()">工勘</a-menu-item> -->
       </a-menu>
     </div>
     <div v-if="infoShow">

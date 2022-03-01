@@ -1,14 +1,16 @@
 <template>
   <div>
     <div>
-      <span>日期</span>
-      <span>类型</span>
-      <span>状态</span>
-    </div>
-    <div>
       <table>
         <tr>产品名称</tr>
-        <tr>数量</tr>
+        <tr>全款数量</tr>
+        <tr>方案数量</tr>
+        <tr>销售单价</tr>
+        <tr>单品折扣</tr>
+        <tr>服务费</tr>
+        <tr>未发</tr>
+        <tr>未装</tr>
+        <tr>未调</tr>
       </table>
     </div>
   </div>

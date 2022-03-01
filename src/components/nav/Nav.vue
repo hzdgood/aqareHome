@@ -6,12 +6,7 @@
         信息
       </router-link>
     </a-menu-item>
-    <a-menu-item key="跟进">
-      <router-link to="/followUp">
-        <!-- <a-icon type="setting" /> -->
-        跟进
-      </router-link>
-    </a-menu-item>
+
     <a-menu-item key="工单">
       <router-link to="/workSheet">
         <!-- <a-icon type="user" /> -->
@@ -25,17 +20,25 @@
       </router-link>
     </a-menu-item>
     <a-menu-item key="方案">
-      <router-link to="/sendOut">
+      <router-link to="/scheme">
         <!-- <a-icon type="usergroup-add" /> -->
-        发货
+        方案
+      </router-link>
+    </a-menu-item>
+
+    <!-- <a-menu-item key="跟进">
+      <router-link to="/followUp">
+        <a-icon type="setting" />
+        跟进
       </router-link>
     </a-menu-item>
     <a-menu-item key="工勘">
       <router-link to="/enginInvestiga">
-        <!-- <a-icon type="usergroup-add" /> -->
+        <a-icon type="usergroup-add" />
         工勘
       </router-link>
-    </a-menu-item>
+    </a-menu-item> -->
+
   </a-menu>
 </template>
 
