@@ -44,7 +44,17 @@ export const field = {
   projectType: 2200000148980437, // 项目类型
   masterProject: 2200000184791041, // 主项目
   saleMan: 2200000145489594, // 销售
-  department: 2200000160830230 // 部门
+  department: 2200000160830230, // 部门
+  // 客户方案表
+  projectName: 2200000143113282, // 产品名称
+  AllNumber: 2200000143342281, // 全款数量
+  planNuber: 2200000143114502, // 方案数量
+  price: 2200000143114391, // 销售单价
+  discount: 2200000151416990, // 单价折扣
+  servieFee: 2200000143114392, // 服务费
+  notIssued: 2200000150138925, // 未发
+  notInstalled: 2200000149183536, // 未装
+  notAdjusted: 2200000149183537 // 未调
 }
 export const wxInfo = {
   corpId: 'ww9a717b03b06063e3',
