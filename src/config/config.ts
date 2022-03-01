@@ -8,7 +8,11 @@ export const table = {
   projectInfo: '2100000014956047', // 项目信息表
   saleManInfo: '2100000014955862', // 销售人员表
   areaInfo: '2100000015998321', // 区域表
-  departmentInfo: '2100000016791383' // 部门表
+  departmentInfo: '2100000016791383', // 部门表
+  workSheet: '2100000015054992', // 工单表
+  customerPlan: '2100000014708369', // 客户方案表
+  priceList: '2100000019332138', // 报价单
+  collectTable: '2100000015000019' // 收款表
 }
 export const field = {
   // 客户信息表
