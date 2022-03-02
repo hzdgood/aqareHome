@@ -1,18 +1,20 @@
 <template>
   <div>
     <div>
-      <table>
-        <tr>
-          <td>产品名称</td>
-          <td>全款数量</td>
-          <td>方案数量</td>
-          <td>销售单价</td>
-          <td>单品折扣</td>
-          <td>服务费</td>
-          <td>未发</td>
-          <td>未装</td>
-          <td>未调</td>
-        </tr>
+      <table class="schemeTable">
+        <thead>
+          <tr>
+            <td>产品</td>
+            <td>全款</td>
+            <td>方案</td>
+            <td>单价</td>
+            <td>折扣</td>
+            <td>费率</td>
+            <td>未发</td>
+            <td>未装</td>
+            <td>未调</td>
+          </tr>
+        </thead>
         <tr :key="projectList.id" v-for="projectList in projectList">
           <td>{{ projectList.projectName }}</td>
           <td>{{ projectList.AllNumber }}</td>
@@ -45,32 +47,28 @@ export default class Home extends Vue {
   }
 
   async getProjectList () {
-    // const data = {
-    //   where: {
-    //     and: [
-    //       {
-    //         query: { or: [{ in: [user.userId] }] },
-    //         query_option_mappings: [-1],
-    //         field: field.projectUUid,
-    //       },
-    //     ],
-    //   },
-    //   offset: 0,
-    //   limit: 20,
-    //   order_by: [
-    //     { field: field.projectUUid, sort: "desc" },
-    //     { field: field.masterProject, sort: "asc" },
-    //   ],
-    // };
-    // const result = await SearchInfo(this.ticket, this.projectInfo, data);
-    // for (let i = 0; i < result.length; i++) {
-    //   this.projectId = result[i].item_id;
-    // }
+    const data = {
+      search: { fields: [], keywords: ['小云'] },
+      where: { and: [{ field: 2200000184791041, query: { in: [1] } }] },
+      offset: 0,
+      limit: 20,
+      order_by: [{ field: 2200000150460774, sort: 'desc' }]
+    }
+    const result = await SearchInfo(this.ticket, this.projectInfo, data)
+    let projectCode: any = ''
+    for (let i = 0; i < result.length; i++) {
+      const fields = result[i].fields
+      for (let j = 0; j < fields.length; j++) {
+        if (fields[j].field_id === field.projectCode) {
+          projectCode = fields[j].values[0].value
+        }
+      }
+    }
     const data1 = {
       where: {
         and: [
           {
-            query: { or: [{ in: ['王超'] }] },
+            query: { or: [{ in: [projectCode] }] },
             query_option_mappings: [-1],
             field: 1127011226000000
           }
@@ -104,7 +102,6 @@ export default class Home extends Vue {
         if (fields[j].field_id === field.price) {
           price = fields[j].values[0].value
         }
-
         if (fields[j].field_id === field.discount) {
           discount = fields[j].values[0].value
         }
@@ -135,7 +132,22 @@ export default class Home extends Vue {
       }
       this.projectList.push(obj)
     }
-    console.log(this.projectList)
   }
 }
 </script>
+<style scoped>
+.schemeTable{
+  width: 100%;
+  overflow: auto;
+}
+.schemeTable tr td {
+  border: 1px solid #eee;
+  text-align: center;
+  padding: 1px 5px 1px 5px;
+  font-size: 10px;
+}
+.schemeTable thead {
+  font-weight: bold;
+  background-color: #ddd;
+}
+</style>

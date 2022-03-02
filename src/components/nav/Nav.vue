@@ -7,7 +7,7 @@
     </a-menu-item>
     <a-menu-item key="跟进">
       <router-link to="/followUp">
-        <a-icon type="setting" />
+        <!-- <a-icon type="setting" /> -->
         跟进
       </router-link>
     </a-menu-item>

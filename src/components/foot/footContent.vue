@@ -2,7 +2,7 @@
   <div>
     <div class="footDiv">
       <a-menu mode="horizontal">
-        <a-menu-item key="Info" @click="clickInfo()">项目信息</a-menu-item>
+        <a-menu-item key="Info" @click="clickInfo()">信息</a-menu-item>
         <a-menu-item key="collect" @click="clickCollect()">收款</a-menu-item>
         <a-menu-item key="scheme" @click="clickScheme()">方案</a-menu-item>
       </a-menu>

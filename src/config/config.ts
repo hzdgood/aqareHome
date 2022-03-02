@@ -13,7 +13,8 @@ export const table = {
   customerPlan: '2100000014708369', // 客户方案表
   priceList: '2100000019332138', // 报价单
   collectTable: '2100000015000019', // 收款表
-  followTable: '2100000014956211' // 跟进表
+  followTable: '2100000014956211', // 跟进表
+  sheetDetail: '2100000014976390' // 工单明细
 }
 export const field = {
   // 客户信息表
@@ -33,6 +34,7 @@ export const field = {
   tagListId: 2200000182035321, // 标签名称
   tagId: 2200000184166190, // 标签ID
   // 项目信息表
+  projectCode: 2200000150460774, // 项目编码
   projectUUid: 1101001121000000, // UserId
   projectCustom: 2200000160386765, // 姓名
   telephone: 2200000160386766, // 手机号
@@ -54,7 +56,14 @@ export const field = {
   servieFee: 2200000143114392, // 服务费
   notIssued: 2200000150138925, // 未发
   notInstalled: 2200000149183536, // 未装
-  notAdjusted: 2200000149183537 // 未调
+  notAdjusted: 2200000149183537, // 未调
+  // 工单表
+  visitDate: 2200000145748099, // 上门日期 value
+  orderType: 2200000146398516, // 订单类型 name
+  technology: 2200000145748100, // 技术 title
+  workOrderStatus: 2200000148897469, // 工单状态 name
+  nextDoor: 2200000147636801, // 下次上门安排 value
+  todayCompletion: 2200000164473502 // 今日完成情况 value
 }
 export const wxInfo = {
   corpId: 'ww9a717b03b06063e3',

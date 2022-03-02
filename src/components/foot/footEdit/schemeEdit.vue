@@ -1,5 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    方案上传
+  </div>
 </template>
 
 <script>
