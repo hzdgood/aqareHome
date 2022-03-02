@@ -1,45 +1,34 @@
 <template>
-  <div>
+  <div class="centerDiv">
     <div v-for="project in projectList" :key="project.id">
       <div class="lineDiv">
         <span>项目类型：</span>
-        <span><input type="text" readonly :value="project.projectType" /></span>
-        <span>主项目：</span>
-        <span
-          ><input type="text" readonly :value="project.masterProject"
-        /></span>
+        <input type="text" readonly :value="project.projectType" />
+        <span>主&nbsp;&nbsp;项&nbsp;&nbsp;目：</span>
+        <input type="text" readonly :value="project.masterProject"/>
       </div>
       <div class="lineDiv">
         <span>客户名称：</span>
-        <span
-          ><input type="text" readonly :value="project.projectCustom"
-        /></span>
+        <input type="text" readonly :value="project.projectCustom"
+        />
         <span>联系方式：</span>
-        <span><input type="text" readonly :value="project.telephone" /></span>
+        <input type="text" readonly :value="project.telephone" />
       </div>
       <div class="lineDiv">
         <span>小区名称：</span>
-        <span
-          ><input type="text" readonly :value="project.projectVillage"
-        /></span>
+        <input type="text" readonly :value="project.projectVillage"/>
         <span>客户房型：</span>
-        <span
-          ><input type="text" readonly :value="project.projectHometype"
-        /></span>
+        <input type="text" readonly :value="project.projectHometype"/>
       </div>
       <div class="lineDiv">
         <span>所在区域：</span>
-        <span><input type="text" readonly :value="project.projectArea" /></span>
+        <input type="text" readonly :value="project.projectArea" />
         <span>装修阶段：</span>
-        <span
-          ><input type="text" readonly :value="project.projectStage"
-        /></span>
+        <input type="text" readonly :value="project.projectStage"/>
       </div>
-      <div class="lineDivT">
+      <div class="lineDiv">
         <span>客户地址：</span>
-        <span
-          ><input type="text" readonly :value="project.projectAddress"
-        /></span>
+        <input class="projectAddress" type="text" readonly :value="project.projectAddress"/>
       </div>
     </div>
   </div>
@@ -150,27 +139,7 @@ export default class Home extends Vue {
 }
 </script>
 <style scoped>
-.lineDiv {
-  margin: 5px;
-}
-.lineDiv span {
-  font-size: 12px;
-  margin: 5px;
-}
-.lineDiv input {
-  width: auto;
-  max-width: 80px;
-  font-size: 12px;
-}
-.lineDivT {
-  margin: 5px;
-}
-.lineDivT span {
-  font-size: 12px;
-  margin: 5px;
-}
-.lineDivT input {
-  width: 220px;
-  font-size: 12px;
+.projectAddress{
+  max-width: 240px;
 }
 </style>

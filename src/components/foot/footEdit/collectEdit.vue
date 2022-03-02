@@ -1,24 +1,27 @@
 <template>
   <div>
-    <div>
-      <span>项目名称</span>
-      <input type="text" readonly />
-    </div>
-    <div>
-      <span>收款类型</span>
-      <span>定金</span>
-    </div>
-    <div>
-      <span>收款方式</span>
-      <input type="text" />
-    </div>
-    <div>
-      <span>收款金额</span>
-      <input type="text" />
-    </div>
-    <div>
-      <span>上传图片</span>
-      <input type="file" />
+    <div class="floatDiv"></div>
+    <div class="collect">
+      <div>
+        <span>项目名称</span>
+        <input type="text" readonly />
+      </div>
+      <div>
+        <span>收款类型</span>
+        <span>定金</span>
+      </div>
+      <div>
+        <span>收款方式</span>
+        <input type="text" />
+      </div>
+      <div>
+        <span>收款金额</span>
+        <input type="text" />
+      </div>
+      <div>
+        <span>上传图片</span>
+        <input type="file" />
+      </div>
     </div>
   </div>
 </template>
@@ -29,5 +32,14 @@ import { Component, Vue } from 'vue-property-decorator'
 export default class Home extends Vue {}
 </script>
 
-<style>
-</style>
+<style scoped>
+.collect{
+  position: fixed;
+  width: 100%;
+  height: 40%;
+  overflow: auto;
+  bottom: 50px;
+  z-index: 15;
+  background-color: #fff;
+}
+</style>>

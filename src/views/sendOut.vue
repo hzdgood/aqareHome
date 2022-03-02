@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="centerDiv">
     <div v-for="sendList in sendList" :key="sendList.index">
       <div>
         <span>{{ sendList.issuance }} </span>
@@ -7,11 +7,13 @@
         <span>{{ sendList.batchingState }}</span>
       </div>
       <div>
-        <table>
-          <tr>
-            <td>产品名称</td>
-            <td>产品数量</td>
-          </tr>
+        <table class="infoTable">
+          <thead>
+            <tr>
+              <td>产品名称</td>
+              <td>产品数量</td>
+            </tr>
+          </thead>
           <tr v-for="data in sendList.orderdata" :key="data.index">
             <td>{{ data.orderPname }}</td>
             <td>{{ data.shipment }}</td>

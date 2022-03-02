@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="centerDiv">
     <div v-for="sheetList in sheetList" :key="sheetList.index">
       <div>
         <span>{{ sheetList.visitDate }} </span>

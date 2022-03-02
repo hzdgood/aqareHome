@@ -447,19 +447,10 @@ export default class Home extends Vue {
   width: 220px;
   font-size: 12px;
 }
-.floatDiv {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: #eee;
-  opacity: 0.92;
-  z-index: 10;
-  top: 0;
-}
 .infoDiv {
   position: fixed;
   width: 100%;
-  height: 40%;
+  height: 60%;
   overflow: auto;
   bottom: 50px;
   z-index: 14;

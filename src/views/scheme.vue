@@ -1,33 +1,31 @@
 <template>
-  <div>
-    <div>
-      <table class="schemeTable">
-        <thead>
-          <tr>
-            <td>产品</td>
-            <td>全款</td>
-            <td>方案</td>
-            <td>单价</td>
-            <td>折扣</td>
-            <td>费率</td>
-            <td>未发</td>
-            <td>未装</td>
-            <td>未调</td>
-          </tr>
-        </thead>
-        <tr :key="projectList.id" v-for="projectList in projectList">
-          <td>{{ projectList.projectName }}</td>
-          <td>{{ projectList.AllNumber }}</td>
-          <td>{{ projectList.planNuber }}</td>
-          <td>{{ projectList.price }}</td>
-          <td>{{ projectList.discount }}</td>
-          <td>{{ projectList.servieFee }}</td>
-          <td>{{ projectList.notIssued }}</td>
-          <td>{{ projectList.notInstalled }}</td>
-          <td>{{ projectList.notAdjusted }}</td>
+  <div class="centerDiv">
+    <table class="infoTable">
+      <thead>
+        <tr>
+          <td>产品</td>
+          <td>全款</td>
+          <td>方案</td>
+          <td>单价</td>
+          <td>折扣</td>
+          <td>费率</td>
+          <td>未发</td>
+          <td>未装</td>
+          <td>未调</td>
         </tr>
-      </table>
-    </div>
+      </thead>
+      <tr :key="projectList.id" v-for="projectList in projectList">
+        <td>{{ projectList.projectName }}</td>
+        <td>{{ projectList.AllNumber }}</td>
+        <td>{{ projectList.planNuber }}</td>
+        <td>{{ projectList.price }}</td>
+        <td>{{ projectList.discount }}</td>
+        <td>{{ projectList.servieFee }}</td>
+        <td>{{ projectList.notIssued }}</td>
+        <td>{{ projectList.notInstalled }}</td>
+        <td>{{ projectList.notAdjusted }}</td>
+      </tr>
+    </table>
   </div>
 </template>
 
@@ -139,19 +137,3 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style scoped>
-.schemeTable {
-  width: 100%;
-  overflow: auto;
-}
-.schemeTable tr td {
-  border: 1px solid #eee;
-  text-align: center;
-  padding: 1px 5px 1px 5px;
-  font-size: 10px;
-}
-.schemeTable thead {
-  font-weight: bold;
-  background-color: #ddd;
-}
-</style>

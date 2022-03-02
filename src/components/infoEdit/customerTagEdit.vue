@@ -397,15 +397,6 @@ export default class Home extends Vue {
 .selected {
   background-color: aquamarine;
 }
-.floatDiv {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: #eee;
-  opacity: 0.92;
-  z-index: 10;
-  top: 0;
-}
 .customerDiv {
   position: fixed;
   width: 100%;
