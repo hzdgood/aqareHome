@@ -63,14 +63,21 @@ export const field = {
   technology: 2200000145748100, // 技术 title
   workOrderStatus: 2200000148897469, // 工单状态 name
   nextDoor: 2200000147636801, // 下次上门安排 value
-  todayCompletion: 2200000164473502 // 今日完成情况 value
+  todayCompletion: 2200000164473502, // 今日完成情况 value
+  orderId: 2200000145748098, // 订单ID value
+  issuance: 2200000180807302, // 发货日期
+  batchingState: 2200000147636548, // 配料状态
+  // 工单明细
+  orderPname: 1119011102000000, // 产品名称
+  shipment: 2200000145127032 // 本次发货
+
 }
 export const wxInfo = {
   corpId: 'ww9a717b03b06063e3',
   agentId: '1000046'
 }
 export const user = {
-  userId: 'woZMyYCQAAKVX-wFMjmwX8IgoXvT09gg'
+  userId: 'woZMyYCQAA5OSypcjv7fhUMHpWcAIC9A'
 }
 
 // 房屋类型

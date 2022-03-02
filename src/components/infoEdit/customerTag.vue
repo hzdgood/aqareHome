@@ -37,7 +37,11 @@
         {{ item.title }}
       </button>
     </div>
-    <div class="tag inline" v-if="fitmentStage.length != 0" style="display:none">
+    <div
+      class="tag inline"
+      v-if="fitmentStage.length != 0"
+      style="display: none"
+    >
       <div>装修阶段</div>
       <button v-for="item in fitmentStage" :key="item.item_id">
         {{ item.title }}

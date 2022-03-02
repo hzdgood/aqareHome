@@ -33,7 +33,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
@@ -43,17 +43,21 @@ export default class Home extends Vue {
   projectId: any = '';
   projectList: any[] = [];
   async mounted () {
-    this.getProjectList()
-  }
-
-  async getProjectList () {
     const data = {
-      search: { fields: [], keywords: ['小云'] },
-      where: { and: [{ field: 2200000184791041, query: { in: [1] } }] },
+      search: { fields: [], keywords: ['马女士'] },
+      where: {
+        and: [
+          {
+            field: 2200000184791041,
+            query: { in: [1] }
+          }
+        ]
+      },
       offset: 0,
       limit: 20,
       order_by: [{ field: 2200000150460774, sort: 'desc' }]
     }
+
     const result = await SearchInfo(this.ticket, this.projectInfo, data)
     let projectCode: any = ''
     for (let i = 0; i < result.length; i++) {
@@ -136,7 +140,7 @@ export default class Home extends Vue {
 }
 </script>
 <style scoped>
-.schemeTable{
+.schemeTable {
   width: 100%;
   overflow: auto;
 }
