@@ -2,7 +2,7 @@
   <div>
     <button class="editTag" @click="showEdit()">编辑</button>
     <div class="floatDiv" v-show="editShow"></div>
-    <div id="customerDiv" class="customerDiv" v-show="editShow">
+    <div id="infoDiv" class="infoDiv" v-show="editShow">
       <div class="tag" v-if="custominto.length != 0">
         <div>客户来源</div>
         <button
@@ -396,14 +396,5 @@ export default class Home extends Vue {
 }
 .selected {
   background-color: aquamarine;
-}
-.customerDiv {
-  position: fixed;
-  width: 100%;
-  height: 70%;
-  overflow: auto;
-  bottom: 50px;
-  z-index: 13;
-  background-color: #fff;
 }
 </style>

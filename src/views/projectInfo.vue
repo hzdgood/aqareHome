@@ -139,7 +139,5 @@ export default class Home extends Vue {
 }
 </script>
 <style scoped>
-.projectAddress{
-  max-width: 240px;
-}
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="floatDiv"></div>
-    <div class="collect">
+    <div class="infoDiv">
       <div>
         <span>项目名称</span>
         <input type="text" readonly />
@@ -33,13 +33,5 @@ export default class Home extends Vue {}
 </script>
 
 <style scoped>
-.collect{
-  position: fixed;
-  width: 100%;
-  height: 40%;
-  overflow: auto;
-  bottom: 50px;
-  z-index: 15;
-  background-color: #fff;
-}
+
 </style>>

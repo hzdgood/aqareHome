@@ -55,6 +55,10 @@ span {
 .lineDiv {
   margin: 5px;
 }
+select {
+  font-size: 12px;
+  width: 85px;
+}
 .infoTable {
   width: 100%;
   overflow: auto;
@@ -68,5 +72,17 @@ span {
 .infoTable thead {
   font-weight: bold;
   background-color: #ddd;
+}
+.projectAddress{
+  max-width: 240px;
+}
+.infoDiv {
+  position: fixed;
+  width: 100%;
+  height: 60%;
+  overflow: auto;
+  bottom: 50px;
+  z-index: 14;
+  background-color: #fff;
 }
 </style>

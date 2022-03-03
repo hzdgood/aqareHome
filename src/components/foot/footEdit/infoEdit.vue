@@ -119,10 +119,10 @@
             </select>
           </span>
         </div>
-        <div class="lineDivT">
+        <div class="lineDiv">
           <span>客户地址：</span>
           <span>
-            <input id="projectAddress" type="text" :value="project.address" />
+            <input id="projectAddress" class="projectAddress" type="text" :value="project.address" />
           </span>
         </div>
         <button @click="saveClick(project)">保存</button>
@@ -422,38 +422,6 @@ export default class Home extends Vue {
   }
 }
 </script>
-
 <style scoped>
-.lineDiv {
-  margin: 5px;
-}
-.lineDiv span {
-  font-size: 12px;
-  margin: 5px;
-}
-.lineDiv input {
-  width: auto;
-  max-width: 80px;
-  font-size: 12px;
-}
-.lineDivT {
-  margin: 5px;
-}
-.lineDivT span {
-  font-size: 12px;
-  margin: 5px;
-}
-.lineDivT input {
-  width: 220px;
-  font-size: 12px;
-}
-.infoDiv {
-  position: fixed;
-  width: 100%;
-  height: 60%;
-  overflow: auto;
-  bottom: 50px;
-  z-index: 14;
-  background-color: #fff;
-}
+
 </style>
