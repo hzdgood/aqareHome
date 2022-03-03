@@ -141,6 +141,10 @@ export default class Actions extends Vue {
         const values = fields[i].values
         this.hometype = values
       }
+      if (fields[i].field_id === field.houseNeed) {
+        const values = fields[i].values
+        this.houseNeed = values
+      }
     }
   }
 

@@ -29,7 +29,7 @@ export const field = {
   oneCustom: 2200000184136591, // 单品客户
   lostStatus: 2200000184136590, // 流失状态
   customerStage: 2200000184312981, // 客户阶段
-  houseNeed: '', // 全屋需求
+  houseNeed: 2200000184645955, // 全屋需求
   // 标签表
   tagListId: 2200000182035321, // 标签名称
   tagId: 2200000184166190, // 标签ID
@@ -77,7 +77,7 @@ export const wxInfo = {
   agentId: '1000046'
 }
 export const user = {
-  userId: 'woZMyYCQAA5OSypcjv7fhUMHpWcAIC9A'
+  userId: 'woKIS_CwAAoZIdFzt94EC0vUcHFZgL5A'
 }
 
 // 房屋类型

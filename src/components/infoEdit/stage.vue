@@ -29,11 +29,13 @@ export default class Home extends Vue {
   async mounted () {
     const data = {
       where: {
-        and: [{ field: 2200000182035321, query: { in: [2300006479346393] } }]
+        and: [{ field: 2200000182035321, query: { in: [2300006607764731] } }]
       },
       offset: 0,
-      limit: 20
+      limit: 20,
+      order_by: [{ field: 2200000182035321, sort: 'desc' }]
     }
+
     const result = await SearchInfo(this.ticket, this.tagInfo, data)
     this.taglist = result
     for (let i = 0; i < result.length; i++) {

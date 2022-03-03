@@ -206,7 +206,7 @@ export default class Home extends Vue {
           id: item_id,
           name: name,
           value: value,
-          field: field.cAttribute
+          field: field.houseNeed
         }
         this.houseNeed.push(ob)
       }
@@ -367,6 +367,14 @@ export default class Home extends Vue {
         }
       }
       if (fields[i].field_id === field.lostStatus) {
+        const values = fields[i].values
+        for (let j = 0; j < values.length; j++) {
+          const itemid = values[j].item_id
+          const dom: any = document.getElementById(itemid)
+          dom.className = 'selected'
+        }
+      }
+      if (fields[i].field_id === field.houseNeed) {
         const values = fields[i].values
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
