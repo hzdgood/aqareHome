@@ -149,17 +149,17 @@ export const projectType = [{
 // 收款方式
 export const collectType = [{
   name: '银联',
-  value: ''
+  value: '1'
 }, {
   name: '对公',
-  value: ''
+  value: '2'
 }, {
   name: '现金',
-  value: ''
+  value: '3'
 }, {
   name: '其他',
-  value: ''
+  value: '4'
 }, {
   name: 'SAAS导入',
-  value: ''
+  value: '5'
 }]

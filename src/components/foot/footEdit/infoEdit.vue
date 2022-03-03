@@ -126,6 +126,7 @@
           </span>
         </div>
         <button @click="saveClick(project)">保存</button>
+        <button @click="close()">关闭</button>
       </div>
     </div>
   </div>
@@ -381,6 +382,10 @@ export default class Home extends Vue {
       await deleteItem(this.ticket, table.projectInfo, data)
       setTimeout(this.getInfoList, 1000)
     }
+  }
+
+  close () {
+    this.$emit('reload')
   }
 
   // 保存按钮 获取当前项目全部数据

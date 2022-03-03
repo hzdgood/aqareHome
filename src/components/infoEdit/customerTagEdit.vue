@@ -112,6 +112,7 @@
         </button>
       </div>
       <button @click="saveInfo()">保存</button>
+      <button @click="close()">关闭</button>
     </div>
   </div>
 </template>
@@ -237,6 +238,14 @@ export default class Home extends Vue {
         }
         this.lostStatus.push(ob)
       }
+    }
+  }
+
+  close () {
+    if (this.editShow === true) {
+      this.editShow = false
+    } else {
+      this.editShow = true
     }
   }
 
