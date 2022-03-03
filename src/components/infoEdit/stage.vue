@@ -38,7 +38,7 @@ export default class Home extends Vue {
     this.taglist = result
     for (let i = 0; i < result.length; i++) {
       const name = result[i].fields[0].values[0].title
-      const value = result[i].fields[2].values[0].value
+      const value = result[i].fields[1].values[0].value
       const item_id = result[i].item_id
       const ob = {
         id: item_id,

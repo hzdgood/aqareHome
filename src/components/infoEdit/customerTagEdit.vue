@@ -154,7 +154,7 @@ export default class Home extends Vue {
     // 使用循环进行赋值显示
     for (let i = 0; i < result.length; i++) {
       const name = result[i].fields[0].values[0].title
-      const value = result[i].fields[3].values[0].value
+      const value = result[i].fields[1].values[0].value
       const item_id = result[i].item_id
       if (name === '客户来源') {
         const ob = {

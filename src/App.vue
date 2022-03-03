@@ -32,57 +32,5 @@ export default class Actions extends Vue {
 </script>
 
 <style>
-.centerDiv{
-  padding-bottom: 50px;
-}
-.floatDiv {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  background-color: #eee;
-  opacity: 0.92;
-  z-index: 10;
-  top: 0;
-}
-input {
-  font-size: 12px;
-  max-width: 85px;
-}
-span {
-  font-size: 12px;
-  margin: 5px;
-}
-.lineDiv {
-  margin: 5px;
-}
-select {
-  font-size: 12px;
-  width: 85px;
-}
-.infoTable {
-  width: 100%;
-  overflow: auto;
-}
-.infoTable tr td {
-  border: 1px solid #eee;
-  text-align: center;
-  padding: 1px 5px 1px 5px;
-  font-size: 10px;
-}
-.infoTable thead {
-  font-weight: bold;
-  background-color: #ddd;
-}
-.projectAddress{
-  max-width: 240px;
-}
-.infoDiv {
-  position: fixed;
-  width: 100%;
-  height: 60%;
-  overflow: auto;
-  bottom: 50px;
-  z-index: 14;
-  background-color: #fff;
-}
+
 </style>
