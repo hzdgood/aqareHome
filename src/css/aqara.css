@@ -52,3 +52,9 @@ select {
   z-index: 14;
   background-color: #fff;
 }
+.footDiv {
+  position: fixed;
+  bottom: 0px;
+  z-index: 15;
+  width: 100%;
+}

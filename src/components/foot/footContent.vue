@@ -14,7 +14,7 @@
       <collectEdit @close="close()"></collectEdit>
     </div>
     <div v-if="schemeShow">
-      <schemeEdit></schemeEdit>
+      <schemeEdit @closeScheme="closeScheme()"></schemeEdit>
     </div>
   </div>
 </template>
@@ -60,6 +60,14 @@ export default class Home extends Vue {
     }
   }
 
+  closeScheme () {
+    if (this.schemeShow) {
+      this.schemeShow = false
+    } else {
+      this.schemeShow = true
+    }
+  }
+
   clickInfo () {
     if (this.infoShow) {
       this.infoShow = false
@@ -86,10 +94,5 @@ export default class Home extends Vue {
 }
 </script>
 <style scoped>
-.footDiv {
-  position: fixed;
-  bottom: 0px;
-  z-index: 15;
-  width: 100%;
-}
+
 </style>
