@@ -11,7 +11,7 @@
       <infoEdit @reload="reload()"></infoEdit>
     </div>
     <div v-if="collectShow">
-      <collectEdit></collectEdit>
+      <collectEdit @close="close()"></collectEdit>
     </div>
     <div v-if="schemeShow">
       <schemeEdit></schemeEdit>
@@ -45,7 +45,19 @@ export default class Home extends Vue {
   // 回调 infoEdit
   reload () {
     this.$store.dispatch('updateReload')
-    this.infoShow = false
+    if (this.infoShow) {
+      this.infoShow = false
+    } else {
+      this.infoShow = true
+    }
+  }
+
+  close () {
+    if (this.collectShow) {
+      this.collectShow = false
+    } else {
+      this.collectShow = true
+    }
   }
 
   clickInfo () {

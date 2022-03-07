@@ -86,3 +86,15 @@ export const deleteItem = async (ticket: any, tableId: string, data: object) => 
     timeout: 1000
   })
 }
+
+export const addInfo = async (ticket: any, tableId: string, data: object) => {
+  await axios({
+    method: 'post',
+    url: 'https://api.huoban.com/v2/item/table/' + tableId + '', // 客户信息表
+    data: data,
+    headers: {
+      'X-Huoban-Ticket': ticket
+    },
+    timeout: 1000
+  })
+}

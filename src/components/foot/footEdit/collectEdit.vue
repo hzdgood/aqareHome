@@ -4,36 +4,37 @@
     <div class="infoDiv">
       <div class="lineDiv">
         <span>项目名称：</span>
-        <input type="text" readonly :value="projectCode" />
+        <input id="projectName" type="text" readonly :value="projectCode" />
         <span>收款类型：</span>
-        <input type="text" readonly value="定金" />
+        <input id="projectType" type="text" readonly value="定金" />
       </div>
       <div class="lineDiv">
         <span>收款方式：</span>
-        <select>
+        <select id="collectType">
           <option v-for="collectType in collectType" :key="collectType.value">
             {{ collectType.name }}
           </option>
         </select>
         <span>收款金额：</span>
-        <input type="text" />
+        <input id="collectMoney" type="text" />
       </div>
       <div class="lineDiv">
         <span>上传图片：</span>
-        <input type="file" />
+        <input id="file" type="file" />
       </div>
       <div class="lineDiv">
-        <input type="button" value="保存"/>
-        <input type="button" value="关闭"/>
+        <input type="button" @click="saveClick()" value="保存" />
+        <input type="button" @click="closeClick()" value="关闭" />
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
+// addInfo
 @Component({})
 export default class Home extends Vue {
   ticket = localStorage.getItem('ticket');
@@ -67,6 +68,19 @@ export default class Home extends Vue {
       }
     }
     // console.log(projectCode);
+  }
+
+  saveClick () {
+    // const projectName: any = document.getElementById("projectName");
+    // const projectType: any = document.getElementById("projectType");
+    // const collectType: any = document.getElementById("collectType");
+    // const collectMoney: any = document.getElementById("collectMoney");
+    // const file: any = document.getElementById("file");
+    this.$emit('close')
+  }
+
+  closeClick () {
+    this.$emit('close')
   }
 }
 </script>
