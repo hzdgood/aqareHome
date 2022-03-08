@@ -30,7 +30,3 @@ export default class Actions extends Vue {
   // async mounted () {}
 }
 </script>
-
-<style>
-
-</style>
