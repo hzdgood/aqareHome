@@ -12,7 +12,11 @@
       <div class="lineDiv">
         <span>收款方式：</span>
         <select id="collectType">
-          <option v-for="collectType in collectType" :value="collectType.value" :key="collectType.value">
+          <option
+            v-for="collectType in collectType"
+            :value="collectType.value"
+            :key="collectType.value"
+          >
             {{ collectType.name }}
           </option>
         </select>
@@ -40,7 +44,7 @@ import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
 export default class Home extends Vue {
   collectTable = table.collectTable;
   projectInfo = table.projectInfo;
-  collectType = collectType
+  collectType = collectType;
   projectCode = '';
   itemId = '';
   async mounted () {
