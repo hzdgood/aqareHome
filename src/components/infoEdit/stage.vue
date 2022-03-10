@@ -22,7 +22,6 @@ import { table, field, user } from '@/config/config'
 export default class Home extends Vue {
   tagInfo = table.tagInfo;
   customerInfo = table.customerInfo;
-  ticket = localStorage.getItem('ticket');
   customStage: any[] = [];
   taglist: any[] = [];
   itemId: any = '';
@@ -36,7 +35,7 @@ export default class Home extends Vue {
       order_by: [{ field: 2200000182035321, sort: 'desc' }]
     }
 
-    const result = await SearchInfo(this.ticket, this.tagInfo, data)
+    const result = await SearchInfo(this.tagInfo, data)
     this.taglist = result
     for (let i = 0; i < result.length; i++) {
       const name = result[i].fields[0].values[0].title
@@ -69,7 +68,7 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: field.userTable, sort: 'desc' }]
     }
-    const res = await SearchInfo(this.ticket, this.customerInfo, data)
+    const res = await SearchInfo(this.customerInfo, data)
     this.itemId = res[0].item_id
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
@@ -105,7 +104,7 @@ export default class Home extends Vue {
     }
     var val = items.id
     objs.fields[items.field] = [parseInt(val)]
-    await updateTable(this.ticket, this.itemId, objs)
+    await updateTable(this.itemId, objs)
   }
 }
 </script>

@@ -37,7 +37,6 @@ import { SearchInfo } from '@/config/interFace'
 export default class Home extends Vue {
   projectInfo = table.projectInfo;
   customerPlan = table.customerPlan;
-  ticket = localStorage.getItem('ticket');
   projectId: any = '';
   projectList: any[] = [];
   async mounted () {
@@ -56,7 +55,7 @@ export default class Home extends Vue {
       order_by: [{ field: 2200000150460774, sort: 'desc' }]
     }
 
-    const result = await SearchInfo(this.ticket, this.projectInfo, data)
+    const result = await SearchInfo(this.projectInfo, data)
     let projectCode: any = ''
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
@@ -79,7 +78,7 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
-    const result1 = await SearchInfo(this.ticket, this.customerPlan, data1)
+    const result1 = await SearchInfo(this.customerPlan, data1)
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields
       let projectName: any = ''

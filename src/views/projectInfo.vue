@@ -39,7 +39,6 @@ import { SearchInfo } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
-  ticket = localStorage.getItem('ticket');
   projectInfo = table.projectInfo;
   projectList: any[] = [];
 
@@ -67,7 +66,7 @@ export default class Home extends Vue {
         { field: field.masterProject, sort: 'asc' }
       ]
     }
-    const result = await SearchInfo(this.ticket, this.projectInfo, data)
+    const result = await SearchInfo(this.projectInfo, data)
     for (let j = 0; j < result.length; j++) {
       const fields = result[j].fields
       let projectCustom = ''

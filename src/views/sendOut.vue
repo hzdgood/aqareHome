@@ -30,7 +30,6 @@ import { table, field } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
-  ticket = localStorage.getItem('ticket');
   projectInfo = table.projectInfo;
   workSheet = table.workSheet;
   sheetDetail = table.sheetDetail;
@@ -52,7 +51,7 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: 2200000146398516, sort: 'desc' }]
     }
-    const result1 = await SearchInfo(this.ticket, this.workSheet, data1)
+    const result1 = await SearchInfo(this.workSheet, data1)
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields
       let issuance = ''
@@ -88,7 +87,7 @@ export default class Home extends Vue {
             limit: 20,
             order_by: [{ field: 2200000145750844, sort: 'desc' }]
           }
-          const result = await SearchInfo(this.ticket, this.sheetDetail, date2)
+          const result = await SearchInfo(this.sheetDetail, date2)
           for (let m = 0; m < result.length; m++) {
             const fields = result[m].fields
             let orderPname = ''

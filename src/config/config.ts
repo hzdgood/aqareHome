@@ -1,7 +1,3 @@
-export const config = {
-  application_id: '1002449', // 伙伴云应用ID
-  application_secret: '5F5aMmUtCBbhNM4ahhYeG1wMK4mstbsG85VpI9Qw' // 伙伴云应用密钥
-}
 export const table = {
   customerInfo: '2100000014955786', // 客户信息表
   tagInfo: '2100000019532232', // 标签
@@ -77,14 +73,9 @@ export const field = {
   cMoney: 1111, // 收款金额
   uploadFile: 1111
 }
-export const wxInfo = {
-  corpId: 'ww9a717b03b06063e3',
-  agentId: '1000046'
-}
 export const user = {
   userId: 'woKIS_CwAAoZIdFzt94EC0vUcHFZgL5A'
 }
-
 // 房屋类型
 export const houseType = [{
   name: '一室',

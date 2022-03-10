@@ -84,7 +84,6 @@ export default class Actions extends Vue {
   custominto: any[] = [];
   houseNeed: any[] = [];
   tableID = table.customerInfo;
-  ticket = localStorage.getItem('ticket');
   data = {
     where: {
       and: [
@@ -106,7 +105,7 @@ export default class Actions extends Vue {
 
   // 加载客户数据
   async loadFunction () {
-    const res = await SearchInfo(this.ticket, this.tableID, this.data)
+    const res = await SearchInfo(this.tableID, this.data)
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].field_id === field.houseInfo) {

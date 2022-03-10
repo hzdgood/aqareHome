@@ -150,7 +150,6 @@ import {
 } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
-  ticket = localStorage.getItem('ticket');
   projectInfo = table.projectInfo;
   customerInfo = table.customerInfo;
   saleManInfo = table.saleManInfo;
@@ -170,7 +169,7 @@ export default class Home extends Vue {
       limit: 50,
       order_by: [{ field: 2200000160826904, sort: 'desc' }]
     }
-    const result = await SearchInfo(this.ticket, this.saleManInfo, data)
+    const result = await SearchInfo(this.saleManInfo, data)
     for (let i = 0; i < result.length; i++) {
       const field = result[i].fields
       const saleId = result[i].item_id
@@ -194,7 +193,7 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
-    const result = await SearchInfo(this.ticket, this.areaInfo, data)
+    const result = await SearchInfo(this.areaInfo, data)
     for (let i = 0; i < result.length; i++) {
       const field = result[i].fields
       const name = field[1].values[0].value
@@ -209,7 +208,14 @@ export default class Home extends Vue {
 
   // 查询所有门店数据
   async getDepartmentList () {
-    const result = await filterInfo(this.ticket)
+    const data = {
+      search: { fields: [], keywords: ['门店'] },
+      offset: 0,
+      limit: 20,
+      order_by: [{ field: 2200000169987088, sort: 'asc' }]
+    }
+    const tableId: any = 2100000016791383
+    const result = await filterInfo(tableId, data)
     for (let i = 0; i < result.length; i++) {
       const obj = {
         name: result[i].title,
@@ -240,7 +246,7 @@ export default class Home extends Vue {
         { field: field.masterProject, sort: 'asc' }
       ]
     }
-    const result = await SearchInfo(this.ticket, this.projectInfo, data)
+    const result = await SearchInfo(this.projectInfo, data)
     for (let j = 0; j < result.length; j++) {
       const fields = result[j].fields
       const itemId: any = result[j].item_id
@@ -341,11 +347,11 @@ export default class Home extends Vue {
       const old = this.itemList[i]
       if (old !== project.itemId) {
         const data = { fields: { [field.masterProject]: [2] } }
-        await updateTable(this.ticket, this.itemList[i], data)
+        await updateTable(this.itemList[i], data)
       }
     }
     const data = { fields: { [field.masterProject]: [1] } }
-    await updateTable(this.ticket, project.itemId, data)
+    await updateTable(project.itemId, data)
     setTimeout(this.getInfoList, 1000)
   }
 
@@ -365,11 +371,11 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: field.userTable, sort: 'desc' }]
     }
-    const res = await SearchInfo(this.ticket, this.customerInfo, data)
+    const res = await SearchInfo(this.customerInfo, data)
     const itemId = res[0].item_id
     if (itemId) {
       const data = { fields: { 2200000184840062: [1] } }
-      await updateTable(this.ticket, itemId, data)
+      await updateTable(itemId, data)
       setTimeout(this.getInfoList, 1000)
     }
   }
@@ -379,7 +385,7 @@ export default class Home extends Vue {
     if (project.masterProject === '是') {
     } else {
       const data = { item_ids: [project.itemId] }
-      await deleteItem(this.ticket, table.projectInfo, data)
+      await deleteItem(table.projectInfo, data)
       setTimeout(this.getInfoList, 1000)
     }
   }
@@ -422,7 +428,7 @@ export default class Home extends Vue {
         [field.department]: [departmentValue]
       }
     }
-    await updateTable(this.ticket, project.itemId, data)
+    await updateTable(project.itemId, data)
     this.$emit('reload')
   }
 }

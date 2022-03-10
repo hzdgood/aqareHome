@@ -135,7 +135,6 @@ export default class Home extends Vue {
   custominto: any[] = [];
   houseNeed: any[] = [];
   itemId: any = ''; // 行ID
-  ticket = localStorage.getItem('ticket');
   tableID = table.tagInfo;
   customerInfo = table.customerInfo;
   async mounted () {
@@ -150,7 +149,7 @@ export default class Home extends Vue {
         }
       ]
     }
-    const result = await SearchInfo(this.ticket, this.tableID, data)
+    const result = await SearchInfo(this.tableID, data)
     this.taglist = result
     // 使用循环进行赋值显示
     for (let i = 0; i < result.length; i++) {
@@ -291,7 +290,7 @@ export default class Home extends Vue {
       }
     }
     // 发送伙伴云修改
-    await updateTable(this.ticket, this.itemId, data)
+    await updateTable(this.itemId, data)
     this.$emit('reload')
     this.editShow = false
   }
@@ -313,7 +312,7 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: field.userTable, sort: 'desc' }]
     }
-    const res = await SearchInfo(this.ticket, this.customerInfo, data)
+    const res = await SearchInfo(this.customerInfo, data)
     const itemId = res[0].item_id
     this.itemId = itemId
     // 注入Button上

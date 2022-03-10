@@ -27,7 +27,6 @@ import { table, field } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
-  ticket = localStorage.getItem('ticket');
   projectInfo = table.projectInfo;
   workSheet = table.workSheet;
   sheetList: any[] = [];
@@ -46,7 +45,7 @@ export default class Home extends Vue {
     //   limit: 20,
     //   order_by: [{ field: 2200000150460774, sort: "desc" }],
     // };
-    // const result = await SearchInfo(this.ticket, this.projectInfo, data);
+    // const result = await SearchInfo(this.projectInfo, data);
     // let projectCode: any = "";
     // for (let i = 0; i < result.length; i++) {
     //   const fields = result[i].fields;
@@ -73,7 +72,7 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: 1101001226000000, sort: 'desc' }]
     }
-    const result1 = await SearchInfo(this.ticket, this.workSheet, data1)
+    const result1 = await SearchInfo(this.workSheet, data1)
 
     for (let i = 0; i < result1.length; i++) {
       let visitDate = ''

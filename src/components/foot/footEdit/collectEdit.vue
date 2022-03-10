@@ -37,7 +37,6 @@ import { SearchInfo, addInfo } from '@/config/interFace'
 // addInfo
 @Component({})
 export default class Home extends Vue {
-  ticket = localStorage.getItem('ticket');
   collectTable = table.collectTable;
   projectInfo = table.projectInfo;
   collectType = collectType;
@@ -57,7 +56,7 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: 2200000150460774, sort: 'desc' }]
     }
-    const result = await SearchInfo(this.ticket, this.projectInfo, data)
+    const result = await SearchInfo(this.projectInfo, data)
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       for (let j = 0; j < fields.length; j++) {
@@ -81,7 +80,7 @@ export default class Home extends Vue {
       [field.cType]: collectType.options[collectType.selectedIndex].value,
       [field.cMoney]: collectMoney.value
     }
-    await addInfo(this.ticket, this.collectTable, data)
+    await addInfo(this.collectTable, data)
 
     this.$emit('close')
   }
