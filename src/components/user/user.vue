@@ -12,6 +12,8 @@ export default {
 </script>
 <style scoped>
 .headDiv{
-  height: 50px;
+  line-height: 50px;
+  vertical-align: middle;
+  padding-left: 10px;
 }
 </style>

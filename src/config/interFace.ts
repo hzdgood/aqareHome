@@ -112,3 +112,11 @@ export const updateTable = async (item_id: string, data: object) => {
     }
   })
 }
+
+export const uploadImg = async (formData: object) => {
+  const url = huobanUrl + '/v2/file'
+  const info = await post(url, formData)
+  return info.data
+}
+
+// https://upload.huoban.com/v2/file

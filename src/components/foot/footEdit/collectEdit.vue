@@ -12,7 +12,7 @@
       <div class="lineDiv">
         <span>收款方式：</span>
         <select id="collectType">
-          <option v-for="collectType in collectType" :key="collectType.value">
+          <option v-for="collectType in collectType" :value="collectType.value" :key="collectType.value">
             {{ collectType.name }}
           </option>
         </select>
@@ -34,14 +34,15 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import { SearchInfo, addInfo } from '@/config/interFace'
+import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
 // addInfo
 @Component({})
 export default class Home extends Vue {
   collectTable = table.collectTable;
   projectInfo = table.projectInfo;
-  collectType = collectType;
+  collectType = collectType
   projectCode = '';
+  itemId = '';
   async mounted () {
     const data = {
       search: { fields: [], keywords: ['小云'] },
@@ -60,6 +61,7 @@ export default class Home extends Vue {
     const result = await SearchInfo(this.projectInfo, data)
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
+      this.itemId = result[i].item_id
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectCode) {
           this.projectCode = fields[j].values[0].value
@@ -69,21 +71,29 @@ export default class Home extends Vue {
   }
 
   async saveClick () {
-    const projectName: any = document.getElementById('projectName')
-    const projectType: any = document.getElementById('projectType')
+    // const projectName: any = document.getElementById("projectName");
+    // const projectType: any = document.getElementById("projectType");
     const collectType: any = document.getElementById('collectType')
     const collectMoney: any = document.getElementById('collectMoney')
-    // const file: any = document.getElementById("file");
+    const cType = collectType.options[collectType.selectedIndex].value
+    let file: any = document.getElementById('file')
+    file = file.files[0]
+    const formData = new FormData()
 
+    formData.append('source', file)
+    formData.append('name', file.name)
+    formData.append('domain', 'app.huoban.com')
+    formData.append('type', 'attachment')
+    const res = await uploadImg(formData)
     const data = {
-      [field.pName]: projectName.value,
-      [field.pType]: projectType.value,
-      [field.cType]: collectType.options[collectType.selectedIndex].value,
-      [field.cMoney]: collectMoney.value
+      [field.pName]: [this.itemId],
+      [field.pType]: [1],
+      [field.cType]: [cType],
+      [field.cMoney]: collectMoney.value,
+      [field.uploadFile]: [res.file_id]
     }
     await addInfo(this.collectTable, data)
-
-    this.$emit('close')
+    // this.$emit("close");
   }
 
   closeClick () {

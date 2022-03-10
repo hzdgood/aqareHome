@@ -67,11 +67,11 @@ export const field = {
   orderPname: 1119011102000000, // 产品名称
   shipment: 2200000145127032, // 本次发货
   // 收款表
-  pName: 1111, // 项目名称
-  pType: 1111, // 收款类型
-  cType: 1111, // 收款方式
-  cMoney: 1111, // 收款金额
-  uploadFile: 1111
+  pName: 2200000145309762, // 项目名称
+  pType: 2200000145309763, // 收款类型
+  cType: 2200000145309764, // 收款方式
+  cMoney: 2200000145309766, // 收款金额
+  uploadFile: 2200000145309769 // 上传图片
 }
 export const user = {
   userId: 'woKIS_CwAAoZIdFzt94EC0vUcHFZgL5A'
@@ -157,5 +157,5 @@ export const collectType = [{
   value: '4'
 }, {
   name: 'SAAS导入',
-  value: '5'
+  value: '6'
 }]
