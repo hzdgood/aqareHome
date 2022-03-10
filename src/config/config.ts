@@ -69,8 +69,13 @@ export const field = {
   batchingState: 2200000147636548, // 配料状态
   // 工单明细
   orderPname: 1119011102000000, // 产品名称
-  shipment: 2200000145127032 // 本次发货
-
+  shipment: 2200000145127032, // 本次发货
+  // 收款表
+  pName: 1111, // 项目名称
+  pType: 1111, // 收款类型
+  cType: 1111, // 收款方式
+  cMoney: 1111, // 收款金额
+  uploadFile: 1111
 }
 export const wxInfo = {
   corpId: 'ww9a717b03b06063e3',

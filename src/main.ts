@@ -53,8 +53,8 @@ const fetchSignatures = async (): Promise<SignRes> => {
   return response.data
 }
 
-checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）
-  .then(() => initSdk(config, fetchSignatures)) // 初始化 JsSdk
-  .then(() => {
-    getTicket()
-  })
+// checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）
+//   .then(() => initSdk(config, fetchSignatures)) // 初始化 JsSdk
+//   .then(() => {
+getTicket()
+//   })

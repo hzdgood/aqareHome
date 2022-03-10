@@ -1,18 +1,27 @@
 <template>
   <div>
-    方案上传
-    <div>
-      <input type="button" @click="saveClick()" value="保存" />
-      <input type="button" @click="closeClick()" value="关闭" />
+    <div class="floatDiv"></div>
+    <div class="infoDiv">
+      <input type="file" name="file" placeholder="请选择文件"/>
+      <div>
+        <input type="button" @click="saveClick()" value="提交" />
+        <input type="button" @click="closeClick()" value="关闭" />
+      </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
+import { uploadFile } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
-  saveClick () {
+  async saveClick () {
+    const formData = new FormData()
+    let file: any = document.getElementsByName('file')[0]
+    file = file.files[0]
+    formData.append('file', file, file.name)
+    uploadFile(formData)
     this.$emit('closeScheme')
   }
 
@@ -21,6 +30,3 @@ export default class Home extends Vue {
   }
 }
 </script>
-
-<style>
-</style>

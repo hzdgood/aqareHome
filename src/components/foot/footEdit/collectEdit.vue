@@ -33,7 +33,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, addInfo } from '@/config/interFace'
 // addInfo
 @Component({})
 export default class Home extends Vue {
@@ -58,7 +58,6 @@ export default class Home extends Vue {
       order_by: [{ field: 2200000150460774, sort: 'desc' }]
     }
     const result = await SearchInfo(this.ticket, this.projectInfo, data)
-    // let projectCode = "";
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       for (let j = 0; j < fields.length; j++) {
@@ -67,15 +66,23 @@ export default class Home extends Vue {
         }
       }
     }
-    // console.log(projectCode);
   }
 
-  saveClick () {
-    // const projectName: any = document.getElementById("projectName");
-    // const projectType: any = document.getElementById("projectType");
-    // const collectType: any = document.getElementById("collectType");
-    // const collectMoney: any = document.getElementById("collectMoney");
+  async saveClick () {
+    const projectName: any = document.getElementById('projectName')
+    const projectType: any = document.getElementById('projectType')
+    const collectType: any = document.getElementById('collectType')
+    const collectMoney: any = document.getElementById('collectMoney')
     // const file: any = document.getElementById("file");
+
+    const data = {
+      [field.pName]: projectName.value,
+      [field.pType]: projectType.value,
+      [field.cType]: collectType.options[collectType.selectedIndex].value,
+      [field.cMoney]: collectMoney.value
+    }
+    await addInfo(this.ticket, this.collectTable, data)
+
     this.$emit('close')
   }
 

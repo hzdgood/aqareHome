@@ -37,7 +37,7 @@ export const TableInfo = async (ticket: any, tableId: string) => {
 export const SearchInfo = async (ticket: any, tableId: string, data: object) => {
   const info = await axios({
     method: 'post',
-    url: 'https://api.huoban.com/v2/item/table/' + tableId + '/find', // 客户信息表
+    url: 'https://api.huoban.com/v2/item/table/' + tableId + '/find',
     data: data,
     headers: {
       'X-Huoban-Ticket': ticket
@@ -50,7 +50,7 @@ export const SearchInfo = async (ticket: any, tableId: string, data: object) => 
 export const filterInfo = async (ticket: any) => {
   const info = await axios({
     method: 'post',
-    url: 'https://api.huoban.com/v2/item/table/2100000016791383/view/0/filter', // 客户信息表
+    url: 'https://api.huoban.com/v2/item/table/2100000016791383/view/0/filter',
     data: {
       search: { fields: [], keywords: ['门店'] },
       offset: 0,
@@ -78,7 +78,7 @@ export const updateTable = async (ticket: any, item_id: string, data: object) =>
 export const deleteItem = async (ticket: any, tableId: string, data: object) => {
   await axios({
     method: 'post',
-    url: 'https://api.huoban.com/v2/item/table/' + tableId + '/delete', // 客户信息表
+    url: 'https://api.huoban.com/v2/item/table/' + tableId + '/delete',
     data: data,
     headers: {
       'X-Huoban-Ticket': ticket
@@ -90,11 +90,27 @@ export const deleteItem = async (ticket: any, tableId: string, data: object) => 
 export const addInfo = async (ticket: any, tableId: string, data: object) => {
   await axios({
     method: 'post',
-    url: 'https://api.huoban.com/v2/item/table/' + tableId + '', // 客户信息表
+    url: 'https://api.huoban.com/v2/item/table/' + tableId + '',
     data: data,
     headers: {
       'X-Huoban-Ticket': ticket
     },
     timeout: 1000
   })
+}
+
+export const uploadFile = async (formData: object) => {
+  const url = 'http://localhost:8081/file/upload'
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data;boundary=' + new Date().getTime()
+    }
+  }
+  await axios.post(url, formData, config)
+    .then(function (response) {
+      console.log(response)
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
 }
