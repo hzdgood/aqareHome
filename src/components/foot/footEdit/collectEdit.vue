@@ -2,6 +2,7 @@
   <div>
     <div class="floatDiv"></div>
     <div class="infoDiv">
+      <div class="headerDiv">新增定金收款</div>
       <div class="lineDiv">
         <span>项目名称：</span>
         <input id="projectName" type="text" readonly :value="projectCode" />

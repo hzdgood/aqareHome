@@ -2,6 +2,7 @@
   <div>
     <div class="floatDiv"></div>
     <div class="infoDiv">
+      <div class="headerDiv">项目信息</div>
       <button @click="addClick()">新增</button>
       <div id="projectList" v-for="project in projectList" :key="project.id">
         <div class="lineDiv">

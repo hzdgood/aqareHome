@@ -2,6 +2,7 @@
   <div>
     <div class="floatDiv"></div>
     <div class="infoDiv">
+      <div class="headerDiv">上传方案</div>
       <input type="file" name="file" placeholder="请选择文件"/>
       <div>
         <input type="button" @click="saveClick()" value="提交" />

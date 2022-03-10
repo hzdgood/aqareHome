@@ -3,6 +3,7 @@
     <button class="editTag" @click="showEdit()">编辑</button>
     <div class="floatDiv" v-show="editShow"></div>
     <div id="infoDiv" class="infoDiv" v-show="editShow">
+      <div class="headerDiv">客户标签编辑</div>
       <div class="tag" v-if="custominto.length != 0">
         <div>客户来源</div>
         <button

@@ -58,3 +58,10 @@ select {
   z-index: 15;
   width: 100%;
 }
+.headerDiv{
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  background-color: aquamarine;
+  margin-bottom: 10px;
+}
