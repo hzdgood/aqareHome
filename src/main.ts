@@ -7,9 +7,14 @@ import '@/css/aqara.css'
 import { userInfo, fetchUserId, fetchSignatures, config } from '@/config/interFace'
 import { checkRedirect, initSdk } from 'wecom-sidebar-jssdk'
 
+const data = {
+  application_id: '1002449',
+  application_secret: '5F5aMmUtCBbhNM4ahhYeG1wMK4mstbsG85VpI9Qw'
+}
+
 // 获取伙伴云ticket
 async function getTicket () {
-  const ticket = await userInfo()
+  const ticket = await userInfo(data)
   localStorage.setItem('ticket', ticket)
   Vue.config.productionTip = false
   new Vue({

@@ -3,6 +3,7 @@ import { SignRes } from 'wecom-sidebar-jssdk'
 
 const httpUrl = 'http://localhost:8081'
 const huobanUrl = 'https://api.huoban.com'
+const ticket: any = localStorage.getItem('ticket')
 
 export const config = {
   // 在 https://work.weixin.qq.com/wework_admin/frame#profile 这里可以找到
@@ -12,8 +13,7 @@ export const config = {
 }
 
 const post = async (url: string, data: object) => {
-  const ticket = localStorage.getItem('ticket')
-  const headers: any = {
+  const headers = {
     'X-Huoban-Ticket': ticket
   }
   const response = await axios({
@@ -25,7 +25,10 @@ const post = async (url: string, data: object) => {
   return response
 }
 
-const UploadPost = async (url: string, data: object, headers: any) => {
+const UploadPost = async (url: string, data: object) => {
+  const headers = {
+    'Content-Type': 'multipart/form-data'
+  }
   const response = await axios({
     method: 'post',
     url: url,
@@ -59,22 +62,15 @@ export const fetchSignatures = async (): Promise<SignRes> => {
   return response.data
 }
 
-export const TableInfo = async (ticket: any, tableId: string) => {
-  const tableInfo = await axios.get(huobanUrl + '/v2/table/' + tableId, {
-    params: {},
-    headers: {
-      'X-Huoban-Ticket': ticket
-    }
-  })
-  return tableInfo
+export const userInfo1 = async () => { // 后期封装到后台实现
+  const url = httpUrl + '/huoban/getTicket'
+  const application = await post(url, {})
+  return application.data.ticket
 }
 
-export const userInfo = async () => {
+// 暂时测试使用
+export const userInfo = async (data: any) => {
   const url = huobanUrl + '/v2/ticket'
-  const data = {
-    application_id: '1002449',
-    application_secret: '5F5aMmUtCBbhNM4ahhYeG1wMK4mstbsG85VpI9Qw'
-  }
   const application = await post(url, data)
   return application.data.ticket
 }
@@ -86,7 +82,7 @@ export const SearchInfo = async (tableId: string, data: object) => {
 }
 
 export const filterInfo = async (tableId: string, data: any) => {
-  const url = huobanUrl + '/v2/item/table/2100000016791383/view/0/filter'
+  const url = huobanUrl + '/v2/item/table/' + tableId + '/view/0/filter'
   const info = await post(url, data)
   return info.data.items
 }
@@ -105,20 +101,14 @@ export const addInfo = async (tableId: string, data: object) => {
 
 export const uploadFile = async (formData: object) => {
   const url = httpUrl + '/file/upload'
-  const headers = {
-    'Content-Type': 'multipart/form-data'
-  }
-  const info = await UploadPost(url, formData, headers)
+  const info = await UploadPost(url, formData)
   return info
 }
 
 export const updateTable = async (item_id: string, data: object) => {
-  const ticket: any = localStorage.getItem('ticket')
   axios.put(huobanUrl + '/v2/item/' + item_id, data, {
     headers: {
       'X-Huoban-Ticket': ticket
     }
-  }).then(response => (
-    console.log(response)
-  ))
+  })
 }
