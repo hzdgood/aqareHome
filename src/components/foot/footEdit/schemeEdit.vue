@@ -17,12 +17,20 @@ import { Component, Vue } from 'vue-property-decorator'
 import { uploadFile } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
+  // 获取所有的产品信息
   async saveClick () {
     const formData = new FormData()
     let file: any = document.getElementsByName('file')[0]
     file = file.files[0]
     formData.append('file', file, file.name)
-    uploadFile(formData)
+    const result = uploadFile(formData)
+    console.log(result)
+    // 获取项目名称
+
+    // 查询伙伴云是否存在
+
+    // 拼接伙伴云JSON
+
     this.$emit('closeScheme')
   }
 

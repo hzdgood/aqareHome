@@ -14,7 +14,7 @@ const data = {
 
 // 获取伙伴云ticket
 async function getTicket () {
-  const ticket = await userInfo(data)
+  const ticket = await userInfo()
   localStorage.setItem('ticket', ticket)
   Vue.config.productionTip = false
   new Vue({
