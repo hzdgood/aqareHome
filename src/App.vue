@@ -1,11 +1,16 @@
 <template>
   <div id="app">
-    <user></user>
-    <customerTag></customerTag>
-    <stage></stage>
-    <sidebar-nav></sidebar-nav>
-    <router-view />
-    <footContent></footContent>
+    <div v-if="uploadStaus == true">
+      <user></user>
+      <customerTag></customerTag>
+      <stage></stage>
+      <sidebar-nav></sidebar-nav>
+      <router-view />
+      <footContent></footContent>
+    </div>
+    <div v-if="uploadStaus == false">
+      <schemeEdit :upload="true"></schemeEdit>
+    </div>
   </div>
 </template>
 
@@ -15,6 +20,7 @@ import user from '@/components/user/user.vue'
 import customerTag from '@/components/infoEdit/customerTag.vue'
 import stage from '@/components/infoEdit/stage.vue'
 import footContent from '@/components/foot/footContent.vue'
+import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
 import { Component, Vue } from 'vue-property-decorator'
 @Component({
   name: 'App',
@@ -23,10 +29,17 @@ import { Component, Vue } from 'vue-property-decorator'
     user: user,
     customerTag: customerTag,
     stage: stage,
-    footContent: footContent
+    footContent: footContent,
+    schemeEdit: schemeEdit
   }
 })
 export default class Actions extends Vue {
-  // async mounted () {}
+  uploadStaus = true;
+  async mounted () {
+    const url = window.location.href
+    if (url.split('#')[1] === '/upload') {
+      this.uploadStaus = false
+    }
+  }
 }
 </script>

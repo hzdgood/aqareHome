@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="floatDiv"></div>
-    <div class="infoDiv">
+    <div class="floatDiv" v-show="upload"></div>
+    <div :class="upload ? 'infoDiv' : ''">
       <div class="headerDiv">上传方案</div>
       <input type="file" name="file" placeholder="请选择文件" />
       <div>
@@ -26,6 +26,7 @@ export default class Home extends Vue {
   projectInfo = table.projectInfo;
   productTable = table.productTable;
   customerPlan = table.customerPlan;
+  upload = '';
   // 获取所有的产品信息
   async saveClick () {
     const formData = new FormData()
@@ -78,7 +79,7 @@ export default class Home extends Vue {
         ]
       },
       offset: 0,
-      limit: 100
+      limit: 1000
     }
     const result1 = await SearchInfo(this.productTable, data1)
     // 拼接伙伴云JSON

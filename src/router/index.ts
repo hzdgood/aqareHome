@@ -38,7 +38,11 @@ const routes: Array<RouteConfig> = [
     name: 'scheme',
     component: scheme
   },
-
+  {
+    path: '/upload',
+    name: 'scheme',
+    component: scheme
+  },
   {
     path: '/actions',
     name: 'Actions',
