@@ -74,7 +74,12 @@ export const field = {
   cMoney: 2200000145309766, // 收款金额
   uploadFile: 2200000145309769, // 上传图片
   // 物料表
-  productName: 2200000143086697
+  productName: 2200000143086697,
+  productItemId: 2200000143113282,
+  projectItemId: 2200000143342285,
+  money: 2200000143114391,
+  number: 2200000143342281,
+  serviceFee: 2200000143114392
 }
 export const user = {
   userId: 'woKIS_CwAAoZIdFzt94EC0vUcHFZgL5A'

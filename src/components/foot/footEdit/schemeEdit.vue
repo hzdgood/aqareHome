@@ -96,11 +96,11 @@ export default class Home extends Vue {
         if (res[i].productName === name) {
           const obj = {
             fields: {
-              2200000143114391: money,
-              2200000143114392: serviceFee,
-              2200000143113282: [itemId],
-              2200000143342285: [projectId],
-              2200000143342281: number
+              [field.productItemId]: [itemId],
+              [field.projectItemId]: [projectId],
+              [field.money]: money,
+              [field.number]: number,
+              [field.serviceFee]: serviceFee
             }
           }
           json.items.push(obj)
@@ -108,7 +108,7 @@ export default class Home extends Vue {
         }
       }
     }
-    await batchAddPlan(this.customerPlan, json)
+    batchAddPlan(this.customerPlan, json)
     this.$emit('closeScheme')
   }
 
