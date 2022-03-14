@@ -119,4 +119,18 @@ export const uploadImg = async (formData: object) => {
   return info.data
 }
 
-// https://upload.huoban.com/v2/file
+export const batchAddPlan = async (tableId: string, data: object) => {
+  const url = huobanUrl + '/v2/item/table/' + tableId + '/create'
+  const spaceId = 4000000003153003
+  const headers: any = {
+    'X-Huoban-Ticket': ticket
+    // 'X-Huoban-Return-Alias-Space-Id': spaceId
+  }
+  const response = await axios({
+    method: 'post',
+    url: url,
+    data: data,
+    headers: headers
+  })
+  return response
+}

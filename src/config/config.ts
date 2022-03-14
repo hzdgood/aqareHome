@@ -10,7 +10,8 @@ export const table = {
   priceList: '2100000019332138', // 报价单
   collectTable: '2100000015000019', // 收款表
   followTable: '2100000014956211', // 跟进表
-  sheetDetail: '2100000014976390' // 工单明细
+  sheetDetail: '2100000014976390', // 工单明细
+  productTable: '2100000014705410' // 产品信息表
 }
 export const field = {
   // 客户信息表
@@ -71,7 +72,9 @@ export const field = {
   pType: 2200000145309763, // 收款类型
   cType: 2200000145309764, // 收款方式
   cMoney: 2200000145309766, // 收款金额
-  uploadFile: 2200000145309769 // 上传图片
+  uploadFile: 2200000145309769, // 上传图片
+  // 物料表
+  productName: 2200000143086697
 }
 export const user = {
   userId: 'woKIS_CwAAoZIdFzt94EC0vUcHFZgL5A'

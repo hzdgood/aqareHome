@@ -75,29 +75,28 @@ export default class Home extends Vue {
   }
 
   async saveClick () {
-    // const projectName: any = document.getElementById("projectName");
-    // const projectType: any = document.getElementById("projectType");
     const collectType: any = document.getElementById('collectType')
     const collectMoney: any = document.getElementById('collectMoney')
     const cType = collectType.options[collectType.selectedIndex].value
     let file: any = document.getElementById('file')
     file = file.files[0]
     const formData = new FormData()
-
     formData.append('source', file)
     formData.append('name', file.name)
     formData.append('domain', 'app.huoban.com')
     formData.append('type', 'attachment')
     const res = await uploadImg(formData)
     const data = {
-      [field.pName]: [this.itemId],
-      [field.pType]: [1],
-      [field.cType]: [cType],
-      [field.cMoney]: collectMoney.value,
-      [field.uploadFile]: [res.file_id]
+      fields: {
+        [field.pName]: [this.itemId],
+        [field.pType]: [1],
+        [field.cType]: [cType],
+        [field.cMoney]: collectMoney.value,
+        [field.uploadFile]: [res.file_id]
+      }
     }
     await addInfo(this.collectTable, data)
-    // this.$emit("close");
+    this.$emit('close')
   }
 
   closeClick () {
