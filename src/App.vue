@@ -9,7 +9,7 @@
       <footContent></footContent>
     </div>
     <div v-if="uploadStaus == false">
-      <schemeEdit :upload="true"></schemeEdit>
+      <schemeEdit :upload="false" @closeScheme="close"></schemeEdit>
     </div>
   </div>
 </template>
@@ -40,6 +40,10 @@ export default class Actions extends Vue {
     if (url.split('#')[1] === '/upload') {
       this.uploadStaus = false
     }
+  }
+
+  close () {
+    console.log(111)
   }
 }
 </script>

@@ -8,12 +8,17 @@
         <input type="button" @click="saveClick()" value="提交" />
         <input type="button" @click="closeClick()" value="关闭" />
       </div>
+      <div>
+        <span v-for="erronProduct in erronProduct" :key="erronProduct.index">
+          {{ erronProduct.name }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import {
   uploadFile,
   SearchInfo,
@@ -26,7 +31,17 @@ export default class Home extends Vue {
   projectInfo = table.projectInfo;
   productTable = table.productTable;
   customerPlan = table.customerPlan;
-  upload = '';
+  erronProduct: any[] = [];
+  @Prop({
+    type: Boolean,
+    required: true,
+    default: ''
+  }) upload !: any;
+
+  mounted () {
+    console.log(this.upload)
+  }
+
   // 获取所有的产品信息
   async saveClick () {
     const formData = new FormData()
@@ -56,7 +71,7 @@ export default class Home extends Vue {
       limit: 20
     }
     const result = await filterInfo(this.projectInfo, data)
-    if (result.item_id) {
+    if (result[0].item_id) {
       projectId = result[0].item_id
     } else {
       alert('项目信息不存在！')
@@ -106,11 +121,21 @@ export default class Home extends Vue {
           }
           json.items.push(obj)
           j = result1.length
+        } else {
+          if (j === result1.length - 1) {
+            if (res[i].productName !== name) {
+              const obj = {
+                index: i,
+                name: res[i].productName
+              }
+              this.erronProduct.push(obj)
+            }
+          }
         }
       }
     }
     batchAddPlan(this.customerPlan, json)
-    this.$emit('closeScheme')
+    // this.$emit("closeScheme");
   }
 
   closeClick () {

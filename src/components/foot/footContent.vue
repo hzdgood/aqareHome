@@ -14,7 +14,7 @@
       <collectEdit @close="close()"></collectEdit>
     </div>
     <div v-if="schemeShow">
-      <schemeEdit @closeScheme="closeScheme()"></schemeEdit>
+      <schemeEdit :upload="true" @closeScheme="closeScheme()"></schemeEdit>
     </div>
   </div>
 </template>

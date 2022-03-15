@@ -1,7 +1,14 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-const httpUrl = 'http://localhost:8081'
+let url = window.location.href
+url = url.split('#')[0]
+let httpUrl = url.substring(0, url.length - 1)
+if (httpUrl === 'http://localhost:8080') {
+  httpUrl = 'http://localhost:8081'
+} else {
+  httpUrl = httpUrl + ':8081'
+}
 const huobanUrl = 'https://api.huoban.com'
 const ticket: any = localStorage.getItem('ticket')
 
@@ -121,10 +128,8 @@ export const uploadImg = async (formData: object) => {
 
 export const batchAddPlan = async (tableId: string, data: object) => {
   const url = huobanUrl + '/v2/item/table/' + tableId + '/create'
-  const spaceId = 4000000003153003
   const headers: any = {
     'X-Huoban-Ticket': ticket
-    // 'X-Huoban-Return-Alias-Space-Id': spaceId
   }
   const response = await axios({
     method: 'post',
