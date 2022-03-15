@@ -298,6 +298,11 @@ export default class Home extends Vue {
 
   // 编辑按钮触发
   async showEdit () {
+    if (this.editShow === true) {
+      this.editShow = false
+    } else {
+      this.editShow = true
+    }
     // 获取当前用户信息
     const data = {
       where: {
@@ -314,6 +319,9 @@ export default class Home extends Vue {
       order_by: [{ field: field.userTable, sort: 'desc' }]
     }
     const res = await SearchInfo(this.customerInfo, data)
+    if (res.length === 0) {
+      return
+    }
     const itemId = res[0].item_id
     this.itemId = itemId
     // 注入Button上
@@ -359,14 +367,6 @@ export default class Home extends Vue {
           dom.className = 'selected'
         }
       }
-      // if (fields[i].field_id === field.fitmentStage) {
-      //   const values = fields[i].values;
-      //   for (let j = 0; j < values.length; j++) {
-      //     const itemid = values[j].item_id;
-      //     const dom: any = document.getElementById(itemid);
-      //     dom.className = "selected";
-      //   }
-      // }
       if (fields[i].field_id === field.oneCustom) {
         const values = fields[i].values
         for (let j = 0; j < values.length; j++) {
@@ -391,11 +391,6 @@ export default class Home extends Vue {
           dom.className = 'selected'
         }
       }
-    }
-    if (this.editShow === true) {
-      this.editShow = false
-    } else {
-      this.editShow = true
     }
   }
 }

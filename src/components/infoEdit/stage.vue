@@ -69,6 +69,9 @@ export default class Home extends Vue {
       order_by: [{ field: field.userTable, sort: 'desc' }]
     }
     const res = await SearchInfo(this.customerInfo, data)
+    if (res.length === 0) {
+      return
+    }
     this.itemId = res[0].item_id
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {

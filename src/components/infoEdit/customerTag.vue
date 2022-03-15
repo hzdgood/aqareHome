@@ -84,28 +84,30 @@ export default class Actions extends Vue {
   custominto: any[] = [];
   houseNeed: any[] = [];
   tableID = table.customerInfo;
-  data = {
-    where: {
-      and: [
-        {
-          query: { or: [{ in: [user.userId] }] },
-          query_option_mappings: [-1],
-          field: field.userTable
-        }
-      ]
-    },
-    offset: 0,
-    limit: 20,
-    order_by: [{ field: field.userTable, sort: 'desc' }]
-  };
-
   async mounted () {
     this.loadFunction()
   }
 
   // 加载客户数据
   async loadFunction () {
-    const res = await SearchInfo(this.tableID, this.data)
+    const data = {
+      where: {
+        and: [
+          {
+            query: { or: [{ in: [user.userId] }] },
+            query_option_mappings: [-1],
+            field: field.userTable
+          }
+        ]
+      },
+      offset: 0,
+      limit: 20,
+      order_by: [{ field: field.userTable, sort: 'desc' }]
+    }
+    const res = await SearchInfo(this.tableID, data)
+    if (res.length === 0) {
+      return
+    }
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].field_id === field.houseInfo) {

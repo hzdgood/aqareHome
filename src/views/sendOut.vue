@@ -62,6 +62,9 @@ export default class Home extends Vue {
         }
       }
     }
+    if (projectCode === '') {
+      return
+    }
     const data1 = {
       where: {
         and: [
