@@ -31,7 +31,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { table, field } from '@/config/config'
+import { table, field, user } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
@@ -41,20 +41,22 @@ export default class Home extends Vue {
   projectList: any[] = [];
   async mounted () {
     const data = {
-      search: { fields: [], keywords: ['马女士'] },
       where: {
         and: [
           {
-            field: 2200000184791041,
-            query: { in: [1] }
+            query: { or: [{ in: [user.userId] }] },
+            query_option_mappings: [-1],
+            field: field.projectUUid
           }
         ]
       },
       offset: 0,
       limit: 20,
-      order_by: [{ field: 2200000150460774, sort: 'desc' }]
+      order_by: [
+        { field: field.projectUUid, sort: 'desc' },
+        { field: field.masterProject, sort: 'asc' }
+      ]
     }
-
     const result = await SearchInfo(this.projectInfo, data)
     let projectCode: any = ''
     for (let i = 0; i < result.length; i++) {

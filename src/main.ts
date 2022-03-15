@@ -27,7 +27,6 @@ async function getTicket () {
 const testApi = async () => {
   try {
     const res1 = await invoke('getCurExternalContact')
-    console.log(res1.userId)
     localStorage.setItem('userId', res1.userId)
   } catch (e: any) {
     console.log(e.message)

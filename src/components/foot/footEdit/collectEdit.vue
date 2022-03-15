@@ -37,7 +37,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { table, field, collectType } from '@/config/config'
+import { table, field, collectType, user } from '@/config/config'
 import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
 // addInfo
 @Component({})
@@ -49,18 +49,21 @@ export default class Home extends Vue {
   itemId = '';
   async mounted () {
     const data = {
-      search: { fields: [], keywords: ['小云'] },
       where: {
         and: [
           {
-            field: 2200000184791041,
-            query: { in: [1] }
+            query: { or: [{ in: [user.userId] }] },
+            query_option_mappings: [-1],
+            field: field.projectUUid
           }
         ]
       },
       offset: 0,
       limit: 20,
-      order_by: [{ field: 2200000150460774, sort: 'desc' }]
+      order_by: [
+        { field: field.projectUUid, sort: 'desc' },
+        { field: field.masterProject, sort: 'asc' }
+      ]
     }
     const result = await SearchInfo(this.projectInfo, data)
     for (let i = 0; i < result.length; i++) {

@@ -26,7 +26,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { table, field } from '@/config/config'
+import { table, field, user } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
@@ -35,11 +35,38 @@ export default class Home extends Vue {
   sheetDetail = table.sheetDetail;
   sendList: any[] = [];
   async mounted () {
+    const data = {
+      where: {
+        and: [
+          {
+            query: { or: [{ in: [user.userId] }] },
+            query_option_mappings: [-1],
+            field: field.projectUUid
+          }
+        ]
+      },
+      offset: 0,
+      limit: 20,
+      order_by: [
+        { field: field.projectUUid, sort: 'desc' },
+        { field: field.masterProject, sort: 'asc' }
+      ]
+    }
+    const result = await SearchInfo(this.projectInfo, data)
+    let projectCode: any = ''
+    for (let i = 0; i < result.length; i++) {
+      const fields = result[i].fields
+      for (let j = 0; j < fields.length; j++) {
+        if (fields[j].field_id === field.projectCode) {
+          projectCode = fields[j].values[0].value
+        }
+      }
+    }
     const data1 = {
       where: {
         and: [
           {
-            query: { or: [{ in: ['马女士'] }] },
+            query: { or: [{ in: [projectCode] }] },
             query_option_mappings: [-1],
             field: 1101001226000000
           },

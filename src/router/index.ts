@@ -6,10 +6,6 @@ import workSheet from '@/views/workSheet.vue'
 import sendOut from '@/views/sendOut.vue'
 import scheme from '@/views/scheme.vue'
 
-import Action from '@/views/test/Actions.vue'
-import ExternalUser from '@/views/test/ExternalUser.vue'
-import ExternalChat from '@/views/test/ExternalChat.vue'
-
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
@@ -42,11 +38,6 @@ const routes: Array<RouteConfig> = [
     path: '/upload',
     name: 'scheme',
     component: scheme
-  },
-  {
-    path: '/actions',
-    name: 'Actions',
-    component: Action
   }
 ]
 
