@@ -82,7 +82,7 @@ export const field = {
   serviceFee: 2200000143114392
 }
 export const user = {
-  userId: 'woKIS_CwAAoZIdFzt94EC0vUcHFZgL5A'
+  userId: localStorage.getItem('userId')
 }
 // 房屋类型
 export const houseType = [{

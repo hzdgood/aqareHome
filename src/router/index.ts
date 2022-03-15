@@ -47,16 +47,6 @@ const routes: Array<RouteConfig> = [
     path: '/actions',
     name: 'Actions',
     component: Action
-  },
-  {
-    path: '/external-user',
-    name: 'ExternalUser',
-    component: ExternalUser
-  },
-  {
-    path: '/external-chat',
-    name: 'ExternalChat',
-    component: ExternalChat
   }
 ]
 

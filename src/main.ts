@@ -5,7 +5,7 @@ import store from './store'
 import 'ant-design-vue/dist/antd.css'
 import '@/css/aqara.css'
 import { userInfo, fetchUserId, fetchSignatures, config } from '@/config/interFace'
-import { checkRedirect, initSdk } from 'wecom-sidebar-jssdk'
+import { checkRedirect, initSdk, invoke, asyncCall, call, SignRes } from 'wecom-sidebar-jssdk'
 
 const data = {
   application_id: '1002449',
@@ -23,10 +23,20 @@ async function getTicket () {
     render: h => h(App)
   }).$mount('#app')
 }
-getTicket()
+
+const testApi = async () => {
+  try {
+    const res1 = await invoke('getCurExternalContact')
+    console.log(res1.userId)
+    localStorage.setItem('userId', res1.userId)
+  } catch (e: any) {
+    console.log(e.message)
+  }
+}
 
 checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）
   .then(() => initSdk(config, fetchSignatures)) // 初始化 JsSdk
+  .then(() => testApi())
   .then(() => {
-    // getTicket()
+    getTicket()
   })

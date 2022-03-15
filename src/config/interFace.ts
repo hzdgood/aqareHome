@@ -7,7 +7,7 @@ let httpUrl = url.substring(0, url.length - 1)
 if (httpUrl === 'http://localhost:8080') {
   httpUrl = 'http://localhost:8081'
 } else {
-  httpUrl = httpUrl + ':8081'
+  httpUrl = 'http://aqara.club:8081'
 }
 const huobanUrl = 'https://api.huoban.com'
 const ticket: any = localStorage.getItem('ticket')
