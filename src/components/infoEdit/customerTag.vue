@@ -83,7 +83,7 @@ export default class Actions extends Vue {
   hometype: any[] = [];
   custominto: any[] = [];
   houseNeed: any[] = [];
-  tableID = table.customerInfo;
+  customerInfo = table.customerInfo;
   async mounted () {
     this.loadFunction()
   }
@@ -104,7 +104,7 @@ export default class Actions extends Vue {
       limit: 20,
       order_by: [{ field: field.userTable, sort: 'desc' }]
     }
-    const res = await SearchInfo(this.tableID, data)
+    const res = await SearchInfo(this.customerInfo, data)
     if (res.length === 0) {
       return
     }
