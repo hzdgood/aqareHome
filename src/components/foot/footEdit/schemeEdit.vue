@@ -23,7 +23,9 @@ import {
   uploadFile,
   SearchInfo,
   filterInfo,
-  batchAddPlan
+  batchAddPlan,
+  updateTable,
+  getCoordinate
 } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
@@ -36,23 +38,23 @@ export default class Home extends Vue {
     type: Boolean,
     required: true,
     default: ''
-  }) upload !: any;
-
-  mounted () {
-    console.log(this.upload)
-  }
+  })
+  upload!: any;
 
   // 获取所有的产品信息
   async saveClick () {
+    let projectName = ''
+    const productName = []
+    let projectAddress = ''
+    let projectId = ''
     const formData = new FormData()
+
     let file: any = document.getElementsByName('file')[0]
     file = file.files[0]
     formData.append('file', file, file.name)
     const res = await uploadFile(formData)
     // 获取项目名称 获取产品名称
-    let projectName = ''
-    const productName = []
-    let projectId = ''
+
     for (let i = 0; i < res.length; i++) {
       if (i === 0) {
         projectName = res[i].projectName
@@ -73,6 +75,23 @@ export default class Home extends Vue {
     const result = await filterInfo(this.projectInfo, data)
     if (result[0].item_id) {
       projectId = result[0].item_id
+      const fields = result[0].fields
+      for (let i = 0; i < fields.length; i++) {
+        if (fields[i].field_id === field.projectAddress) {
+          const values = fields[i].values[0].value
+          projectAddress = values
+        }
+      }
+      if (projectAddress !== '') {
+        const obj = await getCoordinate({
+          address: projectAddress
+        })
+        const data = {
+          [field.X]: obj.lng,
+          [field.Y]: obj.lat
+        }
+        updateTable(projectId, data)
+      }
     } else {
       alert('项目信息不存在！')
     }

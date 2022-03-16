@@ -69,10 +69,22 @@ export const fetchSignatures = async (): Promise<SignRes> => {
   return response.data
 }
 
-export const userInfo = async () => { // 后期封装到后台实现
+export const userInfo = async () => {
   const url = httpUrl + '/huoban/getTicket'
   const application = await post(url, {})
   return application.data.ticket
+}
+
+export const uploadFile = async (formData: object) => {
+  const url = httpUrl + '/file/upload'
+  const info = await UploadPost(url, formData)
+  return info.data
+}
+
+export const getCoordinate = async (formData: object) => {
+  const url = httpUrl + '/user/getCoordinate'
+  const info = await UploadPost(url, formData)
+  return info.data
 }
 
 // 暂时测试使用
@@ -103,12 +115,6 @@ export const deleteItem = async (tableId: string, data: object) => {
 export const addInfo = async (tableId: string, data: object) => {
   const url = huobanUrl + '/v2/item/table/' + tableId
   const info = await post(url, data)
-  return info.data
-}
-
-export const uploadFile = async (formData: object) => {
-  const url = httpUrl + '/file/upload'
-  const info = await UploadPost(url, formData)
   return info.data
 }
 

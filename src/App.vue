@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <div v-if="uploadStaus == true">
-      <user></user>
-      <customerTag></customerTag>
-      <stage></stage>
-      <sidebar-nav></sidebar-nav>
-      <router-view />
-      <footContent></footContent>
+      <div v-if="userStatus">
+        <user></user>
+        <customerTag></customerTag>
+        <stage></stage>
+        <sidebar-nav></sidebar-nav>
+        <router-view />
+        <footContent></footContent>
+      </div>
     </div>
     <div v-if="uploadStaus == false">
       <schemeEdit :upload="false" @closeScheme="close"></schemeEdit>
@@ -35,6 +37,7 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 export default class Actions extends Vue {
   uploadStaus = true;
+  userStatus = false;
   async mounted () {
     const url = window.location.href
     if (url.split('#')[1] === '/upload') {

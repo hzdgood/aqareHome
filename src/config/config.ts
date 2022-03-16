@@ -44,6 +44,8 @@ export const field = {
   masterProject: 2200000184791041, // 主项目
   saleMan: 2200000145489594, // 销售
   department: 2200000160830230, // 部门
+  X: '',
+  Y: '',
   // 客户方案表
   projectName: 2200000143113282, // 产品名称
   AllNumber: 2200000143342281, // 全款数量
