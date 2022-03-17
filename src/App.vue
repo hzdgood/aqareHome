@@ -51,8 +51,8 @@ export default class Actions extends Vue {
     const url = window.location.href
     if (url.split('#')[1] === '/upload') {
       this.uploadStaus = false
+      return
     }
-
     const data = {
       where: {
         and: [

@@ -24,7 +24,7 @@ import { SearchInfo, updateTable } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
 export default class Home extends Vue {
   customList: any[] = [];
-  projectInfo = table.projectInfo;
+  customerInfo = table.customerInfo;
   userId = user.userId;
   async search () {
     const name: any = document.getElementById('name')
@@ -41,12 +41,12 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
-    const result = await SearchInfo(this.projectInfo, data)
+    const result = await SearchInfo(this.customerInfo, data)
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       const id = result[i].item_id
       for (let j = 0; j < fields.length; j++) {
-        if (fields[i].field_id === field.projectCustom) {
+        if (fields[i].field_id === field.customerName) {
           const name = fields[i].values[0].value
           const obj = {
             id: id,

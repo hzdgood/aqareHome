@@ -15,6 +15,7 @@ export const table = {
 }
 export const field = {
   // 客户信息表
+  customerName: 2200000144967973,
   userTable: 2200000166530102, // 销售人员
   salesperson: 2200000144968566, // USERID
   custominto: 2200000184136584, // 客户来源
