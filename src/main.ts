@@ -4,13 +4,8 @@ import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.css'
 import '@/css/aqara.css'
-import { userInfo, fetchUserId, fetchSignatures, config } from '@/config/interFace'
-import { checkRedirect, initSdk, invoke, asyncCall, call, SignRes } from 'wecom-sidebar-jssdk'
-
-const data = {
-  application_id: '1002449',
-  application_secret: '5F5aMmUtCBbhNM4ahhYeG1wMK4mstbsG85VpI9Qw'
-}
+import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
+import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
 
 // 获取伙伴云ticket
 async function getTicket () {
@@ -25,12 +20,15 @@ async function getTicket () {
 }
 
 const testApi = async () => {
-  try {
-    const res1 = await invoke('getCurExternalContact')
-    localStorage.setItem('userId', res1.userId)
-  } catch (e: any) {
-    console.log(e.message)
+  const res = await invoke('getCurExternalContact')
+  const userId = res.userId
+  localStorage.setItem('userId', userId) // 外部客户userID
+  const obj = {
+    userId: res.userId
   }
+  const res1:any = await externalcontact(obj)
+  const userName = res1.follow_user[0].remark
+  localStorage.setItem('userName', userName) // 外部客户名称
 }
 
 checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）

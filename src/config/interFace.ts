@@ -1,21 +1,13 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-let url = window.location.href
-url = url.split('#')[0]
-let httpUrl = url.substring(0, url.length - 1)
-if (httpUrl === 'http://localhost:8080') {
-  httpUrl = 'http://localhost:8081'
-} else {
-  httpUrl = 'http://aqara.club:8081'
-}
+const httpUrl = 'http://localhost:8081'
+// const httpUrl = 'http://aqara.club:8081'
 const huobanUrl = 'https://api.huoban.com'
 const ticket: any = localStorage.getItem('ticket')
 
 export const config = {
-  // 在 https://work.weixin.qq.com/wework_admin/frame#profile 这里可以找到
   corpId: 'ww9a717b03b06063e3', // 企业ID
-  // 在 https://work.weixin.qq.com/wework_admin/frame#apps 里的自建应用里可以找到
   agentId: '1000046'
 }
 
@@ -69,6 +61,16 @@ export const fetchSignatures = async (): Promise<SignRes> => {
   return response.data
 }
 
+// 获取签名接口（需要后端生成）
+export const externalcontact = async (formData: object) => {
+  const response = await axios.request<SignRes>({
+    method: 'GET',
+    url: httpUrl + '/wechat/externalcontact',
+    params: formData
+  })
+  return response.data
+}
+
 export const userInfo = async () => {
   const url = httpUrl + '/huoban/getTicket'
   const application = await post(url, {})
@@ -85,13 +87,6 @@ export const getCoordinate = async (formData: object) => {
   const url = httpUrl + '/user/getCoordinate'
   const info = await UploadPost(url, formData)
   return info.data
-}
-
-// 暂时测试使用
-export const userInfo1 = async (data: any) => {
-  const url = huobanUrl + '/v2/ticket'
-  const application = await post(url, data)
-  return application.data.ticket
 }
 
 export const SearchInfo = async (tableId: string, data: object) => {
