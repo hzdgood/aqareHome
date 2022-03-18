@@ -13,18 +13,18 @@
 }
 input {
   font-size: 12px;
-  margin: 5px;
+  margin: 3px;
   max-width: 80px;
 }
 span {
   font-size: 12px;
-  margin: 5px;
+  margin: 3px;
 }
 .lineDiv {
-  margin: 5px;
+  margin: 3px;
 }
 select {
-  margin: 5px;
+  margin: 3px;
   font-size: 12px;
   max-width: 100px;
 }
@@ -35,7 +35,7 @@ select {
 .infoTable tr td {
   border: 1px solid #eee;
   text-align: center;
-  padding: 1px 5px 1px 5px;
+  padding: 1px 3px 1px 3px;
   font-size: 10px;
 }
 .infoTable thead {
