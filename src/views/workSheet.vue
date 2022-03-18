@@ -74,8 +74,7 @@ export default class Home extends Vue {
         ]
       },
       offset: 0,
-      limit: 20,
-      order_by: [{ field: 1101001226000000, sort: 'desc' }]
+      limit: 200
     }
     const result1 = await SearchInfo(this.workSheet, data1)
 

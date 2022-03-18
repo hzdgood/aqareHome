@@ -24,7 +24,7 @@ import Nav from '@/components/nav/Nav.vue'
 import user from '@/components/user/user.vue'
 import bindEdit from '@/components/foot/footEdit/bindEdit.vue'
 import customerTag from '@/components/infoEdit/customerTag.vue'
-import stage from '@/components/infoEdit/stage.vue'
+import stage from '@/views/stage.vue'
 import footContent from '@/components/foot/footContent.vue'
 import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
 import { Component, Vue } from 'vue-property-decorator'
@@ -61,7 +61,7 @@ export default class Actions extends Vue {
           {
             query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
-            field: 2200000166530102
+            field: field.userTable
           }
         ]
       },
