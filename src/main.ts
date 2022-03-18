@@ -18,7 +18,6 @@ async function getTicket () {
     render: h => h(App)
   }).$mount('#app')
 }
-
 const testApi = async () => {
   const res = await invoke('getCurExternalContact')
   const userId = res.userId
@@ -26,11 +25,10 @@ const testApi = async () => {
   const obj = {
     userId: res.userId
   }
-  const res1:any = await externalcontact(obj)
+  const res1: any = await externalcontact(obj)
   const userName = res1.follow_user[0].remark
   localStorage.setItem('userName', userName) // 外部客户名称
 }
-
 checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）
   .then(() => initSdk(config, fetchSignatures)) // 初始化 JsSdk
   .then(() => testApi())

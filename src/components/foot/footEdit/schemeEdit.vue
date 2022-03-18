@@ -158,7 +158,7 @@ export default class Home extends Vue {
   }
 
   closeClick () {
-    this.$emit('closeScheme')
+    this.$emit('close')
   }
 }
 </script>

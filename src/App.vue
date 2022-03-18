@@ -10,11 +10,11 @@
         <footContent></footContent>
       </div>
       <div v-if="userStatus == false">
-        <bind></bind>
+        <bindEdit :status="false" @close="close()"></bindEdit>
       </div>
     </div>
     <div v-if="uploadStaus == false">
-      <schemeEdit :upload="false" @closeScheme="close"></schemeEdit>
+      <schemeEdit :upload="false" @close="close()"></schemeEdit>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@
 <script lang="ts">
 import Nav from '@/components/nav/Nav.vue'
 import user from '@/components/user/user.vue'
-import bind from '@/components/user/bind.vue'
+import bindEdit from '@/components/foot/footEdit/bindEdit.vue'
 import customerTag from '@/components/infoEdit/customerTag.vue'
 import stage from '@/components/infoEdit/stage.vue'
 import footContent from '@/components/foot/footContent.vue'
@@ -39,13 +39,14 @@ import { table, field } from '@/config/config'
     customerTag: customerTag,
     stage: stage,
     footContent: footContent,
-    schemeEdit: schemeEdit
+    schemeEdit: schemeEdit,
+    bindEdit: bindEdit
   }
 })
 export default class Actions extends Vue {
   uploadStaus = true;
   userStatus = true;
-  projectInfo = table.projectInfo;
+  customerInfo = table.customerInfo;
   userId = localStorage.getItem('userId');
   async mounted () {
     const url = window.location.href
@@ -59,18 +60,14 @@ export default class Actions extends Vue {
           {
             query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
-            field: field.projectUUid
+            field: 2200000166530102
           }
         ]
       },
       offset: 0,
-      limit: 20,
-      order_by: [
-        { field: field.projectUUid, sort: 'desc' },
-        { field: field.masterProject, sort: 'asc' }
-      ]
+      limit: 20
     }
-    const result = await SearchInfo(this.projectInfo, data)
+    const result = await SearchInfo(this.customerInfo, data)
     if (result.length === 0) {
       this.userStatus = false
     } else {
@@ -79,7 +76,7 @@ export default class Actions extends Vue {
   }
 
   close () {
-    console.log(111)
+    this.userStatus = true
   }
 }
 </script>
