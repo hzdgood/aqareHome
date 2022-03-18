@@ -14,7 +14,7 @@
 input {
   font-size: 12px;
   margin: 5px;
-  max-width: 100px;
+  max-width: 80px;
 }
 span {
   font-size: 12px;
@@ -43,7 +43,7 @@ select {
   background-color: #ddd;
 }
 .projectAddress{
-  min-width: 240px;
+  min-width: 200px;
 }
 .infoDiv {
   position: fixed;

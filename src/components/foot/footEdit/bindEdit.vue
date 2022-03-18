@@ -124,14 +124,14 @@ export default class Home extends Vue {
     const result = await SearchInfo(this.customerInfo, data)
     // 可以获取用户信息
     for (let i = 0; i < result.length; i++) {
-      const itemId = result[i].item_id
+      const itemId = result[0].item_id
       const data1 = {
         fields: {
           2200000166530102: '' // 更新userID
         }
       }
       const res = await updateTable(itemId, data1)
-      setTimeout(this.updateUser, 1000)
+      setTimeout(this.updateUser, 3000)
     }
   }
 

@@ -2,32 +2,32 @@
   <div class="centerDiv">
     <div v-for="project in projectList" :key="project.id">
       <div class="lineDiv">
-        <span>项目类型：</span>
+        <span>项目类型</span>
         <input type="text" readonly :value="project.projectType" />
         <span>主&nbsp;&nbsp;项&nbsp;&nbsp;目：</span>
         <input type="text" readonly :value="project.masterProject"/>
       </div>
       <div class="lineDiv">
-        <span>客户名称：</span>
+        <span>项目名称</span>
         <input type="text" readonly :value="project.projectCustom"
         />
-        <span>联系方式：</span>
+        <span>联系方式</span>
         <input type="text" readonly :value="project.telephone" />
       </div>
       <div class="lineDiv">
-        <span>小区名称：</span>
+        <span>小区名称</span>
         <input type="text" readonly :value="project.projectVillage"/>
-        <span>客户房型：</span>
+        <span>客户房型</span>
         <input type="text" readonly :value="project.projectHometype"/>
       </div>
       <div class="lineDiv">
-        <span>所在区域：</span>
+        <span>所在区域</span>
         <input type="text" readonly :value="project.projectArea" />
-        <span>装修阶段：</span>
+        <span>装修阶段</span>
         <input type="text" readonly :value="project.projectStage"/>
       </div>
       <div class="lineDiv">
-        <span>客户地址：</span>
+        <span>客户地址</span>
         <input class="projectAddress" type="text" readonly :value="project.projectAddress"/>
       </div>
     </div>

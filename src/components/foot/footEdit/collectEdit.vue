@@ -75,6 +75,9 @@ export default class Home extends Vue {
         }
       }
     }
+    if (this.projectCode === '') {
+      alert('请先新增项目！')
+    }
   }
 
   async saveClick () {

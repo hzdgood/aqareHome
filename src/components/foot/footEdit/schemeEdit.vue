@@ -3,7 +3,7 @@
     <div class="floatDiv" v-show="upload"></div>
     <div :class="upload ? 'infoDiv' : ''">
       <div class="headerDiv">上传方案</div>
-      <input type="file" name="file" placeholder="请选择文件" />
+      <input type="file" name="file" placeholder="请选择文件" style="max-width: 200px;" />
       <div>
         <input type="button" @click="saveClick()" value="提交" />
         <input type="button" @click="closeClick()" value="关闭" />
@@ -48,6 +48,7 @@ export default class Home extends Vue {
     let projectAddress = ''
     let projectId = ''
     const formData = new FormData()
+    this.erronProduct = []
 
     let file: any = document.getElementsByName('file')[0]
     file = file.files[0]
@@ -73,7 +74,7 @@ export default class Home extends Vue {
       limit: 20
     }
     const result = await filterInfo(this.projectInfo, data)
-    if (result[0].item_id) {
+    if (result.length !== 0) {
       projectId = result[0].item_id
       const fields = result[0].fields
       for (let i = 0; i < fields.length; i++) {
@@ -82,18 +83,13 @@ export default class Home extends Vue {
           projectAddress = values
         }
       }
-      if (projectAddress !== '') {
-        const obj = await getCoordinate({
-          address: projectAddress
-        })
-        const data = {
-          [field.X]: obj.lng,
-          [field.Y]: obj.lat
-        }
-        updateTable(projectId, data)
-      }
     } else {
-      alert('项目信息不存在！')
+      const obj = {
+        index: 0,
+        name: '项目信息不存在！'
+      }
+      this.erronProduct.push(obj)
+      return
     }
     // 获取产品信息
     const data1 = {
@@ -153,8 +149,30 @@ export default class Home extends Vue {
         }
       }
     }
-    batchAddPlan(this.customerPlan, json)
-    // this.$emit("closeScheme");
+    if (this.erronProduct.length > 0) {
+
+    } else {
+      if (projectAddress !== '') {
+        const obj = await getCoordinate([projectAddress])
+        if (obj.lng === 0 && obj.lat === 0) {
+          const obj = {
+            index: 0,
+            name: '项目地址错误！'
+          }
+          this.erronProduct.push(obj)
+        } else {
+          const data = {
+            fields: {
+              2200000150942406: obj.lng,
+              2200000150942407: obj.lat
+            }
+          }
+          updateTable(projectId, data)
+          batchAddPlan(this.customerPlan, json)
+          this.$emit('close')
+        }
+      }
+    }
   }
 
   closeClick () {

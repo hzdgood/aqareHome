@@ -6,9 +6,9 @@
       <button @click="addClick()">新增</button>
       <div id="projectList" v-for="project in projectList" :key="project.id">
         <div class="lineDiv">
-          <span>项目类型：</span>
+          <span>项目类型</span>
           <span>
-            <select id="projectType">
+            <select :id="project.id + 'projectType'">
               <option :value="project.projectTypeId">
                 {{ project.projectType }}
               </option>
@@ -26,23 +26,35 @@
           <span>{{ project.masterProject }}</span>
         </div>
         <div class="lineDiv">
-          <span>客户名称：</span>
+          <span>项目名称</span>
           <span>
-            <input id="projectCustom" type="text" :value="project.customer" />
+            <input
+              :id="project.id + 'projectCustom'"
+              type="text"
+              :value="project.customer"
+            />
           </span>
-          <span>联系方式：</span>
+          <span>联系方式</span>
           <span>
-            <input id="telephone" type="text" :value="project.telephone" />
+            <input
+              :id="project.id + 'telephone'"
+              type="text"
+              :value="project.telephone"
+            />
           </span>
         </div>
         <div class="lineDiv">
-          <span>小区名称：</span>
+          <span>小区名称</span>
           <span>
-            <input id="projectVillage" type="text" :value="project.village" />
+            <input
+              :id="project.id + 'projectVillage'"
+              type="text"
+              :value="project.village"
+            />
           </span>
-          <span>客户房型：</span>
+          <span>客户房型</span>
           <span>
-            <select id="projectHometype">
+            <select :id="project.id + 'projectHometype'">
               <option :value="project.hometypeId">
                 {{ project.hometype }}
               </option>
@@ -57,9 +69,9 @@
           </span>
         </div>
         <div class="lineDiv">
-          <span>销售人员：</span>
+          <span>销售人员</span>
           <span>
-            <select id="saleMan">
+            <select :id="project.id + 'saleMan'">
               <option :value="project.saleManId">
                 {{ project.saleMan }}
               </option>
@@ -72,9 +84,9 @@
               </option>
             </select>
           </span>
-          <span>所属门店：</span>
+          <span>所属门店</span>
           <span>
-            <select id="department">
+            <select :id="project.id + 'department'">
               <option :value="project.departmentId">
                 {{ project.department }}
               </option>
@@ -89,9 +101,9 @@
           </span>
         </div>
         <div class="lineDiv">
-          <span>所在区域：</span>
+          <span>所在区域</span>
           <span>
-            <select id="projectArea">
+            <select :id="project.id + 'projectArea'">
               <option :value="project.areaId">
                 {{ project.area }}
               </option>
@@ -104,9 +116,9 @@
               </option>
             </select>
           </span>
-          <span>装修阶段：</span>
+          <span>装修阶段</span>
           <span>
-            <select id="projectStage">
+            <select :id="project.id + 'projectStage'">
               <option :value="project.stageId">
                 {{ project.stage }}
               </option>
@@ -123,7 +135,12 @@
         <div class="lineDiv">
           <span>客户地址：</span>
           <span>
-            <input id="projectAddress" class="projectAddress" type="text" :value="project.address" />
+            <input
+              :id="project.id + 'projectAddress'"
+              class="projectAddress"
+              type="text"
+              :value="project.address"
+            />
           </span>
         </div>
         <button @click="saveClick(project)">保存</button>
@@ -397,21 +414,25 @@ export default class Home extends Vue {
 
   // 保存按钮 获取当前项目全部数据
   async saveClick (project: any) {
-    const telephone: any = document.getElementById('telephone')
-    const projectCustom: any = document.getElementById('projectCustom')
-    const address: any = document.getElementById('projectAddress')
-    const village: any = document.getElementById('projectVillage')
-    const stage: any = document.getElementById('projectStage')
+    const telephone: any = document.getElementById(project.id + 'telephone')
+    const projectCustom: any = document.getElementById(
+      project.id + 'projectCustom'
+    )
+    const address: any = document.getElementById(project.id + 'projectAddress')
+    const village: any = document.getElementById(project.id + 'projectVillage')
+    const stage: any = document.getElementById(project.id + 'projectStage')
     const stageValue = stage.options[stage.selectedIndex].value
-    const hometype: any = document.getElementById('projectHometype')
+    const hometype: any = document.getElementById(
+      project.id + 'projectHometype'
+    )
     const typeValue = hometype.options[hometype.selectedIndex].value
-    const Type: any = document.getElementById('projectType')
+    const Type: any = document.getElementById(project.id + 'projectType')
     const TypeValue = Type.options[Type.selectedIndex].value
-    const area: any = document.getElementById('projectArea')
+    const area: any = document.getElementById(project.id + 'projectArea')
     const areaValue = area.options[area.selectedIndex].value
-    const saleMan: any = document.getElementById('saleMan')
+    const saleMan: any = document.getElementById(project.id + 'saleMan')
     const saleManValue = saleMan.options[saleMan.selectedIndex].value
-    const department: any = document.getElementById('department')
+    const department: any = document.getElementById(project.id + 'department')
     const departmentValue = department.options[department.selectedIndex].value
     // 加入校验
 
@@ -429,11 +450,16 @@ export default class Home extends Vue {
         [field.department]: [departmentValue]
       }
     }
-    await updateTable(project.itemId, data)
-    this.$emit('reload')
+    const res: any = await updateTable(project.itemId, data)
+    if (res.message) {
+      alert(res.message)
+    } else {
+      this.$emit('reload')
+    }
   }
+
+  // 全部有数据才能够提交
 }
 </script>
 <style scoped>
-
 </style>

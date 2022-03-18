@@ -95,7 +95,14 @@ export default class Home extends Vue {
       let notIssued: any = ''
       let notInstalled: any = ''
       let notAdjusted: any = ''
+      let status = true
       for (let j = 0; j < fields.length; j++) {
+        if (fields[j].field_id === 2200000176622409) {
+          const value = fields[j].values[0].id
+          if (value === 1) {
+            status = false
+          }
+        }
         if (fields[j].field_id === field.projectName) {
           projectName = fields[j].values[0].title
         }
@@ -124,20 +131,23 @@ export default class Home extends Vue {
           notAdjusted = fields[j].values[0].value
         }
       }
-      const obj = {
-        id: i,
-        projectName: projectName,
-        AllNumber: AllNumber,
-        planNuber: planNuber,
-        price: price,
-        discount: discount,
-        servieFee: servieFee,
-        notIssued: notIssued,
-        notInstalled: notInstalled,
-        notAdjusted: notAdjusted
+      if (status) {
+        const obj = {
+          id: i,
+          projectName: projectName,
+          AllNumber: AllNumber,
+          planNuber: planNuber,
+          price: price,
+          discount: discount,
+          servieFee: servieFee,
+          notIssued: notIssued,
+          notInstalled: notInstalled,
+          notAdjusted: notAdjusted
+        }
+        this.projectList.push(obj)
       }
-      this.projectList.push(obj)
     }
   }
 }
+// 折扣 费率 %
 </script>

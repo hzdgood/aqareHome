@@ -85,7 +85,13 @@ export const uploadFile = async (formData: object) => {
 
 export const getCoordinate = async (formData: object) => {
   const url = httpUrl + '/user/getCoordinate'
-  const info = await UploadPost(url, formData)
+  // const info = await UploadPost(url, formData)
+  const info = await axios({
+    method: 'post',
+    url: url,
+    data: formData
+    // headers: headers
+  })
   return info.data
 }
 
@@ -114,11 +120,12 @@ export const addInfo = async (tableId: string, data: object) => {
 }
 
 export const updateTable = async (item_id: string, data: object) => {
-  axios.put(huobanUrl + '/v2/item/' + item_id, data, {
+  const info = await axios.put(huobanUrl + '/v2/item/' + item_id, data, {
     headers: {
       'X-Huoban-Ticket': ticket
     }
   })
+  return info.data
 }
 
 export const uploadImg = async (formData: object) => {

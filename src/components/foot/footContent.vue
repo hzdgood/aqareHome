@@ -52,6 +52,9 @@ export default class Home extends Vue {
     this.$store.dispatch('updateReload')
     if (this.infoShow) {
       this.infoShow = false
+      this.schemeShow = false
+      this.collectShow = false
+      this.bindUser = false
     } else {
       this.infoShow = true
     }
@@ -62,6 +65,9 @@ export default class Home extends Vue {
       this.infoShow = false
     } else {
       this.infoShow = true
+      this.schemeShow = false
+      this.collectShow = false
+      this.bindUser = false
     }
   }
 
@@ -70,6 +76,9 @@ export default class Home extends Vue {
       this.collectShow = false
     } else {
       this.collectShow = true
+      this.schemeShow = false
+      this.infoShow = false
+      this.bindUser = false
     }
   }
 
@@ -78,6 +87,9 @@ export default class Home extends Vue {
       this.schemeShow = false
     } else {
       this.schemeShow = true
+      this.collectShow = false
+      this.infoShow = false
+      this.bindUser = false
     }
   }
 
@@ -86,9 +98,14 @@ export default class Home extends Vue {
       this.bindUser = false
     } else {
       this.bindUser = true
+      this.schemeShow = false
+      this.collectShow = false
+      this.infoShow = false
     }
   }
 }
+
+// 悬浮框自动消失
 </script>
 <style scoped>
 </style>
