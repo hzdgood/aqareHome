@@ -15,9 +15,9 @@ export const table = {
 }
 export const field = {
   // 客户信息表
-  customerName: 2200000144967973,
-  userTable: 2200000166530102, // 销售人员
-  salesperson: 2200000144968566, // USERID
+  customerName: 2200000144967973, // 客户名称
+  userTable: 2200000166530102, // USERID
+  // salesperson: 2200000144968566, // USERID
   custominto: 2200000184136584, // 客户来源
   houseInfo: 2200000184134453, // 房屋情况
   hometype: 2200000184136583, // 房型
@@ -45,8 +45,8 @@ export const field = {
   masterProject: 2200000184791041, // 主项目
   saleMan: 2200000145489594, // 销售
   department: 2200000160830230, // 部门
-  X: '',
-  Y: '',
+  X: 2200000150942406,
+  Y: 2200000150942407,
   // 客户方案表
   projectName: 2200000143113282, // 产品名称
   AllNumber: 2200000143342281, // 全款数量

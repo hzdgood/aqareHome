@@ -71,7 +71,7 @@ export default class Home extends Vue {
           {
             query: { or: [{ in: [name.value] }] },
             query_option_mappings: [-1],
-            field: 2200000144967973 // 客户名称
+            field: field.customerName // 客户名称
           }
         ]
       },

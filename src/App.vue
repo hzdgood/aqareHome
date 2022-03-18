@@ -14,7 +14,7 @@
       </div>
     </div>
     <div v-if="uploadStaus == false">
-      <schemeEdit :upload="false" @close="close()"></schemeEdit>
+      <schemeEdit :upload="false"></schemeEdit>
     </div>
   </div>
 </template>
@@ -49,6 +49,7 @@ export default class Actions extends Vue {
   customerInfo = table.customerInfo;
   userId = localStorage.getItem('userId');
   async mounted () {
+    // 如果前段url为uplaod展示方案上传页面
     const url = window.location.href
     if (url.split('#')[1] === '/upload') {
       this.uploadStaus = false
@@ -67,6 +68,7 @@ export default class Actions extends Vue {
       offset: 0,
       limit: 20
     }
+    // 根据ID获取用户数据 有显示数据 没有绑定
     const result = await SearchInfo(this.customerInfo, data)
     if (result.length === 0) {
       this.userStatus = false

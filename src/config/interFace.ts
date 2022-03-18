@@ -1,14 +1,14 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-// const httpUrl = 'http://localhost:8081'
-const httpUrl = 'http://aqara.club:8081'
+// const httpUrl = 'http://localhost:8081' //测试url
+const httpUrl = 'http://aqara.club:8081' // 生产环境
 const huobanUrl = 'https://api.huoban.com'
 const ticket: any = localStorage.getItem('ticket')
 
 export const config = {
   corpId: 'ww9a717b03b06063e3', // 企业ID
-  agentId: '1000046'
+  agentId: '1000046' // 应用ID
 }
 
 const post = async (url: string, data: object) => {

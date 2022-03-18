@@ -3,49 +3,54 @@
     <div class="floatDiv"></div>
     <div class="infoDiv">
       <div class="headerDiv">新增定金收款</div>
-      <div class="lineDiv">
-        <span>项目名称：</span>
-        <input id="projectName" type="text" readonly :value="projectCode" />
-        <span>收款类型：</span>
-        <input id="projectType" type="text" readonly value="定金" />
+      <div v-if="errorStatus == true">
+        <div class="lineDiv">
+          <span>项目名称：</span>
+          <input id="projectName" type="text" readonly :value="projectCode" />
+          <span>收款类型：</span>
+          <input id="projectType" type="text" readonly value="定金" />
+        </div>
+        <div class="lineDiv">
+          <span>收款方式：</span>
+          <select id="collectType">
+            <option
+              v-for="collectType in collectType"
+              :value="collectType.value"
+              :key="collectType.value"
+            >
+              {{ collectType.name }}
+            </option>
+          </select>
+          <span>收款金额：</span>
+          <input id="collectMoney" type="text" />
+        </div>
+        <div class="lineDiv">
+          <span>上传图片：</span>
+          <input id="file" type="file" />
+        </div>
+        <div class="lineDiv">
+          <input type="button" @click="saveClick()" value="保存" />
+          <input type="button" @click="closeClick()" value="关闭" />
+        </div>
       </div>
-      <div class="lineDiv">
-        <span>收款方式：</span>
-        <select id="collectType">
-          <option
-            v-for="collectType in collectType"
-            :value="collectType.value"
-            :key="collectType.value"
-          >
-            {{ collectType.name }}
-          </option>
-        </select>
-        <span>收款金额：</span>
-        <input id="collectMoney" type="text" />
-      </div>
-      <div class="lineDiv">
-        <span>上传图片：</span>
-        <input id="file" type="file" />
-      </div>
-      <div class="lineDiv">
-        <input type="button" @click="saveClick()" value="保存" />
-        <input type="button" @click="closeClick()" value="关闭" />
+      <div v-if="errorStatus == false">
+        {{ errorMsg }}
       </div>
     </div>
   </div>
 </template>
-
-<script lang='ts'>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType, user } from '@/config/config'
 import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
-// addInfo
 @Component({})
 export default class Home extends Vue {
   collectTable = table.collectTable;
   projectInfo = table.projectInfo;
   collectType = collectType;
   projectCode = '';
+  errorMsg = '';
+  errorStatus = true;
   itemId = '';
   async mounted () {
     const data = {
@@ -76,7 +81,8 @@ export default class Home extends Vue {
       }
     }
     if (this.projectCode === '') {
-      alert('请先新增项目！')
+      this.errorMsg = '请先添加项目！'
+      this.errorStatus = false
     }
   }
 
@@ -110,6 +116,4 @@ export default class Home extends Vue {
   }
 }
 </script>
-
-<style scoped>
-</style>
+<style scoped></style>

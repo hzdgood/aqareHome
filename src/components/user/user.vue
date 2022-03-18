@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <div class="headDiv">ID {{ userName }} 客户姓名 : {{ name }}</div>
+    <span class="headDiv">ID: {{ userName }}</span>
+    <span class="headDiv">客户姓名:{{ name }}</span>
   </div>
 </template>
 <script lang="ts">
@@ -19,7 +20,7 @@ export default class Home extends Vue {
           {
             query: { or: [{ in: [user.userId] }] },
             query_option_mappings: [-1],
-            field: 2200000166530102
+            field: field.userTable
           }
         ]
       },
@@ -41,7 +42,7 @@ export default class Home extends Vue {
 </script>
 <style scoped>
 .headDiv {
-  line-height: 50px;
+  line-height: 20px;
   vertical-align: middle;
   padding-left: 10px;
 }

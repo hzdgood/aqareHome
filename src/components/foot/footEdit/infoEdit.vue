@@ -149,8 +149,7 @@
     </div>
   </div>
 </template>
-
-<script lang='ts'>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import {
   SearchInfo,
@@ -229,8 +228,7 @@ export default class Home extends Vue {
     const data = {
       search: { fields: [], keywords: ['门店'] },
       offset: 0,
-      limit: 20,
-      order_by: [{ field: 2200000169987088, sort: 'asc' }]
+      limit: 20
     }
     const tableId: any = 2100000016791383
     const result = await filterInfo(tableId, data)
@@ -408,6 +406,7 @@ export default class Home extends Vue {
     }
   }
 
+  // 关闭
   close () {
     this.$emit('reload')
   }
@@ -435,7 +434,6 @@ export default class Home extends Vue {
     const department: any = document.getElementById(project.id + 'department')
     const departmentValue = department.options[department.selectedIndex].value
     // 加入校验
-
     const data = {
       fields: {
         [field.projectCustom]: projectCustom.value,
@@ -457,9 +455,7 @@ export default class Home extends Vue {
       this.$emit('reload')
     }
   }
-
   // 全部有数据才能够提交
 }
 </script>
-<style scoped>
-</style>
+<style scoped></style>

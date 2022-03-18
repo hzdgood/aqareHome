@@ -3,7 +3,12 @@
     <div class="floatDiv" v-show="upload"></div>
     <div :class="upload ? 'infoDiv' : ''">
       <div class="headerDiv">上传方案</div>
-      <input type="file" name="file" placeholder="请选择文件" style="max-width: 200px;" />
+      <input
+        type="file"
+        name="file"
+        placeholder="请选择文件"
+        style="max-width: 200px"
+      />
       <div>
         <input type="button" @click="saveClick()" value="提交" />
         <input type="button" @click="closeClick()" value="关闭" />
@@ -49,6 +54,10 @@ export default class Home extends Vue {
     let projectId = ''
     const formData = new FormData()
     this.erronProduct = []
+    // 拼接伙伴云JSON
+    const json: any = {
+      items: []
+    }
 
     let file: any = document.getElementsByName('file')[0]
     file = file.files[0]
@@ -112,10 +121,6 @@ export default class Home extends Vue {
       limit: 1000
     }
     const result1 = await SearchInfo(this.productTable, data1)
-    // 拼接伙伴云JSON
-    const json: any = {
-      items: []
-    }
     for (let i = 0; i < res.length; i++) {
       const number = res[i].number
       const money = res[i].money
@@ -163,8 +168,8 @@ export default class Home extends Vue {
         } else {
           const data = {
             fields: {
-              2200000150942406: obj.lng,
-              2200000150942407: obj.lat
+              [field.X]: obj.lng,
+              [field.Y]: obj.lat
             }
           }
           updateTable(projectId, data)
