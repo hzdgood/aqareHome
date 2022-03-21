@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, user } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
@@ -132,19 +132,21 @@ export default class Home extends Vue {
         }
       }
       if (status) {
-        const obj = {
-          id: i,
-          projectName: projectName,
-          AllNumber: AllNumber,
-          planNuber: planNuber,
-          price: price,
-          discount: discount,
-          servieFee: servieFee,
-          notIssued: notIssued,
-          notInstalled: notInstalled,
-          notAdjusted: notAdjusted
+        if (AllNumber !== 0 && planNuber !== 0) {
+          const obj = {
+            id: i,
+            projectName: projectName,
+            AllNumber: AllNumber,
+            planNuber: planNuber,
+            price: price,
+            discount: discount,
+            servieFee: servieFee,
+            notIssued: notIssued,
+            notInstalled: notInstalled,
+            notAdjusted: notAdjusted
+          }
+          this.projectList.push(obj)
         }
-        this.projectList.push(obj)
       }
     }
   }
