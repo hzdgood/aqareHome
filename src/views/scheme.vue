@@ -44,7 +44,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ eqm: [user.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }
@@ -74,7 +74,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [projectCode] }] },
+            query: { or: [{ eqm: [projectCode] }] },
             query_option_mappings: [-1],
             field: 1127011226000000
           }
