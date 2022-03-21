@@ -57,6 +57,7 @@ export default class Home extends Vue {
         { field: field.masterProject, sort: 'asc' }
       ]
     }
+    // 查询当前人员的主项目
     const result = await SearchInfo(this.projectInfo, data)
     let projectCode: any = ''
     for (let i = 0; i < result.length; i++) {
@@ -83,6 +84,7 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
+    // 查询客户方案表
     const result1 = await SearchInfo(this.customerPlan, data1)
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields
