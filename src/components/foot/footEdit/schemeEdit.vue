@@ -51,6 +51,7 @@ export default class Home extends Vue {
     let projectName = ''
     const productName = []
     let projectAddress = ''
+    let projectArea = ''
     let projectId = ''
     const formData = new FormData()
     this.erronProduct = []
@@ -90,6 +91,10 @@ export default class Home extends Vue {
         if (fields[i].field_id === field.projectAddress) {
           const values = fields[i].values[0].value
           projectAddress = values
+        }
+        if (fields[i].field_id === field.projectArea) {
+          const values = fields[i].values[0].value
+          projectArea = values
         }
       }
     } else {
@@ -158,6 +163,7 @@ export default class Home extends Vue {
 
     } else {
       if (projectAddress !== '') {
+        projectAddress = '上海市' + projectArea + projectAddress
         const obj = await getCoordinate([projectAddress])
         if (obj.lng === 0 && obj.lat === 0) {
           const obj = {

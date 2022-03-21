@@ -95,18 +95,6 @@ export default class Home extends Vue {
     }
   }
 
-  async save () {
-    if (this.status) {
-      this.clearUser()
-    } else {
-      this.updateUser()
-    }
-  }
-
-  close () {
-    this.$emit('close')
-  }
-
   async clearUser () {
     const data = {
       where: {
@@ -144,6 +132,18 @@ export default class Home extends Vue {
       }
     }
     await updateTable(itemId, data)
+    this.$emit('close')
+  }
+
+  async save () {
+    if (this.status) {
+      this.clearUser()
+    } else {
+      this.updateUser()
+    }
+  }
+
+  close () {
     this.$emit('close')
   }
 }

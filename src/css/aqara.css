@@ -12,12 +12,12 @@
   overflow: hidden;
 }
 input {
-  font-size: 12px;
+  font-size: 10px;
   margin: 3px;
   max-width: 80px;
 }
 span {
-  font-size: 12px;
+  font-size: 10px;
   margin: 3px;
 }
 .lineDiv {
@@ -25,7 +25,7 @@ span {
 }
 select {
   margin: 3px;
-  font-size: 12px;
+  font-size: 10px;
   max-width: 100px;
 }
 .infoTable {
