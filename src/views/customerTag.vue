@@ -122,10 +122,6 @@ export default class Actions extends Vue {
         const values = fields[i].values
         this.cAttribute = values
       }
-      // if (fields[i].field_id === field.fitmentStage) {
-      //   const values = fields[i].values
-      //   this.fitmentStage = values
-      // }
       if (fields[i].field_id === field.oneCustom) {
         const values = fields[i].values
         this.oneCustom = values
