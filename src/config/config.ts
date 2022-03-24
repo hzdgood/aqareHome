@@ -17,7 +17,7 @@ export const field = {
   // 客户信息表
   customerName: 2200000144967973, // 客户名称
   userTable: 2200000166530102, // USERID
-  // salesperson: 2200000144968566, // USERID
+  salesperson: 2200000144968566, // 销售人员ID
   custominto: 2200000184136584, // 客户来源
   houseInfo: 2200000184134453, // 房屋情况
   hometype: 2200000184136583, // 房型
@@ -28,6 +28,7 @@ export const field = {
   lostStatus: 2200000184136590, // 流失状态
   customerStage: 2200000184312981, // 客户阶段
   houseNeed: 2200000184645955, // 全屋需求
+  gender: 2200000144967977,
   // 标签表
   tagListId: 2200000182035321, // 标签名称
   tagId: 2200000184166190, // 标签ID
@@ -82,7 +83,9 @@ export const field = {
   projectItemId: 2200000143342285,
   money: 2200000143114391,
   number: 2200000143342281,
-  serviceFee: 2200000143114392
+  serviceFee: 2200000143114392,
+  // 销售人员信息表
+  localName: 2200000166537030
 }
 export const user = {
   userId: localStorage.getItem('userId')

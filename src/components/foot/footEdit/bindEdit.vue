@@ -15,6 +15,7 @@
             {{ customer.name }}
           </option>
         </select>
+        <input type="button" value="新增" @click="add()" />
         <input type="button" value="保存" @click="save()" />
         <input type="button" value="关闭" @click="close()" />
       </div>
@@ -22,17 +23,18 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { SearchInfo, updateTable } from '@/config/interFace'
+import { SearchInfo, updateTable, addInfo } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
-
 @Component({})
 export default class Home extends Vue {
   customerInfo = table.customerInfo;
+  saleManInfo = table.saleManInfo;
   userId = user.userId;
+  userName = localStorage.getItem('userName');
+  localName = localStorage.getItem('localName');
   customerList: any[] = [];
-
   @Prop({
     type: Boolean,
     required: true,
@@ -102,7 +104,7 @@ export default class Home extends Vue {
           {
             query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
-            field: 2200000166530102
+            field: [field.userTable]
           }
         ]
       },
@@ -115,7 +117,7 @@ export default class Home extends Vue {
       const itemId = result[0].item_id
       const data1 = {
         fields: {
-          2200000166530102: '' // 更新userID
+          [field.userTable]: '' // 更新userID
         }
       }
       const res = await updateTable(itemId, data1)
@@ -128,7 +130,7 @@ export default class Home extends Vue {
     const itemId = customName.options[customName.selectedIndex].value
     const data = {
       fields: {
-        2200000166530102: this.userId // 更新userID
+        [field.userTable]: this.userId // 更新userID
       }
     }
     await updateTable(itemId, data)
@@ -143,11 +145,46 @@ export default class Home extends Vue {
     }
   }
 
+  async add () {
+    // 查询销售人员信息表
+    const data = {
+      where: {
+        and: [
+          {
+            query: { or: [{ in: [this.localName] }] },
+            query_option_mappings: [-1],
+            field: field.localName
+          }
+        ]
+      },
+      offset: 0,
+      limit: 20
+    }
+    const result = await SearchInfo(this.saleManInfo, data)
+    let itemId = ''
+    if (result.length === 0) {
+      alert('找不到当前销售人员信息！')
+      return
+    }
+    for (let i = 0; i < result.length; i++) {
+      itemId = result[0].item_id
+    }
+    // 新增一条客户信息
+    const obj = {
+      fields: {
+        [field.userTable]: this.userId,
+        [field.customerName]: this.userName,
+        [field.gender]: [1],
+        [field.salesperson]: [itemId]
+      }
+    }
+    await addInfo(this.customerInfo, obj)
+  }
+
   close () {
     this.$emit('close')
   }
 }
 </script>
 
-<style>
-</style>
+<style></style>

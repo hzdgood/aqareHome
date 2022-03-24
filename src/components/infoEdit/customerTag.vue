@@ -171,7 +171,6 @@ export default class Actions extends Vue {
   text-align: left;
   font-size: 10px;
   margin-left: 10px;
-  font-weight: bold;
 }
 .inline {
   width: auto;
