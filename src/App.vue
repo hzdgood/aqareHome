@@ -79,6 +79,7 @@ export default class Actions extends Vue {
 
   close () {
     this.userStatus = true
+    location.reload()
   }
 }
 </script>

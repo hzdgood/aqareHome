@@ -12,12 +12,14 @@
             v-for="customer in customerList"
             :value="customer.id"
           >
-            {{ customer.name }}
+            {{ customer.name }} {{ customer.phone }}
           </option>
         </select>
-        <input type="button" value="新增" @click="add()" />
-        <input type="button" value="保存" @click="save()" />
-        <input type="button" value="关闭" @click="close()" />
+        <div>
+          <input type="button" value="新增" @click="add()" v-show="addStatus" />
+          <input type="button" value="保存" @click="save()" />
+          <input type="button" value="关闭" @click="close()" />
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +37,7 @@ export default class Home extends Vue {
   userName = localStorage.getItem('userName');
   localName = localStorage.getItem('localName');
   customerList: any[] = [];
+  addStatus = false;
   @Prop({
     type: Boolean,
     required: true,
@@ -81,49 +84,31 @@ export default class Home extends Vue {
       limit: 20
     }
     const result = await SearchInfo(this.customerInfo, data)
+    if (result.length === 0) {
+      this.addStatus = true
+      return
+    }
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       const id = result[i].item_id
       for (let j = 0; j < fields.length; j++) {
+        let customerName = ''
+        let ctelephone = ''
         if (fields[j].field_id === field.customerName) {
-          const name = fields[j].values[0].value
-          const obj = {
-            id: id,
-            name: name
-          }
-          this.customerList.push(obj)
+          customerName = fields[j].values[0].value
         }
+        if (fields[j].field_id === field.ctelephone) {
+          ctelephone = fields[j].values[0].value
+        }
+        const obj = {
+          id: id,
+          name: customerName,
+          phone: ctelephone
+        }
+        this.customerList.push(obj)
       }
     }
   }
-
-  // async clearUser () {
-  //   const data = {
-  //     where: {
-  //       and: [
-  //         {
-  //           query: { or: [{ in: [this.userId] }] },
-  //           query_option_mappings: [-1],
-  //           field: [field.userTable]
-  //         }
-  //       ]
-  //     },
-  //     offset: 0,
-  //     limit: 20
-  //   }
-  //   const result = await SearchInfo(this.customerInfo, data)
-  //   // 可以获取用户信息
-  //   for (let i = 0; i < result.length; i++) {
-  //     const itemId = result[0].item_id
-  //     const data1 = {
-  //       fields: {
-  //         [field.userTable]: '' // 更新userID
-  //       }
-  //     }
-  //     const res = await updateTable(itemId, data1)
-  //     setTimeout(this.updateUser, 3000)
-  //   }
-  // }
 
   async updateUser () {
     const customName: any = document.getElementById('customName')
@@ -188,4 +173,4 @@ export default class Home extends Vue {
 }
 </script>
 
-<style></style>
+<style scoped></style>

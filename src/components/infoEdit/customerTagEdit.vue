@@ -3,7 +3,15 @@
     <button class="editTag" @click="showEdit()">编辑</button>
     <div class="floatDiv" v-show="editShow"></div>
     <div id="infoDiv" class="infoDiv" v-show="editShow">
-      <div class="headerDiv">客户标签编辑</div>
+      <div class="lineDiv">
+        <span>客户名称</span>
+        <input id="customerName" type="text" />
+      </div>
+      <div class="lineDiv">
+        <span>客户电话</span>
+        <input id="telephone" type="text" />
+      </div>
+      <div class="headerDiv">客户编辑</div>
       <div class="tag" v-if="custominto.length != 0">
         <div>客户来源</div>
         <button
@@ -157,6 +165,7 @@ export default class Home extends Vue {
       const name = result[i].fields[0].values[0].title
       const value = result[i].fields[1].values[0].value
       const item_id = result[i].item_id
+
       if (name === '客户来源') {
         const ob = {
           id: item_id,
@@ -211,15 +220,6 @@ export default class Home extends Vue {
         }
         this.houseNeed.push(ob)
       }
-      // if (name === "装修阶段") {
-      //   const ob = {
-      //     id: item_id,
-      //     name: name,
-      //     value: value,
-      //     field: field.fitmentStage,
-      //   };
-      //   this.fitmentStage.push(ob);
-      // }
       if (name === '单品客户') {
         const ob = {
           id: item_id,
