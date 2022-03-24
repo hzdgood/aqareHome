@@ -27,9 +27,18 @@ const testApi = async () => {
   }
   const res1: any = await externalcontact(obj)
   const userName = res1.follow_user[0].remark
-  const localName = res1.follow_user[1].oper_userid
-  localStorage.setItem('userName', userName) // 外部客户名称
-  localStorage.setItem('localName', localName) // 登入用户ID
+  if (res1.follow_user.length === 1) {
+    const localName = res1.follow_user[0].userid
+    localStorage.setItem('userName', userName)
+    localStorage.setItem('localName', localName)
+  } else {
+    const localName = res1.follow_user[1].userid
+    localStorage.setItem('localName', localName)
+    localStorage.setItem('userName', userName)
+  }
+  // const localName = res1.follow_user[1].oper_userid
+  // 外部客户名称
+  // localStorage.setItem('localName', localName) // 登入用户ID
 }
 checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）
   .then(() => initSdk(config, fetchSignatures)) // 初始化 JsSdk

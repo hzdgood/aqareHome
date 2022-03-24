@@ -97,33 +97,33 @@ export default class Home extends Vue {
     }
   }
 
-  async clearUser () {
-    const data = {
-      where: {
-        and: [
-          {
-            query: { or: [{ in: [this.userId] }] },
-            query_option_mappings: [-1],
-            field: [field.userTable]
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20
-    }
-    const result = await SearchInfo(this.customerInfo, data)
-    // 可以获取用户信息
-    for (let i = 0; i < result.length; i++) {
-      const itemId = result[0].item_id
-      const data1 = {
-        fields: {
-          [field.userTable]: '' // 更新userID
-        }
-      }
-      const res = await updateTable(itemId, data1)
-      setTimeout(this.updateUser, 3000)
-    }
-  }
+  // async clearUser () {
+  //   const data = {
+  //     where: {
+  //       and: [
+  //         {
+  //           query: { or: [{ in: [this.userId] }] },
+  //           query_option_mappings: [-1],
+  //           field: [field.userTable]
+  //         }
+  //       ]
+  //     },
+  //     offset: 0,
+  //     limit: 20
+  //   }
+  //   const result = await SearchInfo(this.customerInfo, data)
+  //   // 可以获取用户信息
+  //   for (let i = 0; i < result.length; i++) {
+  //     const itemId = result[0].item_id
+  //     const data1 = {
+  //       fields: {
+  //         [field.userTable]: '' // 更新userID
+  //       }
+  //     }
+  //     const res = await updateTable(itemId, data1)
+  //     setTimeout(this.updateUser, 3000)
+  //   }
+  // }
 
   async updateUser () {
     const customName: any = document.getElementById('customName')
@@ -139,7 +139,7 @@ export default class Home extends Vue {
 
   async save () {
     if (this.status) {
-      this.clearUser()
+      // this.clearUser()
     } else {
       this.updateUser()
     }
@@ -163,7 +163,7 @@ export default class Home extends Vue {
     const result = await SearchInfo(this.saleManInfo, data)
     let itemId = ''
     if (result.length === 0) {
-      alert('找不到当前销售人员信息！')
+      alert('找不到当前销售人员信息！' + this.localName)
       return
     }
     for (let i = 0; i < result.length; i++) {
@@ -179,6 +179,7 @@ export default class Home extends Vue {
       }
     }
     await addInfo(this.customerInfo, obj)
+    this.$emit('close')
   }
 
   close () {
