@@ -126,7 +126,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, user } from '@/config/config'
 import { SearchInfo, updateTable } from '@/config/interFace'
@@ -144,7 +144,7 @@ export default class Home extends Vue {
   custominto: any[] = [];
   houseNeed: any[] = [];
   itemId: any = ''; // 行ID
-  tableID = table.tagInfo;
+  tagInfo = table.tagInfo;
   customerInfo = table.customerInfo;
   async mounted () {
     // 获取全部的标签
@@ -158,14 +158,13 @@ export default class Home extends Vue {
         }
       ]
     }
-    const result = await SearchInfo(this.tableID, data)
+    const result = await SearchInfo(this.tagInfo, data)
     this.taglist = result
     // 使用循环进行赋值显示
     for (let i = 0; i < result.length; i++) {
       const name = result[i].fields[0].values[0].title
       const value = result[i].fields[1].values[0].value
       const item_id = result[i].item_id
-
       if (name === '客户来源') {
         const ob = {
           id: item_id,
@@ -264,6 +263,8 @@ export default class Home extends Vue {
 
   // 保存客户数据
   async saveInfo () {
+    const customerName: any = document.getElementById('customerName')
+    const telephone: any = document.getElementById('telephone')
     const data: any = {
       fields: {}
     }
@@ -290,6 +291,9 @@ export default class Home extends Vue {
         }
       }
     }
+    // 拼接用户名称和电话
+    data.fields[field.customerName] = customerName.value
+    data.fields[field.ctelephone] = telephone.value
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
     this.$emit('reload')
@@ -327,6 +331,16 @@ export default class Home extends Vue {
     // 注入Button上
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
+      if (fields[i].field_id === field.customerName) {
+        const values = fields[i].values
+        const customerName: any = document.getElementById('customerName')
+        customerName.value = values
+      }
+      if (fields[i].field_id === field.ctelephone) {
+        const values = fields[i].values
+        const telephone: any = document.getElementById('telephone')
+        telephone.value = values
+      }
       if (fields[i].field_id === field.custominto) {
         const values = fields[i].values
         for (let j = 0; j < values.length; j++) {

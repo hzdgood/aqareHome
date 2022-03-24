@@ -10,9 +10,9 @@ import { SearchInfo } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
-  userName = localStorage.getItem('userName');
-  customerInfo = table.customerInfo;
-  name = '';
+  userName = user.userName
+  customerInfo = table.customerInfo
+  name = ''
   async mounted () {
     const data = {
       where: {

@@ -6,7 +6,7 @@
       <input id="name" type="text" />
       <input type="button" value="查询" @click="search()" />
       <div>
-        <select id="customName">
+        <select id="customName" style="max-width: 300px">
           <option
             :key="customer.id"
             v-for="customer in customerList"
@@ -34,8 +34,8 @@ export default class Home extends Vue {
   customerInfo = table.customerInfo;
   saleManInfo = table.saleManInfo;
   userId = user.userId;
-  userName = localStorage.getItem('userName');
-  localName = localStorage.getItem('localName');
+  userName = user.userName;
+  localName = user.localName;
   customerList: any[] = [];
   addStatus = false;
   @Prop({
@@ -91,22 +91,22 @@ export default class Home extends Vue {
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       const id = result[i].item_id
+      let customerName = ''
+      let ctelephone = ''
       for (let j = 0; j < fields.length; j++) {
-        let customerName = ''
-        let ctelephone = ''
         if (fields[j].field_id === field.customerName) {
           customerName = fields[j].values[0].value
         }
         if (fields[j].field_id === field.ctelephone) {
           ctelephone = fields[j].values[0].value
         }
-        const obj = {
-          id: id,
-          name: customerName,
-          phone: ctelephone
-        }
-        this.customerList.push(obj)
       }
+      const obj = {
+        id: id,
+        name: customerName,
+        phone: ctelephone
+      }
+      this.customerList.push(obj)
     }
   }
 

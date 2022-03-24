@@ -89,7 +89,9 @@ export const field = {
   localName: 2200000166537030
 }
 export const user = {
-  userId: localStorage.getItem('userId')
+  userId: localStorage.getItem('userId'),
+  localName: localStorage.getItem('localName'),
+  userName: localStorage.getItem('userName')
 }
 // 房屋类型
 export const houseType = [{

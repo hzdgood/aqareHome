@@ -65,12 +65,12 @@
 import { Component, Vue, Emit } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field, user } from '@/config/config'
-import customerTagEdit from '@/components/infoEdit/customerTagEdit.vue'
+import customerEdit from '@/components/infoEdit/customerEdit.vue'
 
 @Component({
   name: 'customInfo',
   components: {
-    customerTagEdit: customerTagEdit
+    customerEdit: customerEdit
   }
 })
 export default class Actions extends Vue {
