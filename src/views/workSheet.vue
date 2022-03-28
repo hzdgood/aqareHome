@@ -20,7 +20,6 @@
     </div>
   </div>
 </template>
-
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, user } from '@/config/config'
@@ -77,7 +76,6 @@ export default class Home extends Vue {
       limit: 200
     }
     const result1 = await SearchInfo(this.workSheet, data1)
-
     for (let i = 0; i < result1.length; i++) {
       let visitDate = ''
       let orderType = ''
@@ -122,5 +120,4 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style scoped>
-</style>
+<style scoped></style>

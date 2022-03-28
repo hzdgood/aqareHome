@@ -41,7 +41,6 @@ import { table, field, user } from '@/config/config'
 export default class Home extends Vue {
   projectInfo = table.projectInfo;
   projectList: any[] = [];
-
   @Watch('$store.state.reloadStatus')
   reloadPage () {
     setTimeout(this.onloadFunction, 2000)
@@ -137,6 +136,4 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>

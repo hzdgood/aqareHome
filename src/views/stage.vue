@@ -34,7 +34,6 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: 2200000182035321, sort: 'desc' }]
     }
-
     const result = await SearchInfo(this.tagInfo, data)
     this.taglist = result
     for (let i = 0; i < result.length; i++) {
@@ -80,7 +79,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
-          dom.className = 'select'
+          dom.className = 'selected'
         }
       }
     }
@@ -88,7 +87,7 @@ export default class Home extends Vue {
 
   onclick = (items: any) => {
     // 获取选中对象 删除class
-    const obj: any = document.getElementsByClassName('select')
+    const obj: any = document.getElementsByClassName('selected')
     for (let i = 0; i < obj.length; i++) {
       const id = obj[i].id
       const dom: any = document.getElementById(id)
@@ -96,7 +95,7 @@ export default class Home extends Vue {
     }
     // 设置新的选中对象
     const dom: any = document.getElementById(items.id)
-    dom.className = 'select'
+    dom.className = 'selected'
     // 发送请求
     this.updateData(items)
   };
@@ -111,18 +110,4 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style scoped>
-.stageButton button {
-  text-align: center;
-  border: 0px solid #bbb;
-  margin: 0px 5px 5px 5px;
-  background-color: rgb(230, 227, 227);
-  font-size: 10px;
-  color: cornflowerblue;
-  padding: 0px 5px 0px 5px;
-  border-radius: 5px;
-}
-.select {
-  background-color: aquamarine !important;
-}
-</style>>
+<style scoped></style>

@@ -28,7 +28,6 @@
     </table>
   </div>
 </template>
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, user } from '@/config/config'

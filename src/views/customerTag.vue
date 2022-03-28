@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <customerTagEdit @reload="reloadFunction"></customerTagEdit>
+    <customerEdit @reload="reloadFunction"></customerEdit>
     <div class="tag inline" v-if="custominto.length != 0">
       <div>客户来源</div>
       <button v-for="item in custominto" :key="item.item_id">
@@ -37,23 +37,13 @@
         {{ item.title }}
       </button>
     </div>
-    <div
-      class="tag inline"
-      v-if="fitmentStage.length != 0"
-      style="display: none"
-    >
-      <div>装修阶段</div>
-      <button v-for="item in fitmentStage" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
     <div class="tag inline" v-if="lostStatus.length != 0">
       <div>流失状态</div>
       <button v-for="item in lostStatus" :key="item.item_id">
         {{ item.title }}
       </button>
     </div>
-    <div class="tag" v-if="oneCustom.length != 0">
+    <div class="tag inline" v-if="oneCustom.length != 0">
       <div>单品客户</div>
       <button v-for="item in oneCustom" :key="item.item_id">
         {{ item.title }}
@@ -77,7 +67,6 @@ export default class Actions extends Vue {
   houseInfo: any[] = [];
   personInfo: any[] = [];
   cAttribute: any[] = [];
-  fitmentStage: any[] = [];
   oneCustom: any[] = [];
   lostStatus: any[] = [];
   hometype: any[] = [];
@@ -152,24 +141,4 @@ export default class Actions extends Vue {
   }
 }
 </script>
-<style scoped>
-.tag button {
-  text-align: center;
-  border: 0px solid #bbb;
-  margin: 0px 5px 5px 5px;
-  background-color: rgb(230, 227, 227);
-  font-size: 10px;
-  color: cornflowerblue;
-  padding: 0px 5px 0px 5px;
-  border-radius: 5px;
-}
-.tag div {
-  text-align: left;
-  font-size: 10px;
-  margin-left: 10px;
-}
-.inline {
-  width: auto;
-  display: inline-block;
-}
-</style>
+<style scoped></style>

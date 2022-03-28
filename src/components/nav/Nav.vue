@@ -27,11 +27,9 @@
     </a-menu-item>
   </a-menu>
 </template>
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Icon, Menu } from 'ant-design-vue'
-
 @Component({
   name: 'Nav',
   components: {
@@ -44,6 +42,4 @@ export default class Nav extends Vue {
   current: string[] = [this.$route.name as string];
 }
 </script>
-
-<style scoped>
-</style>
+<style scoped></style>

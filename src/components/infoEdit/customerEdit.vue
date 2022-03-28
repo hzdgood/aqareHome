@@ -3,15 +3,15 @@
     <button class="editTag" @click="showEdit()">编辑</button>
     <div class="floatDiv" v-show="editShow"></div>
     <div id="infoDiv" class="infoDiv" v-show="editShow">
-      <div class="lineDiv">
+      <div class="headerDiv">客户编辑</div>
+      <div class="inline">
         <span>客户名称</span>
         <input id="customerName" type="text" />
       </div>
-      <div class="lineDiv">
+      <div class="inline">
         <span>客户电话</span>
         <input id="telephone" type="text" />
       </div>
-      <div class="headerDiv">客户编辑</div>
       <div class="tag" v-if="custominto.length != 0">
         <div>客户来源</div>
         <button
@@ -334,12 +334,12 @@ export default class Home extends Vue {
       if (fields[i].field_id === field.customerName) {
         const values = fields[i].values
         const customerName: any = document.getElementById('customerName')
-        customerName.value = values
+        customerName.value = values[0].value
       }
       if (fields[i].field_id === field.ctelephone) {
         const values = fields[i].values
         const telephone: any = document.getElementById('telephone')
-        telephone.value = values
+        telephone.value = values[0].value
       }
       if (fields[i].field_id === field.custominto) {
         const values = fields[i].values
@@ -409,18 +409,4 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style scoped>
-.editTag {
-  position: fixed;
-  right: 20px;
-  top: 10px;
-}
-.tag button {
-  margin: 0px 0px 5px 10px;
-  border: 0px;
-  border-radius: 5px;
-}
-.selected {
-  background-color: aquamarine;
-}
-</style>
+<style scoped></style>

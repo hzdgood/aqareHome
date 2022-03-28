@@ -61,11 +61,21 @@ export const fetchSignatures = async (): Promise<SignRes> => {
   return response.data
 }
 
-// 获取签名接口（需要后端生成）
+// 获取联系人
 export const externalcontact = async (formData: object) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
     url: httpUrl + '/wechat/externalcontact',
+    params: formData
+  })
+  return response.data
+}
+
+// 获取群联系人
+export const groupchat = async (formData: object) => {
+  const response = await axios.request<SignRes>({
+    method: 'GET',
+    url: httpUrl + '/wechat/groupchat',
     params: formData
   })
   return response.data

@@ -40,10 +40,4 @@ export default class Home extends Vue {
   }
 }
 </script>
-<style scoped>
-.headDiv {
-  line-height: 20px;
-  vertical-align: middle;
-  padding-left: 10px;
-}
-</style>
+<style scoped></style>

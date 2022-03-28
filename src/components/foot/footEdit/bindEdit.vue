@@ -3,7 +3,7 @@
     <div class="floatDiv" v-show="status"></div>
     <div :class="status ? 'infoDiv' : ''">
       <div class="headerDiv">客户绑定</div>
-      <input id="name" type="text" />
+      <input id="name" type="text" @change="change()" />
       <input type="button" value="查询" @click="search()" />
       <div>
         <select id="customName" style="max-width: 300px">
@@ -16,8 +16,8 @@
           </option>
         </select>
         <div>
-          <input type="button" value="新增" @click="add()" v-show="addStatus" />
-          <input type="button" value="保存" @click="save()" />
+          <input type="button" value="新增用户" @click="add()" v-show="addStatus" />
+          <input type="button" value="绑定该用户" @click="save()" />
           <input type="button" value="关闭" @click="close()" />
         </div>
       </div>
@@ -37,13 +37,17 @@ export default class Home extends Vue {
   userName = user.userName;
   localName = user.localName;
   customerList: any[] = [];
-  addStatus = false;
+  addStatus = true;
   @Prop({
     type: Boolean,
     required: true,
     default: ''
   })
   status!: any;
+
+  change () {
+    this.addStatus = false
+  }
 
   async mounted () {
     const data = {
@@ -84,10 +88,6 @@ export default class Home extends Vue {
       limit: 20
     }
     const result = await SearchInfo(this.customerInfo, data)
-    if (result.length === 0) {
-      this.addStatus = true
-      return
-    }
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       const id = result[i].item_id

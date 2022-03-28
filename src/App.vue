@@ -18,7 +18,6 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
 import Nav from '@/components/nav/Nav.vue'
 import user from '@/components/user/user.vue'
@@ -30,7 +29,6 @@ import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
-
 @Component({
   name: 'App',
   components: {
