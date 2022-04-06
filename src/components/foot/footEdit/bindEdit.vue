@@ -46,7 +46,12 @@ export default class Home extends Vue {
   status!: any;
 
   change () {
-    this.addStatus = false
+    const name: any = document.getElementById('name')
+    if (name.value === '') {
+      this.addStatus = false
+    } else {
+      this.addStatus = true
+    }
   }
 
   async mounted () {

@@ -11,7 +11,8 @@ export const table = {
   collectTable: '2100000015000019', // 收款表
   followTable: '2100000014956211', // 跟进表
   sheetDetail: '2100000014976390', // 工单明细
-  productTable: '2100000014705410' // 产品信息表
+  productTable: '2100000014705410', // 产品信息表
+  wechatChat: '2100000020393987' // 微信群
 }
 export const field = {
   // 客户信息表
@@ -91,7 +92,9 @@ export const field = {
 export const user = {
   userId: localStorage.getItem('userId'),
   localName: localStorage.getItem('localName'),
-  userName: localStorage.getItem('userName')
+  userName: localStorage.getItem('userName'),
+  chatID: localStorage.getItem('chatID'),
+  contactType: localStorage.getItem('contactType')
 }
 // 房屋类型
 export const houseType = [{
