@@ -20,7 +20,6 @@ import userBind from '@/components/bind/userBind.vue'
 import customerTag from '@/views/customerTag.vue'
 import stage from '@/views/stage.vue'
 import footContent from '@/components/foot/footContent.vue'
-import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
@@ -32,7 +31,6 @@ import { table, field } from '@/config/config'
     customerTag: customerTag,
     stage: stage,
     footContent: footContent,
-    schemeEdit: schemeEdit,
     userBind: userBind
   }
 })

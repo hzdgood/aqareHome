@@ -1,6 +1,11 @@
 <template>
   <div id="Chat">
     <div v-if="userStatus == true">
+      <user></user>
+      <customerTag></customerTag>
+      <stage></stage>
+      <sidebar-nav></sidebar-nav>
+      <router-view />
       <footContent></footContent>
     </div>
     <div v-if="userStatus == false">
@@ -10,6 +15,7 @@
 </template>
 <script lang="ts">
 import Nav from '@/components/nav/Nav.vue'
+import user from '@/components/user/user.vue'
 import chatBind from '@/components/bind/chatBind.vue'
 import customerTag from '@/views/customerTag.vue'
 import stage from '@/views/stage.vue'
@@ -24,11 +30,12 @@ import { table, field } from '@/config/config'
     customerTag: customerTag,
     stage: stage,
     footContent: footContent,
-    chatBind: chatBind
+    chatBind: chatBind,
+    user: user
   }
 })
 export default class Actions extends Vue {
-  userStatus = true;
+  userStatus = false;
   async mounted () {
     // 群绑定---未绑定跳转绑定页面
     const chatId = localStorage.getItem('chatID')
@@ -45,11 +52,23 @@ export default class Actions extends Vue {
       offset: 0,
       limit: 20
     }
-    const res = await SearchInfo(table.projectInfo, obj) // 查询项目信息表
-    if (res.length === 0) {
+
+    const result = await SearchInfo(table.projectInfo, obj) // 查询项目信息表
+    console.log(result)
+
+    if (result.length === 0) {
       // 没有就绑定
       this.userStatus = false
     } else {
+      for (let i = 0; i < result.length; i++) {
+        const fields = result[i].fields
+        for (let j = 0; j < fields.length; j++) {
+          if (fields[j].field_id === field.projectUUid) {
+            const values = fields[j].values[0].value
+            console.log(values)
+          }
+        }
+      }
       this.userStatus = true
     }
 

@@ -4,7 +4,7 @@ import { SignRes } from 'wecom-sidebar-jssdk'
 const httpUrl = 'http://localhost:8081' // 测试url
 // const httpUrl = 'http://aqara.club:8081' // 生产环境
 const huobanUrl = 'https://api.huoban.com'
-const ticket: any = localStorage.getItem('ticket')
+// const ticket: any = localStorage.getItem("ticket");
 
 export const config = {
   corpId: 'ww9a717b03b06063e3', // 企业ID
@@ -12,6 +12,7 @@ export const config = {
 }
 
 const post = async (url: string, data: object) => {
+  const ticket: any = localStorage.getItem('ticket')
   const headers = {
     'X-Huoban-Ticket': ticket
   }
@@ -83,8 +84,7 @@ export const groupchat = async (formData: object) => {
 
 export const userInfo = async () => {
   const url = httpUrl + '/huoban/getTicket'
-  const application = await post(url, {})
-  return application.data.ticket
+  return await post(url, {})
 }
 
 export const uploadFile = async (formData: object) => {
@@ -130,6 +130,7 @@ export const addInfo = async (tableId: string, data: object) => {
 }
 
 export const updateTable = async (item_id: string, data: object) => {
+  const ticket: any = localStorage.getItem('ticket')
   const info = await axios.put(huobanUrl + '/v2/item/' + item_id, data, {
     headers: {
       'X-Huoban-Ticket': ticket
@@ -145,6 +146,7 @@ export const uploadImg = async (formData: object) => {
 }
 
 export const batchAddPlan = async (tableId: string, data: object) => {
+  const ticket: any = localStorage.getItem('ticket')
   const url = huobanUrl + '/v2/item/table/' + tableId + '/create'
   const headers: any = {
     'X-Huoban-Ticket': ticket

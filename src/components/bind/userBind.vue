@@ -110,7 +110,7 @@ export default class Home extends Vue {
     }
   }
 
-  async updateUser () {
+  async save () {
     const customName: any = document.getElementById('customName')
     const itemId = customName.options[customName.selectedIndex].value
     const data = {
@@ -120,10 +120,6 @@ export default class Home extends Vue {
     }
     await updateTable(itemId, data)
     this.$emit('close')
-  }
-
-  async save () {
-    this.updateUser()
   }
 
   async add () {
