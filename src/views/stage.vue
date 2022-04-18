@@ -25,6 +25,7 @@ export default class Home extends Vue {
   customStage: any[] = [];
   taglist: any[] = [];
   itemId: any = '';
+  userId = localStorage.getItem('userId');
   async mounted () {
     const data = {
       where: {
@@ -57,7 +58,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.userTable
           }

@@ -24,14 +24,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import {
-  uploadFile,
-  SearchInfo,
-  filterInfo,
-  batchAddPlan,
-  updateTable,
-  getCoordinate
-} from '@/config/interFace'
+import { uploadFile, SearchInfo, filterInfo, batchAddPlan, updateTable, getCoordinate } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {

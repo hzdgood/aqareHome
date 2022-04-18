@@ -95,12 +95,10 @@ export const uploadFile = async (formData: object) => {
 
 export const getCoordinate = async (formData: object) => {
   const url = httpUrl + '/user/getCoordinate'
-  // const info = await UploadPost(url, formData)
   const info = await axios({
     method: 'post',
     url: url,
     data: formData
-    // headers: headers
   })
   return info.data
 }

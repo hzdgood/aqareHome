@@ -36,11 +36,13 @@
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectInfo = table.projectInfo;
   projectList: any[] = [];
+  userId = localStorage.getItem('userId')
+
   @Watch('$store.state.reloadStatus')
   reloadPage () {
     setTimeout(this.onloadFunction, 2000)
@@ -52,7 +54,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }

@@ -7,18 +7,18 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
-  userName = user.userName
-  customerInfo = table.customerInfo
+  userName = localStorage.getItem('userName')
+  userId = localStorage.getItem('userId')
   name = ''
   async mounted () {
     const data = {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.userTable
           }
@@ -27,7 +27,7 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
-    const result = await SearchInfo(this.customerInfo, data)
+    const result = await SearchInfo(table.customerInfo, data)
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       for (let j = 0; j < fields.length; j++) {

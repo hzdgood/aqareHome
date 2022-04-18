@@ -38,12 +38,13 @@ export default class Home extends Vue {
   customerPlan = table.customerPlan;
   projectId: any = '';
   projectList: any[] = [];
+  userId = localStorage.getItem('userId');
   async mounted () {
     const data = {
       where: {
         and: [
           {
-            query: { or: [{ eqm: [user.userId] }] },
+            query: { or: [{ eqm: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }

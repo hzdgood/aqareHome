@@ -28,7 +28,7 @@ import { table, field, user } from '@/config/config'
 export default class Home extends Vue {
   customerInfo = table.customerInfo;
   saleManInfo = table.saleManInfo;
-  userId = user.userId;
+  userId = localStorage.getItem('userId');
   userName = user.userName;
   localName = user.localName;
   customerList: any[] = [];

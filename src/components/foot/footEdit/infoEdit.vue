@@ -152,18 +152,10 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import {
-  SearchInfo,
-  updateTable,
-  deleteItem,
-  filterInfo
+  SearchInfo, updateTable, deleteItem, filterInfo
 } from '@/config/interFace'
 import {
-  table,
-  field,
-  user,
-  houseType,
-  fitmentStage,
-  projectType
+  table, field, houseType, fitmentStage, projectType
 } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -179,6 +171,8 @@ export default class Home extends Vue {
   saleManList: any[] = [];
   areaList: any[] = [];
   departmentList: any[] = [];
+  userId = localStorage.getItem('userId');
+
   // 查询所有的销售员
   async getSaleManList () {
     const data = {
@@ -249,7 +243,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }
@@ -377,7 +371,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.userTable
           }

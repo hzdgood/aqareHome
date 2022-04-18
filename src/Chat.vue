@@ -52,23 +52,32 @@ export default class Actions extends Vue {
       offset: 0,
       limit: 20
     }
-
     const result = await SearchInfo(table.projectInfo, obj) // 查询项目信息表
-    console.log(result)
-
     if (result.length === 0) {
       // 没有就绑定
       this.userStatus = false
     } else {
+      let userId = ''
+      let userName = ''
       for (let i = 0; i < result.length; i++) {
         const fields = result[i].fields
         for (let j = 0; j < fields.length; j++) {
           if (fields[j].field_id === field.projectUUid) {
-            const values = fields[j].values[0].value
-            console.log(values)
+            userId = fields[j].values[0].value
+            console.log(userId)
+          }
+          if (fields[j].field_id === field.projectCustom) {
+            userName = fields[j].values[0].value
+            console.log(userName)
+          }
+          if (fields[j].field_id === field.projectUUid) {
+            userId = fields[j].values[0].value
+            console.log(userId)
           }
         }
       }
+      localStorage.setItem('userId', userId) // 设置userID
+      localStorage.setItem('userName', userName) // 设置用户名称
       this.userStatus = true
     }
 

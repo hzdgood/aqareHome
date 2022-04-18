@@ -37,6 +37,7 @@ export default class Home extends Vue {
     this.setProjectList(result)
   }
 
+  // 保存
   async save () {
     const projectCustom: any = document.getElementById('projectCustom')
     const itemId = projectCustom.options[projectCustom.selectedIndex].value
@@ -49,10 +50,12 @@ export default class Home extends Vue {
     this.$emit('close')
   }
 
+  // 关闭
   close () {
     this.$emit('close')
   }
 
+  // 查询按钮
   async search () {
     const name: any = document.getElementById('name')
     const data = {
@@ -73,13 +76,14 @@ export default class Home extends Vue {
   }
 
   setProjectList (result: any) {
-    for (let j = 0; j < result.length; j++) {
-      const fields = result[j].fields
-      const itemId = result[j].item_id
+    this.projectList = []
+    for (let i = 0; i < result.length; i++) {
+      const fields = result[i].fields
+      const itemId = result[i].item_id
       let projectCustom = ''
-      for (let i = 0; i < fields.length; i++) {
-        if (fields[i].field_id === field.projectCustom) {
-          projectCustom = fields[i].values[0].value
+      for (let j = 0; j < fields.length; j++) {
+        if (fields[j].field_id === field.projectCustom) {
+          projectCustom = fields[j].values[0].value
         }
       }
       const obj = {

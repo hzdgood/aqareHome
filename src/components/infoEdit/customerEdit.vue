@@ -128,7 +128,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 import { SearchInfo, updateTable } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
@@ -146,6 +146,8 @@ export default class Home extends Vue {
   itemId: any = ''; // 行ID
   tagInfo = table.tagInfo;
   customerInfo = table.customerInfo;
+  userId = localStorage.getItem('userId');
+
   async mounted () {
     // 获取全部的标签
     const data = {
@@ -312,7 +314,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.userTable
           }

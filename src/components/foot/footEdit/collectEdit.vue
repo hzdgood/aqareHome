@@ -41,7 +41,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { table, field, collectType, user } from '@/config/config'
+import { table, field, collectType } from '@/config/config'
 import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
@@ -52,12 +52,13 @@ export default class Home extends Vue {
   errorMsg = '';
   errorStatus = true;
   itemId = '';
+  userId = localStorage.getItem('userId');
   async mounted () {
     const data = {
       where: {
         and: [
           {
-            query: { or: [{ in: [user.userId] }] },
+            query: { or: [{ in: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }
