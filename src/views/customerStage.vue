@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, updateTable } from '@/config/interFace'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   tagInfo = table.tagInfo;

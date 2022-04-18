@@ -48,7 +48,7 @@ export const field = {
   masterProject: 2200000184791041, // 主项目
   saleMan: 2200000145489594, // 销售
   department: 2200000160830230, // 部门
-  ChatId: 2200000172376106,
+  ChatId: 2200000172376106, // 群ID
   X: 2200000150942406,
   Y: 2200000150942407,
   // 客户方案表
@@ -90,93 +90,173 @@ export const field = {
   // 销售人员信息表
   localName: 2200000166537030
 }
-export const user = {
-  // userId: localStorage.getItem('userId'),
-  localName: localStorage.getItem('localName'),
-  userName: localStorage.getItem('userName'),
-  chatID: localStorage.getItem('chatID'),
-  contactType: localStorage.getItem('contactType')
-}
+// export const user = {
+// userId: localStorage.getItem('userId'),
+// chatID: localStorage.getItem('chatID'),
+// localName: localStorage.getItem('localName'),
+// userName: localStorage.getItem('userName'),
+// contactType: localStorage.getItem('contactType')
+// }
 // 房屋类型
-export const houseType = [{
-  name: '一室',
-  value: '1'
-}, {
-  name: '两室',
-  value: '2'
-}, {
-  name: '三室',
-  value: '3'
-}, {
-  name: '四室及以上',
-  value: '4'
-}, {
-  name: '复式',
-  value: '5'
-}, {
-  name: '别墅',
-  value: '6'
-}, {
-  name: '工装',
-  value: '7'
-}]
+export const houseType = [
+  {
+    name: '一室',
+    value: '1'
+  },
+  {
+    name: '两室',
+    value: '2'
+  },
+  {
+    name: '三室',
+    value: '3'
+  },
+  {
+    name: '四室及以上',
+    value: '4'
+  },
+  {
+    name: '复式',
+    value: '5'
+  },
+  {
+    name: '别墅',
+    value: '6'
+  },
+  {
+    name: '工装',
+    value: '7'
+  }
+]
 
-// 装修进度
-export const fitmentStage = [{
-  name: '未开工',
-  value: '9'
-}, {
-  name: '水电进场',
-  value: '8'
-}, {
-  name: '水电完成',
-  value: '1'
-}, {
-  name: '木工完成',
-  value: '2'
-}, {
-  name: '灯具完成',
-  value: '3'
-}, {
-  name: '网络家具',
-  value: '4'
-}, {
-  name: '调试完结',
-  value: '10'
-}]
+// 装修阶段
+export const decorationStage = [
+  {
+    name: '未开工',
+    value: '9'
+  },
+  {
+    name: '水电进场',
+    value: '8'
+  },
+  {
+    name: '水电完成',
+    value: '1'
+  },
+  {
+    name: '木工完成',
+    value: '2'
+  },
+  {
+    name: '灯具完成',
+    value: '3'
+  },
+  {
+    name: '网络家具',
+    value: '4'
+  },
+  {
+    name: '调试完结',
+    value: '10'
+  }
+]
+
+// 项目进度
+export const projectProgress = [
+  {
+    name: '水电交底',
+    value: '10'
+  },
+  {
+    name: '水电验收',
+    value: '10'
+  },
+  {
+    name: '水电交底',
+    value: '10'
+  },
+  {
+    name: '灯具已预埋',
+    value: '10'
+  },
+  {
+    name: '窗帘已测量',
+    value: '10'
+  },
+  {
+    name: '安装已完成',
+    value: '10'
+  },
+  {
+    name: '调试已完成',
+    value: '10'
+  },
+  {
+    name: '多退少补',
+    value: '10'
+  },
+  {
+    name: '已完结',
+    value: '10'
+  }
+]
+
+// 方案属性
+export const schemeProperties = [
+  {
+    name: '有调光',
+    value: '10'
+  },
+  {
+    name: '有预埋',
+    value: '10'
+  }
+]
 
 // 项目类型
-export const projectType = [{
-  name: '全屋',
-  value: '1'
-}, {
-  name: '单品导流',
-  value: '2'
-}, {
-  name: '零售',
-  value: '3'
-}, {
-  name: '工装',
-  value: '4'
-}, {
-  name: '测试',
-  value: '6'
-}]
+export const projectType = [
+  {
+    name: '全屋',
+    value: '1'
+  },
+  {
+    name: '单品导流',
+    value: '2'
+  },
+  {
+    name: '零售',
+    value: '3'
+  },
+  {
+    name: '工装',
+    value: '4'
+  },
+  {
+    name: '测试',
+    value: '6'
+  }
+]
 
 // 收款方式
-export const collectType = [{
-  name: '银联',
-  value: '1'
-}, {
-  name: '对公',
-  value: '2'
-}, {
-  name: '现金',
-  value: '3'
-}, {
-  name: '其他',
-  value: '4'
-}, {
-  name: 'SAAS导入',
-  value: '6'
-}]
+export const collectType = [
+  {
+    name: '银联',
+    value: '1'
+  },
+  {
+    name: '对公',
+    value: '2'
+  },
+  {
+    name: '现金',
+    value: '3'
+  },
+  {
+    name: '其他',
+    value: '4'
+  },
+  {
+    name: 'SAAS导入',
+    value: '6'
+  }
+]

@@ -54,7 +54,7 @@
 <script lang="ts">
 import { Component, Vue, Emit } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 import customerEdit from '@/components/infoEdit/customerEdit.vue'
 
 @Component({

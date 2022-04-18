@@ -27,12 +27,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, updateTable } from '@/config/interFace'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectList: any[] = [];
+  chatID = localStorage.getItem('chatID')
   async mounted () {
-    console.log(111)
     const result = await SearchInfo(table.projectInfo, {})
     this.setProjectList(result)
   }
@@ -43,7 +43,7 @@ export default class Home extends Vue {
     const itemId = projectCustom.options[projectCustom.selectedIndex].value
     const data = {
       fields: {
-        [field.ChatId]: user.chatID // 更新userID
+        [field.ChatId]: this.chatID // 更新userID
       }
     }
     await updateTable(itemId, data)

@@ -155,7 +155,7 @@ import {
   SearchInfo, updateTable, deleteItem, filterInfo
 } from '@/config/interFace'
 import {
-  table, field, houseType, fitmentStage, projectType
+  table, field, houseType, projectType
 } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -164,7 +164,6 @@ export default class Home extends Vue {
   saleManInfo = table.saleManInfo;
   areaInfo = table.areaInfo;
   houseType: any = houseType;
-  fitmentStage: any = fitmentStage;
   projectType: any = projectType;
   projectList: any[] = [];
   itemList: any[] = [];

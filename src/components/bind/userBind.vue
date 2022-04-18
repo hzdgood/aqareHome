@@ -21,18 +21,19 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, updateTable, addInfo } from '@/config/interFace'
-import { table, field, user } from '@/config/config'
+import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   customerInfo = table.customerInfo;
   saleManInfo = table.saleManInfo;
   userId = localStorage.getItem('userId');
-  userName = user.userName;
-  localName = user.localName;
+  userName = localStorage.getItem('userName');
+  localName = localStorage.getItem('localName');
   customerList: any[] = [];
   addStatus = true;
+
   // @Prop({
   //   type: Boolean,
   //   required: true,

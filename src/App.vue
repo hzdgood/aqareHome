@@ -3,7 +3,7 @@
     <div v-if="userStatus">
       <user></user>
       <customerTag></customerTag>
-      <stage></stage>
+      <customerStage></customerStage>
       <sidebar-nav></sidebar-nav>
       <router-view />
       <footContent></footContent>
@@ -18,7 +18,7 @@ import Nav from '@/components/nav/Nav.vue'
 import user from '@/components/user/user.vue'
 import userBind from '@/components/bind/userBind.vue'
 import customerTag from '@/views/customerTag.vue'
-import stage from '@/views/stage.vue'
+import customerStage from '@/views/customerStage.vue'
 import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
@@ -29,7 +29,7 @@ import { table, field } from '@/config/config'
     'sidebar-nav': Nav,
     user: user,
     customerTag: customerTag,
-    stage: stage,
+    customerStage: customerStage,
     footContent: footContent,
     userBind: userBind
   }

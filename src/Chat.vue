@@ -2,8 +2,8 @@
   <div id="Chat">
     <div v-if="userStatus == true">
       <user></user>
-      <customerTag></customerTag>
-      <stage></stage>
+      <projectTag></projectTag>
+      <projectStage></projectStage>
       <sidebar-nav></sidebar-nav>
       <router-view />
       <footContent></footContent>
@@ -17,8 +17,8 @@
 import Nav from '@/components/nav/Nav.vue'
 import user from '@/components/user/user.vue'
 import chatBind from '@/components/bind/chatBind.vue'
-import customerTag from '@/views/customerTag.vue'
-import stage from '@/views/stage.vue'
+import projectTag from '@/views/projectTag.vue'
+import projectStage from '@/views/projectStage.vue'
 import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
@@ -27,15 +27,15 @@ import { table, field } from '@/config/config'
   name: 'App',
   components: {
     'sidebar-nav': Nav,
-    customerTag: customerTag,
-    stage: stage,
+    projectTag: projectTag,
+    projectStage: projectStage,
     footContent: footContent,
     chatBind: chatBind,
     user: user
   }
 })
 export default class Actions extends Vue {
-  userStatus = false;
+  userStatus = true;
   async mounted () {
     // 群绑定---未绑定跳转绑定页面
     const chatId = localStorage.getItem('chatID')
