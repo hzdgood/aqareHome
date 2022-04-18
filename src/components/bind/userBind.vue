@@ -1,25 +1,20 @@
 <template>
   <div>
-    <div class="floatDiv" v-show="status"></div>
-    <div :class="status ? 'infoDiv' : ''">
-      <div class="headerDiv">客户绑定</div>
-      <input id="name" type="text" @change="change()" />
-      <input type="button" value="查询" @click="search()" />
+    <!-- <div class="floatDiv" v-show="status"></div> -->
+    <!-- <div :class="status ? 'infoDiv' : ''"> -->
+    <div class="headerDiv">客户绑定</div>
+    <input id="name" type="text" @change="change()" />
+    <input type="button" value="查询" @click="search()" />
+    <div>
+      <select id="customName" style="max-width: 300px">
+        <option :key="customer.id" v-for="customer in customerList" :value="customer.id">
+          {{ customer.name }} {{ customer.phone }}
+        </option>
+      </select>
       <div>
-        <select id="customName" style="max-width: 300px">
-          <option
-            :key="customer.id"
-            v-for="customer in customerList"
-            :value="customer.id"
-          >
-            {{ customer.name }} {{ customer.phone }}
-          </option>
-        </select>
-        <div>
-          <input type="button" value="新增用户" @click="add()" v-show="addStatus" />
-          <input type="button" value="绑定该用户" @click="save()" />
-          <input type="button" value="关闭" @click="close()" />
-        </div>
+        <input type="button" value="新增用户" @click="add()" v-show="addStatus" />
+        <input type="button" value="绑定该用户" @click="save()" />
+        <input type="button" value="关闭" @click="close()" />
       </div>
     </div>
   </div>
@@ -38,12 +33,12 @@ export default class Home extends Vue {
   localName = user.localName;
   customerList: any[] = [];
   addStatus = true;
-  @Prop({
-    type: Boolean,
-    required: true,
-    default: ''
-  })
-  status!: any;
+  // @Prop({
+  //   type: Boolean,
+  //   required: true,
+  //   default: ''
+  // })
+  // status!: any;
 
   change () {
     const name: any = document.getElementById('name')
@@ -128,11 +123,7 @@ export default class Home extends Vue {
   }
 
   async save () {
-    if (this.status) {
-      // this.clearUser()
-    } else {
-      this.updateUser()
-    }
+    this.updateUser()
   }
 
   async add () {

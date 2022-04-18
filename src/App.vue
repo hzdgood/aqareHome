@@ -1,27 +1,22 @@
 <template>
   <div id="app">
-    <div v-if="uploadStaus == true">
-      <div v-if="userStatus">
-        <user></user>
-        <customerTag></customerTag>
-        <stage></stage>
-        <sidebar-nav></sidebar-nav>
-        <router-view />
-        <footContent></footContent>
-      </div>
-      <div v-if="userStatus == false">
-        <bindEdit :status="false" @close="close()"></bindEdit>
-      </div>
+    <div v-if="userStatus">
+      <user></user>
+      <customerTag></customerTag>
+      <stage></stage>
+      <sidebar-nav></sidebar-nav>
+      <router-view />
+      <footContent></footContent>
     </div>
-    <div v-if="uploadStaus == false">
-      <schemeEdit :upload="false"></schemeEdit>
+    <div v-if="userStatus == false">
+      <userBind @close="close()"></userBind>
     </div>
   </div>
 </template>
 <script lang="ts">
 import Nav from '@/components/nav/Nav.vue'
 import user from '@/components/user/user.vue'
-import bindEdit from '@/components/foot/footEdit/bindEdit.vue'
+import userBind from '@/components/bind/userBind.vue'
 import customerTag from '@/views/customerTag.vue'
 import stage from '@/views/stage.vue'
 import footContent from '@/components/foot/footContent.vue'
@@ -38,21 +33,14 @@ import { table, field } from '@/config/config'
     stage: stage,
     footContent: footContent,
     schemeEdit: schemeEdit,
-    bindEdit: bindEdit
+    userBind: userBind
   }
 })
 export default class Actions extends Vue {
-  uploadStaus = true;
   userStatus = true;
   customerInfo = table.customerInfo;
   userId = localStorage.getItem('userId');
   async mounted () {
-    // 如果前段url为uplaod展示方案上传页面
-    const url = window.location.href
-    if (url.split('#')[1] === '/upload') {
-      this.uploadStaus = false
-      return
-    }
     const data = {
       where: {
         and: [
