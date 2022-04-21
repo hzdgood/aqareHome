@@ -72,12 +72,31 @@ export const externalcontact = async (formData: object) => {
   return response.data
 }
 
+// 获取联系人
+export const externalList = async (formData: object) => {
+  const response = await axios.request<SignRes>({
+    method: 'GET',
+    url: httpUrl + '/wechat/externalList',
+    params: formData
+  })
+  return response.data
+}
+
 // 获取群联系人
 export const groupchat = async (formData: object) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
     url: httpUrl + '/wechat/groupchat',
     params: formData
+  })
+  return response.data
+}
+
+// 获取群联系人
+export const groupList = async () => {
+  const response = await axios.request<SignRes>({
+    method: 'GET',
+    url: httpUrl + '/wechat/grouplist'
   })
   return response.data
 }

@@ -43,6 +43,7 @@ export const field = {
   projectHometype: 2200000144970062, // 房型
   projectArea: 2200000153720999, // 区域
   projectStage: 2200000149037697, // 项目装修阶段
+  currentTask: 2200000154568276, // 目前任务
   projectAddress: 2200000144970060, // 地址
   projectType: 2200000148980437, // 项目类型
   masterProject: 2200000184791041, // 主项目
@@ -90,13 +91,6 @@ export const field = {
   // 销售人员信息表
   localName: 2200000166537030
 }
-// export const user = {
-// userId: localStorage.getItem('userId'),
-// chatID: localStorage.getItem('chatID'),
-// localName: localStorage.getItem('localName'),
-// userName: localStorage.getItem('userName'),
-// contactType: localStorage.getItem('contactType')
-// }
 // 房屋类型
 export const houseType = [
   {
@@ -129,7 +123,7 @@ export const houseType = [
   }
 ]
 
-// 装修阶段
+// 装修进度 测试
 export const decorationStage = [
   {
     name: '未开工',
@@ -161,7 +155,7 @@ export const decorationStage = [
   }
 ]
 
-// 项目进度
+// 目前任务 测试
 export const projectProgress = [
   {
     name: '水电交底',
@@ -202,16 +196,16 @@ export const projectProgress = [
 ]
 
 // 方案属性
-export const schemeProperties = [
-  {
-    name: '有调光',
-    value: '10'
-  },
-  {
-    name: '有预埋',
-    value: '10'
-  }
-]
+// export const schemeProperties = [
+//   {
+//     name: '有调光',
+//     value: '10'
+//   },
+//   {
+//     name: '有预埋',
+//     value: '10'
+//   }
+// ]
 
 // 项目类型
 export const projectType = [

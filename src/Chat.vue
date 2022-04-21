@@ -8,7 +8,7 @@
       <router-view />
       <footContent></footContent>
     </div>
-    <div v-if="userStatus == false">
+    <div v-if="userStatus == false" v-show="bindStatus">
       <chatBind @close="close()"></chatBind>
     </div>
   </div>
@@ -21,7 +21,7 @@ import projectTag from '@/views/projectTag.vue'
 import projectStage from '@/views/projectStage.vue'
 import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, externalList, externalcontact } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({
   name: 'App',
@@ -35,7 +35,8 @@ import { table, field } from '@/config/config'
   }
 })
 export default class Actions extends Vue {
-  userStatus = true;
+  userStatus = false;
+  bindStatus = false;
   async mounted () {
     // 群绑定---未绑定跳转绑定页面
     const chatId = localStorage.getItem('chatID')
@@ -56,30 +57,28 @@ export default class Actions extends Vue {
     if (result.length === 0) {
       // 没有就绑定
       this.userStatus = false
+      this.bindStatus = true
     } else {
-      let userId = ''
+      const userId = ''
       let userName = ''
       for (let i = 0; i < result.length; i++) {
         const fields = result[i].fields
         for (let j = 0; j < fields.length; j++) {
-          if (fields[j].field_id === field.projectUUid) {
-            userId = fields[j].values[0].value
-            console.log(userId)
-          }
           if (fields[j].field_id === field.projectCustom) {
             userName = fields[j].values[0].value
             console.log(userName)
-          }
-          if (fields[j].field_id === field.projectUUid) {
-            userId = fields[j].values[0].value
-            console.log(userId)
           }
         }
       }
       localStorage.setItem('userId', userId) // 设置userID
       localStorage.setItem('userName', userName) // 设置用户名称
       this.userStatus = true
+      this.bindStatus = false
     }
+
+    const res1: any = await externalList({
+      userId: 'Zhuwei'
+    })
 
     // 判断伙伴云是否有这个ID
     // const obj = {
