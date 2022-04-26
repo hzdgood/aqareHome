@@ -58,7 +58,6 @@ import { table, field } from '@/config/config'
 import customerEdit from '@/components/infoEdit/customerEdit.vue'
 
 @Component({
-  name: 'customInfo',
   components: {
     customerEdit: customerEdit
   }
@@ -74,6 +73,7 @@ export default class Actions extends Vue {
   houseNeed: any[] = [];
   customerInfo = table.customerInfo;
   userId = localStorage.getItem('userId');
+
   async mounted () {
     this.loadFunction()
   }

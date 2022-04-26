@@ -2,7 +2,7 @@
   <div>
     <div>装修进度</div>
     <div class="stageButton">
-      <button v-for="item in decorationStage" :key="item.value" :id="item.value">
+      <button v-for="item in decorationStage" :key="item.value" :id="item.value" @click="onclick(item)">
         {{ item.name }}
       </button>
     </div>
@@ -11,7 +11,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, decorationStage } from '@/config/config'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, updateTable } from '@/config/interFace'
 
 @Component({})
 export default class Home extends Vue {
@@ -42,12 +42,35 @@ export default class Home extends Vue {
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectStage) {
           console.log(fields[j].values[0])
-
-          // projectStage = fields[j].values[0].value
-          // console.log(projectStage)
         }
       }
     }
+  }
+
+  // 选中
+  onclick = (items: any) => {
+    // 获取选中对象 删除class
+    const obj: any = document.getElementsByClassName('selected')
+    for (let i = 0; i < obj.length; i++) {
+      const id = obj[i].id
+      const dom: any = document.getElementById(id)
+      dom.className = ''
+    }
+    // 设置新的选中对象
+    const dom: any = document.getElementById(items.id)
+    dom.className = 'selected'
+    // 发送请求
+    this.updateData(items)
+  };
+
+  // 更新关系
+  async updateData (items: any) {
+    const objs: any = {
+      fields: {
+        [items.field]: [parseInt(items.id)]
+      }
+    }
+    await updateTable(this.itemId, objs)
   }
 }
 </script>

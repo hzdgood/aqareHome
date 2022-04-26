@@ -304,11 +304,6 @@ export default class Home extends Vue {
 
   // 编辑按钮触发
   async showEdit () {
-    if (this.editShow === true) {
-      this.editShow = false
-    } else {
-      this.editShow = true
-    }
     // 获取当前用户信息
     const data = {
       where: {
@@ -328,8 +323,8 @@ export default class Home extends Vue {
     if (res.length === 0) {
       return
     }
-    const itemId = res[0].item_id
-    this.itemId = itemId
+    // const itemId = res[0].item_id
+    this.itemId = res[0].item_id
     // 注入Button上
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
@@ -408,6 +403,7 @@ export default class Home extends Vue {
         }
       }
     }
+    this.close()
   }
 }
 </script>

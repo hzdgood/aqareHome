@@ -1,5 +1,6 @@
 <template>
   <div>
+    <projectEdit @reload="reloadFunction"></projectEdit>
     <div class="tag inline" v-if="currentTask.length != 0">
       <div>目前任务</div>
       <button v-for="item in currentTask" :key="item.value">
@@ -15,14 +16,23 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Emit } from 'vue-property-decorator'
 import { table, field } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
-@Component({})
+import projectEdit from '@/components/infoEdit/projectEdit.vue'
+@Component({
+  components: {
+    projectEdit: projectEdit
+  }
+})
 export default class Home extends Vue {
   currentTask = []
   projectType = []
   async mounted () {
+    this.loadFunction()
+  }
+
+  async loadFunction () {
     const chatId = localStorage.getItem('chatID')
     const obj = {
       where: {
@@ -51,6 +61,12 @@ export default class Home extends Vue {
         console.log(fields[i])
       }
     }
+  }
+
+  // 回调 tagEdit
+  @Emit()
+  async reloadFunction () {
+    setTimeout(this.loadFunction, 1000)
   }
 }
 </script>

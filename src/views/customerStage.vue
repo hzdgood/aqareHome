@@ -26,6 +26,8 @@ export default class Home extends Vue {
   taglist: any[] = [];
   itemId: any = '';
   userId = localStorage.getItem('userId');
+
+  // 获取所有客户标签
   async mounted () {
     const data = {
       where: {
@@ -86,6 +88,7 @@ export default class Home extends Vue {
     }
   }
 
+  // 选择
   onclick = (items: any) => {
     // 获取选中对象 删除class
     const obj: any = document.getElementsByClassName('selected')
@@ -101,12 +104,13 @@ export default class Home extends Vue {
     this.updateData(items)
   };
 
+  // 更新
   async updateData (items: any) {
     const objs: any = {
-      fields: {}
+      fields: {
+        [items.field]: [parseInt(items.id)]
+      }
     }
-    var val = items.id
-    objs.fields[items.field] = [parseInt(val)]
     await updateTable(this.itemId, objs)
   }
 }
