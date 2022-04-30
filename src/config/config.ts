@@ -125,7 +125,7 @@ export const houseType = [
   }
 ]
 
-// 装修进度 测试
+// 装修进度
 export const decorationStage = [
   {
     name: '未开工',
@@ -157,14 +157,14 @@ export const decorationStage = [
   }
 ]
 
-// 目前任务 测试
+// 目前任务
 export const projectProgress = [
   {
-    name: '水电交底',
+    name: '首次跟进',
     value: '1'
   },
   {
-    name: '水电验收',
+    name: '销售确认',
     value: '2'
   },
   {
@@ -172,23 +172,23 @@ export const projectProgress = [
     value: '3'
   },
   {
-    name: '灯具已预埋',
+    name: '跟踪装修进度',
     value: '4'
   },
   {
-    name: '窗帘已测量',
+    name: '退/补款',
     value: '5'
   },
   {
-    name: '安装已完成',
+    name: '安装',
     value: '6'
   },
   {
-    name: '调试已完成',
+    name: '调试',
     value: '7'
   },
   {
-    name: '多退少补',
+    name: '伙伴云完结',
     value: '8'
   },
   {
@@ -196,18 +196,6 @@ export const projectProgress = [
     value: '9'
   }
 ]
-
-// 方案属性
-// export const schemeProperties = [
-//   {
-//     name: '有调光',
-//     value: '10'
-//   },
-//   {
-//     name: '有预埋',
-//     value: '10'
-//   }
-// ]
 
 // 项目类型
 export const projectType = [
