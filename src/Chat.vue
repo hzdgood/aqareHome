@@ -59,14 +59,16 @@ export default class Actions extends Vue {
       this.userStatus = false
       this.bindStatus = true
     } else {
-      const userId = ''
+      let userId = ''
       let userName = ''
       for (let i = 0; i < result.length; i++) {
         const fields = result[i].fields
         for (let j = 0; j < fields.length; j++) {
           if (fields[j].field_id === field.projectCustom) {
             userName = fields[j].values[0].value
-            console.log(userName)
+          }
+          if (fields[j].field_id === field.projectUUid) {
+            userId = fields[j].values[0].value
           }
         }
       }

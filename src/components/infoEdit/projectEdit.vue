@@ -12,31 +12,37 @@
         <span>客户电话</span>
         <input id="telephone" type="text" />
       </div>
-
-      <div>目前任务</div>
-      <button
-        v-for="item in projectProgress"
-        :key="item.value"
-        :id="item.value"
-        name="目前任务"
-        @click="onchange(item)"
-      >
-        {{ item.name }}
-      </button>
-
-      <div>项目类型</div>
-      <button
-        v-for="item in projectType"
-        :key="item.value"
-        :id="item.value"
-        name="项目类型"
-        @click="onchange(item)"
-      >
-        {{ item.name }}
-      </button>
+      <div class="inline">
+        <span>目前任务</span>
+        <select id="projectProgress">
+          <option
+            v-for="item in projectProgress"
+            :key="item.value"
+            :value="item.value"
+            name="目前任务"
+          >
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <div class="inline">
+        <span>项目类型</span>
+        <select id="projectType">
+          <option
+            v-for="item in projectType"
+            :key="item.value"
+            :value="item.value"
+            name="项目类型"
+          >
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <button @click="saveInfo()">保存</button>
+        <button @click="close()">关闭</button>
+      </div>
     </div>
-    <button @click="saveInfo()">保存</button>
-    <button @click="close()">关闭</button>
   </div>
 </template>
 <script lang="ts">
@@ -50,9 +56,6 @@ export default class Home extends Vue {
   userId = localStorage.getItem('userId');
   editShow = false;
   itemId: any = '';
-  // async mounted() {
-  //   console.log(111);
-  // }
   async showEdit () {
     const chatId = localStorage.getItem('chatID')
     const obj = {
@@ -69,7 +72,6 @@ export default class Home extends Vue {
       limit: 20
     }
     const result = await SearchInfo(table.projectInfo, obj)
-    console.log(result)
     if (result.length === 0) {
       return
     }
@@ -77,10 +79,33 @@ export default class Home extends Vue {
     const fields = result[0].fields
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].field_id === field.projectType) {
-        console.log(fields[i])
+        const id = parseInt(fields[i].values[0].id)
+        const projectType: any = document.getElementById('projectType')
+        for (let i = 0; i < projectType.options.length; i++) {
+          if (parseInt(projectType.options[i].value) === id) {
+            projectType.options[i].selected = true
+          }
+        }
       }
       if (fields[i].field_id === field.currentTask) {
-        console.log(fields[i])
+        const id = parseInt(fields[i].values[0].id)
+        const currentTask: any = document.getElementById('projectProgress')
+        for (let i = 0; i < currentTask.options.length; i++) {
+          if (parseInt(currentTask.options[i].value) === id) {
+            console.log(currentTask.options[i].value + '---' + id)
+            currentTask.options[i].selected = true
+          }
+        }
+      }
+      if (fields[i].field_id === field.pname) {
+        const values = fields[i].values
+        const customerName: any = document.getElementById('customerName')
+        customerName.value = values[0].value
+      }
+      if (fields[i].field_id === field.ptelephone) {
+        const values = fields[i].values
+        const telephone: any = document.getElementById('telephone')
+        telephone.value = values[0].value
       }
     }
     this.close()
@@ -97,39 +122,20 @@ export default class Home extends Vue {
   async saveInfo () {
     const customerName: any = document.getElementById('customerName')
     const telephone: any = document.getElementById('telephone')
+    const currentTask: any = document.getElementById('currentTask')
+    const projectType: any = document.getElementById('projectType')
     const data: any = {
-      fields: {}
-    }
-    const obj: any = document.getElementsByClassName('selected')
-    let index = 0
-    // 迭代循环DOM对象合成伙伴云数据
-    for (let i = 0; i < obj.length; i++) {
-      let id = obj[i].id
-      const name = obj[i].name
-      id = parseInt(id)
-      if (i === 0) {
-        const d: any[] = []
-        d.push(id)
-        data.fields[name] = d
-      } else {
-        const d1 = Object.keys(data.fields)[index]
-        if (name === d1) {
-          data.fields[name].push(id)
-        } else {
-          index++
-          const d: any[] = []
-          d.push(id)
-          data.fields[name] = d
-        }
+      fields: {
+        [field.pname]: customerName.value,
+        [field.ptelephone]: telephone.value,
+        [field.currentTask]: [currentTask.options[currentTask.selectedIndex].value],
+        [field.projectType]: [projectType.options[projectType.selectedIndex].value]
       }
     }
-    // 拼接用户名称和电话
-    data.fields[field.customerName] = customerName.value
-    data.fields[field.ctelephone] = telephone.value
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
     this.$emit('reload')
-    this.editShow = false
+    this.close()
   }
 }
 </script>

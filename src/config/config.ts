@@ -35,6 +35,8 @@ export const field = {
   tagListId: 2200000182035321, // 标签名称
   tagId: 2200000184166190, // 标签ID
   // 项目信息表
+  ptelephone: 1101001103000000,
+  pname: 1101001102000000,
   projectCode: 2200000150460774, // 项目编码
   projectUUid: 1101001121000000, // UserId
   projectCustom: 2200000160386765, // 姓名
@@ -159,39 +161,39 @@ export const decorationStage = [
 export const projectProgress = [
   {
     name: '水电交底',
-    value: '10'
+    value: '1'
   },
   {
     name: '水电验收',
-    value: '10'
+    value: '2'
   },
   {
     name: '水电交底',
-    value: '10'
+    value: '3'
   },
   {
     name: '灯具已预埋',
-    value: '10'
+    value: '4'
   },
   {
     name: '窗帘已测量',
-    value: '10'
+    value: '5'
   },
   {
     name: '安装已完成',
-    value: '10'
+    value: '6'
   },
   {
     name: '调试已完成',
-    value: '10'
+    value: '7'
   },
   {
     name: '多退少补',
-    value: '10'
+    value: '8'
   },
   {
     name: '已完结',
-    value: '10'
+    value: '9'
   }
 ]
 

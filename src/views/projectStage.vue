@@ -2,7 +2,7 @@
   <div>
     <div>装修进度</div>
     <div class="stageButton">
-      <button v-for="item in decorationStage" :key="item.value" :id="item.value" @click="onclick(item)">
+      <button v-for="item in decorationStage" :key="item.value" :id="'projectstage' + item.value" @click="onclick(item)">
         {{ item.name }}
       </button>
     </div>
@@ -41,7 +41,9 @@ export default class Home extends Vue {
       const fields = result[0].fields
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectStage) {
-          console.log(fields[j].values[0])
+          var id = fields[j].values[0].id
+          const dom: any = document.getElementById('projectstage' + id)
+          dom.className = 'selected'
         }
       }
     }
@@ -57,7 +59,7 @@ export default class Home extends Vue {
       dom.className = ''
     }
     // 设置新的选中对象
-    const dom: any = document.getElementById(items.id)
+    const dom: any = document.getElementById('projectstage' + items.value)
     dom.className = 'selected'
     // 发送请求
     this.updateData(items)
@@ -67,7 +69,7 @@ export default class Home extends Vue {
   async updateData (items: any) {
     const objs: any = {
       fields: {
-        [items.field]: [parseInt(items.id)]
+        [field.projectStage]: [parseInt(items.value)]
       }
     }
     await updateTable(this.itemId, objs)

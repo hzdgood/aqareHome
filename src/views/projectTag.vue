@@ -2,14 +2,14 @@
   <div>
     <projectEdit @reload="reloadFunction"></projectEdit>
     <div class="tag inline" v-if="currentTask.length != 0">
-      <div>目前任务</div>
-      <button v-for="item in currentTask" :key="item.value">
+      目前任务
+      <button v-for="item in currentTask" :key="'currentTask' + item.value">
         {{ item.name }}
       </button>
     </div>
     <div class="tag inline" v-if="projectType.length != 0">
-      <div>项目类型</div>
-      <button v-for="item in projectType" :key="item.value">
+      项目类型
+      <button v-for="item in projectType" :key="'projectType' + item.value">
         {{ item.name }}
       </button>
     </div>
@@ -26,8 +26,8 @@ import projectEdit from '@/components/infoEdit/projectEdit.vue'
   }
 })
 export default class Home extends Vue {
-  currentTask = []
-  projectType = []
+  currentTask:any = []
+  projectType:any = []
   async mounted () {
     this.loadFunction()
   }
@@ -48,17 +48,24 @@ export default class Home extends Vue {
       limit: 20
     }
     const result = await SearchInfo(table.projectInfo, obj)
-    console.log(result)
     if (result.length === 0) {
       return
     }
     const fields = result[0].fields
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].field_id === field.projectType) {
-        console.log(fields[i])
+        const obj = {
+          name: fields[i].values[0].name,
+          value: fields[i].values[0].id
+        }
+        this.projectType.push(obj)
       }
       if (fields[i].field_id === field.currentTask) {
-        console.log(fields[i])
+        const obj = {
+          name: fields[i].values[0].name,
+          value: fields[i].values[0].id
+        }
+        this.currentTask.push(obj)
       }
     }
   }
