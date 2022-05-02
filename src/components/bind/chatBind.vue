@@ -2,7 +2,7 @@
   <div>
     <div class="headerDiv">群绑定</div>
 
-    <span>群名称</span>
+    <span>项目名称</span>
     <input id="name" type="text" />
     <input type="button" value="查询" @click="search()" />
 

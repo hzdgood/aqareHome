@@ -21,7 +21,7 @@ import projectTag from '@/views/projectTag.vue'
 import projectStage from '@/views/projectStage.vue'
 import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, groupchat } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({
   name: 'App',
@@ -56,8 +56,13 @@ export default class Actions extends Vue {
     const result = await SearchInfo(table.projectInfo, obj) // 查询项目信息表
     if (result.length === 0) {
       // 没有就绑定
-      this.userStatus = false
-      this.bindStatus = true
+      // this.userStatus = false;
+      // this.bindStatus = true;
+      // 获取群客户ID --》查询客户主项目
+      const res1: any = await groupchat({
+        chatId: chatId
+      })
+      console.log(res1)
     } else {
       let userId = ''
       let userName = ''

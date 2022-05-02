@@ -34,24 +34,46 @@ export default class Home extends Vue {
   sheetDetail = table.sheetDetail;
   sendList: any[] = [];
   userId = localStorage.getItem('userId');
-  async mounted () {
-    const data = {
-      where: {
-        and: [
-          {
-            query: { or: [{ eqm: [this.userId] }] },
-            query_option_mappings: [-1],
-            field: field.projectUUid
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20,
-      order_by: [
-        { field: field.projectUUid, sort: 'desc' },
-        { field: field.masterProject, sort: 'asc' }
-      ]
+  contactType = localStorage.getItem('contactType');
+  chatId = localStorage.getItem('chatID');
+
+  getData () {
+    let data = {}
+    if (this.contactType === 'single_chat_tools') {
+      data = {
+        where: {
+          and: [
+            {
+              query: { or: [{ in: [this.userId] }] },
+              query_option_mappings: [-1],
+              field: field.projectUUid
+            },
+            { field: 2200000184791041, query: { in: [1] } }
+          ]
+        },
+        offset: 0,
+        limit: 20
+      }
+    } else {
+      data = {
+        where: {
+          and: [
+            {
+              query: { or: [{ in: [this.chatId] }] },
+              query_option_mappings: [-1],
+              field: 2200000172376106
+            }
+          ]
+        },
+        offset: 0,
+        limit: 20
+      }
     }
+    return data
+  }
+
+  async mounted () {
+    const data = this.getData()
     const result = await SearchInfo(this.projectInfo, data)
     let projectCode: any = ''
     for (let i = 0; i < result.length; i++) {
