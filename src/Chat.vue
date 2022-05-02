@@ -21,7 +21,7 @@ import projectTag from '@/views/projectTag.vue'
 import projectStage from '@/views/projectStage.vue'
 import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, groupchat } from '@/config/interFace'
+import { SearchInfo, groupchat, updateTable } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({
   name: 'App',
@@ -37,14 +37,14 @@ import { table, field } from '@/config/config'
 export default class Actions extends Vue {
   userStatus = false;
   bindStatus = false;
+  chatId = localStorage.getItem('chatID');
   async mounted () {
     // 群绑定---未绑定跳转绑定页面
-    const chatId = localStorage.getItem('chatID')
     const obj = {
       where: {
         and: [
           {
-            query: { or: [{ in: [chatId] }] },
+            query: { or: [{ in: [this.chatId] }] },
             query_option_mappings: [-1],
             field: field.ChatId
           }
@@ -55,14 +55,48 @@ export default class Actions extends Vue {
     }
     const result = await SearchInfo(table.projectInfo, obj) // 查询项目信息表
     if (result.length === 0) {
-      // 没有就绑定
-      // this.userStatus = false;
-      // this.bindStatus = true;
-      // 获取群客户ID --》查询客户主项目
-      const res1: any = await groupchat({
-        chatId: chatId
+      // 没有就绑定 获取群客户ID --》查询客户主项目
+      const res: any = await groupchat({
+        chatId: this.chatId
       })
-      console.log(res1)
+      let userId = ''
+      const group_chat = res.group_chat
+      const member_list = group_chat.member_list
+      for (let i = 0; i < member_list.length; i++) {
+        const type = member_list[i].type
+        if (type === 2) {
+          userId = member_list[i].userid
+        }
+      }
+      const data = {
+        where: {
+          and: [
+            {
+              query: { or: [{ in: [userId] }] },
+              query_option_mappings: [-1],
+              field: field.projectUUid
+            },
+            { field: field.masterProject, query: { in: [1] } }
+          ]
+        },
+        offset: 0,
+        limit: 20
+      }
+      const result1 = await SearchInfo(table.projectInfo, data)
+      if (result1.length === 0) {
+        // 没有就绑定
+        this.userStatus = false
+        this.bindStatus = true
+      } else {
+        const itemId = result1[0].item_id
+        const data = {
+          fields: {
+            [field.ChatId]: this.chatId // 更新userID
+          }
+        }
+        await updateTable(itemId, data)
+        location.reload()
+      }
     } else {
       let userId = ''
       let userName = ''

@@ -48,7 +48,7 @@ export default class Home extends Vue {
               query_option_mappings: [-1],
               field: field.projectUUid
             },
-            { field: 2200000184791041, query: { in: [1] } }
+            { field: field.masterProject, query: { in: [1] } }
           ]
         },
         offset: 0,
