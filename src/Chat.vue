@@ -56,10 +56,12 @@ export default class Actions extends Vue {
     const result = await SearchInfo(table.projectInfo, obj) // 查询项目信息表
     if (result.length === 0) {
       // 没有就绑定 获取群客户ID --》查询客户主项目
+      let userId = ''
+      let userName = ''
+      // 查询群人员
       const res: any = await groupchat({
         chatId: this.chatId
       })
-      let userId = ''
       const group_chat = res.group_chat
       const member_list = group_chat.member_list
       for (let i = 0; i < member_list.length; i++) {
@@ -68,6 +70,7 @@ export default class Actions extends Vue {
           userId = member_list[i].userid
         }
       }
+      // 这边有个多用户问题。
       const data = {
         where: {
           and: [
@@ -82,20 +85,30 @@ export default class Actions extends Vue {
         offset: 0,
         limit: 20
       }
+      // 查询当前人员是否有主项目
       const result1 = await SearchInfo(table.projectInfo, data)
       if (result1.length === 0) {
         // 没有就绑定
         this.userStatus = false
         this.bindStatus = true
       } else {
+        // 有的话绑定这个主项目
         const itemId = result1[0].item_id
-        const data = {
-          fields: {
-            [field.ChatId]: this.chatId // 更新userID
+        const fields = result1[0].fields
+        for (let j = 0; j < fields.length; j++) {
+          if (fields[j].field_id === field.projectCustom) {
+            userName = fields[j].values[0].value
           }
         }
+        const data = {
+          fields: {
+            [field.ChatId]: this.chatId
+          }
+        }
+        // 更新群ID
         await updateTable(itemId, data)
-        location.reload()
+        localStorage.setItem('userId', userId)
+        localStorage.setItem('userName', userName)
       }
     } else {
       let userId = ''

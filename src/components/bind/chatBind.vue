@@ -1,11 +1,9 @@
 <template>
   <div>
     <div class="headerDiv">群绑定</div>
-
     <span>项目名称</span>
     <input id="name" type="text" />
     <input type="button" value="查询" @click="search()" />
-
     <div>
       <select id="projectCustom" style="max-width: 300px">
         <option
@@ -33,7 +31,16 @@ export default class Home extends Vue {
   projectList: any[] = [];
   chatID = localStorage.getItem('chatID')
   async mounted () {
-    const result = await SearchInfo(table.projectInfo, {})
+    const data = {
+      where: {
+        and: [
+          { field: field.masterProject, query: { in: [1] } }
+        ]
+      },
+      offset: 0,
+      limit: 20
+    }
+    const result = await SearchInfo(table.projectInfo, data)
     this.setProjectList(result)
   }
 
@@ -65,7 +72,8 @@ export default class Home extends Vue {
             query: { or: [{ in: [name.value] }] },
             query_option_mappings: [-1],
             field: field.projectCustom // 项目名称
-          }
+          },
+          { field: field.masterProject, query: { in: [1] } }
         ]
       },
       offset: 0,
