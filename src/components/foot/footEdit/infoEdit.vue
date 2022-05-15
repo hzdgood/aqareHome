@@ -3,12 +3,27 @@
     <div class="floatDiv"></div>
     <div class="infoDiv">
       <div class="headerDiv">项目信息</div>
-      <button @click="addClick()">新增</button>
+      <div class="addSite">
+        <button class="addButton" @click="addClick()">新增 +</button>
+      </div>
       <div id="projectList" v-for="project in projectList" :key="project.id">
-        <button @click="bindClick(project)">绑定</button>
-        <button @click="deleteClick(project)">删除</button>
-        <span>{{ project.masterProject }}</span>
-        <table>
+        <table class="EditTable">
+          <tr>
+            <td>项目名称</td>
+            <td>
+              <input
+                :id="project.id + 'projectCustom'"
+                type="text"
+                :value="project.customer"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>主项目</td>
+            <td>
+              {{ project.masterProject }}
+            </td>
+          </tr>
           <tr>
             <td>项目类型</td>
             <td>
@@ -16,7 +31,8 @@
                 <option :value="project.projectTypeId">
                   {{ project.projectType }}
                 </option>
-                <option v-for="item in projectType"
+                <option
+                  v-for="item in projectType"
                   :value="item.value"
                   :key="item.value"
                 >
@@ -26,18 +42,10 @@
             </td>
           </tr>
           <tr>
-            <td>项目名称</td>
-            <td>
-              <input :id="project.id + 'projectCustom'"
-                type="text"
-                :value="project.customer"
-              />
-            </td>
-          </tr>
-          <tr>
             <td>联系方式</td>
             <td>
-              <input :id="project.id + 'telephone'"
+              <input
+                :id="project.id + 'telephone'"
                 type="text"
                 :value="project.telephone"
               />
@@ -46,7 +54,8 @@
           <tr>
             <td>小区名称</td>
             <td>
-              <input :id="project.id + 'projectVillage'"
+              <input
+                :id="project.id + 'projectVillage'"
                 type="text"
                 :value="project.village"
               />
@@ -59,7 +68,8 @@
                 <option :value="project.hometypeId">
                   {{ project.hometype }}
                 </option>
-                <option v-for="item in houseType"
+                <option
+                  v-for="item in houseType"
                   :value="item.value"
                   :key="item.value"
                 >
@@ -75,7 +85,8 @@
                 <option :value="project.saleManId">
                   {{ project.saleMan }}
                 </option>
-                <option v-for="item in saleManList"
+                <option
+                  v-for="item in saleManList"
                   :value="item.saleId"
                   :key="item.saleId"
                 >
@@ -91,7 +102,8 @@
                 <option :value="project.departmentId">
                   {{ project.department }}
                 </option>
-                <option v-for="item in departmentList"
+                <option
+                  v-for="item in departmentList"
                   :value="item.value"
                   :key="item.value"
                 >
@@ -107,7 +119,8 @@
                 <option :value="project.areaId">
                   {{ project.area }}
                 </option>
-                <option v-for="item in areaList"
+                <option
+                  v-for="item in areaList"
                   :value="item.value"
                   :key="item.value"
                 >
@@ -119,7 +132,8 @@
           <tr>
             <td>客户地址</td>
             <td>
-              <input :id="project.id + 'projectAddress'"
+              <input
+                :id="project.id + 'projectAddress'"
                 class="projectAddress"
                 type="text"
                 :value="project.address"
@@ -127,8 +141,12 @@
             </td>
           </tr>
         </table>
-        <button @click="saveClick(project)">保存</button>
-        <button @click="close()">关闭</button>
+        <div class="buttonSite">
+          <button class="saveButton" @click="bindClick(project)">绑定</button>
+          <button class="saveButton" @click="deleteClick(project)">删除</button>
+          <button class="saveButton" @click="saveClick(project)">保存</button>
+          <button class="closeButton" @click="close()">关闭</button>
+        </div>
       </div>
     </div>
   </div>

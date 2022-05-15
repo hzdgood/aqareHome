@@ -3,124 +3,134 @@
     <div class="floatDiv"></div>
     <div class="infoDiv">
       <div class="headerDiv">客户编辑</div>
-      <div class="inline">
-        <span>客户名称</span>
-        <input id="customerName" type="text" />
+      <table class="EditTable">
+        <tr>
+          <td>客户名称</td>
+          <td><input id="customerName" type="text" /></td>
+        </tr>
+        <tr>
+          <td>联系电话</td>
+          <td><input id="telephone" type="text" /></td>
+        </tr>
+      </table>
+      <table class="EditTable">
+        <tr>
+          <td width="100px">客户来源</td>
+          <td>
+            <span v-for="item in custominto" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>房屋情况</td>
+          <td>
+            <span v-for="item in houseInfo" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>全屋需求</td>
+          <td>
+            <span v-for="item in houseNeed" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>房型</td>
+          <td>
+            <span v-for="item in hometype" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>人员属性</td>
+          <td>
+            <span v-for="item in personInfo" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>客户属性</td>
+          <td>
+            <span v-for="item in cAttribute" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>单品客户</td>
+          <td>
+            <span v-for="item in oneCustom" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td>流失状态</td>
+          <td>
+            <span v-for="item in lostStatus" :key="item.id">
+              <input
+                type="radio"
+                :id="item.id"
+                :name="item.field"
+                @click="onchange(item)"
+              />
+              {{ item.value }}
+            </span>
+          </td>
+        </tr>
+      </table>
+      <div class="buttonSite">
+        <button class="saveButton" @click="saveInfo()">保存</button>
+        <button class="closeButton" @click="close()">关闭</button>
       </div>
-      <div class="inline">
-        <span>客户电话</span>
-        <input id="telephone" type="text" />
-      </div>
-      <div class="tag" v-if="custominto.length != 0">
-        <div>客户来源</div>
-        <button
-          v-for="item in custominto"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="houseInfo.length != 0">
-        <div>房屋情况</div>
-        <button
-          v-for="item in houseInfo"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="houseNeed.length != 0">
-        <div>全屋需求</div>
-        <button
-          v-for="item in houseNeed"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="hometype.length != 0">
-        <div>房型</div>
-        <button
-          v-for="item in hometype"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="personInfo.length != 0">
-        <div>人员属性</div>
-        <button
-          v-for="item in personInfo"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="cAttribute.length != 0">
-        <div>客户属性</div>
-        <button
-          v-for="item in cAttribute"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="fitmentStage.length != 0" style="display: none">
-        <div>装修阶段</div>
-        <button
-          v-for="item in fitmentStage"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="oneCustom.length != 0">
-        <div>单品客户</div>
-        <button
-          v-for="item in oneCustom"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <div class="tag" v-if="lostStatus.length != 0">
-        <div>流失状态</div>
-        <button
-          v-for="item in lostStatus"
-          :key="item.id"
-          :id="item.id"
-          :name="item.field"
-          @click="onchange(item)"
-        >
-          {{ item.value }}
-        </button>
-      </div>
-      <button @click="saveInfo()">保存</button>
-      <button @click="close()">关闭</button>
     </div>
   </div>
 </template>
@@ -238,10 +248,11 @@ export default class Home extends Vue {
         this.lostStatus.push(ob)
       }
     }
+    this.showEdit()
   }
 
   close () {
-    console.log(11)
+    this.$emit('close')
   }
 
   // 标签更新
@@ -337,6 +348,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
@@ -345,6 +357,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
@@ -353,6 +366,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
@@ -361,6 +375,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
@@ -369,6 +384,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
@@ -377,6 +393,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
@@ -385,6 +402,7 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
@@ -393,12 +411,18 @@ export default class Home extends Vue {
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           const dom: any = document.getElementById(itemid)
+          dom.checked = 'true'
           dom.className = 'selected'
         }
       }
     }
-    this.close()
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.EditTable tr td:nth-child(1) {
+  vertical-align: top;
+  top: 3px;
+  position: relative;
+}
+</style>

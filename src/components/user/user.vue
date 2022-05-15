@@ -1,29 +1,45 @@
 <template>
-  <div class="userDiv">
-    <table>
-      <tr>
-        <td>
-          <img width="40px" height="40px;" src="../../img/name.png" />
-        </td>
-        <td>
-          <span class="username">{{ name }}</span>
-        </td>
-        <td>
-          <button>编辑</button>
-        </td>
-      </tr>
-    </table>
+  <div>
+    <div class="userDiv">
+      <table>
+        <tr>
+          <td>
+            <img width="40px" height="40px;" src="../../img/name.png" />
+          </td>
+          <td>
+            <span class="username">{{ name }}</span>
+          </td>
+          <td>
+            <button @click="editPage()">编辑</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div v-if="editShow">
+      <customer-edit
+        @close="closeEdit()"
+        @reload="reloadPage()"
+      ></customer-edit>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
-@Component({})
+import customerEdit from '@/components/infoEdit/customerEdit.vue'
+@Component({
+  name: 'App',
+  components: {
+    'customer-edit': customerEdit
+  }
+})
 export default class Home extends Vue {
   userName = localStorage.getItem('userName');
   userId = localStorage.getItem('userId');
   name = '';
+  editShow = false;
+
   async mounted () {
     const data = {
       where: {
@@ -48,6 +64,18 @@ export default class Home extends Vue {
         }
       }
     }
+  }
+
+  editPage () {
+    this.editShow = true
+  }
+
+  closeEdit () {
+    this.editShow = false
+  }
+
+  reloadPage () {
+    console.log(111)
   }
 }
 </script>

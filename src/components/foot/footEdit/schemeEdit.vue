@@ -3,19 +3,16 @@
     <div class="floatDiv" v-show="upload"></div>
     <div :class="upload ? 'infoDiv' : ''">
       <div class="headerDiv">上传方案</div>
-      <input
-        type="file"
-        name="file"
-        placeholder="请选择文件"
-        style="max-width: 200px"
-      />
-      <div>
-        <input type="button" @click="saveClick()" value="提交" />
-        <input type="button" @click="closeClick()" value="关闭" />
+      <div class="uploadFile">
+        <input type="file" name="file" placeholder="请选择文件"/>
+      </div>
+      <div class="buttonSite">
+        <input class="saveButton" type="button" @click="saveClick()" value="提交" />
+        <input class="closeButton" type="button" @click="closeClick()" value="关闭" />
       </div>
       <div>
-        <span v-for="erronProduct in erronProduct" :key="erronProduct.index">
-          {{ erronProduct.name }}
+        <span v-for="item in erronProduct" :key="item.index">
+          {{ item.name }}
         </span>
       </div>
     </div>
