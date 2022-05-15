@@ -1,22 +1,26 @@
 <template>
   <div class="centerDiv">
-    <div v-for="sheetList in sheetList" :key="sheetList.index">
-      <div>
-        <span>{{ sheetList.visitDate }} </span>
-        <span>{{ sheetList.orderType }} </span>
-        <span>{{ sheetList.workOrderStatus }}</span>
-      </div>
-      <div>
-        <span>{{ sheetList.technology }}</span>
-      </div>
-      <div>
-        <span>完成情况: </span>
-        <span>{{ sheetList.todayCompletion }}</span>
-      </div>
-      <div>
-        <span>下次安排: </span>
-        <span>{{ sheetList.nextDoor }}</span>
-      </div>
+    <div class="workDiv" v-for="item in sheetList" :key="item.index">
+      <span></span>
+      <table class="workTable">
+        <tr>
+          <td>{{ item.orderType }}</td>
+          <td>{{ item.technology }}</td>
+          <td><span>{{ item.workOrderStatus }}</span></td>
+        </tr>
+        <tr>
+          <td>上门时间</td>
+          <td colspan="2">{{ item.visitDate }}</td>
+        </tr>
+        <tr>
+          <td>完成情况</td>
+          <td colspan="2">{{ item.todayCompletion }}</td>
+        </tr>
+        <tr>
+          <td>下次安排</td>
+          <td colspan="2">{{ item.nextDoor }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>

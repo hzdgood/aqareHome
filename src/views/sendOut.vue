@@ -1,22 +1,20 @@
 <template>
   <div>
     <div v-for="item in sendList" :key="item.index" class="sendDiv">
-      <div>
-        {{ item.issuance }}{{ item.orderType }}
-        {{ item.batchingState }}
-      </div>
-      <div>
-        <table class="sendTable">
-          <tr>
-            <td>产品名称</td>
-            <td>产品数量</td>
-          </tr>
-          <tr v-for="data in item.orderdata" :key="data.index">
-            <td>{{ data.orderPname }}</td>
-            <td>{{ data.shipment }}</td>
-          </tr>
-        </table>
-      </div>
+      <table class="sendTable">
+        <thead>
+          <td>{{ item.issuance }}{{ item.orderType }}</td>
+          <td><span>{{ item.batchingState }}</span></td>
+        </thead>
+        <tr>
+          <td>产品名称</td>
+          <td>产品数量</td>
+        </tr>
+        <tr v-for="data in item.orderdata" :key="data.index">
+          <td>{{ data.orderPname }}</td>
+          <td>{{ data.shipment }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>

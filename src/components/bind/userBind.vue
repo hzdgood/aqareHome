@@ -1,20 +1,32 @@
 <template>
   <div>
-    <!-- <div class="floatDiv" v-show="status"></div> -->
-    <!-- <div :class="status ? 'infoDiv' : ''"> -->
     <div class="headerDiv">客户绑定</div>
-    <input id="name" type="text" @change="change()" />
-    <input type="button" value="查询" @click="search()" />
+    <table class="EditTable">
+      <tr>
+        <td>客户信息</td>
+        <td><input id="name" type="text" @change="change()" /></td>
+        <td><input type="button" value="查询" @click="search()" /></td>
+      </tr>
+      <tr>
+        <td>客户名称</td>
+        <td colspan="2">
+          <select id="customName" style="max-width: 300px">
+            <option
+              :key="customer.id"
+              v-for="customer in customerList"
+              :value="customer.id"
+            >
+              {{ customer.name }} {{ customer.phone }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </table>
     <div>
-      <select id="customName" style="max-width: 300px">
-        <option :key="customer.id" v-for="customer in customerList" :value="customer.id">
-          {{ customer.name }} {{ customer.phone }}
-        </option>
-      </select>
       <div>
-        <input type="button" value="新增用户" @click="add()" v-show="addStatus" />
-        <input type="button" value="绑定该用户" @click="save()" />
-        <input type="button" value="关闭" @click="close()" />
+        <button class="addButton" type="button" @click="add()" v-show="addStatus">新增用户</button>
+        <button class="saveButton" type="button" @click="save()">绑定该用户</button>
+        <button class="closeButton" type="button" @click="close()">关闭</button>
       </div>
     </div>
   </div>

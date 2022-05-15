@@ -27,7 +27,6 @@
 }
 
 .addButton {
-  width: 72px;
   height: 32px;
   color: #FFFFFF;
   background: #2B72E8;
@@ -237,7 +236,7 @@
   background-color: #fff;
 }
 
-.sendTable tr:nth-child(1) {
+.sendTable tr:nth-child(2) {
   border: 1px solid #eee;
   font-weight: bold;
   background-color: #ddd !important;
@@ -247,10 +246,35 @@
   border: 1px solid #eee;
 }
 
+.sendTable thead {
+  padding: 10px;
+  height: 50px;
+}
+
+.sendTable thead td:nth-child(1) {
+  font-weight: bold;
+}
+
+.sendTable thead td:nth-child(2) {
+  text-align: right;
+  color: #00B19D;
+}
+
+.sendTable thead td:nth-child(2) span {
+  width: 44px;
+  line-height: 16px;
+  display: inline-block;
+  background-color: #EAF8F7;
+  border-radius: 2px;
+  border: 1px solid #00B19D;
+}
+
 /*
   方案
 */
 .schemeDiv {
+  width: auto;
+  padding: 8px;
   margin: 8px;
   background: #ECF2FD;
 }
@@ -392,4 +416,41 @@ customerEdit
   color: #4285F4;
   line-height: 20px;
   margin: 10px;
+}
+
+.workDiv {
+  width: 100%;
+  padding: 10px 10px 0px 10px;
+}
+
+.workTable {
+  width: 100%;
+  border-left: 8px solid #2B72E8;
+  border-top: 1px solid #DCE0E7;
+  border-right: 1px solid #DCE0E7;
+  border-bottom: 1px solid #DCE0E7;
+  border-radius: 4px;
+}
+
+.workTable tr td {
+  padding: 5px 5px 0px 5px;
+}
+
+.workTable tr td:nth-child(1) {
+  width: 70px;
+}
+
+.workTable tr td:nth-child(3) {
+  text-align: right;
+  padding-right: 10px;
+  color: #00B19D;
+}
+
+.workTable tr td:nth-child(3) span {
+  width: 44px;
+  line-height: 16px;
+  display: inline-block;
+  background-color: #EAF8F7;
+  border-radius: 2px;
+  border: 1px solid #00B19D;
 }
