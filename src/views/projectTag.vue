@@ -1,6 +1,6 @@
 <template>
   <div>
-    <projectEdit @reload="reloadFunction"></projectEdit>
+    <!-- <projectEdit @reload="reloadFunction"></projectEdit> -->
     <div class="tag inline" v-if="currentTask.length != 0">
       目前任务
       <button v-for="item in currentTask" :key="'currentTask' + item.value">

@@ -1,67 +1,75 @@
 <template>
   <div id="app">
-    <customerEdit @reload="reloadFunction"></customerEdit>
-    <div class="tag inline" v-if="custominto.length != 0">
-      <div>客户来源</div>
-      <button v-for="item in custominto" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="hometype.length != 0">
-      <div>房型</div>
-      <button v-for="item in hometype" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="houseInfo.length != 0">
-      <div>房屋情况</div>
-      <button v-for="item in houseInfo" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="houseNeed.length != 0">
-      <div>全屋需求</div>
-      <button v-for="item in houseNeed" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="personInfo.length != 0">
-      <div>人员属性</div>
-      <button v-for="item in personInfo" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="cAttribute.length != 0">
-      <div>客户属性</div>
-      <button v-for="item in cAttribute" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="lostStatus.length != 0">
-      <div>流失状态</div>
-      <button v-for="item in lostStatus" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="oneCustom.length != 0">
-      <div>单品客户</div>
-      <button v-for="item in oneCustom" :key="item.item_id">
-        {{ item.title }}
-      </button>
-    </div>
+    <table class="tagTable">
+      <tr>
+        <td>客户来源</td>
+        <td>
+          <button v-for="item in custominto" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+        <td>房型</td>
+        <td>
+          <button v-for="item in hometype" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>房屋情况</td>
+        <td>
+          <button v-for="item in houseInfo" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+        <td>人员属性</td>
+        <td>
+          <button v-for="item in personInfo" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>全屋需求</td>
+        <td colspan="3">
+          <button v-for="item in houseNeed" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>客户属性</td>
+        <td colspan="3">
+          <button v-for="item in cAttribute" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>单品客户</td>
+        <td colspan="3">
+          <button v-for="item in oneCustom" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>流失状态</td>
+        <td colspan="3">
+          <button v-for="item in lostStatus" :key="item.item_id">
+            {{ item.title }}
+          </button>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Emit } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
-import customerEdit from '@/components/infoEdit/customerEdit.vue'
 
-@Component({
-  components: {
-    customerEdit: customerEdit
-  }
-})
+@Component({})
 export default class Actions extends Vue {
   houseInfo: any[] = [];
   personInfo: any[] = [];

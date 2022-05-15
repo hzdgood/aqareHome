@@ -1,15 +1,22 @@
 <template>
-  <div id="app">
+  <div class="appbody">
     <div v-if="userStatus">
-      <user></user>
-      <customerTag></customerTag>
-      <customerStage></customerStage>
-      <sidebar-nav></sidebar-nav>
+      <div class="appdiv">
+        <user-info></user-info>
+        <div class="lineType"></div>
+        <customer-tag></customer-tag>
+      </div>
+      <div class="appdiv">
+        <customer-stage></customer-stage>
+      </div>
+      <div class="appdiv">
+        <sidebar-nav></sidebar-nav>
       <router-view />
-      <footContent></footContent>
+      <foot-content></foot-content>
+      </div>
     </div>
     <div v-if="userStatus == false">
-      <userBind @close="close()"></userBind>
+      <user-bind @close="close()"></user-bind>
     </div>
   </div>
 </template>
@@ -27,11 +34,11 @@ import { table, field } from '@/config/config'
   name: 'App',
   components: {
     'sidebar-nav': Nav,
-    user: user,
-    customerTag: customerTag,
-    customerStage: customerStage,
-    footContent: footContent,
-    userBind: userBind
+    'user-info': user,
+    'customer-tag': customerTag,
+    'customer-stage': customerStage,
+    'foot-content': footContent,
+    'user-bind': userBind
   }
 })
 export default class Actions extends Vue {
@@ -61,6 +68,7 @@ export default class Actions extends Vue {
     }
   }
 
+  // 关闭
   close () {
     this.userStatus = true
     location.reload()

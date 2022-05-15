@@ -1,15 +1,19 @@
 <template>
-  <div id="Chat">
+  <div>
     <div v-if="userStatus == true">
-      <user></user>
-      <projectTag></projectTag>
-      <projectStage></projectStage>
+      <div>
+        <user-info></user-info>
+        <project-tag></project-tag>
+      </div>
+      <div>
+        <project-stage></project-stage>
+      </div>
       <sidebar-nav></sidebar-nav>
       <router-view />
-      <footContent></footContent>
+      <foot-content></foot-content>
     </div>
     <div v-if="userStatus == false" v-show="bindStatus">
-      <chatBind @close="close()"></chatBind>
+      <chat-bind @close="close()"></chat-bind>
     </div>
   </div>
 </template>
@@ -27,11 +31,11 @@ import { table, field } from '@/config/config'
   name: 'App',
   components: {
     'sidebar-nav': Nav,
-    projectTag: projectTag,
-    projectStage: projectStage,
-    footContent: footContent,
-    chatBind: chatBind,
-    user: user
+    'project-tag': projectTag,
+    'project-stage': projectStage,
+    'foot-content': footContent,
+    'chat-bind': chatBind,
+    'user-info': user
   }
 })
 export default class Actions extends Vue {

@@ -1,8 +1,7 @@
 <template>
   <div>
-    <button class="editTag" @click="showEdit()">编辑</button>
-    <div class="floatDiv" v-show="editShow"></div>
-    <div id="infoDiv" class="infoDiv" v-show="editShow">
+    <div class="floatDiv"></div>
+    <div class="infoDiv" >
       <div class="headerDiv">群编辑</div>
       <div class="inline">
         <span>客户名称</span>
@@ -54,7 +53,6 @@ export default class Home extends Vue {
   projectType = projectType;
   projectProgress = projectProgress;
   userId = localStorage.getItem('userId');
-  editShow = false;
   itemId: any = '';
   async showEdit () {
     const chatId = localStorage.getItem('chatID')
@@ -112,11 +110,7 @@ export default class Home extends Vue {
   }
 
   close () {
-    if (this.editShow === true) {
-      this.editShow = false
-    } else {
-      this.editShow = true
-    }
+    console.log(111)
   }
 
   async saveInfo () {

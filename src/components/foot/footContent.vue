@@ -1,24 +1,23 @@
 <template>
   <div>
-    <div class="footDiv">
-      <a-menu mode="horizontal">
-        <a-menu-item key="Info" @click="clickInfo()" v-show="singleStatus">信息</a-menu-item>
-        <a-menu-item key="chatInfo" @click="clickChat()" v-show="chatStatus">信息</a-menu-item>
-        <a-menu-item key="collect" @click="clickCollect()">收款</a-menu-item>
-        <a-menu-item key="scheme" @click="clickScheme()">方案</a-menu-item>
-      </a-menu>
+    <div class="footDiv" @click="selectOption()">+</div>
+    <div class="footContent" v-show="optionStatus">
+      <div @click="clickInfo()" v-show="singleStatus">信息</div>
+      <div @click="clickChat()" v-show="chatStatus">信息</div>
+      <div @click="clickCollect()">收款</div>
+      <div @click="clickScheme()">方案</div>
     </div>
     <div v-if="infoShow">
-      <infoEdit @reload="reload()"></infoEdit>
+      <info-edit @reload="reload()"></info-edit>
     </div>
     <div v-if="chatShow">
-      <chatEdit @reload="reload()"></chatEdit>
+      <chat-edit @reload="reload()"></chat-edit>
     </div>
     <div v-if="collectShow">
-      <collectEdit @close="clickCollect()"></collectEdit>
+      <collect-edit @close="clickCollect()"></collect-edit>
     </div>
     <div v-if="schemeShow">
-      <schemeEdit :upload="true" @close="clickScheme()"></schemeEdit>
+      <scheme-edit :upload="true" @close="clickScheme()"></scheme-edit>
     </div>
   </div>
 </template>
@@ -36,10 +35,10 @@ import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
     'a-menu': Menu,
     'a-menu-item': Menu.Item,
     'a-icon': Icon,
-    infoEdit: infoEdit,
-    collectEdit: collectEdit,
-    schemeEdit: schemeEdit,
-    chatEdit: chatEdit
+    'info-edit': infoEdit,
+    'collect-edit': collectEdit,
+    'scheme-edit': schemeEdit,
+    'chat-edit': chatEdit
   }
 })
 export default class Home extends Vue {
@@ -49,6 +48,7 @@ export default class Home extends Vue {
   chatShow = false;
   singleStatus = false;
   chatStatus = false;
+  optionStatus = false;
   contactType = localStorage.getItem('contactType');
 
   mounted () {
@@ -61,11 +61,20 @@ export default class Home extends Vue {
     }
   }
 
+  selectOption () {
+    if (this.optionStatus) {
+      this.optionStatus = false
+    } else {
+      this.optionStatus = true
+    }
+  }
+
   // 回调 infoEdit
   reload () {
     this.$store.dispatch('updateReload')
     this.infoShow = false
     this.chatShow = false
+    this.optionStatus = false
   }
 
   clickChat () {

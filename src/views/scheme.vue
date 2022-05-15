@@ -1,6 +1,6 @@
 <template>
-  <div class="centerDiv">
-    <table class="infoTable">
+  <div class="schemeDiv">
+    <table class="schemeTable">
       <thead>
         <tr>
           <td>产品</td>
@@ -14,16 +14,16 @@
           <td>未调</td>
         </tr>
       </thead>
-      <tr :key="projectList.id" v-for="projectList in projectList">
-        <td>{{ projectList.projectName }}</td>
-        <td>{{ projectList.AllNumber }}</td>
-        <td>{{ projectList.planNuber }}</td>
-        <td>{{ projectList.price }}</td>
-        <td>{{ projectList.discount }}</td>
-        <td>{{ projectList.servieFee }}</td>
-        <td>{{ projectList.notIssued }}</td>
-        <td>{{ projectList.notInstalled }}</td>
-        <td>{{ projectList.notAdjusted }}</td>
+      <tr :key="item.id" v-for="item in projectList">
+        <td>{{ item.projectName }}</td>
+        <td>{{ item.AllNumber }}</td>
+        <td>{{ item.planNuber }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.discount }}</td>
+        <td>{{ item.servieFee }}</td>
+        <td>{{ item.notIssued }}</td>
+        <td>{{ item.notInstalled }}</td>
+        <td>{{ item.notAdjusted }}</td>
       </tr>
     </table>
   </div>

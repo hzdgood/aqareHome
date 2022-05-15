@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <div v-if="customStage.length != 0">客户阶段</div>
+  <div class="stageDiv">
     <div class="stageButton">
       <button
         v-for="item in customStage"

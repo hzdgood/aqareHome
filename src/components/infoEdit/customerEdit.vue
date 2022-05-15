@@ -1,8 +1,7 @@
 <template>
   <div>
-    <button class="editTag" @click="showEdit()">编辑</button>
-    <div class="floatDiv" v-show="editShow"></div>
-    <div id="infoDiv" class="infoDiv" v-show="editShow">
+    <div class="floatDiv"></div>
+    <div class="infoDiv">
       <div class="headerDiv">客户编辑</div>
       <div class="inline">
         <span>客户名称</span>
@@ -132,7 +131,6 @@ import { table, field } from '@/config/config'
 import { SearchInfo, updateTable } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
-  editShow = false;
   taglist: any[] = []; // 标签list
   houseInfo: any[] = [];
   personInfo: any[] = [];
@@ -243,11 +241,7 @@ export default class Home extends Vue {
   }
 
   close () {
-    if (this.editShow === true) {
-      this.editShow = false
-    } else {
-      this.editShow = true
-    }
+    console.log(11)
   }
 
   // 标签更新
@@ -299,7 +293,7 @@ export default class Home extends Vue {
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
     this.$emit('reload')
-    this.editShow = false
+    this.close()
   }
 
   // 编辑按钮触发

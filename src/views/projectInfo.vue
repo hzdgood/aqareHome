@@ -1,39 +1,36 @@
 <template>
-  <div class="centerDiv">
+  <div>
     <div v-for="project in projectList" :key="project.id">
-      <div class="lineDiv">
-        <span>项目类型</span>
-        <input type="text" readonly :value="project.projectType" />
-        <span>主&nbsp;&nbsp;项&nbsp;&nbsp;目：</span>
-        <input type="text" readonly :value="project.masterProject" />
-      </div>
-      <div class="lineDiv">
-        <span>项目名称</span>
-        <input type="text" readonly :value="project.projectCustom" />
-        <span>联系方式</span>
-        <input type="text" readonly :value="project.telephone" />
-      </div>
-      <div class="lineDiv">
-        <span>小区名称</span>
-        <input type="text" readonly :value="project.projectVillage" />
-        <span>客户房型</span>
-        <input type="text" readonly :value="project.projectHometype" />
-      </div>
-      <div class="lineDiv">
-        <span>所在区域</span>
-        <input type="text" readonly :value="project.projectArea" />
-        <span>装修阶段</span>
-        <input type="text" readonly :value="project.projectStage" />
-      </div>
-      <div class="lineDiv">
-        <span>客户地址</span>
-        <input
-          class="projectAddress"
-          type="text"
-          readonly
-          :value="project.projectAddress"
-        />
-      </div>
+      <table width="100%" class="projectTable">
+        <tr>
+          <td colspan="4">
+            <span>{{ project.projectCustom }}</span>
+            <span>{{ project.masterProject }}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>项目类型</td>
+          <td>{{ project.projectType }}</td>
+          <td>联系方式</td>
+          <td>{{ project.telephone }}</td>
+        </tr>
+        <tr>
+          <td>小区名称</td>
+          <td>{{ project.projectVillage }}</td>
+          <td>客户房型</td>
+          <td>{{ project.projectHometype }}</td>
+        </tr>
+        <tr>
+          <td>所在区域</td>
+          <td>{{ project.projectArea }}</td>
+          <td>装修阶段</td>
+          <td>{{ project.projectStage }}</td>
+        </tr>
+        <tr>
+          <td>客户地址</td>
+          <td colspan="3">{{ project.projectAddress }}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
@@ -142,7 +139,11 @@ export default class Home extends Vue {
         }
         if (fields[i].field_id === field.masterProject) {
           const values = fields[i].values[0].name
-          masterProject = values
+          if (values === '是') {
+            masterProject = '主项目'
+          } else {
+            masterProject = '非主项目'
+          }
         }
       }
       const obj = {

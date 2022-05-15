@@ -5,144 +5,128 @@
       <div class="headerDiv">项目信息</div>
       <button @click="addClick()">新增</button>
       <div id="projectList" v-for="project in projectList" :key="project.id">
-        <div class="lineDiv">
-          <span>项目类型</span>
-          <span>
-            <select :id="project.id + 'projectType'">
-              <option :value="project.projectTypeId">
-                {{ project.projectType }}
-              </option>
-              <option
-                v-for="projectType in projectType"
-                :value="projectType.value"
-                :key="projectType.value"
-              >
-                {{ projectType.name }}
-              </option>
-            </select>
-          </span>
-          <button @click="bindClick(project)">绑定</button>
-          <button @click="deleteClick(project)">删除</button>
-          <span>{{ project.masterProject }}</span>
-        </div>
-        <div class="lineDiv">
-          <span>项目名称</span>
-          <span>
-            <input
-              :id="project.id + 'projectCustom'"
-              type="text"
-              :value="project.customer"
-            />
-          </span>
-          <span>联系方式</span>
-          <span>
-            <input
-              :id="project.id + 'telephone'"
-              type="text"
-              :value="project.telephone"
-            />
-          </span>
-        </div>
-        <div class="lineDiv">
-          <span>小区名称</span>
-          <span>
-            <input
-              :id="project.id + 'projectVillage'"
-              type="text"
-              :value="project.village"
-            />
-          </span>
-          <span>客户房型</span>
-          <span>
-            <select :id="project.id + 'projectHometype'">
-              <option :value="project.hometypeId">
-                {{ project.hometype }}
-              </option>
-              <option
-                v-for="houseType in houseType"
-                :value="houseType.value"
-                :key="houseType.value"
-              >
-                {{ houseType.name }}
-              </option>
-            </select>
-          </span>
-        </div>
-        <div class="lineDiv">
-          <span>销售人员</span>
-          <span>
-            <select :id="project.id + 'saleMan'">
-              <option :value="project.saleManId">
-                {{ project.saleMan }}
-              </option>
-              <option
-                v-for="saleManList in saleManList"
-                :value="saleManList.saleId"
-                :key="saleManList.saleId"
-              >
-                {{ saleManList.saleName }}
-              </option>
-            </select>
-          </span>
-          <span>所属门店</span>
-          <span>
-            <select :id="project.id + 'department'">
-              <option :value="project.departmentId">
-                {{ project.department }}
-              </option>
-              <option
-                v-for="departmentList in departmentList"
-                :value="departmentList.value"
-                :key="departmentList.value"
-              >
-                {{ departmentList.name }}
-              </option>
-            </select>
-          </span>
-        </div>
-        <div class="lineDiv">
-          <span>所在区域</span>
-          <span>
-            <select :id="project.id + 'projectArea'">
-              <option :value="project.areaId">
-                {{ project.area }}
-              </option>
-              <option
-                v-for="areaList in areaList"
-                :value="areaList.value"
-                :key="areaList.value"
-              >
-                {{ areaList.name }}
-              </option>
-            </select>
-          </span>
-          <span>装修阶段</span>
-          <span>
-            <select :id="project.id + 'projectStage'">
-              <option :value="project.stageId">
-                {{ project.stage }}
-              </option>
-              <option
-                v-for="fitmentStage in fitmentStage"
-                :value="fitmentStage.value"
-                :key="fitmentStage.value"
-              >
-                {{ fitmentStage.name }}
-              </option>
-            </select>
-          </span>
-        </div>
-        <div class="lineDiv">
-          <span>客户地址：</span>
-          <span>
-            <input
-              :id="project.id + 'projectAddress'"
-              class="projectAddress"
-              type="text"
-              :value="project.address"
-            />
-          </span>
-        </div>
+        <button @click="bindClick(project)">绑定</button>
+        <button @click="deleteClick(project)">删除</button>
+        <span>{{ project.masterProject }}</span>
+        <table>
+          <tr>
+            <td>项目类型</td>
+            <td>
+              <select :id="project.id + 'projectType'">
+                <option :value="project.projectTypeId">
+                  {{ project.projectType }}
+                </option>
+                <option v-for="item in projectType"
+                  :value="item.value"
+                  :key="item.value"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>项目名称</td>
+            <td>
+              <input :id="project.id + 'projectCustom'"
+                type="text"
+                :value="project.customer"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>联系方式</td>
+            <td>
+              <input :id="project.id + 'telephone'"
+                type="text"
+                :value="project.telephone"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>小区名称</td>
+            <td>
+              <input :id="project.id + 'projectVillage'"
+                type="text"
+                :value="project.village"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>客户房型</td>
+            <td>
+              <select :id="project.id + 'projectHometype'">
+                <option :value="project.hometypeId">
+                  {{ project.hometype }}
+                </option>
+                <option v-for="item in houseType"
+                  :value="item.value"
+                  :key="item.value"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>销售人员</td>
+            <td>
+              <select :id="project.id + 'saleMan'">
+                <option :value="project.saleManId">
+                  {{ project.saleMan }}
+                </option>
+                <option v-for="item in saleManList"
+                  :value="item.saleId"
+                  :key="item.saleId"
+                >
+                  {{ item.saleName }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>所属门店</td>
+            <td>
+              <select :id="project.id + 'department'">
+                <option :value="project.departmentId">
+                  {{ project.department }}
+                </option>
+                <option v-for="item in departmentList"
+                  :value="item.value"
+                  :key="item.value"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>所在区域</td>
+            <td>
+              <select :id="project.id + 'projectArea'">
+                <option :value="project.areaId">
+                  {{ project.area }}
+                </option>
+                <option v-for="item in areaList"
+                  :value="item.value"
+                  :key="item.value"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>客户地址</td>
+            <td>
+              <input :id="project.id + 'projectAddress'"
+                class="projectAddress"
+                type="text"
+                :value="project.address"
+              />
+            </td>
+          </tr>
+        </table>
         <button @click="saveClick(project)">保存</button>
         <button @click="close()">关闭</button>
       </div>
@@ -152,11 +136,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import {
-  SearchInfo, updateTable, deleteItem, filterInfo
+  SearchInfo,
+  updateTable,
+  deleteItem,
+  filterInfo
 } from '@/config/interFace'
-import {
-  table, field, houseType, projectType
-} from '@/config/config'
+import { table, field, houseType, projectType } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectInfo = table.projectInfo;

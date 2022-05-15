@@ -12,11 +12,11 @@
                 {{ project.projectType }}
               </option>
               <option
-                v-for="projectType in projectType"
-                :value="projectType.value"
-                :key="projectType.value"
+                v-for="item in projectType"
+                :value="item.value"
+                :key="item.value"
               >
-                {{ projectType.name }}
+                {{ item.name }}
               </option>
             </select>
           </span>
@@ -55,11 +55,11 @@
                 {{ project.hometype }}
               </option>
               <option
-                v-for="houseType in houseType"
-                :value="houseType.value"
-                :key="houseType.value"
+                v-for="item in houseType"
+                :value="item.value"
+                :key="item.value"
               >
-                {{ houseType.name }}
+                {{ item.name }}
               </option>
             </select>
           </span>
@@ -72,11 +72,11 @@
                 {{ project.saleMan }}
               </option>
               <option
-                v-for="saleManList in saleManList"
-                :value="saleManList.saleId"
-                :key="saleManList.saleId"
+                v-for="item in saleManList"
+                :value="item.saleId"
+                :key="item.saleId"
               >
-                {{ saleManList.saleName }}
+                {{ item.saleName }}
               </option>
             </select>
           </span>
@@ -87,11 +87,11 @@
                 {{ project.department }}
               </option>
               <option
-                v-for="departmentList in departmentList"
-                :value="departmentList.value"
-                :key="departmentList.value"
+                v-for="item in departmentList"
+                :value="item.value"
+                :key="item.value"
               >
-                {{ departmentList.name }}
+                {{ item.name }}
               </option>
             </select>
           </span>
@@ -104,11 +104,11 @@
                 {{ project.area }}
               </option>
               <option
-                v-for="areaList in areaList"
-                :value="areaList.value"
-                :key="areaList.value"
+                v-for="item in areaList"
+                :value="item.value"
+                :key="item.value"
               >
-                {{ areaList.name }}
+                {{ item.name }}
               </option>
             </select>
           </span>
@@ -119,11 +119,11 @@
                 {{ project.stage }}
               </option>
               <option
-                v-for="fitmentStage in fitmentStage"
-                :value="fitmentStage.value"
-                :key="fitmentStage.value"
+                v-for="item in fitmentStage"
+                :value="item.value"
+                :key="item.value"
               >
-                {{ fitmentStage.name }}
+                {{ item.name }}
               </option>
             </select>
           </span>

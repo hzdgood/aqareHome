@@ -1,7 +1,18 @@
 <template>
-  <div id="app">
-    <span class="headDiv">ID: {{ userName }}</span>
-    <span class="headDiv">客户姓名:{{ name }}</span>
+  <div class="userDiv">
+    <table>
+      <tr>
+        <td>
+          <img width="40px" height="40px;" src="../../img/name.png" />
+        </td>
+        <td>
+          <span class="username">{{ name }}</span>
+        </td>
+        <td>
+          <button>编辑</button>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 <script lang="ts">
@@ -10,9 +21,9 @@ import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
-  userName = localStorage.getItem('userName')
-  userId = localStorage.getItem('userId')
-  name = ''
+  userName = localStorage.getItem('userName');
+  userId = localStorage.getItem('userId');
+  name = '';
   async mounted () {
     const data = {
       where: {
