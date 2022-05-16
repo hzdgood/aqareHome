@@ -1,14 +1,17 @@
 <template>
-  <div>
-    <div v-if="userStatus == true">
-      <div>
+  <div class="appbody">
+    <div v-if="userStatus">
+      <div class="appdiv">
         <user-info></user-info>
+        <div class="lineType"></div>
         <project-tag></project-tag>
       </div>
-      <div>
+      <div class="appdiv">
         <project-stage></project-stage>
       </div>
-      <sidebar-nav></sidebar-nav>
+      <div class="appdiv">
+        <sidebar-nav></sidebar-nav>
+      </div>
       <router-view />
       <foot-content></foot-content>
     </div>

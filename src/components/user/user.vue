@@ -16,10 +16,10 @@
       </table>
     </div>
     <div v-if="editShow">
-      <customer-edit
-        @close="closeEdit()"
-        @reload="reloadPage()"
-      ></customer-edit>
+      <custom-edit @close="closeEdit()" @reload="reloadPage()"></custom-edit>
+    </div>
+    <div v-if="chatShow">
+      <project-edit @close="closeEdit()" @reload="reloadPage()"></project-edit>
     </div>
   </div>
 </template>
@@ -28,17 +28,21 @@ import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import customerEdit from '@/components/infoEdit/customerEdit.vue'
+import projectEdit from '@/components/infoEdit/projectEdit.vue'
 @Component({
   name: 'App',
   components: {
-    'customer-edit': customerEdit
+    'custom-edit': customerEdit,
+    'project-edit': projectEdit
   }
 })
 export default class Home extends Vue {
   userName = localStorage.getItem('userName');
   userId = localStorage.getItem('userId');
+  contactType = localStorage.getItem('contactType');
   name = '';
   editShow = false;
+  chatShow = false;
 
   async mounted () {
     const data = {
@@ -67,11 +71,16 @@ export default class Home extends Vue {
   }
 
   editPage () {
-    this.editShow = true
+    if (this.contactType === 'single_chat_tools') {
+      this.editShow = true
+    } else {
+      this.chatShow = true
+    }
   }
 
   closeEdit () {
     this.editShow = false
+    this.chatShow = false
   }
 
   reloadPage () {

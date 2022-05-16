@@ -1,45 +1,51 @@
 <template>
   <div>
     <div class="floatDiv"></div>
-    <div class="infoDiv" >
+    <div class="infoDiv">
       <div class="headerDiv">群编辑</div>
-      <div class="inline">
-        <span>客户名称</span>
-        <input id="customerName" type="text" />
-      </div>
-      <div class="inline">
-        <span>客户电话</span>
-        <input id="telephone" type="text" />
-      </div>
-      <div class="inline">
-        <span>目前任务</span>
-        <select id="projectProgress">
-          <option
-            v-for="item in projectProgress"
-            :key="item.value"
-            :value="item.value"
-            name="目前任务"
-          >
-            {{ item.name }}
-          </option>
-        </select>
-      </div>
-      <div class="inline">
-        <span>项目类型</span>
-        <select id="projectType">
-          <option
-            v-for="item in projectType"
-            :key="item.value"
-            :value="item.value"
-            name="项目类型"
-          >
-            {{ item.name }}
-          </option>
-        </select>
-      </div>
-      <div>
-        <button @click="saveInfo()">保存</button>
-        <button @click="close()">关闭</button>
+      <table class="EditTable">
+        <tr>
+          <td>客户名称</td>
+          <td><input id="customerName" type="text" /></td>
+        </tr>
+        <tr>
+          <td>客户电话</td>
+          <td><input id="telephone" type="text" /></td>
+        </tr>
+        <tr>
+          <td>目前任务</td>
+          <td>
+            <select id="projectProgress">
+              <option
+                v-for="item in projectProgress"
+                :key="item.value"
+                :value="item.value"
+                name="目前任务"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>项目类型</td>
+          <td>
+            <select id="projectType">
+              <option
+                v-for="item in projectType"
+                :key="item.value"
+                :value="item.value"
+                name="项目类型"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <div class="buttonSite">
+        <button class="saveButton" @click="saveInfo()">保存</button>
+        <button class="closeButton" @click="close()">关闭</button>
       </div>
     </div>
   </div>
@@ -54,6 +60,10 @@ export default class Home extends Vue {
   projectProgress = projectProgress;
   userId = localStorage.getItem('userId');
   itemId: any = '';
+  async mounted () {
+    this.showEdit()
+  }
+
   async showEdit () {
     const chatId = localStorage.getItem('chatID')
     const obj = {
@@ -106,11 +116,10 @@ export default class Home extends Vue {
         telephone.value = values[0].value
       }
     }
-    this.close()
   }
 
   close () {
-    console.log(111)
+    this.$emit('close')
   }
 
   async saveInfo () {
@@ -122,8 +131,12 @@ export default class Home extends Vue {
       fields: {
         [field.pname]: customerName.value,
         [field.ptelephone]: telephone.value,
-        [field.currentTask]: [currentTask.options[currentTask.selectedIndex].value],
-        [field.projectType]: [projectType.options[projectType.selectedIndex].value]
+        [field.currentTask]: [
+          currentTask.options[currentTask.selectedIndex].value
+        ],
+        [field.projectType]: [
+          projectType.options[projectType.selectedIndex].value
+        ]
       }
     }
     // 发送伙伴云修改
