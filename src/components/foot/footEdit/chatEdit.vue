@@ -119,7 +119,7 @@
                 {{ project.stage }}
               </option>
               <option
-                v-for="item in fitmentStage"
+                v-for="item in decorationStage"
                 :value="item.value"
                 :key="item.value"
               >
@@ -148,7 +148,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, updateTable, filterInfo } from '@/config/interFace'
-import { table, field, projectType } from '@/config/config'
+import { table, field, houseType, projectType, decorationStage } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectType: any = projectType;
@@ -156,6 +156,8 @@ export default class Home extends Vue {
   itemList: any[] = [];
   saleManList: any[] = [];
   areaList: any[] = [];
+  houseType: any = houseType;
+  decorationStage: any = decorationStage
   departmentList: any[] = [];
   userId = localStorage.getItem('userId');
   chatId = localStorage.getItem('chatID');

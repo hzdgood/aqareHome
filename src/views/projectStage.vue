@@ -1,8 +1,12 @@
 <template>
-  <div>
-    <div>装修进度</div>
+  <div class="stageDiv">
     <div class="stageButton">
-      <button v-for="item in decorationStage" :key="item.value" :id="'projectstage' + item.value" @click="onclick(item)">
+      <button
+        v-for="item in decorationStage"
+        :key="item.value"
+        :id="'projectstage' + item.value"
+        @click="onclick(item)"
+      >
         {{ item.name }}
       </button>
     </div>

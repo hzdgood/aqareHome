@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div>
     <table class="tagTable">
       <tr>
         <td>客户来源</td>
@@ -65,7 +65,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 
@@ -144,10 +144,10 @@ export default class Actions extends Vue {
   }
 
   // 回调 tagEdit
-  @Emit()
-  async reloadFunction () {
-    setTimeout(this.loadFunction, 1000)
-  }
+  // @Emit()
+  // async reloadFunction () {
+  //   setTimeout(this.loadFunction, 1000)
+  // }
 }
 </script>
 <style scoped></style>

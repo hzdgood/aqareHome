@@ -1,23 +1,30 @@
 <template>
   <div>
     <div class="headerDiv">群绑定</div>
-    <span>项目名称</span>
-    <input id="name" type="text" />
-    <input type="button" value="查询" @click="search()" />
-    <div>
-      <select id="projectCustom" style="max-width: 300px">
-        <option
-          v-for="project in projectList"
-          :key="project.itemId"
-          :value="project.itemId"
-        >
-          {{ project.projectCustom }}
-        </option>
-      </select>
-    </div>
-    <div>
-      <input type="button" value="绑定" @click="save()" />
-      <input type="button" value="关闭" @click="close()" />
+    <table class="EditTable">
+      <tr>
+        <td>项目信息</td>
+        <td><input id="name" type="text" /></td>
+        <td><input type="button" value="查询" @click="search()" /></td>
+      </tr>
+      <tr>
+        <td>项目名称</td>
+        <td colspan="2">
+          <select id="projectCustom" style="max-width: 300px">
+            <option
+              v-for="project in projectList"
+              :key="project.itemId"
+              :value="project.itemId"
+            >
+              {{ project.projectCustom }}
+            </option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <div class="buttonSite">
+      <input class="saveButton" type="button" value="绑定" @click="save()" />
+      <input class="closeButton" type="button" value="关闭" @click="close()" />
     </div>
   </div>
 </template>
@@ -29,13 +36,11 @@ import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectList: any[] = [];
-  chatID = localStorage.getItem('chatID')
+  chatID = localStorage.getItem('chatID');
   async mounted () {
     const data = {
       where: {
-        and: [
-          { field: field.masterProject, query: { in: [1] } }
-        ]
+        and: [{ field: field.masterProject, query: { in: [1] } }]
       },
       offset: 0,
       limit: 20

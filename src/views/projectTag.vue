@@ -1,37 +1,36 @@
 <template>
   <div>
-    <!-- <projectEdit @reload="reloadFunction"></projectEdit> -->
-    <div class="tag inline" v-if="currentTask.length != 0">
-      目前任务
-      <button v-for="item in currentTask" :key="'currentTask' + item.value">
-        {{ item.name }}
-      </button>
-    </div>
-    <div class="tag inline" v-if="projectType.length != 0">
-      项目类型
-      <button v-for="item in projectType" :key="'projectType' + item.value">
-        {{ item.name }}
-      </button>
-    </div>
+    <table class="tagTable">
+      <tr>
+        <td>目前任务</td>
+        <td>
+          <button v-for="item in currentTask" :key="'currentTask' + item.value">
+            {{ item.name }}
+          </button>
+        </td>
+        <td>项目类型</td>
+        <td>
+          <button v-for="item in projectType" :key="'projectType' + item.value">
+            {{ item.name }}
+          </button>
+        </td>
+      </tr>
+    </table>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { table, field } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
-import projectEdit from '@/components/infoEdit/projectEdit.vue'
-@Component({
-  components: {
-    projectEdit: projectEdit
-  }
-})
+@Component({})
 export default class Home extends Vue {
-  currentTask:any = []
-  projectType:any = []
+  currentTask: any = [];
+  projectType: any = [];
   async mounted () {
     this.loadFunction()
   }
 
+  // 加载群标签
   async loadFunction () {
     const chatId = localStorage.getItem('chatID')
     const obj = {
@@ -71,10 +70,10 @@ export default class Home extends Vue {
   }
 
   // 回调 tagEdit
-  @Emit()
-  async reloadFunction () {
-    setTimeout(this.loadFunction, 1000)
-  }
+  // @Emit()
+  // async reloadFunction() {
+  //   setTimeout(this.loadFunction, 1000);
+  // }
 }
 </script>
 <style></style>
