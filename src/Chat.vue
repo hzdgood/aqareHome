@@ -11,9 +11,9 @@
       </div>
       <div class="appdiv">
         <sidebar-nav></sidebar-nav>
+        <router-view />
+        <foot-content></foot-content>
       </div>
-      <router-view />
-      <foot-content></foot-content>
     </div>
     <div v-if="userStatus == false" v-show="bindStatus">
       <chat-bind @close="close()"></chat-bind>

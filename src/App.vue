@@ -11,8 +11,8 @@
       </div>
       <div class="appdiv">
         <sidebar-nav></sidebar-nav>
-      <router-view />
-      <foot-content></foot-content>
+        <router-view />
+        <foot-content></foot-content>
       </div>
     </div>
     <div v-if="userStatus == false">
