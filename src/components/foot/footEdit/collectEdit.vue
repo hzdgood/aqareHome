@@ -7,36 +7,57 @@
         <table class="EditTable">
           <tr>
             <td>项目名称</td>
-            <td><input id="projectName" type="text" readonly :value="projectCode" /></td>
+            <td>
+              <input
+                id="projectName"
+                type="text"
+                readonly
+                :value="projectCode"
+              />
+            </td>
           </tr>
-           <tr>
+          <tr>
             <td>收款类型</td>
-            <td><input id="projectType" type="text" readonly value="定金" /></td>
+            <td>
+              <input id="projectType" type="text" readonly value="定金" />
+            </td>
           </tr>
-           <tr>
+          <tr>
             <td>收款方式</td>
-            <td><select id="collectType">
-            <option
-              v-for="item in collectType"
-              :value="item.value"
-              :key="item.value"
-            >
-              {{ item.name }}
-            </option>
-          </select></td>
+            <td>
+              <select id="collectType">
+                <option
+                  v-for="item in collectType"
+                  :value="item.value"
+                  :key="item.value"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </td>
           </tr>
-           <tr>
+          <tr>
             <td>收款金额</td>
             <td><input id="collectMoney" type="text" /></td>
           </tr>
-           <tr>
+          <tr>
             <td>上传图片</td>
             <td><input id="file" type="file" /></td>
           </tr>
         </table>
         <div class="buttonSite">
-          <input class="saveButton" type="button" @click="saveClick()" value="保存" />
-          <input class="closeButton" type="button" @click="closeClick()" value="关闭" />
+          <input
+            class="saveButton"
+            type="button"
+            @click="saveClick()"
+            value="保存"
+          />
+          <input
+            class="closeButton"
+            type="button"
+            @click="closeClick()"
+            value="关闭"
+          />
         </div>
       </div>
       <div v-if="errorStatus == false">

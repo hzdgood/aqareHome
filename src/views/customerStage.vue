@@ -34,7 +34,7 @@ export default class Home extends Vue {
       },
       offset: 0,
       limit: 20,
-      order_by: [{ field: 2200000182035321, sort: 'desc' }]
+      order_by: [{ field: 2200000182035325, sort: 'asc' }]
     }
     const result = await SearchInfo(this.tagInfo, data)
     this.taglist = result

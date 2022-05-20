@@ -25,7 +25,7 @@
     <div>
       <div class="buttonSite">
         <button class="addButton" type="button" @click="add()" v-show="addStatus">新增用户</button>
-        <button class="saveButton" type="button" @click="save()">绑定该用户</button>
+        <button class="bindButton" type="button" @click="save()">绑定该用户</button>
         <button class="closeButton" type="button" @click="close()">关闭</button>
       </div>
     </div>

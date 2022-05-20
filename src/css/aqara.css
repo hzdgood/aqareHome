@@ -44,6 +44,16 @@
   margin-left: 10px;
 }
 
+.bindButton{
+  width: 94px;
+  height: 32px;
+  color: #4285F4;
+  border-radius: 2px;
+  border: 1px solid #4285F4;
+  background-color: #ffffff;
+  margin-left: 10px;
+}
+
 .closeButton {
   width: 80px;
   height: 32px;
@@ -64,7 +74,7 @@
 .addSite {
   width: 93%;
   text-align: right;
-  margin: 10px 0px;
+  margin-top: 5px;
 }
 
 .headerDiv {
