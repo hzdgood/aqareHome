@@ -1,7 +1,7 @@
 <template>
   <div class="stageDiv">
     <div class="stageButton">
-      <button
+      <!-- <button
         v-for="item in customStage"
         :key="item.id"
         :id="item.id"
@@ -9,7 +9,13 @@
         @click="onclick(item)"
       >
         {{ item.value }}
-      </button>
+      </button> -->
+      <span>
+        <img src="../img/x1.png" />
+      </span>
+      <span>
+        <img src="../img/state-1.png" />
+      </span>
     </div>
   </div>
 </template>
@@ -25,6 +31,7 @@ export default class Home extends Vue {
   taglist: any[] = [];
   itemId: any = '';
   userId = localStorage.getItem('userId');
+  stageImg = '';
 
   // 获取所有客户标签
   async mounted () {
@@ -74,17 +81,17 @@ export default class Home extends Vue {
       return
     }
     this.itemId = res[0].item_id
-    const fields = res[0].fields
-    for (let i = 0; i < fields.length; i++) {
-      if (fields[i].field_id === field.customerStage) {
-        const values = fields[i].values
-        for (let j = 0; j < values.length; j++) {
-          const itemid = values[j].item_id
-          const dom: any = document.getElementById(itemid)
-          dom.className = 'selected'
-        }
-      }
-    }
+    // const fields = res[0].fields
+    // for (let i = 0; i < fields.length; i++) {
+    //   if (fields[i].field_id === field.customerStage) {
+    //     const values = fields[i].values
+    //     for (let j = 0; j < values.length; j++) {
+    //       const itemid = values[j].item_id
+    //       //const dom: any = document.getElementById(itemid)
+    //       // dom.className = 'selected'
+    //     }
+    //   }
+    // }
   }
 
   // 选择
