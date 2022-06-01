@@ -163,14 +163,6 @@
   padding: 5px 5px 5px 0px;
 }
 
-.stageButton table{
-  width: 70%;
-  height: 16%;
-  position: absolute;
-  right: 5%;
- 
-}
-
 .selected {
   background-color: #2B72E8 !important;
   color: #fff !important;

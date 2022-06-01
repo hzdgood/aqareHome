@@ -47,7 +47,7 @@
           <td>
             <span v-for="item in houseNeed" :key="item.id">
               <input
-                type="radio"
+                type="checkbox"
                 :id="item.id"
                 :name="item.field"
                 @click="onchange(item)"

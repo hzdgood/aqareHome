@@ -1,6 +1,7 @@
 <template>
   <div class="stageDiv">
     <div class="stageButton">
+      <table-select :width="comWidth" :height="comHeright"></table-select>
       <span>
         <img src="../img/x1.png" width="25%" />
       </span>
@@ -21,7 +22,12 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo, updateTable } from '@/config/interFace'
 import { table, field } from '@/config/config'
-@Component({})
+import tableSelect from '@/components/common/tableSelect.vue'
+@Component({
+  components: {
+    'table-select': tableSelect
+  }
+})
 export default class Home extends Vue {
   tagInfo = table.tagInfo;
   customerInfo = table.customerInfo;
@@ -38,6 +44,9 @@ export default class Home extends Vue {
   stageImg7 = false;
   stageImg8 = false;
   screenWidth = document.body.clientWidth;
+
+  comWidth = ''
+  comHeright = ''
 
   @Watch('this.screenWidth')
   reloadTable () {
