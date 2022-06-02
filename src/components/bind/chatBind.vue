@@ -11,7 +11,6 @@
     </div>
   </div>
 </template>
-
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import chat from '@/components/bindInfo/chat.vue'
@@ -38,5 +37,3 @@ export default class Home extends Vue {
   }
 }
 </script>
-
-<style scoped></style>
