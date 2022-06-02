@@ -1,6 +1,11 @@
 <template>
   <div class="stageDiv">
-
+    <chat-select
+      :width="comWidth"
+      :height="comHeight"
+      :itemId="itemId"
+      @updateStage="updateStage"
+    ></chat-select>
     <div class="stageButton">
       <span>
         <img src="../img/x1.png" width="22%" />
@@ -21,8 +26,12 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { table, field, decorationStage } from '@/config/config'
 import { SearchInfo } from '@/config/interFace'
-
-@Component({})
+import chatSelect from '@/components/common/chatSelect.vue'
+@Component({
+  components: {
+    'chat-select': chatSelect
+  }
+})
 export default class Home extends Vue {
   itemId: any = '';
   decorationStage = decorationStage
@@ -75,6 +84,8 @@ export default class Home extends Vue {
         }
       }
     }
+    this.comWidth = this.screenWidth - 40 + 'px'
+    this.comHeight = this.screenWidth / 3 - 10 + 'px'
   }
 
   // 选中图片
@@ -116,32 +127,6 @@ export default class Home extends Vue {
     console.log(item)
     this.updateImg(item.value)
   }
-
-  // // 选中
-  // onclick = (items: any) => {
-  //   // 获取选中对象 删除class
-  //   const obj: any = document.getElementsByClassName('selected')
-  //   for (let i = 0; i < obj.length; i++) {
-  //     const id = obj[i].id
-  //     const dom: any = document.getElementById(id)
-  //     dom.className = ''
-  //   }
-  //   // 设置新的选中对象
-  //   const dom: any = document.getElementById('projectstage' + items.value)
-  //   dom.className = 'selected'
-  //   // 发送请求
-  //   this.updateData(items)
-  // };
-
-  // // 更新关系
-  // async updateData (items: any) {
-  //   const objs: any = {
-  //     fields: {
-  //       [field.projectStage]: [parseInt(items.value)]
-  //     }
-  //   }
-  //   await updateTable(this.itemId, objs)
-  // }
 }
 </script>
 <style></style>

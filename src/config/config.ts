@@ -141,6 +141,34 @@ export const decorationStage = [{
   value: 10
 }]
 
+export const chatStageList1 = [{
+  name: '未开工',
+  value: 9
+}, {
+  name: '水电进场',
+  value: 8
+}, {
+  name: '水电完成',
+  value: 1
+}, {
+  name: '木工完成',
+  value: 2
+}]
+
+export const chatStageList2 = [{
+  name: '0',
+  value: 0
+}, {
+  name: '调试完结',
+  value: 10
+}, {
+  name: '网络家具',
+  value: 4
+}, {
+  name: '灯具完成',
+  value: 3
+}]
+
 // 目前任务
 export const projectProgress = [{
   name: '首次跟进',
