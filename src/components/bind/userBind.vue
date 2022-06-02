@@ -3,7 +3,7 @@
     <custom v-if="bindStatus" @close="close" @loadPage="loadPage"></custom>
     <div v-if="bindStatus == false">
       <div class="bindHome">
-        <img class="img" src="../../img/home.png" width="100%" />
+        <img src="../../img/home.png" width="100%" />
         <div class="bindSite">
           <button class="bindButton" type="button" @click="add()">
             新增用户
