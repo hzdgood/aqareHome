@@ -11,7 +11,7 @@
         <img src="../img/x1.png" width="22%" />
       </span>
       <span>
-        <img id="img" src="../img/person/state-1.png" width="73%" v-show="stageImg1" />
+        <img src="../img/person/state-1.png" width="73%" v-show="stageImg1" />
         <img src="../img/person/state-2.png" width="73%" v-show="stageImg2" />
         <img src="../img/person/state-3.png" width="73%" v-show="stageImg3" />
         <img src="../img/person/state-4.png" width="73%" v-show="stageImg4" />
@@ -49,7 +49,6 @@ export default class Home extends Vue {
   stageImg7 = false;
   stageImg8 = false;
   screenWidth = document.body.clientWidth;
-
   comWidth: any = '100px';
   comHeight: any = '20px';
 
@@ -137,11 +136,6 @@ export default class Home extends Vue {
     }
   }
 
-  updateStage (item: any) {
-    console.log(item)
-    this.updateImg(item.value)
-  }
-
   updateImg (value: any) {
     this.stageImg1 = false
     this.stageImg2 = false
@@ -168,6 +162,11 @@ export default class Home extends Vue {
     } else if (value === 8) {
       this.stageImg8 = true
     }
+  }
+
+  updateStage (item: any) {
+    console.log(item)
+    this.updateImg(item.value)
   }
 
   // // 选择

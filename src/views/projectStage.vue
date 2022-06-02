@@ -1,29 +1,54 @@
 <template>
   <div class="stageDiv">
+
     <div class="stageButton">
-      <button
-        v-for="item in decorationStage"
-        :key="item.value"
-        :id="'projectstage' + item.value"
-        @click="onclick(item)"
-      >
-        {{ item.name }}
-      </button>
+      <span>
+        <img src="../img/x1.png" width="22%" />
+      </span>
+      <span>
+        <img src="../img/chat/state-9.png" width="73%" v-show="stageImg9" />
+        <img src="../img/chat/state-8.png" width="73%" v-show="stageImg8" />
+        <img src="../img/chat/state-1.png" width="73%" v-show="stageImg1" />
+        <img src="../img/chat/state-2.png" width="73%" v-show="stageImg2" />
+        <img src="../img/chat/state-3.png" width="73%" v-show="stageImg3" />
+        <img src="../img/chat/state-4.png" width="73%" v-show="stageImg4" />
+        <img src="../img/chat/state-10.png" width="73%" v-show="stageImg10" />
+      </span>
     </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { table, field, decorationStage } from '@/config/config'
-import { SearchInfo, updateTable } from '@/config/interFace'
+import { SearchInfo } from '@/config/interFace'
 
 @Component({})
 export default class Home extends Vue {
   itemId: any = '';
-  userId = localStorage.getItem('userId');
-  decorationStage = decorationStage;
+  decorationStage = decorationStage
+  stageImg1 = false;
+  stageImg2 = false;
+  stageImg3 = false;
+  stageImg4 = false;
+  stageImg8 = false;
+  stageImg9 = false;
+  stageImg10 = false;
+  screenWidth = document.body.clientWidth;
+  comWidth: any = '100px';
+  comHeight: any = '20px';
+
+  @Watch('this.screenWidth')
+  reloadTable () {
+    console.log(11)
+  }
 
   async mounted () {
+    window.onresize = () => {
+      this.screenWidth = document.body.clientWidth
+      this.comWidth = this.screenWidth - 40 + 'px'
+      this.comHeight = this.screenWidth / 3 - 10 + 'px'
+    }
+
     // 获取当前用户客户装修阶段
     const chatId = localStorage.getItem('chatID')
     const obj = {
@@ -41,43 +66,82 @@ export default class Home extends Vue {
     }
     const result = await SearchInfo(table.projectInfo, obj)
     for (let i = 0; i < result.length; i++) {
-      this.itemId = result[0].item_id
+      this.itemId = result[0].item_id + ''
       const fields = result[0].fields
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectStage) {
           var id = fields[j].values[0].id
-          const dom: any = document.getElementById('projectstage' + id)
-          dom.className = 'selected'
+          this.StageImg(id)
         }
       }
     }
   }
 
-  // 选中
-  onclick = (items: any) => {
-    // 获取选中对象 删除class
-    const obj: any = document.getElementsByClassName('selected')
-    for (let i = 0; i < obj.length; i++) {
-      const id = obj[i].id
-      const dom: any = document.getElementById(id)
-      dom.className = ''
-    }
-    // 设置新的选中对象
-    const dom: any = document.getElementById('projectstage' + items.value)
-    dom.className = 'selected'
-    // 发送请求
-    this.updateData(items)
-  };
-
-  // 更新关系
-  async updateData (items: any) {
-    const objs: any = {
-      fields: {
-        [field.projectStage]: [parseInt(items.value)]
+  // 选中图片
+  StageImg (itemid: any) {
+    for (let i = 0; i < this.decorationStage.length; i++) {
+      const value = this.decorationStage[i].value
+      if (itemid === value) {
+        this.updateImg(value)
       }
     }
-    await updateTable(this.itemId, objs)
   }
+
+  updateImg (value: any) {
+    this.stageImg1 = false
+    this.stageImg2 = false
+    this.stageImg3 = false
+    this.stageImg4 = false
+    this.stageImg8 = false
+    this.stageImg9 = false
+    this.stageImg10 = false
+    if (value === 1) {
+      this.stageImg1 = true
+    } else if (value === 2) {
+      this.stageImg2 = true
+    } else if (value === 3) {
+      this.stageImg3 = true
+    } else if (value === 4) {
+      this.stageImg4 = true
+    } else if (value === 8) {
+      this.stageImg8 = true
+    } else if (value === 9) {
+      this.stageImg9 = true
+    } else if (value === 10) {
+      this.stageImg10 = true
+    }
+  }
+
+  updateStage (item: any) {
+    console.log(item)
+    this.updateImg(item.value)
+  }
+
+  // // 选中
+  // onclick = (items: any) => {
+  //   // 获取选中对象 删除class
+  //   const obj: any = document.getElementsByClassName('selected')
+  //   for (let i = 0; i < obj.length; i++) {
+  //     const id = obj[i].id
+  //     const dom: any = document.getElementById(id)
+  //     dom.className = ''
+  //   }
+  //   // 设置新的选中对象
+  //   const dom: any = document.getElementById('projectstage' + items.value)
+  //   dom.className = 'selected'
+  //   // 发送请求
+  //   this.updateData(items)
+  // };
+
+  // // 更新关系
+  // async updateData (items: any) {
+  //   const objs: any = {
+  //     fields: {
+  //       [field.projectStage]: [parseInt(items.value)]
+  //     }
+  //   }
+  //   await updateTable(this.itemId, objs)
+  // }
 }
 </script>
 <style></style>
