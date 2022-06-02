@@ -208,37 +208,37 @@ export const collectType = [{
 }]
 
 export const StageList1 = [{
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764778',
+  name: '新客户',
+  value: 1
 }, {
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764777',
+  name: '标准跟进',
+  value: 2
 }, {
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764783',
+  name: '重点跟进',
+  value: 3
 }, {
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764782',
+  name: '已定金',
+  value: 4
 }]
 
 export const StageList2 = [{
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764785',
+  name: '后续跟进',
+  value: 8
 }, {
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764780',
+  name: '已全款',
+  value: 7
 }, {
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764784',
+  name: '已方案',
+  value: 6
 }, {
-  id: '',
-  name: '',
-  value: ''
+  id: '2300006607764781',
+  name: '已工勘',
+  value: 5
 }]

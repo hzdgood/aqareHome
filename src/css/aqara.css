@@ -44,7 +44,7 @@
   margin-left: 10px;
 }
 
-.bindButton{
+.bindButton {
   width: 94px;
   height: 32px;
   color: #4285F4;
@@ -156,11 +156,20 @@
   width: 100%;
   height: auto;
 }
-.stageButton div{
+
+.stageButton div {
   display: inline-block;
 }
-.stageButton{
+
+.stageButton {
+  position: relative;
+  z-index: 5;
   padding: 5px 5px 5px 0px;
+}
+
+.tableSelect {
+  position: absolute;
+  z-index: 10;
 }
 
 .selected {

@@ -85,11 +85,11 @@
           </td>
         </tr>
         <tr>
-          <td>客户属性</td>
+          <td>单品客户</td>
           <td>
-            <span v-for="item in cAttribute" :key="item.id">
+            <span v-for="item in oneCustom" :key="item.id">
               <input
-                type="radio"
+                type="checkbox"
                 :id="item.id"
                 :name="item.field"
                 @click="onchange(item)"
@@ -99,11 +99,11 @@
           </td>
         </tr>
         <tr>
-          <td>单品客户</td>
+          <td>客户属性</td>
           <td>
-            <span v-for="item in oneCustom" :key="item.id">
+            <span v-for="item in cAttribute" :key="item.id">
               <input
-                type="radio"
+                type="checkbox"
                 :id="item.id"
                 :name="item.field"
                 @click="onchange(item)"

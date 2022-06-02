@@ -1,9 +1,14 @@
 <template>
   <div class="stageDiv">
+    <table-select
+      :width="comWidth"
+      :height="comHeight"
+      :itemId="itemId"
+      @updateStage="updateStage"
+    ></table-select>
     <div class="stageButton">
-      <table-select :width="comWidth" :height="comHeright"></table-select>
       <span>
-        <img src="../img/x1.png" width="25%" />
+        <img src="../img/x1.png" width="22%" />
       </span>
       <span>
         <img id="img" src="../img/state-1.png" width="73%" v-show="stageImg1" />
@@ -45,19 +50,20 @@ export default class Home extends Vue {
   stageImg8 = false;
   screenWidth = document.body.clientWidth;
 
-  comWidth = ''
-  comHeright = ''
+  comWidth: any = '100px';
+  comHeight: any = '20px';
 
   @Watch('this.screenWidth')
   reloadTable () {
-    const dom: any = document.getElementById('img')
-    console.log(dom.width)
+    console.log(11)
   }
 
   // 获取所有客户标签
   async mounted () {
     window.onresize = () => {
       this.screenWidth = document.body.clientWidth
+      this.comWidth = this.screenWidth - 40 + 'px'
+      this.comHeight = this.screenWidth / 3 - 10 + 'px'
     }
     const data = {
       where: {
@@ -106,7 +112,7 @@ export default class Home extends Vue {
     if (res.length === 0) {
       return
     }
-    this.itemId = res[0].item_id
+    this.itemId = res[0].item_id + ''
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].field_id === field.customerStage) {
@@ -117,6 +123,8 @@ export default class Home extends Vue {
         }
       }
     }
+    this.comWidth = this.screenWidth - 40 + 'px'
+    this.comHeight = this.screenWidth / 3 + 'px'
   }
 
   // 选中图片
@@ -124,52 +132,69 @@ export default class Home extends Vue {
     for (let i = 0; i < this.customStage.length; i++) {
       const obj = this.customStage[i]
       if (obj.id === itemid) {
-        if (obj.img === 1) {
-          this.stageImg1 = true
-        } else if (obj.img === 2) {
-          this.stageImg2 = true
-        } else if (obj.img === 3) {
-          this.stageImg3 = true
-        } else if (obj.img === 4) {
-          this.stageImg4 = true
-        } else if (obj.img === 5) {
-          this.stageImg5 = true
-        } else if (obj.img === 6) {
-          this.stageImg6 = true
-        } else if (obj.img === 7) {
-          this.stageImg7 = true
-        } else if (obj.img === 8) {
-          this.stageImg8 = true
-        }
+        this.updateImg(obj.img)
       }
     }
   }
 
-  // 选择
-  onclick = (items: any) => {
-    // 获取选中对象 删除class
-    const obj: any = document.getElementsByClassName('selected')
-    for (let i = 0; i < obj.length; i++) {
-      const id = obj[i].id
-      const dom: any = document.getElementById(id)
-      dom.className = ''
-    }
-    // 设置新的选中对象
-    const dom: any = document.getElementById(items.id)
-    dom.className = 'selected'
-    // 发送请求
-    this.updateData(items)
-  };
-
-  // 更新
-  async updateData (items: any) {
-    const objs: any = {
-      fields: {
-        [items.field]: [parseInt(items.id)]
-      }
-    }
-    await updateTable(this.itemId, objs)
+  updateStage (item: any) {
+    console.log(item)
+    this.updateImg(item.value)
   }
+
+  updateImg (value: any) {
+    this.stageImg1 = false
+    this.stageImg2 = false
+    this.stageImg3 = false
+    this.stageImg4 = false
+    this.stageImg5 = false
+    this.stageImg6 = false
+    this.stageImg7 = false
+    this.stageImg8 = false
+    if (value === 1) {
+      this.stageImg1 = true
+    } else if (value === 2) {
+      this.stageImg2 = true
+    } else if (value === 3) {
+      this.stageImg3 = true
+    } else if (value === 4) {
+      this.stageImg4 = true
+    } else if (value === 5) {
+      this.stageImg5 = true
+    } else if (value === 6) {
+      this.stageImg6 = true
+    } else if (value === 7) {
+      this.stageImg7 = true
+    } else if (value === 8) {
+      this.stageImg8 = true
+    }
+  }
+
+  // // 选择
+  // onclick = (items: any) => {
+  //   // 获取选中对象 删除class
+  //   const obj: any = document.getElementsByClassName('selected')
+  //   for (let i = 0; i < obj.length; i++) {
+  //     const id = obj[i].id
+  //     const dom: any = document.getElementById(id)
+  //     dom.className = ''
+  //   }
+  //   // 设置新的选中对象
+  //   const dom: any = document.getElementById(items.id)
+  //   dom.className = 'selected'
+  //   // 发送请求
+  //   this.updateData(items)
+  // };
+
+  // // 更新
+  // async updateData (items: any) {
+  //   const objs: any = {
+  //     fields: {
+  //       [items.field]: [parseInt(items.id)]
+  //     }
+  //   }
+  //   await updateTable(this.itemId, objs)
+  // }
 }
 </script>
 <style scoped></style>

@@ -13,7 +13,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { StageList1, StageList2 } from '@/config/config'
+import { table, field, StageList1, StageList2 } from '@/config/config'
+import { SearchInfo, updateTable } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   StageList1 = StageList1
@@ -21,20 +22,30 @@ export default class Home extends Vue {
 
   @Prop({
     type: String,
-    required: true,
-    default: ''
+    required: false
   })
   width!: String;
 
   @Prop({
     type: String,
-    required: true,
-    default: ''
+    required: false
   })
   height!: String;
 
-  click (item: any) {
-    console.log(item)
+  @Prop({
+    type: String,
+    required: false
+  })
+  itemId!: any;
+
+  async click (item: any) {
+    const objs: any = {
+      fields: {
+        [field.customerStage]: [parseInt(item.id)]
+      }
+    }
+    await updateTable(this.itemId, objs)
+    this.$emit('updateStage', item)
   }
 }
 </script>
