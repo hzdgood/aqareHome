@@ -11,21 +11,21 @@
         <img src="../img/x1.png" width="22%" />
       </span>
       <span>
-        <img id="img" src="../img/state-1.png" width="73%" v-show="stageImg1" />
-        <img src="../img/state-2.png" width="73%" v-show="stageImg2" />
-        <img src="../img/state-3.png" width="73%" v-show="stageImg3" />
-        <img src="../img/state-4.png" width="73%" v-show="stageImg4" />
-        <img src="../img/state-5.png" width="73%" v-show="stageImg5" />
-        <img src="../img/state-6.png" width="73%" v-show="stageImg6" />
-        <img src="../img/state-7.png" width="73%" v-show="stageImg7" />
-        <img src="../img/state-8.png" width="73%" v-show="stageImg8" />
+        <img id="img" src="../img/person/state-1.png" width="73%" v-show="stageImg1" />
+        <img src="../img/person/state-2.png" width="73%" v-show="stageImg2" />
+        <img src="../img/person/state-3.png" width="73%" v-show="stageImg3" />
+        <img src="../img/person/state-4.png" width="73%" v-show="stageImg4" />
+        <img src="../img/person/state-5.png" width="73%" v-show="stageImg5" />
+        <img src="../img/person/state-6.png" width="73%" v-show="stageImg6" />
+        <img src="../img/person/state-7.png" width="73%" v-show="stageImg7" />
+        <img src="../img/person/state-8.png" width="73%" v-show="stageImg8" />
       </span>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { SearchInfo, updateTable } from '@/config/interFace'
+import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import tableSelect from '@/components/common/tableSelect.vue'
 @Component({
