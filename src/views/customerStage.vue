@@ -25,7 +25,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, updateTable } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import tableSelect from '@/components/common/tableSelect.vue'
 @Component({
@@ -113,14 +113,26 @@ export default class Home extends Vue {
     }
     this.itemId = res[0].item_id + ''
     const fields = res[0].fields
+    let status = false
     for (let i = 0; i < fields.length; i++) {
       if (fields[i].field_id === field.customerStage) {
         const values = fields[i].values
+        status = true
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
           this.StageImg(itemid)
         }
       }
+    }
+    // 取不到值
+    if (!status) {
+      const objs: any = {
+        fields: {
+          [field.customerStage]: [2300006607764785]
+        }
+      }
+      await updateTable(this.itemId, objs)
+      this.stageImg8 = true
     }
     this.comWidth = this.screenWidth - 40 + 'px'
     this.comHeight = this.screenWidth / 3 + 'px'

@@ -1,32 +1,19 @@
 <template>
   <div>
-    <div class="headerDiv">客户绑定</div>
-    <table class="EditTable">
-      <tr>
-        <td>客户信息</td>
-        <td><input id="name" type="text" @change="change()" /></td>
-        <td><input type="button" value="查询" @click="search()" /></td>
-      </tr>
-      <tr>
-        <td>客户名称</td>
-        <td colspan="2">
-          <select id="customName" style="max-width: 300px">
-            <option
-              :key="customer.id"
-              v-for="customer in customerList"
-              :value="customer.id"
-            >
-              {{ customer.name }} {{ customer.phone }}
-            </option>
-          </select>
-        </td>
-      </tr>
-    </table>
-    <div>
-      <div class="buttonSite">
-        <button class="addButton" type="button" @click="add()" v-show="addStatus">新增用户</button>
-        <button class="bindButton" type="button" @click="save()">绑定该用户</button>
-        <button class="closeButton" type="button" @click="close()">关闭</button>
+    <custom v-if="bindStatus" @close="close" @loadPage="loadPage"></custom>
+    <div v-if="bindStatus == false">
+      <div class="bindHome">
+        <img class="img" src="../../img/home.png" width="100%" />
+        <div class="bindSite">
+          <button class="bindButton" type="button" @click="add()">
+            新增用户
+          </button>
+        </div>
+        <div class="bindSite">
+          <button class="bindButton1" type="button" @click="bind()">
+            绑定用户
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -34,105 +21,22 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, updateTable, addInfo } from '@/config/interFace'
+import { SearchInfo, addInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
-@Component({})
+import custom from '@/components/bindInfo/custom.vue'
+@Component({
+  components: {
+    custom: custom
+  }
+})
 export default class Home extends Vue {
-  customerInfo = table.customerInfo;
-  saleManInfo = table.saleManInfo;
   userId = localStorage.getItem('userId');
   userName = localStorage.getItem('userName');
   localName = localStorage.getItem('localName');
-  customerList: any[] = [];
-  addStatus = true;
+  bindStatus = false;
 
-  // @Prop({
-  //   type: Boolean,
-  //   required: true,
-  //   default: ''
-  // })
-  // status!: any;
-
-  change () {
-    const name: any = document.getElementById('name')
-    if (name.value === '') {
-      this.addStatus = false
-    } else {
-      this.addStatus = true
-    }
-  }
-
-  async mounted () {
-    const data = {
-      offset: 0,
-      limit: 20
-    }
-    const result = await SearchInfo(this.customerInfo, data)
-    for (let i = 0; i < result.length; i++) {
-      const fields = result[i].fields
-      const id = result[i].item_id
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === field.customerName) {
-          const name = fields[j].values[0].value
-          const obj = {
-            id: id,
-            name: name
-          }
-          this.customerList.push(obj)
-        }
-      }
-    }
-  }
-
-  async search () {
-    this.customerList = []
-    const name: any = document.getElementById('name')
-    const data = {
-      where: {
-        and: [
-          {
-            query: { or: [{ in: [name.value] }] },
-            query_option_mappings: [-1],
-            field: field.customerName // 客户名称
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20
-    }
-    const result = await SearchInfo(this.customerInfo, data)
-    for (let i = 0; i < result.length; i++) {
-      const fields = result[i].fields
-      const id = result[i].item_id
-      let customerName = ''
-      let ctelephone = ''
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === field.customerName) {
-          customerName = fields[j].values[0].value
-        }
-        if (fields[j].field_id === field.ctelephone) {
-          ctelephone = fields[j].values[0].value
-        }
-      }
-      const obj = {
-        id: id,
-        name: customerName,
-        phone: ctelephone
-      }
-      this.customerList.push(obj)
-    }
-  }
-
-  async save () {
-    const customName: any = document.getElementById('customName')
-    const itemId = customName.options[customName.selectedIndex].value
-    const data = {
-      fields: {
-        [field.userTable]: this.userId // 更新userID
-      }
-    }
-    await updateTable(itemId, data)
-    this.$emit('close')
+  bind () {
+    this.bindStatus = true
   }
 
   async add () {
@@ -150,7 +54,7 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
-    const result = await SearchInfo(this.saleManInfo, data)
+    const result = await SearchInfo(table.saleManInfo, data)
     let itemId = ''
     if (result.length === 0) {
       alert('找不到当前销售人员信息！' + this.localName)
@@ -165,11 +69,17 @@ export default class Home extends Vue {
         [field.userTable]: this.userId,
         [field.customerName]: this.userName,
         [field.gender]: [1],
-        [field.salesperson]: [itemId]
+        [field.salesperson]: [itemId],
+        [field.customerStage]: [2300006607764778]
       }
     }
-    await addInfo(this.customerInfo, obj)
+    await addInfo(table.customerInfo, obj)
+    this.bindStatus = false
     this.$emit('close')
+  }
+
+  loadPage () {
+    this.bindStatus = false
   }
 
   close () {
@@ -178,4 +88,8 @@ export default class Home extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.bindHome {
+  background-color: rgba(242, 243, 251, 1);
+}
+</style>

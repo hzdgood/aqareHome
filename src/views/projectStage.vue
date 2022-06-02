@@ -25,7 +25,7 @@
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { table, field, decorationStage } from '@/config/config'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, updateTable } from '@/config/interFace'
 import chatSelect from '@/components/common/chatSelect.vue'
 @Component({
   components: {
@@ -34,7 +34,7 @@ import chatSelect from '@/components/common/chatSelect.vue'
 })
 export default class Home extends Vue {
   itemId: any = '';
-  decorationStage = decorationStage
+  decorationStage = decorationStage;
   stageImg1 = false;
   stageImg2 = false;
   stageImg3 = false;
@@ -74,15 +74,26 @@ export default class Home extends Vue {
       limit: 20
     }
     const result = await SearchInfo(table.projectInfo, obj)
+    let status = false
     for (let i = 0; i < result.length; i++) {
       this.itemId = result[0].item_id + ''
       const fields = result[0].fields
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectStage) {
           var id = fields[j].values[0].id
+          status = true
           this.StageImg(id)
         }
       }
+    }
+    if (!status) {
+      const objs: any = {
+        fields: {
+          [field.projectStage]: [9]
+        }
+      }
+      await updateTable(this.itemId, objs)
+      this.stageImg9 = true
     }
     this.comWidth = this.screenWidth - 40 + 'px'
     this.comHeight = this.screenWidth / 3 - 10 + 'px'
