@@ -4,7 +4,10 @@
     <table class="EditTable">
       <tr>
         <td>客户信息</td>
-        <td><input id="name" type="text" /></td>
+        <td>
+          <input id="name" type="text" />
+          <img class="img" src="../../img/select.png" @click="search"/>
+        </td>
       </tr>
       <tr>
         <td>客户名称</td>
@@ -124,4 +127,11 @@ export default class Home extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.img{
+  position: absolute;
+  right: 25px;
+  width: 25px;
+  margin-top: 2px;
+}
+</style>
