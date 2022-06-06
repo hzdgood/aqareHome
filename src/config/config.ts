@@ -60,10 +60,15 @@ export const field = {
   planNuber: 2200000143114502, // 方案数量
   price: 2200000143114391, // 销售单价
   discount: 2200000151416990, // 单价折扣
-  servieFee: 2200000143114392, // 服务费
   notIssued: 2200000150138925, // 未发
   notInstalled: 2200000149183536, // 未装
   notAdjusted: 2200000149183537, // 未调
+  productItemId: 2200000143113282,
+  projectItemId: 2200000143342285,
+  money: 2200000143114391,
+  number: 2200000143342281,
+  serviceFee: 2200000143114392,
+  present: 2200000197078762,
   // 工单表
   visitDate: 2200000145748099, // 上门日期 value
   orderType: 2200000146398516, // 订单类型 name
@@ -85,11 +90,8 @@ export const field = {
   uploadFile: 2200000145309769, // 上传图片
   // 物料表
   productName: 2200000143086697,
-  productItemId: 2200000143113282,
-  projectItemId: 2200000143342285,
-  money: 2200000143114391,
-  number: 2200000143342281,
-  serviceFee: 2200000143114392,
+  productCode: 2200000143114148,
+
   // 销售人员信息表
   localName: 2200000166537030
 }

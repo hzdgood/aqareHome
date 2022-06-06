@@ -4,11 +4,21 @@
     <div :class="upload ? 'infoDiv' : ''">
       <div class="headerDiv">上传方案</div>
       <div class="uploadFile">
-        <input type="file" name="file" placeholder="请选择文件"/>
+        <input type="file" name="file" placeholder="请选择文件" />
       </div>
       <div class="buttonSite">
-        <input class="saveButton" type="button" @click="saveClick()" value="提交" />
-        <input class="closeButton" type="button" @click="closeClick()" value="关闭" />
+        <input
+          class="saveButton"
+          type="button"
+          @click="saveClick()"
+          value="提交"
+        />
+        <input
+          class="closeButton"
+          type="button"
+          @click="closeClick()"
+          value="关闭"
+        />
       </div>
       <div>
         <span v-for="item in erronProduct" :key="item.index">
@@ -21,7 +31,13 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate } from '@/config/interFace'
+import {
+  SearchInfo,
+  uploadFile,
+  updateTable,
+  batchAddPlan,
+  getCoordinate
+} from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -37,10 +53,14 @@ export default class Home extends Vue {
   // 获取所有的产品信息
   async saveClick () {
     let projectName = ''
+    let projectId = ''
+    let projectAddress = ''
+    let projectArea = ''
     const productCode = []
+    const json: any = []
 
-    this.erronProduct = []
     const formData = new FormData()
+    this.erronProduct = []
 
     // 拼接伙伴云JSON
     let file: any = document.getElementsByName('file')[0]
@@ -56,110 +76,126 @@ export default class Home extends Vue {
       }
       productCode.push(res[i].productCode)
     }
+
     // 查询伙伴云是否有该项目
+    const obj1 = {
+      where: {
+        and: [
+          {
+            query: { or: [{ in: [projectName] }] },
+            query_option_mappings: [-1],
+            field: 2200000150460774
+          }
+        ]
+      },
+      offset: 0,
+      limit: 20
+    }
+    const result1 = await SearchInfo(table.projectInfo, obj1)
+    console.log(result1)
 
+    // 获取地址信息
+    if (result1.length !== 0) {
+      projectId = result1[0].item_id
+      const fields = result1[0].fields
+      for (let i = 0; i < fields.length; i++) {
+        if (fields[i].field_id === field.projectAddress) {
+          const values = fields[i].values[0].value
+          projectAddress = values
+        }
+        if (fields[i].field_id === field.projectArea) {
+          const values = fields[i].values[0].value
+          projectArea = values
+        }
+      }
+    } else {
+      const obj = {
+        index: 0,
+        name: '项目信息不存在！'
+      }
+      this.erronProduct.push(obj)
+      return
+    }
+    // 检查地址信息，赋值经纬度
+    if (projectAddress !== '') {
+      projectAddress = '上海市' + projectArea + projectAddress
+      const obj = await getCoordinate([projectAddress])
+      if (obj.lng === 0 && obj.lat === 0) {
+        const obj = {
+          index: 0,
+          name: '项目地址错误！'
+        }
+        this.erronProduct.push(obj)
+        return
+      } else {
+        const data = {
+          fields: {
+            [field.X]: obj.lng,
+            [field.Y]: obj.lat
+          }
+        }
+        updateTable(projectId, data)
+      }
+    }
     // 查询伙伴云是否存在产品
-
-    // if (result.length !== 0) {
-    //   projectId = result[0].item_id
-    //   const fields = result[0].fields
-    //   for (let i = 0; i < fields.length; i++) {
-    //     if (fields[i].field_id === field.projectAddress) {
-    //       const values = fields[i].values[0].value
-    //       projectAddress = values
-    //     }
-    //     if (fields[i].field_id === field.projectArea) {
-    //       const values = fields[i].values[0].value
-    //       projectArea = values
-    //     }
-    //   }
-    // } else {
-    //   const obj = {
-    //     index: 0,
-    //     name: '项目信息不存在！'
-    //   }
-    //   this.erronProduct.push(obj)
-    //   return
-    // }
-    // // 获取产品信息
-    // const data1 = {
-    //   where: {
-    //     and: [
-    //       {
-    //         query: {
-    //           or: [
-    //             {
-    //               eqm: productName
-    //             }
-    //           ]
-    //         },
-    //         query_option_mappings: [-1],
-    //         field: field.productName
-    //       }
-    //     ]
-    //   },
-    //   offset: 0,
-    //   limit: 1000
-    // }
-    // const result1 = await SearchInfo(this.productTable, data1)
-    // for (let i = 0; i < res.length; i++) {
-    //   const number = res[i].number
-    //   const money = res[i].money
-    //   const serviceFee = res[i].serviceFee
-    //   for (let j = 0; j < result1.length; j++) {
-    //     const fields = result1[j].fields
-    //     const itemId = result1[j].item_id
-    //     const name = fields[0].values[0].value
-    //     if (res[i].productName === name) {
-    //       const obj = {
-    //         fields: {
-    //           [field.productItemId]: [itemId],
-    //           [field.projectItemId]: [projectId],
-    //           [field.money]: money,
-    //           [field.number]: number,
-    //           [field.serviceFee]: serviceFee
-    //         }
-    //       }
-    //       json.items.push(obj)
-    //       j = result1.length
-    //     } else {
-    //       if (j === result1.length - 1) {
-    //         if (res[i].productName !== name) {
-    //           const obj = {
-    //             index: i,
-    //             name: res[i].productName
-    //           }
-    //           this.erronProduct.push(obj)
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
-    // if (this.erronProduct.length > 0) {
-
-    // } else {
-    //   if (projectAddress !== '') {
-    //     projectAddress = '上海市' + projectArea + projectAddress
-    //     const obj = await getCoordinate([projectAddress])
-    //     if (obj.lng === 0 && obj.lat === 0) {
-    //       const obj = {
-    //         index: 0,
-    //         name: '项目地址错误！'
-    //       }
-    //       this.erronProduct.push(obj)
-    //     } else {
-    //       const data = {
-    //         fields: {
-    //           [field.X]: obj.lng,
-    //           [field.Y]: obj.lat
-    //         }
-    //       }
-    //       updateTable(projectId, data)
-    //       batchAddPlan(this.customerPlan, json)
-    //       this.$emit('close')
-    //     }
-    //   }
-    // }
+    const obj2 = {
+      where: {
+        and: [
+          {
+            query: {
+              or: [
+                {
+                  eqm: productCode
+                }
+              ]
+            },
+            query_option_mappings: [-1],
+            field: field.productCode
+          }
+        ]
+      },
+      offset: 0,
+      limit: 1000
+    }
+    const result2 = await SearchInfo(table.productTable, obj2)
+    console.log(result2)
+    // 导入伙伴云数据
+    for (let i = 0; i < res.length; i++) {
+      for (let j = 0; j < result2.length; j++) {
+        const fields = result2[j].fields
+        const itemId = result2[j].item_id
+        const code = fields[14].values[0].value // 要改
+        if (res[i].productCode === code) {
+          if (res[i].money === '0.00') {
+            const obj = {
+              fields: {
+                [field.productItemId]: [itemId],
+                [field.projectItemId]: [projectId],
+                [field.money]: res[i].money,
+                [field.number]: res[i].number,
+                [field.serviceFee]: res[i].serviceFee,
+                [field.present]: '赠品'
+              }
+            }
+            json.items.push(obj)
+          } else {
+            const obj = {
+              fields: {
+                [field.productItemId]: [itemId],
+                [field.projectItemId]: [projectId],
+                [field.money]: res[i].money,
+                [field.number]: res[i].number,
+                [field.serviceFee]: res[i].serviceFee
+              }
+            }
+            json.items.push(obj)
+          }
+          console.log(json)
+          batchAddPlan(table.customerPlan, json)
+        }
+      }
+    }
+    this.$emit('close')
   }
 
   closeClick () {
