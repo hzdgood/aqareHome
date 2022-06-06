@@ -169,6 +169,7 @@ export default class Home extends Vue {
           if (res[i].money === '0.00') {
             const obj = {
               fields: {
+                [field.orderNumber]: res[i].orderNumber,
                 [field.productItemId]: [itemId],
                 [field.projectItemId]: [projectId],
                 [field.money]: res[i].money,
@@ -181,6 +182,7 @@ export default class Home extends Vue {
           } else {
             const obj = {
               fields: {
+                [field.orderNumber]: res[i].orderNumber,
                 [field.productItemId]: [itemId],
                 [field.projectItemId]: [projectId],
                 [field.money]: res[i].money,

@@ -69,6 +69,7 @@ export const field = {
   number: 2200000143342281,
   serviceFee: 2200000143114392,
   present: 2200000197078762,
+  orderNumber: 2100000014708369,
   // 工单表
   visitDate: 2200000145748099, // 上门日期 value
   orderType: 2200000146398516, // 订单类型 name
