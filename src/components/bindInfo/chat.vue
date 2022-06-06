@@ -4,7 +4,10 @@
     <table class="EditTable">
       <tr>
         <td>项目信息</td>
-        <td><input id="name" type="text" /></td>
+        <td>
+          <input id="name" type="text" />
+          <img class="img" src="../../img/select.png" @click="search" />
+        </td>
       </tr>
       <tr>
         <td>项目名称</td>
@@ -24,7 +27,6 @@
     <div class="buttonSite">
       <input class="saveButton" type="button" value="绑定" @click="save()" />
       <input class="closeButton" type="button" value="关闭" @click="close()" />
-      <input type="button" value="查询" @click="search()" />
     </div>
   </div>
 </template>
@@ -109,4 +111,11 @@ export default class Home extends Vue {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.img {
+  position: absolute;
+  right: 25px;
+  width: 25px;
+  margin-top: 2px;
+}
+</style>

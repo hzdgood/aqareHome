@@ -21,9 +21,8 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { uploadFile } from '@/config/interFace'
-// import { table, field } from '@/config/config'
-// SearchInfo, filterInfo, batchAddPlan, updateTable, getCoordinate
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate } from '@/config/interFace'
+import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   erronProduct: any[] = [];
@@ -37,12 +36,9 @@ export default class Home extends Vue {
 
   // 获取所有的产品信息
   async saveClick () {
-    // let projectName = ''
-    // let projectAddress = ''
-    // let projectArea = ''
-    // let projectId = ''
-    // const productName = []
-    // const json: any = { items: [] }
+    let projectName = ''
+    const productCode = []
+
     this.erronProduct = []
     const formData = new FormData()
 
@@ -54,24 +50,16 @@ export default class Home extends Vue {
     console.log(res)
 
     // // 获取项目名称 获取产品名称
-    // for (let i = 0; i < res.length; i++) {
-    //   if (i === 0) {
-    //     //projectName = res[i].projectName
-    //     //productName.push(res[i].productName)
-    //   } else {
-    //     //productName.push(res[i].productName)
-    //   }
-    // }
-    // // 查询伙伴云是否存在产品
-    // const data = {
-    //   search: {
-    //     fields: [],
-    //     keywords: [projectName.substring(4, projectName.length - 1)]
-    //   },
-    //   offset: 0,
-    //   limit: 20
-    // }
-    // const result = await filterInfo(this.projectInfo, data)
+    for (let i = 0; i < res.length; i++) {
+      if (i === 0) {
+        projectName = res[i].projectName
+      }
+      productCode.push(res[i].productCode)
+    }
+    // 查询伙伴云是否有该项目
+
+    // 查询伙伴云是否存在产品
+
     // if (result.length !== 0) {
     //   projectId = result[0].item_id
     //   const fields = result[0].fields
