@@ -257,6 +257,7 @@ export default class Home extends Vue {
 
   // 标签更新
   onchange = (items: any) => {
+    // 这块有些小bug
     const id: any = items.id
     const dom: any = document.getElementById(id)
     // 单选判断
@@ -279,22 +280,24 @@ export default class Home extends Vue {
     let index = 0
     // 迭代循环DOM对象合成伙伴云数据
     for (let i = 0; i < obj.length; i++) {
-      let id = obj[i].id
-      const name = obj[i].name
-      id = parseInt(id)
-      if (i === 0) {
-        const d: any[] = []
-        d.push(id)
-        data.fields[name] = d
-      } else {
-        const d1 = Object.keys(data.fields)[index]
-        if (name === d1) {
-          data.fields[name].push(id)
-        } else {
-          index++
+      if (obj.checked === true) {
+        let id = obj[i].id
+        const name = obj[i].name
+        id = parseInt(id)
+        if (i === 0) {
           const d: any[] = []
           d.push(id)
           data.fields[name] = d
+        } else {
+          const d1 = Object.keys(data.fields)[index]
+          if (name === d1) {
+            data.fields[name].push(id)
+          } else {
+            index++
+            const d: any[] = []
+            d.push(id)
+            data.fields[name] = d
+          }
         }
       }
     }

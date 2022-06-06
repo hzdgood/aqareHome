@@ -56,14 +56,13 @@ export const field = {
   Y: 2200000150942407,
   // 客户方案表
   projectName: 2200000143113282, // 产品名称
-  AllNumber: 2200000143342281, // 全款数量
   planNuber: 2200000143114502, // 方案数量
-  price: 2200000143114391, // 销售单价
   discount: 2200000151416990, // 单价折扣
   notIssued: 2200000150138925, // 未发
   notInstalled: 2200000149183536, // 未装
   notAdjusted: 2200000149183537, // 未调
   productItemId: 2200000143113282,
+  primaryNumer: 2200000153764808,
   projectItemId: 2200000143342285,
   money: 2200000143114391,
   number: 2200000143342281,

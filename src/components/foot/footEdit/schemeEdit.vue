@@ -31,13 +31,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import {
-  SearchInfo,
-  uploadFile,
-  updateTable,
-  batchAddPlan,
-  getCoordinate
-} from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -172,10 +166,11 @@ export default class Home extends Vue {
                 [field.orderNumber]: res[i].orderNumber,
                 [field.productItemId]: [itemId],
                 [field.projectItemId]: [projectId],
-                [field.money]: res[i].money,
+                [field.primaryNumer]: res[i].number,
                 [field.number]: res[i].number,
+                [field.money]: res[i].money,
                 [field.serviceFee]: res[i].serviceFee,
-                [field.present]: '赠品'
+                [field.present]: [1]
               }
             }
             json.items.push(obj)
@@ -185,6 +180,7 @@ export default class Home extends Vue {
                 [field.orderNumber]: res[i].orderNumber,
                 [field.productItemId]: [itemId],
                 [field.projectItemId]: [projectId],
+                [field.primaryNumer]: res[i].number,
                 [field.money]: res[i].money,
                 [field.number]: res[i].number,
                 [field.serviceFee]: res[i].serviceFee
