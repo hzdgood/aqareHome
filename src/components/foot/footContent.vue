@@ -4,8 +4,8 @@
     <div class="footContent" v-show="optionStatus">
       <div @click="clickInfo()" v-show="singleStatus">信息</div>
       <div @click="clickChat()" v-show="chatStatus">信息</div>
-      <div @click="clickCollect()">收款</div>
-      <div @click="clickScheme()">方案</div>
+      <div @click="clickCollect()" v-show="singleStatus">收款</div>
+      <div @click="clickScheme()" v-show="singleStatus">方案</div>
     </div>
     <div v-if="infoShow">
       <info-edit @reload="reload()"></info-edit>
