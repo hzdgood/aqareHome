@@ -156,7 +156,7 @@ export default class Home extends Vue {
         }
       }
       if (status) {
-        if (AllNumber !== 0 && planNuber !== 0) {
+        if (AllNumber !== 0 || planNuber !== 0) {
           const obj = {
             id: i,
             projectName: projectName,

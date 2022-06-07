@@ -21,10 +21,6 @@ export default class Home extends Vue {
     const data = {}
     const saleList = []
     const result = await SearchInfo(table.saleManInfo, data)
-    if (result.length === 0) {
-      this.errorMsg = '找不到当前销售人员信息！'
-      return
-    }
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       for (let j = 0; j < fields.length; j++) {
