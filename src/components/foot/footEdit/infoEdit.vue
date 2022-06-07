@@ -4,7 +4,7 @@
     <div class="infoDiv">
       <div class="headerDiv">项目信息</div>
       <div class="addSite">
-        <button class="addButton" @click="addClick()">新增 +</button>
+        <button class="addButton" @click="addClick()" v-show="addShow">新增 +</button>
       </div>
       <div id="projectList" v-for="project in projectList" :key="project.id">
         <table class="EditTable">
@@ -14,12 +14,12 @@
               <input :id="project.id + 'projectCustom'" type="text" :value="project.customer"/>
             </td>
           </tr>
-          <!-- <tr>
+          <tr>
             <td>主项目</td>
             <td>
               {{ project.masterProject }} <button class="saveButton" @click="bindClick(project)">绑定</button>
             </td>
-          </tr> -->
+          </tr>
           <tr>
             <td>项目类型</td>
             <td>
@@ -131,6 +131,7 @@ export default class Home extends Vue {
   areaList: any[] = [];
   departmentList: any[] = [];
   userId = localStorage.getItem('userId');
+  addShow = true
 
   // 查询所有的销售员
   async getSaleManList () {
@@ -312,6 +313,12 @@ export default class Home extends Vue {
 
   // 新增一条数据 主要就是修改伙伴云记录
   async addClick () {
+    this.addShow = false
+    if (this.projectList.length >= 1) {
+      if (!confirm('该客户已有项目，请确认是否继续创建？')) {
+        return
+      }
+    }
     const data = {
       where: {
         and: [
@@ -356,34 +363,16 @@ export default class Home extends Vue {
     const projectCustom: any = document.getElementById(project.id + 'projectCustom')
     const address: any = document.getElementById(project.id + 'projectAddress')
     const village: any = document.getElementById(project.id + 'projectVillage')
-
-    console.log(1)
-
     let hometype: any = document.getElementById(project.id + 'projectHometype')
     hometype = hometype.options[hometype.selectedIndex].value
-
-    console.log(2)
-
     let Type: any = document.getElementById(project.id + 'projectType')
     Type = Type.options[Type.selectedIndex].value
-
-    console.log(3)
-
     let area: any = document.getElementById(project.id + 'projectArea')
     area = area.options[area.selectedIndex].value
-
-    console.log(4)
-
     let saleMan: any = document.getElementById(project.id + 'saleMan')
     saleMan = saleMan.options[saleMan.selectedIndex].value
-
-    console.log(5)
-
     let department: any = document.getElementById(project.id + 'department')
     department = department.options[department.selectedIndex].value
-
-    console.log(6)
-
     // 加入校验
     const data = {
       fields: {

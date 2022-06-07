@@ -130,19 +130,19 @@ export default class Home extends Vue {
         if (fields[j].field_id === field.projectName) {
           projectName = fields[j].values[0].title
         }
-        if (fields[j].field_id === field.AllNumber) {
+        if (fields[j].field_id === field.number) {
           AllNumber = fields[j].values[0].value
         }
         if (fields[j].field_id === field.planNuber) {
           planNuber = fields[j].values[0].value
         }
-        if (fields[j].field_id === field.price) {
+        if (fields[j].field_id === field.money) {
           price = fields[j].values[0].value
         }
         if (fields[j].field_id === field.discount) {
           discount = fields[j].values[0].value
         }
-        if (fields[j].field_id === field.servieFee) {
+        if (fields[j].field_id === field.serviceFee) {
           servieFee = fields[j].values[0].value
         }
         if (fields[j].field_id === field.notIssued) {

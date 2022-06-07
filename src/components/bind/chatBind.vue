@@ -5,7 +5,7 @@
       <div class="bindHome">
         <img src="../../img/home.png" width="100%" />
         <div class="buttonSite">
-          <input class="bindButton" type="button" value="项目绑定" />
+          <input class="bindButton" type="button" value="项目绑定" @click="bindChat()" />
         </div>
       </div>
     </div>
@@ -25,6 +25,10 @@ export default class Home extends Vue {
   async save () {
     this.bindStatus = false
     this.$emit('close')
+  }
+
+  bindChat () {
+    this.bindStatus = true
   }
 
   // 关闭

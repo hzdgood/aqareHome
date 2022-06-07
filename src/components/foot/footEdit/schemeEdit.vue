@@ -31,7 +31,13 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate } from '@/config/interFace'
+import {
+  SearchInfo,
+  uploadFile,
+  updateTable,
+  batchAddPlan,
+  getCoordinate
+} from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -50,8 +56,11 @@ export default class Home extends Vue {
     let projectId = ''
     let projectAddress = ''
     let projectArea = ''
+    let uploadCode = ''
     const productCode = []
-    const json: any = []
+    const json: any = {
+      items: []
+    }
 
     const formData = new FormData()
     this.erronProduct = []
@@ -61,9 +70,7 @@ export default class Home extends Vue {
     file = file.files[0]
     formData.append('file', file, file.name)
     const res = await uploadFile(formData)
-    console.log(res)
 
-    // // 获取项目名称 获取产品名称
     for (let i = 0; i < res.length; i++) {
       if (i === 0) {
         projectName = res[i].projectName
@@ -86,7 +93,6 @@ export default class Home extends Vue {
       limit: 20
     }
     const result1 = await SearchInfo(table.projectInfo, obj1)
-    console.log(result1)
 
     // 获取地址信息
     if (result1.length !== 0) {
@@ -101,6 +107,10 @@ export default class Home extends Vue {
           const values = fields[i].values[0].value
           projectArea = values
         }
+        if (fields[i].field_id === field.uploadCode) {
+          const values = fields[i].values[0].value
+          uploadCode = values
+        }
       }
     } else {
       const obj = {
@@ -110,6 +120,19 @@ export default class Home extends Vue {
       this.erronProduct.push(obj)
       return
     }
+
+    const code = uploadCode.split(',')
+    let status = true
+    for (let i = 0; i < code.length; i++) {
+      if (res[0].orderNumber === code[i]) {
+        alert('该方案已上传，请勿重复上传！')
+        status = false
+      }
+    }
+    if (!status) {
+      return
+    }
+
     // 检查地址信息，赋值经纬度
     if (projectAddress !== '') {
       projectAddress = '上海市' + projectArea + projectAddress
@@ -131,6 +154,7 @@ export default class Home extends Vue {
         updateTable(projectId, data)
       }
     }
+
     // 查询伙伴云是否存在产品
     const obj2 = {
       where: {
@@ -152,13 +176,13 @@ export default class Home extends Vue {
       limit: 1000
     }
     const result2 = await SearchInfo(table.productTable, obj2)
-    console.log(result2)
+
     // 导入伙伴云数据
     for (let i = 0; i < res.length; i++) {
       for (let j = 0; j < result2.length; j++) {
         const fields = result2[j].fields
         const itemId = result2[j].item_id
-        const code = fields[14].values[0].value // 要改
+        const code = fields[2].values[0].value // 要改
         if (res[i].productCode === code) {
           if (res[i].money === '0.00') {
             const obj = {
@@ -188,11 +212,16 @@ export default class Home extends Vue {
             }
             json.items.push(obj)
           }
-          console.log(json)
-          batchAddPlan(table.customerPlan, json)
         }
       }
     }
+    batchAddPlan(table.customerPlan, json)
+    const data = {
+      fields: {
+        [field.uploadCode]: res[0].orderNumber + ',' + uploadCode
+      }
+    }
+    updateTable(projectId, data)
     this.$emit('close')
   }
 

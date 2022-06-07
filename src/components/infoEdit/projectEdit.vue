@@ -13,21 +13,6 @@
           <td><input id="telephone" type="text" /></td>
         </tr>
         <tr>
-          <td>目前任务</td>
-          <td>
-            <select id="projectProgress">
-              <option
-                v-for="item in projectProgress"
-                :key="item.value"
-                :value="item.value"
-                name="目前任务"
-              >
-                {{ item.name }}
-              </option>
-            </select>
-          </td>
-        </tr>
-        <tr>
           <td>项目类型</td>
           <td>
             <select id="projectType">
@@ -52,12 +37,11 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { table, field, projectType, projectProgress } from '@/config/config'
+import { table, field, projectType } from '@/config/config'
 import { SearchInfo, updateTable } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   projectType = projectType;
-  projectProgress = projectProgress;
   userId = localStorage.getItem('userId');
   itemId: any = '';
   async mounted () {
@@ -95,16 +79,6 @@ export default class Home extends Vue {
           }
         }
       }
-      if (fields[i].field_id === field.currentTask) {
-        const id = parseInt(fields[i].values[0].id)
-        const currentTask: any = document.getElementById('projectProgress')
-        for (let i = 0; i < currentTask.options.length; i++) {
-          if (parseInt(currentTask.options[i].value) === id) {
-            console.log(currentTask.options[i].value + '---' + id)
-            currentTask.options[i].selected = true
-          }
-        }
-      }
       if (fields[i].field_id === field.pname) {
         const values = fields[i].values
         const customerName: any = document.getElementById('customerName')
@@ -125,15 +99,11 @@ export default class Home extends Vue {
   async saveInfo () {
     const customerName: any = document.getElementById('customerName')
     const telephone: any = document.getElementById('telephone')
-    const currentTask: any = document.getElementById('currentTask')
     const projectType: any = document.getElementById('projectType')
     const data: any = {
       fields: {
         [field.pname]: customerName.value,
         [field.ptelephone]: telephone.value,
-        [field.currentTask]: [
-          currentTask.options[currentTask.selectedIndex].value
-        ],
         [field.projectType]: [
           projectType.options[projectType.selectedIndex].value
         ]

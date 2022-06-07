@@ -52,6 +52,7 @@ export const field = {
   saleMan: 2200000145489594, // 销售
   department: 2200000160830230, // 部门
   ChatId: 2200000172376106, // 群ID
+  uploadCode: 2200000197268103, // 已上传订单编号
   X: 2200000150942406,
   Y: 2200000150942407,
   // 客户方案表
@@ -68,7 +69,7 @@ export const field = {
   number: 2200000143342281,
   serviceFee: 2200000143114392,
   present: 2200000197078762,
-  orderNumber: 2100000014708369,
+  orderNumber: 2200000197072902,
   // 工单表
   visitDate: 2200000145748099, // 上门日期 value
   orderType: 2200000146398516, // 订单类型 name

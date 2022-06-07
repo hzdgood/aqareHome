@@ -2,6 +2,14 @@
   <div>
     <table class="tagTable">
       <tr>
+        <td>联系电话</td>
+        <td>{{ telephone }}</td>
+        <td></td>
+        <td>折叠/展开</td>
+      </tr>
+    </table>
+    <table class="tagTable">
+      <tr>
         <td>客户来源</td>
         <td>
           <button v-for="item in custominto" :key="item.item_id">
@@ -29,7 +37,7 @@
           </button>
         </td>
       </tr>
-      <tr>
+      <tr v-if="houseNeed.length !== 0">
         <td>全屋需求</td>
         <td colspan="3">
           <button v-for="item in houseNeed" :key="item.item_id">
@@ -37,7 +45,7 @@
           </button>
         </td>
       </tr>
-      <tr>
+      <tr v-if="cAttribute.length !== 0">
         <td>客户属性</td>
         <td colspan="3">
           <button v-for="item in cAttribute" :key="item.item_id">
@@ -45,7 +53,7 @@
           </button>
         </td>
       </tr>
-      <tr>
+      <tr v-if="oneCustom.length !==0">
         <td>单品客户</td>
         <td colspan="3">
           <button v-for="item in oneCustom" :key="item.item_id">
@@ -53,7 +61,7 @@
           </button>
         </td>
       </tr>
-      <tr>
+      <tr v-if="lostStatus.length !== 0">
         <td>流失状态</td>
         <td colspan="3">
           <button v-for="item in lostStatus" :key="item.item_id">
@@ -79,6 +87,7 @@ export default class Actions extends Vue {
   hometype: any[] = [];
   custominto: any[] = [];
   houseNeed: any[] = [];
+  telephone: any = ''
   customerInfo = table.customerInfo;
   userId = localStorage.getItem('userId');
 
@@ -108,6 +117,10 @@ export default class Actions extends Vue {
     }
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
+      if (fields[i].field_id === field.telephone) {
+        const values = fields[i].values
+        this.telephone = values
+      }
       if (fields[i].field_id === field.houseInfo) {
         const values = fields[i].values
         this.houseInfo = values
