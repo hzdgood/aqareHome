@@ -65,7 +65,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 
@@ -85,6 +85,11 @@ export default class Actions extends Vue {
 
   async mounted () {
     this.loadFunction()
+  }
+
+  @Watch('$store.state.customTagStatus')
+  reloadPage () {
+    setTimeout(this.loadFunction, 2000)
   }
 
   // 加载客户数据

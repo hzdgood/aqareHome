@@ -84,7 +84,7 @@ export default class Home extends Vue {
   }
 
   reloadPage () {
-    console.log(111)
+    this.$store.dispatch('updataTag')
   }
 }
 </script>

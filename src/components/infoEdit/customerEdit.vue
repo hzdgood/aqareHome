@@ -280,7 +280,7 @@ export default class Home extends Vue {
     let index = 0
     // 迭代循环DOM对象合成伙伴云数据
     for (let i = 0; i < obj.length; i++) {
-      if (obj.checked === true) {
+      if (obj[i].checked === true) {
         let id = obj[i].id
         const name = obj[i].name
         id = parseInt(id)

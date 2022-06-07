@@ -116,6 +116,7 @@ export default class Actions extends Vue {
         await updateTable(itemId, data)
         localStorage.setItem('userId', userId)
         localStorage.setItem('userName', userName)
+        location.reload()
       }
     } else {
       let userId = ''

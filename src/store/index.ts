@@ -5,22 +5,38 @@ Vue.use(Vuex)
 
 const state = {
   reloadStatus: false,
-  projectData: {}
+  customTagStatus: false
 }
 const mutations = {
   updateReload () {
-    state.reloadStatus = true
+    if (!state.reloadStatus) {
+      state.reloadStatus = true
+    } else {
+      state.reloadStatus = false
+    }
   },
-  updateProjectData (data: any) {
-    state.projectData = data
+  updataTag () {
+    if (!state.customTagStatus) {
+      state.customTagStatus = true
+    } else {
+      state.customTagStatus = false
+    }
   }
 }
 const actions = {
   updateReload () {
-    state.reloadStatus = true
+    if (!state.reloadStatus) {
+      state.reloadStatus = true
+    } else {
+      state.reloadStatus = false
+    }
   },
-  updateProjectData (data: any) {
-    state.projectData = data
+  updataTag () {
+    if (!state.customTagStatus) {
+      state.customTagStatus = true
+    } else {
+      state.customTagStatus = false
+    }
   }
 }
 const getters = {
