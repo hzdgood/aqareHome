@@ -4,109 +4,160 @@
     <div class="infoDiv">
       <div class="headerDiv">项目信息</div>
       <div class="addSite">
-        <button class="addButton" @click="addClick()" v-show="addShow">新增 +</button>
+        <button class="addButton" @click="addClick()" v-show="addShow">
+          新增 +
+        </button>
       </div>
       <div id="projectList" v-for="project in projectList" :key="project.id">
         <table class="EditTable">
           <tr>
             <td>项目名称</td>
             <td>
-              <input :id="project.id + 'projectCustom'" type="text" :value="project.customer"/>
+              <input
+                :id="project.id + 'projectCustom'"
+                type="text"
+                :value="project.customer"
+              />
             </td>
           </tr>
           <tr>
             <td>主项目</td>
             <td>
-              {{ project.masterProject }} <button class="saveButton" @click="bindClick(project)">绑定</button>
+              {{ project.masterProject }}
+              <button
+                class="saveButton"
+                @click="bindClick(project)"
+                v-show="project.masterStatus"
+              >
+                绑定
+              </button>
             </td>
           </tr>
           <tr>
-            <td>项目类型</td>
+            <td>*项目类型</td>
             <td>
               <select :id="project.id + 'projectType'">
                 <option :value="project.projectTypeId">
                   {{ project.projectType }}
                 </option>
-                <option v-for="item in projectType" :value="item.value" :key="item.value">
+                <option
+                  v-for="item in projectType"
+                  :value="item.value"
+                  :key="item.value"
+                >
                   {{ item.name }}
                 </option>
               </select>
             </td>
           </tr>
           <tr>
-            <td>联系方式</td>
+            <td>*联系方式</td>
             <td>
-              <input :id="project.id + 'telephone'" type="text" :value="project.telephone"/>
+              <input
+                :id="project.id + 'telephone'"
+                type="text"
+                :value="project.telephone"
+              />
             </td>
           </tr>
           <tr>
-            <td>小区名称</td>
+            <td>*小区名称</td>
             <td>
-              <input :id="project.id + 'projectVillage'" type="text" :value="project.village"/>
+              <input
+                :id="project.id + 'projectVillage'"
+                type="text"
+                :value="project.village"
+              />
             </td>
           </tr>
           <tr>
-            <td>客户房型</td>
+            <td>*客户房型</td>
             <td>
               <select :id="project.id + 'projectHometype'">
                 <option :value="project.hometypeId">
                   {{ project.hometype }}
                 </option>
-                <option v-for="item in houseType" :value="item.value" :key="item.value">
+                <option
+                  v-for="item in houseType"
+                  :value="item.value"
+                  :key="item.value"
+                >
                   {{ item.name }}
                 </option>
               </select>
             </td>
           </tr>
           <tr>
-            <td>销售人员</td>
+            <td>*销售人员</td>
             <td>
               <select :id="project.id + 'saleMan'">
                 <option :value="project.saleManId">
                   {{ project.saleMan }}
                 </option>
-                <option v-for="item in saleManList" :value="item.saleId" :key="item.saleId">
+                <option
+                  v-for="item in saleManList"
+                  :value="item.saleId"
+                  :key="item.saleId"
+                >
                   {{ item.saleName }}
                 </option>
               </select>
             </td>
           </tr>
           <tr>
-            <td>所属门店</td>
+            <td>*所属门店</td>
             <td>
               <select :id="project.id + 'department'">
                 <option :value="project.departmentId">
                   {{ project.department }}
                 </option>
-                <option v-for="item in departmentList" :value="item.value" :key="item.value">
+                <option
+                  v-for="item in departmentList"
+                  :value="item.value"
+                  :key="item.value"
+                >
                   {{ item.name }}
                 </option>
               </select>
             </td>
           </tr>
           <tr>
-            <td>所在区域</td>
+            <td>*所在区域</td>
             <td>
               <select :id="project.id + 'projectArea'">
                 <option :value="project.areaId">
                   {{ project.area }}
                 </option>
-                <option v-for="item in areaList" :value="item.value" :key="item.value">
+                <option
+                  v-for="item in areaList"
+                  :value="item.value"
+                  :key="item.value"
+                >
                   {{ item.name }}
                 </option>
               </select>
             </td>
           </tr>
           <tr>
-            <td>客户地址</td>
+            <td>*客户地址</td>
             <td>
-              <input :id="project.id + 'projectAddress'" type="text" :value="project.address"/>
+              <input
+                :id="project.id + 'projectAddress'"
+                type="text"
+                :value="project.address"
+              />
             </td>
           </tr>
         </table>
         <div class="buttonSite">
           <button class="saveButton" @click="saveClick(project)">保存</button>
-          <button class="saveButton" @click="deleteClick(project)">删除</button>
+          <button
+            class="saveButton"
+            @click="deleteClick(project)"
+            v-show="project.masterStatus"
+          >
+            删除
+          </button>
           <button class="closeButton" @click="close()">关闭</button>
         </div>
       </div>
@@ -115,7 +166,12 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, updateTable, deleteItem, filterInfo } from '@/config/interFace'
+import {
+  SearchInfo,
+  updateTable,
+  deleteItem,
+  filterInfo
+} from '@/config/interFace'
 import { table, field, houseType, projectType } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -131,7 +187,7 @@ export default class Home extends Vue {
   areaList: any[] = [];
   departmentList: any[] = [];
   userId = localStorage.getItem('userId');
-  addShow = true
+  addShow = true;
 
   // 查询所有的销售员
   async getSaleManList () {
@@ -230,6 +286,7 @@ export default class Home extends Vue {
       let projectTypeId = ''
       let saleMan = ''
       let saleManId = ''
+      let masterStatus = true
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].field_id === field.projectCustom) {
           projectCustom = fields[i].values[0].value
@@ -245,6 +302,9 @@ export default class Home extends Vue {
         }
         if (fields[i].field_id === field.masterProject) {
           masterProject = fields[i].values[0].name
+          if (masterProject === '是') {
+            masterStatus = false
+          }
         }
         if (fields[i].field_id === field.projectHometype) {
           projectHometype = fields[i].values[0].name
@@ -275,6 +335,7 @@ export default class Home extends Vue {
         village: projectVillage,
         address: projectAddress,
         masterProject: masterProject,
+        masterStatus: masterStatus,
         area: projectArea,
         areaId: projectAreaId,
         saleMan: saleMan,
@@ -344,12 +405,9 @@ export default class Home extends Vue {
 
   // 删除一条数据
   async deleteClick (project: any) {
-    if (project.masterProject === '是') {
-    } else {
-      const data = { item_ids: [project.itemId] }
-      await deleteItem(table.projectInfo, data)
-      setTimeout(this.getInfoList, 1000)
-    }
+    const data = { item_ids: [project.itemId] }
+    await deleteItem(table.projectInfo, data)
+    setTimeout(this.getInfoList, 1000)
   }
 
   // 关闭
@@ -360,7 +418,9 @@ export default class Home extends Vue {
   // 保存按钮 获取当前项目全部数据
   async saveClick (project: any) {
     const telephone: any = document.getElementById(project.id + 'telephone')
-    const projectCustom: any = document.getElementById(project.id + 'projectCustom')
+    const projectCustom: any = document.getElementById(
+      project.id + 'projectCustom'
+    )
     const address: any = document.getElementById(project.id + 'projectAddress')
     const village: any = document.getElementById(project.id + 'projectVillage')
     let hometype: any = document.getElementById(project.id + 'projectHometype')
@@ -374,13 +434,37 @@ export default class Home extends Vue {
     let department: any = document.getElementById(project.id + 'department')
     department = department.options[department.selectedIndex].value
     // 加入校验
+    if (telephone.value === '') {
+      alert('请输入联系电话！')
+      return
+    } else if (projectCustom.value === '') {
+      alert('请输入客户名称！')
+      return
+    } else if (address.value === '') {
+      alert('请输入客户地址！')
+      return
+    } else if (village.value === '') {
+      alert('请输入小区名称！')
+      return
+    } else if (hometype === '') {
+      alert('请选择房屋类型！')
+      return
+    } else if (area === '') {
+      alert('请选择客户所在区域！')
+      return
+    } else if (saleMan === '') {
+      alert('请选择销售人员！')
+      return
+    } else if (department === '') {
+      alert('请选择所属门店！')
+      return
+    }
     const data = {
       fields: {
         [field.projectCustom]: projectCustom.value,
         [field.telephone]: telephone.value,
         [field.projectAddress]: address.value,
         [field.projectVillage]: village.value,
-
         [field.projectHometype]: [hometype],
         [field.projectType]: [Type],
         [field.projectArea]: [area],
@@ -388,9 +472,6 @@ export default class Home extends Vue {
         [field.department]: [department]
       }
     }
-
-    console.log(data)
-
     const res: any = await updateTable(project.itemId, data)
     if (res.message) {
       alert(res.message)
@@ -398,6 +479,5 @@ export default class Home extends Vue {
       this.$emit('reload')
     }
   }
-  // 全部有数据才能够提交
 }
 </script>

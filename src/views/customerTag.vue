@@ -2,14 +2,6 @@
   <div>
     <table class="tagTable">
       <tr>
-        <td>联系电话</td>
-        <td>{{ telephone }}</td>
-        <td></td>
-        <td>折叠/展开</td>
-      </tr>
-    </table>
-    <table class="tagTable">
-      <tr>
         <td>客户来源</td>
         <td>
           <button v-for="item in custominto" :key="item.item_id">
@@ -117,8 +109,8 @@ export default class Actions extends Vue {
     }
     const fields = res[0].fields
     for (let i = 0; i < fields.length; i++) {
-      if (fields[i].field_id === field.telephone) {
-        const values = fields[i].values
+      if (fields[i].field_id === field.ctelephone) {
+        const values = fields[i].values[0].value
         this.telephone = values
       }
       if (fields[i].field_id === field.houseInfo) {
@@ -155,12 +147,6 @@ export default class Actions extends Vue {
       }
     }
   }
-
-  // 回调 tagEdit
-  // @Emit()
-  // async reloadFunction () {
-  //   setTimeout(this.loadFunction, 1000)
-  // }
 }
 </script>
 <style scoped></style>
