@@ -2,7 +2,7 @@
   <div>
     <div class="floatDiv"></div>
     <div class="infoDiv">
-      <div class="headerDiv">新增定金收款</div>
+      <div class="headerDiv">新增收款</div>
       <div v-if="errorStatus == true">
         <table class="EditTable">
           <tr>
@@ -19,7 +19,16 @@
           <tr>
             <td>收款类型</td>
             <td>
-              <input id="projectType" type="text" readonly value="定金" />
+              <select id="projectType" @change="typeChange">
+                <option value="1">定金</option>
+                <option value="2">全款</option>
+              </select>
+            </td>
+          </tr>
+          <tr v-show="quotationStatus">
+            <td>报价单</td>
+            <td>
+              <input id="quotation" type="text" :value="title" readonly />
             </td>
           </tr>
           <tr>
@@ -42,26 +51,27 @@
           </tr>
           <tr>
             <td>上传图片</td>
-            <td><input id="file" type="file" /></td>
+            <td><input id="file" type="file" accept="image/*" /></td>
           </tr>
         </table>
-        <div class="buttonSite">
-          <input
-            class="saveButton"
-            type="button"
-            @click="saveClick()"
-            value="保存"
-          />
-          <input
-            class="closeButton"
-            type="button"
-            @click="closeClick()"
-            value="关闭"
-          />
-        </div>
       </div>
       <div v-if="errorStatus == false">
         {{ errorMsg }}
+      </div>
+      <div class="buttonSite">
+        <input
+          v-show="errorStatus"
+          class="saveButton"
+          type="button"
+          @click="saveClick()"
+          value="保存"
+        />
+        <input
+          class="closeButton"
+          type="button"
+          @click="closeClick()"
+          value="关闭"
+        />
       </div>
     </div>
   </div>
@@ -78,7 +88,11 @@ export default class Home extends Vue {
   projectCode = '';
   errorMsg = '';
   errorStatus = true;
+  quotationStatus = false;
   itemId = '';
+  projectId = '';
+  title = '';
+  quotationId = '';
   userId = localStorage.getItem('userId');
   async mounted () {
     const data = {
@@ -106,6 +120,10 @@ export default class Home extends Vue {
         if (fields[j].field_id === field.projectCode) {
           this.projectCode = fields[j].values[0].value
         }
+        if (fields[j].field_id === field.projectId) {
+          const values = fields[j].values[0].value
+          this.projectId = values
+        }
       }
     }
     if (this.projectCode === '') {
@@ -115,28 +133,88 @@ export default class Home extends Vue {
   }
 
   async saveClick () {
-    const collectType: any = document.getElementById('collectType')
     const collectMoney: any = document.getElementById('collectMoney')
-    const cType = collectType.options[collectType.selectedIndex].value
+    let projectType: any = document.getElementById('projectType')
+    projectType = projectType.options[projectType.selectedIndex].value
+    let collectType: any = document.getElementById('collectType')
+    collectType = collectType.options[collectType.selectedIndex].value
     let file: any = document.getElementById('file')
     file = file.files[0]
+    console.log(file)
+
+    if (collectMoney.value === '') {
+      alert('请输入金额!')
+      return
+    }
+
+    if (typeof (file) === 'undefined') {
+      alert('请上传图片!')
+      return
+    }
+    // 上传图片
     const formData = new FormData()
     formData.append('source', file)
     formData.append('name', file.name)
     formData.append('domain', 'app.huoban.com')
     formData.append('type', 'attachment')
     const res = await uploadImg(formData)
-    const data = {
-      fields: {
-        [field.pName]: [this.itemId],
-        [field.pType]: [1],
-        [field.cType]: [cType],
-        [field.cMoney]: collectMoney.value,
-        [field.uploadFile]: [res.file_id]
+    if (projectType === '1') {
+      const data = {
+        fields: {
+          [field.pName]: [this.itemId],
+          [field.pType]: [1],
+          [field.cType]: [collectType],
+          [field.cMoney]: collectMoney.value,
+          [field.uploadFile]: [res.file_id]
+        }
       }
+      await addInfo(this.collectTable, data)
+    } else {
+      if (this.title === '') {
+        alert('请生成报价单！')
+        return
+      }
+      const data = {
+        fields: {
+          [field.pName]: [this.itemId],
+          [field.pType]: [2],
+          2200000180591045: [this.quotationId],
+          [field.cType]: [collectType],
+          [field.cMoney]: collectMoney.value,
+          [field.uploadFile]: [res.file_id]
+        }
+      }
+      await addInfo(this.collectTable, data)
     }
-    await addInfo(this.collectTable, data)
     this.$emit('close')
+  }
+
+  async typeChange () {
+    let projectType: any = document.getElementById('projectType')
+    projectType = projectType.options[projectType.selectedIndex].value
+    if (projectType === '2') {
+      this.quotationStatus = true
+      const obj1 = {
+        where: {
+          and: [
+            {
+              query: { or: [{ in: [this.projectId] }] },
+              query_option_mappings: [-1],
+              field: 1102001110000000 // 项目ID
+            }
+          ]
+        },
+        offset: 0,
+        limit: 20
+      }
+      const result1 = await SearchInfo(table.proposal, obj1)
+      if (result1.length === 0) {
+        alert('请生成报价单！')
+        return
+      }
+      this.title = result1[0].title
+      this.quotationId = result1[0].item_id
+    }
   }
 
   closeClick () {

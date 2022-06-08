@@ -5,6 +5,7 @@
       <div @click="clickInfo()" v-show="singleStatus">信息</div>
       <div @click="clickChat()" v-show="chatStatus">信息</div>
       <div @click="clickCollect()" v-show="singleStatus">收款</div>
+      <div @click="clickProposal()" v-show="singleStatus">报价</div>
       <div @click="clickScheme()" v-show="singleStatus">方案</div>
     </div>
     <div v-if="infoShow">
@@ -19,6 +20,9 @@
     <div v-if="schemeShow">
       <scheme-edit :upload="true" @close="clickScheme()"></scheme-edit>
     </div>
+    <div v-if="ProposalStatus">
+      <proposal-edit @close="clickProposal()"></proposal-edit>
+    </div>
   </div>
 </template>
 
@@ -29,6 +33,7 @@ import infoEdit from '@/components/foot/footEdit/infoEdit.vue'
 import chatEdit from '@/components/foot/footEdit/chatEdit.vue'
 import collectEdit from '@/components/foot/footEdit/collectEdit.vue'
 import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
+import ProposalEdit from '@/components/foot/footEdit/ProposalEdit.vue'
 @Component({
   name: 'foot',
   components: {
@@ -38,7 +43,8 @@ import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
     'info-edit': infoEdit,
     'collect-edit': collectEdit,
     'scheme-edit': schemeEdit,
-    'chat-edit': chatEdit
+    'chat-edit': chatEdit,
+    'proposal-edit': ProposalEdit
   }
 })
 export default class Home extends Vue {
@@ -49,6 +55,7 @@ export default class Home extends Vue {
   singleStatus = false;
   chatStatus = false;
   optionStatus = false;
+  ProposalStatus = false;
   contactType = localStorage.getItem('contactType');
 
   mounted () {
@@ -58,6 +65,18 @@ export default class Home extends Vue {
     } else {
       this.singleStatus = false
       this.chatStatus = true
+    }
+  }
+
+  clickProposal () {
+    if (this.ProposalStatus) {
+      this.ProposalStatus = false
+    } else {
+      this.optionStatus = false
+      this.ProposalStatus = true
+      this.chatShow = false
+      this.schemeShow = false
+      this.collectShow = false
     }
   }
 
@@ -75,15 +94,18 @@ export default class Home extends Vue {
     this.infoShow = false
     this.chatShow = false
     this.optionStatus = false
+    this.ProposalStatus = false
   }
 
   clickChat () {
     if (this.chatShow) {
       this.chatShow = false
     } else {
+      this.optionStatus = false
       this.chatShow = true
       this.schemeShow = false
       this.collectShow = false
+      this.ProposalStatus = false
     }
   }
 
@@ -91,9 +113,11 @@ export default class Home extends Vue {
     if (this.infoShow) {
       this.infoShow = false
     } else {
+      this.optionStatus = false
       this.infoShow = true
       this.schemeShow = false
       this.collectShow = false
+      this.ProposalStatus = false
     }
   }
 
@@ -101,10 +125,12 @@ export default class Home extends Vue {
     if (this.collectShow) {
       this.collectShow = false
     } else {
+      this.optionStatus = false
       this.collectShow = true
       this.schemeShow = false
       this.infoShow = false
       this.chatShow = false
+      this.ProposalStatus = false
     }
   }
 
@@ -112,10 +138,12 @@ export default class Home extends Vue {
     if (this.schemeShow) {
       this.schemeShow = false
     } else {
+      this.optionStatus = false
       this.schemeShow = true
       this.collectShow = false
       this.infoShow = false
       this.chatShow = false
+      this.ProposalStatus = false
     }
   }
 }

@@ -12,7 +12,8 @@ export const table = {
   followTable: '2100000014956211', // 跟进表
   sheetDetail: '2100000014976390', // 工单明细
   productTable: '2100000014705410', // 产品信息表
-  wechatChat: '2100000020393987' // 微信群
+  wechatChat: '2100000020393987', // 微信群
+  proposal: '2100000019332138' // 报价单
 }
 export const field = {
   // 客户信息表
@@ -38,6 +39,7 @@ export const field = {
   ptelephone: 1101001103000000,
   pname: 1101001102000000,
   projectCode: 2200000150460774, // 项目编码
+  projectId: 2200000144970373, // 项目ID
   projectUUid: 1101001121000000, // UserId
   projectCustom: 2200000160386765, // 姓名
   telephone: 2200000160386766, // 手机号
