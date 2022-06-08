@@ -7,6 +7,7 @@
         <button class="addButton" @click="addClick()" v-show="addShow">
           新增 +
         </button>
+        <button v-if="projectList.length == 0" class="closeButton" @click="close()">关闭</button>
       </div>
       <div id="projectList" v-for="project in projectList" :key="project.id">
         <table class="EditTable">
