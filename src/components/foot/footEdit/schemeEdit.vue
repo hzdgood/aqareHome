@@ -182,7 +182,7 @@ export default class Home extends Vue {
       for (let j = 0; j < result2.length; j++) {
         const fields = result2[j].fields
         const itemId = result2[j].item_id
-        const code = fields[2].values[0].value // 要改
+        const code = fields[2].values[0].value // 产品条码
         if (res[i].productCode === code) {
           if (res[i].money === '0.00') {
             const obj = {

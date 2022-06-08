@@ -1,6 +1,6 @@
 <template>
   <div class="appbody">
-    <div v-if="userStatus">
+    <div v-if="userStatus" style="background-color: #f2f3fb;">
       <div class="appdiv">
         <user-info></user-info>
         <div class="lineType"></div>
