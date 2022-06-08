@@ -47,7 +47,7 @@
           </tr>
           <tr>
             <td>收款金额</td>
-            <td><input id="collectMoney" type="text" /></td>
+            <td><input id="collectMoney" type="text" :value="receivable" /></td>
           </tr>
           <tr>
             <td>上传图片</td>
@@ -79,7 +79,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
+import { SearchInfo, addInfo, uploadImg, procedure } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   collectTable = table.collectTable;
@@ -93,6 +93,7 @@ export default class Home extends Vue {
   projectId = '';
   title = '';
   quotationId = '';
+  receivable = '';
   userId = localStorage.getItem('userId');
   async mounted () {
     const data = {
@@ -147,7 +148,7 @@ export default class Home extends Vue {
       return
     }
 
-    if (typeof (file) === 'undefined') {
+    if (typeof file === 'undefined') {
       alert('请上传图片!')
       return
     }
@@ -168,7 +169,8 @@ export default class Home extends Vue {
           [field.uploadFile]: [res.file_id]
         }
       }
-      await addInfo(this.collectTable, data)
+      const result = await addInfo(this.collectTable, data)
+      this.run(result)
     } else {
       if (this.title === '') {
         alert('请生成报价单！')
@@ -184,9 +186,10 @@ export default class Home extends Vue {
           [field.uploadFile]: [res.file_id]
         }
       }
-      await addInfo(this.collectTable, data)
+      const result = await addInfo(this.collectTable, data)
+      this.run(result)
     }
-    this.$emit('close')
+    // this.$emit("close");
   }
 
   async typeChange () {
@@ -214,7 +217,26 @@ export default class Home extends Vue {
       }
       this.title = result1[0].title
       this.quotationId = result1[0].item_id
+      const fields = result1[0].fields
+      for (let i = 0; i < fields.length; i++) {
+        if (fields[i].field_id === 2200000180589759) {
+          const values = fields[i].values[0].value
+          this.receivable = values
+        }
+      }
     }
+    if (projectType === '1') {
+      this.quotationStatus = false
+      this.receivable = ''
+    }
+  }
+
+  async run (result: any) {
+    var obj = {
+      action: 'spec_item',
+      data: { item: { item_id: result.item_id } }
+    }
+    await procedure('3000000000246006', obj)
   }
 
   closeClick () {

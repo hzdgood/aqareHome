@@ -128,6 +128,12 @@ export const SearchInfo = async (tableId: string, data: object) => {
   return info.data.items
 }
 
+export const procedure = async (tableId: string, data: object) => {
+  const url = huobanUrl + '/v2/procedure/' + tableId + '/run'
+  const info = await post(url, data)
+  return info.data.items
+}
+
 export const filterInfo = async (tableId: string, data: any) => {
   const url = huobanUrl + '/v2/item/table/' + tableId + '/view/0/filter'
   const info = await post(url, data)

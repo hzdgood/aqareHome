@@ -12,6 +12,12 @@
           value="生成报价"
           @click="create()"
         />
+        <input
+            class="closeButton"
+            type="button"
+            value="关闭"
+            @click="closeClick()"
+          />
       </div>
       <div v-for="item in dataList" :key="item.id">
         <table class="EditTable" v-show="errorStatus">
@@ -48,12 +54,6 @@
             type="button"
             value="保存"
             @click="saveClick(item)"
-          />
-          <input
-            class="closeButton"
-            type="button"
-            value="关闭"
-            @click="closeClick()"
           />
         </div>
       </div>
@@ -136,6 +136,7 @@ export default class Home extends Vue {
 
   // 新增报价单
   async create () {
+    this.createStatus = false
     const obj = {
       fields: {
         2200000180589754: [1],
@@ -144,7 +145,6 @@ export default class Home extends Vue {
       }
     }
     await addInfo(table.proposal, obj)
-    this.createStatus = false
     this.update()
   }
 
