@@ -421,6 +421,10 @@ customerEdit
   border: 1px solid #DCE0E7;
 }
 
+.EditTable input[type=file]{
+  width: 230px;
+}
+
 .EditTable select {
   width: 230px;
   height: 32px;

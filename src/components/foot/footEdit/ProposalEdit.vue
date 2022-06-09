@@ -13,11 +13,11 @@
           @click="create()"
         />
         <input
-            class="closeButton"
-            type="button"
-            value="关闭"
-            @click="closeClick()"
-          />
+          class="closeButton"
+          type="button"
+          value="关闭"
+          @click="closeClick()"
+        />
       </div>
       <div v-for="item in dataList" :key="item.id">
         <table class="EditTable" v-show="errorStatus">
@@ -57,9 +57,16 @@
           />
         </div>
       </div>
-
       <div v-if="errorStatus == false">
         {{ errorMsg }}
+        <div class="buttonSite">
+          <input
+            class="closeButton"
+            type="button"
+            value="关闭"
+            @click="closeClick()"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -86,7 +93,7 @@ export default class Home extends Vue {
   Received = '';
 
   async mounted () {
-    let money = '0.00'
+    let money: any
     const obj1 = {
       where: {
         and: [
@@ -126,7 +133,8 @@ export default class Home extends Vue {
         }
       }
     }
-    if (money === '0.00') {
+    console.log(money)
+    if (money === '0' || money === 0) {
       this.errorMsg = '请先上传方案！'
       return
     }
@@ -222,6 +230,7 @@ export default class Home extends Vue {
     }
     updateTable(item.proposalId, data)
     this.update()
+    this.$emit('close')
   }
 
   // 同步

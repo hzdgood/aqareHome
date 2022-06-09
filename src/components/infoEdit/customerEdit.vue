@@ -304,6 +304,9 @@ export default class Home extends Vue {
     // 拼接用户名称和电话
     data.fields[field.customerName] = customerName.value
     data.fields[field.ctelephone] = telephone.value
+    if (typeof (data.fields[field.oneCustom]) === 'undefined') {
+      data.fields[field.oneCustom] = []
+    }
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
     this.$emit('reload')

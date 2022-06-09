@@ -141,25 +141,23 @@ export default class Home extends Vue {
     collectType = collectType.options[collectType.selectedIndex].value
     let file: any = document.getElementById('file')
     file = file.files[0]
-    console.log(file)
-
     if (collectMoney.value === '') {
       alert('请输入金额!')
       return
     }
-
     if (typeof file === 'undefined') {
       alert('请上传图片!')
       return
     }
     // 上传图片
-    const formData = new FormData()
-    formData.append('source', file)
-    formData.append('name', file.name)
-    formData.append('domain', 'app.huoban.com')
-    formData.append('type', 'attachment')
-    const res = await uploadImg(formData)
     if (projectType === '1') {
+      this.errorStatus = false
+      const formData = new FormData()
+      formData.append('source', file)
+      formData.append('name', file.name)
+      formData.append('domain', 'app.huoban.com')
+      formData.append('type', 'attachment')
+      const res = await uploadImg(formData)
       const data = {
         fields: {
           [field.pName]: [this.itemId],
@@ -176,6 +174,13 @@ export default class Home extends Vue {
         alert('请生成报价单！')
         return
       }
+      this.errorStatus = false
+      const formData = new FormData()
+      formData.append('source', file)
+      formData.append('name', file.name)
+      formData.append('domain', 'app.huoban.com')
+      formData.append('type', 'attachment')
+      const res = await uploadImg(formData)
       const data = {
         fields: {
           [field.pName]: [this.itemId],
@@ -189,7 +194,7 @@ export default class Home extends Vue {
       const result = await addInfo(this.collectTable, data)
       this.run(result)
     }
-    // this.$emit("close");
+    this.$emit('close')
   }
 
   async typeChange () {
@@ -224,8 +229,7 @@ export default class Home extends Vue {
           this.receivable = values
         }
       }
-    }
-    if (projectType === '1') {
+    } else if (projectType === '1') {
       this.quotationStatus = false
       this.receivable = ''
     }
