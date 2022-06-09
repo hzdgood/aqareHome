@@ -8,7 +8,7 @@
       </div>
       <div class="buttonSite">
         <input
-          class="saveButton"
+          class="saveButton" v-show="saveStatus"
           type="button"
           @click="saveClick()"
           value="提交"
@@ -42,6 +42,7 @@ import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   erronProduct: any[] = [];
+  saveStatus = true
 
   @Prop({
     type: Boolean,
@@ -61,13 +62,16 @@ export default class Home extends Vue {
     const json: any = {
       items: []
     }
-
     const formData = new FormData()
     this.erronProduct = []
-
     // 拼接伙伴云JSON
     let file: any = document.getElementsByName('file')[0]
     file = file.files[0]
+    if (typeof file === 'undefined') {
+      alert('请上传表格!')
+      return
+    }
+    this.saveStatus = false
     formData.append('file', file, file.name)
     const res = await uploadFile(formData)
 

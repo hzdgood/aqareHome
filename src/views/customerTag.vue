@@ -94,6 +94,9 @@ export default class Actions extends Vue {
 
   // 加载客户数据
   async loadFunction () {
+    this.oneCustom = []
+    this.cAttribute = []
+    this.houseNeed = []
     const data = {
       where: {
         and: [

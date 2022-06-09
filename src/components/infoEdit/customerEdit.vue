@@ -307,6 +307,12 @@ export default class Home extends Vue {
     if (typeof (data.fields[field.oneCustom]) === 'undefined') {
       data.fields[field.oneCustom] = []
     }
+    if (typeof (data.fields[field.houseNeed]) === 'undefined') {
+      data.fields[field.houseNeed] = []
+    }
+    if (typeof (data.fields[field.cAttribute]) === 'undefined') {
+      data.fields[field.cAttribute] = []
+    }
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
     this.$emit('reload')
