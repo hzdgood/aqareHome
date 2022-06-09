@@ -106,6 +106,23 @@
             </td>
           </tr>
           <tr>
+            <td>*装修进度</td>
+            <td>
+              <select :id="project.id + 'stage'">
+                <option :value="project.stage">
+                  {{ project.stageName }}
+                </option>
+                <option
+                  v-for="item in decorationStage"
+                  :value="item.value"
+                  :key="item.value"
+                >
+                  {{ item.name }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
             <td>*所属门店</td>
             <td>
               <select :id="project.id + 'department'">
@@ -173,7 +190,7 @@ import {
   deleteItem,
   filterInfo
 } from '@/config/interFace'
-import { table, field, houseType, projectType } from '@/config/config'
+import { table, field, houseType, projectType, decorationStage } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectInfo = table.projectInfo;
@@ -188,6 +205,7 @@ export default class Home extends Vue {
   areaList: any[] = [];
   departmentList: any[] = [];
   userId = localStorage.getItem('userId');
+  decorationStage = decorationStage
   addShow = true;
 
   // 查询所有的销售员
@@ -288,7 +306,13 @@ export default class Home extends Vue {
       let saleMan = ''
       let saleManId = ''
       let masterStatus = true
+      let stage = ''
+      let stageName = ''
       for (let i = 0; i < fields.length; i++) {
+        if (fields[i].field_id === field.projectStage) {
+          stage = fields[i].values[0].id
+          stageName = fields[i].values[0].name
+        }
         if (fields[i].field_id === field.projectCustom) {
           projectCustom = fields[i].values[0].value
         }
@@ -331,6 +355,8 @@ export default class Home extends Vue {
       const obj = {
         id: j,
         itemId: itemId,
+        stage: stage,
+        stageName: stageName,
         customer: projectCustom,
         telephone: telephone,
         village: projectVillage,
@@ -426,14 +452,22 @@ export default class Home extends Vue {
     const village: any = document.getElementById(project.id + 'projectVillage')
     let hometype: any = document.getElementById(project.id + 'projectHometype')
     hometype = hometype.options[hometype.selectedIndex].value
+
     let Type: any = document.getElementById(project.id + 'projectType')
     Type = Type.options[Type.selectedIndex].value
+
     let area: any = document.getElementById(project.id + 'projectArea')
     area = area.options[area.selectedIndex].value
+
     let saleMan: any = document.getElementById(project.id + 'saleMan')
     saleMan = saleMan.options[saleMan.selectedIndex].value
+
     let department: any = document.getElementById(project.id + 'department')
     department = department.options[department.selectedIndex].value
+
+    let stage: any = document.getElementById(project.id + 'stage')
+    stage = stage.options[stage.selectedIndex].value
+
     // 加入校验
     if (telephone.value === '') {
       alert('请输入联系电话！')
@@ -459,6 +493,9 @@ export default class Home extends Vue {
     } else if (department === '') {
       alert('请选择所属门店！')
       return
+    } else if (stage === '') {
+      alert('请选择装修进度！')
+      return
     }
     const data = {
       fields: {
@@ -470,7 +507,8 @@ export default class Home extends Vue {
         [field.projectType]: [Type],
         [field.projectArea]: [area],
         [field.saleMan]: [saleMan],
-        [field.department]: [department]
+        [field.department]: [department],
+        [field.projectStage]: [stage]
       }
     }
     const res: any = await updateTable(project.itemId, data)

@@ -15,6 +15,12 @@
           <td>{{ project.telephone }}</td>
         </tr>
         <tr>
+          <td>最终价格</td>
+          <td>{{ project.endMoney }}</td>
+          <td>收款总额</td>
+          <td>{{ project.collectMoney }}</td>
+        </tr>
+        <tr>
           <td>小区名称</td>
           <td>{{ project.projectVillage }}</td>
           <td>客户房型</td>
@@ -104,6 +110,8 @@ export default class Home extends Vue {
       let projectAddress = ''
       let projectType = ''
       let masterProject = ''
+      let endMoney = ''
+      let collectMoney = ''
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].field_id === field.projectCustom) {
           const values = fields[i].values[0].value
@@ -137,6 +145,14 @@ export default class Home extends Vue {
           const values = fields[i].values[0].name
           projectType = values
         }
+        if (fields[i].field_id === 2200000151011276) {
+          const values = fields[i].values[0].value
+          collectMoney = values
+        }
+        if (fields[i].field_id === 2200000150080670) {
+          const values = fields[i].values[0].value
+          endMoney = values
+        }
         if (fields[i].field_id === field.masterProject) {
           const values = fields[i].values[0].name
           if (values === '是') {
@@ -156,7 +172,10 @@ export default class Home extends Vue {
         projectStage: projectStage,
         projectAddress: projectAddress,
         projectType: projectType,
-        masterProject: masterProject
+        masterProject: masterProject,
+        endMoney: endMoney,
+        collectMoney: collectMoney
+
       }
       this.projectList.push(obj)
     }
