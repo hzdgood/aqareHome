@@ -7,7 +7,13 @@
         <button class="addButton" @click="addClick()" v-show="addShow">
           新增 +
         </button>
-        <button v-if="projectList.length == 0" class="closeButton" @click="close()">关闭</button>
+        <button
+          v-if="projectList.length == 0"
+          class="closeButton"
+          @click="close()"
+        >
+          关闭
+        </button>
       </div>
       <div id="projectList" v-for="project in projectList" :key="project.id">
         <table class="EditTable">
@@ -25,13 +31,6 @@
             <td>主项目</td>
             <td>
               {{ project.masterProject }}
-              <button
-                class="saveButton"
-                @click="bindClick(project)"
-                v-show="project.masterStatus"
-              >
-                绑定
-              </button>
             </td>
           </tr>
           <tr>
@@ -169,13 +168,16 @@
         </table>
         <div class="buttonSite">
           <button class="saveButton" @click="saveClick(project)">保存</button>
-          <button
+          <!-- <button
+              class="saveButton"
+              @click="bindClick(project)"
+              v-show="project.masterStatus"
+            >绑定</button> -->
+          <!-- <button
             class="saveButton"
             @click="deleteClick(project)"
             v-show="project.masterStatus"
-          >
-            删除
-          </button>
+          >删除</button> -->
           <button class="closeButton" @click="close()">关闭</button>
         </div>
       </div>
@@ -190,7 +192,13 @@ import {
   deleteItem,
   filterInfo
 } from '@/config/interFace'
-import { table, field, houseType, projectType, decorationStage } from '@/config/config'
+import {
+  table,
+  field,
+  houseType,
+  projectType,
+  decorationStage
+} from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectInfo = table.projectInfo;
@@ -205,7 +213,7 @@ export default class Home extends Vue {
   areaList: any[] = [];
   departmentList: any[] = [];
   userId = localStorage.getItem('userId');
-  decorationStage = decorationStage
+  decorationStage = decorationStage;
   addShow = true;
 
   // 查询所有的销售员
