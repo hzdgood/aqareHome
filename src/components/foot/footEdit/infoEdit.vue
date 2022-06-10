@@ -186,25 +186,10 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import {
-  SearchInfo,
-  updateTable,
-  deleteItem,
-  filterInfo
-} from '@/config/interFace'
-import {
-  table,
-  field,
-  houseType,
-  projectType,
-  decorationStage
-} from '@/config/config'
+import { SearchInfo, updateTable, deleteItem, logInsert } from '@/config/interFace'
+import { table, field, houseType, projectType, decorationStage } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
-  projectInfo = table.projectInfo;
-  customerInfo = table.customerInfo;
-  saleManInfo = table.saleManInfo;
-  areaInfo = table.areaInfo;
   houseType: any = houseType;
   projectType: any = projectType;
   projectList: any[] = [];
@@ -223,7 +208,7 @@ export default class Home extends Vue {
       limit: 50,
       order_by: [{ field: 2200000160826904, sort: 'desc' }]
     }
-    const result = await SearchInfo(this.saleManInfo, data)
+    const result = await SearchInfo(table.saleManInfo, data)
     for (let i = 0; i < result.length; i++) {
       const field = result[i].fields
       const saleId = result[i].item_id
@@ -247,7 +232,7 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
-    const result = await SearchInfo(this.areaInfo, data)
+    const result = await SearchInfo(table.areaInfo, data)
     for (let i = 0; i < result.length; i++) {
       const field = result[i].fields
       const name = field[1].values[0].value
@@ -263,12 +248,10 @@ export default class Home extends Vue {
   // 查询所有门店数据
   async getDepartmentList () {
     const data = {
-      search: { fields: [], keywords: ['门店'] },
-      offset: 0,
-      limit: 20
+      where: { and: [{ field: 2200000169987088, query: { in: [1] } }] }
     }
     const tableId: any = 2100000016791383
-    const result = await filterInfo(tableId, data)
+    const result = await SearchInfo(tableId, data)
     for (let i = 0; i < result.length; i++) {
       const obj = {
         name: result[i].title,
@@ -293,7 +276,7 @@ export default class Home extends Vue {
         ]
       }
     }
-    const result = await SearchInfo(this.projectInfo, data)
+    const result = await SearchInfo(table.projectInfo, data)
     for (let j = 0; j < result.length; j++) {
       const fields = result[j].fields
       const itemId: any = result[j].item_id
@@ -430,13 +413,14 @@ export default class Home extends Vue {
       limit: 20,
       order_by: [{ field: field.userTable, sort: 'desc' }]
     }
-    const res = await SearchInfo(this.customerInfo, data)
+    const res = await SearchInfo(table.customerInfo, data)
     const itemId = res[0].item_id
     if (itemId) {
       const data = { fields: { 2200000184840062: [1] } }
       await updateTable(itemId, data)
       setTimeout(this.getInfoList, 1000)
     }
+    await logInsert([localStorage.getItem('localName') + ',新建项目'])
     this.$store.dispatch('Loading')
   }
 

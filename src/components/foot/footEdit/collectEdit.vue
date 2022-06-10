@@ -79,7 +79,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import { SearchInfo, addInfo, uploadImg, procedure } from '@/config/interFace'
+import { SearchInfo, addInfo, uploadImg, procedure, logInsert } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   collectTable = table.collectTable;
@@ -169,6 +169,7 @@ export default class Home extends Vue {
         }
       }
       const result = await addInfo(this.collectTable, data)
+      await logInsert([localStorage.getItem('localName') + ',收款定金成功: ' + collectMoney.value])
       this.run(result)
     } else {
       if (this.title === '') {
@@ -194,9 +195,9 @@ export default class Home extends Vue {
         }
       }
       const result = await addInfo(this.collectTable, data)
+      await logInsert([localStorage.getItem('localName') + ',收款全款成功: ' + collectMoney.value])
       this.run(result)
     }
-    // this.$emit('close')
   }
 
   async typeChange () {

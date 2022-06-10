@@ -159,14 +159,8 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, updateTable, filterInfo } from '@/config/interFace'
-import {
-  table,
-  field,
-  houseType,
-  projectType,
-  decorationStage
-} from '@/config/config'
+import { SearchInfo, updateTable } from '@/config/interFace'
+import { table, field, houseType, projectType, decorationStage } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
   projectList: any[] = [];
@@ -226,12 +220,10 @@ export default class Home extends Vue {
   // 查询所有门店数据
   async getDepartmentList () {
     const data = {
-      search: { fields: [], keywords: ['门店'] },
-      offset: 0,
-      limit: 20
+      where: { and: [{ field: 2200000169987088, query: { in: [1] } }] }
     }
     const tableId: any = 2100000016791383
-    const result = await filterInfo(tableId, data)
+    const result = await SearchInfo(tableId, data)
     for (let i = 0; i < result.length; i++) {
       const obj = {
         name: result[i].title,

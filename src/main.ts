@@ -63,17 +63,18 @@ const doInfo = async () => {
     const userId = res.userId
     localStorage.setItem('userId', userId) // 外部客户userID
     const res1: any = await externalcontact({
-      userId: res.userId
+      userId: userId
     })
-    const userName = res1.follow_user[0].remark
-    if (res1.follow_user.length === 1) {
-      const localName = res1.follow_user[0].userid
-      localStorage.setItem('localName', localName) // 登入用户名称
+    let userName = ''; let localName = ''
+    if (res1.follow_user[0].oper_userid === userId) {
+      userName = res1.follow_user[0].remark
+      localName = res1.follow_user[1].userid
     } else {
-      const localName = res1.follow_user[1].userid
-      localStorage.setItem('localName', localName) // 登入用户名称
+      userName = res1.follow_user[1].remark
+      localName = res1.follow_user[0].userid
     }
-    localStorage.setItem('userName', userName) // 外部客户名称
+    localStorage.setItem('userName', userName)
+    localStorage.setItem('localName', localName)
     getTicket()
   } else {
     // 群或者其他

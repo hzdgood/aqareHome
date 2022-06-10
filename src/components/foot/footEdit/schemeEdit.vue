@@ -31,13 +31,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import {
-  SearchInfo,
-  uploadFile,
-  updateTable,
-  batchAddPlan,
-  getCoordinate
-} from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, logInsert } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -225,6 +219,7 @@ export default class Home extends Vue {
       }
     }
     await updateTable(projectId, data)
+    await logInsert([localStorage.getItem('localName') + ',上传方案成功'])
     this.$store.dispatch('Loading')
   }
 
