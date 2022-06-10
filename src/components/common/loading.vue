@@ -1,7 +1,8 @@
 <template>
   <div v-show="status">
     <div class="floatDiv"></div>
-    <div>
+    <div class="loadDiv">
+      <img src="../../img/loading.gif"/>
         正在保存数据，请稍后！
     </div>
   </div>
@@ -20,4 +21,17 @@ export default class Home extends Vue {
 </script>
 
 <style scoped>
+.loadDiv{
+  position: fixed;
+  width: 60%;
+  height: 10%;
+  top: 33%;
+  left: 20%;
+  overflow: auto;
+  z-index: 30;
+  background-color: #fff;
+  border-radius: 8px;
+  text-align: center;
+  padding-top: 5%;
+}
 </style>

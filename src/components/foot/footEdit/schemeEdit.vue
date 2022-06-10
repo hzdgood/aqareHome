@@ -74,7 +74,6 @@ export default class Home extends Vue {
     this.saveStatus = false
     formData.append('file', file, file.name)
     const res = await uploadFile(formData)
-
     for (let i = 0; i < res.length; i++) {
       if (i === 0) {
         projectName = res[i].projectName
@@ -87,7 +86,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [projectName] }] },
+            query: { or: [{ eqm: [projectName] }] },
             query_option_mappings: [-1],
             field: 2200000150460774
           }
@@ -97,7 +96,6 @@ export default class Home extends Vue {
       limit: 20
     }
     const result1 = await SearchInfo(table.projectInfo, obj1)
-
     // 获取地址信息
     if (result1.length !== 0) {
       projectId = result1[0].item_id
@@ -136,7 +134,6 @@ export default class Home extends Vue {
     if (!status) {
       return
     }
-
     // 检查地址信息，赋值经纬度
     if (projectAddress !== '') {
       projectAddress = '上海市' + projectArea + projectAddress
@@ -155,10 +152,13 @@ export default class Home extends Vue {
             [field.Y]: obj.lat
           }
         }
-        updateTable(projectId, data)
+        await updateTable(projectId, data)
       }
+    } else {
+      alert('请填写项目地址信息！')
+      return
     }
-
+    this.$store.dispatch('Loading')
     // 查询伙伴云是否存在产品
     const obj2 = {
       where: {
@@ -180,7 +180,6 @@ export default class Home extends Vue {
       limit: 1000
     }
     const result2 = await SearchInfo(table.productTable, obj2)
-
     // 导入伙伴云数据
     for (let i = 0; i < res.length; i++) {
       for (let j = 0; j < result2.length; j++) {
@@ -219,14 +218,14 @@ export default class Home extends Vue {
         }
       }
     }
-    batchAddPlan(table.customerPlan, json)
+    await batchAddPlan(table.customerPlan, json)
     const data = {
       fields: {
         [field.uploadCode]: res[0].orderNumber + ',' + uploadCode
       }
     }
-    updateTable(projectId, data)
-    this.$emit('close')
+    await updateTable(projectId, data)
+    this.$store.dispatch('Loading')
   }
 
   closeClick () {

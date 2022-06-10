@@ -98,7 +98,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [this.userId] }] },
+            query: { or: [{ eqm: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }
@@ -133,7 +133,6 @@ export default class Home extends Vue {
         }
       }
     }
-    console.log(money)
     if (money === '0' || money === 0) {
       this.errorMsg = '请先上传方案！'
       return
@@ -144,6 +143,7 @@ export default class Home extends Vue {
 
   // 新增报价单
   async create () {
+    this.$store.dispatch('Loading')
     this.createStatus = false
     const obj = {
       fields: {
@@ -164,7 +164,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [this.projectId] }] },
+            query: { or: [{ eqm: [this.projectId] }] },
             query_option_mappings: [-1],
             field: 1102001110000000 // 项目ID
           }
@@ -201,11 +201,6 @@ export default class Home extends Vue {
           const values = fields[j].values[0].value
           this.discount = values
         }
-        // 2200000180589754 类型
-        // 2200000180589757 方案金额
-        // 2200000180591044 已收
-        // 2200000180589759 未收
-        // 2200000180589758 优惠金额
       }
       const obj = {
         id: i,
@@ -218,30 +213,33 @@ export default class Home extends Vue {
       }
       this.dataList.push(obj)
     }
+    this.$store.dispatch('Loading')
   }
 
   // 保存
-  saveClick (item: any) {
+  async saveClick (item: any) {
+    this.$store.dispatch('Loading')
     const discount: any = document.getElementById('discount')
     const data = {
       fields: {
         2200000180589758: discount.value
       }
     }
-    updateTable(item.proposalId, data)
+    await updateTable(item.proposalId, data)
     this.update()
-    this.$emit('close')
+    // this.$emit('close')
   }
 
   // 同步
-  synchroClick (item: any) {
+  async synchroClick (item: any) {
+    this.$store.dispatch('Loading')
     const data = {
       fields: {
         2200000180589754: [1],
         2200000180591563: [1]
       }
     }
-    updateTable(item.proposalId, data)
+    await updateTable(item.proposalId, data)
     this.update()
   }
 

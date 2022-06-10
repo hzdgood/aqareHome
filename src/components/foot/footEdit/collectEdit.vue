@@ -100,7 +100,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [this.userId] }] },
+            query: { or: [{ eqm: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }
@@ -149,6 +149,7 @@ export default class Home extends Vue {
       alert('请上传图片!')
       return
     }
+    this.$store.dispatch('Loading')
     // 上传图片
     if (projectType === '1') {
       this.errorStatus = false
@@ -172,6 +173,7 @@ export default class Home extends Vue {
     } else {
       if (this.title === '') {
         alert('请生成报价单！')
+        this.$store.dispatch('Loading')
         return
       }
       this.errorStatus = false
@@ -194,10 +196,11 @@ export default class Home extends Vue {
       const result = await addInfo(this.collectTable, data)
       this.run(result)
     }
-    this.$emit('close')
+    // this.$emit('close')
   }
 
   async typeChange () {
+    this.$store.dispatch('Loading')
     let projectType: any = document.getElementById('projectType')
     projectType = projectType.options[projectType.selectedIndex].value
     if (projectType === '2') {
@@ -206,7 +209,7 @@ export default class Home extends Vue {
         where: {
           and: [
             {
-              query: { or: [{ in: [this.projectId] }] },
+              query: { or: [{ eqm: [this.projectId] }] },
               query_option_mappings: [-1],
               field: 1102001110000000 // 项目ID
             }
@@ -218,6 +221,7 @@ export default class Home extends Vue {
       const result1 = await SearchInfo(table.proposal, obj1)
       if (result1.length === 0) {
         alert('请生成报价单！')
+        this.$store.dispatch('Loading')
         return
       }
       this.title = result1[0].title
@@ -233,6 +237,7 @@ export default class Home extends Vue {
       this.quotationStatus = false
       this.receivable = ''
     }
+    this.$store.dispatch('Loading')
   }
 
   async run (result: any) {
@@ -241,6 +246,7 @@ export default class Home extends Vue {
       data: { item: { item_id: result.item_id } }
     }
     await procedure('3000000000246006', obj)
+    this.$store.dispatch('Loading')
   }
 
   closeClick () {

@@ -5,7 +5,10 @@ Vue.use(Vuex)
 
 const state = {
   reloadStatus: false,
-  customTagStatus: false
+  customTagStatus: false,
+  Loading: false,
+  confirm: false,
+  confirmInfo: ''
 }
 const mutations = {
   updateReload () {
@@ -20,6 +23,21 @@ const mutations = {
       state.customTagStatus = true
     } else {
       state.customTagStatus = false
+    }
+  },
+  Loading () {
+    if (!state.Loading) {
+      state.Loading = true
+    } else {
+      state.Loading = false
+    }
+  },
+  confirm (info: any) {
+    state.confirmInfo = info
+    if (!state.confirm) {
+      state.confirm = true
+    } else {
+      state.confirm = false
     }
   }
 }
@@ -36,6 +54,21 @@ const actions = {
       state.customTagStatus = true
     } else {
       state.customTagStatus = false
+    }
+  },
+  Loading () {
+    if (!state.Loading) {
+      state.Loading = true
+    } else {
+      state.Loading = false
+    }
+  },
+  confirm (info: any) {
+    state.confirmInfo = info
+    if (!state.confirm) {
+      state.confirm = true
+    } else {
+      state.confirm = false
     }
   }
 }

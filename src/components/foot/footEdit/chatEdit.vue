@@ -205,7 +205,7 @@ export default class Home extends Vue {
   async getAreaList () {
     const data = {
       where: {
-        and: [{ field: 2200000153719584, query: { in: [2300002681549825] } }]
+        and: [{ field: 2200000153719584, query: { eqm: [2300002681549825] } }]
       },
       offset: 0,
       limit: 20
@@ -249,7 +249,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [this.chatId] }] },
+            query: { or: [{ eqm: [this.chatId] }] },
             query_option_mappings: [-1],
             field: 2200000172376106
           }

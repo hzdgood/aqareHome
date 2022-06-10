@@ -286,7 +286,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [this.userId] }] },
+            query: { or: [{ eqm: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.projectUUid
           }
@@ -415,11 +415,12 @@ export default class Home extends Vue {
         return
       }
     }
+    this.$store.dispatch('Loading')
     const data = {
       where: {
         and: [
           {
-            query: { or: [{ in: [this.userId] }] },
+            query: { or: [{ eqm: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.userTable
           }
@@ -436,6 +437,7 @@ export default class Home extends Vue {
       await updateTable(itemId, data)
       setTimeout(this.getInfoList, 1000)
     }
+    this.$store.dispatch('Loading')
   }
 
   // 删除一条数据

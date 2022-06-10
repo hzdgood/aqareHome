@@ -66,7 +66,7 @@ export default class Home extends Vue {
     }
     const data = {
       where: {
-        and: [{ field: 2200000182035321, query: { in: [2300006607764731] } }]
+        and: [{ field: 2200000182035321, query: { eqm: [2300006607764731] } }]
       },
       offset: 0,
       limit: 20,
@@ -97,7 +97,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [this.userId] }] },
+            query: { or: [{ eqm: [this.userId] }] },
             query_option_mappings: [-1],
             field: field.userTable
           }

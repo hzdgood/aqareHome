@@ -18,6 +18,8 @@
     <div v-if="userStatus == false">
       <user-bind @close="close()"></user-bind>
     </div>
+    <Loading v-show="loading"></Loading>
+    <confirm v-show="confirm" :msg="confirmInfo" @close="closeConfirm()"></confirm>
   </div>
 </template>
 <script lang="ts">
@@ -27,7 +29,9 @@ import userBind from '@/components/bind/userBind.vue'
 import customerTag from '@/views/customerTag.vue'
 import customerStage from '@/views/customerStage.vue'
 import footContent from '@/components/foot/footContent.vue'
-import { Component, Vue } from 'vue-property-decorator'
+import Loading from '@/components/common/loading.vue'
+import myConfirm from '@/components/common/myConfirm.vue'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({
@@ -38,13 +42,41 @@ import { table, field } from '@/config/config'
     'customer-tag': customerTag,
     'customer-stage': customerStage,
     'foot-content': footContent,
-    'user-bind': userBind
+    'user-bind': userBind,
+    Loading: Loading,
+    confirm: myConfirm
   }
 })
 export default class Actions extends Vue {
-  userStatus = true;
-  customerInfo = table.customerInfo;
-  userId = localStorage.getItem('userId');
+  userStatus = true
+  loading = false
+  confirm = false
+  confirmInfo = ''
+  customerInfo = table.customerInfo
+  userId = localStorage.getItem('userId')
+
+  @Watch('$store.state.Loading')
+  showLoad () {
+    console.log(111)
+
+    if (this.loading) {
+      this.loading = false
+    } else {
+      this.loading = true
+    }
+  }
+
+  @Watch('$store.state.confirm')
+  showConfirm () {
+    this.confirmInfo = this.$store.state.confirmInfo
+    console.log(this.confirmInfo)
+    if (this.confirm) {
+      this.confirm = false
+    } else {
+      this.confirm = true
+    }
+  }
+
   async mounted () {
     const data = {
       where: {
@@ -72,6 +104,10 @@ export default class Actions extends Vue {
   close () {
     this.userStatus = true
     location.reload()
+  }
+
+  closeConfirm () {
+    this.confirm = false
   }
 }
 </script>

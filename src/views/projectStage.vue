@@ -64,7 +64,7 @@ export default class Home extends Vue {
       where: {
         and: [
           {
-            query: { or: [{ in: [chatId] }] },
+            query: { or: [{ eqm: [chatId] }] },
             query_option_mappings: [-1],
             field: field.ChatId
           }
