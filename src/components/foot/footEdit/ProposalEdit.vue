@@ -41,6 +41,10 @@
             <td>已收金额</td>
             <td><input type="text" :value="item.Received" readonly /></td>
           </tr>
+          <tr>
+            <td>上传合同</td>
+            <td><input type="file" name="file" placeholder="请选择文件" /></td>
+          </tr>
         </table>
         <div class="buttonSite">
           <input
@@ -74,7 +78,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import { SearchInfo, addInfo, updateTable } from '@/config/interFace'
+import { SearchInfo, addInfo, updateTable, uploadImg } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   collectType = collectType;
@@ -91,6 +95,7 @@ export default class Home extends Vue {
   discount = '';
   receivable = '';
   Received = '';
+  fileList: any = []
 
   async mounted () {
     let money: any
@@ -143,7 +148,7 @@ export default class Home extends Vue {
 
   // 新增报价单
   async create () {
-    this.$store.dispatch('Loading')
+    // this.$store.dispatch('Loading')
     this.createStatus = false
     const obj = {
       fields: {
@@ -201,6 +206,10 @@ export default class Home extends Vue {
           const values = fields[j].values[0].value
           this.discount = values
         }
+        if (fields[j].field_id === 2200000197781040) {
+          const values = fields[j].values[0].value
+          this.fileList = values
+        }
       }
       const obj = {
         id: i,
@@ -213,26 +222,45 @@ export default class Home extends Vue {
       }
       this.dataList.push(obj)
     }
-    this.$store.dispatch('Loading')
   }
 
   // 保存
   async saveClick (item: any) {
     this.$store.dispatch('Loading')
+    let file: any = document.getElementById('file')
     const discount: any = document.getElementById('discount')
-    const data = {
-      fields: {
-        2200000180589758: discount.value
+    file = file.files[0]
+    if (typeof file !== 'undefined') {
+      const formData = new FormData()
+      formData.append('source', file)
+      formData.append('name', file.name)
+      formData.append('domain', 'app.huoban.com')
+      formData.append('type', 'attachment')
+      const res = await uploadImg(formData)
+      this.fileList.push(res.file_id)
+      const data = {
+        fields: {
+          2200000197781040: this.fileList,
+          2200000180589758: discount.value
+        }
       }
+      await updateTable(item.proposalId, data)
+      this.$store.dispatch('Loading')
+      this.$emit('close')
+    } else {
+      const data = {
+        fields: {
+          2200000180589758: discount.value
+        }
+      }
+      await updateTable(item.proposalId, data)
+      this.$store.dispatch('Loading')
+      this.$emit('close')
     }
-    await updateTable(item.proposalId, data)
-    this.update()
-    // this.$emit('close')
   }
 
   // 同步
   async synchroClick (item: any) {
-    this.$store.dispatch('Loading')
     const data = {
       fields: {
         2200000180589754: [1],

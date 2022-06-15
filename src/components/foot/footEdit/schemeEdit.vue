@@ -116,7 +116,6 @@ export default class Home extends Vue {
       this.erronProduct.push(obj)
       return
     }
-
     const code = uploadCode.split(',')
     let status = true
     for (let i = 0; i < code.length; i++) {
@@ -175,11 +174,14 @@ export default class Home extends Vue {
     }
     const result2 = await SearchInfo(table.productTable, obj2)
     // 导入伙伴云数据
+    const l1 = []
+    const l2 = []
     for (let i = 0; i < res.length; i++) {
+      l1.push(res[i].productCode)
       for (let j = 0; j < result2.length; j++) {
-        const fields = result2[j].fields
         const itemId = result2[j].item_id
-        const code = fields[2].values[0].value // 产品条码
+        const code = result2[j].fields[2].values[0].value // 产品条码
+        l2.push(code)
         if (res[i].productCode === code) {
           if (res[i].money === '0.00') {
             const obj = {
@@ -212,6 +214,9 @@ export default class Home extends Vue {
         }
       }
     }
+    const error = this.diff(l1, l2)
+    console.log(error)
+
     await batchAddPlan(table.customerPlan, json)
     const data = {
       fields: {
@@ -221,6 +226,13 @@ export default class Home extends Vue {
     await updateTable(projectId, data)
     await logInsert([localStorage.getItem('localName') + ',上传方案成功'])
     this.$store.dispatch('Loading')
+    this.$emit('close')
+  }
+
+  diff (arr1: any[], arr2: any[]) { // 数组差异算法
+    var newArr = []
+    newArr = arr1.filter((cur) => arr2.indexOf(cur) === -1)
+    return newArr.concat(arr2.filter((cur) => arr1.indexOf(cur) === -1))
   }
 
   closeClick () {

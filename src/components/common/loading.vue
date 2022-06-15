@@ -4,6 +4,16 @@
     <div class="loadDiv">
       <img src="../../img/loading.gif"/>
         正在保存数据，请稍后！
+        <div class="buttonSite">
+          <div class="buttonSite">
+          <input
+            class="closeButton"
+            type="button"
+            value="关闭"
+            @click="closeClick()"
+          />
+        </div>
+        </div>
     </div>
   </div>
 </template>
@@ -17,6 +27,10 @@ export default class Home extends Vue {
     required: false
   })
   status!: String;
+
+  closeClick () {
+    this.$store.dispatch('Loading')
+  }
 }
 </script>
 

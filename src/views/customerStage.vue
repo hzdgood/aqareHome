@@ -66,11 +66,15 @@ export default class Home extends Vue {
     }
     const data = {
       where: {
-        and: [{ field: 2200000182035321, query: { eqm: [2300006607764731] } }]
+        and: [
+          {
+            field: 2200000182035321,
+            query: { em: false, in: [2300006607764731] }
+          }
+        ]
       },
       offset: 0,
-      limit: 20,
-      order_by: [{ field: 2200000182035325, sort: 'asc' }]
+      limit: 20
     }
     const result = await SearchInfo(this.tagInfo, data)
     this.taglist = result
@@ -140,6 +144,12 @@ export default class Home extends Vue {
 
   // 选中图片
   StageImg (itemid: any) {
+    for (let i = 0; i < this.customStage.length; i++) {
+      const obj = this.customStage[i]
+      if (obj.id === itemid) {
+        this.updateImg(obj.img)
+      }
+    }
     for (let i = 0; i < this.customStage.length; i++) {
       const obj = this.customStage[i]
       if (obj.id === itemid) {
