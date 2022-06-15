@@ -44,6 +44,7 @@
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
+import { masterReq, chatReq } from '@/config/common'
 @Component({})
 export default class Home extends Vue {
   projectInfo = table.projectInfo;
@@ -60,37 +61,9 @@ export default class Home extends Vue {
   getData () {
     let data = {}
     if (this.contactType === 'single_chat_tools') {
-      data = {
-        where: {
-          and: [
-            {
-              query: { or: [{ eqm: [this.userId] }] },
-              query_option_mappings: [-1],
-              field: field.projectUUid
-            }
-          ]
-        },
-        offset: 0,
-        limit: 20,
-        order_by: [
-          { field: field.projectUUid, sort: 'desc' },
-          { field: field.masterProject, sort: 'asc' }
-        ]
-      }
+      data = masterReq(this.userId)
     } else {
-      data = {
-        where: {
-          and: [
-            {
-              query: { or: [{ eqm: [this.chatId] }] },
-              query_option_mappings: [-1],
-              field: 2200000172376106
-            }
-          ]
-        },
-        offset: 0,
-        limit: 20
-      }
+      data = chatReq(this.chatId)
     }
     return data
   }

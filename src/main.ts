@@ -6,13 +6,7 @@ import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.css'
 import '@/css/aqara.css'
-import {
-  userInfo,
-  fetchUserId,
-  fetchSignatures,
-  externalcontact,
-  config
-} from '@/config/interFace'
+import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
 import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
 import Cookies from 'js-cookie'
 
@@ -67,15 +61,13 @@ const doInfo = async () => {
       userId: userId
     })
     const userName = res1.external_contact.name
-    const localName: any = Cookies.get('userId')
     const avatar = res1.external_contact.avatar
+    const localName: any = Cookies.get('userId')
     localStorage.setItem('userName', userName)
     localStorage.setItem('avatar', avatar)
     localStorage.setItem('localName', localName)
-
     getTicket()
   } else {
-    // 群或者其他
     const localName: any = Cookies.get('userId')
     const result = await invoke('getCurExternalChat')
     localStorage.setItem('localName', localName)

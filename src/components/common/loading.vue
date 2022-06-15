@@ -38,7 +38,7 @@ export default class Home extends Vue {
 .loadDiv{
   position: fixed;
   width: 60%;
-  height: 10%;
+  height: 20%;
   top: 33%;
   left: 20%;
   overflow: auto;

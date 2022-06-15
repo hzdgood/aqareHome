@@ -82,8 +82,6 @@ import { table, field, collectType } from '@/config/config'
 import { SearchInfo, addInfo, uploadImg, procedure, logInsert } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
-  collectTable = table.collectTable;
-  projectInfo = table.projectInfo;
   collectType = collectType;
   projectCode = '';
   errorMsg = '';
@@ -113,7 +111,7 @@ export default class Home extends Vue {
         { field: field.masterProject, sort: 'asc' }
       ]
     }
-    const result = await SearchInfo(this.projectInfo, data)
+    const result = await SearchInfo(table.projectInfo, data)
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       this.itemId = result[i].item_id
@@ -168,7 +166,7 @@ export default class Home extends Vue {
           [field.uploadFile]: [res.file_id]
         }
       }
-      const result = await addInfo(this.collectTable, data)
+      const result = await addInfo(table.collectTable, data)
       await logInsert([localStorage.getItem('localName') + ',收款定金成功: ' + collectMoney.value])
       this.run(result)
     } else {
@@ -194,7 +192,7 @@ export default class Home extends Vue {
           [field.uploadFile]: [res.file_id]
         }
       }
-      const result = await addInfo(this.collectTable, data)
+      const result = await addInfo(table.collectTable, data)
       await logInsert([localStorage.getItem('localName') + ',收款全款成功: ' + collectMoney.value])
       this.run(result)
     }

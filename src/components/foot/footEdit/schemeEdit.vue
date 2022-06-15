@@ -3,12 +3,35 @@
     <div class="floatDiv" v-show="upload"></div>
     <div :class="upload ? 'infoDiv' : ''">
       <div class="headerDiv">上传方案</div>
+
+      <table class="EditTable">
+        <tr>
+          <td>方案类型</td>
+          <td>
+            <select id="schemeType">
+              <option value="1">表格文件</option>
+              <option value="2">pdf文件</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <table class="EditTable">
+        <tr v-for="item in upFiles" :key="item.file_id">
+          <td>方案名称</td>
+          <td>
+            {{ item.name }}
+          </td>
+        </tr>
+      </table>
+
       <div class="uploadFile">
         <input type="file" name="file" placeholder="请选择文件" />
       </div>
       <div class="buttonSite">
         <input
-          class="saveButton" v-show="saveStatus"
+          class="saveButton"
+          v-show="saveStatus"
           type="button"
           @click="saveClick()"
           value="提交"
@@ -31,12 +54,14 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, logInsert } from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, logInsert, uploadImg } from '@/config/interFace'
+
 import { table, field } from '@/config/config'
+import { masterReq } from '@/config/common'
 @Component({})
 export default class Home extends Vue {
   erronProduct: any[] = [];
-  saveStatus = true
+  saveStatus = true;
 
   @Prop({
     type: Boolean,
@@ -45,8 +70,63 @@ export default class Home extends Vue {
   })
   upload!: any;
 
+  userId = localStorage.getItem('userId');
+  itemId = '';
+  fileList: any[] = [];
+  upFiles: any[] = [];
+
+  async mounted () {
+    const data = masterReq(this.userId)
+    const result = await SearchInfo(table.projectInfo, data)
+    for (let i = 0; i < result.length; i++) {
+      const fields = result[i].fields
+      this.itemId = result[i].item_id
+      for (let j = 0; j < fields.length; j++) {
+        if (fields[j].field_id === 2200000146039443) {
+          const values = fields[j].values[0].value
+          this.upFiles = values
+          for (let k = 0; k < values.length; k++) {
+            this.fileList.push(values[k].file_id)
+          }
+        }
+      }
+    }
+  }
+
+  async pdfUpFile () {
+    let file: any = document.getElementById('file')
+    file = file.files[0]
+    if (typeof file === 'undefined') {
+      alert('请上传图片!')
+      return
+    }
+    this.$store.dispatch('Loading')
+    const formData = new FormData()
+    formData.append('source', file)
+    formData.append('name', file.name)
+    formData.append('domain', 'app.huoban.com')
+    formData.append('type', 'attachment')
+    const res = await uploadImg(formData)
+    this.fileList.push(res.file_id)
+    const data1 = {
+      fields: {
+        2200000146039443: this.fileList
+      }
+    }
+    await updateTable(this.itemId, data1)
+    await logInsert([localStorage.getItem('localName') + ',上传PDF成功'])
+    this.$store.dispatch('Loading')
+    this.$emit('close')
+  }
+
   // 获取所有的产品信息
   async saveClick () {
+    let schemeType: any = document.getElementById('schemeType')
+    schemeType = schemeType.options[schemeType.selectedIndex].value
+    if (schemeType === '2') {
+      this.pdfUpFile()
+      return
+    }
     let projectName = ''
     let projectId = ''
     let projectAddress = ''
@@ -174,14 +254,10 @@ export default class Home extends Vue {
     }
     const result2 = await SearchInfo(table.productTable, obj2)
     // 导入伙伴云数据
-    const l1 = []
-    const l2 = []
     for (let i = 0; i < res.length; i++) {
-      l1.push(res[i].productCode)
       for (let j = 0; j < result2.length; j++) {
         const itemId = result2[j].item_id
         const code = result2[j].fields[2].values[0].value // 产品条码
-        l2.push(code)
         if (res[i].productCode === code) {
           if (res[i].money === '0.00') {
             const obj = {
@@ -214,9 +290,6 @@ export default class Home extends Vue {
         }
       }
     }
-    const error = this.diff(l1, l2)
-    console.log(error)
-
     await batchAddPlan(table.customerPlan, json)
     const data = {
       fields: {
@@ -229,7 +302,7 @@ export default class Home extends Vue {
     this.$emit('close')
   }
 
-  diff (arr1: any[], arr2: any[]) { // 数组差异算法
+  diff (arr1: any[], arr2: any[]) {
     var newArr = []
     newArr = arr1.filter((cur) => arr2.indexOf(cur) === -1)
     return newArr.concat(arr2.filter((cur) => arr1.indexOf(cur) === -1))

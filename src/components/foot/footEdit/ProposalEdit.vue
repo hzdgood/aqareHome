@@ -79,6 +79,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
 import { SearchInfo, addInfo, updateTable, uploadImg } from '@/config/interFace'
+import { masterReq } from '@/config/common'
 @Component({})
 export default class Home extends Vue {
   collectType = collectType;
@@ -99,30 +100,12 @@ export default class Home extends Vue {
 
   async mounted () {
     let money: any
-    const obj1 = {
-      where: {
-        and: [
-          {
-            query: { or: [{ eqm: [this.userId] }] },
-            query_option_mappings: [-1],
-            field: field.projectUUid
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20,
-      order_by: [
-        { field: field.projectUUid, sort: 'desc' },
-        { field: field.masterProject, sort: 'asc' }
-      ]
-    }
-
+    const obj1 = masterReq(this.userId)
     const result1 = await SearchInfo(table.projectInfo, obj1)
     if (result1.length === 0) {
       this.errorMsg = '请先添加项目！'
       return
     }
-
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields
       this.itemId = result1[i].item_id
