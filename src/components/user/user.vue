@@ -4,7 +4,7 @@
       <table>
         <tr>
           <td>
-            <img width="40px" height="40px;" src="../../img/name.png" />
+            <img width="40px" height="40px;" :src="avatar" />
           </td>
           <td>
             <span class="username">{{ name }}</span>
@@ -40,6 +40,7 @@ export default class Home extends Vue {
   userName = localStorage.getItem('userName');
   userId = localStorage.getItem('userId');
   contactType = localStorage.getItem('contactType');
+  avatar = localStorage.getItem('avatar');
   name = '';
   editShow = false;
   chatShow = false;

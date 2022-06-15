@@ -14,6 +14,7 @@ import {
   config
 } from '@/config/interFace'
 import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
+import Cookies from 'js-cookie'
 
 localStorage.clear()
 Vue.config.productionTip = false
@@ -65,20 +66,19 @@ const doInfo = async () => {
     const res1: any = await externalcontact({
       userId: userId
     })
-    let userName = ''; let localName = ''
-    if (res1.follow_user[0].oper_userid === userId) {
-      userName = res1.follow_user[0].remark
-      localName = res1.follow_user[1].userid
-    } else {
-      userName = res1.follow_user[1].remark
-      localName = res1.follow_user[0].userid
-    }
+    const userName = res1.external_contact.name
+    const localName: any = Cookies.get('userId')
+    const avatar = res1.external_contact.avatar
     localStorage.setItem('userName', userName)
+    localStorage.setItem('avatar', avatar)
     localStorage.setItem('localName', localName)
+
     getTicket()
   } else {
     // 群或者其他
+    const localName: any = Cookies.get('userId')
     const result = await invoke('getCurExternalChat')
+    localStorage.setItem('localName', localName)
     localStorage.setItem('chatID', result.chatId) // 群ID
     getChat()
   }
