@@ -138,16 +138,16 @@ export default class Home extends Vue {
     let collectType: any = document.getElementById('collectType')
     collectType = collectType.options[collectType.selectedIndex].value
     let file: any = document.getElementById('file')
-    file = file.files[0]
     if (collectMoney.value === '') {
       alert('请输入金额!')
       return
     }
-    if (typeof file === 'undefined') {
+    if (typeof file.files[0] === 'undefined') {
       alert('请上传图片!')
       return
     }
     this.$store.dispatch('Loading')
+    file = file.files[0]
     // 上传图片
     if (projectType === '1') {
       this.errorStatus = false

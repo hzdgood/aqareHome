@@ -43,7 +43,7 @@
           </tr>
           <tr>
             <td>上传合同</td>
-            <td><input type="file" name="file" placeholder="请选择文件" /></td>
+            <td><input id="file" type="file" name="file" placeholder="请选择文件" /></td>
           </tr>
         </table>
         <div class="buttonSite">
@@ -190,8 +190,10 @@ export default class Home extends Vue {
           this.discount = values
         }
         if (fields[j].field_id === 2200000197781040) {
-          const values = fields[j].values[0].value
-          this.fileList = values
+          const values = fields[j].values
+          for (let k = 0; k < values.length; k++) {
+            this.fileList.push(values[k].file_id)
+          }
         }
       }
       const obj = {
@@ -212,8 +214,8 @@ export default class Home extends Vue {
     this.$store.dispatch('Loading')
     let file: any = document.getElementById('file')
     const discount: any = document.getElementById('discount')
-    file = file.files[0]
-    if (typeof file !== 'undefined') {
+    if (typeof file.files[0] !== 'undefined') {
+      file = file.files[0]
       const formData = new FormData()
       formData.append('source', file)
       formData.append('name', file.name)
@@ -221,6 +223,8 @@ export default class Home extends Vue {
       formData.append('type', 'attachment')
       const res = await uploadImg(formData)
       this.fileList.push(res.file_id)
+      console.log(this.fileList)
+
       const data = {
         fields: {
           2200000197781040: this.fileList,

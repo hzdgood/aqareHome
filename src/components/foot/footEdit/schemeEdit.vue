@@ -3,7 +3,6 @@
     <div class="floatDiv" v-show="upload"></div>
     <div :class="upload ? 'infoDiv' : ''">
       <div class="headerDiv">上传方案</div>
-
       <table class="EditTable">
         <tr>
           <td>方案类型</td>
@@ -15,7 +14,6 @@
           </td>
         </tr>
       </table>
-
       <table class="EditTable">
         <tr v-for="item in upFiles" :key="item.file_id">
           <td>方案名称</td>
@@ -24,9 +22,8 @@
           </td>
         </tr>
       </table>
-
       <div class="uploadFile">
-        <input type="file" name="file" placeholder="请选择文件" />
+        <input id="file" type="file" name="file" placeholder="请选择文件" />
       </div>
       <div class="buttonSite">
         <input
@@ -54,7 +51,7 @@
 
 <script lang='ts'>
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, logInsert, uploadImg } from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, logInsert, uploadPdf } from '@/config/interFace'
 
 import { table, field } from '@/config/config'
 import { masterReq } from '@/config/common'
@@ -83,7 +80,7 @@ export default class Home extends Vue {
       this.itemId = result[i].item_id
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === 2200000146039443) {
-          const values = fields[j].values[0].value
+          const values = fields[j].values
           this.upFiles = values
           for (let k = 0; k < values.length; k++) {
             this.fileList.push(values[k].file_id)
@@ -95,18 +92,19 @@ export default class Home extends Vue {
 
   async pdfUpFile () {
     let file: any = document.getElementById('file')
-    file = file.files[0]
-    if (typeof file === 'undefined') {
-      alert('请上传图片!')
+    if (typeof file.files[0] === 'undefined') {
+      alert('请上传PDF文件!')
       return
     }
+    console.log(file)
+    file = file.files[0]
     this.$store.dispatch('Loading')
     const formData = new FormData()
     formData.append('source', file)
     formData.append('name', file.name)
     formData.append('domain', 'app.huoban.com')
     formData.append('type', 'attachment')
-    const res = await uploadImg(formData)
+    const res = await uploadPdf(formData)
     this.fileList.push(res.file_id)
     const data1 = {
       fields: {
@@ -124,7 +122,7 @@ export default class Home extends Vue {
     let schemeType: any = document.getElementById('schemeType')
     schemeType = schemeType.options[schemeType.selectedIndex].value
     if (schemeType === '2') {
-      this.pdfUpFile()
+      await this.pdfUpFile()
       return
     }
     let projectName = ''
@@ -140,11 +138,11 @@ export default class Home extends Vue {
     this.erronProduct = []
     // 拼接伙伴云JSON
     let file: any = document.getElementsByName('file')[0]
-    file = file.files[0]
-    if (typeof file === 'undefined') {
+    if (typeof file.files[0] === 'undefined') {
       alert('请上传表格!')
       return
     }
+    file = file.files[0]
     this.saveStatus = false
     formData.append('file', file, file.name)
     const res = await uploadFile(formData)

@@ -1,5 +1,5 @@
 import { field } from '@/config/config'
-export const masterReq = async (userId: any) => {
+export const masterReq = (userId: any) => {
   const data = {
     where: {
       and: [
@@ -20,7 +20,7 @@ export const masterReq = async (userId: any) => {
   return data
 }
 
-export const chatReq = async (chatId: any) => {
+export const chatReq = (chatId: any) => {
   const data = {
     where: {
       and: [
