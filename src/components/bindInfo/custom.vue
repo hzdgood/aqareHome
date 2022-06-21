@@ -6,7 +6,7 @@
         <td>客户信息</td>
         <td>
           <input id="name" type="text" />
-          <img class="img" src="../../img/select.png" @click="search"/>
+          <button class="img" @click="search">查询</button>
         </td>
       </tr>
       <tr>
@@ -130,8 +130,13 @@ export default class Home extends Vue {
 <style scoped>
 .img{
   position: absolute;
-  right: 25px;
-  width: 25px;
-  margin-top: 2px;
+  right: 45px;
+  width: 50px;
+  height: 30px;
+  margin-top: 1px;
+  background: #2b72e8;
+  color: #fff;
+  border: 2px solid #4285f4;
+  border-radius: 8px;
 }
 </style>

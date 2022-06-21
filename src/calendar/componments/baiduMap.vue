@@ -54,7 +54,7 @@ export default class Actions extends Vue {
     const myGeo = new BMap.Geocoder()
     // 根据坐标逆解析地址
     myGeo.getLocation(new BMap.Point(e.point.lng, e.point.lat), (result:any) => {
-      console.log(result, 'result-->>>>')
+      // console.log(result, 'result-->>>>')
       if (result) {
         this.address = result.address
       }

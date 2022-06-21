@@ -12,6 +12,12 @@ export default class Actions extends Vue {
     id: 1,
     name: ''
   }];
+
+  // 获取所有技术人员信息
+
+  // 点击方法
+
+  // 全选方法
 }
 </script>
 

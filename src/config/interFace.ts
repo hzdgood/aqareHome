@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-// const httpUrl = 'http://localhost:8081' // 测试url
-const httpUrl = 'http://aqara.club:8081' // 生产环境
+const httpUrl = 'http://localhost:8081' // 测试url
+// const httpUrl = 'http://aqara.club:8081' // 生产环境
 const huobanUrl = 'https://api.huoban.com'
 // const ticket: any = localStorage.getItem("ticket");
 
@@ -134,10 +134,15 @@ export const logInsert = async (formData: object) => {
   return info.data
 }
 
-export const logSelect = async () => {
-  const url = httpUrl + '/log/select'
-  const info = await post(url, {})
-  return info.data
+export const logSelect = async (name: any) => {
+  const response = await axios.request({
+    method: 'GET',
+    url: httpUrl + '/log/select',
+    params: {
+      name: name
+    }
+  })
+  return response.data
 }
 
 export const SearchInfo = async (tableId: string, data: object) => {

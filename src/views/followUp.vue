@@ -16,8 +16,9 @@ import { logSelect } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   logList: any[] = [];
+  localName = localStorage.getItem('localName')
   async mounted () {
-    const res = await logSelect()
+    const res = await logSelect(this.localName)
     console.log(res)
     for (let i = 0; i < res.length; i++) {
       const obj = {
