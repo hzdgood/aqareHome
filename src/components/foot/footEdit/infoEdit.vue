@@ -418,7 +418,7 @@ export default class Home extends Vue {
       await updateTable(itemId, data)
       setTimeout(this.getInfoList, 1000)
     }
-    await logInsert([localStorage.getItem('localName') + ',新建项目'])
+    await logInsert(',新建项目')
     this.$store.dispatch('Loading')
   }
 
@@ -506,7 +506,7 @@ export default class Home extends Vue {
         [field.projectStage]: [stage]
       }
     }
-    await logInsert([localStorage.getItem('localName') + ',备注: ' + remarks.value])
+    await logInsert('备注: ' + remarks.value)
     const res: any = await updateTable(project.itemId, data)
     if (res.message) {
       alert(res.message)

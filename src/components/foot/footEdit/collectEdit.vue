@@ -51,7 +51,15 @@
           </tr>
           <tr>
             <td>上传图片</td>
-            <td><input id="file" type="file" accept="image/*" /></td>
+            <td>
+              <input
+                id="file"
+                type="file"
+                multiple
+                accept="image/*"
+                placeholder="请选择文件"
+              />
+            </td>
           </tr>
         </table>
       </div>
@@ -79,7 +87,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import { SearchInfo, addInfo, uploadImg, procedure, logInsert } from '@/config/interFace'
+import {
+  SearchInfo,
+  addInfo,
+  uploadImg,
+  procedure,
+  logInsert
+} from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   collectType = collectType;
@@ -137,7 +151,7 @@ export default class Home extends Vue {
     projectType = projectType.options[projectType.selectedIndex].value
     let collectType: any = document.getElementById('collectType')
     collectType = collectType.options[collectType.selectedIndex].value
-    let file: any = document.getElementById('file')
+    const file: any = document.getElementById('file')
     if (collectMoney.value === '') {
       alert('请输入金额!')
       return
@@ -147,27 +161,21 @@ export default class Home extends Vue {
       return
     }
     this.$store.dispatch('Loading')
-    file = file.files[0]
     // 上传图片
     if (projectType === '1') {
       this.errorStatus = false
-      const formData = new FormData()
-      formData.append('source', file)
-      formData.append('name', file.name)
-      formData.append('domain', 'app.huoban.com')
-      formData.append('type', 'attachment')
-      const res = await uploadImg(formData)
+      const list = await this.upfile(file)
       const data = {
         fields: {
           [field.pName]: [this.itemId],
           [field.pType]: [1],
           [field.cType]: [collectType],
           [field.cMoney]: collectMoney.value,
-          [field.uploadFile]: [res.file_id]
+          [field.uploadFile]: list
         }
       }
       const result = await addInfo(table.collectTable, data)
-      await logInsert([localStorage.getItem('localName') + ',收款定金成功: ' + collectMoney.value])
+      await logInsert('收款定金成功: ' + collectMoney.value)
       this.run(result)
     } else {
       if (this.title === '') {
@@ -176,12 +184,7 @@ export default class Home extends Vue {
         return
       }
       this.errorStatus = false
-      const formData = new FormData()
-      formData.append('source', file)
-      formData.append('name', file.name)
-      formData.append('domain', 'app.huoban.com')
-      formData.append('type', 'attachment')
-      const res = await uploadImg(formData)
+      const list = await this.upfile(file)
       const data = {
         fields: {
           [field.pName]: [this.itemId],
@@ -189,13 +192,28 @@ export default class Home extends Vue {
           2200000180591045: [this.quotationId],
           [field.cType]: [collectType],
           [field.cMoney]: collectMoney.value,
-          [field.uploadFile]: [res.file_id]
+          [field.uploadFile]: list
         }
       }
       const result = await addInfo(table.collectTable, data)
-      await logInsert([localStorage.getItem('localName') + ',收款全款成功: ' + collectMoney.value])
+      await logInsert('收款全款成功: ' + collectMoney.value)
       this.run(result)
     }
+  }
+
+  async upfile (file: any) {
+    const list = []
+    for (let i = 0; i < file.files.length; i++) {
+      file = file.files[i]
+      const formData = new FormData()
+      formData.append('source', file)
+      formData.append('name', file.name)
+      formData.append('domain', 'app.huoban.com')
+      formData.append('type', 'attachment')
+      const res = await uploadImg(formData)
+      list.push(res.file_id)
+    }
+    return list
   }
 
   async typeChange () {

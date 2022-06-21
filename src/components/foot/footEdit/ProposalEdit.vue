@@ -43,7 +43,15 @@
           </tr>
           <tr>
             <td>上传合同</td>
-            <td><input id="file" type="file" name="file" placeholder="请选择文件" /></td>
+            <td>
+              <input
+                id="file"
+                type="file"
+                multiple
+                accept="image/*"
+                placeholder="请选择文件"
+              />
+            </td>
           </tr>
         </table>
         <div class="buttonSite">
@@ -78,7 +86,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import { SearchInfo, addInfo, updateTable, uploadImg } from '@/config/interFace'
+import {
+  SearchInfo,
+  addInfo,
+  updateTable,
+  uploadImg
+} from '@/config/interFace'
 import { masterReq } from '@/config/common'
 @Component({})
 export default class Home extends Vue {
@@ -96,7 +109,7 @@ export default class Home extends Vue {
   discount = '';
   receivable = '';
   Received = '';
-  fileList: any = []
+  fileList: any = [];
 
   async mounted () {
     let money: any
@@ -215,16 +228,16 @@ export default class Home extends Vue {
     let file: any = document.getElementById('file')
     const discount: any = document.getElementById('discount')
     if (typeof file.files[0] !== 'undefined') {
-      file = file.files[0]
-      const formData = new FormData()
-      formData.append('source', file)
-      formData.append('name', file.name)
-      formData.append('domain', 'app.huoban.com')
-      formData.append('type', 'attachment')
-      const res = await uploadImg(formData)
-      this.fileList.push(res.file_id)
-      console.log(this.fileList)
-
+      for (let i = 0; i < file.files.length; i++) {
+        file = file.files[i]
+        const formData = new FormData()
+        formData.append('source', file)
+        formData.append('name', file.name)
+        formData.append('domain', 'app.huoban.com')
+        formData.append('type', 'attachment')
+        const res = await uploadImg(formData)
+        this.fileList.push(res.file_id)
+      }
       const data = {
         fields: {
           2200000197781040: this.fileList,

@@ -112,7 +112,7 @@ export default class Home extends Vue {
       }
     }
     await updateTable(this.itemId, data1)
-    await logInsert([localStorage.getItem('localName') + ',上传PDF成功'])
+    await logInsert('上传PDF成功')
     this.$store.dispatch('Loading')
     this.$emit('close')
   }
@@ -295,7 +295,7 @@ export default class Home extends Vue {
       }
     }
     await updateTable(projectId, data)
-    await logInsert([localStorage.getItem('localName') + ',上传方案成功'])
+    await logInsert('上传方案成功')
     this.$store.dispatch('Loading')
     this.$emit('close')
   }
