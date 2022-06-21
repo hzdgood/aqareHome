@@ -165,6 +165,12 @@
               />
             </td>
           </tr>
+          <tr>
+            <td>*跟踪备注</td>
+            <td>
+              <input :id="project.id + 'remarks'" type="text" :value="project.remarks" />
+            </td>
+          </tr>
         </table>
         <div class="buttonSite">
           <button class="saveButton" @click="saveClick(project)">保存</button>
@@ -199,6 +205,7 @@ export default class Home extends Vue {
   departmentList: any[] = [];
   userId = localStorage.getItem('userId');
   decorationStage = decorationStage;
+  remarks = '';
   addShow = true;
 
   // 查询所有的销售员
@@ -281,24 +288,11 @@ export default class Home extends Vue {
       const fields = result[j].fields
       const itemId: any = result[j].item_id
       this.itemList.push(itemId)
-      let projectCustom = ''
-      let telephone = ''
-      let projectVillage = ''
-      let projectAddress = ''
-      let masterProject = ''
-      let department = ''
-      let departmentId = ''
-      let projectHometype = ''
-      let projectHometypeId = ''
-      let projectArea = ''
-      let projectAreaId = ''
-      let projectType = ''
-      let projectTypeId = ''
-      let saleMan = ''
-      let saleManId = ''
-      let masterStatus = true
-      let stage = ''
-      let stageName = ''
+      let projectCustom = ''; let telephone = ''; let projectVillage = ''; let projectAddress = ''
+      let masterProject = ''; let department = ''; let departmentId = ''; let projectHometype = ''
+      let projectHometypeId = ''; let projectArea = ''; let projectAreaId = ''; let projectType = ''
+      let projectTypeId = ''; let saleMan = ''; let saleManId = ''; let masterStatus = true
+      let stage = ''; let stageName = ''; let remarks = ''
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].field_id === field.projectStage) {
           stage = fields[i].values[0].id
@@ -342,6 +336,9 @@ export default class Home extends Vue {
           department = fields[i].values[0].title
           departmentId = fields[i].values[0].item_id
         }
+        if (fields[i].field_id === field.remarks) { //
+          remarks = fields[i].values[0].value
+        }
       }
       const obj = {
         id: j,
@@ -363,7 +360,8 @@ export default class Home extends Vue {
         hometype: projectHometype,
         hometypeId: projectHometypeId,
         projectType: projectType,
-        projectTypeId: projectTypeId
+        projectTypeId: projectTypeId,
+        remarks: remarks
       }
       this.projectList.push(obj)
     }
@@ -462,6 +460,8 @@ export default class Home extends Vue {
     let stage: any = document.getElementById(project.id + 'stage')
     stage = stage.options[stage.selectedIndex].value
 
+    const remarks: any = document.getElementById(project.id + 'remarks')
+
     // 加入校验
     if (telephone.value === '') {
       alert('请输入联系电话！')
@@ -497,6 +497,7 @@ export default class Home extends Vue {
         [field.telephone]: telephone.value,
         [field.projectAddress]: address.value,
         [field.projectVillage]: village.value,
+        [field.remarks]: remarks.value,
         [field.projectHometype]: [hometype],
         [field.projectType]: [Type],
         [field.projectArea]: [area],
@@ -505,6 +506,7 @@ export default class Home extends Vue {
         [field.projectStage]: [stage]
       }
     }
+    await logInsert([localStorage.getItem('localName') + ',备注: ' + remarks.value])
     const res: any = await updateTable(project.itemId, data)
     if (res.message) {
       alert(res.message)
