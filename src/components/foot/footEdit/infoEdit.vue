@@ -338,6 +338,7 @@ export default class Home extends Vue {
         }
         if (fields[i].field_id === field.remarks) { //
           remarks = fields[i].values[0].value
+          this.remarks = fields[i].values[0].value
         }
       }
       const obj = {
@@ -506,7 +507,11 @@ export default class Home extends Vue {
         [field.projectStage]: [stage]
       }
     }
-    await logInsert('备注: ' + remarks.value)
+    if (remarks.value !== '') {
+      if (remarks.value !== this.remarks) {
+        await logInsert('备注: ' + remarks.value)
+      }
+    }
     const res: any = await updateTable(project.itemId, data)
     if (res.message) {
       alert(res.message)

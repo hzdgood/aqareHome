@@ -1,32 +1,32 @@
 <template>
   <div>
-    周
-    <select>
-      <option>本周</option>
-      <option>下周周</option>
-      <option>下下周</option>
-    </select>
-    日期
-    <select>
-      <option>周一</option>
-      <option>周二</option>
-      <option>周三</option>
-      <option>周四</option>
-      <option>周五</option>
-      <option>周六</option>
-      <option>周日</option>
-    </select>
+    <div class="Calendar" v-show="selectStatus">
+      <Calendar :fullscreen="fullscreen"></Calendar>
+    </div>
+    日期：<input type="text" placeholder="请选择日期"/>
     <button>查询</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-@Component({})
+import { Calendar } from 'ant-design-vue'
+@Component({
+  name: 'calendar',
+  components: {
+    Calendar: Calendar
+  }
+})
 export default class Actions extends Vue {
-
+  fullscreen = false
+  selectStatus = false
 }
 </script>
 
-<style>
+<style scoped>
+.Calendar{
+  width: 290px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+}
 </style>

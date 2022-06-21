@@ -1,74 +1,76 @@
 <template>
   <div>
-    <!-- <baidu-map
+    <baidu-map
+      class="bm-view"
+      ak="agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi"
       :center="center"
       :zoom="zoom"
-      :scroll-wheel-zoom="true"
-      style="width: 100%; height: 100%"
+      :scroll-wheel-zoom="wheelZoom"
       @ready="handler"
-      @click="getClickInfo"
-      @moving="syncCenterAndZoom"
-      @moveend="syncCenterAndZoom"
-      @zoomend="syncCenterAndZoom"
     >
       <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
-      <bm-geolocation
-        anchor="BMAP_ANCHOR_BOTTOM_RIGHT"
-        :showAddressBar="true"
-        :autoLocation="true"
-      ></bm-geolocation>
-      <bm-city-list anchor="BMAP_ANCHOR_TOP_LEFT"></bm-city-list>
-    </baidu-map> -->
+      <bm-point-collection
+        :points="points"
+        shape="BMAP_POINT_SHAPE_STAR"
+        color="red"
+        size="BMAP_POINT_SIZE_SMALL"
+        @click="clickHandler"
+      ></bm-point-collection>
+      <bm-overlay
+        pane="labelPane"
+        :class="{ sample: true, active }"
+        @draw="draw"
+        @mouseover.native="active = true"
+        @mouseleave.native="active = false"
+      >
+        <div>我爱北京天安门</div>
+      </bm-overlay>
+    </baidu-map>
   </div>
 </template>
 
 <script lang="ts">
+import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
 import { Component, Vue } from 'vue-property-decorator'
-import Baidu from 'vue-baidu-map'
-Vue.use(Baidu, {
-  ak: 'agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi'
-})
-
-// declare const BMap: any
 
 @Component({
-  name: 'baidu-map',
+  name: 'Bmap',
   components: {
-    'baidu-map': Baidu
+    'baidu-map': BaiduMap
   }
 })
 export default class Actions extends Vue {
-  center = { lng: 116.404, lat: 39.915 };
-  address = '';
-  zoom = '';
+  center = { lng: 0, lat: 0 };
+  zoom = 3;
+  points: any[] = [];
+  active = false;
+  wheelZoom = true;
 
-  handler () {
-    // this.center.lng = 116.404
-    // this.center.lat =
-    // this.zoom = this.zoom
+  mounted () {
+    // this.center.lng = 116.404;
+    // this.center.lat = 39.915;
+    // this.zoom = 15;
   }
 
-  getClickInfo (e: any) {
-    // // 创建地理编码实例
-    // const myGeo = new BMap.Geocoder()
-    // // 根据坐标逆解析地址
-    // myGeo.getLocation(new BMap.Point(e.point.lng, e.point.lat), (result:any) => {
-    //   // console.log(result, 'result-->>>>')
-    //   if (result) {
-    //     this.address = result.address
-    //   }
-    // })
-    // this.center.lng = e.point.lng
-    // this.center.lat = e.point.lat
+  handler ({ BMap, map }: any) {
+    console.log(BMap, map)
+    this.center.lng = 116.404
+    this.center.lat = 39.915
+    this.zoom = 15
   }
 
-  syncCenterAndZoom (e: any) {
-    // console.log(e.target, 'e.target-->>>>')
-    // const { lng, lat } = e.target.getCenter()
-    // this.zoom = e.target.getZoom()
+  draw ({ el, BMap, map }: any) {
+    const pixel = map.pointToOverlayPixel(new BMap.Point(116.404, 39.915))
+    el.style.left = pixel.x - 60 + 'px'
+    el.style.top = pixel.y - 20 + 'px'
+  }
+
+  clickHandler (e: any) {
+    alert(`单击点的坐标为：${e.point.lng}, ${e.point.lat}`)
   }
 }
 </script>
 
 <style scoped>
+
 </style>

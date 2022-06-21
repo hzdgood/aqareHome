@@ -10,9 +10,13 @@ import '@/css/aqara.css'
 import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
 import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
 import Cookies from 'js-cookie'
+import BaiduMap from 'vue-baidu-map'
 
-localStorage.clear()
+Vue.use(BaiduMap, {
+  ak: 'agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi'
+})
 Vue.config.productionTip = false
+localStorage.clear()
 
 // 获取伙伴云ticket
 async function getTicket () {

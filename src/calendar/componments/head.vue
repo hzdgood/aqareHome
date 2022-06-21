@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>日程系统</div>
+    <div style="font-size: 24px;">日程系统</div>
   </div>
 </template>
 
