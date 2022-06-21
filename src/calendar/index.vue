@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <head></head>
+      <head-info></head-info>
     </div>
     <div>
       <div>
@@ -24,7 +24,7 @@ import baiduMap from './componments/baiduMap.vue'
 @Component({
   name: 'App',
   components: {
-    head: head,
+    'head-info': head,
     'select-info': selectInfo,
     'person-info': personInfo,
     'baidu-map': baiduMap

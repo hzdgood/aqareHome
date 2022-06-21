@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Chat from './Chat.vue'
-import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
+import Calendar from '@/calendar/index.vue'
+import uploadFile from '@/uploadFile/index.vue'
 import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.css'
@@ -37,18 +38,6 @@ async function getChat () {
   })
 }
 
-// 检查URl
-const checkUrl = async () => {
-  const url = window.location.href
-  if (url.split('#')[1] === '/upload') {
-    new Vue({
-      router,
-      store,
-      render: (h) => h(schemeEdit)
-    }).$mount('#app')
-  }
-}
-
 const doInfo = async () => {
   const result = await invoke('getContext') // 获取类型
   localStorage.setItem('contactType', result.entry) // 联系类型
@@ -67,16 +56,34 @@ const doInfo = async () => {
     localStorage.setItem('avatar', avatar)
     localStorage.setItem('localName', localName)
     getTicket()
-  } else {
+  } else if (result.entry === 'group_chat_tools') {
     const localName: any = Cookies.get('userId')
     const result = await invoke('getCurExternalChat')
     localStorage.setItem('localName', localName)
     localStorage.setItem('chatID', result.chatId) // 群ID
     getChat()
+  } else {
+    const url = window.location.href
+    await userInfo().then(function (response) {
+      localStorage.setItem('ticket', response.data.ticket)
+      if (url.split('#')[1] === '/Calendar') {
+        new Vue({
+          router,
+          store,
+          render: (h) => h(Calendar)
+        }).$mount('#app')
+      }
+      if (url.split('#')[1] === '/upload') {
+        new Vue({
+          router,
+          store,
+          render: (h) => h(uploadFile)
+        }).$mount('#app')
+      }
+    })
   }
 }
 
 checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）
   .then(() => initSdk(config, fetchSignatures)) // 初始化 JsSdk
-  .then(() => checkUrl())
   .then(() => doInfo())

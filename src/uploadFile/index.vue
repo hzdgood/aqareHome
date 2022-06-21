@@ -1,121 +1,64 @@
 <template>
   <div>
-    <div class="floatDiv"></div>
-    <div class="infoDiv">
-      <div class="headerDiv">上传方案</div>
-      <table class="EditTable">
-        <tr>
-          <td>方案类型</td>
-          <td>
-            <select id="schemeType">
-              <option value="1">表格文件</option>
-              <option value="2">pdf文件</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-      <table class="EditTable">
-        <tr v-for="item in upFiles" :key="item.file_id">
-          <td>方案名称</td>
-          <td>
-            {{ item.name }}
-          </td>
-        </tr>
-      </table>
-      <div class="uploadFile">
-        <input id="file" type="file" name="file" placeholder="请选择文件" />
-      </div>
-      <div class="buttonSite">
-        <input
-          class="saveButton"
-          v-show="saveStatus"
-          type="button"
-          @click="saveClick()"
-          value="提交"
-        />
-        <input
-          class="closeButton"
-          type="button"
-          @click="closeClick()"
-          value="关闭"
-        />
-      </div>
-      <div>
-        <span v-for="item in erronProduct" :key="item.index">
+    <div class="headerDiv">上传方案</div>
+    <table class="EditTable">
+      <tr>
+        <td>方案类型</td>
+        <td>
+          <select id="schemeType">
+            <option value="1">表格文件</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+    <table class="EditTable">
+      <tr v-for="item in upFiles" :key="item.file_id">
+        <td>方案名称</td>
+        <td>
           {{ item.name }}
-        </span>
-      </div>
+        </td>
+      </tr>
+    </table>
+    <div class="uploadFile">
+      <input id="file" type="file" name="file" placeholder="请选择文件" />
+    </div>
+    <div class="buttonSite">
+      <input
+        class="saveButton"
+        v-show="saveStatus"
+        type="button"
+        @click="saveClick()"
+        value="提交"
+      />
+      <input
+        class="closeButton"
+        type="button"
+        @click="closeClick()"
+        value="关闭"
+      />
+    </div>
+    <div>
+      <span v-for="item in erronProduct" :key="item.index">
+        {{ item.name }}
+      </span>
     </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, logInsert, uploadPdf } from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, getCoordinate, logInsert, batchAddPlan } from '@/config/interFace'
+
 import { table, field } from '@/config/config'
-import { masterReq } from '@/config/common'
 @Component({})
 export default class Home extends Vue {
   erronProduct: any[] = [];
   saveStatus = true;
-  userId = localStorage.getItem('userId');
   itemId = '';
   fileList: any[] = [];
   upFiles: any[] = [];
-
-  async mounted () {
-    const data = masterReq(this.userId)
-    const result = await SearchInfo(table.projectInfo, data)
-    for (let i = 0; i < result.length; i++) {
-      const fields = result[i].fields
-      this.itemId = result[i].item_id
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === 2200000146039443) {
-          const values = fields[j].values
-          this.upFiles = values
-          for (let k = 0; k < values.length; k++) {
-            this.fileList.push(values[k].file_id)
-          }
-        }
-      }
-    }
-  }
-
-  async pdfUpFile () {
-    let file: any = document.getElementById('file')
-    if (typeof file.files[0] === 'undefined') {
-      alert('请上传PDF文件!')
-      return
-    }
-    console.log(file)
-    file = file.files[0]
-    this.$store.dispatch('Loading')
-    const formData = new FormData()
-    formData.append('source', file)
-    formData.append('name', file.name)
-    formData.append('domain', 'app.huoban.com')
-    formData.append('type', 'attachment')
-    const res = await uploadPdf(formData)
-    this.fileList.push(res.file_id)
-    const data1 = {
-      fields: {
-        2200000146039443: this.fileList
-      }
-    }
-    await updateTable(this.itemId, data1)
-    await logInsert('上传PDF成功')
-    this.$store.dispatch('Loading')
-    this.$emit('close')
-  }
-
   // 获取所有的产品信息
   async saveClick () {
-    let schemeType: any = document.getElementById('schemeType')
-    schemeType = schemeType.options[schemeType.selectedIndex].value
-    if (schemeType === '2') {
-      await this.pdfUpFile()
-      return
-    }
     let projectName = ''
     let projectId = ''
     let projectAddress = ''

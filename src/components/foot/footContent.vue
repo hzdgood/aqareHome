@@ -18,7 +18,7 @@
       <collect-edit @close="clickCollect()"></collect-edit>
     </div>
     <div v-if="schemeShow">
-      <scheme-edit :upload="true" @close="clickScheme()"></scheme-edit>
+      <scheme-edit @close="clickScheme()"></scheme-edit>
     </div>
     <div v-if="ProposalStatus">
       <proposal-edit @close="clickProposal()"></proposal-edit>

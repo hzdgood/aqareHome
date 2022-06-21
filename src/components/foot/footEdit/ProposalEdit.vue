@@ -144,7 +144,6 @@ export default class Home extends Vue {
 
   // 新增报价单
   async create () {
-    // this.$store.dispatch('Loading')
     this.createStatus = false
     const obj = {
       fields: {
