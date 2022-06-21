@@ -224,14 +224,14 @@ export default class Home extends Vue {
   // 保存
   async saveClick (item: any) {
     this.$store.dispatch('Loading')
-    let file: any = document.getElementById('file')
+    const file: any = document.getElementById('file')
     const discount: any = document.getElementById('discount')
-    if (typeof file.files[0] !== 'undefined') {
+    if (typeof file.files !== 'undefined') {
       for (let i = 0; i < file.files.length; i++) {
-        file = file.files[i]
+        const files = file.files[i]
         const formData = new FormData()
-        formData.append('source', file)
-        formData.append('name', file.name)
+        formData.append('source', files)
+        formData.append('name', files.name)
         formData.append('domain', 'app.huoban.com')
         formData.append('type', 'attachment')
         const res = await uploadImg(formData)

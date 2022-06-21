@@ -47,8 +47,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, getCoordinate, logInsert, batchAddPlan } from '@/config/interFace'
-
+import { SearchInfo, uploadFile, updateTable, getCoordinate, batchAddPlan } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -229,7 +228,6 @@ export default class Home extends Vue {
       }
     }
     await updateTable(projectId, data)
-    await logInsert('上传方案成功')
     this.$store.dispatch('Loading')
     this.$emit('close')
   }
