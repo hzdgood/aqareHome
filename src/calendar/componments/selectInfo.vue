@@ -13,7 +13,7 @@
         :value="date"
         readonly
       />
-      <button>查询</button>
+      <button @click="select">查询</button>
     </div>
   </div>
 </template>
@@ -40,9 +40,9 @@ export default class Actions extends Vue {
     this.date = value.format('YYYY-MM-DD')
     this.selectStatus = false
   }
+
+  select () {
+    console.log(111)
+  }
 }
 </script>
-
-<style scoped>
-
-</style>

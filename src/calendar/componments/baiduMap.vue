@@ -79,7 +79,3 @@ export default class Actions extends Vue {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

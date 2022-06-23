@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <button>全部选择</button>
-      <button>取消全选</button>
+      <button @click="allClick">全部选择</button>
+      <button @click="allCancle">取消全选</button>
     </div>
     <div class="persons">
       <div v-for="item in personList" :key="item.id">{{ item.name }}</div>
@@ -49,8 +49,9 @@ export default class Actions extends Vue {
   allClick () {
     console.log(111)
   }
+
+  allCancle () {
+    console.log(111)
+  }
 }
 </script>
-
-<style>
-</style>
