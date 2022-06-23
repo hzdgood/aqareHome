@@ -33,8 +33,12 @@
     height: 30px;
     line-height: 30px;
     text-align: center;
-    background-color: #90cdc6;
+    background-color: aquamarine;
     border-bottom: 1px solid #eee;
+}
+
+.selected {
+    background-color: cadetblue;
 }
 
 .personDiv {
@@ -61,14 +65,15 @@
     left: 40px;
 }
 
-.busy{
+.busy {
     background-color: red;
 }
-.fee{
+
+.fee {
     background-color: green;
 }
 
-.point{
+.point {
     width: 100%;
     height: 25px;
 }

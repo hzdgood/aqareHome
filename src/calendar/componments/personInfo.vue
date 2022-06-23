@@ -5,7 +5,9 @@
       <button @click="allCancle">取消全选</button>
     </div>
     <div class="persons">
-      <div v-for="item in personList" :key="item.id">{{ item.name }}</div>
+      <div v-for="item in personList" :key="item.id" @click="click(item.id)">
+        {{ item.name }}
+      </div>
     </div>
   </div>
 </template>
@@ -40,18 +42,45 @@ export default class Actions extends Vue {
     }
   }
 
-  click () {
-    // 点击方法
-    console.log(111)
+  // 点击方法
+  click (item: any) {
+    const dom: any = document.getElementById(item)
+    if (dom.className === 'selected') {
+      dom.className = ''
+    } else {
+      dom.className = 'selected'
+    }
+    this.SelectList()
   }
 
   // 全选方法
   allClick () {
-    console.log(111)
+    for (let i = 0; i < this.personList.length; i++) {
+      const id = this.personList[i].id
+      const dom: any = document.getElementById(id)
+      dom.className = 'selected'
+    }
+    this.SelectList()
   }
 
   allCancle () {
-    console.log(111)
+    for (let i = 0; i < this.personList.length; i++) {
+      const id = this.personList[i].id
+      const dom: any = document.getElementById(id)
+      dom.className = ''
+    }
+    this.SelectList()
+  }
+
+  SelectList () {
+    const list = []
+    const obj: any = document.getElementsByClassName('selected')
+    for (let i = 0; i < obj.length; i++) {
+      if (obj[i].checked === true) {
+        const id = obj[i].id
+        list.push(id)
+      }
+    }
   }
 }
 </script>

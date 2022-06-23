@@ -5,12 +5,11 @@ import Calendar from '@/calendar/index.vue'
 import uploadFile from '@/uploadFile/index.vue'
 import router from './router'
 import store from './store'
-import 'ant-design-vue/dist/antd.css'
-import '@/css/aqara.css'
 import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
 import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
 import Cookies from 'js-cookie'
 import BaiduMap from 'vue-baidu-map'
+import 'ant-design-vue/dist/antd.css'
 
 Vue.use(BaiduMap, {
   ak: 'agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi'

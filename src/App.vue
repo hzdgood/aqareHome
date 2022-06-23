@@ -34,6 +34,7 @@ import myConfirm from '@/components/common/myConfirm.vue'
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
+import '@/css/aqara.css'
 @Component({
   name: 'App',
   components: {

@@ -49,6 +49,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, uploadFile, updateTable, getCoordinate, batchAddPlan } from '@/config/interFace'
 import { table, field } from '@/config/config'
+import '@/css/aqara.css'
 @Component({})
 export default class Home extends Vue {
   erronProduct: any[] = [];

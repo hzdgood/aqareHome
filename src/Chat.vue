@@ -30,6 +30,7 @@ import footContent from '@/components/foot/footContent.vue'
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, groupchat, updateTable } from '@/config/interFace'
 import { table, field } from '@/config/config'
+import '@/css/aqara.css'
 @Component({
   name: 'App',
   components: {
