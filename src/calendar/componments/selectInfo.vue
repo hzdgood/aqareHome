@@ -38,11 +38,13 @@ export default class Actions extends Vue {
 
   onChange (value: any) {
     this.date = value.format('YYYY-MM-DD')
+    this.$store.state.CalendarDate = value.format('YYYY-MM-DD')
     this.selectStatus = false
   }
 
   select () {
     console.log(111)
+    this.$store.dispatch('search')
   }
 }
 </script>

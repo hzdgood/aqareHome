@@ -8,7 +8,12 @@ const state = {
   customTagStatus: false,
   Loading: false,
   confirm: false,
-  confirmInfo: ''
+  confirmInfo: '',
+
+  // 日程系统
+  CalendarDate: '',
+  selectData: [],
+  searchStatus: false
 }
 const mutations = {
   updateReload () {
@@ -38,6 +43,13 @@ const mutations = {
       state.confirm = true
     } else {
       state.confirm = false
+    }
+  },
+  search () {
+    if (!state.searchStatus) {
+      state.searchStatus = true
+    } else {
+      state.searchStatus = false
     }
   }
 }
@@ -69,6 +81,13 @@ const actions = {
       state.confirm = true
     } else {
       state.confirm = false
+    }
+  },
+  search () {
+    if (!state.searchStatus) {
+      state.searchStatus = true
+    } else {
+      state.searchStatus = false
     }
   }
 }

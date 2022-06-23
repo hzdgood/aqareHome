@@ -81,6 +81,7 @@ export default class Actions extends Vue {
         list.push(id)
       }
     }
+    this.$store.state.selectData = list
   }
 }
 </script>

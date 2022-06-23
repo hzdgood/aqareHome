@@ -44,7 +44,7 @@
 
 <script lang="ts">
 import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 
 @Component({
   name: 'Bmap',
@@ -60,6 +60,14 @@ export default class Actions extends Vue {
   wheelZoom = true;
   keyword = '上海市黄浦区露香园万竹街45弄10号';
   location = '上海';
+
+  @Watch('$store.state.searchStatus')
+  selectPage () {
+    const list = this.$store.state.selectData
+    const date = this.$store.state.CalendarDate
+    console.log(list)
+    console.log(date)
+  }
 
   handler ({ BMap, map }: any) {
     console.log(BMap, map)
