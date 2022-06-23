@@ -17,8 +17,6 @@
         @click="clickHandler"
       ></bm-point-collection>
 
-      <!-- <bm-local-search :keyword="keyword" :auto-viewport="true" :location="location"></bm-local-search> -->
-
       <!-- <bm-overlay
         pane="labelPane"
         :class="{ sample: true, active }"
@@ -45,7 +43,7 @@
 <script lang="ts">
 import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-
+import { SearchInfo } from '@/config/interFace'
 @Component({
   name: 'Bmap',
   components: {
@@ -62,11 +60,34 @@ export default class Actions extends Vue {
   location = '上海';
 
   @Watch('$store.state.searchStatus')
-  selectPage () {
-    const list = this.$store.state.selectData
+  async selectPage () {
+    const list: any[] = this.$store.state.selectData
     const date = this.$store.state.CalendarDate
     console.log(list)
     console.log(date)
+
+    const obj = {
+      where: {
+        and: [
+          { field: 2200000145748100, query: { in: list } },
+          {
+            field: 2200000146199958,
+            query: {
+              range: [
+                { model: 'static', datetime: date },
+                { model: 'static', datetime: date }
+              ]
+            }
+          },
+          { field: 2200000148339991, query: { em: false } }
+        ]
+      },
+      offset: 0,
+      limit: 20,
+      order_by: [{ field: 2200000146199958, sort: 'desc' }]
+    }
+    const result = await SearchInfo('2100000015054992', obj)
+    console.log(result)
   }
 
   handler ({ BMap, map }: any) {

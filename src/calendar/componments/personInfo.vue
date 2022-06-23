@@ -5,7 +5,12 @@
       <button @click="allCancle">取消全选</button>
     </div>
     <div class="persons">
-      <div v-for="item in personList" :key="item.id" @click="click(item.id)">
+      <div
+        :id="item.id"
+        v-for="item in personList"
+        :key="item.id"
+        @click="click(item.id)"
+      >
         {{ item.name }}
       </div>
     </div>
@@ -21,9 +26,9 @@ export default class Actions extends Vue {
   async mounted () {
     // 获取所有技术人员信息
     const obj = {
-      where: { and: [{ field: 2200000145711106, query: { em: false } }] },
+      where: { and: [{ field: 2200000155616806, query: { in: [1] } }] },
       offset: 0,
-      limit: 30
+      limit: 20
     }
     const result = await SearchInfo('2100000015050396', obj)
     for (let i = 0; i < result.length; i++) {
@@ -76,10 +81,8 @@ export default class Actions extends Vue {
     const list = []
     const obj: any = document.getElementsByClassName('selected')
     for (let i = 0; i < obj.length; i++) {
-      if (obj[i].checked === true) {
-        const id = obj[i].id
-        list.push(id)
-      }
+      const id = parseInt(obj[i].id)
+      list.push(id)
     }
     this.$store.state.selectData = list
   }
