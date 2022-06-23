@@ -4,19 +4,13 @@
       <head-info></head-info>
     </div>
     <div class="body-div">
-      <table>
-        <tr>
-          <td>
-            <person-info></person-info>
-          </td>
-          <td>
-            <div>
-              <select-info></select-info>
-              <baidu-map></baidu-map>
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div class="personDiv">
+        <person-info></person-info>
+      </div>
+      <div class="cententDiv">
+        <select-info></select-info>
+        <baidu-map></baidu-map>
+      </div>
     </div>
   </div>
 </template>

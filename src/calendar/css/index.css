@@ -7,27 +7,13 @@
     text-align: center;
 }
 
-.body-div{
-    width: 100%;
-}
-
-.body-div table{
-    width: 100%;
-}
-
-.body-div table tr td:first-child{
-    width: 10%;
-}
-
 .bm-view {
     width: 100%;
-    height: 800px;
+    height: 780px;
 }
 
 .sample {
-    width: 120px;
-    height: 40px;
-    line-height: 40px;
+    width: 100px;
     background: rgba(0, 0, 0, 0.5);
     overflow: hidden;
     box-shadow: 0 0 5px #000;
@@ -40,4 +26,53 @@
 .sample.active {
     background: rgba(0, 0, 0, 0.75);
     color: #fff;
+}
+
+.persons div {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #90cdc6;
+    border-bottom: 1px solid #eee;
+}
+
+.personDiv {
+    width: 10%;
+    display: inline-block;
+    position: absolute;
+}
+
+.cententDiv {
+    width: 90%;
+    display: inline-block;
+    position: absolute;
+    left: 10%;
+}
+
+.Calendar {
+    width: 290px;
+    position: absolute;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    z-index: 10;
+    background: #fff;
+    top: 27px;
+    left: 40px;
+}
+
+.busy{
+    background-color: red;
+}
+.fee{
+    background-color: green;
+}
+
+.point{
+    width: 100%;
+    height: 25px;
+}
+
+.point tr td {
+    border: 1px solid #eee;
 }

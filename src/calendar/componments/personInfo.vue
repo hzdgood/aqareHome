@@ -1,6 +1,12 @@
 <template>
   <div>
-    <div v-for="item in personList" :key="item.id">{{ item.name }}</div>
+    <div>
+      <button>全部选择</button>
+      <button>取消全选</button>
+    </div>
+    <div class="persons">
+      <div v-for="item in personList" :key="item.id">{{ item.name }}</div>
+    </div>
   </div>
 </template>
 
@@ -22,9 +28,10 @@ export default class Actions extends Vue {
       const fields = result[i].fields
       const item_id = result[i].item_id
       for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === 2200000149382960) { // 名称
+        if (fields[j].field_id === 2200000149382960) {
+          // 名称
           const data = {
-            id: i,
+            id: item_id,
             name: fields[j].values[0].value
           }
           this.personList.push(data)

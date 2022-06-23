@@ -16,15 +16,28 @@
         size="BMAP_POINT_SIZE_SMALL"
         @click="clickHandler"
       ></bm-point-collection>
-      <bm-overlay
+
+      <!-- <bm-local-search :keyword="keyword" :auto-viewport="true" :location="location"></bm-local-search> -->
+
+      <!-- <bm-overlay
         pane="labelPane"
         :class="{ sample: true, active }"
         @draw="draw"
         @mouseover.native="active = true"
         @mouseleave.native="active = false"
       >
-        <div>我爱北京天安门</div>
-      </bm-overlay>
+        <div>
+          <div>李晓龙</div>
+          <table class="point">
+            <tr>
+              <td class="busy"></td>
+              <td class="busy"></td>
+              <td class="fee"></td>
+              <td class="fee"></td>
+            </tr>
+          </table>
+        </div>
+      </bm-overlay> -->
     </baidu-map>
   </div>
 </template>
@@ -45,12 +58,8 @@ export default class Actions extends Vue {
   points: any[] = [];
   active = false;
   wheelZoom = true;
-
-  mounted () {
-    // this.center.lng = 116.404;
-    // this.center.lat = 39.915;
-    // this.zoom = 15;
-  }
+  keyword = '上海市黄浦区露香园万竹街45弄10号';
+  location = '上海';
 
   handler ({ BMap, map }: any) {
     console.log(BMap, map)

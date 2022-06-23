@@ -1,10 +1,20 @@
 <template>
   <div>
     <div class="Calendar" v-show="selectStatus">
-      <Calendar :fullscreen="fullscreen"></Calendar>
+      <Calendar :fullscreen="fullscreen" @change="onChange"></Calendar>
     </div>
-    日期：<input type="text" placeholder="请选择日期"/>
-    <button>查询</button>
+    <div>
+      <span>日期：</span>
+      <input
+        type="text"
+        id="date"
+        placeholder="请选择日期"
+        @click="selectDate"
+        :value="date"
+        readonly
+      />
+      <button>查询</button>
+    </div>
   </div>
 </template>
 
@@ -18,15 +28,21 @@ import { Calendar } from 'ant-design-vue'
   }
 })
 export default class Actions extends Vue {
-  fullscreen = false
-  selectStatus = false
+  fullscreen = false;
+  selectStatus = false;
+  date = '';
+
+  selectDate () {
+    this.selectStatus = true
+  }
+
+  onChange (value: any) {
+    this.date = value.format('YYYY-MM-DD')
+    this.selectStatus = false
+  }
 }
 </script>
 
 <style scoped>
-.Calendar{
-  width: 290px;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-}
+
 </style>
