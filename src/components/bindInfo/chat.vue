@@ -6,7 +6,7 @@
         <td>项目信息</td>
         <td>
           <input id="name" type="text" />
-          <img class="img" src="../../img/select.png" @click="search" />
+          <button class="img" @click="search">查询</button>
         </td>
       </tr>
       <tr>

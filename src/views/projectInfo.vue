@@ -47,7 +47,6 @@ import { table, field } from '@/config/config'
 import { masterReq, chatReq } from '@/config/common'
 @Component({})
 export default class Home extends Vue {
-  projectInfo = table.projectInfo;
   projectList: any[] = [];
   userId = localStorage.getItem('userId');
   contactType = localStorage.getItem('contactType');
@@ -72,7 +71,7 @@ export default class Home extends Vue {
   async onloadFunction () {
     this.projectList = []
     const data = this.getData()
-    const result = await SearchInfo(this.projectInfo, data)
+    const result = await SearchInfo(table.projectInfo, data)
     for (let j = 0; j < result.length; j++) {
       const fields = result[j].fields
       let projectCustom = ''

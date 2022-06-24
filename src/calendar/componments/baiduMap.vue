@@ -51,13 +51,15 @@ import { SearchInfo } from '@/config/interFace'
   }
 })
 export default class Actions extends Vue {
-  center = { lng: 0, lat: 0 };
+  center = '上海';
   zoom = 3;
   points: any[] = [];
   active = false;
   wheelZoom = true;
   keyword = '上海市黄浦区露香园万竹街45弄10号';
   location = '上海';
+  BMap: any = {}
+  map: any = {}
 
   @Watch('$store.state.searchStatus')
   async selectPage () {
@@ -88,10 +90,8 @@ export default class Actions extends Vue {
   }
 
   handler ({ BMap, map }: any) {
-    console.log(BMap, map)
-    this.center.lng = 116.404
-    this.center.lat = 39.915
-    this.zoom = 15
+    this.BMap = BMap
+    this.map = map
   }
 
   draw ({ el, BMap, map }: any) {

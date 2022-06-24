@@ -36,3 +36,20 @@ export const chatReq = (chatId: any) => {
   }
   return data
 }
+
+export const masterCustom = (userId: any) => {
+  const data = {
+    where: {
+      and: [
+        {
+          query: { or: [{ in: [userId] }] },
+          query_option_mappings: [-1],
+          field: field.userTable
+        }
+      ]
+    },
+    offset: 0,
+    limit: 20
+  }
+  return data
+}
