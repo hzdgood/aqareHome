@@ -48,10 +48,17 @@
 }
 
 .cententDiv {
-    width: 90%;
+    width: 80%;
     display: inline-block;
     position: absolute;
     left: 10%;
+}
+
+.rightDiv{
+    width: 10%;
+    display: inline-block;
+    position: absolute;
+    right: 0%;
 }
 
 .Calendar {

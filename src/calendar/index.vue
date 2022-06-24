@@ -13,7 +13,11 @@
         <select-info></select-info>
         <baidu-map></baidu-map>
       </div>
+      <div class="rightDiv">
+
+      </div>
     </div>
+
   </div>
 </template>
 

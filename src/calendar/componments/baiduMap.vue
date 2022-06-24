@@ -63,23 +63,20 @@ export default class Actions extends Vue {
   async selectPage () {
     const list: any[] = this.$store.state.selectData
     const date = this.$store.state.CalendarDate
-    console.log(list)
-    console.log(date)
-
     const obj = {
       where: {
         and: [
-          { field: 2200000145748100, query: { in: list } },
+          { field: 2200000145748100, query: { in: list } }, // 人员
+          { field: 2200000146398516, query: { in: [10, 6, 3, 2, 5, 4] } }, // 订单类型 除了发货
           {
-            field: 2200000146199958,
+            field: 2200000145748099, // 上门时间
             query: {
               range: [
                 { model: 'static', datetime: date },
                 { model: 'static', datetime: date }
               ]
             }
-          },
-          { field: 2200000148339991, query: { em: false } }
+          }
         ]
       },
       offset: 0,
