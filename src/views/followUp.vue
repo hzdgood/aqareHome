@@ -18,7 +18,6 @@ export default class Home extends Vue {
   logList: any[] = [];
   async mounted () {
     const res = await logSelect()
-    console.log(res)
     for (let i = 0; i < res.length; i++) {
       const obj = {
         id: res[i].id,

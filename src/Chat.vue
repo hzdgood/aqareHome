@@ -67,9 +67,7 @@ export default class Actions extends Vue {
       let userId = ''
       let userName = ''
       // 查询群人员
-      const res: any = await groupchat({
-        chatId: this.chatId
-      })
+      const res: any = await groupchat(this.chatId + '')
       const group_chat = res.group_chat
       const member_list = group_chat.member_list
       for (let i = 0; i < member_list.length; i++) {

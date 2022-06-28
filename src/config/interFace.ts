@@ -1,13 +1,16 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-const httpUrl = 'http://localhost:8081' // 测试url
-// const httpUrl = 'http://aqara.club:8081' // 生产环境
+// const httpUrl = 'http://localhost:8081' // 测试url
+const httpUrl = 'http://aqara.club:8091' // 生产环境
+// const httpUrl2 = 'http://aqara.club:8091' // 生产环境
 const huobanUrl = 'https://api.huoban.com'
 
 export const config = {
-  corpId: 'ww9a717b03b06063e3', // 企业ID
-  agentId: '1000046' // 应用ID
+  // corpId: 'ww9a717b03b06063e3', // 企业ID
+  // agentId: '1000046', // 应用ID
+  corpId: 'ww728dd07f7641e567',
+  agentId: '1000004'
 }
 
 const post = async (url: string, data: object) => {
@@ -43,7 +46,8 @@ export const fetchUserId = async (code: string): Promise<string> => {
     method: 'GET',
     url: httpUrl + '/wechat/getUserId',
     params: {
-      code: code
+      code: code,
+      type: httpUrl
     }
   })
   console.log(response.data)
@@ -57,50 +61,62 @@ export const fetchSignatures = async (): Promise<SignRes> => {
     method: 'GET',
     url: httpUrl + '/wechat/signatures',
     params: {
-      url: window.location.href.split('#')[0]
+      url: window.location.href.split('#')[0],
+      type: httpUrl
     }
   })
   return response.data
 }
 
 // 获取联系人
-export const externalcontact = async (formData: object) => {
+export const externalcontact = async (userId: string) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
     url: httpUrl + '/wechat/externalcontact',
-    params: formData
+    params: {
+      userId: userId,
+      type: httpUrl
+    }
+  })
+  return response.data
+}
+// 获取群联系人
+export const groupchat = async (chatId: string) => {
+  const response = await axios.request<SignRes>({
+    method: 'GET',
+    url: httpUrl + '/wechat/groupchat',
+    params: {
+      chatId: chatId,
+      type: httpUrl
+    }
   })
   return response.data
 }
 
 // 获取联系人
-export const externalList = async (formData: object) => {
-  const response = await axios.request<SignRes>({
-    method: 'GET',
-    url: httpUrl + '/wechat/externalList',
-    params: formData
-  })
-  return response.data
-}
-
+// export const externalList = async (userId: string) => {
+//   const response = await axios.request<SignRes>({
+//     method: 'GET',
+//     url: httpUrl + '/wechat/externalList',
+//     params: {
+//       userId: userId,
+//       type: httpUrl
+//     }
+//   })
+//   return response.data
+// }
 // 获取群联系人
-export const groupchat = async (formData: object) => {
-  const response = await axios.request<SignRes>({
-    method: 'GET',
-    url: httpUrl + '/wechat/groupchat',
-    params: formData
-  })
-  return response.data
-}
-
-// 获取群联系人
-export const groupList = async () => {
-  const response = await axios.request<SignRes>({
-    method: 'GET',
-    url: httpUrl + '/wechat/grouplist'
-  })
-  return response.data
-}
+// export const groupList = async (chatId: string) => {
+//   const response = await axios.request<SignRes>({
+//     method: 'GET',
+//     url: httpUrl + '/wechat/grouplist',
+//     params: {
+//       chatId: chatId,
+//       type: httpUrl
+//     }
+//   })
+//   return response.data
+// }
 
 export const userInfo = async () => {
   const url = httpUrl + '/huoban/getTicket'

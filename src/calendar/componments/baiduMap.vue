@@ -87,6 +87,9 @@ export default class Actions extends Vue {
     }
     const result = await SearchInfo('2100000015054992', obj)
     console.log(result)
+    for (let i = 0; i < result.length; i++) {
+
+    }
   }
 
   handler ({ BMap, map }: any) {
