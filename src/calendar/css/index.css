@@ -13,13 +13,13 @@
 }
 
 .sample {
-    width: 100px;
+    width: 120px;
     background: rgba(0, 0, 0, 0.5);
     overflow: hidden;
     box-shadow: 0 0 5px #000;
     color: #fff;
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     position: absolute;
 }
 
