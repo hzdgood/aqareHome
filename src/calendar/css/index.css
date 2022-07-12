@@ -1,17 +1,81 @@
+/* baiduMap */
+.bm-view {
+    position: absolute;
+    width: 100%;
+    height: 95%;
+}
+
+/* personInfo */
+.persons {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+}
+
+.persons div {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background-color: #cecece;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+.selects {
+    background-color: #a3c5e5 !important;
+    cursor: pointer;
+}
+
+.AllButton button {
+    margin: 3px;
+}
+
+/* index */
 .head {
     width: 100%;
-    height: 50px;
-    line-height: 50px;
-    background: #2b72e8;
+    background: #10243d;
     color: #ffffff;
     text-align: center;
 }
 
-.bm-view {
-    width: 100%;
-    height: 780px;
+.personDiv {
+    background-color: #ebebeb;
+    width: 170px;
+    display: inline-block;
+    position: absolute;
+    height: 95%;
 }
 
+.cententDiv {
+    background-color: #ebebeb;
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    left: 170px;
+    height: 95%;
+}
+
+/* selectInfo */
+.Calendar {
+    width: 290px;
+    position: absolute;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    z-index: 10;
+    background: #fff;
+    top: 27px;
+    left: 40px;
+}
+
+.selectData {
+    margin: 3px;
+}
+
+.selectData button {
+    margin: 0px 3px;
+}
+
+/* overlay */
 .sample {
     width: 120px;
     background: rgba(0, 0, 0, 0.5);
@@ -28,48 +92,13 @@
     color: #fff;
 }
 
-.persons div {
+.point {
     width: 100%;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-    background-color: aquamarine;
-    border-bottom: 1px solid #eee;
+    height: 25px;
 }
 
-.selected {
-    background-color: cadetblue;
-}
-
-.personDiv {
-    width: 10%;
-    display: inline-block;
-    position: absolute;
-}
-
-.cententDiv {
-    width: 80%;
-    display: inline-block;
-    position: absolute;
-    left: 10%;
-}
-
-.rightDiv{
-    width: 10%;
-    display: inline-block;
-    position: absolute;
-    right: 0%;
-}
-
-.Calendar {
-    width: 290px;
-    position: absolute;
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    z-index: 10;
-    background: #fff;
-    top: 27px;
-    left: 40px;
+.point tr td {
+    border: 1px solid #eee;
 }
 
 .busy {
@@ -80,11 +109,39 @@
     background-color: green;
 }
 
-.point {
-    width: 100%;
-    height: 25px;
+/* all */
+.myButton {
+    background-color: #3089dc;
+    border: 1px solid #cecece;
+    border-radius: 3px;
+    height: 30px;
+    color: #fff;
+    cursor: pointer;
 }
 
-.point tr td {
-    border: 1px solid #eee;
+/* .rightInfo{
+    margin-top: 35px;
+    background-color: #f2f6ff;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+} */
+
+/* .detailTable{
+    width: 100%;
+    background-color: #cecece;
 }
+
+.detailTable tr td {
+    border: 1px solid #eee;
+    text-align: center;
+} */
+
+/* .rightDiv{
+    background-color: #ebebeb;
+    width: 10%;
+    display: inline-block;
+    position: absolute;
+    right: 0%;
+    height: 95%;
+} */

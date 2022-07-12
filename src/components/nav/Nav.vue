@@ -42,4 +42,8 @@ export default class Nav extends Vue {
   current: string[] = [this.$route.name as string];
 }
 </script>
-<style scoped></style>
+<style scoped>
+.a-menu-item{
+  padding: 0px 15px;
+}
+</style>

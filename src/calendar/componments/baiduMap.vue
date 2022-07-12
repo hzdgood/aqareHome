@@ -39,7 +39,41 @@ export default class Actions extends Vue {
   wheelZoom = true;
   BMap: any = {};
   map: any = {};
-  layerList: any[] = [];
+  layerList: any[] = [{
+    id: 1,
+    lng: 121.70,
+    lat: 31.43,
+    date: [{
+      id: 1,
+      name: '马总',
+      time: '9:00',
+      c1: 'busy',
+      c2: 'busy',
+      c3: 'busy',
+      c4: 'busy',
+      s1: '忙',
+      s2: '忙',
+      s3: '忙',
+      s4: '忙'
+    }]
+  }, {
+    id: 2,
+    lng: 120.60,
+    lat: 30.83,
+    date: [{
+      id: 2,
+      name: '施总',
+      time: '9:00',
+      c1: 'busy',
+      c2: 'busy',
+      c3: 'fee',
+      c4: 'fee',
+      s1: '忙',
+      s2: '忙',
+      s3: '空',
+      s4: '空'
+    }]
+  }];
 
   @Watch('$store.state.searchStatus')
   async selectPage () {

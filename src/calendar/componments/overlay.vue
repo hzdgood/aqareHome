@@ -1,32 +1,29 @@
 <template>
-  <div>
-    <bm-overlay
-      pane="labelPane"
-      :class="{ sample: true, active }"
-      @draw="draw"
-      @mouseover.native="active = true"
-      @mouseleave.native="active = false"
-    >
-      <div @click="handleClick" v-for="item in date" :key="item.id">
-        <table class="point">
-          <tr>
-            <td colspan="4">{{ item.name }}</td>
-          </tr>
-          <tr>
-            <td colspan="4">时间:{{ item.time }}</td>
-          </tr>
-          <tr>
-            <td :class="item.c1">{{ item.s1 }}</td>
-            <td :class="item.c2">{{ item.s2 }}</td>
-            <td :class="item.c3">{{ item.s3 }}</td>
-            <td :class="item.c4">{{ item.s4 }}</td>
-          </tr>
-        </table>
-      </div>
-    </bm-overlay>
-  </div>
+  <bm-overlay
+    pane="labelPane"
+    :class="{ sample: true, active }"
+    @draw="draw"
+    @mouseover.native="active = true"
+    @mouseleave.native="active = false"
+  >
+    <div @click="handleClick()" v-for="item in date" :key="item.id">
+      <table class="point">
+        <tr>
+          <td colspan="4">{{ item.name }}</td>
+        </tr>
+        <tr>
+          <td colspan="4">时间:{{ item.time }}</td>
+        </tr>
+        <tr>
+          <td :class="item.c1">{{ item.s1 }}</td>
+          <td :class="item.c2">{{ item.s2 }}</td>
+          <td :class="item.c3">{{ item.s3 }}</td>
+          <td :class="item.c4">{{ item.s4 }}</td>
+        </tr>
+      </table>
+    </div>
+  </bm-overlay>
 </template>
-
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 @Component({})
@@ -40,7 +37,7 @@ export default class Actions extends Vue {
   position!: any;
 
   @Prop({
-    type: Object,
+    type: Array,
     required: true
   })
   date!: any;

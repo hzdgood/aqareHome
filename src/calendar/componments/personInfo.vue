@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>
-      <button @click="allClick">全部选择</button>
-      <button @click="allCancle">取消全选</button>
+    <div class="AllButton">
+      <button class="myButton" @click="allClick">全部选择</button>
+      <button class="myButton" @click="allCancle">取消全选</button>
     </div>
     <div class="persons">
       <div
@@ -36,7 +36,6 @@ export default class Actions extends Vue {
       const item_id = result[i].item_id
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === 2200000149382960) {
-          // 名称
           const data = {
             id: item_id,
             name: fields[j].values[0].value
@@ -50,10 +49,10 @@ export default class Actions extends Vue {
   // 点击方法
   click (item: any) {
     const dom: any = document.getElementById(item)
-    if (dom.className === 'selected') {
+    if (dom.className === 'selects') {
       dom.className = ''
     } else {
-      dom.className = 'selected'
+      dom.className = 'selects'
     }
     this.SelectList()
   }
@@ -63,7 +62,7 @@ export default class Actions extends Vue {
     for (let i = 0; i < this.personList.length; i++) {
       const id = this.personList[i].id
       const dom: any = document.getElementById(id)
-      dom.className = 'selected'
+      dom.className = 'selects'
     }
     this.SelectList()
   }
@@ -79,7 +78,7 @@ export default class Actions extends Vue {
 
   SelectList () {
     const list = []
-    const obj: any = document.getElementsByClassName('selected')
+    const obj: any = document.getElementsByClassName('selects')
     for (let i = 0; i < obj.length; i++) {
       const id = parseInt(obj[i].id)
       list.push(id)

@@ -3,7 +3,7 @@
     <div class="Calendar" v-show="selectStatus">
       <Calendar :fullscreen="fullscreen" @change="onChange"></Calendar>
     </div>
-    <div>
+    <div class="selectData">
       <span>日期：</span>
       <input
         type="text"
@@ -13,7 +13,7 @@
         :value="date"
         readonly
       />
-      <button @click="select">查询</button>
+      <button class="myButton" @click="select">查询</button>
     </div>
   </div>
 </template>
