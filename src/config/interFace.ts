@@ -8,12 +8,12 @@ const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
 export const config = {
   /* 8081 */
-  // corpId: 'ww9a717b03b06063e3', // 企业ID
-  // agentId: '1000046' // 应用ID
+  corpId: 'ww9a717b03b06063e3', // 企业ID
+  agentId: '1000046' // 应用ID
 
   /* 8091 */
-  corpId: 'ww728dd07f7641e567',
-  agentId: '1000004'
+  // corpId: 'ww728dd07f7641e567',
+  // agentId: '1000004'
 }
 
 const post = async (url: string, data: object) => {
@@ -162,6 +162,23 @@ export const logSelect = async () => {
     params: {
       name: localStorage.getItem('localName'),
       custom: localStorage.getItem('userName')
+    }
+  })
+  return response.data
+}
+
+export const streams = async (url: any, limit: any, offset: any) => {
+  const ticket: any = localStorage.getItem('ticket')
+  const headers = {
+    'X-Huoban-Ticket': ticket
+  }
+  const response = await axios.request({
+    method: 'GET',
+    url: huobanUrl + '/v2/streams/item/' + url,
+    headers: headers,
+    params: {
+      limit: limit,
+      offset: offset
     }
   })
   return response.data

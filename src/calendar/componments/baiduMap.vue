@@ -15,7 +15,7 @@
         :key="item.id"
         :date="item.date"
         :position="{ lng: item.lng, lat: item.lat }"
-        @click="overLayClick"
+        @click="overLayClick(item)"
       ></happy-layer>
     </baidu-map>
   </div>
