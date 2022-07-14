@@ -1,12 +1,11 @@
 <template>
   <bm-overlay
-    pane="labelPane"
+    ref="customOverlay"
     :class="{ sample: true, active }"
+    pane="labelPane"
     @draw="draw"
-    @mouseover.native="active = true"
-    @mouseleave.native="active = false"
   >
-    <div @click="handleClick()" v-for="item in date" :key="item.id">
+    <div v-for="item in date" :key="item.id" @click="handleClick">
       <table class="point">
         <tr>
           <td colspan="4">{{ item.name }}</td>
@@ -22,14 +21,13 @@
         </tr>
       </table>
     </div>
+    <img class="placeImg" src="../img/persons.png" />
   </bm-overlay>
 </template>
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 @Component({})
 export default class Actions extends Vue {
-  active = false;
-
   @Prop({
     type: Object,
     required: true
@@ -41,6 +39,19 @@ export default class Actions extends Vue {
     required: true
   })
   date!: any;
+
+  @Prop({
+    type: Boolean,
+    required: true
+  })
+  active!: any;
+
+  @Watch('position')
+  setPosition () {
+    if (typeof (this.$refs.customOverlay) !== 'undefined') {
+      this.$refs.customOverlay.reload()
+    }
+  }
 
   draw ({ el, BMap, map }: any) {
     const { lng, lat } = this.position

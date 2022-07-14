@@ -8,14 +8,15 @@
       :scroll-wheel-zoom="wheelZoom"
       @ready="handler"
     >
-      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
-
+      <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation> -->
       <happy-layer
         v-for="item in layerList"
         :key="item.id"
         :date="item.date"
         :position="{ lng: item.lng, lat: item.lat }"
-        @click="overLayClick(item)"
+        :active="active"
+        @mouseover.native="active = true"
+        @mouseleave.native="active = false" >
       ></happy-layer>
     </baidu-map>
   </div>
@@ -35,10 +36,11 @@ import { SearchInfo } from '@/config/interFace'
 })
 export default class Actions extends Vue {
   center = '上海';
-  zoom = 10;
-  wheelZoom = true;
+  zoom = 13;
+  wheelZoom = false;
   BMap: any = {};
   map: any = {};
+  active = false
   layerList: any[] = [{
     id: 1,
     lng: 121.70,
@@ -105,10 +107,6 @@ export default class Actions extends Vue {
       const fields = result[i].fields
       for (let j = 0; j < fields.length; j++) {}
     }
-  }
-
-  overLayClick (obj: any) {
-    console.log(obj)
   }
 
   handler ({ BMap, map }: any) {

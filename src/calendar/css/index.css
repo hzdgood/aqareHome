@@ -77,19 +77,22 @@
 
 /* overlay */
 .sample {
-    width: 120px;
-    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
     overflow: hidden;
-    box-shadow: 0 0 5px #000;
     color: #fff;
     text-align: center;
-    padding: 5px;
-    position: absolute;
+    /* width: 120px;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px #000; 
+    padding: 5px;  */
 }
 
 .sample.active {
-    background: rgba(0, 0, 0, 0.75);
     color: #fff;
+} 
+
+.sample div {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 .point {
@@ -107,6 +110,12 @@
 
 .fee {
     background-color: green;
+}
+
+.placeImg{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
 }
 
 /* all */
