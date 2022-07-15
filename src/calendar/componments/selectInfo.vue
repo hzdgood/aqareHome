@@ -43,7 +43,6 @@ export default class Actions extends Vue {
   }
 
   select () {
-    console.log(111)
     this.$store.dispatch('search')
   }
 }

@@ -10,13 +10,11 @@
     width: 100%;
     border-radius: 3px;
     border: 1px solid #ddd;
+    background-color: #cecece;
 }
 
 .persons div {
-    height: 35px;
-    line-height: 35px;
     text-align: center;
-    background-color: #cecece;
     border-bottom: 1px solid #eee;
     cursor: pointer;
 }
@@ -77,21 +75,19 @@
 
 /* overlay */
 .sample {
+    width: 130px;
     position: absolute;
     overflow: hidden;
     color: #fff;
     text-align: center;
-    /* width: 120px;
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0 0 5px #000; 
-    padding: 5px;  */
 }
 
 .sample.active {
     color: #fff;
 } 
 
-.sample div {
+.sample div:first-child {
+    border-radius: 5px;
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -113,8 +109,8 @@
 }
 
 .placeImg{
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
 }
 

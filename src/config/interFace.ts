@@ -142,6 +142,16 @@ export const getCoordinate = async (formData: object) => {
   return info.data
 }
 
+export const getCoordinate1 = async (formData: object) => {
+  const url = httpUrl + '/common/getCoordinate'
+  const info = await axios({
+    method: 'post',
+    url: url,
+    data: formData
+  })
+  return info.data
+}
+
 export const logInsert = async (info: any) => {
   const response = await axios.request({
     method: 'GET',

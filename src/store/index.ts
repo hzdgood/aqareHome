@@ -9,7 +9,7 @@ const state = {
   Loading: false,
   confirm: false,
   confirmInfo: '',
-
+  layerList: [],
   // 日程系统
   CalendarDate: '',
   selectData: [],

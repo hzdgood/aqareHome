@@ -5,23 +5,70 @@
     pane="labelPane"
     @draw="draw"
   >
-    <div v-for="item in date" :key="item.id" @click="handleClick">
-      <table class="point">
-        <tr>
-          <td colspan="4">{{ item.name }}</td>
-        </tr>
-        <tr>
-          <td colspan="4">时间:{{ item.time }}</td>
-        </tr>
-        <tr>
-          <td :class="item.c1">{{ item.s1 }}</td>
-          <td :class="item.c2">{{ item.s2 }}</td>
-          <td :class="item.c3">{{ item.s3 }}</td>
-          <td :class="item.c4">{{ item.s4 }}</td>
-        </tr>
-      </table>
+    <div v-show="infoStatus">
+      <div v-for="item in date" :key="item.id" @click="handleClick">
+        <table class="point">
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.type }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">上门:{{ item.time }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">工时:{{ item.workTime }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">{{ item.technologys }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
-    <img class="placeImg" src="../img/persons.png" />
+    <div @click="showInfo">
+      <img
+        class="placeImg"
+        v-if="technology === '葛栋梁'"
+        src="../img/ge.png"
+      />
+      <img
+        class="placeImg"
+        v-if="technology === '张恒'"
+        src="../img/heng.png"
+      />
+      <img class="placeImg" v-if="technology === '吴杰'" src="../img/jie.png" />
+      <img
+        class="placeImg"
+        v-if="technology === '张凯凯'"
+        src="../img/kk.png"
+      />
+      <img
+        class="placeImg"
+        v-if="technology === '李晓龙'"
+        src="../img/long.png"
+      />
+      <img class="placeImg" v-if="technology === '娄德'" src="../img/lou.png" />
+      <img
+        class="placeImg"
+        v-if="technology === '张鹏'"
+        src="../img/peng.png"
+      />
+      <img
+        class="placeImg"
+        v-if="technology === '田世博'"
+        src="../img/tian.png"
+      />
+      <img
+        class="placeImg"
+        v-if="technology === '汪克祥'"
+        src="../img/wang.png"
+      />
+      <img class="placeImg" v-if="technology === '严熠'" src="../img/yan.png" />
+      <img
+        class="placeImg"
+        v-if="technology === '王占勇'"
+        src="../img/zhan.png"
+      />
+    </div>
   </bm-overlay>
 </template>
 <script lang="ts">
@@ -46,10 +93,19 @@ export default class Actions extends Vue {
   })
   active!: any;
 
+  @Prop({
+    type: String,
+    required: true
+  })
+  technology!: any;
+
+  infoStatus = false;
+
   @Watch('position')
   setPosition () {
-    if (typeof (this.$refs.customOverlay) !== 'undefined') {
-      this.$refs.customOverlay.reload()
+    if (typeof this.$refs.customOverlay !== 'undefined') {
+      const customOverlay: any = this.$refs.customOverlay
+      customOverlay.reload()
     }
   }
 
@@ -62,6 +118,14 @@ export default class Actions extends Vue {
 
   handleClick () {
     this.$emit('click', this.date)
+  }
+
+  showInfo () {
+    if (this.infoStatus) {
+      this.infoStatus = false
+    } else {
+      this.infoStatus = true
+    }
   }
 }
 </script>

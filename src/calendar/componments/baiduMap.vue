@@ -8,16 +8,19 @@
       :scroll-wheel-zoom="wheelZoom"
       @ready="handler"
     >
-      <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation> -->
+      <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation>
       <happy-layer
         v-for="item in layerList"
         :key="item.id"
         :date="item.date"
         :position="{ lng: item.lng, lat: item.lat }"
         :active="active"
+        :technology="item.technology"
         @mouseover.native="active = true"
-        @mouseleave.native="active = false" >
-      ></happy-layer>
+        @mouseleave.native="active = false"
+      >
+        ></happy-layer
+      >
     </baidu-map>
   </div>
 </template>
@@ -26,7 +29,7 @@
 import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
 import overlay from './overlay.vue'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, getCoordinate1 } from '@/config/interFace'
 @Component({
   name: 'Bmap',
   components: {
@@ -36,51 +39,18 @@ import { SearchInfo } from '@/config/interFace'
 })
 export default class Actions extends Vue {
   center = '上海';
-  zoom = 13;
-  wheelZoom = false;
+  zoom = 15;
+  wheelZoom = true;
   BMap: any = {};
   map: any = {};
-  active = false
-  layerList: any[] = [{
-    id: 1,
-    lng: 121.70,
-    lat: 31.43,
-    date: [{
-      id: 1,
-      name: '马总',
-      time: '9:00',
-      c1: 'busy',
-      c2: 'busy',
-      c3: 'busy',
-      c4: 'busy',
-      s1: '忙',
-      s2: '忙',
-      s3: '忙',
-      s4: '忙'
-    }]
-  }, {
-    id: 2,
-    lng: 120.60,
-    lat: 30.83,
-    date: [{
-      id: 2,
-      name: '施总',
-      time: '9:00',
-      c1: 'busy',
-      c2: 'busy',
-      c3: 'fee',
-      c4: 'fee',
-      s1: '忙',
-      s2: '忙',
-      s3: '空',
-      s4: '空'
-    }]
-  }];
+  active = false;
+  layerList: any[] = [];
 
   @Watch('$store.state.searchStatus')
   async selectPage () {
     const list: any[] = this.$store.state.selectData
     const date = this.$store.state.CalendarDate
+    this.layerList = []
     const obj = {
       where: {
         and: [
@@ -102,10 +72,102 @@ export default class Actions extends Vue {
       order_by: [{ field: 2200000146199958, sort: 'desc' }]
     }
     const result = await SearchInfo('2100000015054992', obj)
-    console.log(result)
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
-      for (let j = 0; j < fields.length; j++) {}
+      const itemId = result[i].item_id
+      let custom = ''
+      let workTime = ''
+      let technology = ''
+      let address = ''
+      let tech = 0
+      let technologys = ''
+      let dlAddress = ''
+      let type = ''
+
+      let coordinate: any = {
+        lon: '',
+        lat: ''
+      }
+      let StartTime = ''
+      for (let j = 0; j < fields.length; j++) {
+        if (fields[j].field_id === 1101001291000000) {
+          // 客户名称
+          custom = fields[j].values[0].value
+        }
+        if (fields[j].field_id === 1101001159000000) {
+          // 客户地址
+          coordinate = fields[j].values[0].value.coordinate
+        }
+        if (fields[j].field_id === 2200000149226229) {
+          // 额定工时
+          workTime = fields[j].values[0].value
+        }
+        if (fields[j].field_id === 2200000145748100) {
+          // 上门技术
+          technology = fields[j].values[0].title
+          tech = fields[j].values.length
+          for (let m = 0; m < tech; m++) {
+            technologys = fields[j].values[m].title + ',' + technologys
+          }
+        }
+        if (fields[j].field_id === 2200000145748099) {
+          // 上门时间
+          StartTime = fields[j].values[0].value
+        }
+        if (fields[j].field_id === 1101001102000000) {
+          // 地址 |
+          address = fields[j].values[0].value
+        }
+        if (fields[j].field_id === 1101001291000000) {
+          // 订单类型
+          type = fields[j].values[0].value
+        }
+        if (fields[j].field_id === 2200000146398516) {
+          // 订单类型
+          type = fields[j].values[0].name
+        }
+        if (fields[j].field_id === 2200000151806983) {
+          // 导流地址
+          dlAddress = fields[j].values[0].value
+        }
+      }
+      if (type !== '导流') {
+        if (coordinate.lon === '') {
+          const rs = await getCoordinate1({
+            address: address
+          })
+          coordinate.lon = rs.lng
+          coordinate.lat = rs.lat
+        }
+      } else {
+        if (coordinate.lon === '') {
+          const rs = await getCoordinate1({
+            address: dlAddress
+          })
+          coordinate.lon = rs.lng
+          coordinate.lat = rs.lat
+        }
+      }
+
+      const obj = {
+        id: itemId,
+        lng: coordinate.lon,
+        lat: coordinate.lat,
+        technology: technology,
+        tech: tech,
+        date: [
+          {
+            id: i,
+            name: custom,
+            time: StartTime.split(' ')[1],
+            type: type,
+            technologys: technologys.substring(0, technologys.length - 1),
+            workTime: Number(workTime) / Number(tech)
+          }
+        ]
+      }
+      this.layerList.push(obj)
+      this.$store.state.layerList = this.layerList
     }
   }
 
