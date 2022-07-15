@@ -5,25 +5,7 @@
     pane="labelPane"
     @draw="draw"
   >
-    <div v-show="infoStatus">
-      <div v-for="item in date" :key="item.id" @click="handleClick">
-        <table class="point">
-          <tr>
-            <td>{{ item.name }}</td>
-            <td>{{ item.type }}</td>
-          </tr>
-          <tr>
-            <td colspan="2">上门:{{ item.time }}</td>
-          </tr>
-          <tr>
-            <td colspan="2">工时:{{ item.workTime }}</td>
-          </tr>
-          <tr>
-            <td colspan="2">{{ item.technologys }}</td>
-          </tr>
-        </table>
-      </div>
-    </div>
+
     <div @click="showInfo">
       <img
         class="placeImg"
@@ -68,6 +50,25 @@
         v-if="technology === '王占勇'"
         src="../img/zhan.png"
       />
+    </div>
+    <div v-show="infoStatus">
+      <div v-for="item in date" :key="item.id" @click="handleClick">
+        <table class="point">
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.type }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">上门:{{ item.time }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">工时:{{ item.workTime }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">{{ item.technologys }}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </bm-overlay>
 </template>

@@ -86,7 +86,7 @@
     color: #fff;
 } 
 
-.sample div:first-child {
+.sample div:nth-child(2) {
     border-radius: 5px;
     background: rgba(0, 0, 0, 0.5);
 }
