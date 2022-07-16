@@ -18,9 +18,7 @@
         :technology="item.technology"
         @mouseover.native="active = true"
         @mouseleave.native="active = false"
-      >
-        ></happy-layer
-      >
+      ></happy-layer>
     </baidu-map>
   </div>
 </template>
