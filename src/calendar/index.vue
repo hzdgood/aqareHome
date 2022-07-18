@@ -36,59 +36,6 @@ import '@/calendar/css/index.css'
   }
 })
 export default class Actions extends Vue {
-  // mounted() {
-  //   const data = [
-  //     {
-  //       id: 2300005440259870,
-  //       name: "张鹏",
-  //       wait: "周三",
-  //       s1: "fee",
-  //       s2: "fee",
-  //       s3: "fee",
-  //       s4: "fee",
-  //       s5: "fee",
-  //       s6: "fee",
-  //       s7: "fee",
-  //       s8: "fee",
-  //     },
-  //     {
-  //       id: 2300002384084334,
-  //       name: "汪克祥",
-  //       wait: "周二",
-  //       s1: "fee",
-  //       s2: "fee",
-  //       s3: "fee",
-  //       s4: "fee",
-  //       s5: "fee",
-  //       s6: "fee",
-  //       s7: "fee",
-  //       s8: "fee",
-  //     },
-  //   ];
-
-  //   const data1 = [
-  //     {
-  //       id: 2300007710969416,
-  //       lng: 121.475543,
-  //       lat: 31.257213,
-  //       technology: "张鹏",
-  //       tech: 2,
-  //       date: [
-  //         {
-  //           id: 6,
-  //           name: "毛繁琴",
-  //           time: "11:30",
-  //           type: "调试",
-  //           technologys: "张鹏,汪克祥",
-  //           workTime: 4.25,
-  //         },
-  //       ],
-  //     },
-  //   ];
-
-  //   console.log(data);
-  // }
-
   // dataList: any[] = [];
   // async mounted () {
   //   const obj = {
