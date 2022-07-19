@@ -12,6 +12,7 @@ const state = {
   layerList: [],
   // 日程系统
   CalendarDate: '',
+  dataList: [],
   selectData: [],
   searchStatus: false
 }

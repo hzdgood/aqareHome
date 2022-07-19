@@ -123,30 +123,32 @@
     color: #fff;
     cursor: pointer;
 }
-
-/* .rightInfo{
-    margin-top: 35px;
-    background-color: #f2f6ff;
-    height: 35px;
-    line-height: 35px;
-    text-align: center;
-} */
-
-/* .detailTable{
-    width: 100%;
-    background-color: #cecece;
+/* workInfo */
+.right-info{
+    width: 300px;
+    position: fixed;
+    background-color: #000;
+    color: #fff;
+    right: 1px;
+    opacity: 0.5;
+    border: 1px solid #3089dc;
+    border-radius: 8px;
 }
 
-.detailTable tr td {
-    border: 1px solid #eee;
-    text-align: center;
-} */
+.right-info table{
+    width: 100%;
+    margin: 5px;
+}
 
-/* .rightDiv{
-    background-color: #ebebeb;
-    width: 10%;
-    display: inline-block;
-    position: absolute;
-    right: 0%;
-    height: 95%;
-} */
+.right-info div{
+    width: 100%;
+    text-align: center;
+    background-color: #b8d8f6;
+    color: #000;
+    line-height: 35px;
+}
+
+.right-info table tr td:first-child{
+    width: 70px;
+    color: #cecece;
+}

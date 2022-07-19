@@ -14,6 +14,9 @@
         <baidu-map></baidu-map>
       </div>
     </div>
+    <div class="right-div">
+      <work-info></work-info>
+    </div>
   </div>
 </template>
 
@@ -23,6 +26,7 @@ import selectInfo from './componments/selectInfo.vue'
 import personInfo from './componments/personInfo.vue'
 import baiduMap from './componments/baiduMap.vue'
 import detailInfo from './componments/detailInfo.vue'
+import workInfo from './componments/workInfo.vue'
 // import { table, field } from '@/config/config'
 // import { SearchInfo, streams } from '@/config/interFace'
 import '@/calendar/css/index.css'
@@ -32,7 +36,8 @@ import '@/calendar/css/index.css'
     'select-info': selectInfo,
     'person-info': personInfo,
     'baidu-map': baiduMap,
-    'detail-info': detailInfo
+    'detail-info': detailInfo,
+    'work-info': workInfo
   }
 })
 export default class Actions extends Vue {

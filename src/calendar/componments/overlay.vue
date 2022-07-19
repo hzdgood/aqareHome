@@ -5,7 +5,6 @@
     pane="labelPane"
     @draw="draw"
   >
-
     <div @click="showInfo">
       <img
         class="placeImg"
@@ -122,6 +121,7 @@ export default class Actions extends Vue {
   }
 
   showInfo () {
+    this.$store.state.dataList = this.date
     if (this.infoStatus) {
       this.infoStatus = false
     } else {
