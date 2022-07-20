@@ -32,8 +32,26 @@ export default class Actions extends Vue {
   selectStatus = false;
   date = '';
 
+  mounted () {
+    const date = new Date()
+    let m: any = date.getMonth() + 1
+    let d: any = date.getDate()
+    if (m < 10) {
+      m = '0' + m
+    }
+    if (d < 10) {
+      d = '0' + m
+    }
+    this.date = date.getFullYear() + '-' + m + '-' + d
+    this.$store.state.CalendarDate = this.date
+  }
+
   selectDate () {
-    this.selectStatus = true
+    if (this.selectStatus) {
+      this.selectStatus = false
+    } else {
+      this.selectStatus = true
+    }
   }
 
   onChange (value: any) {

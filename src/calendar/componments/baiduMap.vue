@@ -76,7 +76,7 @@ export default class Actions extends Vue {
       let custom = ''; let workTime = ''; let proStatus = ''
       let technology = ''; let address = ''; let tech = 0
       let technologys = ''; let dlAddress = ''; let type = ''
-
+      let workStatus = ''
       let coordinate: any = {
         lon: '',
         lat: ''
@@ -127,6 +127,10 @@ export default class Actions extends Vue {
           // 当前进度
           proStatus = fields[j].values[0].name
         }
+        if (fields[j].field_id === 2200000148897469) {
+          // 工单状态
+          workStatus = fields[j].values[0].name
+        }
       }
       if (type !== '导流') {
         if (coordinate.lon === '') {
@@ -145,12 +149,9 @@ export default class Actions extends Vue {
           coordinate.lat = rs.lat
         }
       }
-
-      console.log(dlAddress + '---' + address)
       if (address === '') {
         address = dlAddress
       }
-
       const obj = {
         id: itemId,
         lng: coordinate.lon,
@@ -163,6 +164,7 @@ export default class Actions extends Vue {
             name: custom,
             time: StartTime.split(' ')[1],
             type: type,
+            workStatus: workStatus,
             technologys: technologys.substring(0, technologys.length - 1),
             workTime: Number(workTime) / Number(tech),
             address: address,

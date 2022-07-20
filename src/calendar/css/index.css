@@ -152,3 +152,12 @@
     width: 70px;
     color: #cecece;
 }
+
+.workStatus{
+    width: 10px;
+    background-color: red;
+    position: absolute;
+    height: 10px;
+    margin-top: 6px;
+    border-radius: 5px
+}

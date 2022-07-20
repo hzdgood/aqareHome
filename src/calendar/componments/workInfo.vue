@@ -30,6 +30,10 @@
         <td>上门技术</td>
         <td>{{ item.technologys }}</td>
       </tr>
+      <tr>
+        <td>工单状态</td>
+        <td>{{ item.workStatus }}</td>
+      </tr>
     </table>
   </div>
 </template>

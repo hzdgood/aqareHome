@@ -12,7 +12,7 @@
         @click="click(item.id)"
       >
         <div>
-          {{ item.name }} &nbsp;&nbsp;&nbsp;&nbsp; 休息日：{{ item.wait }}
+          {{ item.name }} &nbsp;&nbsp;<span :class="item.workStatus"></span>&nbsp;&nbsp; 休息日：{{ item.wait }}
         </div>
         <div style="margin-bottom: 5px">
           <table class="point">
@@ -71,6 +71,7 @@ export default class Actions extends Vue {
         id: item_id,
         name: name,
         wait: wait,
+        workStatus: '',
         s1: 'fee',
         s2: 'fee',
         s3: 'fee',
@@ -105,6 +106,7 @@ export default class Actions extends Vue {
         id: item_id,
         name: name,
         wait: wait,
+        workStatus: '',
         s1: 'fee',
         s2: 'fee',
         s3: 'fee',
@@ -123,12 +125,17 @@ export default class Actions extends Vue {
         const time = Number(data1[i].date[0].time.split(':')[0])
         let workTime = data1[i].date[0].workTime
         const technologys = data1[i].date[0].technologys
+        let workStatus = data1[i].date[0].workStatus
+        if (workStatus === '待核销') {
+          workStatus = 'workStatus'
+        }
         workTime = Math.ceil(workTime)
         if (technologys.indexOf(',') !== -1) {
           const d1 = technologys.split(',')
           for (let m = 0; m < d1.length; m++) {
             for (let n = 0; n < data.length; n++) {
               if (d1[m] === data[n].name) {
+                data[n].workStatus = workStatus
                 for (let m = 0; m < workTime; m++) {
                   const times = time + m
                   if (times === 10) {
@@ -154,6 +161,7 @@ export default class Actions extends Vue {
           }
         } else {
           if (technologys === data[j].name) {
+            data[j].workStatus = workStatus
             for (let m = 0; m < workTime; m++) {
               const times = time + m
               if (times === 10) {
