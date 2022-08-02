@@ -121,7 +121,7 @@ export default class Actions extends Vue {
         }
         if (fields[j].field_id === 2200000151806983) {
           // 导流地址
-          dlAddress = fields[j].values[0].title
+          dlAddress = fields[j].values[0].value
         }
         if (fields[j].field_id === 1101001195000000) {
           // 当前进度
@@ -132,7 +132,9 @@ export default class Actions extends Vue {
           workStatus = fields[j].values[0].name
         }
       }
+      let worktimes
       if (type !== '导流') {
+        worktimes = Number(workTime) / Number(tech)
         if (coordinate.lon === '') {
           const rs = await getCoordinate1({
             address: address
@@ -141,12 +143,15 @@ export default class Actions extends Vue {
           coordinate.lat = rs.lat
         }
       } else {
+        worktimes = workTime
         if (coordinate.lon === '') {
-          const rs = await getCoordinate1({
-            address: dlAddress
-          })
-          coordinate.lon = rs.lng
-          coordinate.lat = rs.lat
+          if (dlAddress !== '') {
+            const rs = await getCoordinate1({
+              address: dlAddress
+            })
+            coordinate.lon = rs.lng
+            coordinate.lat = rs.lat
+          }
         }
       }
       if (address === '') {
@@ -166,7 +171,7 @@ export default class Actions extends Vue {
             type: type,
             workStatus: workStatus,
             technologys: technologys.substring(0, technologys.length - 1),
-            workTime: Number(workTime) / Number(tech),
+            workTime: worktimes,
             address: address,
             proStatus: proStatus
           }

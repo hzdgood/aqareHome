@@ -123,6 +123,7 @@ export default class Actions extends Vue {
     for (let i = 0; i < data1.length; i++) {
       for (let j = 0; j < data.length; j++) {
         const time = Number(data1[i].date[0].time.split(':')[0])
+        console.log(time)
         let workTime = data1[i].date[0].workTime
         const technologys = data1[i].date[0].technologys
         let workStatus = data1[i].date[0].workStatus
@@ -136,7 +137,7 @@ export default class Actions extends Vue {
             for (let n = 0; n < data.length; n++) {
               if (d1[m] === data[n].name) {
                 data[n].workStatus = workStatus
-                for (let m = 0; m < workTime; m++) {
+                for (let m = 0; m <= workTime; m++) {
                   const times = time + m
                   if (times === 10) {
                     data[n].s1 = 'busy'
@@ -162,7 +163,7 @@ export default class Actions extends Vue {
         } else {
           if (technologys === data[j].name) {
             data[j].workStatus = workStatus
-            for (let m = 0; m < workTime; m++) {
+            for (let m = 0; m <= workTime; m++) {
               const times = time + m
               if (times === 10) {
                 data[j].s1 = 'busy'
