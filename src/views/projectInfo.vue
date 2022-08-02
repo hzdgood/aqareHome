@@ -61,7 +61,6 @@ export default class Home extends Vue {
     let data = {}
     if (this.contactType === 'single_chat_tools') {
       data = masterReq(this.userId)
-      console.log(data)
     } else {
       data = chatReq(this.chatId)
     }

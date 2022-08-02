@@ -123,7 +123,6 @@ export default class Actions extends Vue {
     for (let i = 0; i < data1.length; i++) {
       for (let j = 0; j < data.length; j++) {
         const time = Number(data1[i].date[0].time.split(':')[0])
-        console.log(time)
         let workTime = data1[i].date[0].workTime
         const technologys = data1[i].date[0].technologys
         let workStatus = data1[i].date[0].workStatus

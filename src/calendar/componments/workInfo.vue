@@ -45,7 +45,6 @@ export default class Actions extends Vue {
   @Watch('$store.state.dataList')
   pageList () {
     this.dataList = this.$store.state.dataList
-    console.log(this.dataList)
   }
 }
 </script>

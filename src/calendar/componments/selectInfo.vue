@@ -40,7 +40,7 @@ export default class Actions extends Vue {
       m = '0' + m
     }
     if (d < 10) {
-      d = '0' + m
+      d = '0' + d
     }
     this.date = date.getFullYear() + '-' + m + '-' + d
     this.$store.state.CalendarDate = this.date

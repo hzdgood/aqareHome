@@ -58,8 +58,6 @@ export default class Actions extends Vue {
 
   @Watch('$store.state.Loading')
   showLoad () {
-    console.log(111)
-
     if (this.loading) {
       this.loading = false
     } else {
@@ -70,7 +68,6 @@ export default class Actions extends Vue {
   @Watch('$store.state.confirm')
   showConfirm () {
     this.confirmInfo = this.$store.state.confirmInfo
-    console.log(this.confirmInfo)
     if (this.confirm) {
       this.confirm = false
     } else {

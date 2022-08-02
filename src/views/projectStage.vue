@@ -46,10 +46,9 @@ export default class Home extends Vue {
   comWidth: any = '100px';
   comHeight: any = '20px';
 
-  @Watch('this.screenWidth')
-  reloadTable () {
-    console.log(11)
-  }
+  // @Watch('this.screenWidth')
+  // reloadTable () {
+  // }
 
   async mounted () {
     window.onresize = () => {
@@ -135,7 +134,6 @@ export default class Home extends Vue {
   }
 
   updateStage (item: any) {
-    console.log(item)
     this.updateImg(item.value)
   }
 }

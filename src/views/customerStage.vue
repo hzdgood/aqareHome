@@ -52,10 +52,9 @@ export default class Home extends Vue {
   comWidth: any = '100px';
   comHeight: any = '20px';
 
-  @Watch('this.screenWidth')
-  reloadTable () {
-    console.log(11)
-  }
+  // @Watch('this.screenWidth')
+  // reloadTable () {
+  // }
 
   // 获取所有客户标签
   async mounted () {
@@ -187,7 +186,6 @@ export default class Home extends Vue {
   }
 
   updateStage (item: any) {
-    console.log(item)
     this.updateImg(item.value)
   }
 

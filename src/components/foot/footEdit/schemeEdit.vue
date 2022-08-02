@@ -87,7 +87,6 @@ export default class Home extends Vue {
       alert('请上传PDF文件!')
       return
     }
-    console.log(file)
     file = file.files[0]
     this.$store.dispatch('Loading')
     const formData = new FormData()
