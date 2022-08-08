@@ -175,11 +175,7 @@ export default class Home extends Vue {
 
   // 查询所有的销售员
   async getSaleManList () {
-    const data = {
-      offset: 0,
-      limit: 50,
-      order_by: [{ field: 2200000160826904, sort: 'desc' }]
-    }
+    const data = {"where":{"and":[{"field":2200000257456339,"query":{"in":[2,3]}}]},"offset":0,"limit":20}
     const result = await SearchInfo(table.saleManInfo, data)
     for (let i = 0; i < result.length; i++) {
       const field = result[i].fields
@@ -219,11 +215,8 @@ export default class Home extends Vue {
 
   // 查询所有门店数据
   async getDepartmentList () {
-    const data = {
-      where: { and: [{ field: 2200000169987088, query: { in: [1] } }] }
-    }
-    const tableId: any = 2100000016791383
-    const result = await SearchInfo(tableId, data)
+    const data = {"where":{"and":[{"field":2200000169987088,"query":{"in":[5]}}]},"offset":0,"limit":20}
+    const result = await SearchInfo(table.departmentInfo, data)
     for (let i = 0; i < result.length; i++) {
       const obj = {
         name: result[i].title,

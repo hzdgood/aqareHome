@@ -41,19 +41,7 @@ export default class Home extends Vue {
 
   async add () {
     // 查询销售人员信息表
-    const data = {
-      where: {
-        and: [
-          {
-            query: { or: [{ in: [this.localName] }] },
-            query_option_mappings: [-1],
-            field: field.localName
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20
-    }
+    const data = {"where":{"and":[{"field":2200000257456339,"query":{"in":[2,3]}}]},"offset":0,"limit":20}
     const result = await SearchInfo(table.saleManInfo, data)
     let itemId = ''
     if (result.length === 0) {

@@ -60,6 +60,7 @@
 
 <script>
 import { STable } from '@/components'
+import { getCustomer } from '@/api/manage'
 
 const columns = [
   {
@@ -111,6 +112,11 @@ export default {
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log(requestParameters)
+        return getCustomer(requestParameters)
+          .then(res => {
+            console.log(res.result)
+            return res.result
+          })
       }
     }
   },

@@ -6,7 +6,8 @@ const api = {
   service: '/service',
   permission: '/permission',
   permissionNoPager: '/permission/no-pager',
-  orgTree: '/org/tree'
+  orgTree: '/org/tree',
+  customer: '/org/customer'
 }
 
 export default api
@@ -22,6 +23,14 @@ export function getUserList (parameter) {
 export function getRoleList (parameter) {
   return request({
     url: api.role,
+    method: 'get',
+    params: parameter
+  })
+}
+
+export function getCustomer (parameter) {
+  return request({
+    url: api.customer,
     method: 'get',
     params: parameter
   })
