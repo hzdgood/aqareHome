@@ -209,6 +209,7 @@ export default {
         console.log('loadData request parameters:', requestParameters)
         return getServiceList(requestParameters)
           .then(res => {
+            console.log(res.result)
             return res.result
           })
       },

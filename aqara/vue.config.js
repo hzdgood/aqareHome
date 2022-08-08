@@ -106,17 +106,17 @@ const vueConfig = {
 
   devServer: {
     // development server port 8000
-    port: 8000,
-    hot: true,
-    disableHostCheck: true,
-    // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
-    proxy: {
-      '/api': {
-        target: 'http://127.0.0.1:8081',
-        ws: false,
-        changeOrigin: true
-      }
-    }
+    port: 8000
+    // hot: true,
+    // disableHostCheck: true,
+    // // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://127.0.0.1:8081',
+    //     ws: false,
+    //     changeOrigin: true
+    //   }
+    // }
   },
 
   // disable source map in production

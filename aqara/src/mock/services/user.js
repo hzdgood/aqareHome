@@ -519,7 +519,17 @@ const userNav = options => {
       component: 'Analysis',
       path: '/dashboard/analysis'
     },
-
+    {
+      name: 'CustomerList',
+      parentId: 0,
+      id: 4,
+      meta: {
+        title: '客户信息',
+        show: true
+      },
+      component: 'CustomerList',
+      path: '/aqara/customer-list'
+    },
     // form
     {
       name: 'form',
