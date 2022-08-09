@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-// const httpUrl = 'http://localhost:8081' // 测试url
-const httpUrl = 'http://aqara.club:8081' // 生产环境
+const httpUrl = 'http://localhost:8081' // 测试url
+// const httpUrl = 'http://aqara.club:8081' // 生产环境
 // const httpUrl = 'http://aqara.club:8091' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
@@ -126,6 +126,12 @@ export const userInfo = async () => {
 
 export const uploadFile = async (formData: object) => {
   const url = httpUrl + '/file/upload'
+  const info = await UploadPost(url, formData)
+  return info.data
+}
+
+export const customerFile = async (formData: object) => {
+  const url = httpUrl + '/custom/upload'
   const info = await UploadPost(url, formData)
   return info.data
 }
