@@ -36,6 +36,34 @@ const serverList = (options) => {
   })
 }
 
+const customerList = (options) => {
+  const parameters = getQueryParameters(options)
+  const pageNo = parseInt(parameters.pageNo)
+  const pageSize = parseInt(parameters.pageSize)
+  const totalPage = Math.ceil(totalCount / pageSize)
+  // const key = (pageNo - 1) * pageSize
+  // const next = (pageNo >= totalPage ? (totalCount % pageSize) : pageSize) + 1
+
+  const result = [{
+    key: '1',
+    name: '',
+    telephone: '',
+    sales: '',
+    department: '',
+    sex: '',
+    createName: '',
+    createTime: ''
+  }]
+
+  return builder({
+    pageSize: pageSize,
+    pageNo: pageNo,
+    totalCount: totalCount,
+    totalPage: totalPage,
+    data: result
+  })
+}
+
 const projects = () => {
   return builder({
     'data': [{
@@ -245,6 +273,7 @@ const radar = () => {
   ])
 }
 
+Mock.mock(/\/org\/customer/, 'get', customerList)
 Mock.mock(/\/service/, 'get', serverList)
 Mock.mock(/\/list\/search\/projects/, 'get', projects)
 Mock.mock(/\/workplace\/activity/, 'get', activity)

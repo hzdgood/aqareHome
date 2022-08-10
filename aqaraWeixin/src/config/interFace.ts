@@ -124,14 +124,8 @@ export const userInfo = async () => {
   return await post(url, {})
 }
 
-export const uploadFile = async (formData: object) => {
-  const url = httpUrl + '/file/upload'
-  const info = await UploadPost(url, formData)
-  return info.data
-}
-
-export const customerFile = async (formData: object) => {
-  const url = httpUrl + '/custom/upload'
+export const uploadFile = async (formData: object, req: any) => {
+  const url = httpUrl + req
   const info = await UploadPost(url, formData)
   return info.data
 }

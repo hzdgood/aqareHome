@@ -135,7 +135,7 @@ export default class Home extends Vue {
     file = file.files[0]
     this.saveStatus = false
     formData.append('file', file, file.name)
-    const res = await uploadFile(formData)
+    const res = await uploadFile(formData, '/file/upload')
     for (let i = 0; i < res.length; i++) {
       if (i === 0) {
         projectName = res[i].projectName
