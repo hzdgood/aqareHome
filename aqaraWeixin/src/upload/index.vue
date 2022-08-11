@@ -1,7 +1,11 @@
 <template>
   <div>
     <input id="file" type="file" name="file" placeholder="请选择文件" />
-    <input type="button" value="导入" @click="customerClick">
+    <button @click="uploadFile('/customer/upload')">客户导入</button>
+    <button @click="uploadFile('/survey/upload')">工勘导入</button>
+    <button @click="uploadFile('/quotation/upload')">报价单导入</button>
+    <button @click="uploadFile('/project/upload')">项目导入</button>
+    <button @click="uploadFile('/collent/upload')">收款导入</button>
   </div>
 </template>
 
@@ -11,7 +15,7 @@ import { uploadFile } from '@/config/interFace'
 
 @Component({})
 export default class Home extends Vue {
-  async customerClick () {
+  async uploadFile (req: any) {
     const formData = new FormData()
     let file: any = document.getElementsByName('file')[0]
     if (typeof file.files[0] === 'undefined') {
@@ -19,7 +23,7 @@ export default class Home extends Vue {
     }
     file = file.files[0]
     formData.append('file', file, file.name)
-    await uploadFile(formData, '/customer/upload')
+    await uploadFile(formData, req)
   }
 }
 </script>
