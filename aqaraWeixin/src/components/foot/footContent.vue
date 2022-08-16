@@ -4,9 +4,10 @@
     <div class="footContent" v-show="optionStatus">
       <div @click="clickInfo()" v-show="singleStatus">信息</div>
       <div @click="clickChat()" v-show="chatStatus">信息</div>
+      <div @click="clickScheme()" v-show="singleStatus">工勘</div>
+      <div @click="clickSurvey()" v-show="surveyStatus">方案</div>
       <div @click="clickCollect()" v-show="singleStatus">收款</div>
       <div @click="clickProposal()" v-show="singleStatus">报价</div>
-      <div @click="clickScheme()" v-show="singleStatus">方案</div>
     </div>
     <div v-if="infoShow">
       <info-edit @reload="reload()"></info-edit>
@@ -23,6 +24,9 @@
     <div v-if="ProposalStatus">
       <proposal-edit @close="clickProposal()"></proposal-edit>
     </div>
+    <div v-if="surveyStatus">
+      <survey-edit @close="clickSurvey()"></survey-edit>
+    </div>
   </div>
 </template>
 
@@ -34,6 +38,7 @@ import chatEdit from '@/components/foot/footEdit/chatEdit.vue'
 import collectEdit from '@/components/foot/footEdit/collectEdit.vue'
 import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
 import ProposalEdit from '@/components/foot/footEdit/ProposalEdit.vue'
+import surveyEdit from '@/components/foot/footEdit/surveyEdit.vue'
 @Component({
   name: 'foot',
   components: {
@@ -44,7 +49,8 @@ import ProposalEdit from '@/components/foot/footEdit/ProposalEdit.vue'
     'collect-edit': collectEdit,
     'scheme-edit': schemeEdit,
     'chat-edit': chatEdit,
-    'proposal-edit': ProposalEdit
+    'proposal-edit': ProposalEdit,
+    'survey-edit': surveyEdit
   }
 })
 export default class Home extends Vue {
@@ -56,6 +62,7 @@ export default class Home extends Vue {
   chatStatus = false;
   optionStatus = false;
   ProposalStatus = false;
+  surveyStatus = false;
   contactType = localStorage.getItem('contactType');
 
   mounted () {
@@ -65,18 +72,6 @@ export default class Home extends Vue {
     } else {
       this.singleStatus = false
       this.chatStatus = true
-    }
-  }
-
-  clickProposal () {
-    if (this.ProposalStatus) {
-      this.ProposalStatus = false
-    } else {
-      this.optionStatus = false
-      this.ProposalStatus = true
-      this.chatShow = false
-      this.schemeShow = false
-      this.collectShow = false
     }
   }
 
@@ -95,6 +90,7 @@ export default class Home extends Vue {
     this.chatShow = false
     this.optionStatus = false
     this.ProposalStatus = false
+    this.surveyStatus = false
   }
 
   clickChat () {
@@ -106,6 +102,7 @@ export default class Home extends Vue {
       this.schemeShow = false
       this.collectShow = false
       this.ProposalStatus = false
+      this.surveyStatus = false
     }
   }
 
@@ -118,6 +115,7 @@ export default class Home extends Vue {
       this.schemeShow = false
       this.collectShow = false
       this.ProposalStatus = false
+      this.surveyStatus = false
     }
   }
 
@@ -131,6 +129,7 @@ export default class Home extends Vue {
       this.infoShow = false
       this.chatShow = false
       this.ProposalStatus = false
+      this.surveyStatus = false
     }
   }
 
@@ -144,10 +143,35 @@ export default class Home extends Vue {
       this.infoShow = false
       this.chatShow = false
       this.ProposalStatus = false
+      this.surveyStatus = false
+    }
+  }
+
+  clickSurvey () {
+    if (this.surveyStatus) {
+      this.surveyStatus = false
+    } else {
+      this.surveyStatus = true
+      this.optionStatus = false
+      this.ProposalStatus = true
+      this.chatShow = false
+      this.schemeShow = false
+      this.collectShow = false
+    }
+  }
+
+  clickProposal () {
+    if (this.ProposalStatus) {
+      this.ProposalStatus = false
+    } else {
+      this.optionStatus = false
+      this.ProposalStatus = true
+      this.chatShow = false
+      this.schemeShow = false
+      this.collectShow = false
+      this.surveyStatus = false
     }
   }
 }
-
-// 悬浮框自动消失
 </script>
 <style scoped></style>
