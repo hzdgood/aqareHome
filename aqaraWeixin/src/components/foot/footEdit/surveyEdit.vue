@@ -8,68 +8,70 @@
           新增 +
         </button>
       </div>
-      <table class='EditTable'>
-        <tr>
-          <td>项目编码</td>
-          <td>
-            <input id='projectCode' type='text' readonly :value='projectCode' />
-          </td>
-        </tr>
-        <tr>
-          <td>预约时间</td>
-          <td>
-            <input id='appointmentTime' type='text' readonly />
-          </td>
-        </tr>
-        <tr>
-          <td>预计时长</td>
-          <td>
-            <input id='EDuration' type='text' />
-          </td>
-        </tr>
-        <tr>
-          <td>工勘人员</td>
-          <td>
-            <select id='surveyPerson' multiple>
-              <option
-                v-for='item in saleManList'
-                :value='item.saleId'
-                :key='item.saleId'
-              >
-                {{ item.saleName }}
-              </option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>工勘类型</td>
-          <td>
-            <select id='surveyType'>
-               <option value="1">工勘</option>
-               <option value="2">交底</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>上门照片</td>
-          <td>
-            <input id='doorPhoto' type='file' />
-          </td>
-        </tr>
-      </table>
-      <div class='buttonSite'>
-        <input
-          class='saveButton'
-          type='button'
-          @click='saveClick()'
-          value='保存'
-        />
-        <input
-          class='closeButton'
-          type='button'
-          @click='closeClick()'
-          value='关闭'
-        />
+      <div id="projectList" v-for="survey in surveyList" :key="survey.id">
+        <table class='EditTable'>
+          <tr>
+            <td>项目编码</td>
+            <td>
+              <input id='projectCode' type='text' readonly :value='projectCode' />
+            </td>
+          </tr>
+          <tr>
+            <td>预约时间</td>
+            <td>
+              <input id='appointmentTime' type='text' readonly :value='survey.appointmentTime'/>
+            </td>
+          </tr>
+          <tr>
+            <td>预计时长</td>
+            <td>
+              <input id='EDuration' type='text' :value='survey.EDuration'/>
+            </td>
+          </tr>
+          <tr>
+            <td>工勘人员</td>
+            <td>
+              <select id='surveyPerson' multiple>
+                <option
+                  v-for='item in saleManList'
+                  :value='item.saleId'
+                  :key='item.saleId'
+                >
+                  {{ item.saleName }}
+                </option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>工勘类型</td>
+            <td>
+              <select id='surveyType'>
+                  <option value="1">工勘</option>
+                  <option value="2">交底</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>上门照片</td>
+            <td>
+              <input id='doorPhoto' type='file' />
+            </td>
+          </tr>
+        </table>
+        <div class='buttonSite'>
+          <input
+            class='saveButton'
+            type='button'
+            @click='saveClick()'
+            value='保存'
+          />
+          <input
+            class='closeButton'
+            type='button'
+            @click='closeClick()'
+            value='关闭'
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -85,8 +87,25 @@ export default class Home extends Vue {
   userId = localStorage.getItem('userId')
   itemId = ''
   projectCode = ''
-  saleManList: any[] = [];
+  saleManList: any[] = []
+  surveyList: any[] = []
+  index = 0
   async mounted () {
+    this.getInfoList()
+    this.getSaleManList()
+  }
+
+  async getSurveyList () {
+    const req = {
+      where: { and: [{ field: 2200000146063366, query: { in: [this.itemId] } }] },
+      offset: 0,
+      limit: 20
+    }
+    const result = await SearchInfo(table.survey, req)
+    console.log(result)
+  }
+
+  async getInfoList () {
     const data = {
       where: {
         and: [
@@ -111,6 +130,7 @@ export default class Home extends Vue {
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectCode) {
           this.projectCode = fields[j].values[0].value
+          this.getSurveyList()
         }
       }
     }
@@ -138,7 +158,14 @@ export default class Home extends Vue {
   }
 
   addClick () {
-    console.log()
+    const obj = {
+      key: this.index + 1,
+      appointmentTime: '',
+      EDuration: '',
+      surveyPerson: '',
+      surveyType: ''
+    }
+    this.surveyList.push(obj)
   }
 
   saveClick () {

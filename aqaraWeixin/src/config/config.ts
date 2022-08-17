@@ -13,7 +13,8 @@ export const table = {
   sheetDetail: '2100000014976390', // 工单明细
   productTable: '2100000014705410', // 产品信息表
   wechatChat: '2100000020393987', // 微信群
-  proposal: '2100000019332138' // 报价单
+  proposal: '2100000019332138', // 报价单
+  survey: '2100000015092715' // 工勘表
 }
 export const field = {
   // 客户信息表
