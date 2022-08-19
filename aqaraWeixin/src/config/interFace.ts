@@ -198,6 +198,13 @@ export const SearchInfo = async (tableId: string, data: object) => {
   return info.data.items
 }
 
+export const SearchUser = async () => {
+  const url = huobanUrl + '/v2/users/find'
+  const data = { space_id: 4000000003153003, limit: 50 }
+  const info = await post(url, data)
+  return info.data
+}
+
 export const procedure = async (tableId: string, data: object) => {
   const url = huobanUrl + '/v2/procedure/' + tableId + '/run'
   const info = await post(url, data)

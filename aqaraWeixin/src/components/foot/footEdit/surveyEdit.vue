@@ -8,7 +8,18 @@
           新增 +
         </button>
       </div>
-      <div id="projectList" v-for="survey in surveyList" :key="survey.id">
+      <div>
+        <table class='EditTable'>
+          <tr>
+            <td>签字工勘本上传</td>
+            <td>
+              <input id='signUpload' type='file' />
+            </td>
+            <td><input type="button" value="上传" @click="signUpload" /></td>
+          </tr>
+        </table>
+      </div>
+      <div id="surveyList" v-for="survey in surveyList" :key="survey.id">
         <table class='EditTable'>
           <tr>
             <td>项目编码</td>
@@ -19,36 +30,50 @@
           <tr>
             <td>预约时间</td>
             <td>
-              <input id='appointmentTime' type='text' readonly :value='survey.appointmentTime'/>
+              <a-date-picker
+                style="width: 87%"
+                :defaultValue="moment(survey.appointmentTime, 'YYYY-MM-DD HH:mm:ss')"
+                format="YYYY-MM-DD HH:mm:ss"
+                @change="dateChange"
+                :disabled-date="disabledDate"
+                :disabled-time="disabledDateTime"
+                :show-time="{ defaultValue: moment('00:00:00', 'HH:mm:ss') }"
+              />
             </td>
           </tr>
           <tr>
             <td>预计时长</td>
             <td>
-              <input id='EDuration' type='text' :value='survey.EDuration'/>
+              <input id='EDuration' type='text' :value="survey.EDuration"/>
             </td>
           </tr>
           <tr>
             <td>工勘人员</td>
             <td>
-              <select id='surveyPerson' multiple>
-                <option
-                  v-for='item in saleManList'
-                  :value='item.saleId'
-                  :key='item.saleId'
-                >
+              <a-select
+                :defaultValue="survey.surveyPerson"
+                mode="multiple"
+                style="width: 87%"
+                placeholder="Please select"
+                @change="personChange"
+              >
+                <a-select-option v-for='item in saleManList' :key='item.saleId' :value='item.saleId'>
                   {{ item.saleName }}
-                </option>
-              </select>
+                </a-select-option>
+              </a-select>
             </td>
           </tr>
           <tr>
             <td>工勘类型</td>
             <td>
-              <select id='surveyType'>
-                  <option value="1">工勘</option>
-                  <option value="2">交底</option>
-              </select>
+              <a-select
+                :defaultValue="survey.surveyType"
+                style="width: 87%"
+                @change="typeChange"
+              >
+                <a-select-option value="1">工勘</a-select-option>
+                <a-select-option value="2">交底</a-select-option>
+              </a-select>
             </td>
           </tr>
           <tr>
@@ -62,8 +87,14 @@
           <input
             class='saveButton'
             type='button'
-            @click='saveClick()'
+            @click='saveClick(survey)'
             value='保存'
+          />
+          <input
+            class='saveButton'
+            type='button'
+            @click='deleteClick(survey)'
+            value='删除'
           />
           <input
             class='closeButton'
@@ -80,9 +111,21 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field } from '@/config/config'
-import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
-@Component({})
+import { Select, Input, DatePicker } from 'ant-design-vue'
+import { SearchInfo, addInfo, uploadImg, SearchUser, updateTable, deleteItem } from '@/config/interFace'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+@Component({
+  name: 'survey',
+  components: {
+    'a-select': Select,
+    'a-select-option': Select.Option,
+    'ant-Input': Input,
+    'a-date-picker': DatePicker
+  }
+})
 export default class Home extends Vue {
+  moment = moment
   addShow = true;
   userId = localStorage.getItem('userId')
   itemId = ''
@@ -90,11 +133,34 @@ export default class Home extends Vue {
   saleManList: any[] = []
   surveyList: any[] = []
   index = 0
+  appointmentTime = ''
+  surveyPersonnel: any = []
   async mounted () {
     this.getInfoList()
     this.getSaleManList()
   }
 
+  range (start:any, end: any) {
+    const result = []
+    for (let i = start; i < end; i++) {
+      result.push(i)
+    }
+    return result
+  }
+
+  personChange (value: any) {
+    this.surveyPersonnel = value
+  }
+
+  dateChange (value: any, date: any) {
+    this.appointmentTime = date
+  }
+
+  typeChange (value: String, date: any) {
+    this.appointmentTime = date
+  }
+
+  // 获取工勘单
   async getSurveyList () {
     const req = {
       where: { and: [{ field: 2200000146063366, query: { in: [this.itemId] } }] },
@@ -103,8 +169,38 @@ export default class Home extends Vue {
     }
     const result = await SearchInfo(table.survey, req)
     console.log(result)
+    const personList = []
+    for (let i = 0; i < result.length; i++) {
+      const fields = result[i].fields
+      const itemId = result[i].item_id
+      let time, duration, person, type
+      for (let j = 0; j < fields.length; j++) {
+        if (fields[j].field_id === 2200000168338254) { // 时间
+          time = fields[j].values[0].value
+        } else if (fields[j].field_id === 2200000168338022) {
+          duration = fields[j].values[0].value // 时长
+        } else if (fields[j].field_id === 2200000169723711) {
+          person = fields[j].values // 参与人
+          for (let m = 0; m < person.length; m++) {
+            personList.push(person[m].name)
+          }
+        } else if (fields[j].field_id === 2200000168613835) {
+          type = fields[j].values[0].name // 类型
+        }
+      }
+      const obj = {
+        key: this.index + 1,
+        itemId: itemId,
+        appointmentTime: time,
+        EDuration: duration,
+        surveyPerson: personList,
+        surveyType: type
+      }
+      this.surveyList.push(obj)
+    }
   }
 
+  // 获取项目code，名称
   async getInfoList () {
     const data = {
       where: {
@@ -130,50 +226,123 @@ export default class Home extends Vue {
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectCode) {
           this.projectCode = fields[j].values[0].value
-          this.getSurveyList()
         }
       }
     }
+    this.getSurveyList()
   }
 
+  // 获取参与人
   async getSaleManList () {
-    const data = {
-      where: { and: [{ field: 2200000257456339, query: { in: [2, 3] } }] },
-      offset: 0,
-      limit: 20
-    }
-    const result = await SearchInfo(table.saleManInfo, data)
+    const result = await SearchUser()
     for (let i = 0; i < result.length; i++) {
-      const field = result[i].fields
-      const saleId = result[i].item_id
-      const saleName = field[1].values[0].value
-      const department = field[4].values[0].title
+      const saleId = result[i].user_id
+      const saleName = result[i].name
       const obj = {
         saleName: saleName,
-        saleId: saleId,
-        department: department
+        saleId: saleId
       }
       this.saleManList.push(obj)
     }
   }
 
-  addClick () {
+  // 新增点击
+  async addClick () {
+    const data = {
+      fields: {
+        2200000146063366: [this.itemId] // 项目
+      }
+    }
+    const res = await addInfo(table.survey, data)
     const obj = {
       key: this.index + 1,
-      appointmentTime: '',
+      itemId: res[0].item_id,
+      appointmentTime: '2022-08-18 00:00',
       EDuration: '',
       surveyPerson: '',
-      surveyType: ''
+      surveyType: ['工勘']
     }
     this.surveyList.push(obj)
   }
 
-  saveClick () {
-    console.log()
+  // 保存
+  async saveClick (survey: any) {
+    const EDuration: any = document.getElementById('EDuration')
+    let surveyType: any = document.getElementById('surveyType')
+    surveyType = surveyType.options[surveyType.selectedIndex].value
+    const file: any = document.getElementById('file')
+    let data = {}
+    if (typeof file.files[0] === 'undefined') {
+      data = {
+        fields: {
+          2200000168338254: this.appointmentTime,
+          2200000168338022: EDuration.value,
+          2200000169723711: this.surveyPersonnel,
+          2200000168613835: [surveyType]
+        }
+      }
+    } else {
+      const list = await this.upfile(file)
+      data = {
+        fields: {
+          2200000168338254: this.appointmentTime,
+          2200000168338022: EDuration.value,
+          2200000169723711: this.surveyPersonnel,
+          2200000168338023: list,
+          2200000168613835: [surveyType]
+        }
+      }
+    }
+    await updateTable(survey.itemId, data)
+  }
+
+  async signUpload () {
+    const file: any = document.getElementById('signUpload')
+    if (typeof file.files[0] !== 'undefined') {
+      const list = await this.upfile(file)
+      const data = {
+        fields: {
+          2200000262572772: list
+        }
+      }
+      await updateTable(this.itemId, data)
+    }
+  }
+
+  async upfile (file: any) {
+    const list = []
+    for (let i = 0; i < file.files.length; i++) {
+      const files = file.files[i]
+      const formData = new FormData()
+      formData.append('source', files)
+      formData.append('name', files.name)
+      formData.append('domain', 'app.huoban.com')
+      formData.append('type', 'attachment')
+      const res = await uploadImg(formData)
+      list.push(res.file_id)
+    }
+    return list
+  }
+
+  async deleteClick (survey: any) {
+    const data = { item_ids: [survey.itemId] }
+    await deleteItem(table.survey, data)
   }
 
   closeClick () {
     this.$emit('close')
+  }
+
+  disabledDate (current: any) {
+    return current && current < moment().endOf('day')
+  }
+
+  disabledDateTime () {
+    return {
+      disabledHours: () => this.range(0, 24).splice(4, 20),
+      disabledMinutes: () => this.range(30, 60),
+      disabledSeconds: () => [55, 56]
+    }
   }
 }
 </script>

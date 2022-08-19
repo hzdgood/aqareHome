@@ -4,8 +4,8 @@
     <div class="footContent" v-show="optionStatus">
       <div @click="clickInfo()" v-show="singleStatus">信息</div>
       <div @click="clickChat()" v-show="chatStatus">信息</div>
-      <div @click="clickScheme()" v-show="singleStatus">工勘</div>
-      <div @click="clickSurvey()" v-show="surveyStatus">方案</div>
+      <div @click="clickSurvey()" v-show="singleStatus">工勘</div>
+      <div @click="clickScheme()" v-show="singleStatus">方案</div>
       <div @click="clickCollect()" v-show="singleStatus">收款</div>
       <div @click="clickProposal()" v-show="singleStatus">报价</div>
     </div>
@@ -153,7 +153,7 @@ export default class Home extends Vue {
     } else {
       this.surveyStatus = true
       this.optionStatus = false
-      this.ProposalStatus = true
+      this.ProposalStatus = false
       this.chatShow = false
       this.schemeShow = false
       this.collectShow = false
