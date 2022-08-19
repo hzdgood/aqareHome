@@ -239,6 +239,15 @@
   margin-left: 10px;
 }
 
+.projectTable span:nth-child(3) {
+  border: 1px solid #F4B142;
+  background: #FDF7EC;
+  border-radius: 2px;
+  color: #F4B142;
+  line-height: 40px;
+  margin-left: 10px;
+}
+
 .projectAddress {
   width: 200px;
 }

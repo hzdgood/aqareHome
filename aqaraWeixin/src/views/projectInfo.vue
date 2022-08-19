@@ -6,6 +6,7 @@
           <td colspan="4">
             <span>{{ project.projectCustom }}</span>
             <span>{{ project.masterProject }}</span>
+            <span>{{ project.currentTask }}</span>
           </td>
         </tr>
         <tr>
@@ -84,10 +85,15 @@ export default class Home extends Vue {
       let masterProject = ''
       let endMoney = ''
       let collectMoney = ''
+      let currentTask = ''
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].field_id === field.projectCustom) {
           const values = fields[i].values[0].value
           projectCustom = values
+        }
+        if (fields[i].field_id === 2200000154568276) {
+          const values = fields[i].values[0].name
+          currentTask = values
         }
         if (fields[i].field_id === field.telephone) {
           const values = fields[i].values[0].value
@@ -136,6 +142,7 @@ export default class Home extends Vue {
       }
       const obj = {
         id: j,
+        currentTask: currentTask,
         projectCustom: projectCustom,
         telephone: telephone,
         projectVillage: projectVillage,
