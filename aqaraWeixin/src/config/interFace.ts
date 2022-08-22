@@ -5,6 +5,7 @@ import { SignRes } from 'wecom-sidebar-jssdk'
 const httpUrl = 'http://aqara.club:8081' // 生产环境
 // const httpUrl = 'http://aqara.club:8091' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
+const bootUrl = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c' // 群机器人
 
 export const config = {
   /* 8081 */

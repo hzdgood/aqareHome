@@ -33,12 +33,10 @@
             <td>
               <a-date-picker
                 style="width: 87%"
-                :defaultValue="moment(survey.appointmentTime, 'YYYY-MM-DD HH:mm:ss')"
-                format="YYYY-MM-DD HH:mm:ss"
+                :defaultValue="moment(survey.appointmentTime, 'YYYY-MM-DD HH:mm')"
+                format="YYYY-MM-DD HH:mm"
                 @change="dateChange"
-                :disabled-date="disabledDate"
-                :disabled-time="disabledDateTime"
-                :show-time="{ defaultValue: moment('00:00:00', 'HH:mm:ss') }"
+                :show-time="{ defaultValue: moment('00:00:00', 'HH:mm') }"
               />
             </td>
           </tr>
@@ -244,7 +242,7 @@ export default class Home extends Vue {
     const data = {
       fields: {
         2200000146063366: [this.itemId], // 项目
-        2200000168613835: ['1']
+        2200000168613835: ['工勘']
       }
     }
     const res = await addInfo(table.survey, data)
@@ -328,17 +326,17 @@ export default class Home extends Vue {
     this.$emit('close')
   }
 
-  disabledDate (current: any) {
-    return current && current < moment().endOf('day')
-  }
+  // disabledDate (current: any) {
+  //   return current && current < moment().endOf('day')
+  // }
 
-  disabledDateTime () {
-    return {
-      disabledHours: () => this.range(0, 24).splice(4, 20),
-      disabledMinutes: () => this.range(30, 60),
-      disabledSeconds: () => [55, 56]
-    }
-  }
+  // disabledDateTime () {
+  //   return {
+  //     disabledHours: () => this.range(0, 24).splice(4, 20),
+  //     disabledMinutes: () => this.range(30, 60),
+  //     disabledSeconds: () => [55, 56]
+  //   }
+  // }
 }
 </script>
 
