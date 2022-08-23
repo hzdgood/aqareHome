@@ -117,6 +117,7 @@ export default class Home extends Vue {
   saleManList: any[] = []
   surveyList: any[] = []
   index = 0
+  uploadFiles = ''
   appointmentTime = ''
   surveyPersonnel: any = []
   surveyType: any = ''
@@ -216,6 +217,8 @@ export default class Home extends Vue {
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === field.projectCode) {
           this.projectCode = fields[j].values[0].value
+        } else if (fields[j].field_id === 2200000262572772) {
+          this.uploadFiles = fields[j].values
         }
       }
     }
@@ -242,7 +245,7 @@ export default class Home extends Vue {
     const data = {
       fields: {
         2200000146063366: [this.itemId], // 项目
-        2200000168613835: ['工勘']
+        2200000168613835: ['1']
       }
     }
     const res = await addInfo(table.survey, data)
@@ -251,7 +254,7 @@ export default class Home extends Vue {
       itemId: res.item_id,
       appointmentTime: '',
       EDuration: '2',
-      surveyType: [1]
+      surveyType: ['工勘']
     }
     this.surveyType = 1
     this.surveyList.push(obj)
@@ -297,6 +300,7 @@ export default class Home extends Vue {
         }
       }
       await updateTable(this.itemId, data)
+      this.$emit('close')
     }
   }
 

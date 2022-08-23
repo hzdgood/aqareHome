@@ -6,7 +6,7 @@ const httpUrl = 'http://aqara.club:8081' // 生产环境
 // const httpUrl = 'http://aqara.club:8091' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 const bootUrl = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c' // 群机器人
-
+const obj = { where: { and: [{ field: 'updated_on', query: { eq: 'today' } }] }, offset: 0, limit: 20 }
 export const config = {
   /* 8081 */
   corpId: 'ww9a717b03b06063e3', // 企业ID
