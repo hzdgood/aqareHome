@@ -53,3 +53,17 @@ export const masterCustom = (userId: any) => {
   }
   return data
 }
+
+export const obj = () => {
+  const data = {
+    where: {
+      and: [{
+        field: 'updated_on',
+        query: { eq: 'today' }
+      }]
+    },
+    offset: 0,
+    limit: 20
+  }
+  return data
+}
