@@ -29,13 +29,12 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { Icon, Menu } from 'ant-design-vue'
+import { Menu } from 'ant-design-vue'
 @Component({
   name: 'Nav',
   components: {
     'a-menu': Menu,
     'a-menu-item': Menu.Item,
-    'a-icon': Icon
   }
 })
 export default class Nav extends Vue {
@@ -43,7 +42,7 @@ export default class Nav extends Vue {
 }
 </script>
 <style scoped>
-.a-menu-item{
-  padding: 0px 15px;
+.ant-menu-item, .ant-menu-submenu-title {
+  padding: 0px 15px !important;
 }
 </style>
