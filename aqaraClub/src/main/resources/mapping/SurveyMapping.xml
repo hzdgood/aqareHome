@@ -1,0 +1,46 @@
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.SurveyMapper">
+	<resultMap id="BaseResultMap" type="com.aqara.common.entity.Survey">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="sales" jdbcType="VARCHAR" property="sales" />
+		<result column="department" jdbcType="VARCHAR" property="department" />
+		<result column="appointmentTime" jdbcType="TIMESTAMP" property="appointmentTime" />
+		<result column="estimatedDuration" jdbcType="VARCHAR" property="estimatedDuration" />
+		<result column="participants" jdbcType="VARCHAR" property="participants" />
+		<result column="surveyPictures" jdbcType="VARCHAR" property="surveyPictures" />
+		<result column="surveyTask" jdbcType="VARCHAR" property="surveyTask" />
+		<result column="createName" jdbcType="VARCHAR" property="createName" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
+		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	
+	<select id="select" resultType="com.aqara.common.entity.Survey">
+		select * from survey where 1 = 1
+	</select>
+	
+	<select id="currentData" resultType="com.aqara.common.entity.Survey">
+		select * from survey where to_days(createTime) = to_days(now())
+	</select>
+	
+	<insert id="insert" parameterType="com.aqara.common.entity.Survey" useGeneratedKeys="true" keyProperty="id">
+		insert into survey ( code, sales, department, appointmentTime, estimatedDuration, surveyTask, createName, createTime, updateName, updateTime
+		) values ( 
+		#{code}, #{sales}, #{department}, #{appointmentTime,jdbcType=DATE}, #{estimatedDuration}, #{surveyTask},
+		#{createName}, NOW(), #{updateName}, NOW() )
+	</insert>
+	
+	<insert id="upload" parameterType="com.aqara.common.entity.Survey" useGeneratedKeys="true" keyProperty="id">
+		insert into survey ( code, sales, department, appointmentTime, estimatedDuration, surveyTask, createName, createTime, updateName, updateTime
+		) values ( 
+		#{code}, #{sales}, #{department}, #{appointmentTime,jdbcType=DATE}, #{estimatedDuration}, #{surveyTask},
+		#{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE} )
+	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.Survey">
+		delete from survey where id = #{id}
+	</delete>
+</mapper>

@@ -1,0 +1,57 @@
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.CollentMapper">
+	<resultMap id="BaseResultMap" type="com.aqara.common.entity.Collent">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="sales" jdbcType="VARCHAR" property="sales" />
+		<result column="department" jdbcType="VARCHAR" property="department" />
+		<result column="projectStatus" jdbcType="VARCHAR" property="projectStatus" />
+		<result column="totalReceipts" jdbcType="VARCHAR" property="totalReceipts" />
+		<result column="finalPrice" jdbcType="VARCHAR" property="finalPrice" />
+		<result column="changePrice" jdbcType="VARCHAR" property="changePrice" />
+		<result column="collectionStatus" jdbcType="VARCHAR" property="collectionStatus" />
+		<result column="refundType" jdbcType="VARCHAR" property="refundType" />
+		<result column="paymentMethod" jdbcType="VARCHAR" property="paymentMethod" />
+		<result column="collection" jdbcType="VARCHAR" property="collection" />
+		<result column="quotationID" jdbcType="VARCHAR" property="quotationID" />
+		<result column="documentDate" jdbcType="TIMESTAMP" property="documentDate" />
+		<result column="settlementDate" jdbcType="TIMESTAMP" property="settlementDate" />
+		<result column="uploadVoucher" jdbcType="VARCHAR" property="uploadVoucher" />
+		<result column="payee" jdbcType="VARCHAR" property="payee" />
+		<result column="crossCheck" jdbcType="VARCHAR" property="crossCheck" />
+		<result column="createName" jdbcType="VARCHAR" property="createName" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
+		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	
+	<select id="select" resultType="com.aqara.common.entity.Collent">
+		select * from collent where 1 = 1 
+	</select>
+	
+	<select id="currentData" resultType="com.aqara.common.entity.Collent">
+		select * from collent where to_days(createTime) = to_days(now())
+	</select>
+	
+	<insert id="insert" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">
+		insert into collent (
+			code, sales, department, createName, createTime,  updateName, updateTime
+		) values (
+			#{code}, #{sales}, #{department}, #{createName}, NOW(), #{updateName}, NOW()
+		)
+	</insert>
+	
+	<insert id="upload" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">
+		insert into collent (
+			code, sales, department, createName, createTime,  updateName, updateTime
+		) values (
+			#{code}, #{sales}, #{department}, #{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE}
+		)
+	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.Collent">
+		delete from collent where id = #{id}
+	</delete>
+</mapper>

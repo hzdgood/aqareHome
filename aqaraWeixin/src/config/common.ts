@@ -54,13 +54,16 @@ export const masterCustom = (userId: any) => {
   return data
 }
 
-export const obj = () => {
+export const getLocalSale = (localName: any) => {
   const data = {
     where: {
-      and: [{
-        field: 'updated_on',
-        query: { eq: 'today' }
-      }]
+      and: [
+        {
+          query: { or: [{ in: [localName] }] },
+          query_option_mappings: [-1],
+          field: field.localName
+        }
+      ]
     },
     offset: 0,
     limit: 20

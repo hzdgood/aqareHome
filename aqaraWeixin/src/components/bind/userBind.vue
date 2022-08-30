@@ -23,6 +23,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, addInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
+import { getLocalSale } from '@/config/common'
 import custom from '@/components/bindInfo/custom.vue'
 @Component({
   components: {
@@ -41,19 +42,7 @@ export default class Home extends Vue {
 
   async add () {
     // 查询销售人员信息表
-    const data = {
-      where: {
-        and: [
-          {
-            query: { or: [{ in: [this.localName] }] },
-            query_option_mappings: [-1],
-            field: field.localName
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20
-    }
+    const data = getLocalSale(this.localName)
     const result = await SearchInfo(table.saleManInfo, data)
     let itemId = ''
     if (result.length === 0) {

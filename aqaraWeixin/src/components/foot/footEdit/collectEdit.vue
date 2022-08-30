@@ -87,6 +87,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
+import { getLocalSale, masterReq } from '@/config/common'
 import {
   SearchInfo,
   addInfo,
@@ -107,24 +108,9 @@ export default class Home extends Vue {
   quotationId = '';
   receivable = '';
   userId = localStorage.getItem('userId');
+  localName = localStorage.getItem('localName');
   async mounted () {
-    const data = {
-      where: {
-        and: [
-          {
-            query: { or: [{ eqm: [this.userId] }] },
-            query_option_mappings: [-1],
-            field: field.projectUUid
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20,
-      order_by: [
-        { field: field.projectUUid, sort: 'desc' },
-        { field: field.masterProject, sort: 'asc' }
-      ]
-    }
+    const data = masterReq(this.userId)
     const result = await SearchInfo(table.projectInfo, data)
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
@@ -146,6 +132,17 @@ export default class Home extends Vue {
   }
 
   async saveClick () {
+    const req = getLocalSale(this.localName)
+    const result = await SearchInfo(table.saleManInfo, req)
+    let salesId = ''
+    if (result.length === 0) {
+      alert('找不到当前销售人员信息！' + this.localName)
+      return
+    }
+    for (let i = 0; i < result.length; i++) {
+      salesId = result[0].item_id
+    }
+
     const collectMoney: any = document.getElementById('collectMoney')
     let projectType: any = document.getElementById('projectType')
     projectType = projectType.options[projectType.selectedIndex].value
@@ -171,7 +168,8 @@ export default class Home extends Vue {
           [field.pType]: [1],
           [field.cType]: [collectType],
           [field.cMoney]: collectMoney.value,
-          [field.uploadFile]: list
+          [field.uploadFile]: list,
+          2200000181625297: [salesId]
         }
       }
       const result = await addInfo(table.collectTable, data)
@@ -192,7 +190,8 @@ export default class Home extends Vue {
           2200000180591045: [this.quotationId],
           [field.cType]: [collectType],
           [field.cMoney]: collectMoney.value,
-          [field.uploadFile]: list
+          [field.uploadFile]: list,
+          2200000181625297: [salesId]
         }
       }
       const result = await addInfo(table.collectTable, data)
