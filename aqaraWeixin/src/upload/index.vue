@@ -6,6 +6,7 @@
     <button @click="uploadFile('/quotation/upload')">报价单导入</button>
     <button @click="uploadFile('/project/upload')">项目导入</button>
     <button @click="uploadFile('/collent/upload')">收款导入</button>
+    <!-- <iframe class="myiframe" src="https://ss3153003.huoban.com/account/login" frameborder="0" scrolling="auto"></iframe> -->
   </div>
 </template>
 
@@ -27,3 +28,10 @@ export default class Home extends Vue {
   }
 }
 </script>
+<style scoped>
+.myiframe{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+</style>

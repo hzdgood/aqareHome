@@ -36,7 +36,7 @@ public class MyScheduleConfig {
 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-	@Scheduled(cron = "0 33 17 * * ?")
+	@Scheduled(cron = "0 30 20 * * ?")
 	private void myTasks() {
 		System.out.println("执行定时任务 " + LocalDateTime.now());
 		List<Huoban> list = huobanService.select();
@@ -51,7 +51,7 @@ public class MyScheduleConfig {
 		}
 	}
 
-	@Scheduled(cron = "0 35 17 * * ?")
+	@Scheduled(cron = "0 35 20 * * ?")
 	private void myTasks1() {
 		String customer = getCustomerData();
 		String collent = getCollentData();
