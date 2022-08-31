@@ -32,22 +32,26 @@
 	</select>
 	
 	<select id="currentData" resultType="com.aqara.common.entity.Collent">
-		select * from collent where to_days(createTime) = to_days(now())
+		select * from collent where to_days(createTime) = to_days(now()) and collectionStatus = '全款'
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">
 		insert into collent (
-			code, sales, department, createName, createTime,  updateName, updateTime
+			code, sales, department, collectionStatus, paymentMethod,
+			createName, createTime,  updateName, updateTime
 		) values (
-			#{code}, #{sales}, #{department}, #{createName}, NOW(), #{updateName}, NOW()
+			#{code}, #{sales}, #{department}, #{collectionStatus}, #{paymentMethod},
+			#{createName}, NOW(), #{updateName}, NOW()
 		)
 	</insert>
 	
 	<insert id="upload" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">
 		insert into collent (
-			code, sales, department, createName, createTime,  updateName, updateTime
+			code, sales, department, collectionStatus, paymentMethod,
+			createName, createTime,  updateName, updateTime
 		) values (
-			#{code}, #{sales}, #{department}, #{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE}
+			#{code}, #{sales}, #{department}, #{collectionStatus}, #{paymentMethod},
+			#{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE}
 		)
 	</insert>
 	

@@ -105,7 +105,7 @@ public class HttpUtil {
 		}
 	}
 	
-	public static void workReport(String temp) {
+	public static void workRequset(String temp) {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(WX_TOKEN);

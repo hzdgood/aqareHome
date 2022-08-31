@@ -35,62 +35,8 @@ public class MyScheduleConfig {
 	HuobanProperties HuobanProperties;
 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
-	public static void main(String[] args) {
-		List<String> nameLists = Arrays.asList("Lvshen", "Lvshen", "Zhouzhou", "Huamulan", "Huamulan", "Huamulan");
-		Map<String, Integer> map = new HashMap<>();
-		 
-		nameLists.forEach(name -> {
-		    Integer counts = map.get(name);
-		    map.put(name, counts == null ? 1 : ++counts);
-		});
-		System.out.println(map);
-		
-		// Map map = new HashMap();
-		 
-		Iterator entries = map.entrySet().iterator();
-		while (entries.hasNext()) {
-		    Map.Entry entry = (Map.Entry) entries.next();
-		    String key = (String)entry.getKey();
-		    Integer value = (Integer)entry.getValue();
-		    System.out.println("Key = " + key + ", Value = " + value);
-		}
-		
-
-//		HttpUtil.workReport("**今日CRM新增客户TOP** \n"
-//			+ ">徐金兰:<font color=\"comment\">10</font>\n"
-//			+ ">汪正:<font color=\"comment\">10</font>\n"
-//			+ ">徐浩:<font color=\"comment\">10</font>\n\n"
-//			+ "**今日CRM新增定金TOP** \n"
-//			+ ">徐金兰:<font color=\"comment\">10</font>\n"
-//			+ ">汪正:<font color=\"comment\">10</font>\n"
-//			+ ">徐浩:<font color=\"comment\">10</font>\n\n"
-//			+ "**今日CRM新增工勘TOP** \n"
-//			+ ">徐金兰:<font color=\"comment\">10</font>\n"
-//			+ ">汪正:<font color=\"comment\">10</font>\n"
-//			+ ">徐浩:<font color=\"comment\">10</font>\n"
-//			+ "[查看详情](http://work.weixin.qq.com/api/doc)"
-//		);
-	}
-
-	public static JSONObject getDataJson() {
-		JSONObject o1 = new JSONObject();
-		o1.put("eq", "today");
-		JSONObject o2 = new JSONObject();
-		o2.put("field", "created_on");
-		o2.put("query", o1);
-		JSONArray array = new JSONArray();
-		array.add(o2);
-		JSONObject o3 = new JSONObject();
-		o3.put("and", array);
-		JSONObject obj = new JSONObject();
-		obj.put("where", o3);
-		obj.put("offset", 0);
-		obj.put("limit", 50);
-		return obj;
-	}
-
-	@Scheduled(cron = "0 30 21 * * ?")
+	
+	@Scheduled(cron = "0 33 17 * * ?")
 	private void myTasks() {
 		System.out.println("执行定时任务 " + LocalDateTime.now());
 		List<Huoban> list = huobanService.select();
@@ -105,12 +51,13 @@ public class MyScheduleConfig {
 		}
 	}
 
-	@Scheduled(cron = "0 50 17 * * ?")
+	@Scheduled(cron = "0 35 17 * * ?")
 	private void myTasks1() {
+		String customer = getCustomerData();
 		String collent = getCollentData();
 		String survey = getSurveyData();
-		String customer = getCustomerData();
-
+		String url = "[查看详情](https://app.huoban.com/home)";
+		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url);
 	}
 	
 	private String getSurveyData() {
@@ -121,7 +68,8 @@ public class MyScheduleConfig {
 			Integer counts = map.get(name.getSales());
 			map.put(name.getSales(), counts == null ? 1 : ++counts);
 		});
-		Iterator entries = map.entrySet().iterator();
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
 		while (entries.hasNext()) {
 		    Map.Entry entry = (Map.Entry) entries.next();
 		    String key = (String)entry.getKey();
@@ -139,7 +87,8 @@ public class MyScheduleConfig {
 			Integer counts = map.get(name.getSales());
 			map.put(name.getSales(), counts == null ? 1 : ++counts);
 		});
-		Iterator entries = map.entrySet().iterator();
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
 		while (entries.hasNext()) {
 		    Map.Entry entry = (Map.Entry) entries.next();
 		    String key = (String)entry.getKey();
@@ -150,14 +99,15 @@ public class MyScheduleConfig {
 	}
 
 	private String getCollentData() {
-		String str = "**今日CRM新增工勘TOP** \n";
+		String str = "**今日CRM新增全款TOP** \n";
 		List<Collent> collent = CollentService.currentData();
 		Map<String, Integer> map = new HashMap<>();
 		collent.forEach(name -> {
 			Integer counts = map.get(name.getSales());
 			map.put(name.getSales(), counts == null ? 1 : ++counts);
 		});
-		Iterator entries = map.entrySet().iterator();
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
 		while (entries.hasNext()) {
 		    Map.Entry entry = (Map.Entry) entries.next();
 		    String key = (String)entry.getKey();
@@ -245,10 +195,31 @@ public class MyScheduleConfig {
 					Collent.setSales(obj2.getString("title"));
 				} else if (field_id.equals("1101001117001107")) {
 					Collent.setDepartment(obj2.getString("title"));
+				} else if (field_id.equals("2200000145309763")) {
+					Collent.setCollectionStatus(obj2.getString("name"));
+				} else if (field_id.equals("2200000145309764")) {
+					Collent.setPaymentMethod(obj2.getString("name"));
 				}
 				Collent.setCreateName("上海汇社");
 			}
 			CollentService.insert(Collent);
 		}
+	}
+	
+	public static JSONObject getDataJson() {
+		JSONObject o1 = new JSONObject();
+		o1.put("eq", "today");
+		JSONObject o2 = new JSONObject();
+		o2.put("field", "created_on");
+		o2.put("query", o1);
+		JSONArray array = new JSONArray();
+		array.add(o2);
+		JSONObject o3 = new JSONObject();
+		o3.put("and", array);
+		JSONObject obj = new JSONObject();
+		obj.put("where", o3);
+		obj.put("offset", 0);
+		obj.put("limit", 50);
+		return obj;
 	}
 }
