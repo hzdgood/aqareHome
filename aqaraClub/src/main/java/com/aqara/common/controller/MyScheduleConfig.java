@@ -1,6 +1,5 @@
 package com.aqara.common.controller;
 
-import com.alibaba.fastjson.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -43,9 +42,9 @@ public class MyScheduleConfig {
 		Huoban Huoban = list.get(list.size() - 1);
 		String ticket = Huoban.getTicket();
 		try {
-			getSurveyList(ticket);
-			getCustomList(ticket);
-			getCollentList(ticket);
+			SurveyService.getSurveyList(ticket);
+			customerService.getCustomList(ticket);
+			CollentService.getCollentList(ticket);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -115,111 +114,5 @@ public class MyScheduleConfig {
 		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
 		}
 		return str;
-	}
-
-	private void getSurveyList(String ticket) throws Exception {
-		String str = "{\"where\":{\"and\":[{\"field\":2200000168338254,\"query\":{\"eq\":\"today\"}}]},\"offset\":0,\"limit\":20,\"order_by\":[{\"field\":2200000169723711,\"sort\":\"asc\"}]}";
-		String requestUrl = HuobanProperties.getSearchInfo() + "2100000015092715/find";
-		JSONObject object = HttpService.getSchedule(requestUrl, ticket, JSONObject.parseObject(str));
-		JSONArray array = object.getJSONArray("items");
-		for (int i = 0; i < array.size(); i++) {
-			Survey Survey = new Survey();
-			JSONObject obj = array.getJSONObject(i);
-			JSONArray array1 = obj.getJSONArray("fields");
-			for (int j = 0; j < array1.size(); j++) {
-				JSONObject obj1 = array1.getJSONObject(j);
-				String field_id = obj1.getString("field_id");
-				JSONArray array2 = obj1.getJSONArray("values");
-				JSONObject obj2 = array2.getJSONObject(0);
-				if (field_id.equals("2200000146063366")) {
-					Survey.setCode(obj2.getString("title"));
-				} else if (field_id.equals("1101001101001107")) {
-					Survey.setSales(obj2.getString("title"));
-				} else if (field_id.equals("1101001294001101")) {
-					Survey.setDepartment(obj2.getString("title"));
-				} else if (field_id.equals("2200000168338254")) {
-					Survey.setAppointmentTime(simpleDateFormat.parse(obj2.getString("value")));
-				} else if (field_id.equals("2200000168338022")) {
-					Survey.setEstimatedDuration(obj2.getString("value"));
-				} else if (field_id.equals("2200000168613835")) {
-					Survey.setSurveyTask(obj2.getString("name"));
-				}
-				Survey.setCreateName("上海汇社");
-			}
-			SurveyService.insert(Survey);
-		}
-	}
-
-	private void getCustomList(String ticket) {
-		String requestUrl = HuobanProperties.getSearchInfo() + "2100000014955786/find";
-		JSONObject object = HttpService.getSchedule(requestUrl, ticket, getDataJson());
-		JSONArray array = object.getJSONArray("items");
-		for (int i = 0; i < array.size(); i++) {
-			Customer Customer = new Customer();
-			JSONObject obj = array.getJSONObject(i);
-			JSONArray array1 = obj.getJSONArray("fields");
-			for (int j = 0; j < array1.size(); j++) {
-				JSONObject obj1 = array1.getJSONObject(j);
-				String field_id = obj1.getString("field_id");
-				JSONArray array2 = obj1.getJSONArray("values");
-				JSONObject obj2 = array2.getJSONObject(0);
-				if (field_id.equals("2200000144967973")) {
-					Customer.setName(obj2.getString("value"));
-				} else if (field_id.equals("2200000144968566")) {
-					Customer.setSales(obj2.getString("title"));
-				} else if (field_id.equals("1107001107000000")) {
-					Customer.setDepartment(obj2.getString("title"));
-				}
-				Customer.setCreateName("上海汇社");
-			}
-			customerService.insert(Customer);
-		}
-	}
-
-	private void getCollentList(String ticket) {
-		String requestUrl = HuobanProperties.getSearchInfo() + "2100000015000019/find";
-		JSONObject object = HttpService.getSchedule(requestUrl, ticket, getDataJson());
-		JSONArray array = object.getJSONArray("items");
-		for (int i = 0; i < array.size(); i++) {
-			Collent Collent = new Collent();
-			JSONObject obj = array.getJSONObject(i);
-			JSONArray array1 = obj.getJSONArray("fields");
-			for (int j = 0; j < array1.size(); j++) {
-				JSONObject obj1 = array1.getJSONObject(j);
-				String field_id = obj1.getString("field_id");
-				JSONArray array2 = obj1.getJSONArray("values");
-				JSONObject obj2 = array2.getJSONObject(0);
-				if (field_id.equals("2200000145309762")) {
-					Collent.setCode(obj2.getString("title"));
-				} else if (field_id.equals("1101001117000000")) {
-					Collent.setSales(obj2.getString("title"));
-				} else if (field_id.equals("1101001117001107")) {
-					Collent.setDepartment(obj2.getString("title"));
-				} else if (field_id.equals("2200000145309763")) {
-					Collent.setCollectionStatus(obj2.getString("name"));
-				} else if (field_id.equals("2200000145309764")) {
-					Collent.setPaymentMethod(obj2.getString("name"));
-				}
-				Collent.setCreateName("上海汇社");
-			}
-			CollentService.insert(Collent);
-		}
-	}
-	
-	public static JSONObject getDataJson() {
-		JSONObject o1 = new JSONObject();
-		o1.put("eq", "today");
-		JSONObject o2 = new JSONObject();
-		o2.put("field", "created_on");
-		o2.put("query", o1);
-		JSONArray array = new JSONArray();
-		array.add(o2);
-		JSONObject o3 = new JSONObject();
-		o3.put("and", array);
-		JSONObject obj = new JSONObject();
-		obj.put("where", o3);
-		obj.put("offset", 0);
-		obj.put("limit", 50);
-		return obj;
 	}
 }
