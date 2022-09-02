@@ -10,7 +10,6 @@ public class OpenCurtain {
 	private String department;
 	private String supplier; // 供应商
 	private String merchantConfirm; // 商家确认
-	private String expressNumber; // 快递号
 	private String createName;
 	private Date createTime;
 	private String updateName;
@@ -70,14 +69,6 @@ public class OpenCurtain {
 
 	public void setMerchantConfirm(String merchantConfirm) {
 		this.merchantConfirm = merchantConfirm;
-	}
-
-	public String getExpressNumber() {
-		return expressNumber;
-	}
-
-	public void setExpressNumber(String expressNumber) {
-		this.expressNumber = expressNumber;
 	}
 
 	public String getCreateName() {

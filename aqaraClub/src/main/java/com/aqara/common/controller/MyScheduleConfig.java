@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.*;
 import com.aqara.common.entity.*;
-import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
 
@@ -29,9 +28,9 @@ public class MyScheduleConfig {
 
 	@Autowired
 	HttpService HttpService;
-
+	
 	@Autowired
-	HuobanProperties HuobanProperties;
+	OpenCurtainService OpenCurtainService;
 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
@@ -57,6 +56,30 @@ public class MyScheduleConfig {
 		String survey = getSurveyData();
 		String url = "[查看详情](https://app.huoban.com/home)";
 		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url);
+	}
+	
+	@Scheduled(cron = "0 50 14 * * ?")
+	private void myTasks2() {
+		try {
+			List<Huoban> list = huobanService.select();
+			Huoban Huoban = list.get(list.size() - 1);
+			String ticket = Huoban.getTicket();
+			OpenCurtainService.getCurtainList(ticket);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Scheduled(cron = "0 50 14 * * ?")
+	private void myTasks3() {
+		try {
+			List<Huoban> list = huobanService.select();
+			Huoban Huoban = list.get(list.size() - 1);
+			String ticket = Huoban.getTicket();
+			OpenCurtainService.getCurtainList(ticket);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private String getSurveyData() {

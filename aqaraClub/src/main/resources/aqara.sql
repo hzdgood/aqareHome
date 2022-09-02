@@ -26,6 +26,36 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
+CREATE TABLE `openCurtain` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) DEFAULT NULL,
+  `sales` varchar(45) DEFAULT NULL,
+  `department` varchar(45) DEFAULT NULL,
+  `supplier` datetime DEFAULT NULL,
+  `merchantConfirm` varchar(45) DEFAULT NULL,
+  `createName` varchar(45) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateName` varchar(45) DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `rollerShutter` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) DEFAULT NULL,
+  `sales` varchar(45) DEFAULT NULL,
+  `department` varchar(45) DEFAULT NULL,
+  `supplier` datetime DEFAULT NULL,
+  `merchantConfirm` varchar(45) DEFAULT NULL,
+  `createName` varchar(45) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateName` varchar(45) DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 CREATE TABLE `survey` (
   `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(45) DEFAULT NULL,

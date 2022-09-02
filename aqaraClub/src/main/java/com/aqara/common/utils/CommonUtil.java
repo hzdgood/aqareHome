@@ -31,4 +31,12 @@ public class CommonUtil {
 				+ "\"order_by\":[{\"field\":2200000169723711,\"sort\":\"asc\"}]}";
 		return str;
 	}
+	
+	public static String  getCurtainData() {
+		String str = "{\"where\":{\"and\":[{\"field\":2200000159767482,"
+				+ "\"query\":{\"in\":[1,2]}},{\"field\":2200000159767485,"
+				+ "\"query\":{\"em\":true}}]},\"offset\":0,\"limit\":200}";
+		return str;
+	}
+	
 }

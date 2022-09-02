@@ -10,5 +10,7 @@ public interface OpenCurtainMapper {
 	List<OpenCurtain> currentData();
 	
 	void insert(OpenCurtain OpenCurtain);
+	
+	void upload(OpenCurtain OpenCurtain);
 
 }
