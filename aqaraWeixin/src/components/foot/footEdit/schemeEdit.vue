@@ -29,28 +29,31 @@
         <input class="saveButton" type="button" @click="saveClick()" value="提交" v-show="saveStatus" />
         <input class="closeButton" type="button" @click="closeClick()" value="关闭" />
       </div>
-      <div>
-        <span v-for="item in erronProduct" :key="item.index">
-          {{ item.name }}
-        </span>
-      </div>
     </div>
+    <a-modal :visible="visible" :modalText="modalText"></a-modal>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, logInsert, uploadPdf } from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, uploadPdf } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import { masterReq } from '@/config/common'
-@Component({})
+import myModal from './components/myModal.vue'
+@Component({
+  name: 'schemeEdit',
+  components: {
+    'a-Modal': myModal
+  }
+})
 export default class Home extends Vue {
-  erronProduct: any[] = [];
   saveStatus = true;
   userId = localStorage.getItem('userId');
   itemId = '';
   fileList: any[] = [];
   upFiles: any[] = [];
+  visible = false
+  modalText = false
 
   async mounted () {
     const data = masterReq(this.userId)
@@ -73,11 +76,9 @@ export default class Home extends Vue {
   async pdfUpFile () {
     let file: any = document.getElementById('file')
     if (typeof file.files[0] === 'undefined') {
-      alert('请上传PDF文件!')
       return
     }
     file = file.files[0]
-    // this.$store.dispatch('Loading')
     const formData = new FormData()
     formData.append('source', file)
     formData.append('name', file.name)
@@ -91,20 +92,17 @@ export default class Home extends Vue {
       }
     }
     await updateTable(this.itemId, data1)
-    // await logInsert('上传PDF成功')
-    // this.$store.dispatch('Loading')
-    this.$emit('close')
   }
 
   // 获取所有的产品信息
   async saveClick () {
     let schemeType: any = document.getElementById('schemeType')
     schemeType = schemeType.options[schemeType.selectedIndex].value
+    // 判断是否pdf上传
     if (schemeType === '2') {
       await this.pdfUpFile()
       return
     }
-
     let projectName = ''
     let projectId = ''
     let projectAddress = ''
@@ -115,24 +113,20 @@ export default class Home extends Vue {
       items: []
     }
     const formData = new FormData()
-    this.erronProduct = []
     // 拼接伙伴云JSON
     let file: any = document.getElementsByName('file')[0]
     if (typeof file.files[0] === 'undefined') {
-      alert('请上传表格!')
       return
     }
     file = file.files[0]
-    this.saveStatus = false
     formData.append('file', file, file.name)
-    const res = await uploadFile(formData, '/file/upload')
+    const res = await uploadFile(formData, '/file/upload') // 1
     for (let i = 0; i < res.length; i++) {
       if (i === 0) {
         projectName = res[i].projectName
       }
       productCode.push(res[i].productCode)
     }
-
     // 查询伙伴云是否有该项目
     const obj1 = {
       where: {
@@ -147,7 +141,7 @@ export default class Home extends Vue {
       offset: 0,
       limit: 20
     }
-    const result1 = await SearchInfo(table.projectInfo, obj1)
+    const result1 = await SearchInfo(table.projectInfo, obj1) // 2
     // 获取地址信息
     if (result1.length !== 0) {
       projectId = result1[0].item_id
@@ -167,18 +161,14 @@ export default class Home extends Vue {
         }
       }
     } else {
-      const obj = {
-        index: 0,
-        name: '项目信息不存在！'
-      }
-      this.erronProduct.push(obj)
+      this.errorInfo('项目信息不存在！')
       return
     }
     const code = uploadCode.split(',')
     let status = true
     for (let i = 0; i < code.length; i++) {
       if (res[0].orderNumber === code[i]) {
-        alert('该方案已上传，请勿重复上传！')
+        this.errorInfo('该方案已上传，请勿重复上传！')
         status = false
       }
     }
@@ -188,13 +178,9 @@ export default class Home extends Vue {
     // 检查地址信息，赋值经纬度
     if (projectAddress !== '') {
       projectAddress = '上海市' + projectArea + projectAddress
-      const obj = await getCoordinate([projectAddress])
+      const obj = await getCoordinate([projectAddress]) // 3
       if (obj.lng === 0 && obj.lat === 0) {
-        const obj = {
-          index: 0,
-          name: '项目地址错误！'
-        }
-        this.erronProduct.push(obj)
+        this.errorInfo('项目地址错误！')
         return
       } else {
         const data = {
@@ -203,13 +189,12 @@ export default class Home extends Vue {
             [field.Y]: obj.lat
           }
         }
-        await updateTable(projectId, data)
+        await updateTable(projectId, data) // 4
       }
     } else {
-      alert('请填写项目地址信息！')
+      this.errorInfo('请填写项目地址信息！')
       return
     }
-    // this.$store.dispatch('Loading')
     // 查询伙伴云是否存在产品
     const obj2 = {
       where: {
@@ -233,11 +218,7 @@ export default class Home extends Vue {
     const result2 = await SearchInfo(table.productTable, obj2)
     // 检查产品数量
     if (productCode.length !== res.length) {
-      const obj = {
-        index: 0,
-        name: '请检查上传文件中的产品信息！'
-      }
-      this.erronProduct.push(obj)
+      this.errorInfo('请检查上传文件中的产品信息！')
       return
     }
     // 导入伙伴云数据
@@ -277,16 +258,28 @@ export default class Home extends Vue {
         }
       }
     }
-    await batchAddPlan(table.customerPlan, json)
     const data = {
       fields: {
         [field.uploadCode]: res[0].orderNumber + ',' + uploadCode
       }
     }
-    await updateTable(projectId, data)
-    // await logInsert('上传方案成功')
+    await updateTable(projectId, data) // 修改
+    await batchAddPlan(table.customerPlan, json) // 新增
+  }
+
+  uploadStart () {
+    this.saveStatus = false
+    // this.$store.dispatch('Loading')
+  }
+
+  uploadEnd () {
     // this.$store.dispatch('Loading')
     this.$emit('close')
+  }
+
+  errorInfo (str: any) {
+    this.visible = true
+    this.modalText = str
   }
 
   diff (arr1: any[], arr2: any[]) {

@@ -394,7 +394,7 @@ export default class Home extends Vue {
         return
       }
     }
-    this.$store.dispatch('Loading')
+    // this.$store.dispatch('Loading')
     const data = {
       where: {
         and: [
@@ -417,7 +417,7 @@ export default class Home extends Vue {
       setTimeout(this.getInfoList, 1000)
     }
     await logInsert(',新建项目')
-    this.$store.dispatch('Loading')
+    // this.$store.dispatch('Loading')
   }
 
   // 删除一条数据

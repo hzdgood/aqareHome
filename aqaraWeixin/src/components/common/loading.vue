@@ -23,13 +23,13 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
 @Component({})
 export default class Home extends Vue {
   @Prop({
-    type: String,
+    type: Boolean,
     required: false
   })
-  status!: String;
+  status!: Boolean;
 
   closeClick () {
-    this.$store.dispatch('Loading')
+    this.status = false
   }
 }
 </script>

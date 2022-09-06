@@ -223,7 +223,7 @@ export default class Home extends Vue {
 
   // 保存
   async saveClick (item: any) {
-    this.$store.dispatch('Loading')
+    // this.$store.dispatch('Loading')
     const file: any = document.getElementById('file')
     const discount: any = document.getElementById('discount')
     if (typeof file.files !== 'undefined') {
@@ -244,7 +244,7 @@ export default class Home extends Vue {
         }
       }
       await updateTable(item.proposalId, data)
-      this.$store.dispatch('Loading')
+      // this.$store.dispatch('Loading')
       this.$emit('close')
     } else {
       const data = {
@@ -253,7 +253,7 @@ export default class Home extends Vue {
         }
       }
       await updateTable(item.proposalId, data)
-      this.$store.dispatch('Loading')
+      // this.$store.dispatch('Loading')
       this.$emit('close')
     }
   }
