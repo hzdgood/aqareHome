@@ -26,19 +26,8 @@
         <input id="file" type="file" name="file" placeholder="请选择文件" />
       </div>
       <div class="buttonSite">
-        <input
-          class="saveButton"
-          v-show="saveStatus"
-          type="button"
-          @click="saveClick()"
-          value="提交"
-        />
-        <input
-          class="closeButton"
-          type="button"
-          @click="closeClick()"
-          value="关闭"
-        />
+        <input class="saveButton" type="button" @click="saveClick()" value="提交" v-show="saveStatus" />
+        <input class="closeButton" type="button" @click="closeClick()" value="关闭" />
       </div>
       <div>
         <span v-for="item in erronProduct" :key="item.index">
@@ -88,7 +77,7 @@ export default class Home extends Vue {
       return
     }
     file = file.files[0]
-    this.$store.dispatch('Loading')
+    // this.$store.dispatch('Loading')
     const formData = new FormData()
     formData.append('source', file)
     formData.append('name', file.name)
@@ -102,8 +91,8 @@ export default class Home extends Vue {
       }
     }
     await updateTable(this.itemId, data1)
-    await logInsert('上传PDF成功')
-    this.$store.dispatch('Loading')
+    // await logInsert('上传PDF成功')
+    // this.$store.dispatch('Loading')
     this.$emit('close')
   }
 
@@ -115,6 +104,7 @@ export default class Home extends Vue {
       await this.pdfUpFile()
       return
     }
+
     let projectName = ''
     let projectId = ''
     let projectAddress = ''
@@ -219,7 +209,7 @@ export default class Home extends Vue {
       alert('请填写项目地址信息！')
       return
     }
-    this.$store.dispatch('Loading')
+    // this.$store.dispatch('Loading')
     // 查询伙伴云是否存在产品
     const obj2 = {
       where: {
@@ -241,6 +231,15 @@ export default class Home extends Vue {
       limit: 1000
     }
     const result2 = await SearchInfo(table.productTable, obj2)
+    // 检查产品数量
+    if (productCode.length !== res.length) {
+      const obj = {
+        index: 0,
+        name: '请检查上传文件中的产品信息！'
+      }
+      this.erronProduct.push(obj)
+      return
+    }
     // 导入伙伴云数据
     for (let i = 0; i < res.length; i++) {
       for (let j = 0; j < result2.length; j++) {
@@ -285,8 +284,8 @@ export default class Home extends Vue {
       }
     }
     await updateTable(projectId, data)
-    await logInsert('上传方案成功')
-    this.$store.dispatch('Loading')
+    // await logInsert('上传方案成功')
+    // this.$store.dispatch('Loading')
     this.$emit('close')
   }
 

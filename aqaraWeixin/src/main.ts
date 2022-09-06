@@ -2,8 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import Chat from './Chat.vue'
 import Calendar from '@/calendar/index.vue'
-import uploadFile from '@/uploadFile/index.vue'
-import customerUpload from '@/upload/index.vue'
+import upload from '@/upload/index.vue'
 import router from './router'
 import store from './store'
 import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
@@ -79,13 +78,7 @@ const doInfo = async () => {
         new Vue({
           router,
           store,
-          render: (h) => h(uploadFile)
-        }).$mount('#app')
-      } else if (url.split('#')[1] === '/customer') {
-        new Vue({
-          router,
-          store,
-          render: (h) => h(customerUpload)
+          render: (h) => h(upload)
         }).$mount('#app')
       }
     })
