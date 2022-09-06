@@ -40,8 +40,8 @@ import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, uploadPdf } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import { masterReq } from '@/config/common'
-import myModal from '@/common/myModal.vue'
-import loading from '@/common/loading.vue'
+import myModal from '@/components/common/myModal.vue'
+import loading from '@/components/common/loading.vue'
 @Component({
   name: 'schemeEdit',
   components: {
@@ -210,9 +210,7 @@ export default class Home extends Vue {
           {
             query: {
               or: [
-                {
-                  eqm: productCode
-                }
+                { eqm: productCode }
               ]
             },
             query_option_mappings: [-1],
