@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-modal
-      title='Title'
+      title='提示'
       :visible='visible'
       :confirm-loading='confirmLoading'
       @ok='handleOk'

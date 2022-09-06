@@ -26,11 +26,12 @@
         <input id="file" type="file" name="file" placeholder="请选择文件" />
       </div>
       <div class="buttonSite">
-        <input class="saveButton" type="button" @click="saveClick()" value="提交" v-show="saveStatus" />
-        <input class="closeButton" type="button" @click="closeClick()" value="关闭" />
+        <button class="saveButton" @click="saveClick()" v-show="saveStatus">提交</button>
+        <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
     </div>
     <a-modal :visible="visible" :modalText="modalText"></a-modal>
+    <a-load :loadVisible="loadVisible"></a-load>
   </div>
 </template>
 
@@ -39,11 +40,13 @@ import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, uploadPdf } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import { masterReq } from '@/config/common'
-import myModal from './components/myModal.vue'
+import myModal from '@/common/myModal.vue'
+import loading from '@/common/loading.vue'
 @Component({
   name: 'schemeEdit',
   components: {
-    'a-Modal': myModal
+    'a-Modal': myModal,
+    'a-load': loading
   }
 })
 export default class Home extends Vue {
@@ -54,6 +57,7 @@ export default class Home extends Vue {
   upFiles: any[] = [];
   visible = false
   modalText = false
+  loadVisible = false
 
   async mounted () {
     const data = masterReq(this.userId)
@@ -76,6 +80,7 @@ export default class Home extends Vue {
   async pdfUpFile () {
     let file: any = document.getElementById('file')
     if (typeof file.files[0] === 'undefined') {
+      this.errorInfo('请选择PDF文件！')
       return
     }
     file = file.files[0]
@@ -92,10 +97,12 @@ export default class Home extends Vue {
       }
     }
     await updateTable(this.itemId, data1)
+    this.errorInfo('上传成功！')
   }
 
   // 获取所有的产品信息
   async saveClick () {
+    this.uploadStart()
     let schemeType: any = document.getElementById('schemeType')
     schemeType = schemeType.options[schemeType.selectedIndex].value
     // 判断是否pdf上传
@@ -116,6 +123,7 @@ export default class Home extends Vue {
     // 拼接伙伴云JSON
     let file: any = document.getElementsByName('file')[0]
     if (typeof file.files[0] === 'undefined') {
+      this.errorInfo('请选择EXCEL文件！')
       return
     }
     file = file.files[0]
@@ -265,20 +273,18 @@ export default class Home extends Vue {
     }
     await updateTable(projectId, data) // 修改
     await batchAddPlan(table.customerPlan, json) // 新增
+    this.errorInfo('上传成功')
   }
 
   uploadStart () {
+    this.visible = false
     this.saveStatus = false
-    // this.$store.dispatch('Loading')
-  }
-
-  uploadEnd () {
-    // this.$store.dispatch('Loading')
-    this.$emit('close')
+    this.loadVisible = true
   }
 
   errorInfo (str: any) {
     this.visible = true
+    this.loadVisible = false
     this.modalText = str
   }
 

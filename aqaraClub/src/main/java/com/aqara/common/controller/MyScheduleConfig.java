@@ -72,14 +72,7 @@ public class MyScheduleConfig {
 	
 	@Scheduled(cron = "0 50 14 * * ?")
 	private void myTasks3() {
-		try {
-			List<Huoban> list = huobanService.select();
-			Huoban Huoban = list.get(list.size() - 1);
-			String ticket = Huoban.getTicket();
-			OpenCurtainService.getCurtainList(ticket);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
 	private String getSurveyData() {
