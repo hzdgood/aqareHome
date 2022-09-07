@@ -1,8 +1,8 @@
 <!DOCTYPE mapper 
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aqara.common.mapper.OpenCurtainMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.OpenCurtain">
+<mapper namespace="com.aqara.common.mapper.RollerShutterMapper">
+	<resultMap id="BaseResultMap" type="com.aqara.common.entity.RollerShutter">
 		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="code" jdbcType="VARCHAR" property="code" />
 		<result column="sales" jdbcType="VARCHAR" property="sales" />
@@ -16,12 +16,12 @@
 		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
 	</resultMap>
 	
-	<select id="currentData" resultType="com.aqara.common.entity.OpenCurtain">
-		select * from openCurtain where 1=1
+	<select id="currentData" resultType="com.aqara.common.entity.RollerShutter">
+		select * from rollerShutter where 1=1
 	</select>
 	
-	<insert id="insert" parameterType="com.aqara.common.entity.OpenCurtain" useGeneratedKeys="true" keyProperty="id">
-		insert into openCurtain (
+	<insert id="insert" parameterType="com.aqara.common.entity.RollerShutter" useGeneratedKeys="true" keyProperty="id">
+		insert into rollerShutter (
 			code, sales, department, number, supplier, merchantConfirm,
 			createName, createTime,  updateName, updateTime
 		) values (
@@ -30,8 +30,8 @@
 		)
 	</insert>
 	
-	<insert id="upload" parameterType="com.aqara.common.entity.OpenCurtain" useGeneratedKeys="true" keyProperty="id">
-		insert into openCurtain (
+	<insert id="upload" parameterType="com.aqara.common.entity.RollerShutter" useGeneratedKeys="true" keyProperty="id">
+		insert into rollerShutter (
 			code, sales, department, number, supplier, merchantConfirm,
 			createName, createTime,  updateName, updateTime
 		) values (

@@ -31,6 +31,9 @@ public class MyScheduleConfig {
 	
 	@Autowired
 	OpenCurtainService OpenCurtainService;
+	
+	@Autowired
+	RollerShutterService RollerShutterService;
 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
@@ -65,6 +68,7 @@ public class MyScheduleConfig {
 			Huoban Huoban = list.get(list.size() - 1);
 			String ticket = Huoban.getTicket();
 			OpenCurtainService.getCurtainList(ticket);
+			RollerShutterService.getShutterList(ticket);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

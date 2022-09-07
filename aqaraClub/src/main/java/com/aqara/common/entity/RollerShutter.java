@@ -8,6 +8,7 @@ public class RollerShutter {
 	private String name; // 客户名称
 	private String sales; // 销售
 	private String department;
+	private String number; //数量
 	private String supplier; // 供应商
 	private String merchantConfirm; // 商家确认
 	private String expressNumber; // 快递号
@@ -54,6 +55,14 @@ public class RollerShutter {
 
 	public void setDepartment(String department) {
 		this.department = department;
+	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
 	public String getSupplier() {

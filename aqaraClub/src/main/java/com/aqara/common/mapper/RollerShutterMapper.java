@@ -9,6 +9,8 @@ public interface RollerShutterMapper {
 	
 	List<RollerShutter> currentData();
 	
-	void insert(RollerShutter OpenCurtain);
+	void insert(RollerShutter RollerShutter);
+	
+	void upload(RollerShutter RollerShutter);
 
 }
