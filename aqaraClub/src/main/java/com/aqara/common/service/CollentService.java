@@ -1,6 +1,10 @@
 package com.aqara.common.service;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +14,7 @@ import com.aqara.common.entity.Collent;
 import com.aqara.common.mapper.CollentMapper;
 import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.CommonUtil;
+import com.aqara.common.utils.MapSortUtil;
 
 @Service
 public class CollentService {
@@ -69,5 +74,24 @@ public class CollentService {
 			}
 			collentMapper.insert(Collent);
 		}
+	}
+	
+	public String getCollentData() {
+		String str = "**今日CRM新增全款TOP** \n";
+		List<Collent> collent = collentMapper.currentData();
+		Map<String, Integer> map = new HashMap<>();
+		collent.forEach(name -> {
+			Integer counts = map.get(name.getSales());
+			map.put(name.getSales(), counts == null ? 1 : ++counts);
+		});
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
+		while (entries.hasNext()) {
+		    Map.Entry entry = (Map.Entry) entries.next();
+		    String key = (String)entry.getKey();
+		    Integer value = (Integer)entry.getValue();
+		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		}
+		return str;
 	}
 }

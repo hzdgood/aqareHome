@@ -1,12 +1,17 @@
 package com.aqara.common.service;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aqara.common.mapper.CustomerMapper;
 import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.CommonUtil;
+import com.aqara.common.utils.MapSortUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Customer;
@@ -31,12 +36,12 @@ public class CustomerService {
 		customerMapper.insert(customer);
 	}
 	
-	public void delete(Integer id) {
-		customerMapper.delete(id);
-	}
-	
 	public void upload(Customer customer) {
 		customerMapper.upload(customer);
+	}
+	
+	public void delete(Integer id) {
+		customerMapper.delete(id);
 	}
 	
 	public void getCustomList(String ticket) {
@@ -66,4 +71,22 @@ public class CustomerService {
 		}
 	}
 	
+	public String getCustomerData() {
+		String str = "**今日CRM新增客户TOP** \n";
+		List<Customer> customer = customerMapper.currentData();
+		Map<String, Integer> map = new HashMap<>();
+		customer.forEach(name -> {
+			Integer counts = map.get(name.getSales());
+			map.put(name.getSales(), counts == null ? 1 : ++counts);
+		});
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
+		while (entries.hasNext()) {
+		    Map.Entry entry = (Map.Entry) entries.next();
+		    String key = (String)entry.getKey();
+		    Integer value = (Integer)entry.getValue();
+		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		}
+		return str;
+	}
 }

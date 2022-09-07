@@ -26,12 +26,31 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
+CREATE TABLE `survey` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) DEFAULT NULL,
+  `sales` varchar(45) DEFAULT NULL,
+  `department` varchar(45) DEFAULT NULL,
+  `appointmentTime` datetime DEFAULT NULL,
+  `estimatedDuration` varchar(45) DEFAULT NULL,
+  `participants` varchar(45) DEFAULT NULL,
+  `surveyPictures` varchar(150) DEFAULT NULL,
+  `surveyTask` varchar(150) DEFAULT NULL,
+  `createName` varchar(45) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateName` varchar(45) DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 CREATE TABLE `openCurtain` (
   `id` int NOT NULL AUTO_INCREMENT,
   `code` varchar(45) DEFAULT NULL,
   `sales` varchar(45) DEFAULT NULL,
   `department` varchar(45) DEFAULT NULL,
-  `supplier` datetime DEFAULT NULL,
+  `number` varchar(45) DEFAULT NULL,
+  `supplier` varchar(45) DEFAULT NULL,
   `merchantConfirm` varchar(45) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
@@ -46,26 +65,9 @@ CREATE TABLE `rollerShutter` (
   `code` varchar(45) DEFAULT NULL,
   `sales` varchar(45) DEFAULT NULL,
   `department` varchar(45) DEFAULT NULL,
-  `supplier` datetime DEFAULT NULL,
+  `number` varchar(45) DEFAULT NULL,
+  `supplier` varchar(45) DEFAULT NULL,
   `merchantConfirm` varchar(45) DEFAULT NULL,
-  `createName` varchar(45) DEFAULT NULL,
-  `createTime` datetime DEFAULT NULL,
-  `updateName` varchar(45) DEFAULT NULL,
-  `updateTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-CREATE TABLE `survey` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `code` varchar(45) DEFAULT NULL,
-  `sales` varchar(45) DEFAULT NULL,
-  `department` varchar(45) DEFAULT NULL,
-  `appointmentTime` datetime DEFAULT NULL,
-  `estimatedDuration` varchar(45) DEFAULT NULL,
-  `participants` varchar(45) DEFAULT NULL,
-  `surveyPictures` varchar(150) DEFAULT NULL,
-  `surveyTask` varchar(150) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
   `updateName` varchar(45) DEFAULT NULL,
@@ -158,7 +160,7 @@ CREATE TABLE `huoban` (
   `date` datetime DEFAULT NULL,
   `expired` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `log` (
@@ -168,7 +170,7 @@ CREATE TABLE `log` (
   `date` datetime DEFAULT NULL,
   `info` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `scheme` (
@@ -184,7 +186,7 @@ CREATE TABLE `scheme` (
   `serviceFee` varchar(45) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=473 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `user` (
@@ -193,7 +195,7 @@ CREATE TABLE `user` (
   `passWord` varchar(50) DEFAULT NULL,
   `userId` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
 
 CREATE TABLE `wechat` (
@@ -203,4 +205,4 @@ CREATE TABLE `wechat` (
   `date` datetime DEFAULT NULL,
   `expired` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
