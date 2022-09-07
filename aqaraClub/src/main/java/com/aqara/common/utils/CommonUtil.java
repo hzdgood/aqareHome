@@ -44,7 +44,7 @@ public class CommonUtil {
 	public static String getShutterData() {
 		String str = "{\"where\":{\"and\":[{\"field\":2200000159475099,"
 				+ "\"query\":{\"em\":true}},{\"field\":2200000159765503,"
-				+ "\"query\":{\"in\":[1,2]}}]},\"offset\":0,\"limit\":20}";
+				+ "\"query\":{\"in\":[1,2]}}]},\"offset\":0,\"limit\":200}";
 		return str;
 	}
 	

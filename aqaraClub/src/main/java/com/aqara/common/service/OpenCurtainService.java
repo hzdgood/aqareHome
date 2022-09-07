@@ -57,6 +57,10 @@ public class OpenCurtainService {
 					OpenCurtain.setSupplier(obj2.getString("name"));
 				} else if (field_id.equals("2200000159767483")) {
 					OpenCurtain.setMerchantConfirm(obj2.getString("name"));
+				} else if (field_id.equals("2200000148927632")) {
+					OpenCurtain.setNumber(obj2.getString("value"));
+				} else if (field_id.equals("1102001294000000")) {
+					OpenCurtain.setDepartment(obj2.getString("title"));
 				}
 			}
 			OpenCurtainMapper.upload(OpenCurtain);

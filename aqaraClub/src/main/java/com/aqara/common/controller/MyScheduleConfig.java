@@ -61,7 +61,7 @@ public class MyScheduleConfig {
 		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url);
 	}
 	
-	@Scheduled(cron = "0 50 14 * * ?")
+	@Scheduled(cron = "0 33 16 * * ?")
 	private void myTasks2() {
 		try {
 			List<Huoban> list = huobanService.select();

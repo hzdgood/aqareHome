@@ -49,14 +49,18 @@ public class RollerShutterService {
 				String field_id = obj1.getString("field_id");
 				JSONArray array2 = obj1.getJSONArray("values");
 				JSONObject obj2 = array2.getJSONObject(0);
-				if (field_id.equals("2200000148927095")) {
+				if (field_id.equals("2200000147636558")) {
 					RollerShutter.setCode(obj2.getString("title"));
-				} else if (field_id.equals("1102001117001102")) {
+				} else if (field_id.equals("1101031294001102")) {
 					RollerShutter.setSales(obj2.getString("name"));
-				} else if (field_id.equals("2200000159767482")) {
-					RollerShutter.setSupplier(obj2.getString("name"));
-				} else if (field_id.equals("2200000159767483")) {
+				} else if (field_id.equals("1101031294000000")) {
+					RollerShutter.setDepartment(obj2.getString("title"));
+				} else if (field_id.equals("1138001108000000")) {
+					RollerShutter.setSupplier(obj2.getString("title"));
+				} else if (field_id.equals("2200000159475098")) {
 					RollerShutter.setMerchantConfirm(obj2.getString("name"));
+				} else if (field_id.equals("2200000147636568")) {
+					RollerShutter.setNumber(obj2.getString("value"));
 				}
 			}
 			RollerShutterMapper.upload(RollerShutter);
