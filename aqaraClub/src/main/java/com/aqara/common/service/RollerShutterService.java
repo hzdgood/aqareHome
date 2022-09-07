@@ -66,4 +66,8 @@ public class RollerShutterService {
 			RollerShutterMapper.upload(RollerShutter);
 		}
 	}
+
+	public void delete() {
+		RollerShutterMapper.delete();
+	}
 }

@@ -13,4 +13,6 @@ public interface RollerShutterMapper {
 	
 	void upload(RollerShutter RollerShutter);
 
+	void delete();
+
 }

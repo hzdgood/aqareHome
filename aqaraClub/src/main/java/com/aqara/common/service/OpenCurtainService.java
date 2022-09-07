@@ -66,4 +66,8 @@ public class OpenCurtainService {
 			OpenCurtainMapper.upload(OpenCurtain);
 		}
 	}
+
+	public void delete() {
+		OpenCurtainMapper.delete();	
+	}
 }

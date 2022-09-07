@@ -60,7 +60,7 @@ public class MyScheduleConfig {
 		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url);
 	}
 	
-	@Scheduled(cron = "0 33 16 * * ?")
+	@Scheduled(cron = "0 30 08 * * ?")
 	private void myTasks2() {
 		try {
 			List<Huoban> list = huobanService.select();
@@ -73,8 +73,9 @@ public class MyScheduleConfig {
 		}
 	}
 	
-	@Scheduled(cron = "0 50 14 * * ?")
+	@Scheduled(cron = "0 00 08 * * ?")
 	private void myTasks3() {
-		
+		OpenCurtainService.delete();
+		RollerShutterService.delete();
 	}
 }
