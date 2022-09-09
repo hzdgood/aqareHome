@@ -31,6 +31,10 @@ public class RollerShutterService {
 	public void upload(RollerShutter RollerShutter) {
 		RollerShutterMapper.upload(RollerShutter);
 	}
+
+	public void delete() {
+		RollerShutterMapper.delete();
+	}
 	
 	public void getShutterList(String ticket) throws Exception{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -65,9 +69,5 @@ public class RollerShutterService {
 			}
 			RollerShutterMapper.upload(RollerShutter);
 		}
-	}
-
-	public void delete() {
-		RollerShutterMapper.delete();
 	}
 }

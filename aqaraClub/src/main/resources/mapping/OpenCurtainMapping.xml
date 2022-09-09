@@ -39,4 +39,8 @@
 			#{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE}
 		)
 	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.OpenCurtain">
+		delete from openCurtain where 1=1
+	</delete>
 </mapper>

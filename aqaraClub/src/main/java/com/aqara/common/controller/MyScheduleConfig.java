@@ -64,8 +64,11 @@ public class MyScheduleConfig {
 	private void myTasks2() {
 		try {
 			List<Huoban> list = huobanService.select();
+			
+			
 			Huoban Huoban = list.get(list.size() - 1);
 			String ticket = Huoban.getTicket();
+			
 			OpenCurtainService.getCurtainList(ticket);
 			RollerShutterService.getShutterList(ticket);
 		} catch (Exception e) {
@@ -77,5 +80,12 @@ public class MyScheduleConfig {
 	private void myTasks3() {
 		OpenCurtainService.delete();
 		RollerShutterService.delete();
+		
+	}
+	
+	@Scheduled(cron = "0 00 09 * * ?")
+	private void myTasks4() {
+		
+		
 	}
 }

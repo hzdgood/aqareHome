@@ -32,6 +32,10 @@ public class OpenCurtainService {
 		OpenCurtainMapper.upload(OpenCurtain);
 	}
 	
+	public void delete() {
+		OpenCurtainMapper.delete();	
+	}
+	
 	public void getCurtainList(String ticket) throws Exception{
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String str = CommonUtil.getCurtainData();
@@ -65,9 +69,5 @@ public class OpenCurtainService {
 			}
 			OpenCurtainMapper.upload(OpenCurtain);
 		}
-	}
-
-	public void delete() {
-		OpenCurtainMapper.delete();	
 	}
 }
