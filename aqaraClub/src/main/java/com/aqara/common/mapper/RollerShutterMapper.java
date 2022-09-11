@@ -15,4 +15,6 @@ public interface RollerShutterMapper {
 
 	void delete();
 
+	List<RollerShutter> currentData1();
+
 }

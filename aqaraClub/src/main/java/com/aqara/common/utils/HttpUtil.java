@@ -127,6 +127,54 @@ public class HttpUtil {
 		}
 	}
 	
+	public static void workRequset1(String temp) {
+		try {
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpPost httpPost = new HttpPost(WX_TOKEN);
+			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
+			Map<String, Object> param = new HashMap<String, Object>();
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("content", temp);
+			// map.put("mentioned_list","@all");
+			param.put("msgtype", "markdown");
+			param.put("markdown", map);
+			String p = map2json(param);
+			StringEntity entity = new StringEntity(p, "utf-8");
+			httpPost.setEntity(entity);
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				String result = EntityUtils.toString(response.getEntity(), "UTF-8");
+				System.out.println(result);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void workRequset2(String temp) {
+		try {
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpPost httpPost = new HttpPost(WX_TOKEN);
+			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
+			Map<String, Object> param = new HashMap<String, Object>();
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("content", temp);
+			// map.put("mentioned_list","@all");
+			param.put("msgtype", "markdown");
+			param.put("markdown", map);
+			String p = map2json(param);
+			StringEntity entity = new StringEntity(p, "utf-8");
+			httpPost.setEntity(entity);
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				String result = EntityUtils.toString(response.getEntity(), "UTF-8");
+				System.out.println(result);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static String map2json(Map<String, Object> map) {
 		return JSON.toJSONString(map);
 	}

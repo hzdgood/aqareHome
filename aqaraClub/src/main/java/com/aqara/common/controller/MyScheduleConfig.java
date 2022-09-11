@@ -1,7 +1,6 @@
 package com.aqara.common.controller;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -38,7 +37,7 @@ public class MyScheduleConfig {
 	
 	@Scheduled(cron = "0 30 20 * * ?")
 	private void myTasks() {
-		System.out.println("执行定时任务 " + LocalDateTime.now());
+		// System.out.println("执行定时任务 " + LocalDateTime.now());
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
 		String ticket = Huoban.getTicket();
@@ -64,11 +63,8 @@ public class MyScheduleConfig {
 	private void myTasks2() {
 		try {
 			List<Huoban> list = huobanService.select();
-			
-			
 			Huoban Huoban = list.get(list.size() - 1);
 			String ticket = Huoban.getTicket();
-			
 			OpenCurtainService.getCurtainList(ticket);
 			RollerShutterService.getShutterList(ticket);
 		} catch (Exception e) {
@@ -80,12 +76,17 @@ public class MyScheduleConfig {
 	private void myTasks3() {
 		OpenCurtainService.delete();
 		RollerShutterService.delete();
-		
 	}
 	
 	@Scheduled(cron = "0 00 09 * * ?")
 	private void myTasks4() {
-		
-		
+		String str = OpenCurtainService.getCurtainData();
+		String str1 = OpenCurtainService.getCurtainData1();
+		String str2 = RollerShutterService.getShutterData();
+		String str3 = RollerShutterService.getShutterData1();
+		HttpService.workRequset1(str);
+		HttpService.workRequset1(str1);
+		HttpService.workRequset2(str2);
+		HttpService.workRequset2(str3);
 	}
 }

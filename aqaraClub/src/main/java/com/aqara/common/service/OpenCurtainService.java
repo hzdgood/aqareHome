@@ -24,6 +24,10 @@ public class OpenCurtainService {
 		return OpenCurtainMapper.currentData();
 	}
 	
+	public List<OpenCurtain> currentData1(){
+		return OpenCurtainMapper.currentData1();
+	}
+	
 	public void insert(OpenCurtain OpenCurtain) {
 		OpenCurtainMapper.insert(OpenCurtain);
 	}
@@ -69,5 +73,17 @@ public class OpenCurtainService {
 			}
 			OpenCurtainMapper.upload(OpenCurtain);
 		}
+	}
+	
+	public String getCurtainData() {
+		String str = "**开合帘5天未发货** \n";
+		List<OpenCurtain> list = OpenCurtainMapper.currentData();
+		return "";
+	}
+	
+	public String getCurtainData1() {
+		String str = "**开合帘3天未制作** \n";
+		List<OpenCurtain> list = OpenCurtainMapper.currentData1();
+		return "";
 	}
 }

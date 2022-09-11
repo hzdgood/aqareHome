@@ -29,4 +29,12 @@ public class HttpService {
 	public void workRequset(String str) {
 		HttpUtil.workRequset(str);
 	}
+	
+	public void workRequset1(String str) {
+		HttpUtil.workRequset1(str);
+	}
+	
+	public void workRequset2(String str) {
+		HttpUtil.workRequset1(str);
+	}
 }

@@ -15,4 +15,6 @@ public interface OpenCurtainMapper {
 
 	void delete();
 
+	List<OpenCurtain> currentData1();
+
 }

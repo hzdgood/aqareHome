@@ -18,6 +18,16 @@
 	
 	<select id="currentData" resultType="com.aqara.common.entity.RollerShutter">
 		select * from rollerShutter where 1=1
+		and supplier is not null
+		and merchantConfirm = '已制作'
+        and TO_DAYS(NOW()) - TO_DAYS(updateTime) >= 5
+	</select>
+	
+	<select id="currentData1" resultType="com.aqara.common.entity.RollerShutter">
+		select * from rollerShutter where 1=1
+		and supplier is not null
+		and merchantConfirm is null
+        and TO_DAYS(NOW()) - TO_DAYS(updateTime) >= 3
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.RollerShutter" useGeneratedKeys="true" keyProperty="id">

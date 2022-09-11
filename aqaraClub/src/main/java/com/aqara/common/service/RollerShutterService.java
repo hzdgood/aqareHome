@@ -24,6 +24,10 @@ public class RollerShutterService {
 		return RollerShutterMapper.currentData();
 	}
 	
+	public List<RollerShutter> currentData1(){
+		return RollerShutterMapper.currentData1();
+	}
+	
 	public void insert(RollerShutter RollerShutter) {
 		RollerShutterMapper.insert(RollerShutter);
 	}
@@ -69,5 +73,17 @@ public class RollerShutterService {
 			}
 			RollerShutterMapper.upload(RollerShutter);
 		}
+	}
+	
+	public String getShutterData() {
+		String str = "**卷帘5天未发货** \n";
+		List<RollerShutter> list = RollerShutterMapper.currentData();
+		return "";
+	}
+	
+	public String getShutterData1() {
+		String str = "**卷帘3天未制作** \n";
+		List<RollerShutter> list = RollerShutterMapper.currentData1();
+		return "";
 	}
 }
