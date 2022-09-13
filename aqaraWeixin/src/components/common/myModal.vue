@@ -1,24 +1,21 @@
 <template>
-  <div>
-    <a-modal
-      title='提示'
-      :visible='visible'
-      :confirm-loading='confirmLoading'
-      @ok='handleOk'
-    >
-      <p>{{ modalText }}</p>
-    </a-modal>
+  <div v-show="visible">
+    <div class="floatDiv"></div>
+    <div class="ModalDiv">
+      <div class="modalText">
+        <p>{{ modalText }}</p>
+      </div>
+      <div class="buttonFloat">
+        <button class="saveButton" @click="handleOk">确定</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { Modal } from 'ant-design-vue'
 @Component({
-  name: 'myMadal',
-  components: {
-    'a-Modal': Modal
-  }
+  name: 'myMadal'
 })
 export default class Home extends Vue {
   @Prop({
@@ -29,20 +26,33 @@ export default class Home extends Vue {
 
   @Prop({
     type: String,
-    required: true
+    required: false
   })
   modalText!: any;
 
-  confirmLoading = false
-
   handleOk () {
-    this.confirmLoading = true
-    setTimeout(() => {
-      this.visible = false
-    }, 1000)
+    this.visible = false
   }
 }
 </script>
 
-<style>
+<style scoped>
+.ModalDiv{
+  position: fixed;
+  width: 60%;
+  height: 22%;
+  top: 33%;
+  left: 20%;
+  overflow: auto;
+  z-index: 30;
+  background-color: #fff;
+  border: 1px solid red;
+  border-radius: 8px;
+  text-align: center;
+  padding-top: 5%;
+}
+.buttonFloat{
+  margin-right: 10px;
+  float: right;
+}
 </style>

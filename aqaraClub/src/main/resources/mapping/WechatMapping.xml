@@ -15,4 +15,7 @@
 	<insert id="insert" parameterType="com.aqara.common.entity.Wechat" useGeneratedKeys="true" keyProperty="id">
   		insert into wechat (ticket, type, expired, date) values( #{ticket}, #{type}, #{expired}, NOW() )
 	</insert>
+	<delete id="delete" parameterType="com.aqara.common.entity.Wechat">
+		delete from wechat where id = #{id}
+	</delete>
 </mapper>

@@ -8,10 +8,16 @@
 		<result column="expired" jdbcType="VARCHAR" property="expired" />
 		<result column="date" jdbcType="TIMESTAMP" property="date" />
 	</resultMap>
+	
 	<select id="select" resultType="com.aqara.common.entity.Huoban">
 		select * from huoban where 1=1
 	</select>
+	
 	<insert id="insert" parameterType="com.aqara.common.entity.Huoban" useGeneratedKeys="true" keyProperty="id">
   		insert into huoban (ticket, expired, date) values( #{ticket}, #{expired},  NOW() )
 	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.Huoban">
+		delete from huoban where id = #{id}
+	</delete>
 </mapper>

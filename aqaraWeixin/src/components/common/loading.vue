@@ -9,7 +9,13 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
-@Component({})
+import { Spin } from 'ant-design-vue'
+@Component({
+  name: 'loading',
+  components: {
+    'a-spin': Spin
+  }
+})
 export default class Home extends Vue {
   @Prop({
     type: Boolean,

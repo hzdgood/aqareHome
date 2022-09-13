@@ -174,16 +174,6 @@
         </table>
         <div class="buttonSite">
           <button class="saveButton" @click="saveClick(project)">保存</button>
-          <!-- <button
-              class="saveButton"
-              @click="bindClick(project)"
-              v-show="project.masterStatus"
-            >绑定</button> -->
-          <!-- <button
-            class="saveButton"
-            @click="deleteClick(project)"
-            v-show="project.masterStatus"
-          >删除</button> -->
           <button class="closeButton" @click="close()">关闭</button>
         </div>
       </div>
@@ -192,7 +182,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, updateTable, deleteItem, logInsert } from '@/config/interFace'
+import { SearchInfo, updateTable, deleteItem } from '@/config/interFace'
 import { table, field, houseType, projectType, decorationStage } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -394,7 +384,6 @@ export default class Home extends Vue {
         return
       }
     }
-    // this.$store.dispatch('Loading')
     const data = {
       where: {
         and: [
@@ -416,8 +405,6 @@ export default class Home extends Vue {
       await updateTable(itemId, data)
       setTimeout(this.getInfoList, 1000)
     }
-    await logInsert(',新建项目')
-    // this.$store.dispatch('Loading')
   }
 
   // 删除一条数据

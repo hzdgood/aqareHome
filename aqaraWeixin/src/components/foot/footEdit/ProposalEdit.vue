@@ -70,7 +70,6 @@
         </div>
       </div>
       <div v-if="errorStatus == false">
-        {{ errorMsg }}
         <div class="buttonSite">
           <input
             class="closeButton"
@@ -81,6 +80,8 @@
         </div>
       </div>
     </div>
+    <my-Modal :visible="visible" :modalText="errorMsg"></my-Modal>
+    <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
 <script lang="ts">
@@ -93,7 +94,16 @@ import {
   uploadImg
 } from '@/config/interFace'
 import { masterReq } from '@/config/common'
-@Component({})
+import myModal from '@/components/common/myModal.vue'
+import loading from '@/components/common/loading.vue'
+
+@Component({
+  name: 'ProposalEdit',
+  components: {
+    'my-Modal': myModal,
+    'my-load': loading
+  }
+})
 export default class Home extends Vue {
   collectType = collectType;
   projectId = '';
@@ -110,13 +120,15 @@ export default class Home extends Vue {
   receivable = '';
   Received = '';
   fileList: any = [];
+  loadVisible = false
+  visible = false
 
   async mounted () {
     let money: any
     const obj1 = masterReq(this.userId)
     const result1 = await SearchInfo(table.projectInfo, obj1)
     if (result1.length === 0) {
-      this.errorMsg = '请先添加项目！'
+      this.errorInfo('请先添加项目！')
       return
     }
     for (let i = 0; i < result1.length; i++) {
@@ -135,7 +147,7 @@ export default class Home extends Vue {
       }
     }
     if (money === '0' || money === 0) {
-      this.errorMsg = '请先上传方案！'
+      this.errorInfo('请先上传方案！')
       return
     }
     this.errorStatus = true
@@ -153,7 +165,7 @@ export default class Home extends Vue {
       }
     }
     await addInfo(table.proposal, obj)
-    this.update()
+    this.update("新增成功！")
   }
 
   // 查询数据
@@ -223,7 +235,7 @@ export default class Home extends Vue {
 
   // 保存
   async saveClick (item: any) {
-    // this.$store.dispatch('Loading')
+    this.loadVisible = true
     const file: any = document.getElementById('file')
     const discount: any = document.getElementById('discount')
     if (typeof file.files !== 'undefined') {
@@ -244,8 +256,6 @@ export default class Home extends Vue {
         }
       }
       await updateTable(item.proposalId, data)
-      // this.$store.dispatch('Loading')
-      this.$emit('close')
     } else {
       const data = {
         fields: {
@@ -253,13 +263,13 @@ export default class Home extends Vue {
         }
       }
       await updateTable(item.proposalId, data)
-      // this.$store.dispatch('Loading')
-      this.$emit('close')
     }
+    this.errorInfo("提交成功！")
   }
 
   // 同步
   async synchroClick (item: any) {
+    this.loadVisible = true
     const data = {
       fields: {
         2200000180589754: [1],
@@ -267,12 +277,21 @@ export default class Home extends Vue {
       }
     }
     await updateTable(item.proposalId, data)
-    this.update()
+    this.update("同步完成！")
+  }
+
+  errorInfo (str: any) {
+    this.errorMsg = str;
+    this.loadVisible = false
+    this.visible = true;
   }
 
   // 更新
-  update () {
-    setTimeout(this.search, 2000)
+  update (str: String) {
+    setTimeout(() => {
+      this.search();
+      this.errorInfo(str)
+    }, 1000)
   }
 
   closeClick () {

@@ -82,8 +82,11 @@ public class RollerShutterService {
 		}
 		Map<String, Integer> map = new HashMap<>();
 		RollerShutter.forEach(name -> {
-			Integer counts = map.get(name.getNumber());
-			map.put(name.getSales(), counts == null ? 1 : ++counts);
+			Integer counts = map.get(name.getSales());
+			if(counts == null) {
+				counts = 0;
+			}
+			map.put(name.getSales(), counts + Integer.parseInt(name.getNumber()));
 		});
 		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
@@ -104,8 +107,11 @@ public class RollerShutterService {
 		}
 		Map<String, Integer> map = new HashMap<>();
 		RollerShutter.forEach(name -> {
-			Integer counts = map.get(name.getNumber());
-			map.put(name.getSales(), counts == null ? 1 : ++counts);
+			Integer counts = map.get(name.getSales());
+			if(counts == null) {
+				counts = 0;
+			}
+			map.put(name.getSales(), counts + Integer.parseInt(name.getNumber()));
 		});
 		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();

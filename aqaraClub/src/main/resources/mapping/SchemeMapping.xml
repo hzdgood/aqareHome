@@ -19,4 +19,8 @@
   		insert into scheme ( orderNumber, customerName, telephone, productName, productCode, number, money, yesNoFee, serviceFee, date) 
   			values( #{orderNumber}, #{customerName}, #{telephone}, #{productName}, #{productCode}, #{number}, #{money}, #{yesNoFee}, #{serviceFee}, NOW())
 	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.Scheme">
+		delete from scheme where id = #{id}
+	</delete>
 </mapper>

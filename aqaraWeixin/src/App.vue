@@ -18,8 +18,7 @@
     <div v-if="userStatus == false">
       <user-bind @close="close()"></user-bind>
     </div>
-    <Loading v-show="loading"></Loading>
-    <confirm v-show="confirm" :msg="confirmInfo" @close="closeConfirm()"></confirm>
+    <!-- <confirm v-show="confirm" :msg="confirmInfo" @close="closeConfirm()"></confirm> -->
   </div>
 </template>
 <script lang="ts">
@@ -29,9 +28,7 @@ import userBind from '@/components/bind/userBind.vue'
 import customerTag from '@/views/customerTag.vue'
 import customerStage from '@/views/customerStage.vue'
 import footContent from '@/components/foot/footContent.vue'
-import Loading from '@/components/common/loading.vue'
-import myConfirm from '@/components/common/myConfirm.vue'
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import '@/css/aqara.css'
@@ -43,37 +40,14 @@ import '@/css/aqara.css'
     'customer-tag': customerTag,
     'customer-stage': customerStage,
     'foot-content': footContent,
-    'user-bind': userBind,
-    Loading: Loading,
-    confirm: myConfirm
+    'user-bind': userBind
   }
 })
 export default class Actions extends Vue {
   userStatus = true
-  loading = false
   confirm = false
-  confirmInfo = ''
   customerInfo = table.customerInfo
   userId = localStorage.getItem('userId')
-
-  @Watch('$store.state.Loading')
-  showLoad () {
-    if (this.loading) {
-      this.loading = false
-    } else {
-      this.loading = true
-    }
-  }
-
-  @Watch('$store.state.confirm')
-  showConfirm () {
-    this.confirmInfo = this.$store.state.confirmInfo
-    if (this.confirm) {
-      this.confirm = false
-    } else {
-      this.confirm = true
-    }
-  }
 
   async mounted () {
     const data = {
@@ -102,10 +76,6 @@ export default class Actions extends Vue {
   close () {
     this.userStatus = true
     location.reload()
-  }
-
-  closeConfirm () {
-    this.confirm = false
   }
 }
 </script>

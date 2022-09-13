@@ -59,7 +59,7 @@ public class MyScheduleConfig {
 		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url);
 	}
 	
-	@Scheduled(cron = "0 30 08 * * ?")
+	@Scheduled(cron = "0 34 14 * * ?")
 	private void myTasks2() {
 		try {
 			List<Huoban> list = huobanService.select();
@@ -72,21 +72,22 @@ public class MyScheduleConfig {
 		}
 	}
 	
-	@Scheduled(cron = "0 00 08 * * ?")
+	@Scheduled(cron = "0 32 14 * * ?")
 	private void myTasks3() {
 		OpenCurtainService.delete();
 		RollerShutterService.delete();
 	}
 	
-	@Scheduled(cron = "0 00 09 * * ?")
+	@Scheduled(cron = "0 23 15 * * ?")
 	private void myTasks4() {
-		String str = OpenCurtainService.getCurtainData();
+		//String str = OpenCurtainService.getCurtainData();
 		String str1 = OpenCurtainService.getCurtainData1();
-		String str2 = RollerShutterService.getShutterData();
-		String str3 = RollerShutterService.getShutterData1();
-		HttpService.workRequset1(str);
-		HttpService.workRequset1(str1);
-		HttpService.workRequset2(str2);
-		HttpService.workRequset2(str3);
+//		String str2 = RollerShutterService.getShutterData();
+//		String str3 = RollerShutterService.getShutterData1();
+		System.out.println(str1);
+//		HttpService.workRequset1(str);
+//		HttpService.workRequset1(str1);
+//		HttpService.workRequset2(str2);
+//		HttpService.workRequset2(str3);
 	}
 }

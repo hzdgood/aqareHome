@@ -30,8 +30,8 @@
         <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
     </div>
-    <a-modal :visible="visible" :modalText="modalText"></a-modal>
-    <a-load :loadVisible="loadVisible"></a-load>
+    <my-Modal :visible="visible" :modalText="modalText"></my-Modal>
+    <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
 
@@ -45,8 +45,8 @@ import loading from '@/components/common/loading.vue'
 @Component({
   name: 'schemeEdit',
   components: {
-    'a-Modal': myModal,
-    'a-load': loading
+    'my-Modal': myModal,
+    'my-load': loading
   }
 })
 export default class Home extends Vue {
@@ -56,7 +56,7 @@ export default class Home extends Vue {
   fileList: any[] = [];
   upFiles: any[] = [];
   visible = false
-  modalText = false
+  modalText = ""
   loadVisible = false
 
   async mounted () {
@@ -83,6 +83,7 @@ export default class Home extends Vue {
       this.errorInfo('请选择PDF文件！')
       return
     }
+    this.uploadStart()
     file = file.files[0]
     const formData = new FormData()
     formData.append('source', file)
@@ -102,7 +103,6 @@ export default class Home extends Vue {
 
   // 获取所有的产品信息
   async saveClick () {
-    this.uploadStart()
     let schemeType: any = document.getElementById('schemeType')
     schemeType = schemeType.options[schemeType.selectedIndex].value
     // 判断是否pdf上传
@@ -126,6 +126,7 @@ export default class Home extends Vue {
       this.errorInfo('请选择EXCEL文件！')
       return
     }
+    this.uploadStart()
     file = file.files[0]
     formData.append('file', file, file.name)
     const res = await uploadFile(formData, '/file/upload') // 1
@@ -271,7 +272,7 @@ export default class Home extends Vue {
     }
     await updateTable(projectId, data) // 修改
     await batchAddPlan(table.customerPlan, json) // 新增
-    this.errorInfo('上传成功')
+    this.errorInfo('上传成功！')
   }
 
   uploadStart () {

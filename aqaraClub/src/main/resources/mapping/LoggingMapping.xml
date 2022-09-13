@@ -9,10 +9,16 @@
 		<result column="info" jdbcType="VARCHAR" property="info" />
 		<result column="date" jdbcType="TIMESTAMP" property="date" />
 	</resultMap>
+	
 	<select id="select" resultType="com.aqara.common.entity.Logging">
 		select * from log where name = #{name} and custom = #{custom}
 	</select>
+	
 	<insert id="insert" parameterType="com.aqara.common.entity.Logging" useGeneratedKeys="true" keyProperty="id">
   		insert into log (name, custom, info, date) values( #{name}, #{custom}, #{info},  NOW() )
 	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.Logging">
+		delete from log where id = #{id}
+	</delete>
 </mapper>

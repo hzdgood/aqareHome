@@ -10,7 +10,12 @@
 	<select id="select" resultType="com.aqara.common.entity.User">
 		select * from user where userName = #{userName}
 	</select>
+	
 	<insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
   		insert into user (userName, passWord) values( #{userName}, #{passWord})
 	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.User">
+		delete from user where id = #{id}
+	</delete>
 </mapper>

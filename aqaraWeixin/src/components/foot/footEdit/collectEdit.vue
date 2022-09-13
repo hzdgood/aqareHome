@@ -82,20 +82,24 @@
         />
       </div>
     </div>
+    <my-Modal :visible="visible" :modalText="errorMsg"></my-Modal>
+    <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
 import { getLocalSale, masterReq } from '@/config/common'
-import {
-  SearchInfo,
-  addInfo,
-  uploadImg,
-  procedure,
-  logInsert
-} from '@/config/interFace'
-@Component({})
+import { SearchInfo, addInfo, uploadImg, procedure } from '@/config/interFace'
+import myModal from '@/components/common/myModal.vue'
+import loading from '@/components/common/loading.vue'
+@Component({
+  name: 'collectEdit',
+  components: {
+    'my-Modal': myModal,
+    'my-load': loading
+  }
+})
 export default class Home extends Vue {
   collectType = collectType;
   projectCode = '';
@@ -107,8 +111,11 @@ export default class Home extends Vue {
   title = '';
   quotationId = '';
   receivable = '';
+  visible = false
+  loadVisible = false
   userId = localStorage.getItem('userId');
   localName = localStorage.getItem('localName');
+
   async mounted () {
     const data = masterReq(this.userId)
     const result = await SearchInfo(table.projectInfo, data)
@@ -126,17 +133,18 @@ export default class Home extends Vue {
       }
     }
     if (this.projectCode === '') {
-      this.errorMsg = '请先添加项目！'
+      this.errorInfo('请先添加项目！')
       this.errorStatus = false
     }
   }
 
   async saveClick () {
+    this.loadVisible = true
     const req = getLocalSale(this.localName)
     const result = await SearchInfo(table.saleManInfo, req)
     let salesId = ''
     if (result.length === 0) {
-      alert('找不到当前销售人员信息！' + this.localName)
+      this.errorInfo('找不到当前销售人员信息！' + this.localName)
       return
     }
     for (let i = 0; i < result.length; i++) {
@@ -150,14 +158,13 @@ export default class Home extends Vue {
     collectType = collectType.options[collectType.selectedIndex].value
     const file: any = document.getElementById('file')
     if (collectMoney.value === '') {
-      alert('请输入金额!')
+      this.errorInfo('请输入金额!')
       return
     }
     if (typeof file.files[0] === 'undefined') {
-      alert('请上传图片!')
+      this.errorInfo('请上传图片!')
       return
     }
-    // this.$store.dispatch('Loading')
     // 上传图片
     if (projectType === '1') {
       this.errorStatus = false
@@ -173,12 +180,10 @@ export default class Home extends Vue {
         }
       }
       const result = await addInfo(table.collectTable, data)
-      await logInsert('收款定金成功: ' + collectMoney.value)
       this.run(result)
     } else {
       if (this.title === '') {
-        alert('请生成报价单！')
-        // this.$store.dispatch('Loading')
+        this.errorInfo('请生成报价单！')
         return
       }
       this.errorStatus = false
@@ -195,7 +200,6 @@ export default class Home extends Vue {
         }
       }
       const result = await addInfo(table.collectTable, data)
-      await logInsert('收款全款成功: ' + collectMoney.value)
       this.run(result)
     }
   }
@@ -216,7 +220,6 @@ export default class Home extends Vue {
   }
 
   async typeChange () {
-    // this.$store.dispatch('Loading')
     let projectType: any = document.getElementById('projectType')
     projectType = projectType.options[projectType.selectedIndex].value
     if (projectType === '2') {
@@ -236,8 +239,7 @@ export default class Home extends Vue {
       }
       const result1 = await SearchInfo(table.proposal, obj1)
       if (result1.length === 0) {
-        alert('请生成报价单！')
-        // this.$store.dispatch('Loading')
+        this.errorInfo('请生成报价单！')
         return
       }
       this.title = result1[0].title
@@ -253,7 +255,6 @@ export default class Home extends Vue {
       this.quotationStatus = false
       this.receivable = ''
     }
-    // this.$store.dispatch('Loading')
   }
 
   async run (result: any) {
@@ -262,7 +263,13 @@ export default class Home extends Vue {
       data: { item: { item_id: result.item_id } }
     }
     await procedure('3000000000246006', obj)
-    // this.$store.dispatch('Loading')
+    this.loadVisible = false
+  }
+
+  errorInfo (str: any) {
+    this.loadVisible = false
+    this.visible = true
+    this.errorMsg = str
   }
 
   closeClick () {
