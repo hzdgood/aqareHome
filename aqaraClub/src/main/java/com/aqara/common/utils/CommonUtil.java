@@ -47,5 +47,4 @@ public class CommonUtil {
 				+ "\"query\":{\"in\":[1,2]}}]},\"offset\":0,\"limit\":200}";
 		return str;
 	}
-	
 }

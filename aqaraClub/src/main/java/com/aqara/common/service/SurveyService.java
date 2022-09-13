@@ -83,6 +83,9 @@ public class SurveyService {
 	public String getSurveyData() {
 		String str = "**今日CRM新增工勘TOP** \n";
 		List<Survey> Survey = surveyMapper.currentData();
+		if(Survey.size() == 0) {
+			return "";
+		}
 		Map<String, Integer> map = new HashMap<>();
 		Survey.forEach(name -> {
 			Integer counts = map.get(name.getSales());

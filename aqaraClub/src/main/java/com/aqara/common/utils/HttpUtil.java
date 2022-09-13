@@ -16,7 +16,9 @@ import com.alibaba.fastjson.JSONObject;
 
 public class HttpUtil {
 	
-	public static String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
+	public static String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c"; //企业微信机器人推送 内部群
+	public static String WX_TOKEN1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";//企业微信机器人推送 米联达
+	public static String WX_TOKEN2 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";//企业微信机器人推送 库沃
 	
 	public static String get(String requestUrl) {
 		try {
@@ -130,7 +132,7 @@ public class HttpUtil {
 	public static void workRequset1(String temp) {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost(WX_TOKEN);
+			HttpPost httpPost = new HttpPost(WX_TOKEN1);
 			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
 			Map<String, Object> param = new HashMap<String, Object>();
 			Map<String, String> map = new HashMap<String, String>();
@@ -154,7 +156,7 @@ public class HttpUtil {
 	public static void workRequset2(String temp) {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost(WX_TOKEN);
+			HttpPost httpPost = new HttpPost(WX_TOKEN2);
 			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
 			Map<String, Object> param = new HashMap<String, Object>();
 			Map<String, String> map = new HashMap<String, String>();

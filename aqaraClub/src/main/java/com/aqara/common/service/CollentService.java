@@ -79,6 +79,9 @@ public class CollentService {
 	public String getCollentData() {
 		String str = "**今日CRM新增全款TOP** \n";
 		List<Collent> collent = collentMapper.currentData();
+		if(collent.size() == 0) {
+			return "";
+		}
 		Map<String, Integer> map = new HashMap<>();
 		collent.forEach(name -> {
 			Integer counts = map.get(name.getSales());

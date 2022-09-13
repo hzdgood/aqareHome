@@ -74,6 +74,9 @@ public class CustomerService {
 	public String getCustomerData() {
 		String str = "**今日CRM新增客户TOP** \n";
 		List<Customer> customer = customerMapper.currentData();
+		if(customer.size() == 0) {
+			return "";
+		}
 		Map<String, Integer> map = new HashMap<>();
 		customer.forEach(name -> {
 			Integer counts = map.get(name.getSales());

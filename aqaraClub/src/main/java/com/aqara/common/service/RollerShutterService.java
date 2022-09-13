@@ -1,15 +1,14 @@
 package com.aqara.common.service;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.*;
 import com.aqara.common.entity.RollerShutter;
 import com.aqara.common.mapper.*;
 import com.aqara.common.properties.HuobanProperties;
-import com.aqara.common.utils.CommonUtil;
+import com.aqara.common.utils.*;
 
 @Service
 public class RollerShutterService {
@@ -77,13 +76,45 @@ public class RollerShutterService {
 	
 	public String getShutterData() {
 		String str = "**卷帘5天未发货** \n";
-		List<RollerShutter> list = RollerShutterMapper.currentData();
-		return "";
+		List<RollerShutter> RollerShutter = RollerShutterMapper.currentData();
+		if(RollerShutter.size() == 0) {
+			return "";
+		}
+		Map<String, Integer> map = new HashMap<>();
+		RollerShutter.forEach(name -> {
+			Integer counts = map.get(name.getNumber());
+			map.put(name.getSales(), counts == null ? 1 : ++counts);
+		});
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
+		while (entries.hasNext()) {
+		    Map.Entry entry = (Map.Entry) entries.next();
+		    String key = (String)entry.getKey();
+		    Integer value = (Integer)entry.getValue();
+		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		}
+		return str;
 	}
 	
 	public String getShutterData1() {
 		String str = "**卷帘3天未制作** \n";
-		List<RollerShutter> list = RollerShutterMapper.currentData1();
-		return "";
+		List<RollerShutter> RollerShutter = RollerShutterMapper.currentData1();
+		if(RollerShutter.size() == 0) {
+			return "";
+		}
+		Map<String, Integer> map = new HashMap<>();
+		RollerShutter.forEach(name -> {
+			Integer counts = map.get(name.getNumber());
+			map.put(name.getSales(), counts == null ? 1 : ++counts);
+		});
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
+		while (entries.hasNext()) {
+		    Map.Entry entry = (Map.Entry) entries.next();
+		    String key = (String)entry.getKey();
+		    Integer value = (Integer)entry.getValue();
+		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		}
+		return str;
 	}
 }

@@ -1,15 +1,14 @@
 package com.aqara.common.service;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.*;
 import com.aqara.common.entity.OpenCurtain;
 import com.aqara.common.mapper.*;
 import com.aqara.common.properties.HuobanProperties;
-import com.aqara.common.utils.CommonUtil;
+import com.aqara.common.utils.*;
 
 @Service
 public class OpenCurtainService {
@@ -77,13 +76,45 @@ public class OpenCurtainService {
 	
 	public String getCurtainData() {
 		String str = "**开合帘5天未发货** \n";
-		List<OpenCurtain> list = OpenCurtainMapper.currentData();
-		return "";
+		List<OpenCurtain> OpenCurtain = OpenCurtainMapper.currentData();
+		if(OpenCurtain.size() == 0) {
+			return "";
+		}
+		Map<String, Integer> map = new HashMap<>();
+		OpenCurtain.forEach(name -> {
+			Integer counts = map.get(name.getNumber());
+			map.put(name.getSales(), counts == null ? 1 : ++counts);
+		});
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
+		while (entries.hasNext()) {
+		    Map.Entry entry = (Map.Entry) entries.next();
+		    String key = (String)entry.getKey();
+		    Integer value = (Integer)entry.getValue();
+		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		}
+		return str;
 	}
 	
 	public String getCurtainData1() {
 		String str = "**开合帘3天未制作** \n";
-		List<OpenCurtain> list = OpenCurtainMapper.currentData1();
-		return "";
+		List<OpenCurtain> OpenCurtain = OpenCurtainMapper.currentData1();
+		if(OpenCurtain.size() == 0) {
+			return "";
+		}
+		Map<String, Integer> map = new HashMap<>();
+		OpenCurtain.forEach(name -> {
+			Integer counts = map.get(name.getNumber());
+			map.put(name.getSales(), counts == null ? 1 : ++counts);
+		});
+		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Iterator entries = map1.entrySet().iterator();
+		while (entries.hasNext()) {
+		    Map.Entry entry = (Map.Entry) entries.next();
+		    String key = (String)entry.getKey();
+		    Integer value = (Integer)entry.getValue();
+		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		}
+		return str;
 	}
 }
