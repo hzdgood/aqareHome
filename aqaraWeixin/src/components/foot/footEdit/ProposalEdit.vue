@@ -1,90 +1,90 @@
 <template>
   <div>
-    <div class="floatDiv"></div>
-    <div class="infoDiv">
-      <div class="headerDiv">报价单</div>
-      <div class="addSite" v-show="errorStatus">
+    <div class='floatDiv'></div>
+    <div class='infoDiv'>
+      <div class='headerDiv'>报价单</div>
+      <div class='addSite' v-show='errorStatus'>
         <input
-          v-show="createStatus"
-          id="createButton"
-          class="saveButton"
-          type="button"
-          value="生成报价"
-          @click="create()"
+          v-show='createStatus'
+          id='createButton'
+          class='saveButton'
+          type='button'
+          value='生成报价'
+          @click='create()'
         />
         <input
-          class="closeButton"
-          type="button"
-          value="关闭"
-          @click="closeClick()"
+          class='closeButton'
+          type='button'
+          value='关闭'
+          @click='closeClick()'
         />
       </div>
-      <div v-for="item in dataList" :key="item.id">
-        <table class="EditTable" v-show="errorStatus">
+      <div v-for='item in dataList' :key='item.id'>
+        <table class='EditTable' v-show='errorStatus'>
           <tr>
             <td>订单类型</td>
-            <td><input type="text" :value="item.type" readonly /></td>
+            <td><input type='text' :value='item.type' readonly /></td>
           </tr>
           <tr>
             <td>方案金额</td>
-            <td><input type="text" :value="item.schemeMoney" readonly /></td>
+            <td><input type='text' :value='item.schemeMoney' readonly /></td>
           </tr>
           <tr>
             <td>优惠金额</td>
-            <td><input id="discount" type="text" :value="item.discount" /></td>
+            <td><input id='discount' type='text' :value='item.discount' /></td>
           </tr>
           <tr>
             <td>应收金额</td>
-            <td><input type="text" :value="item.receivable" readonly /></td>
+            <td><input type='text' :value='item.receivable' readonly /></td>
           </tr>
           <tr>
             <td>已收金额</td>
-            <td><input type="text" :value="item.Received" readonly /></td>
+            <td><input type='text' :value='item.Received' readonly /></td>
           </tr>
           <tr>
             <td>上传合同</td>
             <td>
               <input
-                id="file"
-                type="file"
+                id='file'
+                type='file'
                 multiple
-                accept="image/*"
-                placeholder="请选择文件"
+                accept='image/*'
+                placeholder='请选择文件'
               />
             </td>
           </tr>
         </table>
-        <div class="buttonSite">
+        <div class='buttonSite'>
           <input
-            class="saveButton"
-            type="button"
-            value="同步"
-            @click="synchroClick(item)"
+            class='saveButton'
+            type='button'
+            value='同步'
+            @click='synchroClick(item)'
           />
           <input
-            class="saveButton"
-            type="button"
-            value="保存"
-            @click="saveClick(item)"
+            class='saveButton'
+            type='button'
+            value='保存'
+            @click='saveClick(item)'
           />
         </div>
       </div>
-      <div v-if="errorStatus == false">
-        <div class="buttonSite">
+      <div v-if='errorStatus == false'>
+        <div class='buttonSite'>
           <input
-            class="closeButton"
-            type="button"
-            value="关闭"
-            @click="closeClick()"
+            class='closeButton'
+            type='button'
+            value='关闭'
+            @click='closeClick()'
           />
         </div>
       </div>
     </div>
-    <my-Modal :visible="visible" :modalText="errorMsg"></my-Modal>
-    <my-load :loadVisible="loadVisible"></my-load>
+    <my-Modal :visible='visible' :modalText='errorMsg'></my-Modal>
+    <my-load :loadVisible='loadVisible'></my-load>
   </div>
 </template>
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
 import {
@@ -165,7 +165,7 @@ export default class Home extends Vue {
       }
     }
     await addInfo(table.proposal, obj)
-    this.update("新增成功！")
+    this.update('新增成功！')
   }
 
   // 查询数据
@@ -264,7 +264,7 @@ export default class Home extends Vue {
       }
       await updateTable(item.proposalId, data)
     }
-    this.errorInfo("提交成功！")
+    this.errorInfo('提交成功！')
   }
 
   // 同步
@@ -277,19 +277,19 @@ export default class Home extends Vue {
       }
     }
     await updateTable(item.proposalId, data)
-    this.update("同步完成！")
+    this.update('同步完成！')
   }
 
   errorInfo (str: any) {
-    this.errorMsg = str;
+    this.errorMsg = str
     this.loadVisible = false
-    this.visible = true;
+    this.visible = true
   }
 
   // 更新
   update (str: String) {
     setTimeout(() => {
-      this.search();
+      this.search()
       this.errorInfo(str)
     }, 1000)
   }

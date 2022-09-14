@@ -358,34 +358,12 @@ public class ReadExcelUtil {
 							Project.setSaleConfirm(cell.getStringCellValue());
 						} else if (j == 4) {
 							Project.setEnd(cell.getStringCellValue());
-						} else if (j == 5) {
-							Project.setDeliveryDegree(cell.getStringCellValue());
-						} else if (j == 6) {
-							Project.setCompletDegree(cell.getStringCellValue());
 						} else if (j == 7) {
 							Project.setProjectName(cell.getStringCellValue());
 						} else if (j == 8) {
 							Project.setProjectTelephone(cell.getStringCellValue());
 						} else if (j == 9) {
 							Project.setProjectType(cell.getStringCellValue());
-						} else if (j == 10) {
-							Project.setMainProject(cell.getStringCellValue());
-						} else if (j == 11) {
-							Project.setGroupID(cell.getStringCellValue());
-						} else if (j == 12) {
-							Project.setFullPdf(cell.getStringCellValue());
-						} else if (j == 13) {
-							Project.setSchemePicture(cell.getStringCellValue());
-						} else if (j == 14) {
-							Project.setSystemSelect(cell.getStringCellValue());
-						} else if (j == 15) {
-							Project.setAddress(cell.getStringCellValue());
-						} else if (j == 16) {
-							Project.setArea(cell.getStringCellValue());
-						} else if (j == 17) {
-							Project.setVillage(cell.getStringCellValue());
-						} else if (j == 18) {
-							Project.setCreateName(cell.getStringCellValue());
 						} else if (j == 19) {
 							Date data = simpleDateFormat.parse(cell.getStringCellValue());
 							Project.setCreateTime(data);

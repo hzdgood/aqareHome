@@ -22,13 +22,13 @@ export default class Home extends Vue {
     type: Boolean,
     required: true
   })
-  visible!: any;
+  visible!: any
 
   @Prop({
     type: String,
     required: false
   })
-  modalText!: any;
+  modalText!: any
 
   handleOk () {
     this.visible = false

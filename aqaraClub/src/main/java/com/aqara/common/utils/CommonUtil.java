@@ -47,4 +47,11 @@ public class CommonUtil {
 				+ "\"query\":{\"in\":[1,2]}}]},\"offset\":0,\"limit\":200}";
 		return str;
 	}
+	
+	public static String getProjectData() {
+		String str = "{\"where\":{\"and\":[{\"field\":\"created_on\","
+				+ "\"query\":{\"eq\":\"today\"}}]},\"offset\":0,\"limit\":20}";
+		return str;
+	}
+	
 }

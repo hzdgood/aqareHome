@@ -9,19 +9,13 @@ public class Project {
 	private String decorationProgress; // 装修进度
 	private String saleConfirm; // 销售确认
 	private String end;// 完结
-	private String deliveryDegree;// 发货度
-	private String completDegree;// 完成度
 	private String projectName;// 项目姓名
 	private String projectTelephone;// 项目电话
 	private String projectType;// 项目类型
 	private String mainProject;// 主项目
 	private String groupID;// 群ID
-	private String fullPdf; // 全款pdf
-	private String schemePicture;// 方案图片
-	private String systemSelect;// 系统选择
-	private String address;// 地址
-	private String area;// 区域
-	private String village;// 小区
+	private String sales; // 销售
+	private String department;
 	private String createName;
 	private Date createTime;
 	private String updateName;
@@ -75,22 +69,6 @@ public class Project {
 		this.end = end;
 	}
 
-	public String getDeliveryDegree() {
-		return deliveryDegree;
-	}
-
-	public void setDeliveryDegree(String deliveryDegree) {
-		this.deliveryDegree = deliveryDegree;
-	}
-
-	public String getCompletDegree() {
-		return completDegree;
-	}
-
-	public void setCompletDegree(String completDegree) {
-		this.completDegree = completDegree;
-	}
-
 	public String getProjectName() {
 		return projectName;
 	}
@@ -115,6 +93,22 @@ public class Project {
 		this.projectType = projectType;
 	}
 
+	public String getSales() {
+		return sales;
+	}
+
+	public void setSales(String sales) {
+		this.sales = sales;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public String getMainProject() {
 		return mainProject;
 	}
@@ -129,54 +123,6 @@ public class Project {
 
 	public void setGroupID(String groupID) {
 		this.groupID = groupID;
-	}
-
-	public String getFullPdf() {
-		return fullPdf;
-	}
-
-	public void setFullPdf(String fullPdf) {
-		this.fullPdf = fullPdf;
-	}
-
-	public String getSchemePicture() {
-		return schemePicture;
-	}
-
-	public void setSchemePicture(String schemePicture) {
-		this.schemePicture = schemePicture;
-	}
-
-	public String getSystemSelect() {
-		return systemSelect;
-	}
-
-	public void setSystemSelect(String systemSelect) {
-		this.systemSelect = systemSelect;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getArea() {
-		return area;
-	}
-
-	public void setArea(String area) {
-		this.area = area;
-	}
-
-	public String getVillage() {
-		return village;
-	}
-
-	public void setVillage(String village) {
-		this.village = village;
 	}
 
 	public String getCreateName() {

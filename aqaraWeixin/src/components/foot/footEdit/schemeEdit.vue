@@ -56,7 +56,7 @@ export default class Home extends Vue {
   fileList: any[] = [];
   upFiles: any[] = [];
   visible = false
-  modalText = ""
+  modalText = ''
   loadVisible = false
 
   async mounted () {

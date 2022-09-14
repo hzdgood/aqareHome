@@ -28,6 +28,9 @@ public class MyScheduleConfig {
 	HttpService HttpService;
 	
 	@Autowired
+	ProjectService ProjectService;
+	
+	@Autowired
 	OpenCurtainService OpenCurtainService;
 	
 	@Autowired
@@ -61,10 +64,10 @@ public class MyScheduleConfig {
 	
 	@Scheduled(cron = "0 34 14 * * ?")
 	private void myTasks2() {
+		List<Huoban> list = huobanService.select();
+		Huoban Huoban = list.get(list.size() - 1);
+		String ticket = Huoban.getTicket();
 		try {
-			List<Huoban> list = huobanService.select();
-			Huoban Huoban = list.get(list.size() - 1);
-			String ticket = Huoban.getTicket();
 			OpenCurtainService.getCurtainList(ticket);
 			RollerShutterService.getShutterList(ticket);
 		} catch (Exception e) {
@@ -89,5 +92,17 @@ public class MyScheduleConfig {
 //		HttpService.workRequset1(str1);
 //		HttpService.workRequset2(str2);
 //		HttpService.workRequset2(str3);
+	}
+	
+	@Scheduled(cron = "0 28 17 * * ?")
+	private void myTasks5() {
+		List<Huoban> list = huobanService.select();
+		Huoban Huoban = list.get(list.size() - 1);
+		String ticket = Huoban.getTicket();
+		try {
+			ProjectService.getProjectList(ticket);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

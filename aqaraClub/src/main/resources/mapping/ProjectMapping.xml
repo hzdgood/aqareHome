@@ -9,19 +9,13 @@
 		<result column="decorationProgress" jdbcType="VARCHAR" property="decorationProgress" />
 		<result column="saleConfirm" jdbcType="VARCHAR" property="saleConfirm" />
 		<result column="end" jdbcType="VARCHAR" property="end" />
-		<result column="deliveryDegree" jdbcType="VARCHAR" property="deliveryDegree" />
-		<result column="completDegree" jdbcType="VARCHAR" property="completDegree" />
 		<result column="projectName" jdbcType="VARCHAR" property="projectName" />
 		<result column="projectTelephone" jdbcType="VARCHAR" property="projectTelephone" />
 		<result column="projectType" jdbcType="VARCHAR" property="projectType" />
 		<result column="mainProject" jdbcType="VARCHAR" property="mainProject" />
 		<result column="groupID" jdbcType="VARCHAR" property="groupID" />
-		<result column="fullPdf" jdbcType="VARCHAR" property="fullPdf" />
-		<result column="schemePicture" jdbcType="VARCHAR" property="schemePicture" />
-		<result column="systemSelect" jdbcType="VARCHAR" property="systemSelect" />
-		<result column="address" jdbcType="VARCHAR" property="address" />
-		<result column="area" jdbcType="VARCHAR" property="area" />
-		<result column="village" jdbcType="VARCHAR" property="village" />
+		<result column="sales" jdbcType="VARCHAR" property="sales" />
+		<result column="department" jdbcType="VARCHAR" property="department" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
@@ -33,15 +27,15 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
-		insert into project values( #{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end}, #{deliveryDegree}, #{completDegree},
-		 #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{fullPdf}, #{schemePicture}, #{systemSelect}, #{address}, 
-		 #{area}, #{village}, #{createName}, NOW(), #{updateName}, NOW())
+		insert into project values( #{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end},
+		 #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{sales}, #{department}
+		 #{createName}, NOW(), #{updateName}, NOW())
 	</insert>
 	
 	<insert id="upload" parameterType="com.aqara.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
-		insert into project values( #{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end}, #{deliveryDegree}, #{completDegree},
-		 #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{fullPdf}, #{schemePicture}, #{systemSelect}, #{address}, 
-		 #{area}, #{village}, #{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE} 
+		insert into project values( #{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end},
+		 #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{sales}, #{department}
+		 #{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE} 
 		 )
 	</insert>
 	
