@@ -32,8 +32,8 @@ public class ProjectService {
 		projectMapper.upload(project);
 	}
 	
-	public void delete(Integer id) {
-		projectMapper.delete(id);
+	public void delete() {
+		projectMapper.delete();
 	}
 	
 	public void getProjectList(String ticket) throws Exception{
@@ -48,7 +48,8 @@ public class ProjectService {
 			JSONArray array1 = obj.getJSONArray("fields");
 			Project.setCreateTime(simpleDateFormat.parse(obj.getString("created_on")));
 			Project.setUpdateTime(simpleDateFormat.parse(obj.getString("updated_on")));
-			Project.setProjectType("全屋");
+			Project.setProjectType(obj.getString("item_id"));
+			Project.setItemId(requestUrl);;
 			for (int j = 0; j < array1.size(); j++) {
 				JSONObject obj1 = array1.getJSONObject(j);
 				String field_id = obj1.getString("field_id");
@@ -91,8 +92,11 @@ public class ProjectService {
 	}
 	
 	public String getCurtainData() {
-		String str = "**开合帘5天未发货** \n";
-		
+		String str = "**项目一个月内未结算** \n";
+		List<Project> Project = projectMapper.currentData();
+		if(Project.size() == 0) {
+			return "";
+		}
 		return str;
 	}
 }

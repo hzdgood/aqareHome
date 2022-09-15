@@ -15,5 +15,5 @@ public interface ProjectMapper {
 	
 	void upload(Project project);
 	
-	void delete(Integer id);
+	void delete();
 }

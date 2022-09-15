@@ -16,6 +16,7 @@ public class Project {
 	private String groupID;// 群ID
 	private String sales; // 销售
 	private String department;
+	private String itemId;
 	private String createName;
 	private Date createTime;
 	private String updateName;
@@ -123,6 +124,14 @@ public class Project {
 
 	public void setGroupID(String groupID) {
 		this.groupID = groupID;
+	}
+
+	public String getItemId() {
+		return itemId;
+	}
+
+	public void setItemId(String itemId) {
+		this.itemId = itemId;
 	}
 
 	public String getCreateName() {

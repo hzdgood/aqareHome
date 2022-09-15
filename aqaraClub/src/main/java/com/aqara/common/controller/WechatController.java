@@ -16,9 +16,6 @@ public class WechatController {
 	WxProperties WxProperties;
 
 	@Autowired
-	UserService UserService;
-
-	@Autowired
 	WechatService WechatService;
 
 	/**

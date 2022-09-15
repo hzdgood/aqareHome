@@ -26,6 +26,10 @@
 		select * from project where 1=1 and code = #{code}
 	</select>
 	
+	<select id="currentData" resultType="com.aqara.common.entity.Project">
+		select * from project where 1=1
+	</select>
+	
 	<insert id="insert" parameterType="com.aqara.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
 		insert into project values( #{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end},
 		 #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{sales}, #{department}
@@ -40,6 +44,6 @@
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.Project">
-		delete from project where id = #{id}
+		delete from project where 1=1
 	</delete>
 </mapper>
