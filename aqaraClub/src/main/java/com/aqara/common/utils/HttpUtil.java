@@ -16,10 +16,6 @@ import com.alibaba.fastjson.JSONObject;
 
 public class HttpUtil {
 	
-	public static String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c"; //企业微信机器人推送 内部群
-	public static String WX_TOKEN1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";//企业微信机器人推送 米联达
-	public static String WX_TOKEN2 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";//企业微信机器人推送 库沃
-	
 	public static String get(String requestUrl) {
 		try {
 			URL url = new URL(requestUrl);
@@ -105,58 +101,10 @@ public class HttpUtil {
 		}
 	}
 	
-	public static void workRequset(String temp) {
+	public static void workRequset(String temp, String WX_TOKEN) {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpPost httpPost = new HttpPost(WX_TOKEN);
-			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
-			Map<String, Object> param = new HashMap<String, Object>();
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("content", temp);
-			// map.put("mentioned_list","@all");
-			param.put("msgtype", "markdown");
-			param.put("markdown", map);
-			String p = map2json(param);
-			StringEntity entity = new StringEntity(p, "utf-8");
-			httpPost.setEntity(entity);
-			HttpResponse response = httpClient.execute(httpPost);
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-				System.out.println(result);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void workRequset1(String temp) {
-		try {
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost(WX_TOKEN1);
-			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
-			Map<String, Object> param = new HashMap<String, Object>();
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("content", temp);
-			// map.put("mentioned_list","@all");
-			param.put("msgtype", "markdown");
-			param.put("markdown", map);
-			String p = map2json(param);
-			StringEntity entity = new StringEntity(p, "utf-8");
-			httpPost.setEntity(entity);
-			HttpResponse response = httpClient.execute(httpPost);
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-				System.out.println(result);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void workRequset2(String temp) {
-		try {
-			HttpClient httpClient = new DefaultHttpClient();
-			HttpPost httpPost = new HttpPost(WX_TOKEN2);
 			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
 			Map<String, Object> param = new HashMap<String, Object>();
 			Map<String, String> map = new HashMap<String, String>();

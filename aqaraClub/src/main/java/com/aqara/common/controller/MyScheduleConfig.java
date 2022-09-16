@@ -55,14 +55,15 @@ public class MyScheduleConfig {
 
 	@Scheduled(cron = "0 35 20 * * ?")
 	private void myTasks1() {
+		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
 		String customer = customerService.getCustomerData();
 		String collent = CollentService.getCollentData();
 		String survey = SurveyService.getSurveyData();
 		String url = "[查看详情](https://app.huoban.com/home)";
-		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url);
+		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url, WX_TOKEN);
 	}
 	
-	@Scheduled(cron = "0 34 14 * * ?")
+	//@Scheduled(cron = "0 34 14 * * ?")
 	private void myTasks2() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
@@ -75,13 +76,13 @@ public class MyScheduleConfig {
 		}
 	}
 	
-	@Scheduled(cron = "0 32 14 * * ?")
+	//@Scheduled(cron = "0 32 14 * * ?")
 	private void myTasks3() {
 		OpenCurtainService.delete();
 		RollerShutterService.delete();
 	}
 	
-	@Scheduled(cron = "0 23 15 * * ?")
+	//@Scheduled(cron = "0 23 15 * * ?")
 	private void myTasks4() {
 		//String str = OpenCurtainService.getCurtainData();
 		String str1 = OpenCurtainService.getCurtainData1();
@@ -94,8 +95,13 @@ public class MyScheduleConfig {
 //		HttpService.workRequset2(str3);
 	}
 	
-	@Scheduled(cron = "0 28 17 * * ?")
-	private void myTasks5() {
+	@Scheduled(cron = "0 00 09 * * ?")
+	private void projectDelete() {
+		ProjectService.delete();
+	}
+	
+	@Scheduled(cron = "0 30 09 * * ?")
+	private void projectSelect() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
 		String ticket = Huoban.getTicket();
@@ -104,5 +110,18 @@ public class MyScheduleConfig {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Scheduled(cron = "0 00 10 * * ?")
+	private void projectBroadcast() {
+		List<Project> Project = ProjectService.currentData();
+		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0adf9002-d736-4921-b35f-f36c6429b097";
+		String str0 = "**一个月内未跟踪项目** \n";
+		String str = ProjectService.getCurtainData("徐汇绿地缤纷城店", Project) + "\n";
+		String str1 = ProjectService.getCurtainData("普陀绿地缤纷城店", Project) + "\n";
+		String str2 = ProjectService.getCurtainData("虹口太阳宫店", Project) + "\n";
+		String str3 = ProjectService.getCurtainData("闵行龙之梦店", Project) + "\n";
+		String res = str0 + str + str1 + str2 + str3;
+		HttpService.workRequset(res, WX_TOKEN);
 	}
 }

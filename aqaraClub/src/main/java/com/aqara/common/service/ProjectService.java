@@ -13,30 +13,34 @@ import com.aqara.common.utils.CommonUtil;
 
 @Service
 public class ProjectService {
-	
+
 	@Autowired
 	ProjectMapper projectMapper;
-	
+
 	@Autowired
 	HuobanProperties HuobanProperties;
-	
-	public List<Project> select(String code){
+
+	public List<Project> select(String code) {
 		return projectMapper.select(code);
 	}
 	
+	public List<Project> currentData(){
+		return projectMapper.currentData();
+	}
+
 	public void insert(Project project) {
 		projectMapper.insert(project);
 	}
-	
+
 	public void upload(Project project) {
 		projectMapper.upload(project);
 	}
-	
+
 	public void delete() {
 		projectMapper.delete();
 	}
-	
-	public void getProjectList(String ticket) throws Exception{
+
+	public void getProjectList(String ticket) throws Exception {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String str = CommonUtil.getProjectData();
 		String requestUrl = HuobanProperties.getSearchInfo() + "2100000014956047/find";
@@ -46,10 +50,11 @@ public class ProjectService {
 			Project Project = new Project();
 			JSONObject obj = array.getJSONObject(i);
 			JSONArray array1 = obj.getJSONArray("fields");
-			Project.setCreateTime(simpleDateFormat.parse(obj.getString("created_on")));
-			Project.setUpdateTime(simpleDateFormat.parse(obj.getString("updated_on")));
-			Project.setProjectType(obj.getString("item_id"));
-			Project.setItemId(requestUrl);;
+			// Project.setCreateTime(simpleDateFormat.parse(obj.getString("created_on")));
+			// Project.setUpdateTime(simpleDateFormat.parse(obj.getString("updated_on")));
+			Project.setProjectType("全屋");
+			Project.setItemId(obj.getString("item_id"));
+			;
 			for (int j = 0; j < array1.size(); j++) {
 				JSONObject obj1 = array1.getJSONObject(j);
 				String field_id = obj1.getString("field_id");
@@ -82,21 +87,39 @@ public class ProjectService {
 				if (field_id.equals("1117001102000000")) {
 					Project.setSales(obj2.getString("name"));
 				}
-				if (field_id.equals("1117001107000000")) {
-					Project.setDepartment(obj2.getString("title"));
+				if (field_id.equals("1294001101000000")) {
+					Project.setDepartment(obj2.getString("value"));
 				}
-				
+
 			}
-			projectMapper.upload(Project);
+			projectMapper.insert(Project);
 		}
 	}
-	
-	public String getCurtainData() {
-		String str = "**项目一个月内未结算** \n";
-		List<Project> Project = projectMapper.currentData();
-		if(Project.size() == 0) {
+
+	public String getCurtainData(String depart, List<Project> Project) {
+		if (Project.size() == 0) {
 			return "";
 		}
-		return str;
+		String xhData = "";
+		int currentNumber = 0;
+		for (int i = 0; i < Project.size(); i++) {
+			String name = Project.get(i).getProjectName();
+			String itemId = Project.get(i).getItemId();
+			if(Project.get(i).getDepartment().equals(depart)) {
+				if( currentNumber < 10) {
+					if(currentNumber % 2 == 0) {
+						xhData += ">" + "[" + name + "](https://app.huoban.com/tables/2100000014956047/items/" + itemId + ")";
+					} else {
+						xhData += "   [" + name + "](https://app.huoban.com/tables/2100000014956047/items/" + itemId + ")" + "\n";
+					}
+				}
+				currentNumber = currentNumber + 1;
+			}
+		}
+		if(currentNumber % 3 == 0) {
+			xhData += " \n";
+		}
+		String res =  depart + " 实际数量：" + currentNumber  + "\n" + xhData;
+		return res;
 	}
 }

@@ -26,15 +26,7 @@ public class HttpService {
 		System.out.println(e.getMessage());
 	}
 
-	public void workRequset(String str) {
-		HttpUtil.workRequset(str);
-	}
-	
-	public void workRequset1(String str) {
-		HttpUtil.workRequset1(str);
-	}
-	
-	public void workRequset2(String str) {
-		HttpUtil.workRequset1(str);
+	public void workRequset(String str, String WX_TOKEN) {
+		HttpUtil.workRequset(str, WX_TOKEN);
 	}
 }
