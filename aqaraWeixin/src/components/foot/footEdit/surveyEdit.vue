@@ -102,7 +102,6 @@ export default class Home extends Vue {
         surveyPersonnel: personList,
         surveyType: type
       }
-      console.log(obj)
       this.surveyList.push(obj)
     }
   }

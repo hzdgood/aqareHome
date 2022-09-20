@@ -39,8 +39,7 @@ public class MyScheduleConfig {
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
 	@Scheduled(cron = "0 30 20 * * ?")
-	private void myTasks() {
-		// System.out.println("执行定时任务 " + LocalDateTime.now());
+	private void currentDayCustom() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
 		String ticket = Huoban.getTicket();
@@ -54,45 +53,13 @@ public class MyScheduleConfig {
 	}
 
 	@Scheduled(cron = "0 35 20 * * ?")
-	private void myTasks1() {
+	private void currentDayBroadcast() {
 		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
 		String customer = customerService.getCustomerData();
 		String collent = CollentService.getCollentData();
 		String survey = SurveyService.getSurveyData();
 		String url = "[查看详情](https://app.huoban.com/home)";
 		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url, WX_TOKEN);
-	}
-	
-	//@Scheduled(cron = "0 34 14 * * ?")
-	private void myTasks2() {
-		List<Huoban> list = huobanService.select();
-		Huoban Huoban = list.get(list.size() - 1);
-		String ticket = Huoban.getTicket();
-		try {
-			OpenCurtainService.getCurtainList(ticket);
-			RollerShutterService.getShutterList(ticket);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	//@Scheduled(cron = "0 32 14 * * ?")
-	private void myTasks3() {
-		OpenCurtainService.delete();
-		RollerShutterService.delete();
-	}
-	
-	//@Scheduled(cron = "0 23 15 * * ?")
-	private void myTasks4() {
-		//String str = OpenCurtainService.getCurtainData();
-		String str1 = OpenCurtainService.getCurtainData1();
-//		String str2 = RollerShutterService.getShutterData();
-//		String str3 = RollerShutterService.getShutterData1();
-		System.out.println(str1);
-//		HttpService.workRequset1(str);
-//		HttpService.workRequset1(str1);
-//		HttpService.workRequset2(str2);
-//		HttpService.workRequset2(str3);
 	}
 	
 	@Scheduled(cron = "0 00 09 * * ?")
@@ -123,5 +90,37 @@ public class MyScheduleConfig {
 		String str3 = ProjectService.getCurtainData("闵行龙之梦店", Project) + "\n";
 		String res = str0 + str + str1 + str2 + str3;
 		HttpService.workRequset(res, WX_TOKEN);
+	}
+	
+	@Scheduled(cron = "0 34 14 * * ?")
+	private void myTasks2() {
+		List<Huoban> list = huobanService.select();
+		Huoban Huoban = list.get(list.size() - 1);
+		String ticket = Huoban.getTicket();
+		try {
+			OpenCurtainService.getCurtainList(ticket);
+			RollerShutterService.getShutterList(ticket);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Scheduled(cron = "0 32 14 * * ?")
+	private void myTasks3() {
+		OpenCurtainService.delete();
+		RollerShutterService.delete();
+	}
+	
+	//@Scheduled(cron = "0 23 15 * * ?")
+	private void myTasks4() {
+		//String str = OpenCurtainService.getCurtainData();
+		String str1 = OpenCurtainService.getCurtainData1();
+//			String str2 = RollerShutterService.getShutterData();
+//			String str3 = RollerShutterService.getShutterData1();
+		System.out.println(str1);
+//			HttpService.workRequset1(str);
+//			HttpService.workRequset1(str1);
+//			HttpService.workRequset2(str2);
+//			HttpService.workRequset2(str3);
 	}
 }

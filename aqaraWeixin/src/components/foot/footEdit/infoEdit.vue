@@ -178,13 +178,23 @@
         </div>
       </div>
     </div>
+    <my-Modal :visible="visible" :modalText="modalText"></my-Modal>
+    <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, updateTable, deleteItem } from '@/config/interFace'
 import { table, field, houseType, projectType, decorationStage } from '@/config/config'
-@Component({})
+import myModal from '@/components/common/myModal.vue'
+import loading from '@/components/common/loading.vue'
+@Component({
+  name: 'infoEdit',
+  components: {
+    'my-Modal': myModal,
+    'my-load': loading
+  }
+})
 export default class Home extends Vue {
   houseType: any = houseType;
   projectType: any = projectType;
@@ -197,6 +207,10 @@ export default class Home extends Vue {
   decorationStage = decorationStage;
   remarks = '';
   addShow = true;
+
+  visible = false
+  modalText = ''
+  loadVisible = false
 
   // 查询所有的销售员
   async getSaleManList () {
@@ -378,6 +392,7 @@ export default class Home extends Vue {
 
   // 新增一条数据 主要就是修改伙伴云记录
   async addClick () {
+    this.uploadStart()
     this.addShow = false
     if (this.projectList.length >= 1) {
       if (!confirm('该客户已有项目，请确认是否继续创建？')) {
@@ -404,6 +419,7 @@ export default class Home extends Vue {
       const data = { fields: { 2200000184840062: [1] } }
       await updateTable(itemId, data)
       setTimeout(this.getInfoList, 1000)
+      this.errorInfo('新增成功')
     }
   }
 
@@ -449,33 +465,34 @@ export default class Home extends Vue {
 
     // 加入校验
     if (telephone.value === '') {
-      alert('请输入联系电话！')
+      this.errorInfo('请输入联系电话！')
       return
     } else if (projectCustom.value === '') {
-      alert('请输入客户名称！')
+      this.errorInfo('请输入客户名称！')
       return
     } else if (address.value === '') {
-      alert('请输入客户地址！')
+      this.errorInfo('请输入客户地址！')
       return
     } else if (village.value === '') {
-      alert('请输入小区名称！')
+      this.errorInfo('请输入小区名称！')
       return
     } else if (hometype === '') {
-      alert('请选择房屋类型！')
+      this.errorInfo('请选择房屋类型！')
       return
     } else if (area === '') {
-      alert('请选择客户所在区域！')
+      this.errorInfo('请选择客户所在区域！')
       return
     } else if (saleMan === '') {
-      alert('请选择销售人员！')
+      this.errorInfo('请选择销售人员！')
       return
     } else if (department === '') {
-      alert('请选择所属门店！')
+      this.errorInfo('请选择所属门店！')
       return
     } else if (stage === '') {
-      alert('请选择装修进度！')
+      this.errorInfo('请选择装修进度！')
       return
     }
+    this.uploadStart()
     const data = {
       fields: {
         [field.projectCustom]: projectCustom.value,
@@ -493,10 +510,21 @@ export default class Home extends Vue {
     }
     const res: any = await updateTable(project.itemId, data)
     if (res.message) {
-      alert(res.message)
+      this.errorInfo(res.message)
     } else {
-      this.$emit('reload')
+      this.errorInfo('保存成功')
     }
+  }
+
+  errorInfo (str: any) {
+    this.visible = true
+    this.loadVisible = false
+    this.modalText = str
+  }
+
+  uploadStart () {
+    this.visible = false
+    this.loadVisible = true
   }
 }
 </script>
