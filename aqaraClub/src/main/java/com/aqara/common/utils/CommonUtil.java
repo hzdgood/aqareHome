@@ -1,7 +1,20 @@
 package com.aqara.common.utils;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import org.apache.commons.codec.digest.DigestUtils;
+
+import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.properties.WxProperties;
 
 public class CommonUtil {
 	public static String getToday() {
@@ -44,5 +57,61 @@ public class CommonUtil {
 				+ "{\"field\":2200000154568276,\"query\":{\"em\":true,\"in\":[7,6,5,4,3,2,1]}}]},\"offset\":0,\"limit\":100,\"order_by\":" // 装修进度
 				+ "[{\"field\":2200000149037697,\"sort\":\"desc\"}]}";
 		return str;
+	}
+	
+	public static String getRandomString(int length){
+	     String str="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	     Random random=new Random();
+	     StringBuffer sb=new StringBuffer();
+	     for(int i=0;i<length;i++){
+	       int number=random.nextInt(62);
+	       sb.append(str.charAt(number));
+	     }
+	     return sb.toString();
+	 }
+	
+	public static HashMap<String, Integer> sortByValue(Map<String, Integer> map) {
+		// HashMap的entry放到List中
+		List<Map.Entry<String, Integer>> list = new LinkedList<Map.Entry<String, Integer>>(map.entrySet());
+		// 对List按entry的value排序
+		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+			public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+				return (o1.getValue()).compareTo(o2.getValue());
+			}
+		}.reversed() );
+		// 将排序后的元素放到LinkedHashMap中
+		HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+		for (Map.Entry<String, Integer> aa : list) {
+			temp.put(aa.getKey(), aa.getValue());
+		}
+		return temp;
+	}
+	
+	public static JSONObject signatures(String url, String token, WxProperties WxProperties) {
+		String nonceStr = CommonUtil.getRandomString(16);
+		String timeNew = System.currentTimeMillis() + "";
+		String jsapi_ticket = WeChatUtil.getJsApiTicket(WxProperties, token);
+		String appticket = WeChatUtil.getAppTicket(WxProperties, token);
+		JSONObject jsonObject = JSONObject.parseObject(jsapi_ticket);
+		String ticket = jsonObject.getString("ticket");
+		jsonObject = JSONObject.parseObject(appticket);
+		String LastAppticket = jsonObject.getString("ticket");
+		String str = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + timeNew + "&url=" + url;
+		String sign = DigestUtils.shaHex(str);
+		String str1 = "jsapi_ticket=" + LastAppticket + "&noncestr=" + nonceStr + "&timestamp=" + timeNew + "&url=" + url;
+		String sign1 = DigestUtils.shaHex(str1);
+		JSONObject meta = new JSONObject();
+		meta.put("nonceStr", nonceStr);
+		meta.put("timestamp", timeNew);
+		meta.put("url", url);
+		JSONObject signature = new JSONObject();
+		signature.put("signature", sign);
+		JSONObject appTicket = new JSONObject();
+		appTicket.put("signature", sign1);
+		JSONObject resObj = new JSONObject();
+		resObj.put("meta", meta);
+		resObj.put("corp", signature);
+		resObj.put("app", appTicket);
+		return resObj;
 	}
 }

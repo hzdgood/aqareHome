@@ -88,7 +88,7 @@ public class OpenCurtainService {
 			}
 			map.put(name.getSales(), counts + Integer.parseInt(name.getNumber()));
 		});
-		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Map<String, Integer> map1 = CommonUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
 		while (entries.hasNext()) {
 		    Map.Entry entry = (Map.Entry) entries.next();
@@ -113,7 +113,7 @@ public class OpenCurtainService {
 			}
 			map.put(name.getSales(), counts + Integer.parseInt(name.getNumber()));
 		});
-		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Map<String, Integer> map1 = CommonUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
 		while (entries.hasNext()) {
 		    Map.Entry entry = (Map.Entry) entries.next();

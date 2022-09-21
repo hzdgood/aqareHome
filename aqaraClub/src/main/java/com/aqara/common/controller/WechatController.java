@@ -71,7 +71,7 @@ public class WechatController {
 	@RequestMapping("/signatures")
 	public JSONObject signatures(String url, String type) {
 		String token = getToken(type);
-		JSONObject jsonObject = SignaturesUtil.signatures(url, token, WxProperties);
+		JSONObject jsonObject = CommonUtil.signatures(url, token, WxProperties);
 		return jsonObject;
 	}
 

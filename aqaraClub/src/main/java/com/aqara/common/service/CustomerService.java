@@ -1,17 +1,11 @@
 package com.aqara.common.service;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.aqara.common.mapper.CustomerMapper;
 import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.CommonUtil;
-import com.aqara.common.utils.MapSortUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Customer;
@@ -82,7 +76,7 @@ public class CustomerService {
 			Integer counts = map.get(name.getSales());
 			map.put(name.getSales(), counts == null ? 1 : ++counts);
 		});
-		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Map<String, Integer> map1 = CommonUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
 		while (entries.hasNext()) {
 		    Map.Entry entry = (Map.Entry) entries.next();

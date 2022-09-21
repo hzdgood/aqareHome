@@ -15,7 +15,6 @@ import com.aqara.common.entity.Survey;
 import com.aqara.common.mapper.SurveyMapper;
 import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.CommonUtil;
-import com.aqara.common.utils.MapSortUtil;
 
 @Service
 public class SurveyService {
@@ -91,7 +90,7 @@ public class SurveyService {
 			Integer counts = map.get(name.getSales());
 			map.put(name.getSales(), counts == null ? 1 : ++counts);
 		});
-		Map<String, Integer> map1 = MapSortUtil.sortByValue(map);
+		Map<String, Integer> map1 = CommonUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
 		while (entries.hasNext()) {
 		    Map.Entry entry = (Map.Entry) entries.next();

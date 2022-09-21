@@ -4,7 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "aqara.wx")
+@ConfigurationProperties(prefix = "wx")
 public class WxProperties {
 	private String corpId;
 	private String corpSecret;
@@ -16,6 +16,8 @@ public class WxProperties {
 	private String externalList;
 	private String groupchat;
 	private String groupList;
+	private String permitlist;
+	private String checkAgree;
 
 	public String getCorpId() {
 		return corpId;
@@ -95,6 +97,22 @@ public class WxProperties {
 
 	public void setGroupList(String groupList) {
 		this.groupList = groupList;
+	}
+
+	public String getPermitlist() {
+		return permitlist;
+	}
+
+	public void setPermitlist(String permitlist) {
+		this.permitlist = permitlist;
+	}
+
+	public String getCheckAgree() {
+		return checkAgree;
+	}
+
+	public void setCheckAgree(String checkAgree) {
+		this.checkAgree = checkAgree;
 	}
 
 }
