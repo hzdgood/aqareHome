@@ -16,6 +16,7 @@ wx:
   groupList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/list
   permitlist: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/get_permit_user_list
   checkAgree: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/check_single_agree
+  calendarAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/calendar/add 
     
 huoban:
   application_id: 1002449

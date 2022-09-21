@@ -124,4 +124,15 @@ public class WechatController {
 		String res = HttpUtil.dataPost(userInfo, obj);
 		return res;
 	}
+	
+	@CrossOrigin
+	@RequestMapping("/calendarAdd")
+	public void calendarAdd(Calendar Calendar) {
+		String token = getToken("http://localhost:8081");
+		String userInfo = WxProperties.getCalendarAdd() + "?access_token=" + token;
+		
+		
+		System.out.println(Calendar);
+	}
+	
 }
