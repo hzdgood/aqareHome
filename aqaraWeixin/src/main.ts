@@ -56,6 +56,15 @@ const doInfo = async () => {
     localStorage.setItem('userName', userName)
     localStorage.setItem('avatar', avatar)
     localStorage.setItem('localName', localName)
+
+    await invoke('sendChatMessage', {
+      msgtype: 'text',
+      enterChat: false,
+      text: {
+        content: '111111'
+      }
+    })
+
     getTicket()
   } else if (result.entry === 'group_chat_tools') {
     const localName: any = Cookies.get('userId')

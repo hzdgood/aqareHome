@@ -3,9 +3,9 @@ aqara:
   wx:
     # corpId: ww728dd07f7641e567
     # corpSecret: gI7rD-tDe6i47qzxuNc7xG7M4gUURgKOPWYY6QOAro4
-    
     corpId: ww9a717b03b06063e3
     corpSecret: nZv_TArU4E_PavzhhU22B6LJtT-BjaRmDCGjE64v0xQ
+    sessionSecret: F7lF9dM986yTDpAKlhN-CndaBA1OxCAL4j9EKZVtjbA
     
     httpUrl: https://qyapi.weixin.qq.com/cgi-bin/gettoken
     userIdUrl: https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo
@@ -15,6 +15,8 @@ aqara:
     externalList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/list
     groupchat: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/get
     groupList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/list
+    permitlist: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/get_permit_user_list
+    checkAgree: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/check_single_agree
     
 huoban:
   application_id: 1002449
