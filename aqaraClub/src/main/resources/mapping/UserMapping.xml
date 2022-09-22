@@ -4,8 +4,15 @@
 <mapper namespace="com.aqara.common.mapper.UserMapper">
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.User">
 		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
 		<result column="userName" jdbcType="VARCHAR" property="userName" />
 		<result column="passWord" jdbcType="VARCHAR" property="passWord" />
+		<result column="engName" jdbcType="VARCHAR" property="engName" />
+		<result column="sex" jdbcType="VARCHAR" property="sex" />
+		<result column="station" jdbcType="VARCHAR" property="station" />
+		<result column="department" jdbcType="VARCHAR" property="department" />
+		<result column="status" jdbcType="VARCHAR" property="status" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
 	</resultMap>
 	<select id="select" resultType="com.aqara.common.entity.User">
 		select * from user where userName = #{userName}

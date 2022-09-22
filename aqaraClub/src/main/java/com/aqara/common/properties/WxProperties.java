@@ -19,6 +19,7 @@ public class WxProperties {
 	private String permitlist;
 	private String checkAgree;
 	private String calendarAdd;
+	private String scheduleAdd;
 
 	public String getCorpId() {
 		return corpId;
@@ -124,4 +125,12 @@ public class WxProperties {
 		this.calendarAdd = calendarAdd;
 	}
 
+	public String getScheduleAdd() {
+		return scheduleAdd;
+	}
+
+	public void setScheduleAdd(String scheduleAdd) {
+		this.scheduleAdd = scheduleAdd;
+	}
+	
 }

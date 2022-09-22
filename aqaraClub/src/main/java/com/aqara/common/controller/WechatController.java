@@ -5,7 +5,7 @@ import com.aqara.common.entity.*;
 import com.aqara.common.properties.WxProperties;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
-import java.util.List;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +17,9 @@ public class WechatController {
 
 	@Autowired
 	WechatService WechatService;
+	
+	@Autowired
+	UserService UserService;
 
 	/**
 	 * 获取企业微信token
@@ -126,13 +129,62 @@ public class WechatController {
 	}
 	
 	@CrossOrigin
-	@RequestMapping("/calendarAdd")
-	public void calendarAdd(Calendar Calendar) {
-		String token = getToken("http://localhost:8081");
-		String userInfo = WxProperties.getCalendarAdd() + "?access_token=" + token;
-		
-		
-		System.out.println(Calendar);
+	@RequestMapping("/schedule/add")
+	public void schedule(Schedule Schedule) {
+		List<User> userlist = UserService.select(Schedule.getUserid());
+		if(userlist.size() > 0) {
+			User User = userlist.get(0);
+			
+			Date date = new Date();
+			date.parse(Schedule.getStartTime());
+			Long StartTime = date.getTime()/1000;
+			
+			int hours = date.getMinutes() + Integer.parseInt(Schedule.getDuration());
+			date.setHours(hours);
+			Long endTime = date.getTime()/1000;
+			
+			String token = getToken("http://localhost:8081");
+			String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
+			System.out.println(token);
+			String str = "{"
+					+ "	\"schedule\": {"
+					+ "	\"organizer\": \""+User.getEngName()+"\","
+					+ "	\"start_time\": " + StartTime + ","
+					+ "	\"end_time\": " + endTime + ","
+					+ "	\"attendees\": [{"
+					+ "	\"userid\": \"HuangZhaoDong\""
+					+ "	}],"
+					+ "	}"
+					+ "}";
+			JSONObject obj = new JSONObject();
+			System.out.println(obj.parseObject(str));
+			//String res = HttpUtil.dataPost(userInfo, obj.parseObject(str));
+			//System.out.println(res);
+		} else {
+			
+		}
 	}
 	
+	@CrossOrigin
+	@RequestMapping("/calendar/add")
+	public void calendarAdd() {
+		String token = getToken("http://localhost:8081");
+		String userInfo = WxProperties.getCalendarAdd() + "?access_token=" + token;
+		Long timestamp = System.currentTimeMillis()/1000;
+		System.out.println(token);
+		String str = "{"
+				+ "\"calendar\" : {"
+				+ "\"organizer\" : \"HuangzhaoDong\","
+				+ "\"readonly\" : 1,"
+				+ "\"set_as_default\" : 1,"
+				+ "\"summary\" : \"test_summary\","
+				+ "\"color\" : \"#FF3030\","
+				+ "\"description\" : \"test_describe\""
+				+ "}"
+				+ "}";
+		JSONObject obj = new JSONObject();
+		System.out.println(obj.parseObject(str));
+		String res = HttpUtil.dataPost(userInfo, obj.parseObject(str));
+		System.out.println(res);
+	}
 }
