@@ -19,12 +19,20 @@ public class UserService {
 	@Autowired
 	HuobanProperties HuobanProperties;
 
+	public List<User> select(String username) {
+		return userMapper.select(username);
+	}
+	
+	public List<User> selectCode(String code) {
+		return userMapper.selectCode(code);
+	}
+	
 	public void insert(User user) {
 		userMapper.insert(user);
 	}
 	
-	public List<User> select(String username) {
-		return userMapper.select(username);
+	public void delete() {
+		userMapper.delete();
 	}
 
 	public void synchronize(String ticket) {
@@ -43,9 +51,19 @@ public class UserService {
 				JSONObject obj2 = array2.getJSONObject(0);
 				if (field_id.equals("2200000144968453")) {
 					User.setUserName(obj2.getString("name"));
+					User.setCode(obj2.getString("user_id"));
 				} else if (field_id.equals("2200000166537030")) {
 					User.setEngName(obj2.getString("value"));
+				}  else if (field_id.equals("2200000144968454")) {
+					User.setSex(obj2.getString("name"));
+				} else if (field_id.equals("2200000257456339")) {
+					User.setStation(obj2.getString("name"));
+				} else if (field_id.equals("2200000160826904")) {
+					User.setDepartment(obj2.getString("title"));
+				} else if (field_id.equals("2200000297757385")) {
+					User.setCompany(obj2.getString("title"));
 				}
+				User.setStatus("在职");
 			}
 			userMapper.insert(User);
 		}

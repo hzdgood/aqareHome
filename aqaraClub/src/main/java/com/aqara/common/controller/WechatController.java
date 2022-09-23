@@ -5,7 +5,6 @@ import com.aqara.common.entity.*;
 import com.aqara.common.properties.WxProperties;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -131,40 +130,60 @@ public class WechatController {
 		return res;
 	}
 	
+	/*
+	 * 工勘链接企业微信日程接口
+	 * */
 	@CrossOrigin
 	@RequestMapping("/schedule/add")
 	public void schedule(Schedule Schedule) {
-		List<User> userlist = UserService.select(Schedule.getUserid());
-		if(userlist.size() > 0) {
-			User User = userlist.get(0);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			try {
-				Date date = sdf.parse(Schedule.getStartTime());
-				Long StartTime = date.getTime()/1000;
-				int adds = Integer.parseInt(Schedule.getDuration()) * 3600;
-				Long endTime = date.getTime()/1000 + adds;
-				String token = getToken("http://localhost:8081");
-				String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
-				String str = "{"
-						+ "	\"schedule\": {"
-						+ "	\"organizer\": \""+User.getEngName()+"\","
-						+ "	\"start_time\": " + StartTime + ","
-						+ "	\"end_time\": " + endTime + ","
-						+ "	\"summary\": \"" + Schedule.getSummary()+ "\","
-						+ "	\"description\": \"" + Schedule.getDescription()+ "\","
-						+ "	\"location\": \"" + Schedule.getLocation()+ "\","
-						+ "	\"attendees\": [{"
-						+ "	\"userid\": \"HuangZhaoDong\""
-						+ "	}],"
-						+ "	}"
-						+ "}";
-				JSONObject obj = new JSONObject();
-				HttpUtil.scheduleReq(userInfo,str);
-			} catch (Exception e) {
-				e.printStackTrace();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String userId = Schedule.getUserid();
+		// String[] users;
+		String attendees = "";
+		String organizer = "";
+		userId = userId.replaceAll(" ", "");
+		if(userId.contains("、")) {
+			String[] users = userId.split("、");
+			for(int i = 0; i < users.length; i++) {
+				List<User> userlist = UserService.select(users[i]);
+				if(userlist.size() > 0) {
+					User User = userlist.get(0);
+					attendees += "{" +"	\"userid\": \""+User.getEngName()+"\"" + "},";
+				}
 			}
 		} else {
-			
+			List<User> userlist = UserService.select(userId);
+			if(userlist.size() > 0) {
+				User User = userlist.get(0);
+				attendees += "{" +"	\"userid\": \""+User.getEngName()+"\"" + "},";
+			}
+		}
+		List<User> userlist = UserService.selectCode(Schedule.getOrganizer());
+		if(userlist.size() > 0 && attendees != "") {
+			User User = userlist.get(0);
+			organizer = User.getEngName();
+			attendees = attendees.substring(0, attendees.length()-1);
+		} else {
+			return;
+		}
+		try {
+			Date date = sdf.parse(Schedule.getStartTime());
+			Long StartTime = date.getTime()/1000;
+			int adds = Integer.parseInt(Schedule.getDuration()) * 3600;
+			Long endTime = date.getTime()/1000 + adds;
+			String token = getToken("http://localhost:8081");
+			String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
+			String str = "{\"schedule\": {"
+				+ "\"organizer\": \""+organizer+"\","
+				+ "\"start_time\": " + StartTime + ","
+				+ "\"end_time\": " + endTime + ","
+				+ "\"summary\": \"" + Schedule.getSummary()+ "\","
+				+ "\"description\": \"" + Schedule.getDescription()+ "\","
+				+ "\"location\": \"" + Schedule.getLocation()+ "\","
+				+ "\"attendees\": [" + attendees + "]}}";
+			HttpUtil.scheduleReq(userInfo,str);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	

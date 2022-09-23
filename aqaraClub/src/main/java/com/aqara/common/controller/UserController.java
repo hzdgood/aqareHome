@@ -39,6 +39,7 @@ public class UserController {
     	List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
 		String ticket = Huoban.getTicket();
+		userService.delete();
     	userService.synchronize(ticket);
 	}
     

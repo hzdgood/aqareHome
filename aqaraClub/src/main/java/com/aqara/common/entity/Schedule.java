@@ -1,14 +1,22 @@
 package com.aqara.common.entity;
 
 public class Schedule {
+	private String organizer;
 	private String userid;
 	private String startTime;
 	private String duration;
 	private String description;
 	private String summary;
 	private String location;
-	private String type;
 	private String url;
+	
+	public String getOrganizer() {
+		return organizer;
+	}
+
+	public void setOrganizer(String organizer) {
+		this.organizer = organizer;
+	}
 
 	public String getUserid() {
 		return userid;
@@ -56,14 +64,6 @@ public class Schedule {
 
 	public void setLocation(String location) {
 		this.location = location;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public String getUrl() {
