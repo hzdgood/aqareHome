@@ -109,23 +109,33 @@ public class HttpUtil {
 			Map<String, Object> param = new HashMap<String, Object>();
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("content", temp);
-			// map.put("mentioned_list","@all");
 			param.put("msgtype", "markdown");
 			param.put("markdown", map);
-			String p = map2json(param);
+			String p = JSON.toJSONString(param);
 			StringEntity entity = new StringEntity(p, "utf-8");
 			httpPost.setEntity(entity);
 			HttpResponse response = httpClient.execute(httpPost);
 			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				String result = EntityUtils.toString(response.getEntity(), "UTF-8");
-				System.out.println(result);
+				EntityUtils.toString(response.getEntity(), "UTF-8");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static String map2json(Map<String, Object> map) {
-		return JSON.toJSONString(map);
+	public static void scheduleReq(String requestUrl, String obj) {
+		try {
+			HttpClient httpClient = new DefaultHttpClient();
+			HttpPost httpPost = new HttpPost(requestUrl);
+			httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
+			StringEntity entity = new StringEntity(obj, "utf-8");
+			httpPost.setEntity(entity);
+			HttpResponse response = httpClient.execute(httpPost);
+			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+				EntityUtils.toString(response.getEntity(), "UTF-8");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

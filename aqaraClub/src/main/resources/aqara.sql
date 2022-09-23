@@ -185,9 +185,15 @@ CREATE TABLE `scheme` (
 
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) DEFAULT NULL,
   `userName` varchar(32) DEFAULT NULL,
   `passWord` varchar(50) DEFAULT NULL,
-  `userId` varchar(45) DEFAULT NULL,
+  `engName` varchar(45) DEFAULT NULL,
+  `sex` varchar(45) DEFAULT NULL,
+  `station` varchar(45) DEFAULT NULL,
+  `department` varchar(45) DEFAULT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  `company` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 

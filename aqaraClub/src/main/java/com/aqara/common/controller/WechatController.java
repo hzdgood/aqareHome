@@ -5,6 +5,9 @@ import com.aqara.common.entity.*;
 import com.aqara.common.properties.WxProperties;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -134,32 +137,32 @@ public class WechatController {
 		List<User> userlist = UserService.select(Schedule.getUserid());
 		if(userlist.size() > 0) {
 			User User = userlist.get(0);
-			
-			Date date = new Date();
-			date.parse(Schedule.getStartTime());
-			Long StartTime = date.getTime()/1000;
-			
-			int hours = date.getMinutes() + Integer.parseInt(Schedule.getDuration());
-			date.setHours(hours);
-			Long endTime = date.getTime()/1000;
-			
-			String token = getToken("http://localhost:8081");
-			String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
-			System.out.println(token);
-			String str = "{"
-					+ "	\"schedule\": {"
-					+ "	\"organizer\": \""+User.getEngName()+"\","
-					+ "	\"start_time\": " + StartTime + ","
-					+ "	\"end_time\": " + endTime + ","
-					+ "	\"attendees\": [{"
-					+ "	\"userid\": \"HuangZhaoDong\""
-					+ "	}],"
-					+ "	}"
-					+ "}";
-			JSONObject obj = new JSONObject();
-			System.out.println(obj.parseObject(str));
-			//String res = HttpUtil.dataPost(userInfo, obj.parseObject(str));
-			//System.out.println(res);
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			try {
+				Date date = sdf.parse(Schedule.getStartTime());
+				Long StartTime = date.getTime()/1000;
+				int adds = Integer.parseInt(Schedule.getDuration()) * 3600;
+				Long endTime = date.getTime()/1000 + adds;
+				String token = getToken("http://localhost:8081");
+				String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
+				String str = "{"
+						+ "	\"schedule\": {"
+						+ "	\"organizer\": \""+User.getEngName()+"\","
+						+ "	\"start_time\": " + StartTime + ","
+						+ "	\"end_time\": " + endTime + ","
+						+ "	\"summary\": \"" + Schedule.getSummary()+ "\","
+						+ "	\"description\": \"" + Schedule.getDescription()+ "\","
+						+ "	\"location\": \"" + Schedule.getLocation()+ "\","
+						+ "	\"attendees\": [{"
+						+ "	\"userid\": \"HuangZhaoDong\""
+						+ "	}],"
+						+ "	}"
+						+ "}";
+				JSONObject obj = new JSONObject();
+				HttpUtil.scheduleReq(userInfo,str);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		} else {
 			
 		}

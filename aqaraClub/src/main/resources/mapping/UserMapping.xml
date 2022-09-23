@@ -19,7 +19,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
-  		insert into user (userName, passWord) values( #{userName}, #{passWord})
+  		insert into user (code, userName, passWord, engName, sex, station, department, status, company) 
+  			values( #{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company})
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.User">
