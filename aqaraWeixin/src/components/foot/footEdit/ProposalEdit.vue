@@ -4,20 +4,16 @@
     <div class='infoDiv'>
       <div class='headerDiv'>报价单</div>
       <div class='addSite' v-show='errorStatus'>
-        <input
-          v-show='createStatus'
-          id='createButton'
-          class='saveButton'
-          type='button'
-          value='生成报价'
-          @click='create()'
-        />
-        <input
-          class='closeButton'
-          type='button'
-          value='关闭'
-          @click='closeClick()'
-        />
+        <table class='EditTable'>
+          <tr>
+            <td>
+              <input id='file' type='file' multiple accept='image/*' placeholder='请选择文件'/>
+            </td>
+            <button class='saveButton' @click="uploadFile()">上传合同</button>
+          </tr>
+        </table>
+        <button class='saveButton' @click='create()' v-show='createStatus'>生成报价</button>
+        <button class='closeButton' @click='closeClick()'>关闭</button>
       </div>
       <div v-for='item in dataList' :key='item.id'>
         <table class='EditTable' v-show='errorStatus'>
@@ -41,18 +37,6 @@
             <td>已收金额</td>
             <td><input type='text' :value='item.Received' readonly /></td>
           </tr>
-          <tr>
-            <td>上传合同</td>
-            <td>
-              <input
-                id='file'
-                type='file'
-                multiple
-                accept='image/*'
-                placeholder='请选择文件'
-              />
-            </td>
-          </tr>
         </table>
         <div class='buttonSite'>
           <input
@@ -71,12 +55,7 @@
       </div>
       <div v-if='errorStatus == false'>
         <div class='buttonSite'>
-          <input
-            class='closeButton'
-            type='button'
-            value='关闭'
-            @click='closeClick()'
-          />
+          <button class='closeButton' @click='closeClick()'>关闭</button>
         </div>
       </div>
     </div>
@@ -105,21 +84,21 @@ import loading from '@/components/common/loading.vue'
   }
 })
 export default class Home extends Vue {
-  collectType = collectType;
-  projectId = '';
-  errorMsg = '';
-  errorStatus = false;
-  createStatus = true;
-  itemId = '';
-  proposalId = '';
-  userId = localStorage.getItem('userId');
-  dataList: any[] = [];
-  type = '';
-  schemeMoney = '';
-  discount = '';
-  receivable = '';
-  Received = '';
-  fileList: any = [];
+  collectType = collectType
+  projectId = ''
+  errorMsg = ''
+  errorStatus = false
+  createStatus = true
+  itemId = ''
+  proposalId = ''
+  userId = localStorage.getItem('userId')
+  dataList: any[] = []
+  type = ''
+  schemeMoney = ''
+  discount = ''
+  receivable = ''
+  Received = ''
+  fileList: any = []
   loadVisible = false
   visible = false
 
@@ -156,16 +135,37 @@ export default class Home extends Vue {
 
   // 新增报价单
   async create () {
+    if (this.fileList.length === 0) {
+      this.errorInfo('请上传合同！')
+      return
+    }
     this.createStatus = false
     const obj = {
       fields: {
         2200000180589754: [1],
         2200000180589755: [this.itemId],
-        2200000180591563: [1]
+        2200000180591563: [1],
+        2200000203196675: this.fileList
       }
     }
     await addInfo(table.proposal, obj)
     this.update('新增成功！')
+  }
+
+  async uploadFile () {
+    const file: any = document.getElementById('file')
+    if (typeof file.files !== 'undefined') {
+      for (let i = 0; i < file.files.length; i++) {
+        const files = file.files[i]
+        const formData = new FormData()
+        formData.append('source', files)
+        formData.append('name', files.name)
+        formData.append('domain', 'app.huoban.com')
+        formData.append('type', 'attachment')
+        const res = await uploadImg(formData)
+        this.fileList.push(res.file_id)
+      }
+    }
   }
 
   // 查询数据
@@ -236,34 +236,13 @@ export default class Home extends Vue {
   // 保存
   async saveClick (item: any) {
     this.loadVisible = true
-    const file: any = document.getElementById('file')
     const discount: any = document.getElementById('discount')
-    if (typeof file.files !== 'undefined') {
-      for (let i = 0; i < file.files.length; i++) {
-        const files = file.files[i]
-        const formData = new FormData()
-        formData.append('source', files)
-        formData.append('name', files.name)
-        formData.append('domain', 'app.huoban.com')
-        formData.append('type', 'attachment')
-        const res = await uploadImg(formData)
-        this.fileList.push(res.file_id)
+    const data = {
+      fields: {
+        2200000180589758: discount.value
       }
-      const data = {
-        fields: {
-          2200000203196675: this.fileList,
-          2200000180589758: discount.value
-        }
-      }
-      await updateTable(item.proposalId, data)
-    } else {
-      const data = {
-        fields: {
-          2200000180589758: discount.value
-        }
-      }
-      await updateTable(item.proposalId, data)
     }
+    await updateTable(item.proposalId, data)
     this.errorInfo('提交成功！')
   }
 
