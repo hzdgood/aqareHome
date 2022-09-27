@@ -43,6 +43,18 @@ CREATE TABLE `survey` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `weixin` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `sales` varchar(45) DEFAULT NULL,
+  `uuid` varchar(45) DEFAULT NULL,
+  `createName` varchar(45) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateName` varchar(45) DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `openCurtain` (
   `id` int NOT NULL AUTO_INCREMENT,

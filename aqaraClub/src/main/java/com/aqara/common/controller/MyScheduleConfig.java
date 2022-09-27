@@ -31,6 +31,9 @@ public class MyScheduleConfig {
 	ProjectService ProjectService;
 	
 	@Autowired
+	WeixinService WeixinService;
+	
+	@Autowired
 	OpenCurtainService OpenCurtainService;
 	
 	@Autowired
@@ -92,7 +95,7 @@ public class MyScheduleConfig {
 		HttpService.workRequset(res, WX_TOKEN);
 	}
 	
-	@Scheduled(cron = "0 34 14 * * ?")
+	//@Scheduled(cron = "0 34 14 * * ?")
 	private void myTasks2() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
@@ -105,22 +108,29 @@ public class MyScheduleConfig {
 		}
 	}
 	
-	@Scheduled(cron = "0 32 14 * * ?")
-	private void myTasks3() {
+	//@Scheduled(cron = "0 32 14 * * ?")
+	private void deleteCurtain() {
 		OpenCurtainService.delete();
 		RollerShutterService.delete();
 	}
 	
-	//@Scheduled(cron = "0 23 15 * * ?")
-	private void myTasks4() {
-		//String str = OpenCurtainService.getCurtainData();
-		String str1 = OpenCurtainService.getCurtainData1();
-//			String str2 = RollerShutterService.getShutterData();
-//			String str3 = RollerShutterService.getShutterData1();
-		System.out.println(str1);
-//			HttpService.workRequset1(str);
-//			HttpService.workRequset1(str1);
-//			HttpService.workRequset2(str2);
-//			HttpService.workRequset2(str3);
+	@Scheduled(cron = "0 44 15 * * ?")
+	private void weixinInfo() {
+		List<Huoban> list = huobanService.select();
+		Huoban Huoban = list.get(list.size() - 1);
+		String ticket = Huoban.getTicket();
+		
+		String str = WeixinService.getWeixinStr(ticket);
+		System.out.println(str);
+		
+//		String str1 = OpenCurtainService.getCurtainData1();
+//		System.out.println(str1);
+//		String str = OpenCurtainService.getCurtainData();
+//		String str2 = RollerShutterService.getShutterData();
+//		String str3 = RollerShutterService.getShutterData1();
+//		HttpService.workRequset1(str);
+//		HttpService.workRequset1(str1);
+//		HttpService.workRequset2(str2);
+//		HttpService.workRequset2(str3);
 	}
 }

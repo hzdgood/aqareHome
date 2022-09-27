@@ -11,5 +11,5 @@ public interface WeixinMapper {
 	
 	void insert(Weixin Weixin);
 	
-	void delete();
+	void delete(Integer id);
 }

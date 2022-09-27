@@ -17,11 +17,16 @@ import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.properties.WxProperties;
 
 public class CommonUtil {
+	
+	public static String getWeixinJson() {
+		return "{\"where\":{\"and\":[{\"field\":\"created_on\","
+				+ "\"query\":{\"eq\":\"today\"}}]},\"offset\":0,\"limit\":20}";
+	}
+	
 	public static String getUserJson() {
 		return "{\"where\":{\"and\":[{\"field\":2200000257456339,\"query\":{\"em\":false}}]},"
 				+ "\"offset\":0,\"limit\":100,\"order_by\":[{}]}";
 	}
-	
 	
 	public static String getToday() {
 		String str = "{\"where\":{\"and\":[{\"field\":\"created_on\","
