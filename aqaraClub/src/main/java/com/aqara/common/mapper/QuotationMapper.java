@@ -13,7 +13,5 @@ public interface QuotationMapper {
 	
 	void insert(Quotation quotation);
 	
-	void upload(Quotation quotation);
-	
 	void delete(Integer id);
 }

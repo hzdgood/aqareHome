@@ -1,6 +1,5 @@
 package com.aqara.common.service;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,16 +31,11 @@ public class ProjectService {
 		projectMapper.insert(project);
 	}
 
-	public void upload(Project project) {
-		projectMapper.upload(project);
-	}
-
 	public void delete() {
 		projectMapper.delete();
 	}
 
 	public void getProjectList(String ticket) throws Exception {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String str = CommonUtil.getProjectData();
 		String requestUrl = HuobanProperties.getSearchInfo() + "2100000014956047/find";
 		JSONObject object = HttpService.getSchedule(requestUrl, ticket, JSONObject.parseObject(str));
@@ -50,11 +44,8 @@ public class ProjectService {
 			Project Project = new Project();
 			JSONObject obj = array.getJSONObject(i);
 			JSONArray array1 = obj.getJSONArray("fields");
-			// Project.setCreateTime(simpleDateFormat.parse(obj.getString("created_on")));
-			// Project.setUpdateTime(simpleDateFormat.parse(obj.getString("updated_on")));
 			Project.setProjectType("全屋");
 			Project.setItemId(obj.getString("item_id"));
-			;
 			for (int j = 0; j < array1.size(); j++) {
 				JSONObject obj1 = array1.getJSONObject(j);
 				String field_id = obj1.getString("field_id");

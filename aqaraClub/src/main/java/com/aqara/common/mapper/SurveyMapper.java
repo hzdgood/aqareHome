@@ -13,7 +13,5 @@ public interface SurveyMapper  {
 	
 	void insert(Survey survey);
 	
-	void upload(Survey survey);
-	
 	void delete(Integer id);
 }

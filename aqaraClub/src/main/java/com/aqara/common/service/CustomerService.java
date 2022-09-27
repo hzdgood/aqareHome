@@ -30,10 +30,6 @@ public class CustomerService {
 		customerMapper.insert(customer);
 	}
 	
-	public void upload(Customer customer) {
-		customerMapper.upload(customer);
-	}
-	
 	public void delete(Integer id) {
 		customerMapper.delete(id);
 	}

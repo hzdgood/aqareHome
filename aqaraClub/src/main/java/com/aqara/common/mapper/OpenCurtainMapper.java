@@ -9,12 +9,11 @@ public interface OpenCurtainMapper {
 	
 	List<OpenCurtain> currentData();
 	
+	List<OpenCurtain> currentData1();
+	
 	void insert(OpenCurtain OpenCurtain);
 	
-	void upload(OpenCurtain OpenCurtain);
+	void upload(OpenCurtain openCurtain);
 
 	void delete();
-
-	List<OpenCurtain> currentData1();
-
 }

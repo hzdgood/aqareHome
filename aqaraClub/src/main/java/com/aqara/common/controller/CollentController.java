@@ -24,7 +24,7 @@ public class CollentController {
 		List<Collent> list = ReadExcelUtil.collentExcel(file);
 		for (int i = 0; i < list.size(); i++) {
 			Collent Collent = list.get(i);
-			CollentService.upload(Collent);
+			CollentService.insert(Collent);
 		}
 	}
 }

@@ -6,12 +6,11 @@ import com.aqara.common.entity.User;
 
 @Repository
 public interface UserMapper {
-
-	void insert(User user);
-	
 	List<User> select(String username);
 	
 	List<User> selectCode(String code);
+	
+	void insert(User user);
 	
 	void delete();
 }

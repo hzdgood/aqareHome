@@ -13,7 +13,5 @@ public interface CustomerMapper {
 	
 	void insert(Customer customer);
 	
-	void upload(Customer customer);
-	
 	void delete(Integer id);
 }

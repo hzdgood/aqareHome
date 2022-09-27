@@ -13,8 +13,6 @@ public interface CollentMapper {
 	
 	void insert(Collent collent);
 	
-	void upload(Collent Collent);
-	
 	void delete(Integer id);
 
 }

@@ -13,7 +13,5 @@ public interface ProjectMapper {
 	
 	void insert(Project project);
 	
-	void upload(Project project);
-	
 	void delete();
 }

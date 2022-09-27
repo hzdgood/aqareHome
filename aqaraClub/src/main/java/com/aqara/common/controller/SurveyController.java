@@ -24,7 +24,7 @@ public class SurveyController {
 		List<Survey> list = ReadExcelUtil.SurveyExcel(file);
 		for (int i = 0; i < list.size(); i++) {
 			Survey survey = list.get(i);
-			SurveyService.upload(survey);
+			SurveyService.insert(survey);
 		}
 	}
 }

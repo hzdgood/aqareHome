@@ -30,10 +30,6 @@ public class CollentService {
 		collentMapper.insert(collent);
 	}
 	
-	public void upload(Collent collent) {
-		collentMapper.upload(collent);
-	}
-	
 	public void delete(Integer id) {
 		collentMapper.delete(id);
 	}

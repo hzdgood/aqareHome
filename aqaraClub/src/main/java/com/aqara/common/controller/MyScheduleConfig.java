@@ -84,11 +84,6 @@ public class MyScheduleConfig {
 		HttpService.workRequset(resStr, WX_TOKEN);
 	}
 	
-	@Scheduled(cron = "0 00 09 * * ?")
-	private void projectDelete() {
-		ProjectService.delete();
-	}
-	
 	@Scheduled(cron = "0 30 09 * * ?")
 	private void projectSelect() {
 		List<Huoban> list = huobanService.select();
@@ -114,7 +109,7 @@ public class MyScheduleConfig {
 		HttpService.workRequset(res, WX_TOKEN);
 	}
 	
-	//@Scheduled(cron = "0 34 14 * * ?")
+	// @Scheduled(cron = "0 34 14 * * ?")
 	private void myTasks2() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
@@ -127,7 +122,7 @@ public class MyScheduleConfig {
 		}
 	}
 	
-	//@Scheduled(cron = "0 32 14 * * ?")
+	// @Scheduled(cron = "0 32 14 * * ?")
 	private void deleteCurtain() {
 		OpenCurtainService.delete();
 		RollerShutterService.delete();
@@ -135,21 +130,14 @@ public class MyScheduleConfig {
 	
 	// @Scheduled(cron = "0 28 16 * * ?")
 	private void weixinInfo() {
-//		List<Huoban> list = huobanService.select();
-//		Huoban Huoban = list.get(list.size() - 1);
-//		String ticket = Huoban.getTicket();
-//		WeixinService.sysoWeixinData(ticket);
-//		List<Weixin> WeixinList = WeixinService.select();
-//		System.out.println(WeixinList);
-		
-//		String str1 = OpenCurtainService.getCurtainData1();
-//		System.out.println(str1);
-//		String str = OpenCurtainService.getCurtainData();
-//		String str2 = RollerShutterService.getShutterData();
-//		String str3 = RollerShutterService.getShutterData1();
-//		HttpService.workRequset1(str);
-//		HttpService.workRequset1(str1);
-//		HttpService.workRequset2(str2);
-//		HttpService.workRequset2(str3);
+		String WX_TOKEN = "";
+		String str1 = OpenCurtainService.getCurtainData1();
+		String str = OpenCurtainService.getCurtainData();
+		String str2 = RollerShutterService.getShutterData();
+		String str3 = RollerShutterService.getShutterData1();
+		HttpService.workRequset(str, WX_TOKEN);
+		HttpService.workRequset(str1, WX_TOKEN);
+		HttpService.workRequset(str2, WX_TOKEN);
+		HttpService.workRequset(str3, WX_TOKEN);
 	}
 }

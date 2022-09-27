@@ -24,7 +24,7 @@ public class QuotationController {
 		List<Quotation> list = ReadExcelUtil.quotationExcel(file);
 		for (int i = 0; i < list.size(); i++) {
 			Quotation Quotation = list.get(i);
-			QuotationService.upload(Quotation);
+			QuotationService.insert(Quotation);
 		}
 	}
 }

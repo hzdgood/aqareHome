@@ -37,7 +37,7 @@ public class CustomerController {
 		List<Customer> list = ReadExcelUtil.customerExcel(file);
 		for (int i = 0; i < list.size(); i++) {
 			Customer Customer = list.get(i);
-			customerService.upload(Customer);
+			customerService.insert(Customer);
 		}
 	}
 }

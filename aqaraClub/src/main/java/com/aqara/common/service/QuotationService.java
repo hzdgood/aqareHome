@@ -27,8 +27,4 @@ public class QuotationService {
 	public void delete(Integer id) {
 		quotationMapper.delete(id);
 	}
-
-	public void upload(Quotation quotation) {
-		quotationMapper.upload(quotation);
-	}
 }

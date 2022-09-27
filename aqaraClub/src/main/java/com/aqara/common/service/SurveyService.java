@@ -37,10 +37,6 @@ public class SurveyService {
 		surveyMapper.insert(survey);
 	}
 	
-	public void upload(Survey survey) {
-		surveyMapper.upload(survey);
-	}
-	
 	public void delete(Integer id) {
 		surveyMapper.delete(id);
 	}

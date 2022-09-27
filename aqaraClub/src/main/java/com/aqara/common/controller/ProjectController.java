@@ -24,7 +24,7 @@ public class ProjectController {
 		List<Project> list = ReadExcelUtil.projectExcel(file);
 		for (int i = 0; i < list.size(); i++) {
 			Project Project = list.get(i);
-			ProjectService.upload(Project);
+			ProjectService.insert(Project);
 		}
 	}
 }
