@@ -31,7 +31,7 @@ public class WeixinService {
 		WeixinMapper.delete(id);
 	}
 	
-	public void sysoWeixinData(String ticket) {
+	public void getWeixinData(String ticket) {
 		String str = CommonUtil.getToday();
 		String requestUrl = HuobanProperties.getSearchInfo() + "2100000019533688/find";
 		JSONObject object = HttpService.getSchedule(requestUrl, ticket, JSONObject.parseObject(str));

@@ -53,6 +53,7 @@ public class MyScheduleConfig {
 			SurveyService.getSurveyList(ticket);
 			customerService.getCustomList(ticket);
 			CollentService.getCollentList(ticket);
+			WeixinService.getWeixinData(ticket);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -61,11 +62,26 @@ public class MyScheduleConfig {
 	@Scheduled(cron = "0 35 20 * * ?")
 	private void currentDayBroadcast() {
 		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
+		String CensusData = CensusService.getCensusData();
 		String customer = customerService.getCustomerData();
 		String collent = CollentService.getCollentData();
 		String survey = SurveyService.getSurveyData();
 		String url = "[查看详情](https://app.huoban.com/home)";
-		HttpService.workRequset(customer + "\n" + collent + "\n" + survey + "\n" + url, WX_TOKEN);
+		String resStr = "";
+		if(CensusData.equals("")) {
+			resStr += CensusData + "\n";
+		} 
+		if(customer.equals("")) {
+			resStr += customer + "\n";
+		} 
+		if(collent.equals("")) {
+			resStr += collent + "\n";
+		} 
+		if(survey.equals("")) {
+			resStr += survey + "\n";
+		} 
+		resStr += url;
+		HttpService.workRequset(resStr, WX_TOKEN);
 	}
 	
 	@Scheduled(cron = "0 00 09 * * ?")
@@ -117,7 +133,7 @@ public class MyScheduleConfig {
 		RollerShutterService.delete();
 	}
 	
-	@Scheduled(cron = "0 19 16 * * ?")
+	// @Scheduled(cron = "0 28 16 * * ?")
 	private void weixinInfo() {
 //		List<Huoban> list = huobanService.select();
 //		Huoban Huoban = list.get(list.size() - 1);
@@ -125,9 +141,6 @@ public class MyScheduleConfig {
 //		WeixinService.sysoWeixinData(ticket);
 //		List<Weixin> WeixinList = WeixinService.select();
 //		System.out.println(WeixinList);
-		
-		List<Census> CensusList = CensusService.select();
-		System.out.println(CensusList);
 		
 //		String str1 = OpenCurtainService.getCurtainData1();
 //		System.out.println(str1);
