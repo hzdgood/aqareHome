@@ -19,8 +19,8 @@ public class WeixinService {
 	@Autowired
 	HuobanProperties HuobanProperties;
 	
-	public List<Weixin> selete() {
-		return WeixinMapper.selete();
+	public List<Weixin> select() {
+		return WeixinMapper.select();
 	}
 	
 	public void insert(Weixin Weixin) {
@@ -31,7 +31,7 @@ public class WeixinService {
 		WeixinMapper.delete(id);
 	}
 	
-	public String getWeixinStr(String ticket) {
+	public void sysoWeixinData(String ticket) {
 		String str = CommonUtil.getToday();
 		String requestUrl = HuobanProperties.getSearchInfo() + "2100000019533688/find";
 		JSONObject object = HttpService.getSchedule(requestUrl, ticket, JSONObject.parseObject(str));
@@ -58,6 +58,10 @@ public class WeixinService {
 			}
 			WeixinMapper.insert(Weixin);
 		}
+	}
+	
+	public String getWeixinStr(String ticket) {
+		
 		return "";
 	}
 }

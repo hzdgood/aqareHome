@@ -34,6 +34,9 @@ public class MyScheduleConfig {
 	WeixinService WeixinService;
 	
 	@Autowired
+	CensusService CensusService;
+	
+	@Autowired
 	OpenCurtainService OpenCurtainService;
 	
 	@Autowired
@@ -114,14 +117,17 @@ public class MyScheduleConfig {
 		RollerShutterService.delete();
 	}
 	
-	@Scheduled(cron = "0 44 15 * * ?")
+	@Scheduled(cron = "0 19 16 * * ?")
 	private void weixinInfo() {
-		List<Huoban> list = huobanService.select();
-		Huoban Huoban = list.get(list.size() - 1);
-		String ticket = Huoban.getTicket();
+//		List<Huoban> list = huobanService.select();
+//		Huoban Huoban = list.get(list.size() - 1);
+//		String ticket = Huoban.getTicket();
+//		WeixinService.sysoWeixinData(ticket);
+//		List<Weixin> WeixinList = WeixinService.select();
+//		System.out.println(WeixinList);
 		
-		String str = WeixinService.getWeixinStr(ticket);
-		System.out.println(str);
+		List<Census> CensusList = CensusService.select();
+		System.out.println(CensusList);
 		
 //		String str1 = OpenCurtainService.getCurtainData1();
 //		System.out.println(str1);

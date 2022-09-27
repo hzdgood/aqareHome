@@ -7,7 +7,7 @@ import com.aqara.common.entity.Weixin;
 @Repository
 public interface WeixinMapper {
 	
-	List<Weixin> selete();
+	List<Weixin> select();
 	
 	void insert(Weixin Weixin);
 	
