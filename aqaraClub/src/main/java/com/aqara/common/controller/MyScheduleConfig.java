@@ -68,16 +68,16 @@ public class MyScheduleConfig {
 		String survey = SurveyService.getSurveyData();
 		String url = "[查看详情](https://app.huoban.com/home)";
 		String resStr = "";
-		if(CensusData.equals("")) {
+		if(!CensusData.equals("")) {
 			resStr += CensusData + "\n";
 		} 
-		if(customer.equals("")) {
+		if(!customer.equals("")) {
 			resStr += customer + "\n";
 		} 
-		if(collent.equals("")) {
+		if(!collent.equals("")) {
 			resStr += collent + "\n";
 		} 
-		if(survey.equals("")) {
+		if(!survey.equals("")) {
 			resStr += survey + "\n";
 		} 
 		resStr += url;
