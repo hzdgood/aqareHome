@@ -84,7 +84,7 @@ public class MyScheduleConfig {
 		HttpService.workRequset(resStr, WX_TOKEN);
 	}
 	
-	@Scheduled(cron = "0 30 09 * * ?")
+	@Scheduled(cron = "0 30 16 * * ?")
 	private void projectSelect() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);

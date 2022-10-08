@@ -114,8 +114,9 @@ export default class Home extends Vue {
 <style scoped>
 .img {
   position: absolute;
-  right: 25px;
-  width: 25px;
-  margin-top: 2px;
+  right: 45px;
+  width: 45px;
+  height: 31px;
+  margin-top: 0px;
 }
 </style>
