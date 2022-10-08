@@ -7,7 +7,9 @@ import com.aqara.common.entity.Logging;
 @Repository
 public interface LoggingMapper {
 	
+	List<Logging> select(String name, String custom);
+	
 	void insert(Logging log);
 
-	List<Logging> select(String name, String custom);
+	
 }

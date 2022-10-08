@@ -23,7 +23,6 @@ public class CensusService {
 	public String getCensusData() {
 		String res = "**今日CRM新增微信** \n";
 		List<Census> CensusList = CensusMapper.select();
-		System.out.println(CensusList);
 		if(CensusList.size() == 0) {
 			return "";
 		}

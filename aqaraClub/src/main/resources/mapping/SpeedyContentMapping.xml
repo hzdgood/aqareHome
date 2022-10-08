@@ -1,0 +1,28 @@
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.SpeedyContentMapper">
+	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="parentId" jdbcType="INTEGER" property="parentId" />
+		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="createName" jdbcType="VARCHAR" property="createName" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
+		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	
+	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
+		select * from speedyContent where 1 = 1 and parentId = #{id}
+	</select>
+	
+	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
+		insert into speedyContent ( parentId, content, createName, createTime, updateName, updateTime ) 
+			values ( #{parentId}, #{content}, #{createName}, NOW(), #{updateName}, NOW() )
+	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">
+		delete from speedyContent where id = #{id}
+	</delete>
+
+</mapper>

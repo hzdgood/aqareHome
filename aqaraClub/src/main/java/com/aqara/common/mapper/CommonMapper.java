@@ -10,5 +10,7 @@ public interface CommonMapper {
 	List<Common> getValue(String name);
 	
 	void insert(Common Common);
+	
+	void delete(Integer id);
 
 }

@@ -110,34 +110,34 @@ public class MyScheduleConfig {
 	}
 	
 	// @Scheduled(cron = "0 34 14 * * ?")
-	private void myTasks2() {
-		List<Huoban> list = huobanService.select();
-		Huoban Huoban = list.get(list.size() - 1);
-		String ticket = Huoban.getTicket();
-		try {
-			OpenCurtainService.getCurtainList(ticket);
-			RollerShutterService.getShutterList(ticket);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	// @Scheduled(cron = "0 32 14 * * ?")
-	private void deleteCurtain() {
-		OpenCurtainService.delete();
-		RollerShutterService.delete();
-	}
-	
-	// @Scheduled(cron = "0 28 16 * * ?")
-	private void weixinInfo() {
-		String WX_TOKEN = "";
-		String str1 = OpenCurtainService.getCurtainData1();
-		String str = OpenCurtainService.getCurtainData();
-		String str2 = RollerShutterService.getShutterData();
-		String str3 = RollerShutterService.getShutterData1();
-		HttpService.workRequset(str, WX_TOKEN);
-		HttpService.workRequset(str1, WX_TOKEN);
-		HttpService.workRequset(str2, WX_TOKEN);
-		HttpService.workRequset(str3, WX_TOKEN);
-	}
+//	private void myTasks2() {
+//		List<Huoban> list = huobanService.select();
+//		Huoban Huoban = list.get(list.size() - 1);
+//		String ticket = Huoban.getTicket();
+//		try {
+//			OpenCurtainService.getCurtainList(ticket);
+//			RollerShutterService.getShutterList(ticket);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+//	
+//	// @Scheduled(cron = "0 32 14 * * ?")
+//	private void deleteCurtain() {
+//		OpenCurtainService.delete();
+//		RollerShutterService.delete();
+//	}
+//	
+//	// @Scheduled(cron = "0 28 16 * * ?")
+//	private void weixinInfo() {
+//		String WX_TOKEN = "";
+//		String str1 = OpenCurtainService.getCurtainData1();
+//		String str = OpenCurtainService.getCurtainData();
+//		String str2 = RollerShutterService.getShutterData();
+//		String str3 = RollerShutterService.getShutterData1();
+//		HttpService.workRequset(str, WX_TOKEN);
+//		HttpService.workRequset(str1, WX_TOKEN);
+//		HttpService.workRequset(str2, WX_TOKEN);
+//		HttpService.workRequset(str3, WX_TOKEN);
+//	}
 }

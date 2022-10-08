@@ -2,14 +2,14 @@ package com.aqara.common.mapper;
 
 import java.util.List;
 import org.springframework.stereotype.Repository;
-import com.aqara.common.entity.Huoban;
+import com.aqara.common.entity.SpeedyTheme;
 
 @Repository
-public interface HuobanMapper {
+public interface SpeedyThemeMapper {
 	
-	List<Huoban> select();
+	List<SpeedyTheme> select();
 	
-	void insert(Huoban huoban);
+	void insert(SpeedyTheme SpeedyTheme);
 	
 	void delete(Integer id);
 }

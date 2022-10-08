@@ -7,4 +7,8 @@ import com.aqara.common.entity.Census;
 @Repository
 public interface CensusMapper {
 	List<Census> select();
+	
+	void insert(Census Census);
+	
+	void delete(Integer id);
 }
