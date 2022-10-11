@@ -5,6 +5,7 @@ import java.util.Date;
 public class SpeedyTheme {
 	private Integer id;
 	private String theme;
+	private String company;
 	private String createName;
 	private Date createTime;
 	private String updateName;
@@ -16,6 +17,14 @@ public class SpeedyTheme {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	public String getTheme() {
