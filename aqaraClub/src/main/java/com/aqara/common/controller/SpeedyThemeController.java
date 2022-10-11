@@ -21,17 +21,15 @@ public class SpeedyThemeController {
 	
 	@CrossOrigin
 	@RequestMapping("/select")
-	public List<SpeedyTheme> select() {
+	public Map<String, Object> select() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<SpeedyTheme> list = SpeedyThemeService.select();
-		
-		map.put("pageSize", 1);
 		map.put("pageNo", 1);
-		map.put("totalCount", 10);
-		map.put("totalPage", 1);
+		map.put("pageSize", 10);
+		map.put("totalCount", list.size());
+		map.put("totalPage", list.size() / 10);
 		map.put("data", list);
-		
-		return SpeedyThemeService.select();
+		return map;
 	}
 	
 	@CrossOrigin

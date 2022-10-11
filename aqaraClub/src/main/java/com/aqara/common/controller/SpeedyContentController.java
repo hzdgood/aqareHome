@@ -17,8 +17,15 @@ public class SpeedyContentController {
 	
 	@CrossOrigin
 	@RequestMapping("/select")
-	public List<SpeedyContent> select(Integer id) {
-		return SpeedyContentService.select(id);
+	public Map<String, Object> select(Integer id) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<SpeedyContent> list = SpeedyContentService.select(id);
+		map.put("pageNo", 1);
+		map.put("pageSize", 10);
+		map.put("totalCount", list.size());
+		map.put("totalPage", list.size() / 10);
+		map.put("data", list);
+		return map;
 	}
 	
 	@CrossOrigin

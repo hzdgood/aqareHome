@@ -31,7 +31,7 @@
       <s-table
         ref="table"
         size="default"
-        rowKey="key"
+        rowKey="id"
         :columns="columns"
         :data="loadData"
         :alert="true"
@@ -55,27 +55,27 @@ const columns = [
   },
   {
     title: '主题名称',
-    dataIndex: 'name'
+    dataIndex: 'theme'
   },
   {
     title: '主题内容',
-    dataIndex: 'name'
+    dataIndex: 'content'
   },
   {
     title: '创建人员',
-    dataIndex: 'telephone'
+    dataIndex: 'createName'
   },
   {
     title: '创建时间',
-    dataIndex: 'sales'
+    dataIndex: 'createTime'
   },
   {
     title: '修改人员',
-    dataIndex: 'department'
+    dataIndex: 'updateName'
   },
   {
     title: '修改时间',
-    dataIndex: 'sex'
+    dataIndex: 'updateTime'
   }
 ]
 
@@ -95,8 +95,7 @@ export default {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         console.log(requestParameters)
         return getContentData(requestParameters).then((res) => {
-          console.log(res.result)
-          return res.result
+          return res.data
         })
       }
     }

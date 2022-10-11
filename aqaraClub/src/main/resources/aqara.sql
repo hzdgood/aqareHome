@@ -46,6 +46,7 @@ CREATE TABLE `survey` (
 CREATE TABLE `speedyContent` (
   `id` int NOT NULL AUTO_INCREMENT,
   `parentId` varchar(45) DEFAULT NULL,
+  `theme` varchar(45) DEFAULT NULL,
   `content` varchar(40000) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,

@@ -43,7 +43,7 @@ const customerList = (options) => {
   const totalPage = Math.ceil(totalCount / pageSize)
 
   const result = [{
-    key: '1',
+    id: '1',
     name: '',
     telephone: '',
     sales: '',

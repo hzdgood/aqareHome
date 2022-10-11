@@ -5,6 +5,7 @@
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
 		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="parentId" jdbcType="INTEGER" property="parentId" />
+		<result column="theme" jdbcType="VARCHAR" property="theme" />
 		<result column="content" jdbcType="VARCHAR" property="content" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
@@ -17,8 +18,8 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyContent ( parentId, content, createName, createTime, updateName, updateTime ) 
-			values ( #{parentId}, #{content}, #{createName}, NOW(), #{updateName}, NOW() )
+		insert into speedyContent ( parentId, theme content, createName, createTime, updateName, updateTime ) 
+			values ( #{parentId}, #{theme}, #{content}, #{createName}, NOW(), #{updateName}, NOW() )
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">

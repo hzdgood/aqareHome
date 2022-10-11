@@ -9,7 +9,7 @@ const getReq = async (url, data) => {
       url: url,
       params: data
     })
-    return response.data
+    return response
 }
 
 const postReq = async (url, data) => {
@@ -24,35 +24,35 @@ const postReq = async (url, data) => {
 export const getThemeData = async () => {
     const url = httpUrl + '/speedy/theme/select'
     const response = await postReq(url)
-    return response.data
+    return response
 }
 
 export const themeInsert = async (data) => {
     const url = httpUrl + '/speedy/theme/insert'
     const response = await getReq(url, data)
-    return response.data
+    return response
 }
 
 export const themeDelete = async (data) => {
     const url = httpUrl + '/speedy/theme/delete'
     const response = await getReq(url, data)
-    return response.data
+    return response
 }
 
-export const getContentData = async () => {
+export const getContentData = async (data) => {
     const url = httpUrl + '/speedy/content/select'
-    const response = await postReq(url)
+    const response = await postReq(url, data)
     return response.data
 }
 
 export const ContentInsert = async (data) => {
     const url = httpUrl + '/speedy/content/insert'
     const response = await getReq(url, data)
-    return response.data
+    return response
 }
 
 export const ContentDelete = async (data) => {
     const url = httpUrl + '/speedy/content/delete'
     const response = await getReq(url, data)
-    return response.data
+    return response
 }
