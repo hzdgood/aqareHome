@@ -41,8 +41,6 @@ const customerList = (options) => {
   const pageNo = parseInt(parameters.pageNo)
   const pageSize = parseInt(parameters.pageSize)
   const totalPage = Math.ceil(totalCount / pageSize)
-  // const key = (pageNo - 1) * pageSize
-  // const next = (pageNo >= totalPage ? (totalCount % pageSize) : pageSize) + 1
 
   const result = [{
     key: '1',

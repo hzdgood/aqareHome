@@ -43,6 +43,28 @@ CREATE TABLE `survey` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `speedyContent` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `parentId` varchar(45) DEFAULT NULL,
+  `content` varchar(40000) DEFAULT NULL,
+  `createName` varchar(45) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateName` varchar(45) DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `speedyTheme` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `theme` varchar(45) DEFAULT NULL,
+  `createName` varchar(45) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateName` varchar(45) DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
 CREATE TABLE `weixin` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(45) DEFAULT NULL,

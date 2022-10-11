@@ -2,7 +2,7 @@ package com.aqara.common.controller;
 
 import com.aqara.common.entity.SpeedyContent;
 import com.aqara.common.service.*;
-import java.util.List;
+import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

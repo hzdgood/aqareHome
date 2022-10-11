@@ -18,6 +18,9 @@ const constantRouterComponents = {
   Workplace: () => import('@/views/dashboard/Workplace'),
   Analysis: () => import('@/views/dashboard/Analysis'),
   CustomerList: () => import('@/views/aqara/CustomerList'),
+  // 我自己的菜单
+  menuList: () => import('@/views/aqara/menuList'),
+  contentList: () => import('@/views/aqara/contentList'),
   // form
   BasicForm: () => import('@/views/form/basicForm'),
   StepForm: () => import('@/views/form/stepForm/StepForm'),

@@ -530,6 +530,28 @@ const userNav = options => {
       component: 'CustomerList',
       path: '/aqara/customer-list'
     },
+    {
+      name: 'menuList',
+      parentId: 0,
+      id: 6,
+      meta: {
+        title: '快捷主题',
+        show: true
+      },
+      component: 'menuList',
+      path: '/aqara/menu-list'
+    },
+    {
+      name: 'contentList',
+      parentId: 0,
+      id: 6,
+      meta: {
+        title: '快捷内容',
+        show: true
+      },
+      component: 'contentList',
+      path: '/aqara/content-list'
+    },
     // form
     {
       name: 'form',
