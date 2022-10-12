@@ -26,6 +26,10 @@
 		select * from survey where to_days(createTime) = to_days(now())
 	</select>
 	
+	<select id="weekData" resultType="com.aqara.common.entity.Collent">
+		select * from survey where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <=  ]]> date(createTime)
+	</select>
+	
 	<insert id="insert" parameterType="com.aqara.common.entity.Survey" useGeneratedKeys="true" keyProperty="id">
 		insert into survey ( code, sales, department, appointmentTime, estimatedDuration, surveyTask, createName, createTime, updateName, updateTime
 		) values ( 

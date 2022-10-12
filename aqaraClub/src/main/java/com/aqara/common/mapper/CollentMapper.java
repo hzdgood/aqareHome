@@ -11,6 +11,8 @@ public interface CollentMapper {
 	
 	List<Collent> currentData();
 	
+	List<Collent> weekData();
+	
 	void insert(Collent collent);
 	
 	void delete(Integer id);

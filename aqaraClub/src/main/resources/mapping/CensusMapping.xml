@@ -9,7 +9,14 @@
 		<result column="department" jdbcType="VARCHAR" property="department" />
 	</resultMap>
 	<select id="select" resultType="com.aqara.common.entity.Census">
-		SELECT w.name, w.type, u.userName, u.department FROM 
-			aqara.weixin w, aqara.user u where w.sales = u.engName and to_days(w.createTime) = to_days(now())
+		SELECT w.name, w.type, u.userName, u.department 
+			FROM aqara.weixin w, aqara.user u 
+			where w.sales = u.engName and to_days(w.createTime) = to_days(now())
+	</select>
+	
+	<select id="weekData" resultType="com.aqara.common.entity.Collent">
+		select w.name, w.type, u.userName, u.department 
+			FROM aqara.weixin w, aqara.user u 
+			where w.sales = u.engName and DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <=  ]]> date(w.createTime)
 	</select>
 </mapper>

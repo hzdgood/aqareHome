@@ -47,6 +47,10 @@
 		select * from customer where to_days(createTime) = to_days(now())
 	</select>
 	
+	<select id="weekData" resultType="com.aqara.common.entity.Collent">
+		select * from customer where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <=  ]]> date(createTime)
+	</select>
+	
 	<insert id="insert" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true" keyProperty="id">
 		insert into customer ( name, telephone, sales, department, sex, 
 		source, houseType, houseState, personnelAttr, customerAttr,

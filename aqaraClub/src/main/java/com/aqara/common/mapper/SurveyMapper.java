@@ -11,6 +11,8 @@ public interface SurveyMapper  {
 	
 	List<Survey> currentData();
 	
+	List<Survey> weekData();
+	
 	void insert(Survey survey);
 	
 	void delete(Integer id);

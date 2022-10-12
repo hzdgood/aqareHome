@@ -23,6 +23,16 @@ public class CensusService {
 	public String getCensusData() {
 		String res = "**今日CRM新增微信** \n";
 		List<Census> CensusList = CensusMapper.select();
+		return getDepartInfo(res, CensusList);
+	}
+
+	public String getWeekData() {
+		String res = "**上周CRM新增微信** \n";
+		List<Census> CensusList = CensusMapper.weekData();
+		return getDepartInfo(res, CensusList);
+	}
+	
+	public String getDepartInfo(String res, List<Census> CensusList) {
 		if(CensusList.size() == 0) {
 			return "";
 		}

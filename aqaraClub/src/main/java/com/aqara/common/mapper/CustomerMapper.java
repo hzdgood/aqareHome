@@ -11,6 +11,8 @@ public interface CustomerMapper {
 	
 	List<Customer> currentData();
 	
+	List<Customer> weekData();
+	
 	void insert(Customer customer);
 	
 	void delete(Integer id);

@@ -63,7 +63,7 @@ public class MyScheduleConfig {
 	private void currentDayBroadcast() {
 		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
 		String CensusData = CensusService.getCensusData();
-		String customer = customerService.getCustomerData();
+		String customer = customerService.getCurrentData();
 		String collent = CollentService.getCollentData();
 		String survey = SurveyService.getSurveyData();
 		String url = "[查看详情](https://app.huoban.com/home)";
@@ -84,7 +84,34 @@ public class MyScheduleConfig {
 		HttpService.workRequset(resStr, WX_TOKEN);
 	}
 	
-	@Scheduled(cron = "0 30 16 * * ?")
+	@Scheduled(cron = "0 30 10 ? * MON")
+	private void weekReboot() {
+		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
+		String CensusData = CensusService.getWeekData();
+		String customer = customerService.getWeekData();
+		String collent = CollentService.getWeekData();
+		String survey = SurveyService.getWeekData();
+		String url = "[查看详情](https://app.huoban.com/home)";
+		String resStr = "";
+		if(!CensusData.equals("")) {
+			resStr += CensusData + "\n";
+		} 
+		if(!customer.equals("")) {
+			resStr += customer + "\n";
+		} 
+		if(!collent.equals("")) {
+			resStr += collent + "\n";
+		} 
+		if(!survey.equals("")) {
+			resStr += survey + "\n";
+		} 
+		resStr += url;
+		System.out.println(resStr);
+		HttpService.workRequset(resStr, WX_TOKEN);
+	}
+	
+	
+	@Scheduled(cron = "0 30 09 * * ?")
 	private void projectSelect() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);

@@ -26,6 +26,10 @@ public class CollentService {
 		return collentMapper.currentData();
 	}
 	
+	public List<Collent> weekData(){
+		return collentMapper.weekData();
+	}
+	
 	public void insert(Collent collent) {
 		collentMapper.insert(collent);
 	}
@@ -68,22 +72,37 @@ public class CollentService {
 	public String getCollentData() {
 		String str = "**今日CRM新增全款TOP** \n";
 		List<Collent> collent = collentMapper.currentData();
-		if(collent.size() == 0) {
+		return getDepartInfo(str, collent);
+	}
+	
+	public String getWeekData() {
+		String str = "**上周CRM新增全款TOP** \n";
+		List<Collent> collent = collentMapper.weekData();
+		return getDepartInfo(str, collent);
+	}
+	
+	public String getDepartInfo(String str, List<Collent> list) {
+		if(list.size() == 0) {
 			return "";
 		}
 		Map<String, Integer> map = new HashMap<>();
-		collent.forEach(name -> {
+		list.forEach(name -> {
 			Integer counts = map.get(name.getSales());
 			map.put(name.getSales(), counts == null ? 1 : ++counts);
 		});
 		Map<String, Integer> map1 = CommonUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
+		int index = 0;
 		while (entries.hasNext()) {
+			if(index >= 3) {
+				break;
+			}
 		    Map.Entry entry = (Map.Entry) entries.next();
 		    String key = (String)entry.getKey();
 		    Integer value = (Integer)entry.getValue();
 		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		    index += 1;
 		}
 		return str;
-	}
+	}	
 }

@@ -32,6 +32,10 @@ public class SurveyService {
 	public List<Survey> currentData(){
 		return surveyMapper.currentData();
 	}
+	
+	public List<Survey> weekData(){
+		return surveyMapper.weekData();
+	}
 
 	public void insert(Survey survey) {
 		surveyMapper.insert(survey);
@@ -78,21 +82,36 @@ public class SurveyService {
 	public String getSurveyData() {
 		String str = "**今日CRM新增工勘TOP** \n";
 		List<Survey> Survey = surveyMapper.currentData();
-		if(Survey.size() == 0) {
+		return getDepartInfo(str, Survey);
+	}
+
+	public String getWeekData() {
+		String str = "**上周CRM新增工勘TOP** \n";
+		List<Survey> Survey = surveyMapper.weekData();
+		return getDepartInfo(str, Survey);
+	}
+	
+	public String getDepartInfo(String str, List<Survey> list) {
+		if(list.size() == 0) {
 			return "";
 		}
 		Map<String, Integer> map = new HashMap<>();
-		Survey.forEach(name -> {
+		list.forEach(name -> {
 			Integer counts = map.get(name.getSales());
 			map.put(name.getSales(), counts == null ? 1 : ++counts);
 		});
 		Map<String, Integer> map1 = CommonUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
+		int index = 0;
 		while (entries.hasNext()) {
+			if(index >= 3) {
+				break;
+			}
 		    Map.Entry entry = (Map.Entry) entries.next();
 		    String key = (String)entry.getKey();
 		    Integer value = (Integer)entry.getValue();
 		    str += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		    index += 1;
 		}
 		return str;
 	}

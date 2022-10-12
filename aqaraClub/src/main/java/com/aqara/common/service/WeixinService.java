@@ -23,6 +23,10 @@ public class WeixinService {
 		return WeixinMapper.select();
 	}
 	
+	public List<Weixin> weekData() {
+		return WeixinMapper.weekData();
+	}
+	
 	public void insert(Weixin Weixin) {
 		WeixinMapper.insert(Weixin);
 	}
@@ -58,10 +62,5 @@ public class WeixinService {
 			}
 			WeixinMapper.insert(Weixin);
 		}
-	}
-	
-	public String getWeixinStr(String ticket) {
-		
-		return "";
 	}
 }

@@ -45,7 +45,7 @@ const columns = [
   },
   {
     title: '公司名称',
-    dataIndex: 'theme'
+    dataIndex: 'company'
   },
   {
     title: '创建人员',

@@ -26,6 +26,10 @@
   		)
 	</insert>
 	
+	<select id="weekData" resultType="com.aqara.common.entity.Collent">
+		select * from weixin where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <=  ]]> date(createTime)
+	</select>
+	
 	<delete id="delete" parameterType="com.aqara.common.entity.Weixin">
 		delete from weixin where id = #{id}
 	</delete>

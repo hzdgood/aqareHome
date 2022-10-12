@@ -9,6 +9,8 @@ public interface WeixinMapper {
 	
 	List<Weixin> select();
 	
+	List<Weixin> weekData();
+	
 	void insert(Weixin Weixin);
 	
 	void delete(Integer id);
