@@ -57,13 +57,13 @@ const doInfo = async () => {
     localStorage.setItem('avatar', avatar)
     localStorage.setItem('localName', localName)
 
-    await invoke('sendChatMessage', {
-      msgtype: 'text',
-      enterChat: false,
-      text: {
-        content: '111111'
-      }
-    })
+    // await invoke('sendChatMessage', {
+    //   msgtype: 'text',
+    //   enterChat: false,
+    //   text: {
+    //     content: '111111'
+    //   }
+    // })
 
     getTicket()
   } else if (result.entry === 'group_chat_tools') {
