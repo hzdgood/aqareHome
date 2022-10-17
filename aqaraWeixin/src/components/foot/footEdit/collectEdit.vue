@@ -47,7 +47,7 @@
           </tr>
           <tr>
             <td>收款金额</td>
-            <td><input id="collectMoney" type="text" :value="receivable" /></td>
+            <td><input id="collectMoney" type="text" v-model="collectMoney" /></td>
           </tr>
           <tr>
             <td>上传图片</td>
@@ -110,7 +110,7 @@ export default class Home extends Vue {
   projectId = '';
   title = '';
   quotationId = '';
-  receivable = '';
+  collectMoney = '';
   visible = false
   loadVisible = false
   userId = localStorage.getItem('userId');
@@ -150,14 +150,12 @@ export default class Home extends Vue {
     for (let i = 0; i < result.length; i++) {
       salesId = result[0].item_id
     }
-
-    const collectMoney: any = document.getElementById('collectMoney')
     let projectType: any = document.getElementById('projectType')
     projectType = projectType.options[projectType.selectedIndex].value
     let collectType: any = document.getElementById('collectType')
     collectType = collectType.options[collectType.selectedIndex].value
     const file: any = document.getElementById('file')
-    if (collectMoney.value === '') {
+    if (this.collectMoney === '') {
       this.errorInfo('请输入金额!')
       return
     }
@@ -174,7 +172,7 @@ export default class Home extends Vue {
           [field.pName]: [this.itemId],
           [field.pType]: [1],
           [field.cType]: [collectType],
-          [field.cMoney]: collectMoney.value,
+          [field.cMoney]: this.collectMoney,
           [field.uploadFile]: list,
           2200000181625297: [salesId]
         }
@@ -194,7 +192,7 @@ export default class Home extends Vue {
           [field.pType]: [2],
           2200000180591045: [this.quotationId],
           [field.cType]: [collectType],
-          [field.cMoney]: collectMoney.value,
+          [field.cMoney]: this.collectMoney,
           [field.uploadFile]: list,
           2200000181625297: [salesId]
         }
@@ -248,12 +246,12 @@ export default class Home extends Vue {
       for (let i = 0; i < fields.length; i++) {
         if (fields[i].field_id === 2200000180589759) {
           const values = fields[i].values[0].value
-          this.receivable = values
+          this.collectMoney = values
         }
       }
     } else if (projectType === '1') {
       this.quotationStatus = false
-      this.receivable = ''
+      this.collectMoney = ''
     }
   }
 
