@@ -5,7 +5,7 @@ import java.util.Date;
 public class SpeedyContent {
 	private Integer id;
 	private Integer parentId;
-	private Integer theme;
+	private String theme;
 	private String content;
 	private String createName;
 	private Date createTime;
@@ -28,11 +28,11 @@ public class SpeedyContent {
 		this.parentId = parentId;
 	}
 	
-	public Integer getTheme() {
+	public String getTheme() {
 		return theme;
 	}
 
-	public void setTheme(Integer theme) {
+	public void setTheme(String theme) {
 		this.theme = theme;
 	}
 

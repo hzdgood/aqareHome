@@ -42,7 +42,7 @@ export const themeDelete = async (data) => {
 export const getContentData = async (data) => {
     const url = httpUrl + '/speedy/content/select'
     const response = await postReq(url, data)
-    return response.data
+    return response
 }
 
 export const ContentInsert = async (data) => {

@@ -14,7 +14,11 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		select * from speedyContent where 1 = 1 and parentId = #{id}
+		select * from speedyContent where 1 = 1 
+		<if test="id!=null and id!=''">  
+    		AND parentId = #{id} 
+		</if>
+		order by theme
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
