@@ -68,7 +68,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import MenuForm from './modules/MenuForm'
-import { getThemeData } from '@/api/axios'
+import { getThemeData, themeInsert } from '@/api/axios'
 
 const columns = [
   {
@@ -153,11 +153,28 @@ export default {
     handleOk () {
       const form = this.$refs.createModal.form
       this.confirmLoading = true
-      form.validateFields((errors, values) => {
+      form.validateFields(async (errors, values) => {
         if (!errors) {
           console.log('values', values)
           if (values.id > 0) {
-          } else {}
+            // await themeInsert(values)
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.$refs.table.refresh()
+            this.$message.info('修改成功')
+          } else {
+            await themeInsert(values)
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.$refs.table.refresh()
+            this.$message.info('新增成功')
+          }
         }
       })
       this.confirmLoading = false

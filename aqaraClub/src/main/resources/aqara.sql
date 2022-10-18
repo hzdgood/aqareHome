@@ -55,15 +55,16 @@ CREATE TABLE `speedyContent` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `speedyTheme` (
+CREATE TABLE `speedytheme` (
   `id` int NOT NULL AUTO_INCREMENT,
   `theme` varchar(45) DEFAULT NULL,
+  `company` varchar(45) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
   `updateName` varchar(45) DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `weixin` (

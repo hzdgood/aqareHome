@@ -33,6 +33,12 @@ export const themeInsert = async (data) => {
     return response
 }
 
+export const themeUpdate = async (data) => {
+    const url = httpUrl + '/speedy/theme/update'
+    const response = await getReq(url, data)
+    return response
+}
+
 export const themeDelete = async (data) => {
     const url = httpUrl + '/speedy/theme/delete'
     const response = await getReq(url, data)
@@ -47,6 +53,12 @@ export const getContentData = async (data) => {
 
 export const ContentInsert = async (data) => {
     const url = httpUrl + '/speedy/content/insert'
+    const response = await getReq(url, data)
+    return response
+}
+
+export const ContentUpdate = async (data) => {
+    const url = httpUrl + '/speedy/content/update'
     const response = await getReq(url, data)
     return response
 }
