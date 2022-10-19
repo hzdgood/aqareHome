@@ -5,6 +5,7 @@
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
 		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="parentId" jdbcType="INTEGER" property="parentId" />
+		<result column="theme" jdbcType="INTEGER" property="parentId" />
 		<result column="content" jdbcType="VARCHAR" property="content" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />

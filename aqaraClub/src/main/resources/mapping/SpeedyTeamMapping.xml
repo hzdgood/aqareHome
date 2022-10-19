@@ -1,0 +1,37 @@
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.aqara.common.mapper.SpeedyTeamMapper">
+	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyTeam">
+		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="createName" jdbcType="VARCHAR" property="createName" />
+		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
+		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+	</resultMap>
+	
+	<select id="select" resultType="com.aqara.common.entity.SpeedyTeam">
+		select * from speedyTeam where 1 = 1 
+		<if test="type!=null and type!=''">  
+    		AND theme like concat('%',#{type,jdbcType=VARCHAR},'%')
+		</if>
+	</select>
+	
+	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTeam" useGeneratedKeys="true" keyProperty="id">
+		insert into speedyTeam ( name, type, company, createName, createTime, updateName, updateTime ) 
+			values ( #{name}, #{type}, #{company}, #{createName}, NOW(), #{updateName}, NOW() )
+	</insert>
+	
+	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTeam">
+		update from speedyTeam where id = #{id} set name = #{name} and type = #{type}
+	</insert>
+	
+	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyTeam">
+		delete from speedyTeam where id in (#{id})
+	</delete>
+
+</mapper>
