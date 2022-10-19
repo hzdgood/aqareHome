@@ -5,7 +5,7 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
-              <a-form-item label="主题名称">
+              <a-form-item label="主题">
                 <a-input v-model="queryParam.theme" placeholder=""/>
               </a-form-item>
             </a-col>
@@ -70,32 +70,24 @@ import { getContentData, ContentInsert } from '@/api/axios'
 
 const columns = [
   {
-    title: '序号',
+    title: '',
     scopedSlots: { customRender: 'serial' }
   },
   {
-    title: '主题名称',
+    title: '话术类型', // 企业，团队，个人
+    dataIndex: ''
+  },
+  {
+    title: '快捷组',
+    dataIndex: ''
+  },
+  {
+    title: '主题',
     dataIndex: 'theme'
   },
   {
     title: '主题内容',
     dataIndex: 'content'
-  },
-  {
-    title: '创建人员',
-    dataIndex: 'createName'
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'createTime'
-  },
-  {
-    title: '修改人员',
-    dataIndex: 'updateName'
-  },
-  {
-    title: '修改时间',
-    dataIndex: 'updateTime'
   },
   {
     title: '操作',

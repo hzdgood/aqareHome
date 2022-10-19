@@ -7,17 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/speedy/theme")
-public class SpeedyThemeController {
+@RequestMapping("/speedy/team")
+public class SpeedyTeamController {
 	
 	@Autowired
-	SpeedyThemeService SpeedyThemeService;
+	SpeedyTeamService SpeedyTeamService;
 	
 	@CrossOrigin
 	@RequestMapping("/select")
 	public Map<String, Object> select(@RequestBody PageReq PageReq) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<SpeedyTheme> list = SpeedyThemeService.select(PageReq.getTheme(), PageReq.getCompany());
+		List<SpeedyTeam> list = SpeedyTeamService.select(PageReq.getType());
 		map.put("pageNo", 1);
 		map.put("pageSize", 10);
 		map.put("totalCount", list.size());
@@ -28,19 +28,20 @@ public class SpeedyThemeController {
 	
 	@CrossOrigin
 	@RequestMapping("/insert")
-	public void insert(SpeedyTheme SpeedyTheme) {
-		SpeedyThemeService.insert(SpeedyTheme);
+	public void insert(SpeedyTeam SpeedyTeam) {
+		SpeedyTeamService.insert(SpeedyTeam);
 	}
 	
 	@CrossOrigin
 	@RequestMapping("/update")
-	public void update(SpeedyTheme SpeedyTheme) {
-		SpeedyThemeService.update(SpeedyTheme);
+	public void update(SpeedyTeam SpeedyTeam) {
+		SpeedyTeamService.update(SpeedyTeam);
 	}
 	
 	@CrossOrigin
 	@RequestMapping("/delete")
 	public void delete(String ids) {
-		SpeedyThemeService.delete(ids);
+		SpeedyTeamService.delete(ids);
 	}
+
 }

@@ -2,13 +2,11 @@ package com.aqara.common.entity;
 
 import java.util.Date;
 
-public class SpeedyTheme {
+public class SpeedyTeam {
 	private Integer id;
-	private Integer teamId;
-	private String theme;
-	private String type;
-	private String team;
-	private String company;
+	private String name; // 组名
+	private String type; // 类型
+	private String company; // 公司
 	private String createName;
 	private Date createTime;
 	private String updateName;
@@ -22,20 +20,12 @@ public class SpeedyTheme {
 		this.id = id;
 	}
 
-	public Integer getTeamId() {
-		return teamId;
+	public String getName() {
+		return name;
 	}
 
-	public void setTeamId(Integer teamId) {
-		this.teamId = teamId;
-	}
-
-	public String getTheme() {
-		return theme;
-	}
-
-	public void setTheme(String theme) {
-		this.theme = theme;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getType() {
@@ -45,15 +35,7 @@ public class SpeedyTheme {
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public String getTeam() {
-		return team;
-	}
-
-	public void setTeam(String team) {
-		this.team = team;
-	}
-
+	
 	public String getCompany() {
 		return company;
 	}
@@ -93,4 +75,5 @@ public class SpeedyTheme {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
+
 }

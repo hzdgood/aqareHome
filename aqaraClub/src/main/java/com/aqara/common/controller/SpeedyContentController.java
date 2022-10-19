@@ -1,14 +1,10 @@
 package com.aqara.common.controller;
 
-import com.aqara.common.entity.PageReq;
-import com.aqara.common.entity.SpeedyContent;
+import com.aqara.common.entity.*;
 import com.aqara.common.service.*;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/speedy/content")

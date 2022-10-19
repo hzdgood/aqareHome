@@ -5,7 +5,10 @@ import java.util.Date;
 public class SpeedyContent {
 	private Integer id;
 	private Integer parentId;
+	private String type;
+	private String team;
 	private String theme;
+	private String company;
 	private String content;
 	private String createName;
 	private Date createTime;
@@ -27,13 +30,37 @@ public class SpeedyContent {
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
-	
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
 	public String getTheme() {
 		return theme;
 	}
 
 	public void setTheme(String theme) {
 		this.theme = theme;
+	}
+
+	public String getCompany() {
+		return company;
+	}
+
+	public void setCompany(String company) {
+		this.company = company;
 	}
 
 	public String getContent() {
@@ -75,5 +102,4 @@ public class SpeedyContent {
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
 	}
-
 }

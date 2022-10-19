@@ -75,7 +75,11 @@ created () {
 },
 methods: {
   async getMenuList () {
-    const data = await getThemeData()
+    const obj = {
+      pageNo: 1,
+      pageSize: 10
+    }
+    const data = await getThemeData(obj)
     this.menuList = data.data.data
   }
 }
