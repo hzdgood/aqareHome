@@ -21,9 +21,9 @@ const postReq = async (url, data) => {
     return response
 }
 
-export const getThemeData = async () => {
+export const getThemeData = async (data) => {
     const url = httpUrl + '/speedy/theme/select'
-    const response = await postReq(url)
+    const response = await postReq(url, data)
     return response
 }
 

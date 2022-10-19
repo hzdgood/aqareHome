@@ -13,7 +13,13 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyTheme">
-		select * from speedyTheme where 1 = 1
+		select * from speedyTheme where 1 = 1 
+		<if test="theme!=null and theme!=''">  
+    		AND theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="company!=null and company!=''">  
+    		AND company like concat('%',#{company,jdbcType=VARCHAR},'%')
+		</if>
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTheme" useGeneratedKeys="true" keyProperty="id">
@@ -21,8 +27,12 @@
 			values ( #{theme}, #{company}, #{createName}, NOW(), #{updateName}, NOW() )
 	</insert>
 	
+	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTheme">
+		update from speedyTheme where id = #{id} set theme = #{theme} and company = #{company}
+	</insert>
+	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyTheme">
-		delete from speedyTheme where id = #{id}
+		delete from speedyTheme where id in (#{id})
 	</delete>
 
 </mapper>

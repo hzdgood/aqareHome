@@ -7,9 +7,11 @@ import com.aqara.common.entity.SpeedyContent;
 @Repository
 public interface SpeedyContentMapper {
 	
-    List<SpeedyContent> select(Integer id);
+    List<SpeedyContent> select(String theme);
 	
 	void insert(SpeedyContent SpeedyContent);
 	
-	void delete(Integer id);
+	void update(SpeedyContent SpeedyContent);
+	
+	void delete(String id);
 }

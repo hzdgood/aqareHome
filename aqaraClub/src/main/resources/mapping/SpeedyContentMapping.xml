@@ -14,20 +14,25 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		select * from speedyContent where 1 = 1 
-		<if test="id!=null and id!=''">  
-    		AND parentId = #{id} 
+		SELECT c.id, c.parentId, t.theme, c.content, c.createName, c.createTime, c.updateName, c.updateTime 
+			FROM aqara.speedytheme t, aqara.speedycontent c where t.id = c.parentId 
+		<if test="theme!=null and theme!=''">  
+    		AND t.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
 		</if>
-		order by theme
+		order by c.parentId
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyContent ( parentId, theme content, createName, createTime, updateName, updateTime ) 
+		insert into speedyContent ( parentId, theme, content, createName, createTime, updateName, updateTime ) 
 			values ( #{parentId}, #{theme}, #{content}, #{createName}, NOW(), #{updateName}, NOW() )
 	</insert>
 	
+	<insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
+		update from speedyContent where id = #{id} set parentId = #{parentId} and content = #{content} and theme = #{theme}
+	</insert>
+	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">
-		delete from speedyContent where id = #{id}
+		delete from speedyContent where id in (#{id})
 	</delete>
 
 </mapper>

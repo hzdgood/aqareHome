@@ -7,9 +7,12 @@ import com.aqara.common.entity.SpeedyTheme;
 @Repository
 public interface SpeedyThemeMapper {
 	
-	List<SpeedyTheme> select();
+	List<SpeedyTheme> select(String theme, String company);
 	
 	void insert(SpeedyTheme SpeedyTheme);
 	
-	void delete(Integer id);
+	void update(SpeedyTheme SpeedyTheme);
+	
+	void delete(String id);
+	
 }

@@ -12,16 +12,20 @@ public class SpeedyThemeService {
 	@Autowired
 	SpeedyThemeMapper SpeedyThemeMapper;
 	
-	public List<SpeedyTheme> select() {
-		return SpeedyThemeMapper.select();
+	public List<SpeedyTheme> select(String theme, String company) {
+		return SpeedyThemeMapper.select(theme, company);
 	}
 	
 	public void insert(SpeedyTheme SpeedyTheme) {
 		SpeedyThemeMapper.insert(SpeedyTheme);
 	}
 	
-	public void delete(Integer id) {
-		SpeedyThemeMapper.delete(id);
+	public void update(SpeedyTheme SpeedyTheme) {
+		SpeedyThemeMapper.update(SpeedyTheme);
+	}
+	
+	public void delete(String ids) {
+		SpeedyThemeMapper.delete(ids);
 	}
 
 }

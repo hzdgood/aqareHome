@@ -12,15 +12,19 @@ public class SpeedyContentService {
 	@Autowired
 	SpeedyContentMapper SpeedyContentMapper;
 	
-	public List<SpeedyContent> select(Integer id) {
-		return SpeedyContentMapper.select(id);
+	public List<SpeedyContent> select(String theme) {
+		return SpeedyContentMapper.select(theme);
 	}
 	
 	public void insert(SpeedyContent SpeedyContent) {
 		SpeedyContentMapper.insert(SpeedyContent);
 	}
 	
-	public void delete(Integer id) {
-		SpeedyContentMapper.delete(id);
+	public void update(SpeedyContent SpeedyContent) {
+		SpeedyContentMapper.update(SpeedyContent);
+	}
+	
+	public void delete(String ids) {
+		SpeedyContentMapper.delete(ids);
 	}
 }

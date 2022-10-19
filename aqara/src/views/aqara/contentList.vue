@@ -66,7 +66,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import ContentForm from './modules/ContentForm'
-import { getContentData } from '@/api/axios'
+import { getContentData, ContentInsert } from '@/api/axios'
 
 const columns = [
   {
@@ -176,6 +176,7 @@ export default {
             this.$refs.table.refresh()
             this.$message.info('修改成功')
           } else {
+            await ContentInsert(values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
