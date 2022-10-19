@@ -7,7 +7,7 @@ import com.aqara.common.entity.SpeedyTheme;
 @Repository
 public interface SpeedyThemeMapper {
 	
-	List<SpeedyTheme> select(String theme, String company);
+	List<SpeedyTheme> select(String theme);
 	
 	void insert(SpeedyTheme SpeedyTheme);
 	

@@ -75,11 +75,11 @@ const columns = [
   },
   {
     title: '话术类型', // 企业，团队，个人
-    dataIndex: ''
+    dataIndex: 'type'
   },
   {
     title: '快捷组',
-    dataIndex: ''
+    dataIndex: 'team'
   },
   {
     title: '主题',

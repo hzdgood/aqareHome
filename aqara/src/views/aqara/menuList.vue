@@ -10,11 +10,6 @@
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
-              <a-form-item label="公司名称">
-                <a-input v-model="queryParam.company" placeholder=""/>
-              </a-form-item>
-            </a-col>
-            <a-col :md="8" :sm="24">
               <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
             </a-col>
           </a-row>
@@ -77,11 +72,11 @@ const columns = [
   },
   {
     title: '话术类型', // 企业，团队，个人
-    dataIndex: ''
+    dataIndex: 'type'
   },
   {
     title: '快捷组',
-    dataIndex: ''
+    dataIndex: 'team'
   },
   {
     title: '主题',

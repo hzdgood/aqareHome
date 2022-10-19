@@ -13,11 +13,11 @@
         <a-form-item v-show="model && model.id > 0" label="主键ID">
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
+        <a-form-item label="快捷组">
+          <a-input v-decorator="['teamId', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+        </a-form-item>
         <a-form-item label="主题名称">
           <a-input v-decorator="['theme', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
-        </a-form-item>
-        <a-form-item label="公司名称">
-          <a-input v-decorator="['company', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
         </a-form-item>
       </a-form>
     </a-spin>
@@ -26,7 +26,7 @@
 <script>
 import pick from 'lodash.pick'
 // 表单字段
-const fields = ['company', 'theme', 'id']
+const fields = ['teamId', 'theme', 'id']
 export default {
 props: {
   visible: {

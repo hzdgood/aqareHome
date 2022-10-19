@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class SpeedyContent {
 	private Integer id;
-	private Integer parentId;
+	private Integer themeId;
 	private String type;
 	private String team;
 	private String theme;
@@ -23,12 +23,12 @@ public class SpeedyContent {
 		this.id = id;
 	}
 
-	public Integer getParentId() {
-		return parentId;
+	public Integer getThemeId() {
+		return themeId;
 	}
 
-	public void setParentId(Integer parentId) {
-		this.parentId = parentId;
+	public void setThemeId(Integer themeId) {
+		this.themeId = themeId;
 	}
 
 	public String getType() {

@@ -4,7 +4,7 @@
 <mapper namespace="com.aqara.common.mapper.SpeedyContentMapper">
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
 		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="parentId" jdbcType="INTEGER" property="parentId" />
+		<result column="themeId" jdbcType="INTEGER" property="parentId" />
 		<result column="theme" jdbcType="INTEGER" property="parentId" />
 		<result column="content" jdbcType="VARCHAR" property="content" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
@@ -14,8 +14,8 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		SELECT c.id, c.parentId, t.theme, c.content, c.createName, c.createTime, c.updateName, c.updateTime 
-			FROM aqara.speedytheme t, aqara.speedycontent c where t.id = c.parentId 
+		SELECT c.id, c.themeId, t.theme, c.content, c.createName, c.createTime, c.updateName, c.updateTime 
+			FROM aqara.speedytheme t, aqara.speedycontent c where t.id = c.themeId 
 		<if test="theme!=null and theme!=''">  
     		AND t.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
 		</if>
@@ -23,12 +23,12 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyContent ( parentId, content, createName, createTime, updateName, updateTime ) 
-			values ( #{parentId}, #{content}, #{createName}, NOW(), #{updateName}, NOW() )
+		insert into speedyContent ( themeId, content, createName, createTime, updateName, updateTime ) 
+			values ( #{themeId}, #{content}, #{createName}, NOW(), #{updateName}, NOW() )
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
-		update from speedyContent where id = #{id} set parentId = #{parentId} and content = #{content} and theme = #{theme}
+		update from speedyContent where id = #{id} set themeId = #{themeId} and content = #{content}
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">

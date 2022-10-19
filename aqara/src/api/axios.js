@@ -68,3 +68,27 @@ export const ContentDelete = async (data) => {
     const response = await getReq(url, data)
     return response
 }
+
+export const getTeamData = async (data) => {
+    const url = httpUrl + '/speedy/team/select'
+    const response = await postReq(url, data)
+    return response
+}
+
+export const teamInsert = async (data) => {
+    const url = httpUrl + '/speedy/team/insert'
+    const response = await getReq(url, data)
+    return response
+}
+
+export const teamUpdate = async (data) => {
+    const url = httpUrl + '/speedy/team/update'
+    const response = await getReq(url, data)
+    return response
+}
+
+export const teamDelete = async (data) => {
+    const url = httpUrl + '/speedy/team/delete'
+    const response = await getReq(url, data)
+    return response
+}

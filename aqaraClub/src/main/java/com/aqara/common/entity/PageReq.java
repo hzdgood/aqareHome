@@ -4,7 +4,6 @@ public class PageReq {
 	private String pageNo;
 	private String pageSize;
 	private String theme;
-	private String company;
 	private String type;
 
 	public String getPageNo() {
@@ -29,14 +28,6 @@ public class PageReq {
 
 	public void setTheme(String theme) {
 		this.theme = theme;
-	}
-
-	public String getCompany() {
-		return company;
-	}
-
-	public void setCompany(String company) {
-		this.company = company;
 	}
 
 	public String getType() {

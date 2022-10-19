@@ -12,8 +12,8 @@ public class SpeedyThemeService {
 	@Autowired
 	SpeedyThemeMapper SpeedyThemeMapper;
 	
-	public List<SpeedyTheme> select(String theme, String company) {
-		return SpeedyThemeMapper.select(theme, company);
+	public List<SpeedyTheme> select(String theme) {
+		return SpeedyThemeMapper.select(theme);
 	}
 	
 	public void insert(SpeedyTheme SpeedyTheme) {

@@ -17,7 +17,7 @@
 	<select id="select" resultType="com.aqara.common.entity.SpeedyTeam">
 		select * from speedyTeam where 1 = 1 
 		<if test="type!=null and type!=''">  
-    		AND theme like concat('%',#{type,jdbcType=VARCHAR},'%')
+    		AND type like concat('%',#{type,jdbcType=VARCHAR},'%')
 		</if>
 	</select>
 	

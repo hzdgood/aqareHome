@@ -4,7 +4,8 @@
 <mapper namespace="com.aqara.common.mapper.SpeedyThemeMapper">
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyTheme">
 		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="parentId" jdbcType="INTEGER" property="parentId" />
+		<result column="teamId" jdbcType="INTEGER" property="teamId" />
+		<result column="team" jdbcType="VARCHAR" property="team" />
 		<result column="theme" jdbcType="VARCHAR" property="theme" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
@@ -13,12 +14,9 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyTheme">
-		select * from speedyTheme where 1 = 1 
+		select * from speedyTheme t where 1 = 1 
 		<if test="theme!=null and theme!=''">  
-    		AND theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="company!=null and company!=''">  
-    		AND company like concat('%',#{company,jdbcType=VARCHAR},'%')
+    		AND t.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
 		</if>
 	</select>
 	
