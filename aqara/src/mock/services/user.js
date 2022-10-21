@@ -531,6 +531,17 @@ const userNav = options => {
       path: '/aqara/customer-list'
     },
     {
+      name: 'teamList',
+      parentId: 0,
+      id: 6,
+      meta: {
+        title: '快捷组',
+        show: true
+      },
+      component: 'teamList',
+      path: '/aqara/team-list'
+    },
+    {
       name: 'menuList',
       parentId: 0,
       id: 6,

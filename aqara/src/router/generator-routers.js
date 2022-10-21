@@ -21,6 +21,7 @@ const constantRouterComponents = {
   // 我自己的菜单
   menuList: () => import('@/views/aqara/menuList'),
   contentList: () => import('@/views/aqara/contentList'),
+  teamList: () => import('@/views/aqara/teamList'),
   // form
   BasicForm: () => import('@/views/form/basicForm'),
   StepForm: () => import('@/views/form/stepForm/StepForm'),
