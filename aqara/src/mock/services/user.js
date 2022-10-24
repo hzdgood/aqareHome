@@ -542,15 +542,15 @@ const userNav = options => {
       path: '/aqara/team-list'
     },
     {
-      name: 'menuList',
+      name: 'themeList',
       parentId: 0,
       id: 6,
       meta: {
         title: '快捷主题',
         show: true
       },
-      component: 'menuList',
-      path: '/aqara/menu-list'
+      component: 'themeList',
+      path: '/aqara/theme-list'
     },
     {
       name: 'contentList',

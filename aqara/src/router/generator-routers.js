@@ -19,7 +19,7 @@ const constantRouterComponents = {
   Analysis: () => import('@/views/dashboard/Analysis'),
   CustomerList: () => import('@/views/aqara/CustomerList'),
   // 我自己的菜单
-  menuList: () => import('@/views/aqara/menuList'),
+  themeList: () => import('@/views/aqara/themeList'),
   contentList: () => import('@/views/aqara/contentList'),
   teamList: () => import('@/views/aqara/teamList'),
   // form
