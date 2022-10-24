@@ -13,5 +13,5 @@ public interface SpeedyContentMapper {
 	
 	void update(SpeedyContent SpeedyContent);
 	
-	void delete(String id);
+	void delete(List<Integer> ids);
 }

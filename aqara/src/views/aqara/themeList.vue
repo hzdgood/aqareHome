@@ -20,7 +20,7 @@
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
         <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
           <a-menu slot="overlay">
-            <a-menu-item key="1"><a-icon type="delete" @click="handleDelete"/>删除</a-menu-item>
+            <a-menu-item key="1" @click="handleDelete(1)"><a-icon type="delete" />删除</a-menu-item>
           </a-menu>
           <a-button style="margin-left: 8px">
             批量操作 <a-icon type="down" />
@@ -63,7 +63,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import MenuForm from './modules/MenuForm'
-import { getThemeData, themeInsert } from '@/api/axios'
+import { getThemeData, themeInsert, themeUpdate, themeDelete } from '@/api/axios'
 
 const columns = [{
   title: '',
@@ -137,7 +137,7 @@ export default {
         if (!errors) {
           console.log('values', values)
           if (values.id > 0) {
-            // await themeInsert(values)
+            await themeUpdate(values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -169,8 +169,24 @@ export default {
       this.visible = true
       this.mdl = { ...record }
     },
-    handleDelete () {
-      console.log(this.selectedRowKeys)
+    async handleDelete (key) {
+      this.$confirm({
+        title: '警告',
+        content: `真的要删除吗?`,
+        okText: '删除',
+        okType: 'danger',
+        cancelText: '取消',
+        async onOk () {
+          const keys = this.selectedRowKeys
+          const req = {
+            ids: keys.join()
+          }
+          await themeDelete(req)
+          this.$refs.table.refresh()
+          this.$message.info('删除成功')
+        },
+        onCancel () {}
+      })
     }
   }
 }

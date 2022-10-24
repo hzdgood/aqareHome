@@ -23,7 +23,7 @@ public class SpeedyTeamService {
 		SpeedyTeamMapper.update(SpeedyTeam);
 	}
 	
-	public void delete(String ids) {
+	public void delete(List<Integer> ids) {
 		SpeedyTeamMapper.delete(ids);
 	}
 }

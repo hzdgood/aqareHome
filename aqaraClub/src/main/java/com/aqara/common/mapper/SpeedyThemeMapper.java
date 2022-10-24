@@ -13,6 +13,6 @@ public interface SpeedyThemeMapper {
 	
 	void update(SpeedyTheme SpeedyTheme);
 	
-	void delete(String id);
+	void delete(List<Integer> ids);
 	
 }

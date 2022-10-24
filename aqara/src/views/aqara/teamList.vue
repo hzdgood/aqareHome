@@ -6,7 +6,10 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="话术类型">
-                <a-select placeholder="请选择" v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+                <a-select
+                  placeholder="请选择"
+                  v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }] }]"
+                >
                   <a-select-option value="企业">企业话术</a-select-option>
                   <a-select-option value="团体">团体话术</a-select-option>
                   <a-select-option value="个人">个人话术</a-select-option>
@@ -23,10 +26,9 @@
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
         <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
           <a-menu slot="overlay">
-            <a-menu-item key="1"><a-icon type="delete" @click="handleDelete"/>删除</a-menu-item>
+            <a-menu-item key="1" @click="handleDelete(1)"><a-icon type="delete" />删除</a-menu-item>
           </a-menu>
-          <a-button style="margin-left: 8px">批量操作 <a-icon type="down" />
-          </a-button>
+          <a-button style="margin-left: 8px">批量操作 <a-icon type="down" /> </a-button>
         </a-dropdown>
       </div>
       <s-table
@@ -63,110 +65,132 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import TeamForm from './modules/teamForm'
-import { getTeamData, teamInsert } from '@/api/axios'
-const columns = [{
-  title: '',
-  scopedSlots: { customRender: 'serial' }
-}, {
-  title: '话术类型', // 企业，团队，个人
-  dataIndex: 'type'
-}, {
-  title: '快捷组',
-  dataIndex: 'team'
-}, {
-  title: '公司名称',
-  dataIndex: 'company'
-}, {
-  title: '操作',
-  dataIndex: 'action',
-  width: '150px',
-  scopedSlots: { customRender: 'action' }
-}]
+import { getTeamData, teamInsert, teamUpdate, teamDelete } from '@/api/axios'
+const columns = [
+  {
+    title: '',
+    scopedSlots: { customRender: 'serial' }
+  },
+  {
+    title: '话术类型', // 企业，团队，个人
+    dataIndex: 'type'
+  },
+  {
+    title: '快捷组',
+    dataIndex: 'team'
+  },
+  {
+    title: '公司名称',
+    dataIndex: 'company'
+  },
+  {
+    title: '操作',
+    dataIndex: 'action',
+    width: '150px',
+    scopedSlots: { customRender: 'action' }
+  }
+]
 export default {
-name: 'TeamList',
-components: {
-  STable,
-  Ellipsis,
-  TeamForm
-},
-data () {
-  this.columns = columns
-  return {
-    formTitle: '',
-    visible: false,
-    confirmLoading: false,
-    mdl: null,
-    queryParam: {},
-    selectedRowKeys: [],
-    selectedRows: [],
-    loadData: (parameter) => {
+  name: 'TeamList',
+  components: {
+    STable,
+    Ellipsis,
+    TeamForm
+  },
+  data () {
+    this.columns = columns
+    return {
+      formTitle: '',
+      visible: false,
+      confirmLoading: false,
+      mdl: null,
+      queryParam: {},
+      selectedRowKeys: [],
+      selectedRows: [],
+      loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         return getTeamData(requestParameters).then((res) => {
-        return res.data
+          return res.data
+        })
+      }
+    }
+  },
+  computed: {
+    rowSelection () {
+      return {
+        selectedRowKeys: this.selectedRowKeys,
+        onChange: this.onSelectChange
+      }
+    }
+  },
+  methods: {
+    onSelectChange (selectedRowKeys, selectedRows) {
+      this.selectedRowKeys = selectedRowKeys
+      this.selectedRows = selectedRows
+    },
+    handleAdd () {
+      this.formTitle = '新建主题'
+      this.mdl = null
+      this.visible = true
+    },
+    handleOk () {
+      const form = this.$refs.createModal.form
+      this.confirmLoading = true
+      form.validateFields(async (errors, values) => {
+        if (!errors) {
+          console.log('values', values)
+          if (values.id > 0) {
+            await teamUpdate(values)
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.$refs.table.refresh()
+            this.$message.info('修改成功')
+          } else {
+            await teamInsert(values)
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.$refs.table.refresh()
+            this.$message.info('新增成功')
+          }
+        }
+      })
+      this.confirmLoading = false
+    },
+    handleCancel () {
+      const form = this.$refs.createModal.form
+      form.resetFields() // 清理表单数据（可不做）
+      this.visible = false
+    },
+    handleEdit (record) {
+      this.formTitle = '修改主题'
+      this.visible = true
+      this.mdl = { ...record }
+    },
+    async handleDelete (key) {
+      this.$confirm({
+        title: '警告',
+        content: `真的要删除吗?`,
+        okText: '删除',
+        okType: 'danger',
+        cancelText: '取消',
+        async onOk () {
+          const keys = this.selectedRowKeys
+          const req = {
+            ids: keys.join()
+          }
+          await teamDelete(req)
+          this.$refs.table.refresh()
+          this.$message.info('删除成功')
+        },
+        onCancel () {}
       })
     }
   }
-},
-computed: {
-  rowSelection () {
-    return {
-      selectedRowKeys: this.selectedRowKeys,
-      onChange: this.onSelectChange
-    }
-  }
-},
-methods: {
-  onSelectChange (selectedRowKeys, selectedRows) {
-    this.selectedRowKeys = selectedRowKeys
-    this.selectedRows = selectedRows
-  },
-  handleAdd () {
-    this.formTitle = '新建主题'
-    this.mdl = null
-    this.visible = true
-  },
-  handleOk () {
-    const form = this.$refs.createModal.form
-    this.confirmLoading = true
-    form.validateFields(async (errors, values) => {
-      if (!errors) {
-        console.log('values', values)
-        if (values.id > 0) {
-          // await teamInsert(values)
-          this.visible = false
-          this.confirmLoading = false
-          // 重置表单数据
-          form.resetFields()
-          // 刷新表格
-          this.$refs.table.refresh()
-          this.$message.info('修改成功')
-        } else {
-          await teamInsert(values)
-          this.visible = false
-          this.confirmLoading = false
-          // 重置表单数据
-          form.resetFields()
-          // 刷新表格
-          this.$refs.table.refresh()
-          this.$message.info('新增成功')
-        }
-      }
-    })
-    this.confirmLoading = false
-  },
-  handleCancel () {
-    const form = this.$refs.createModal.form
-    form.resetFields() // 清理表单数据（可不做）
-    this.visible = false
-  },
-  handleEdit (record) {
-    this.formTitle = '修改主题'
-    this.visible = true
-    this.mdl = { ...record }
-  },
-  handleDelete () {
-    console.log(this.selectedRowKeys)
-  }
-}
 }
 </script>

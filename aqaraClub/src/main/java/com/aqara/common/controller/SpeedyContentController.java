@@ -41,6 +41,15 @@ public class SpeedyContentController {
 	@CrossOrigin
 	@RequestMapping("/delete")
 	public void delete(String ids) {
-		SpeedyContentService.delete(ids);
+		List<Integer> list = new ArrayList<Integer>();
+		if(ids.contains(",")) {
+			String[] a = ids.split(",");
+			for( int i=0; i<a.length; i++ ) {
+				list.add(Integer.parseInt(a[i]));
+			}
+		} else {
+			list.add(Integer.parseInt(ids));
+		}
+		SpeedyContentService.delete(list);
 	}
 }

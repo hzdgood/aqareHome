@@ -24,7 +24,7 @@ public class SpeedyContentService {
 		SpeedyContentMapper.update(SpeedyContent);
 	}
 	
-	public void delete(String ids) {
+	public void delete(List<Integer> ids) {
 		SpeedyContentMapper.delete(ids);
 	}
 }

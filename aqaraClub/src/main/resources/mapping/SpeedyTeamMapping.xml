@@ -27,11 +27,14 @@
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTeam">
-		update from speedyTeam where id = #{id} set team = #{team} and type = #{type}
+		update speedyTeam set team = #{team}, type = #{type} where id = #{id} 
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyTeam">
-		delete from speedyTeam where id in (#{id})
+		delete from speedyTeam where id in 
+		<foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
 	</delete>
 
 </mapper>

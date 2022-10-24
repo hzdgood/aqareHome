@@ -51,19 +51,19 @@ export const getContentData = async (data) => {
     return response
 }
 
-export const ContentInsert = async (data) => {
+export const contentInsert = async (data) => {
     const url = httpUrl + '/speedy/content/insert'
     const response = await getReq(url, data)
     return response
 }
 
-export const ContentUpdate = async (data) => {
+export const contentUpdate = async (data) => {
     const url = httpUrl + '/speedy/content/update'
     const response = await getReq(url, data)
     return response
 }
 
-export const ContentDelete = async (data) => {
+export const contentDelete = async (data) => {
     const url = httpUrl + '/speedy/content/delete'
     const response = await getReq(url, data)
     return response

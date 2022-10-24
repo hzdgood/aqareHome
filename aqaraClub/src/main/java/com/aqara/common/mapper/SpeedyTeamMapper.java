@@ -13,6 +13,6 @@ public interface SpeedyTeamMapper {
 	
 	void update(SpeedyTeam SpeedyTheme);
 	
-	void delete(String id);
+	void delete(List<Integer> ids);
 
 }

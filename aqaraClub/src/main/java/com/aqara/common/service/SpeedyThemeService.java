@@ -24,7 +24,7 @@ public class SpeedyThemeService {
 		SpeedyThemeMapper.update(SpeedyTheme);
 	}
 	
-	public void delete(String ids) {
+	public void delete(List<Integer> ids) {
 		SpeedyThemeMapper.delete(ids);
 	}
 

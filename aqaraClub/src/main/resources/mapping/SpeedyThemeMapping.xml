@@ -33,11 +33,14 @@
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTheme">
-		update from speedyTheme where id = #{id} set theme = #{theme}
+		update speedyTheme set theme = #{theme}, teamId = #{teamId} where id = #{id}
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyTheme">
-		delete from speedyTheme where id in (#{id})
+		delete from speedyTheme where id in 
+		<foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
 	</delete>
 
 </mapper>
