@@ -68,34 +68,27 @@ import { STable, Ellipsis } from '@/components'
 import ContentForm from './modules/ContentForm'
 import { getContentData, ContentInsert } from '@/api/axios'
 
-const columns = [
-  {
-    title: '',
-    scopedSlots: { customRender: 'serial' }
-  },
-  {
-    title: '话术类型', // 企业，团队，个人
-    dataIndex: 'type'
-  },
-  {
-    title: '快捷组',
-    dataIndex: 'team'
-  },
-  {
-    title: '主题',
-    dataIndex: 'theme'
-  },
-  {
-    title: '主题内容',
-    dataIndex: 'content'
-  },
-  {
-    title: '操作',
-    dataIndex: 'action',
-    width: '150px',
-    scopedSlots: { customRender: 'action' }
-  }
-]
+const columns = [{
+  title: '',
+  scopedSlots: { customRender: 'serial' }
+}, {
+  title: '话术类型', // 企业，团队，个人
+  dataIndex: 'type'
+}, {
+  title: '快捷组',
+  dataIndex: 'team'
+}, {
+  title: '主题',
+  dataIndex: 'theme'
+}, {
+  title: '主题内容',
+  dataIndex: 'content'
+}, {
+  title: '操作',
+  dataIndex: 'action',
+  width: '150px',
+  scopedSlots: { customRender: 'action' }
+}]
 
 export default {
   name: 'ContentList',
@@ -146,7 +139,6 @@ export default {
       this.visible = true
       this.mdl = { ...record }
     },
-    handleDelete () {},
     handleCancel () {
       const form = this.$refs.createModal.form
       form.resetFields() // 清理表单数据（可不做）
@@ -181,6 +173,9 @@ export default {
       })
       this.confirmLoading = false
     }
+  },
+  handleDelete () {
+    console.log(this.selectedRowKeys)
   }
 }
 </script>

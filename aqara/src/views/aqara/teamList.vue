@@ -6,7 +6,12 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="话术类型">
-                <a-input v-model="queryParam.type" placeholder=""/>
+                <!-- <a-input v-model="queryParam.type" placeholder=""/> -->
+                <a-select placeholder="请选择" v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+                  <a-select-option value="企业">企业话术</a-select-option>
+                  <a-select-option value="团体">团体话术</a-select-option>
+                  <a-select-option value="个人">个人话术</a-select-option>
+                </a-select>
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">
@@ -112,56 +117,57 @@ computed: {
     }
 },
 methods: {
-    onSelectChange (selectedRowKeys, selectedRows) {
+  onSelectChange (selectedRowKeys, selectedRows) {
     this.selectedRowKeys = selectedRowKeys
     this.selectedRows = selectedRows
-    },
-    handleAdd () {
+  },
+  handleAdd () {
     this.formTitle = '新建主题'
     this.mdl = null
     this.visible = true
-    },
-    handleOk () {
+  },
+  handleOk () {
     const form = this.$refs.createModal.form
     this.confirmLoading = true
     form.validateFields(async (errors, values) => {
-        if (!errors) {
+      if (!errors) {
         console.log('values', values)
         if (values.id > 0) {
-            // await teamInsert(values)
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.$refs.table.refresh()
-            this.$message.info('修改成功')
+          // await teamInsert(values)
+          this.visible = false
+          this.confirmLoading = false
+          // 重置表单数据
+          form.resetFields()
+          // 刷新表格
+          this.$refs.table.refresh()
+          this.$message.info('修改成功')
         } else {
-            await teamInsert(values)
-            this.visible = false
-            this.confirmLoading = false
-            // 重置表单数据
-            form.resetFields()
-            // 刷新表格
-            this.$refs.table.refresh()
-            this.$message.info('新增成功')
+          await teamInsert(values)
+          this.visible = false
+          this.confirmLoading = false
+          // 重置表单数据
+          form.resetFields()
+          // 刷新表格
+          this.$refs.table.refresh()
+          this.$message.info('新增成功')
         }
-        }
+      }
     })
     this.confirmLoading = false
-    },
-    handleCancel () {
+  },
+  handleCancel () {
     const form = this.$refs.createModal.form
     form.resetFields() // 清理表单数据（可不做）
     this.visible = false
-    },
-    handleEdit (record) {
+  },
+  handleEdit (record) {
     this.formTitle = '修改主题'
     this.visible = true
     this.mdl = { ...record }
-    },
-    handleDelete () {
-    }
+  },
+  handleDelete () {
+    console.log(this.selectedRowKeys)
+  }
 }
 }
 </script>

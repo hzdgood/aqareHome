@@ -65,34 +65,27 @@ import { STable, Ellipsis } from '@/components'
 import MenuForm from './modules/MenuForm'
 import { getThemeData, themeInsert } from '@/api/axios'
 
-const columns = [
-  {
-    title: '',
-    scopedSlots: { customRender: 'serial' }
-  },
-  {
-    title: '话术类型', // 企业，团队，个人
-    dataIndex: 'type'
-  },
-  {
-    title: '快捷组',
-    dataIndex: 'team'
-  },
-  {
-    title: '主题',
-    dataIndex: 'theme'
-  },
-  {
-    title: '公司名称',
-    dataIndex: 'company'
-  },
-  {
-    title: '操作',
-    dataIndex: 'action',
-    width: '150px',
-    scopedSlots: { customRender: 'action' }
-  }
-]
+const columns = [{
+  title: '',
+  scopedSlots: { customRender: 'serial' }
+}, {
+  title: '话术类型', // 企业，团队，个人
+  dataIndex: 'type'
+}, {
+  title: '快捷组',
+  dataIndex: 'team'
+}, {
+  title: '主题',
+  dataIndex: 'theme'
+}, {
+  title: '公司名称',
+  dataIndex: 'company'
+}, {
+  title: '操作',
+  dataIndex: 'action',
+  width: '150px',
+  scopedSlots: { customRender: 'action' }
+}]
 
 export default {
   name: 'MenuList',
@@ -133,7 +126,7 @@ export default {
       this.selectedRows = selectedRows
     },
     handleAdd () {
-      this.formTitle = '新建主题'
+      this.formTitle = '新建快捷组'
       this.mdl = null
       this.visible = true
     },
@@ -172,12 +165,12 @@ export default {
       this.visible = false
     },
     handleEdit (record) {
-      this.formTitle = '修改主题'
+      this.formTitle = '修改快捷组'
       this.visible = true
       this.mdl = { ...record }
     },
     handleDelete () {
-
+      console.log(this.selectedRowKeys)
     }
   }
 }
