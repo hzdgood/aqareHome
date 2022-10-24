@@ -28,12 +28,13 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTheme" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyTheme ( teamId, theme, createName, createTime, updateName, updateTime ) 
-			values ( #{teamId}, #{theme}, #{createName}, NOW(), #{updateName}, NOW() )
+		insert into speedyTheme ( teamId, theme, createName, createTime) 
+			values ( #{teamId}, #{theme}, #{createName}, NOW())
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTheme">
-		update speedyTheme set theme = #{theme}, teamId = #{teamId} where id = #{id}
+		update speedyTheme set theme = #{theme}, teamId = #{teamId}, updateName = #{updateName}, updateTime = NOW() 
+			where id = #{id}
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyTheme">

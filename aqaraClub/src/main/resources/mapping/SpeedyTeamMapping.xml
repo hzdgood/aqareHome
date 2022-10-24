@@ -22,12 +22,13 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTeam" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyTeam ( team, type, company, createName, createTime, updateName, updateTime ) 
-			values ( #{team}, #{type}, #{company}, #{createName}, NOW(), #{updateName}, NOW() )
+		insert into speedyTeam ( team, type, company, createName, createTime ) 
+			values ( #{team}, #{type}, #{company}, #{createName}, NOW())
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTeam">
-		update speedyTeam set team = #{team}, type = #{type} where id = #{id} 
+		update speedyTeam set team = #{team}, type = #{type}, company = #{company}, updateName = #{updateName}, updateTime = NOW() 
+			where id = #{id} 
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyTeam">

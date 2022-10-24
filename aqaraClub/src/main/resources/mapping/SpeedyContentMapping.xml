@@ -32,12 +32,13 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyContent ( themeId, content, createName, createTime, updateName, updateTime ) 
-			values ( #{themeId}, #{content}, #{createName}, NOW(), #{updateName}, NOW() )
+		insert into speedyContent ( themeId, content, createName, createTime) 
+			values ( #{themeId}, #{content}, #{createName}, NOW())
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
-		update speedyContent set themeId = #{themeId}, content = #{content} where id = #{id}
+		update speedyContent set themeId = #{themeId}, content = #{content}, updateName = #{updateName}, updateTime = NOW() 
+			where id = #{id}
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">
