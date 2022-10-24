@@ -20,7 +20,10 @@
 			t2.createName, t2.createTime, t2.updateName, t2.updateTime
  			from aqara.speedyteam t1 , aqara.speedytheme t2 where t1.id = t2.teamId;
 		<if test="theme!=null and theme!=''">  
-    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%') 
+		</if>
+		<if test="type!=null and type!=''">  
+    		AND t1.type = #{type}
 		</if>
 	</select>
 	

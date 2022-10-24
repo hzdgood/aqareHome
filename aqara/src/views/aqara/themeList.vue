@@ -5,8 +5,8 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
-              <a-form-item label="主题">
-                <a-input v-model="queryParam.theme" placeholder=""/>
+              <a-form-item label="快捷组">
+                <a-input v-model="queryParam.team" placeholder=""/>
               </a-form-item>
             </a-col>
             <a-col :md="8" :sm="24">

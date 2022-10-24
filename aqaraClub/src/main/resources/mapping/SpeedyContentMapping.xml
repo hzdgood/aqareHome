@@ -21,9 +21,12 @@
 			t1.team, t1.company, t1.type,
 			c.createName, c.createTime, c.updateName, c.updateTime 
 			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 
-    		where t2.id = c.themeId and t1.id = t2.teamId
+    		where t2.id = c.themeId and t1.id = t2.teamId 
+    	<if test="team!=null and team!=''"> 
+    		AND t1.team like concat('%',#{team,jdbcType=VARCHAR},'%') 
+		</if>
 		<if test="theme!=null and theme!=''">  
-    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%') 
 		</if>
 		order by c.themeId
 	</select>

@@ -14,7 +14,7 @@
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
         <a-form-item label="主题名称">
-          <a-select placeholder="请选择" v-decorator="['themeId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+          <a-select placeholder="请选择名称" v-decorator="['themeId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in menuList" :value="item.id" :key="item.id">
               {{ item.theme }}
             </a-select-option>

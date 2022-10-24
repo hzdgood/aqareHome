@@ -6,7 +6,6 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="话术类型">
-                <!-- <a-input v-model="queryParam.type" placeholder=""/> -->
                 <a-select placeholder="请选择" v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
                   <a-select-option value="企业">企业话术</a-select-option>
                   <a-select-option value="团体">团体话术</a-select-option>
@@ -66,33 +65,33 @@ import { STable, Ellipsis } from '@/components'
 import TeamForm from './modules/teamForm'
 import { getTeamData, teamInsert } from '@/api/axios'
 const columns = [{
-    title: '',
-    scopedSlots: { customRender: 'serial' }
+  title: '',
+  scopedSlots: { customRender: 'serial' }
 }, {
-    title: '话术类型', // 企业，团队，个人
-    dataIndex: 'type'
+  title: '话术类型', // 企业，团队，个人
+  dataIndex: 'type'
 }, {
-    title: '快捷组',
-    dataIndex: 'team'
+  title: '快捷组',
+  dataIndex: 'team'
 }, {
-    title: '公司名称',
-    dataIndex: 'company'
+  title: '公司名称',
+  dataIndex: 'company'
 }, {
-    title: '操作',
-    dataIndex: 'action',
-    width: '150px',
-    scopedSlots: { customRender: 'action' }
+  title: '操作',
+  dataIndex: 'action',
+  width: '150px',
+  scopedSlots: { customRender: 'action' }
 }]
 export default {
 name: 'TeamList',
 components: {
-    STable,
-    Ellipsis,
-    TeamForm
+  STable,
+  Ellipsis,
+  TeamForm
 },
 data () {
-    this.columns = columns
-    return {
+  this.columns = columns
+  return {
     formTitle: '',
     visible: false,
     confirmLoading: false,
@@ -104,17 +103,17 @@ data () {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
         return getTeamData(requestParameters).then((res) => {
         return res.data
-        })
+      })
     }
-    }
+  }
 },
 computed: {
-    rowSelection () {
+  rowSelection () {
     return {
-        selectedRowKeys: this.selectedRowKeys,
-        onChange: this.onSelectChange
+      selectedRowKeys: this.selectedRowKeys,
+      onChange: this.onSelectChange
     }
-    }
+  }
 },
 methods: {
   onSelectChange (selectedRowKeys, selectedRows) {

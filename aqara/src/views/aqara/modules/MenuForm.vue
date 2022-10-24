@@ -14,9 +14,9 @@
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
         <a-form-item label="快捷组">
-          <a-select placeholder="请选择" v-decorator="['teamId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+          <a-select placeholder="请选择组" v-decorator="['teamId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in teamList" :value="item.id" :key="item.id">
-              {{ item.theme }}
+              {{ item.team }}
             </a-select-option>
           </a-select>
         </a-form-item>
@@ -68,6 +68,7 @@ data () {
   }
 },
 created () {
+  this.getThemeList()
     // 防止表单未注册
   fields.forEach(v => this.form.getFieldDecorator(v))
     // 当 model 发生改变时，为表单设置值
