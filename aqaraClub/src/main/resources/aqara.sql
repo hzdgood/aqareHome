@@ -45,8 +45,7 @@ CREATE TABLE `survey` (
 
 CREATE TABLE `speedyContent` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `parentId` varchar(45) DEFAULT NULL,
-  `theme` varchar(45) DEFAULT NULL,
+  `themeId` varchar(45) DEFAULT NULL,
   `content` varchar(40000) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
@@ -57,8 +56,8 @@ CREATE TABLE `speedyContent` (
 
 CREATE TABLE `speedytheme` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `teamId` varchar(45) DEFAULT NULL,
   `theme` varchar(45) DEFAULT NULL,
-  `company` varchar(45) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
   `updateName` varchar(45) DEFAULT NULL,
@@ -66,6 +65,18 @@ CREATE TABLE `speedytheme` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+
+CREATE TABLE `speedyteam` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `company` varchar(45) DEFAULT NULL,
+  `createName` varchar(45) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateName` varchar(45) DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `weixin` (
   `id` int NOT NULL AUTO_INCREMENT,

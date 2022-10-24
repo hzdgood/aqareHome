@@ -5,7 +5,7 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
-              <a-form-item label="快捷类型">
+              <a-form-item label="话术类型">
                 <a-input v-model="queryParam.type" placeholder=""/>
               </a-form-item>
             </a-col>
@@ -44,7 +44,7 @@
           </template>
         </span>
       </s-table>
-      <menu-form
+      <team-form
         ref="createModal"
         :title="formTitle"
         :visible="visible"
@@ -58,8 +58,8 @@
 </template>
 <script>
 import { STable, Ellipsis } from '@/components'
-import MenuForm from './modules/MenuForm'
-import { getThemeData, themeInsert } from '@/api/axios'
+import TeamForm from './modules/teamForm'
+import { getTeamData, teamInsert } from '@/api/axios'
 const columns = [{
     title: '',
     scopedSlots: { customRender: 'serial' }
@@ -70,9 +70,6 @@ const columns = [{
     title: '快捷组',
     dataIndex: 'team'
 }, {
-    title: '主题',
-    dataIndex: 'theme'
-}, {
     title: '公司名称',
     dataIndex: 'company'
 }, {
@@ -82,11 +79,11 @@ const columns = [{
     scopedSlots: { customRender: 'action' }
 }]
 export default {
-name: 'MenuList',
+name: 'TeamList',
 components: {
     STable,
     Ellipsis,
-    MenuForm
+    TeamForm
 },
 data () {
     this.columns = columns
@@ -100,7 +97,7 @@ data () {
     selectedRows: [],
     loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        return getThemeData(requestParameters).then((res) => {
+        return getTeamData(requestParameters).then((res) => {
         return res.data
         })
     }
@@ -131,7 +128,7 @@ methods: {
         if (!errors) {
         console.log('values', values)
         if (values.id > 0) {
-            // await themeInsert(values)
+            // await teamInsert(values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -140,7 +137,7 @@ methods: {
             this.$refs.table.refresh()
             this.$message.info('修改成功')
         } else {
-            await themeInsert(values)
+            await teamInsert(values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据

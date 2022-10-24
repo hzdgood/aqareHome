@@ -10,8 +10,11 @@
     <a-spin :spinning="loading">
       <a-form :form="form" v-bind="formLayout">
         <!-- 检查是否有 id 并且大于0，大于0是修改。其他是新增，新增不显示主键ID -->
+        <a-form-item v-show="model && model.id > 0" label="主键ID">
+          <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
+        </a-form-item>
         <a-form-item label="主题名称">
-          <a-select placeholder="请选择" v-decorator="['parentId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+          <a-select placeholder="请选择" v-decorator="['themeId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in menuList" :value="item.id" :key="item.id">
               {{ item.theme }}
             </a-select-option>
@@ -28,7 +31,7 @@
 import pick from 'lodash.pick'
 import { getThemeData } from '@/api/axios'
 // 表单字段
-const fields = ['content', 'theme', 'parentId']
+const fields = ['content', 'themeId', 'id']
 export default {
 props: {
   visible: {

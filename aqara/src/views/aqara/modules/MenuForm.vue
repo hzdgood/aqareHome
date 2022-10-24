@@ -14,7 +14,11 @@
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
         <a-form-item label="快捷组">
-          <a-input v-decorator="['teamId', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+          <a-select placeholder="请选择" v-decorator="['teamId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+            <a-select-option v-for="item in teamList" :value="item.id" :key="item.id">
+              {{ item.theme }}
+            </a-select-option>
+          </a-select>
         </a-form-item>
         <a-form-item label="主题名称">
           <a-input v-decorator="['theme', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
@@ -25,6 +29,7 @@
 </template>
 <script>
 import pick from 'lodash.pick'
+import { getTeamData } from '@/api/axios'
 // 表单字段
 const fields = ['teamId', 'theme', 'id']
 export default {
@@ -57,6 +62,7 @@ data () {
       sm: { span: 13 }
     }
   }
+  this.teamList = []
   return {
     form: this.$form.createForm(this)
   }
@@ -68,6 +74,16 @@ created () {
   this.$watch('model', () => {
     this.model && this.form.setFieldsValue(pick(this.model, fields))
   })
+},
+methods: {
+  async getThemeList () {
+    const obj = {
+      pageNo: 1,
+      pageSize: 10
+    }
+    const data = await getTeamData(obj)
+    this.teamList = data.data.data
+  }
 }
 }
 </script>
