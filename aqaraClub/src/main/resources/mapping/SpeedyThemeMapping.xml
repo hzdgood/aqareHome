@@ -5,8 +5,10 @@
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyTheme">
 		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="teamId" jdbcType="INTEGER" property="teamId" />
-		<result column="team" jdbcType="VARCHAR" property="team" />
 		<result column="theme" jdbcType="VARCHAR" property="theme" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="team" jdbcType="VARCHAR" property="team" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
@@ -14,15 +16,17 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyTheme">
-		select * from speedyTheme t where 1 = 1 
+		select t2.id, t2.teamId, t1.team, t1.company, t1.type, t2.theme,
+			t2.createName, t2.createTime, t2.updateName, t2.updateTime
+ 			from aqara.speedyteam t1 , aqara.speedytheme t2 where t1.id = t2.teamId;
 		<if test="theme!=null and theme!=''">  
-    		AND t.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
 		</if>
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTheme" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyTheme ( parentId, theme, createName, createTime, updateName, updateTime ) 
-			values ( #{parentId}, #{theme}, #{createName}, NOW(), #{updateName}, NOW() )
+		insert into speedyTheme ( teamId, theme, createName, createTime, updateName, updateTime ) 
+			values ( #{teamId}, #{theme}, #{createName}, NOW(), #{updateName}, NOW() )
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTheme">

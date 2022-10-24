@@ -35,7 +35,7 @@
 <script>
 import pick from 'lodash.pick'
 // 表单字段
-const fields = ['teamId', 'theme', 'id']
+const fields = ['type', 'company', 'id', 'team']
 export default {
   props: {
     visible: {

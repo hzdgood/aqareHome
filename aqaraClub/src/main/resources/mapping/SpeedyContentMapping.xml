@@ -4,8 +4,11 @@
 <mapper namespace="com.aqara.common.mapper.SpeedyContentMapper">
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
 		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="themeId" jdbcType="INTEGER" property="parentId" />
-		<result column="theme" jdbcType="INTEGER" property="parentId" />
+		<result column="themeId" jdbcType="INTEGER" property="themeId" />
+		<result column="type" jdbcType="INTEGER" property="type" />
+		<result column="team" jdbcType="INTEGER" property="team" />
+		<result column="theme" jdbcType="INTEGER" property="theme" />
+		<result column="company" jdbcType="INTEGER" property="company" />
 		<result column="content" jdbcType="VARCHAR" property="content" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
@@ -14,12 +17,15 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		SELECT c.id, c.themeId, t.theme, c.content, c.createName, c.createTime, c.updateName, c.updateTime 
-			FROM aqara.speedytheme t, aqara.speedycontent c where t.id = c.themeId 
+		 SELECT c.id, c.themeId, t2.theme, c.content, 
+			t1.team, t1.company, t1.type,
+			c.createName, c.createTime, c.updateName, c.updateTime 
+			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 
+    		where t2.id = c.themeId and t1.id = t2.teamId
 		<if test="theme!=null and theme!=''">  
-    		AND t.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
 		</if>
-		order by c.parentId
+		order by c.themeId
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class SpeedyTeam {
 	private Integer id;
-	private String name; // 组名
+	private String team; // 组名
 	private String type; // 类型
 	private String company; // 公司
 	private String createName;
@@ -19,13 +19,13 @@ public class SpeedyTeam {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getName() {
-		return name;
+	
+	public String getTeam() {
+		return team;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTeam(String team) {
+		this.team = team;
 	}
 
 	public String getType() {

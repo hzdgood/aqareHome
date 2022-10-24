@@ -46,7 +46,7 @@ CREATE TABLE `survey` (
 CREATE TABLE `speedyContent` (
   `id` int NOT NULL AUTO_INCREMENT,
   `themeId` varchar(45) DEFAULT NULL,
-  `content` varchar(40000) DEFAULT NULL,
+  `content` varchar(4000) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
   `createTime` datetime DEFAULT NULL,
   `updateName` varchar(45) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `speedytheme` (
 
 CREATE TABLE `speedyteam` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `team` varchar(45) DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   `company` varchar(45) DEFAULT NULL,
   `createName` varchar(45) DEFAULT NULL,
