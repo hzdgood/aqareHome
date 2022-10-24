@@ -81,6 +81,12 @@ const columns = [{
   title: '公司名称',
   dataIndex: 'company'
 }, {
+  title: '创建时间',
+  dataIndex: 'createTime'
+}, {
+  title: '修改时间',
+  dataIndex: 'updateTime'
+}, {
   title: '操作',
   dataIndex: 'action',
   width: '150px',

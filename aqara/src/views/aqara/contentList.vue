@@ -88,6 +88,12 @@ const columns = [{
   title: '主题内容',
   dataIndex: 'content'
 }, {
+  title: '创建时间',
+  dataIndex: 'createTime'
+}, {
+  title: '修改时间',
+  dataIndex: 'updateTime'
+}, {
   title: '操作',
   dataIndex: 'action',
   width: '150px',

@@ -66,30 +66,30 @@
 import { STable, Ellipsis } from '@/components'
 import TeamForm from './modules/teamForm'
 import { getTeamData, teamInsert, teamUpdate, teamDelete } from '@/api/axios'
-const columns = [
-  {
-    title: '',
-    scopedSlots: { customRender: 'serial' }
-  },
-  {
-    title: '话术类型', // 企业，团队，个人
-    dataIndex: 'type'
-  },
-  {
-    title: '快捷组',
-    dataIndex: 'team'
-  },
-  {
-    title: '公司名称',
-    dataIndex: 'company'
-  },
-  {
-    title: '操作',
-    dataIndex: 'action',
-    width: '150px',
-    scopedSlots: { customRender: 'action' }
-  }
-]
+const columns = [{
+  title: '',
+  scopedSlots: { customRender: 'serial' }
+}, {
+  title: '话术类型', // 企业，团队，个人
+  dataIndex: 'type'
+}, {
+  title: '快捷组',
+  dataIndex: 'team'
+}, {
+  title: '公司名称',
+  dataIndex: 'company'
+}, {
+  title: '创建时间',
+  dataIndex: 'createTime'
+}, {
+  title: '修改时间',
+  dataIndex: 'updateTime'
+}, {
+  title: '操作',
+  dataIndex: 'action',
+  width: '150px',
+  scopedSlots: { customRender: 'action' }
+}]
 export default {
   name: 'TeamList',
   components: {
