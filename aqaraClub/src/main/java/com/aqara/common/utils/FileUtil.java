@@ -30,4 +30,14 @@ public class FileUtil {
 			return "";
 		}
 	}
+	
+	public static String uploadFileToWeixin(String filePath, String requestUrl, String WX_TOKEN, String type) {
+		File files = new File(filePath);
+		if (!files.exists()) {
+			return "";
+		}
+		String req = requestUrl + "?access_token=" + WX_TOKEN + "&type=" + type;
+		
+		return "";
+	}
 }

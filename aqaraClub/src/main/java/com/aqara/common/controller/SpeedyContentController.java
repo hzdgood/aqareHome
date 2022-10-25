@@ -1,7 +1,7 @@
 package com.aqara.common.controller;
 
 import com.aqara.common.entity.*;
-import com.aqara.common.properties.WxProperties;
+import com.aqara.common.properties.CommonProperties;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.FileUtil;
 import java.util.*;
@@ -17,7 +17,7 @@ public class SpeedyContentController {
 	SpeedyContentService SpeedyContentService;
 	
 	@Autowired
-	WxProperties WxProperties;
+	CommonProperties CommonProperties;
 
 	@CrossOrigin
 	@RequestMapping("/select")
@@ -48,7 +48,7 @@ public class SpeedyContentController {
 	@CrossOrigin
 	@ResponseBody
 	public String upload(@RequestParam("file") MultipartFile file) {
-		String path = WxProperties.getLocalFiles();
+		String path = CommonProperties.getLocalFiles();
 		return FileUtil.fileSave(file, path);
 	}
 

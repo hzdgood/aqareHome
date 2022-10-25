@@ -28,7 +28,7 @@ public class HuobanController {
 			return insert();
 		}
 		Huoban Huoban = list.get(list.size() - 1); //获取最后一条数据
-		long expired = Long.parseLong(Huoban.getExpired()) * 900; // 有效时间
+		long expired = Long.parseLong(Huoban.getExpired()) * 800; // 有效时间
 		long date = Huoban.getDate().getTime(); // 凭证开始时间
 		long sys = System.currentTimeMillis(); // 当前
 		if (expired + date <= sys) { //是否过期

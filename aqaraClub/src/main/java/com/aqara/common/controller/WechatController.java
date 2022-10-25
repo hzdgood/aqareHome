@@ -2,10 +2,9 @@ package com.aqara.common.controller;
 
 import com.alibaba.fastjson.*;
 import com.aqara.common.entity.*;
-import com.aqara.common.properties.WxProperties;
+import com.aqara.common.properties.*;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/wechat")
 public class WechatController {
+	@Autowired
+	CommonProperties CommonProperties;
+	
 	@Autowired
 	WxProperties WxProperties;
 
@@ -34,7 +36,7 @@ public class WechatController {
 			return insert(type);
 		}
 		Wechat Wechat = list.get(list.size() - 1);
-		long expired = Long.parseLong(Wechat.getExpired()) * 1000; // 有效时间
+		long expired = Long.parseLong(Wechat.getExpired()) * 800; // 有效时间
 		long date = Wechat.getDate().getTime(); // 凭证开始时间
 		long sys = System.currentTimeMillis(); // 当前
 		if (expired + date <= sys) { //是否过期
@@ -138,7 +140,6 @@ public class WechatController {
 	public void schedule(Schedule Schedule) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String userId = Schedule.getUserid();
-		// String[] users;
 		String attendees = "";
 		String organizer = "";
 		userId = userId.replaceAll(" ", "");
@@ -171,7 +172,7 @@ public class WechatController {
 			Long StartTime = date.getTime()/1000;
 			int adds = Integer.parseInt(Schedule.getDuration()) * 3600;
 			Long endTime = date.getTime()/1000 + adds;
-			String token = getToken("http://localhost:8081");
+			String token = getToken(CommonProperties.getServiceUrl());
 			String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
 			String str = "{\"schedule\": {"
 				+ "\"organizer\": \""+organizer+"\","
@@ -190,23 +191,20 @@ public class WechatController {
 	@CrossOrigin
 	@RequestMapping("/calendar/add")
 	public void calendarAdd() {
-		String token = getToken("http://localhost:8081");
+		String token = getToken(CommonProperties.getServiceUrl());
 		String userInfo = WxProperties.getCalendarAdd() + "?access_token=" + token;
-		Long timestamp = System.currentTimeMillis()/1000;
 		System.out.println(token);
 		String str = "{"
-				+ "\"calendar\" : {"
-				+ "\"organizer\" : \"HuangzhaoDong\","
-				+ "\"readonly\" : 1,"
-				+ "\"set_as_default\" : 1,"
-				+ "\"summary\" : \"test_summary\","
-				+ "\"color\" : \"#FF3030\","
-				+ "\"description\" : \"test_describe\""
-				+ "}"
-				+ "}";
+			+ "\"calendar\" : {"
+			+ "\"organizer\" : \"HuangzhaoDong\","
+			+ "\"readonly\" : 1,"
+			+ "\"set_as_default\" : 1,"
+			+ "\"summary\" : \"test_summary\","
+			+ "\"color\" : \"#FF3030\","
+			+ "\"description\" : \"test_describe\""
+			+ "}"
+			+ "}";
 		JSONObject obj = new JSONObject();
-		System.out.println(obj.parseObject(str));
-		String res = HttpUtil.dataPost(userInfo, obj.parseObject(str));
-		System.out.println(res);
+		HttpUtil.dataPost(userInfo, obj.parseObject(str));
 	}
 }

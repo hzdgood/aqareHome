@@ -21,7 +21,6 @@ public class WxProperties {
 	private String calendarAdd;
 	private String scheduleAdd;
 	private String mediaupload;
-	private String localFiles;
 
 	public String getCorpId() {
 		return corpId;
@@ -142,13 +141,4 @@ public class WxProperties {
 	public void setMediaupload(String mediaupload) {
 		this.mediaupload = mediaupload;
 	}
-
-	public String getLocalFiles() {
-		return localFiles;
-	}
-
-	public void setLocalFiles(String localFiles) {
-		this.localFiles = localFiles;
-	}
-	
 }
