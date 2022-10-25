@@ -6,10 +6,7 @@
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
               <a-form-item label="话术类型">
-                <a-select
-                  placeholder="请选择"
-                  v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }] }]"
-                >
+                <a-select placeholder="请选择" v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
                   <a-select-option value="企业话术">企业话术</a-select-option>
                   <a-select-option value="团体话术">团体话术</a-select-option>
                   <a-select-option value="个人话术">个人话术</a-select-option>

@@ -22,7 +22,6 @@
           </a-row>
         </a-form>
       </div>
-
       <div class="table-operator">
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
         <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
@@ -34,7 +33,6 @@
           </a-button>
         </a-dropdown>
       </div>
-
       <s-table
         ref="table"
         size="default"
@@ -54,7 +52,6 @@
           </template>
         </span>
       </s-table>
-
       <content-form
         ref="createModal"
         :title="formTitle"

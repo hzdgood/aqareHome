@@ -5,6 +5,15 @@
         <a-form layout="inline">
           <a-row :gutter="48">
             <a-col :md="8" :sm="24">
+              <a-form-item label="话术类型">
+                <a-select placeholder="请选择" v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
+                  <a-select-option value="企业话术">企业话术</a-select-option>
+                  <a-select-option value="团体话术">团体话术</a-select-option>
+                  <a-select-option value="个人话术">个人话术</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="8" :sm="24">
               <a-form-item label="快捷组">
                 <a-input v-model="queryParam.team" placeholder=""/>
               </a-form-item>
@@ -15,7 +24,6 @@
           </a-row>
         </a-form>
       </div>
-
       <div class="table-operator">
         <a-button type="primary" icon="plus" @click="handleAdd">新建</a-button>
         <a-dropdown v-action:edit v-if="selectedRowKeys.length > 0">
@@ -27,7 +35,6 @@
           </a-button>
         </a-dropdown>
       </div>
-
       <s-table
         ref="table"
         size="default"
@@ -59,12 +66,10 @@
     </a-card>
   </page-header-wrapper>
 </template>
-
 <script>
 import { STable, Ellipsis } from '@/components'
 import MenuForm from './modules/MenuForm'
 import { getThemeData, themeInsert, themeUpdate, themeDelete } from '@/api/axios'
-
 const columns = [{
   title: '',
   scopedSlots: { customRender: 'serial' }

@@ -20,20 +20,20 @@
           </a-select>
         </a-form-item>
         <a-form-item label="内容类型">
-          <a-select placeholder="请选择内容类型" v-decorator="['contentType', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
+          <a-select @change="selectChange" placeholder="请选择内容类型" v-decorator="['contentType', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option value="文本">文本</a-select-option>
             <a-select-option value="文件">文件</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="主题内容">
+        <a-form-item label="主题内容" v-show="textStatus">
           <a-input v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
-        <a-form-item label="内容上传">
+        <a-form-item label="内容上传" v-show="fileStatus">
           <a-upload name="file" :beforeUpload="beforeUpload" :showUploadList="false">
             <a-button icon="upload">请选择文件</a-button>
           </a-upload>
         </a-form-item>
-        <a-form-item label="文件路径">
+        <a-form-item label="文件路径" v-show="fileStatus">
           <a-input v-decorator="['contentFile', { initialValue: '' }]" disabled />
         </a-form-item>
       </a-form>
@@ -76,6 +76,8 @@ export default {
       }
     }
     this.menuList = []
+    this.fileStatus = false
+    this.textStatus = true
     return {
       uploadFile: Object,
       form: this.$form.createForm(this)
@@ -109,6 +111,19 @@ export default {
       this.uploadFile = {
         contentText: '已上传文件',
         contentFile: res
+      }
+    },
+    selectChange (value) {
+      if (value === '文本') {
+        this.fileStatus = false
+        this.textStatus = true
+      } else {
+        this.fileStatus = true
+        this.textStatus = false
+        this.uploadFile = {
+          contentText: '未上传文件',
+          contentFile: ''
+        }
       }
     }
   }
