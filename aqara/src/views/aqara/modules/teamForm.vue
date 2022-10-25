@@ -15,9 +15,9 @@
         </a-form-item>
         <a-form-item label="话术类型">
           <a-select placeholder="请选择类型" v-decorator="['type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
-            <a-select-option value="企业">企业话术</a-select-option>
-            <a-select-option value="团体">团体话术</a-select-option>
-            <a-select-option value="个人">个人话术</a-select-option>
+            <a-select-option value="企业话术">企业话术</a-select-option>
+            <a-select-option value="团体话术">团体话术</a-select-option>
+            <a-select-option value="个人话术">个人话术</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item label="公司名称">

@@ -176,6 +176,9 @@ export default {
       this.mdl = { ...record }
     },
     async handleDelete (key) {
+      const keys = this.selectedRowKeys
+      const table = this.$refs.table
+      const message = this.$message
       this.$confirm({
         title: '警告',
         content: `真的要删除吗?`,
@@ -183,13 +186,12 @@ export default {
         okType: 'danger',
         cancelText: '取消',
         async onOk () {
-          const keys = this.selectedRowKeys
           const req = {
             ids: keys.join()
           }
           await themeDelete(req)
-          this.$refs.table.refresh()
-          this.$message.info('删除成功')
+          table.refresh()
+          message.info('删除成功')
         },
         onCancel () {}
       })

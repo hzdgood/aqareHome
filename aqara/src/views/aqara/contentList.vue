@@ -85,21 +85,18 @@ const columns = [{
   title: '主题',
   dataIndex: 'theme'
 }, {
-  title: '内容',
-  dataIndex: 'contentText'
-}, {
-  title: '类型',
+  title: '内容类型',
   dataIndex: 'contentType'
 }, {
-  title: '创建时间',
-  dataIndex: 'createTime'
+  title: '内容信息',
+  dataIndex: 'contentText'
 }, {
-  title: '修改时间',
-  dataIndex: 'updateTime'
+  title: '文件名称',
+  dataIndex: 'contentFile'
 }, {
   title: '操作',
   dataIndex: 'action',
-  width: '150px',
+  width: '80px',
   scopedSlots: { customRender: 'action' }
 }]
 
@@ -122,7 +119,6 @@ export default {
       selectedRows: [],
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        console.log(requestParameters)
         return getContentData(requestParameters).then((res) => {
           return res.data
         })
@@ -162,7 +158,6 @@ export default {
       this.confirmLoading = true
       form.validateFields(async (errors, values) => {
         if (!errors) {
-          console.log('values', values)
           if (values.id > 0) {
             await contentUpdate(values)
             this.visible = false
@@ -186,7 +181,10 @@ export default {
       })
       this.confirmLoading = false
     },
-    async handleDelete (key) {
+    handleDelete (key) {
+      const keys = this.selectedRowKeys
+      const table = this.$refs.table
+      const message = this.$message
       this.$confirm({
         title: '警告',
         content: `真的要删除吗?`,
@@ -194,13 +192,12 @@ export default {
         okType: 'danger',
         cancelText: '取消',
         async onOk () {
-          const keys = this.selectedRowKeys
           const req = {
             ids: keys.join()
           }
           await contentDelete(req)
-          this.$refs.table.refresh()
-          this.$message.info('删除成功')
+          table.refresh()
+          message.info('删除成功')
         },
         onCancel () {}
       })

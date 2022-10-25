@@ -45,7 +45,7 @@ public class SpeedyContentController {
 	@ResponseBody
 	public String upload(@RequestParam("file") MultipartFile file) {
 		String targetDirectory = "D:\\testFile\\";
-		String fileName = file.getName();
+		String fileName = file.getOriginalFilename();
 		try {
 			File files = new File(targetDirectory, fileName);
 			OutputStream out = new FileOutputStream(files);

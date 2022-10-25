@@ -10,9 +10,9 @@
                   placeholder="请选择"
                   v-decorator="['queryParam.type', { rules: [{ required: true, message: '该字段是必填字段' }] }]"
                 >
-                  <a-select-option value="企业">企业话术</a-select-option>
-                  <a-select-option value="团体">团体话术</a-select-option>
-                  <a-select-option value="个人">个人话术</a-select-option>
+                  <a-select-option value="企业话术">企业话术</a-select-option>
+                  <a-select-option value="团体话术">团体话术</a-select-option>
+                  <a-select-option value="个人话术">个人话术</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
@@ -173,6 +173,9 @@ export default {
       this.mdl = { ...record }
     },
     async handleDelete (key) {
+      const keys = this.selectedRowKeys
+      const table = this.$refs.table
+      const message = this.$message
       this.$confirm({
         title: '警告',
         content: `真的要删除吗?`,
@@ -180,13 +183,12 @@ export default {
         okType: 'danger',
         cancelText: '取消',
         async onOk () {
-          const keys = this.selectedRowKeys
           const req = {
             ids: keys.join()
           }
           await teamDelete(req)
-          this.$refs.table.refresh()
-          this.$message.info('删除成功')
+          table.refresh()
+          message.info('删除成功')
         },
         onCancel () {}
       })

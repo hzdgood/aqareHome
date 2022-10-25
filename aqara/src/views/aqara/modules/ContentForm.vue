@@ -26,7 +26,7 @@
           </a-select>
         </a-form-item>
         <a-form-item label="主题内容">
-          <a-input v-model="contentText" v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
+          <a-input v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
         <a-form-item label="内容上传">
           <a-upload name="file" :beforeUpload="beforeUpload" :showUploadList="false">
@@ -34,7 +34,7 @@
           </a-upload>
         </a-form-item>
         <a-form-item label="文件路径">
-          <a-input v-model="contentFile" v-decorator="['contentFile', { initialValue: '' }]" disabled />
+          <a-input v-decorator="['contentFile', { initialValue: '' }]" disabled />
         </a-form-item>
       </a-form>
     </a-spin>
@@ -76,9 +76,8 @@ export default {
       }
     }
     this.menuList = []
-    this.contentFile = ''
-    this.contentText = ''
     return {
+      uploadFile: Object,
       form: this.$form.createForm(this)
     }
   },
@@ -89,6 +88,9 @@ export default {
     // 当 model 发生改变时，为表单设置值
     this.$watch('model', () => {
       this.model && this.form.setFieldsValue(pick(this.model, fields))
+    })
+    this.$watch('uploadFile', () => {
+      this.uploadFile && this.form.setFieldsValue(pick(this.uploadFile, fields))
     })
   },
   methods: {
@@ -101,16 +103,13 @@ export default {
       this.menuList = data.data.data
     },
     async beforeUpload (file) {
-      const upFile = file.files[0]
       const formData = new FormData()
-      if (typeof upFile === 'undefined') {
-        this.errorInfo('请选择文件！')
-      }
-      formData.append('file', upFile, upFile.name)
+      formData.append('file', file, file.name)
       const res = await uploadFile(formData, '/speedy/content/upload')
-      this.contentFile = res
-      this.contentText = '已上传文件'
-      console.log(res)
+      this.uploadFile = {
+        contentText: '已上传文件',
+        contentFile: res
+      }
     }
   }
 }
