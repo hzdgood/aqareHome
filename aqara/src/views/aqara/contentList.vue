@@ -85,8 +85,11 @@ const columns = [{
   title: '主题',
   dataIndex: 'theme'
 }, {
-  title: '主题内容',
-  dataIndex: 'content'
+  title: '内容',
+  dataIndex: 'contentText'
+}, {
+  title: '类型',
+  dataIndex: 'contentType'
 }, {
   title: '创建时间',
   dataIndex: 'createTime'

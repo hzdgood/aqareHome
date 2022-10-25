@@ -9,7 +9,9 @@ public class SpeedyContent {
 	private String team;
 	private String theme;
 	private String company;
-	private String content;
+	private String contentText; //内容
+	private String contentFile; //路径
+	private String contentType; //类型 文本，文件
 	private String createName;
 	private Date createTime;
 	private String updateName;
@@ -63,12 +65,28 @@ public class SpeedyContent {
 		this.company = company;
 	}
 
-	public String getContent() {
-		return content;
+	public String getContentText() {
+		return contentText;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setContentText(String contentText) {
+		this.contentText = contentText;
+	}
+
+	public String getContentFile() {
+		return contentFile;
+	}
+
+	public void setContentFile(String contentFile) {
+		this.contentFile = contentFile;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	public String getCreateName() {

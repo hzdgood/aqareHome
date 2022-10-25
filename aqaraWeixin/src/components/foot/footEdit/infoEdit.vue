@@ -221,12 +221,12 @@ export default class Home extends Vue {
     for (let i = 0; i < result.length; i++) {
       const field = result[i].fields
       const saleId = result[i].item_id
-      const saleName = field[1].values[0].value
-      const department = field[4].values[0].title
+      const saleName = field[0].values[0].name
+      // const department = field[5].values[0].value
       const obj = {
         saleName: saleName,
-        saleId: saleId,
-        department: department
+        saleId: saleId
+        // department: department
       }
       this.saleManList.push(obj)
     }

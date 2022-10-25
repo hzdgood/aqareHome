@@ -9,7 +9,9 @@
 		<result column="team" jdbcType="INTEGER" property="team" />
 		<result column="theme" jdbcType="INTEGER" property="theme" />
 		<result column="company" jdbcType="INTEGER" property="company" />
-		<result column="content" jdbcType="VARCHAR" property="content" />
+		<result column="contentText" jdbcType="VARCHAR" property="contentText" />
+		<result column="contentFile" jdbcType="VARCHAR" property="contentFile" />
+		<result column="contentType" jdbcType="VARCHAR" property="contentType" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
@@ -17,9 +19,8 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		 SELECT c.id, c.themeId, t2.theme, c.content, 
-			t1.team, t1.company, t1.type,
-			c.createName, c.createTime, c.updateName, c.updateTime 
+		 SELECT c.id, c.themeId, t2.theme, c.contentText, c.contentFile, c.contentType,
+			t1.team, t1.company, t1.type, c.createName, c.createTime, c.updateName, c.updateTime 
 			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 
     		where t2.id = c.themeId and t1.id = t2.teamId 
     	<if test="team!=null and team!=''"> 
@@ -32,13 +33,21 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyContent ( themeId, content, createName, createTime) 
-			values ( #{themeId}, #{content}, #{createName}, NOW())
+		insert into speedyContent ( 
+			themeId, contentText, contentFile, contentType, createName, createTime
+		) 
+		values ( #{themeId}, #{contentText}, #{contentFile}, #{contentType}, #{createName}, NOW())
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
-		update speedyContent set themeId = #{themeId}, content = #{content}, updateName = #{updateName}, updateTime = NOW() 
-			where id = #{id}
+		update speedyContent set 
+			themeId = #{themeId}, 
+			contentText = #{contentText},
+			contentFile = #{contentFile},
+			contentType = #{contentType},
+			updateName = #{updateName}, 
+			updateTime = NOW() 
+		where id = #{id}
 	</insert>
 	
 	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">

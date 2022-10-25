@@ -4,24 +4,37 @@
     :width="640"
     :visible="visible"
     :confirmLoading="loading"
-    @ok="() => { $emit('ok') }"
-    @cancel="() => { $emit('cancel') }"
+    @ok="() => {$emit('ok')}"
+    @cancel="() => {$emit('cancel')}"
   >
     <a-spin :spinning="loading">
       <a-form :form="form" v-bind="formLayout">
-        <!-- 检查是否有 id 并且大于0，大于0是修改。其他是新增，新增不显示主键ID -->
         <a-form-item v-show="model && model.id > 0" label="主键ID">
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
         <a-form-item label="主题名称">
-          <a-select placeholder="请选择名称" v-decorator="['themeId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+          <a-select placeholder="请选择主题名称" v-decorator="['themeId', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option v-for="item in menuList" :value="item.id" :key="item.id">
               {{ item.theme }}
             </a-select-option>
           </a-select>
         </a-form-item>
+        <a-form-item label="内容类型">
+          <a-select placeholder="请选择内容类型" v-decorator="['contentType', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
+            <a-select-option value="文本">文本</a-select-option>
+            <a-select-option value="文件">文件</a-select-option>
+          </a-select>
+        </a-form-item>
         <a-form-item label="主题内容">
-          <a-input v-decorator="['content', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+          <a-input v-model="contentText" v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
+        </a-form-item>
+        <a-form-item label="内容上传">
+          <a-upload name="file" :beforeUpload="beforeUpload" :showUploadList="false">
+            <a-button icon="upload">请选择文件</a-button>
+          </a-upload>
+        </a-form-item>
+        <a-form-item label="文件路径">
+          <a-input v-model="contentFile" v-decorator="['contentFile', { initialValue: '' }]" disabled />
         </a-form-item>
       </a-form>
     </a-spin>
@@ -29,62 +42,76 @@
 </template>
 <script>
 import pick from 'lodash.pick'
-import { getThemeData } from '@/api/axios'
+import { getThemeData, uploadFile } from '@/api/axios'
 // 表单字段
-const fields = ['content', 'themeId', 'id']
+const fields = ['contentType', 'contentFile', 'contentText', 'themeId', 'id']
 export default {
-props: {
-  visible: {
-    type: Boolean,
-    required: true
-  },
-  loading: {
-    type: Boolean,
-    default: () => false
-  },
-  model: {
-    type: Object,
-    default: () => null
-  },
-  title: {
-    type: String,
-    default: ''
-  }
-},
-data () {
-  this.formLayout = {
-    labelCol: {
-      xs: { span: 24 },
-      sm: { span: 7 }
+  props: {
+    visible: {
+      type: Boolean,
+      required: true
     },
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 13 }
+    loading: {
+      type: Boolean,
+      default: () => false
+    },
+    model: {
+      type: Object,
+      default: () => null
+    },
+    title: {
+      type: String,
+      default: ''
     }
-  }
-  this.menuList = []
-  return {
-    form: this.$form.createForm(this)
-  }
-},
-created () {
-  this.getMenuList()
+  },
+  data () {
+    this.formLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 7 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 13 }
+      }
+    }
+    this.menuList = []
+    this.contentFile = ''
+    this.contentText = ''
+    return {
+      form: this.$form.createForm(this)
+    }
+  },
+  created () {
+    this.getMenuList()
     // 防止表单未注册
-  fields.forEach(v => this.form.getFieldDecorator(v))
+    fields.forEach((v) => this.form.getFieldDecorator(v))
     // 当 model 发生改变时，为表单设置值
-  this.$watch('model', () => {
-    this.model && this.form.setFieldsValue(pick(this.model, fields))
-  })
-},
-methods: {
-  async getMenuList () {
-    const obj = {
-      pageNo: 1,
-      pageSize: 10
+    this.$watch('model', () => {
+      this.model && this.form.setFieldsValue(pick(this.model, fields))
+    })
+  },
+  methods: {
+    async getMenuList () {
+      const obj = {
+        pageNo: 1,
+        pageSize: 10
+      }
+      const data = await getThemeData(obj)
+      this.menuList = data.data.data
+    },
+    async beforeUpload (file) {
+      const upFile = file.files[0]
+      const formData = new FormData()
+      if (typeof upFile === 'undefined') {
+        this.errorInfo('请选择文件！')
+      }
+      formData.append('file', upFile, upFile.name)
+      const res = await uploadFile(formData, '/speedy/content/upload')
+      this.contentFile = res
+      this.contentText = '已上传文件'
+      console.log(res)
     }
-    const data = await getThemeData(obj)
-    this.menuList = data.data.data
   }
-}
 }
 </script>
