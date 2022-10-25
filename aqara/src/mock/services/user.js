@@ -519,20 +519,31 @@ const userNav = options => {
       component: 'Analysis',
       path: '/dashboard/analysis'
     },
+    // {
+    //   name: 'CustomerList',
+    //   parentId: 0,
+    //   id: 4,
+    //   meta: {
+    //     title: '客户信息',
+    //     show: true
+    //   },
+    //   component: 'CustomerList',
+    //   path: '/aqara/customer-list'
+    // },
     {
-      name: 'CustomerList',
+      name: 'quickForm',
       parentId: 0,
-      id: 4,
+      id: 15,
       meta: {
-        title: '客户信息',
-        show: true
+        icon: 'form',
+        title: '快捷回复'
       },
-      component: 'CustomerList',
-      path: '/aqara/customer-list'
+      redirect: '/form/quick-form',
+      component: 'RouteView'
     },
     {
       name: 'teamList',
-      parentId: 0,
+      parentId: 15,
       id: 6,
       meta: {
         title: '快捷组',
@@ -543,7 +554,7 @@ const userNav = options => {
     },
     {
       name: 'themeList',
-      parentId: 0,
+      parentId: 15,
       id: 6,
       meta: {
         title: '快捷主题',
@@ -554,7 +565,7 @@ const userNav = options => {
     },
     {
       name: 'contentList',
-      parentId: 0,
+      parentId: 15,
       id: 6,
       meta: {
         title: '快捷内容',

@@ -17,7 +17,9 @@ wx:
   permitlist: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/get_permit_user_list
   checkAgree: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/check_single_agree
   calendarAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/calendar/add
-  scheduleAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/schedule/add 
+  scheduleAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/schedule/add
+  mediaupload: https://qyapi.weixin.qq.com/cgi-bin/media/upload
+  localFiles: D:\\testFile\\
     
 huoban:
   application_id: 1002449

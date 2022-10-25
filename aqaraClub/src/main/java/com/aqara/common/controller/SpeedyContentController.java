@@ -1,8 +1,9 @@
 package com.aqara.common.controller;
 
 import com.aqara.common.entity.*;
+import com.aqara.common.properties.WxProperties;
 import com.aqara.common.service.*;
-import java.io.*;
+import com.aqara.common.utils.FileUtil;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,9 @@ public class SpeedyContentController {
 
 	@Autowired
 	SpeedyContentService SpeedyContentService;
+	
+	@Autowired
+	WxProperties WxProperties;
 
 	@CrossOrigin
 	@RequestMapping("/select")
@@ -44,27 +48,8 @@ public class SpeedyContentController {
 	@CrossOrigin
 	@ResponseBody
 	public String upload(@RequestParam("file") MultipartFile file) {
-		String targetDirectory = "D:\\testFile\\";
-		String fileName = file.getOriginalFilename();
-		try {
-			File files = new File(targetDirectory, fileName);
-			OutputStream out = new FileOutputStream(files);
-			InputStream inputStream = file.getInputStream();
-			byte[] buff = new byte[1024 * 10];
-			if (!files.exists()) {
-				int len;
-				while ((len = inputStream.read(buff)) != -1) {
-					out.write(buff, 0, len);
-					out.flush();
-				}
-				out.close();
-				inputStream.close();
-			}
-			return targetDirectory + fileName;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
-		}
+		String path = WxProperties.getLocalFiles();
+		return FileUtil.fileSave(file, path);
 	}
 
 	@CrossOrigin
