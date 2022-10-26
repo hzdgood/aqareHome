@@ -12,6 +12,10 @@
           <td>联系电话</td>
           <td><input id="telephone" type="text" /></td>
         </tr>
+        <tr>
+          <td>备注信息</td>
+          <td><input id="remark" type="text" /></td>
+        </tr>
       </table>
       <table class="EditTable">
         <tr>
@@ -273,6 +277,7 @@ export default class Home extends Vue {
   async saveInfo () {
     const customerName: any = document.getElementById('customerName')
     const telephone: any = document.getElementById('telephone')
+    const remark: any = document.getElementById('remark')
     const data: any = {
       fields: {}
     }
@@ -304,6 +309,7 @@ export default class Home extends Vue {
     // 拼接用户名称和电话
     data.fields[field.customerName] = customerName.value
     data.fields[field.ctelephone] = telephone.value
+    data.fields[field.customerRemark] = remark.value
     if (typeof (data.fields[field.oneCustom]) === 'undefined') {
       data.fields[field.oneCustom] = []
     }

@@ -33,6 +33,7 @@ export const field = {
   houseNeed: 2200000184645955, // 全屋需求
   gender: 2200000144967977, // 性别
   ctelephone: 2200000144967974, // 客户电话
+  customerRemark: 2200000160384798, // 客户备注
   // 标签表
   tagListId: 2200000182035321, // 标签名称
   tagId: 2200000184166190, // 标签ID

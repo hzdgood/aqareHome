@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, updateTable } from '@/config/interFace'
+import { SearchInfo, updateTable, logInsert } from '@/config/interFace'
 import { table, field } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -61,6 +61,7 @@ export default class Home extends Vue {
       }
     }
     await updateTable(itemId, data)
+    await logInsert('群绑定')
     this.$emit('close')
   }
 
