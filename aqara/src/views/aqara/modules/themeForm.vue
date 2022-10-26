@@ -29,7 +29,7 @@
 </template>
 <script>
 import pick from 'lodash.pick'
-import { getData } from '@/api/axios'
+import { getPostData } from '@/api/axios'
 // 表单字段
 const fields = ['teamId', 'theme', 'id']
 export default {
@@ -82,7 +82,7 @@ methods: {
       pageNo: 1,
       pageSize: 10
     }
-    const data = await getData('/speedy/team/select', obj)
+    const data = await getPostData('/speedy/team/select', obj)
     this.teamList = data.data.data
   }
 }

@@ -23,8 +23,9 @@
     		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%') 
 		</if>
 		<if test="type!=null and type!=''">  
-    		AND t1.type = #{type}
+    		AND t1.type = #{type} 
 		</if>
+		order by t2.teamId
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTheme" useGeneratedKeys="true" keyProperty="id">

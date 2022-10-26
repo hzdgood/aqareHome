@@ -44,7 +44,7 @@
 </template>
 <script>
 import pick from 'lodash.pick'
-import { getData, uploadFile } from '@/api/axios'
+import { getPostData, uploadFile } from '@/api/axios'
 // 表单字段
 const fields = ['contentType', 'contentFile', 'contentText', 'themeId', 'id']
 export default {
@@ -103,7 +103,7 @@ export default {
         pageNo: 1,
         pageSize: 10
       }
-      const data = await getData('/speedy/theme/select', obj)
+      const data = await getPostData('/speedy/theme/select', obj)
       this.menuList = data.data.data
     },
     async beforeUpload (file) {

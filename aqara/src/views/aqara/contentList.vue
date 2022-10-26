@@ -4,17 +4,26 @@
       <div class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row :gutter="48">
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
+              <a-form-item label="话术类型">
+                <a-select placeholder="请选择" v-model="queryParam.type">
+                  <a-select-option value="企业话术">企业话术</a-select-option>
+                  <a-select-option value="团体话术">团体话术</a-select-option>
+                  <a-select-option value="个人话术">个人话术</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="6" :sm="24">
               <a-form-item label="快捷组">
                 <a-input v-model="queryParam.team" placeholder=""/>
               </a-form-item>
             </a-col>
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
               <a-form-item label="主题">
                 <a-input v-model="queryParam.theme" placeholder=""/>
               </a-form-item>
             </a-col>
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
               <span class="table-page-search-submitButtons" style="overflow: hidden">
                 <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
               </span>
@@ -67,7 +76,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import ContentForm from './modules/ContentForm'
-import { getData } from '@/api/axios'
+import { getPostData, getData } from '@/api/axios'
 
 const columns = [{
   title: '',
@@ -116,7 +125,7 @@ export default {
       selectedRows: [],
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        return getData('/speedy/content/select', requestParameters).then((res) => {
+        return getPostData('/speedy/content/select', requestParameters).then((res) => {
           return res.data
         })
       }

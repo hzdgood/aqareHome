@@ -4,7 +4,7 @@
       <div class="table-page-search-wrapper">
         <a-form layout="inline">
           <a-row :gutter="48">
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
               <a-form-item label="话术类型">
                 <a-select placeholder="请选择" v-model="queryParam.type">
                   <a-select-option value="企业话术">企业话术</a-select-option>
@@ -13,12 +13,12 @@
                 </a-select>
               </a-form-item>
             </a-col>
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
               <a-form-item label="快捷组">
                 <a-input v-model="queryParam.team" placeholder=""/>
               </a-form-item>
             </a-col>
-            <a-col :md="8" :sm="24">
+            <a-col :md="6" :sm="24">
               <a-button type="primary" @click="$refs.table.refresh(true)">查询</a-button>
             </a-col>
           </a-row>
@@ -69,7 +69,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import themeForm from './modules/themeForm'
-import { getData } from '@/api/axios'
+import { getPostData, getData } from '@/api/axios'
 const columns = [{
   title: '',
   scopedSlots: { customRender: 'serial' }
@@ -88,9 +88,6 @@ const columns = [{
 }, {
   title: '创建时间',
   dataIndex: 'createTime'
-}, {
-  title: '修改时间',
-  dataIndex: 'updateTime'
 }, {
   title: '操作',
   dataIndex: 'action',
@@ -117,7 +114,7 @@ export default {
       selectedRows: [],
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        return getData('/speedy/theme/select', requestParameters).then((res) => {
+        return getPostData('/speedy/theme/select', requestParameters).then((res) => {
           return res.data
         })
       }
