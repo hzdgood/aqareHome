@@ -54,7 +54,7 @@
           </template>
         </span>
       </s-table>
-      <menu-form
+      <theme-form
         ref="createModal"
         :title="formTitle"
         :visible="visible"
@@ -68,8 +68,8 @@
 </template>
 <script>
 import { STable, Ellipsis } from '@/components'
-import MenuForm from './modules/MenuForm'
-import { getThemeData, themeInsert, themeUpdate, themeDelete } from '@/api/axios'
+import themeForm from './modules/themeForm'
+import { getData } from '@/api/axios'
 const columns = [{
   title: '',
   scopedSlots: { customRender: 'serial' }
@@ -103,7 +103,7 @@ export default {
   components: {
     STable,
     Ellipsis,
-    MenuForm
+    themeForm
   },
   data () {
     this.columns = columns
@@ -117,7 +117,7 @@ export default {
       selectedRows: [],
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        return getThemeData(requestParameters).then((res) => {
+        return getData('/speedy/theme/select', requestParameters).then((res) => {
           return res.data
         })
       }
@@ -148,7 +148,7 @@ export default {
         if (!errors) {
           console.log('values', values)
           if (values.id > 0) {
-            await themeUpdate(values)
+            await getData('/speedy/theme/update', values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -157,7 +157,7 @@ export default {
             this.$refs.table.refresh()
             this.$message.info('修改成功')
           } else {
-            await themeInsert(values)
+            await getData('/speedy/theme/insert', values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -194,7 +194,7 @@ export default {
           const req = {
             ids: keys.join()
           }
-          await themeDelete(req)
+          await getData('/speedy/theme/delete', req)
           table.refresh()
           message.info('删除成功')
         },

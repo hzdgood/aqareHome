@@ -23,6 +23,8 @@
           <a-select @change="selectChange" placeholder="请选择内容类型" v-decorator="['contentType', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option value="文本">文本</a-select-option>
             <a-select-option value="文件">文件</a-select-option>
+            <a-select-option value="图片">图片</a-select-option>
+            <a-select-option value="视频">视频</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item label="主题内容" v-show="textStatus">
@@ -42,7 +44,7 @@
 </template>
 <script>
 import pick from 'lodash.pick'
-import { getThemeData, uploadFile } from '@/api/axios'
+import { getData, uploadFile } from '@/api/axios'
 // 表单字段
 const fields = ['contentType', 'contentFile', 'contentText', 'themeId', 'id']
 export default {
@@ -101,7 +103,7 @@ export default {
         pageNo: 1,
         pageSize: 10
       }
-      const data = await getThemeData(obj)
+      const data = await getData('/speedy/theme/select', obj)
       this.menuList = data.data.data
     },
     async beforeUpload (file) {

@@ -67,7 +67,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import ContentForm from './modules/ContentForm'
-import { getContentData, contentInsert, contentUpdate, contentDelete } from '@/api/axios'
+import { getData } from '@/api/axios'
 
 const columns = [{
   title: '',
@@ -116,7 +116,7 @@ export default {
       selectedRows: [],
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        return getContentData(requestParameters).then((res) => {
+        return getData('/speedy/content/select', requestParameters).then((res) => {
           return res.data
         })
       }
@@ -156,7 +156,7 @@ export default {
       form.validateFields(async (errors, values) => {
         if (!errors) {
           if (values.id > 0) {
-            await contentUpdate(values)
+            await getData('/speedy/content/update', values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -165,7 +165,7 @@ export default {
             this.$refs.table.refresh()
             this.$message.info('修改成功')
           } else {
-            await contentInsert(values)
+            await getData('/speedy/content/insert', values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -189,10 +189,10 @@ export default {
         okType: 'danger',
         cancelText: '取消',
         async onOk () {
-          const req = {
+          const values = {
             ids: keys.join()
           }
-          await contentDelete(req)
+          await getData('/speedy/content/delete', values)
           table.refresh()
           message.info('删除成功')
         },

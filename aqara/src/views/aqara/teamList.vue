@@ -62,7 +62,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import TeamForm from './modules/teamForm'
-import { getTeamData, teamInsert, teamUpdate, teamDelete } from '@/api/axios'
+import { getData } from '@/api/axios'
 const columns = [{
   title: '',
   scopedSlots: { customRender: 'serial' }
@@ -106,7 +106,7 @@ export default {
       selectedRows: [],
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        return getTeamData(requestParameters).then((res) => {
+        return getData('/speedy/team/select', requestParameters).then((res) => {
           return res.data
         })
       }
@@ -137,7 +137,7 @@ export default {
         if (!errors) {
           console.log('values', values)
           if (values.id > 0) {
-            await teamUpdate(values)
+            await getData('/speedy/team/update', values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -146,7 +146,7 @@ export default {
             this.$refs.table.refresh()
             this.$message.info('修改成功')
           } else {
-            await teamInsert(values)
+            await getData('/speedy/team/insert', values)
             this.visible = false
             this.confirmLoading = false
             // 重置表单数据
@@ -183,7 +183,7 @@ export default {
           const req = {
             ids: keys.join()
           }
-          await teamDelete(req)
+          await getData('/speedy/team/delete', req)
           table.refresh()
           message.info('删除成功')
         },
