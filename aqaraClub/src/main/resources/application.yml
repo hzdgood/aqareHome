@@ -21,7 +21,7 @@ wx:
   mediaupload: https://qyapi.weixin.qq.com/cgi-bin/media/upload
   
 common:
-  localFiles: D:\\testFile\\
+  localFiles: D:\\AqaraUpload\\
   serviceUrl: http://aqara.club:8081
 
 huoban:
