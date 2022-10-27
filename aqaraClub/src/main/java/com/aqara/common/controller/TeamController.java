@@ -5,37 +5,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.aqara.common.entity.Login;
-import com.aqara.common.service.LoginService;
+import com.aqara.common.entity.Team;
+import com.aqara.common.service.TeamService;
 
 @RestController
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/team")
+public class TeamController {
 	
 	@Autowired
-	LoginService LoginService;
+	TeamService TeamService;
 	
 	@CrossOrigin
    	@RequestMapping("/select")
-    public List<Login> select(String username, String password) {
-   		return LoginService.select(username, password);
+    public List<Team> select() {
+   		return TeamService.select();
    	}
 	
 	@CrossOrigin
    	@RequestMapping("/insert")
-    public void insert(Login Login) {
-		LoginService.insert(Login);
+    public void insert(Team Team) {
+		TeamService.insert(Team);
    	}
 	
 	@CrossOrigin
    	@RequestMapping("/update")
-    public void update(Login Login) {
-		LoginService.update(Login);
+    public void update(Team Team) {
+		TeamService.update(Team);
    	}
 	
 	@CrossOrigin
    	@RequestMapping("/delete")
     public void delete(Integer id) {
-		LoginService.delete(id);
+		TeamService.delete(id);
    	}
 }

@@ -10,6 +10,8 @@ public interface LoggingMapper {
 	List<Logging> select(String name, String custom);
 	
 	void insert(Logging log);
-
 	
+	void update(Logging log);
+
+	void delete(Integer id);
 }
