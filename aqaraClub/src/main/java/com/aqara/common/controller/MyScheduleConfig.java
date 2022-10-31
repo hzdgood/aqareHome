@@ -44,7 +44,7 @@ public class MyScheduleConfig {
 
 	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-	@Scheduled(cron = "0 30 20 * * ?")
+	@Scheduled(cron = "0 30 21 * * ?")
 	private void currentDayCustom() {
 		List<Huoban> list = huobanService.select();
 		Huoban Huoban = list.get(list.size() - 1);
@@ -59,7 +59,7 @@ public class MyScheduleConfig {
 		}
 	}
 
-	@Scheduled(cron = "0 35 20 * * ?")
+	@Scheduled(cron = "0 35 21 * * ?")
 	private void currentDayBroadcast() {
 		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
 		String CensusData = CensusService.getCensusData();
@@ -84,27 +84,27 @@ public class MyScheduleConfig {
 		HttpService.workRequset(resStr, WX_TOKEN);
 	}
 	
-	@Scheduled(cron = "0 30 10 ? * MON")
+	@Scheduled(cron = "0 00 14 ? * MON")
 	private void weekReboot() {
 		String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
 		String CensusData = CensusService.getWeekData();
 		String customer = customerService.getWeekData();
 		String collent = CollentService.getWeekData();
-		String survey = SurveyService.getWeekData();
+		// String survey = SurveyService.getWeekData();
 		String url = "[查看详情](https://app.huoban.com/home)";
 		String resStr = "";
 		if(!CensusData.equals("")) {
 			resStr += CensusData + "\n";
-		} 
+		}
 		if(!customer.equals("")) {
 			resStr += customer + "\n";
 		} 
 		if(!collent.equals("")) {
 			resStr += collent + "\n";
 		} 
-		if(!survey.equals("")) {
-			resStr += survey + "\n";
-		} 
+//		if(!survey.equals("")) {
+//			resStr += survey + "\n";
+//		}
 		resStr += url;
 		System.out.println(resStr);
 		HttpService.workRequset(resStr, WX_TOKEN);

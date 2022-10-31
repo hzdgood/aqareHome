@@ -21,7 +21,7 @@ wx:
   mediaupload: https://qyapi.weixin.qq.com/cgi-bin/media/upload
   
 common:
-  localFiles: D:\\AqaraUpload\\
+  localFiles: E:\\AqaraUpload\\
   serviceUrl: http://aqara.club:8081
 
 huoban:
@@ -49,7 +49,7 @@ server:
     uri-encoding: UTF-8
     
 logging:
-  path: 'D:\\AqaraLog\\'
+  path: 'E:\\AqaraLog\\'
   file: 'aqara.log'
 
 spring:

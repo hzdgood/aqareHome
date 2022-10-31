@@ -43,11 +43,16 @@ public class CensusService {
 		});
 		Map<String, Integer> map1 = CommonUtil.sortByValue(map);
 		Iterator entries = map1.entrySet().iterator();
+		int index = 0;
 		while (entries.hasNext()) {
+			if(index >= 3) {
+				break;
+			}
 		    Map.Entry entry = (Map.Entry) entries.next();
 		    String key = (String)entry.getKey();
 		    Integer value = (Integer)entry.getValue();
 		    res += ">" + key + ":<font color=\"comment\">" + value + "</font>\n";
+		    index += 1;
 		}
 		return res;
 	}
