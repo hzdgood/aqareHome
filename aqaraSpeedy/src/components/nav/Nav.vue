@@ -34,7 +34,7 @@ import { Menu } from 'ant-design-vue'
   name: 'Nav',
   components: {
     'a-menu': Menu,
-    'a-menu-item': Menu.Item,
+    'a-menu-item': Menu.Item
   }
 })
 export default class Nav extends Vue {
