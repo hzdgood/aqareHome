@@ -1,8 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Chat from './Chat.vue'
-import Calendar from '@/calendar/index.vue'
-import upload from '@/upload/index.vue'
 import router from './router'
 import store from './store'
 import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
@@ -29,18 +26,6 @@ async function getTicket () {
   })
 }
 
-// 进入群页面
-async function getChat () {
-  await userInfo().then(function (response) {
-    localStorage.setItem('ticket', response.data.ticket)
-    new Vue({
-      router,
-      store,
-      render: (h) => h(Chat)
-    }).$mount('#app')
-  })
-}
-
 const doInfo = async () => {
   const result = await invoke('getContext') // 获取类型
   localStorage.setItem('contactType', result.entry) // 联系类型
@@ -56,15 +41,6 @@ const doInfo = async () => {
     localStorage.setItem('userName', userName)
     localStorage.setItem('avatar', avatar)
     localStorage.setItem('localName', localName)
-
-    await invoke('sendChatMessage', {
-      msgtype: 'text',
-      enterChat: false,
-      text: {
-        content: '111111'
-      }
-    })
-
     getTicket()
   } else if (result.entry === 'group_chat_tools') {
     const localName: any = Cookies.get('userId')
@@ -72,25 +48,7 @@ const doInfo = async () => {
     localStorage.setItem('userName', '')
     localStorage.setItem('localName', localName)
     localStorage.setItem('chatID', result.chatId) // 群ID
-    getChat()
-  } else {
-    const url = window.location.href
-    await userInfo().then(function (response) {
-      localStorage.setItem('ticket', response.data.ticket)
-      if (url.split('#')[1] === '/Calendar') {
-        new Vue({
-          router,
-          store,
-          render: (h) => h(Calendar)
-        }).$mount('#app')
-      } else if (url.split('#')[1] === '/upload') {
-        new Vue({
-          router,
-          store,
-          render: (h) => h(upload)
-        }).$mount('#app')
-      }
-    })
+    getTicket()
   }
 }
 
