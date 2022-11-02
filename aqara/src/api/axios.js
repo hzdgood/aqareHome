@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const httpUrl = 'http://aqara.club:8081'
-// const httpUrl = 'http://localhost:8081'
+// const httpUrl = 'http://aqara.club:8081'
+const httpUrl = 'http://localhost:8081'
 
 const getReq = async (url, data) => {
     const response = await axios.request({

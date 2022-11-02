@@ -64,6 +64,10 @@ spring:
     data-password: 
     generate-unique-name: false
     platform: all
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
 
 mybatis:
   mapper-locations: classpath*:mapping/*.xml

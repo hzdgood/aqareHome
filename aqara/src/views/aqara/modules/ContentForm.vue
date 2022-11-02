@@ -25,6 +25,7 @@
             <a-select-option value="文件">文件</a-select-option>
             <a-select-option value="图片">图片</a-select-option>
             <a-select-option value="视频">视频</a-select-option>
+            <a-select-option value="组合">组合</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item label="主题内容" v-show="textStatus">
@@ -118,6 +119,9 @@ export default {
     selectChange (value) {
       if (value === '文本') {
         this.fileStatus = false
+        this.textStatus = true
+      } else if (value === '组合') {
+        this.fileStatus = true
         this.textStatus = true
       } else {
         this.fileStatus = true
