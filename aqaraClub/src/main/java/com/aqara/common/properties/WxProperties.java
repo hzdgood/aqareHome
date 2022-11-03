@@ -15,15 +15,15 @@ public class WxProperties {
 	private String userIdUrl;
 	private String jsapiUrl;
 	private String appUrl;
-	private String externalcontact;
+	private String externalContact;
 	private String externalList;
-	private String groupchat;
+	private String groupChat;
 	private String groupList;
-	private String permitlist;
+	private String permitList;
 	private String checkAgree;
 	private String calendarAdd;
 	private String scheduleAdd;
-	private String mediaupload;
+	private String mediaUpload;
 
 	public String getCorpId() {
 		return corpId;
@@ -97,12 +97,12 @@ public class WxProperties {
 		this.appUrl = appUrl;
 	}
 
-	public String getExternalcontact() {
-		return externalcontact;
+	public String getExternalContact() {
+		return externalContact;
 	}
 
-	public void setExternalcontact(String externalcontact) {
-		this.externalcontact = externalcontact;
+	public void setExternalContact(String externalContact) {
+		this.externalContact = externalContact;
 	}
 
 	public String getExternalList() {
@@ -113,12 +113,12 @@ public class WxProperties {
 		this.externalList = externalList;
 	}
 
-	public String getGroupchat() {
-		return groupchat;
+	public String getGroupChat() {
+		return groupChat;
 	}
 
-	public void setGroupchat(String groupchat) {
-		this.groupchat = groupchat;
+	public void setGroupChat(String groupChat) {
+		this.groupChat = groupChat;
 	}
 
 	public String getGroupList() {
@@ -129,12 +129,12 @@ public class WxProperties {
 		this.groupList = groupList;
 	}
 
-	public String getPermitlist() {
-		return permitlist;
+	public String getPermitList() {
+		return permitList;
 	}
 
-	public void setPermitlist(String permitlist) {
-		this.permitlist = permitlist;
+	public void setPermitList(String permitList) {
+		this.permitList = permitList;
 	}
 
 	public String getCheckAgree() {
@@ -161,11 +161,11 @@ public class WxProperties {
 		this.scheduleAdd = scheduleAdd;
 	}
 
-	public String getMediaupload() {
-		return mediaupload;
+	public String getMediaUpload() {
+		return mediaUpload;
 	}
 
-	public void setMediaupload(String mediaupload) {
-		this.mediaupload = mediaupload;
+	public void setMediaUpload(String mediaUpload) {
+		this.mediaUpload = mediaUpload;
 	}
 }

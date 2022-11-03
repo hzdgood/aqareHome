@@ -15,15 +15,15 @@ wx:
   userIdUrl: https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo
   jsapiUrl: https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket
   appUrl: https://qyapi.weixin.qq.com/cgi-bin/ticket/get
-  externalcontact: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get
+  externalContact: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get
   externalList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/list
-  groupchat: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/get
+  groupChat: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/get
   groupList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/groupchat/list
-  permitlist: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/get_permit_user_list
+  permitList: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/get_permit_user_list
   checkAgree: https://qyapi.weixin.qq.com/cgi-bin/msgaudit/check_single_agree
   calendarAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/calendar/add
   scheduleAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/schedule/add
-  mediaupload: https://qyapi.weixin.qq.com/cgi-bin/media/upload
+  mediaUpload: https://qyapi.weixin.qq.com/cgi-bin/media/upload
   
 common:
   localFiles: E:\\AqaraUpload\\

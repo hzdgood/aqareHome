@@ -7,9 +7,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import Nav from '@/components/nav/Nav.vue'
-import { invoke } from 'wecom-sidebar-jssdk'
 import '@/css/aqara.css'
-
 @Component({
   name: 'App',
   components: {
@@ -17,17 +15,5 @@ import '@/css/aqara.css'
   }
 })
 export default class Actions extends Vue {
-  userId = localStorage.getItem('userId')
-
-  async mounted () {
-    console.log(111)
-    // await invoke('sendChatMessage', {
-    //   msgtype: 'text',
-    //   enterChat: false,
-    //   text: {
-    //     content: '111111'
-    //   }
-    // })
-  }
 }
 </script>

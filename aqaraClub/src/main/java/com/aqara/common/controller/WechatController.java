@@ -5,10 +5,13 @@ import com.aqara.common.entity.*;
 import com.aqara.common.properties.*;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/wechat")
@@ -86,8 +89,8 @@ public class WechatController {
 	 * 获取外部联系人详细信息
 	 */
 	@CrossOrigin
-	@RequestMapping("/externalcontact")
-	public String externalcontact(String userId, String type) {
+	@RequestMapping("/externalContact")
+	public String externalContact(String userId, String type) {
 		String token = getToken(type);
 		String res = WeChatUtil.getExternalContact(userId, token, WxProperties);
 		return res;
@@ -108,10 +111,10 @@ public class WechatController {
 	 * 获取外部联系人详细信息
 	 */
 	@CrossOrigin
-	@RequestMapping("/groupchat")
-	public String groupchat(String chatId, String type) {
+	@RequestMapping("/groupChat")
+	public String groupChat(String chatId, String type) {
 		String token = getToken(type);
-		String userInfo = WxProperties.getGroupchat() + "?access_token=" + token;
+		String userInfo = WxProperties.getGroupChat() + "?access_token=" + token;
 		JSONObject obj = new JSONObject();
 		obj.put("chat_id", chatId);
 		String res = HttpUtil.dataPost(userInfo, obj);
@@ -122,13 +125,26 @@ public class WechatController {
 	 * 获取外部联系人详细信息
 	 */
 	@CrossOrigin
-	@RequestMapping("/grouplist")
-	public String grouplist(String chatId, String type) {
+	@RequestMapping("/groupList")
+	public String groupList(String chatId, String type) {
 		String token = getToken(type);
 		String userInfo = WxProperties.getGroupList() + "?access_token=" + token;
 		JSONObject obj = new JSONObject();
 		obj.put("chat_id", chatId);
 		String res = HttpUtil.dataPost(userInfo, obj);
+		return res;
+	}
+
+	/**
+	 * 获取外部联系人详细信息
+	 */
+	@PostMapping("/mediaUpload")
+	@CrossOrigin
+	@ResponseBody
+	public String mediaUpload(String fileName, String type) {
+		String token = getToken(type);
+		String mediaUrl = WxProperties.getMediaUpload() + "?access_token=" + token + "&type=TYPE";
+		String res = HttpUtil.mediaPost(mediaUrl, fileName);
 		return res;
 	}
 	

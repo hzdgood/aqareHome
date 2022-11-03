@@ -27,6 +27,6 @@ public class HttpService {
 	}
 
 	public void workRequset(String str, String WX_TOKEN) {
-		HttpUtil.workRequset(str, WX_TOKEN);
+		HttpUtil.workRequest(str, WX_TOKEN);
 	}
 }

@@ -60,7 +60,7 @@ public class WeChatUtil {
 	}
 
 	public static String getExternalContact(String userId, String token, WxProperties wxProperties) {
-		String url = wxProperties.getExternalcontact();
+		String url = wxProperties.getExternalContact();
 		String lastUrl = url + "?access_token=" + token + "&external_userid=" + userId;
 		String result = "";
         try {
