@@ -3,8 +3,22 @@
 </template>
 
 <script lang="ts">
-export default {
-
+import { Component, Vue } from 'vue-property-decorator'
+import { invoke } from 'wecom-sidebar-jssdk'
+@Component({
+  name: 'person'
+})
+export default class Actions extends Vue {
+  async mounted () {
+    console.log(111)
+    await invoke('sendChatMessage', {
+      msgtype: 'text',
+      enterChat: true,
+      text: {
+        content: '111111'
+      }
+    })
+  }
 }
 </script>
 

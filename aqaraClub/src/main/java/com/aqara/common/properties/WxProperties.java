@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 public class WxProperties {
 	private String corpId;
 	private String corpSecret;
+	private String corpHttp;
+	private String speedySecret;
+	private String speedyHttp;
 	private String httpUrl;
 	private String userIdUrl;
 	private String jsapiUrl;
@@ -36,6 +39,30 @@ public class WxProperties {
 
 	public void setCorpSecret(String corpSecret) {
 		this.corpSecret = corpSecret;
+	}
+
+	public String getCorpHttp() {
+		return corpHttp;
+	}
+
+	public void setCorpHttp(String corpHttp) {
+		this.corpHttp = corpHttp;
+	}
+
+	public String getSpeedySecret() {
+		return speedySecret;
+	}
+
+	public void setSpeedySecret(String speedySecret) {
+		this.speedySecret = speedySecret;
+	}
+
+	public String getSpeedyHttp() {
+		return speedyHttp;
+	}
+
+	public void setSpeedyHttp(String speedyHttp) {
+		this.speedyHttp = speedyHttp;
 	}
 
 	public String getHttpUrl() {
@@ -78,20 +105,20 @@ public class WxProperties {
 		this.externalcontact = externalcontact;
 	}
 
-	public String getGroupchat() {
-		return groupchat;
-	}
-
-	public void setGroupchat(String groupchat) {
-		this.groupchat = groupchat;
-	}
-
 	public String getExternalList() {
 		return externalList;
 	}
 
 	public void setExternalList(String externalList) {
 		this.externalList = externalList;
+	}
+
+	public String getGroupchat() {
+		return groupchat;
+	}
+
+	public void setGroupchat(String groupchat) {
+		this.groupchat = groupchat;
 	}
 
 	public String getGroupList() {

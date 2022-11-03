@@ -1,28 +1,18 @@
 <template>
   <a-menu v-model="current" mode="horizontal">
-    <a-menu-item key="项目信息">
+    <a-menu-item key="企业话术">
       <router-link to="/">
-        信息
+        企业话术
       </router-link>
     </a-menu-item>
-    <a-menu-item key="跟进">
-      <router-link to="/followUp">
-        跟进
+    <a-menu-item key="个人话术">
+      <router-link to="/person">
+        个人话术
       </router-link>
     </a-menu-item>
-    <a-menu-item key="发货">
-      <router-link to="/sendOut">
-        发货
-      </router-link>
-    </a-menu-item>
-    <a-menu-item key="方案">
-      <router-link to="/scheme">
-        方案
-      </router-link>
-    </a-menu-item>
-    <a-menu-item key="工单">
-      <router-link to="/workSheet">
-        工单
+    <a-menu-item key="团队话术">
+      <router-link to="/team">
+        团队话术
       </router-link>
     </a-menu-item>
   </a-menu>
@@ -43,6 +33,6 @@ export default class Nav extends Vue {
 </script>
 <style scoped>
 .ant-menu-item, .ant-menu-submenu-title {
-  padding: 0px 15px !important;
+  padding: 0px 30px !important;
 }
 </style>

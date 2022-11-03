@@ -2,9 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
+import { userInfo, fetchUserId, fetchSignatures, config } from '@/config/interFace'
 import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
-import Cookies from 'js-cookie'
 import BaiduMap from 'vue-baidu-map'
 import 'ant-design-vue/dist/antd.css'
 
@@ -30,24 +29,24 @@ const doInfo = async () => {
   const result = await invoke('getContext') // 获取类型
   localStorage.setItem('contactType', result.entry) // 联系类型
   if (result.entry === 'single_chat_tools') {
-    // 单个客户
-    const res = await invoke('getCurExternalContact')
-    const userId = res.userId
-    localStorage.setItem('userId', userId) // 外部客户userID
-    const res1: any = await externalcontact(userId)
-    const userName = res1.external_contact.name
-    const avatar = res1.external_contact.avatar
-    const localName: any = Cookies.get('userId')
-    localStorage.setItem('userName', userName)
-    localStorage.setItem('avatar', avatar)
-    localStorage.setItem('localName', localName)
+    // // 单个客户
+    // const res = await invoke('getCurExternalContact')
+    // const userId = res.userId
+    // localStorage.setItem('userId', userId) // 外部客户userID
+    // const res1: any = await externalcontact(userId)
+    // const userName = res1.external_contact.name
+    // const avatar = res1.external_contact.avatar
+    // const localName: any = Cookies.get('userId')
+    // localStorage.setItem('userName', userName)
+    // localStorage.setItem('avatar', avatar)
+    // localStorage.setItem('localName', localName)
     getTicket()
   } else if (result.entry === 'group_chat_tools') {
-    const localName: any = Cookies.get('userId')
-    const result = await invoke('getCurExternalChat')
-    localStorage.setItem('userName', '')
-    localStorage.setItem('localName', localName)
-    localStorage.setItem('chatID', result.chatId) // 群ID
+    // const localName: any = Cookies.get('userId')
+    // const result = await invoke('getCurExternalChat')
+    // localStorage.setItem('userName', '')
+    // localStorage.setItem('localName', localName)
+    // localStorage.setItem('chatID', result.chatId) // 群ID
     getTicket()
   }
 }

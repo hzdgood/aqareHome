@@ -18,7 +18,6 @@
     <div v-if="userStatus == false">
       <user-bind @close="close()"></user-bind>
     </div>
-    <!-- <confirm v-show="confirm" :msg="confirmInfo" @close="closeConfirm()"></confirm> -->
   </div>
 </template>
 <script lang="ts">

@@ -96,7 +96,9 @@ public class ProjectService {
 		for (int i = 0; i < Project.size(); i++) {
 			String name = Project.get(i).getProjectName();
 			String itemId = Project.get(i).getItemId();
-			if(Project.get(i).getDepartment().equals(depart)) {
+			if(Project.get(i).getDepartment() == null || Project.get(i).getDepartment().equals(null)) {
+
+			} else if(Project.get(i).getDepartment().equals(depart)) {
 				if( currentNumber < 10) {
 					if(currentNumber % 2 == 0) {
 						xhData += ">" + "[" + name + "](https://app.huoban.com/tables/2100000014956047/items/" + itemId + ")";
