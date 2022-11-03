@@ -49,8 +49,9 @@ server:
     uri-encoding: UTF-8
     
 logging:
-  path: 'E:\\AqaraLog\\'
-  file: 'aqara.log'
+  file:
+    name: 'aqara.log'
+    path: 'D:\\AqaraLog\\'
 
 spring:
   datasource:
@@ -59,15 +60,17 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-    sql-script-encoding: UTF-8
-    data-username: 
-    data-password: 
     generate-unique-name: false
-    platform: all
   servlet:
     multipart:
       max-file-size: 50MB
       max-request-size: 100MB
+  sql:
+    init:
+      platform: all
+      encoding: UTF-8
+      username:
+      password:
 
 mybatis:
   mapper-locations: classpath*:mapping/*.xml

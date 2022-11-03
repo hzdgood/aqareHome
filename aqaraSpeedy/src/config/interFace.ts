@@ -7,7 +7,7 @@ const httpUrl = 'http://localhost:8081' // 测试url
 export const config = {
   /* 8081 */
   corpId: 'ww9a717b03b06063e3', // 企业ID
-  agentId: '1000046' // 应用ID
+  agentId: '1000038' // 应用ID
 
   /* 8091 */
   // corpId: 'ww728dd07f7641e567',
