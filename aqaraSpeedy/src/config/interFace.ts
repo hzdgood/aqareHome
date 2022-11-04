@@ -74,6 +74,16 @@ export const groupchat = async (chatId: string) => {
   return response.data
 }
 
+// 获取群联系人
+export const treeList = async (reqUrl:any, data: any) => {
+  const response = await axios({
+    method: 'post',
+    url: httpUrl + reqUrl,
+    data: data
+  })
+  return response.data
+}
+
 // 获取联系人
 export const externalList = async (userId: string) => {
   const response = await axios.request<SignRes>({

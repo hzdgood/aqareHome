@@ -1,6 +1,8 @@
 package com.aqara.common.service;
 
 import java.util.List;
+
+import com.aqara.common.entity.PageReq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.aqara.common.entity.SpeedyTheme;
@@ -12,8 +14,8 @@ public class SpeedyThemeService {
 	@Autowired
 	SpeedyThemeMapper SpeedyThemeMapper;
 	
-	public List<SpeedyTheme> select(String theme) {
-		return SpeedyThemeMapper.select(theme);
+	public List<SpeedyTheme> select(PageReq PageReq) {
+		return SpeedyThemeMapper.select(PageReq.getTeamId(), PageReq.getTheme(), PageReq.getType());
 	}
 	
 	public void insert(SpeedyTheme SpeedyTheme) {

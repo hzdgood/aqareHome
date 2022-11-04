@@ -23,7 +23,7 @@ public class SpeedyContentController {
 	@RequestMapping("/select")
 	public Map<String, Object> select(@RequestBody PageReq PageReq) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<SpeedyContent> list = SpeedyContentService.select(PageReq.getTheme());
+		List<SpeedyContent> list = SpeedyContentService.select(PageReq);
 		map.put("pageNo", 1);
 		map.put("pageSize", 10);
 		map.put("totalCount", list.size());

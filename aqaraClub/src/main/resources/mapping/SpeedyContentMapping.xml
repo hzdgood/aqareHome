@@ -4,6 +4,7 @@
 <mapper namespace="com.aqara.common.mapper.SpeedyContentMapper">
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
 		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="teamId" jdbcType="INTEGER" property="teamId" />
 		<result column="themeId" jdbcType="INTEGER" property="themeId" />
 		<result column="type" jdbcType="INTEGER" property="type" />
 		<result column="team" jdbcType="INTEGER" property="team" />
@@ -19,18 +20,21 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		 SELECT c.id, c.themeId, t2.theme, c.contentText, c.contentFile, c.contentType,
+		 SELECT c.id, c.themeId, t2.theme, c.contentText, c.contentFile, c.contentType, t2.teamId,
 			t1.team, t1.company, t1.type, c.createName, c.createTime, c.updateName, c.updateTime 
 			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 
-    		where t2.id = c.themeId and t1.id = t2.teamId 
-    	<if test="team!=null and team!=''"> 
-    		AND t1.team like concat('%',#{team,jdbcType=VARCHAR},'%') 
+    		where t2.id = c.themeId and t1.id = t2.teamId
+		<if test="themeId!=null and themeId!=''">
+			AND c.themeId = #{themeId}
 		</if>
-		<if test="theme!=null and theme!=''">  
-    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%') 
+		<if test="team!=null and team!=''">
+			AND t1.team like concat('%',#{team,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="theme!=null and theme!=''">
+    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
 		</if>
 		<if test="type!=null and type!=''">
-    		AND t1.type like concat('%',#{type,jdbcType=VARCHAR},'%') 
+    		AND t1.type like concat('%',#{type,jdbcType=VARCHAR},'%')
 		</if>
 		order by c.themeId
 	</select>

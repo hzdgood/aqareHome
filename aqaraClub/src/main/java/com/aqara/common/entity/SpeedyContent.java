@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class SpeedyContent {
 	private Integer id;
+	private Integer teamId;
 	private Integer themeId;
 	private String type;
 	private String team;
@@ -23,6 +24,14 @@ public class SpeedyContent {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(Integer teamId) {
+		this.teamId = teamId;
 	}
 
 	public Integer getThemeId() {

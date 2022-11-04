@@ -1,13 +1,15 @@
 package com.aqara.common.mapper;
 
 import java.util.List;
+
+import com.aqara.common.entity.PageReq;
 import org.springframework.stereotype.Repository;
 import com.aqara.common.entity.SpeedyTheme;
 
 @Repository
 public interface SpeedyThemeMapper {
 	
-	List<SpeedyTheme> select(String theme);
+	List<SpeedyTheme> select(Integer teamId, String theme, String type);
 	
 	void insert(SpeedyTheme SpeedyTheme);
 	

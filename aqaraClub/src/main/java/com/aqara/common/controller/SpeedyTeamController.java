@@ -16,8 +16,9 @@ public class SpeedyTeamController {
 	@CrossOrigin
 	@RequestMapping("/select")
 	public Map<String, Object> select(@RequestBody PageReq PageReq) {
+		System.out.println(PageReq.getThemeId());
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<SpeedyTeam> list = SpeedyTeamService.select(PageReq.getType());
+		List<SpeedyTeam> list = SpeedyTeamService.select(PageReq);
 		map.put("pageNo", 1);
 		map.put("pageSize", 10);
 		map.put("totalCount", list.size());
