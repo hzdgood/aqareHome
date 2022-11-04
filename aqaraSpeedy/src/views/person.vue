@@ -9,15 +9,6 @@ import { invoke } from 'wecom-sidebar-jssdk'
   name: 'person'
 })
 export default class Actions extends Vue {
-  async mounted () {
-    // await invoke('sendChatMessage', {
-    //   msgtype: 'text',
-    //   enterChat: true,
-    //   text: {
-    //     content: '111111'
-    //   }
-    // })
-  }
 }
 </script>
 
