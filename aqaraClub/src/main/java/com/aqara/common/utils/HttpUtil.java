@@ -2,12 +2,18 @@ package com.aqara.common.utils;
 
 import java.io.*;
 import java.net.*;
+import java.nio.charset.Charset;
 import java.util.*;
 import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import com.alibaba.fastjson.*;
 
@@ -98,47 +104,28 @@ public class HttpUtil {
 		}
 	}
 
-	public static String mediaPost(String requestUrl, String filename) {
-		try {
-			URL url = new URL(requestUrl);
-			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setDoOutput(true);
-			connection.setDoInput(true);
-			connection.setRequestMethod("POST");
-			connection.setUseCaches(false);
-			connection.setRequestProperty("Connection", "Keep-Alive");
-			connection.setInstanceFollowRedirects(true);
-			connection.setRequestProperty("Content-Type", "multipart/form-data;");
-			connection.connect();
-			DataOutputStream ds = new DataOutputStream(connection.getOutputStream());
-			ds.writeBytes("Content-Disposition: form-data; " + "name=\"media\";filename=\"" + filename + "\"");
-			ds.writeBytes("Content-Type: application/octet-stream");
-			FileInputStream fStream = new FileInputStream(filename);
-			int bufferSize = 1024;
-			byte[] buffer = new byte[bufferSize];
-			int length = -1;
-			while ((length = fStream.read(buffer)) != -1) {
-				ds.write(buffer, 0, length);
-			}
-			ds.flush();
-			ds.close();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-			String lines;
-			StringBuffer sb = new StringBuffer("");
-			while ((lines = reader.readLine()) != null) {
-				lines = new String(lines.getBytes(), "utf-8");
-				sb.append(lines);
-			}
-			fStream.close();
-			reader.close();
-			connection.disconnect();
-			return sb.toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
+	public static String mediaPost(String requestUrl, String filename) throws IOException {
+		String boundary = UUID.randomUUID().toString().replace("-", "");
+		HttpPost post = new HttpPost(requestUrl);
+		HttpClient client = HttpClients.createDefault();
+		MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+		builder.setMode(HttpMultipartMode.RFC6532);
+		File file = new File(filename);
+		if (file != null && file.exists()) {
+			builder.addBinaryBody(file.getName(), file, ContentType.parse(boundary), file.getName() );
 		}
+		post.setEntity(builder.build());
+		HttpResponse response = client.execute(post);
+		BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"),8*1024);
+		String lines;
+		StringBuffer sb = new StringBuffer("");
+		while ((lines = reader.readLine()) != null) {
+			lines = new String(lines.getBytes(), "utf-8");
+			sb.append(lines);
+		}
+		return sb.toString();
 	}
-	
+
 	public static void workRequest(String temp, String WX_TOKEN) {
 		try {
 			HttpClient httpClient = new DefaultHttpClient();

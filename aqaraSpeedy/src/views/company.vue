@@ -22,7 +22,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { treeList } from '@/config/interFace'
+import { treeList, mediaUpload } from '@/config/interFace'
 import { Tree, Select } from 'ant-design-vue'
 import { invoke } from 'wecom-sidebar-jssdk'
 @Component({
@@ -81,8 +81,16 @@ export default class Actions extends Vue {
     })
   }
 
-  FileClick (item: any) {
-    console.log(1111)
+  async FileClick (item: any) {
+    const data: any = await mediaUpload(item.contentFile)
+    console.log(data)
+    await invoke('sendChatMessage', {
+      msgtype: 'file',
+      enterChat: true,
+      file: {
+        mediaid: data.media_id
+      }
+    })
   }
 }
 </script>

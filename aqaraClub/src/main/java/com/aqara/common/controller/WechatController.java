@@ -7,6 +7,7 @@ import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,14 +137,13 @@ public class WechatController {
 	}
 
 	/**
-	 * 获取外部联系人详细信息
+	 * 上传文件
 	 */
-	@PostMapping("/mediaUpload")
 	@CrossOrigin
-	@ResponseBody
-	public String mediaUpload(String fileName, String type) {
+	@RequestMapping("/mediaUpload")
+	public String mediaUpload(String fileName, String type) throws IOException {
 		String token = getToken(type);
-		String mediaUrl = WxProperties.getMediaUpload() + "?access_token=" + token + "&type=TYPE";
+		String mediaUrl = WxProperties.getMediaUpload() + "?access_token=" + token + "&type=file";
 		String res = HttpUtil.mediaPost(mediaUrl, fileName);
 		return res;
 	}

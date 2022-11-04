@@ -84,6 +84,19 @@ export const treeList = async (reqUrl:any, data: any) => {
   return response.data
 }
 
+// 获取群联系人
+export const mediaUpload = async (fileName: any) => {
+  const response = await axios.request<SignRes>({
+    method: 'GET',
+    url: httpUrl + '/wechat/mediaUpload',
+    params: {
+      type: httpUrl,
+      fileName: fileName
+    }
+  })
+  return response.data
+}
+
 // 获取联系人
 export const externalList = async (userId: string) => {
   const response = await axios.request<SignRes>({
