@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-const httpUrl = 'http://localhost:8081' // 测试url
-// const httpUrl = 'http://aqara.club:8081' // 生产环境
+// const httpUrl = 'http://localhost:8081' // 测试url
+const typeUrl = 'http://aqara.club:8080'
+const httpUrl = 'http://aqara.club:8081' // 生产环境
 // const httpUrl = 'http://aqara.club:8091' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
@@ -73,7 +74,7 @@ export const fetchSignatures = async (): Promise<SignRes> => {
 export const externalcontact = async (userId: string) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
-    url: httpUrl + '/wechat/externalcontact',
+    url: httpUrl + '/wechat/externalContact',
     params: {
       userId: userId,
       type: httpUrl
@@ -85,7 +86,7 @@ export const externalcontact = async (userId: string) => {
 export const groupchat = async (chatId: string) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
-    url: httpUrl + '/wechat/groupchat',
+    url: httpUrl + '/wechat/groupChat',
     params: {
       chatId: chatId,
       type: httpUrl

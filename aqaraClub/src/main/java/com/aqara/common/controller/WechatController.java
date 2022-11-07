@@ -90,7 +90,7 @@ public class WechatController {
 	 * 获取外部联系人详细信息
 	 */
 	@CrossOrigin
-	@RequestMapping("/externalContact")
+	@RequestMapping("/externalcontact")
 	public String externalContact(String userId, String type) {
 		String token = getToken(type);
 		String res = WeChatUtil.getExternalContact(userId, token, WxProperties);

@@ -15,7 +15,13 @@
     <div class="">快捷内容</div>
     <div class="" v-for="item in contentList" :key="item.id">
       <div v-if="item.contentType === '文件'" @click="FileClick(item)">文件：{{item.contentFile}}</div>
+      <div v-if="item.contentType === '图片'" @click="FileClick(item)">图片：{{item.contentFile}}</div>
+      <div v-if="item.contentType === '视频'" @click="FileClick(item)">视频：{{item.contentFile}}</div>
       <div v-if="item.contentType === '文本'" @click="textClick(item)">文本：{{item.contentText}}</div>
+      <div v-if="item.contentType === '组合'" @click="textClick(item)">
+        <div>文本：{{item.contentText}}</div>
+        <div>内容：{{item.contentText}}</div>
+      </div>
     </div>
   </div>
 </template>
@@ -49,7 +55,7 @@ export default class Actions extends Vue {
   }
 
   async teamChange (teamId: any) {
-    this.cleanList()
+    this.themeList = []
     const req = {
       teamId: teamId
     }
@@ -58,17 +64,12 @@ export default class Actions extends Vue {
   }
 
   async themeChange (themeId: any) {
-    this.cleanList()
+    this.contentList = []
     const req = {
       themeId: themeId
     }
     const data = await treeList('/speedy/content/select', req)
     this.contentList = data.data
-  }
-
-  cleanList () {
-    this.contentList = []
-    this.themeList = []
   }
 
   async textClick (item: any) {
