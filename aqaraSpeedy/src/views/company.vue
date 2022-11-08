@@ -14,10 +14,22 @@
     </div>
     <div class="">快捷内容</div>
     <div class="" v-for="item in contentList" :key="item.id">
-      <div v-if="item.contentType === '文件'" @click="FileClick(item)">文件：{{item.contentFile}}</div>
-      <div v-if="item.contentType === '图片'" @click="pictureClick(item)">图片：{{item.contentFile}}</div>
-      <div v-if="item.contentType === '视频'" @click="videoClick(item)">视频：{{item.contentFile}}</div>
-      <div v-if="item.contentType === '文本'" @click="textClick(item)">文本：{{item.contentText}}</div>
+      <div v-if="item.contentType === '文件'" class="">
+        <div>{{item.contentFile}}</div>
+        <a-button @click="FileClick(item)">发送</a-button>
+      </div>
+      <div v-if="item.contentType === '图片'" class="">
+        <div>{{item.contentFile}}</div>
+        <a-button @click="pictureClick(item)">发送</a-button>
+      </div>
+      <div v-if="item.contentType === '视频'" class="">
+        <div>{{item.contentFile}}</div>
+        <a-button @click="videoClick(item)">发送</a-button>
+      </div>
+      <div v-if="item.contentType === '文本'" class="">
+        <div>{{item.contentText}}</div>
+        <a-button @click="textClick(item)">发送</a-button>
+      </div>
     </div>
   </div>
 </template>
@@ -25,12 +37,13 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { treeList, mediaUpload } from '@/config/interFace'
-import { Tree, Select } from 'ant-design-vue'
+import { Tree, Select, Button } from 'ant-design-vue'
 import { invoke } from 'wecom-sidebar-jssdk'
 @Component({
   name: 'company',
   components: {
     'a-tree': Tree,
+    'a-button': Button,
     'a-select': Select,
     'a-select-option': Select.Option
   }
