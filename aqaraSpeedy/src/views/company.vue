@@ -15,13 +15,9 @@
     <div class="">快捷内容</div>
     <div class="" v-for="item in contentList" :key="item.id">
       <div v-if="item.contentType === '文件'" @click="FileClick(item)">文件：{{item.contentFile}}</div>
-      <div v-if="item.contentType === '图片'" @click="FileClick(item)">图片：{{item.contentFile}}</div>
-      <div v-if="item.contentType === '视频'" @click="FileClick(item)">视频：{{item.contentFile}}</div>
+      <div v-if="item.contentType === '图片'" @click="pictureClick(item)">图片：{{item.contentFile}}</div>
+      <div v-if="item.contentType === '视频'" @click="videoClick(item)">视频：{{item.contentFile}}</div>
       <div v-if="item.contentType === '文本'" @click="textClick(item)">文本：{{item.contentText}}</div>
-      <div v-if="item.contentType === '组合'" @click="textClick(item)">
-        <div>文本：{{item.contentText}}</div>
-        <div>内容：{{item.contentText}}</div>
-      </div>
     </div>
   </div>
 </template>
@@ -88,6 +84,28 @@ export default class Actions extends Vue {
       msgtype: 'file',
       enterChat: true,
       file: {
+        mediaid: data.media_id
+      }
+    })
+  }
+
+  async pictureClick (item: any) {
+    const data: any = await mediaUpload(item.contentFile)
+    await invoke('sendChatMessage', {
+      msgtype: 'image',
+      enterChat: true,
+      image: {
+        mediaid: data.media_id
+      }
+    })
+  }
+
+  async videoClick (item: any) {
+    const data: any = await mediaUpload(item.contentFile)
+    await invoke('sendChatMessage', {
+      msgtype: 'video',
+      enterChat: true,
+      video: {
         mediaid: data.media_id
       }
     })
