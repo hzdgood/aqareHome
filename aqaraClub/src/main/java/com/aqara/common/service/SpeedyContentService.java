@@ -15,7 +15,7 @@ public class SpeedyContentService {
 	SpeedyContentMapper SpeedyContentMapper;
 	
 	public List<SpeedyContent> select(PageReq PageReq) {
-		return SpeedyContentMapper.select(PageReq.getThemeId(), PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
+		return SpeedyContentMapper.select(Integer.parseInt(PageReq.getThemeId()), PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
 	}
 	
 	public void insert(SpeedyContent SpeedyContent) {

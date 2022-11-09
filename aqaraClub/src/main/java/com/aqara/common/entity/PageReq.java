@@ -1,27 +1,27 @@
 package com.aqara.common.entity;
 
 public class PageReq {
-	private Integer teamId;
-	private Integer themeId;
+	private String teamId;
+	private String themeId;
 	private String pageNo;
 	private String pageSize;
 	private String theme;
 	private String team;
 	private String type;
 
-	public Integer getTeamId() {
+	public String getTeamId() {
 		return teamId;
 	}
 
-	public void setTeamId(Integer teamId) {
+	public void setTeamId(String teamId) {
 		this.teamId = teamId;
 	}
 
-	public Integer getThemeId() {
+	public String getThemeId() {
 		return themeId;
 	}
 
-	public void setThemeId(Integer themeId) {
+	public void setThemeId(String themeId) {
 		this.themeId = themeId;
 	}
 

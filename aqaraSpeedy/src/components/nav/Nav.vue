@@ -33,6 +33,6 @@ export default class Nav extends Vue {
 </script>
 <style scoped>
 .ant-menu-item, .ant-menu-submenu-title {
-  padding: 0px 30px !important;
+  padding: 0px 20px !important;
 }
 </style>

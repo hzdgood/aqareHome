@@ -1,40 +1,40 @@
 <template>
-  <div class="contentDiv">
+  <div class="bodyDiv">
     <div class="teamDiv" v-for="item in teamList" :key="item.id">
       <div @click="teamChange(item.id)">{{item.team}}</div>
       <div class="themeDiv" v-for="theme in themeList" :key="theme.id" v-show="item.id === theme.teamId && theme.show">
         <div @click="themeChange(theme.id)">{{theme.theme}}</div>
         <div class="contentDiv" v-for="content in contentList" :key="content.id" v-show="theme.id === content.themeId  && content.show">
-          <div v-if="content.contentType === '文本'" class="text">
+          <div v-if="content.contentType === '文本'" class="content">
             <div>
               <span>{{content.contentText}}</span>
-              <button @click="textClick(content)" :disabled="content.disabled">发送</button>
             </div>
+            <button @click="textClick(content)" :disabled="content.disabled">发送</button>
           </div>
-          <div v-if="content.contentType === '文件'" class="text">
+          <div v-if="content.contentType === '文件'" class="content">
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
-              <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
             </div>
+            <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
           </div>
-          <div v-if="content.contentType === '图片'" class="text">
+          <div v-if="content.contentType === '图片'" class="content">
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
-              <button @click="pictureClick(content)" :disabled="content.disabled">发送</button>
             </div>
+            <button @click="pictureClick(content)" :disabled="content.disabled">发送</button>
           </div>
-          <div v-if="content.contentType === '视频'" class="text">
+          <div v-if="content.contentType === '视频'" class="content">
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
-              <button @click="videoClick(content)" :disabled="content.disabled">发送</button>
             </div>
+            <button @click="videoClick(content)" :disabled="content.disabled">发送</button>
           </div>
-          <div v-if="content.contentType === '组合'" class="team">
+          <div v-if="content.contentType === '组合'" class="content">
             <div>
               <div>{{content.contentText}}</div>
               <div>{{content.contentFile.split("\\")[4]}}</div>
-              <button @click="teamClick(content)" :disabled="content.disabled">发送</button>
             </div>
+            <button @click="teamClick(content)" :disabled="content.disabled">发送</button>
           </div>
         </div>
       </div>
@@ -198,21 +198,29 @@ export default class Actions extends Vue {
 </script>
 
 <style scoped>
-.contentDiv {
+.bodyDiv {
   margin: 10px;
   background-color: #ffffff;
 }
-.contentDiv *{
-  font-size: 16px !important;
+.bodyDiv *{
+  font-size: 14px !important;
 }
 .teamDiv{
-  margin: 5px 0px 0px 5px;
+  margin: 5px 5px 5px 5px;
 }
 .themeDiv{
-  margin: 5px 0px 0px 10px;
+  margin: 5px 5px 5px 10px;
 }
 .contentDiv{
-  margin: 5px 0px 0px 15px;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  margin: 5px 5px 5px 15px;
+}
+.contentDiv .content{
+  margin: 5px 5px 5px 5px;
+}
+button {
+  margin: 5px 5px 5px 80%;
 }
 button:disabled {
   pointer-events: none;
