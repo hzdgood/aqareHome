@@ -7,33 +7,33 @@
         <div class="contentDiv" v-for="content in contentList" :key="content.id" v-show="theme.id === content.themeId  && content.show">
           <div v-if="content.contentType === '文本'" class="text">
             <div>
-              <span>{{item.contentText}}</span>
-              <button @click="textClick(content)">发送</button>
+              <span>{{content.contentText}}</span>
+              <button @click="textClick(content)" :disabled="content.disabled">发送</button>
             </div>
           </div>
           <div v-if="content.contentType === '文件'" class="text">
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
-              <button @click="FileClick(content)">发送</button>
+              <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
             </div>
           </div>
           <div v-if="content.contentType === '图片'" class="text">
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
-              <button @click="pictureClick(content)">发送</button>
+              <button @click="pictureClick(content)" :disabled="content.disabled">发送</button>
             </div>
           </div>
           <div v-if="content.contentType === '视频'" class="text">
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
-              <button @click="videoClick(content)">发送</button>
+              <button @click="videoClick(content)" :disabled="content.disabled">发送</button>
             </div>
           </div>
           <div v-if="content.contentType === '组合'" class="team">
             <div>
-              <div>{{item.contentText}}</div>
+              <div>{{content.contentText}}</div>
               <div>{{content.contentFile.split("\\")[4]}}</div>
-              <button @click="teamClick(content)">发送</button>
+              <button @click="teamClick(content)" :disabled="content.disabled">发送</button>
             </div>
           </div>
         </div>
@@ -54,7 +54,6 @@ export default class Actions extends Vue {
   teamList: any[] = []
   themeList: any[] = []
   contentList: any[] = []
-  form: any
 
   async mounted () {
     const req = {
@@ -98,7 +97,7 @@ export default class Actions extends Vue {
     for (let i = 0; i < this.contentList.length; i++) {
       const content = this.contentList[i]
       if (content.themeId === themeId) {
-        if (content.show === true) {
+        if (content.show) {
           content.show = false
         } else {
           content.show = true
@@ -111,23 +110,39 @@ export default class Actions extends Vue {
       for (let i = 0; i < data.data.length; i++) {
         const content = data.data[i]
         content.show = true
+        content.disabled = false
         this.contentList.push(content)
       }
     }
   }
 
-  async textClick (item: any) {
+  sendButton (content: any) {
+    for (let i = 0; i < this.contentList.length; i++) {
+      const obj = this.contentList[i]
+      if (obj.id === content.id) {
+        if (obj.disabled) {
+          obj.disabled = false
+        } else {
+          obj.disabled = true
+        }
+      }
+    }
+  }
+
+  async textClick (content: any) {
+    this.sendButton(content)
     await invoke('sendChatMessage', {
       msgtype: 'text',
       enterChat: true,
       text: {
-        content: item.contentText
+        content: content.contentText
       }
     })
   }
 
-  async FileClick (item: any) {
-    const data: any = await mediaUpload(item.contentFile)
+  async FileClick (content: any) {
+    this.sendButton(content)
+    const data: any = await mediaUpload(content.contentFile)
     await invoke('sendChatMessage', {
       msgtype: 'file',
       enterChat: true,
@@ -137,19 +152,21 @@ export default class Actions extends Vue {
     })
   }
 
-  async pictureClick (item: any) {
-    const data: any = await mediaUpload(item.contentFile)
+  async pictureClick (content: any) {
+    this.sendButton(content)
+    const data: any = await mediaUpload(content.contentFile)
     await invoke('sendChatMessage', {
-      msgtype: 'image',
+      msgtype: 'file',
       enterChat: true,
-      image: {
+      file: {
         mediaid: data.media_id
       }
     })
   }
 
-  async videoClick (item: any) {
-    const data: any = await mediaUpload(item.contentFile)
+  async videoClick (content: any) {
+    this.sendButton(content)
+    const data: any = await mediaUpload(content.contentFile)
     await invoke('sendChatMessage', {
       msgtype: 'video',
       enterChat: true,
@@ -159,13 +176,14 @@ export default class Actions extends Vue {
     })
   }
 
-  async teamClick (item: any) {
-    const data: any = await mediaUpload(item.contentFile)
+  async teamClick (content: any) {
+    this.sendButton(content)
+    const data: any = await mediaUpload(content.contentFile)
     await invoke('sendChatMessage', {
       msgtype: 'text',
       enterChat: true,
       text: {
-        content: item.contentText
+        content: content.contentText
       }
     })
     await invoke('sendChatMessage', {
@@ -179,7 +197,7 @@ export default class Actions extends Vue {
 }
 </script>
 
-<style>
+<style scoped>
 .contentDiv {
   margin: 10px;
   background-color: #ffffff;
@@ -196,5 +214,11 @@ export default class Actions extends Vue {
 .contentDiv{
   margin: 5px 0px 0px 15px;
 }
-
+button:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  box-shadow: none;
+  opacity: .65;
+}
 </style>
