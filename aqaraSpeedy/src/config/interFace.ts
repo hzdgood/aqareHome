@@ -1,9 +1,10 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-// const httpUrl = 'http://localhost:8081' // 测试url
-const httpUrl = 'http://aqara.club:8081' // 生产环境
-// const httpUrl = 'http://aqara.club:8082'
+const httpUrl = 'http://localhost:8081' // 测试url
+const typeUrl = 'http://localhost:8081'
+// const httpUrl = 'http://aqara.club:8081' // 生产环境
+// const typeUrl = 'http://aqara.club:8082'
 
 export const config = {
   corpId: 'ww9a717b03b06063e3', // 企业ID
@@ -30,7 +31,7 @@ export const fetchUserId = async (code: string): Promise<string> => {
     url: httpUrl + '/wechat/getUserId',
     params: {
       code: code,
-      type: 'http://aqara.club:8082'
+      type: typeUrl
     }
   })
   return response.data
@@ -46,7 +47,7 @@ export const fetchSignatures = async (): Promise<SignRes> => {
     url: httpUrl + '/wechat/signatures',
     params: {
       url: window.location.href.split('#')[0],
-      type: 'http://aqara.club:8082'
+      type: typeUrl
     }
   })
   return response.data

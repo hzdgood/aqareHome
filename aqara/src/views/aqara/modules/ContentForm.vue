@@ -123,6 +123,10 @@ export default {
       } else if (value === '组合') {
         this.fileStatus = true
         this.textStatus = true
+        this.uploadFile = {
+          contentText: '',
+          contentFile: ''
+        }
       } else {
         this.fileStatus = true
         this.textStatus = false

@@ -1,34 +1,42 @@
 <template>
-  <div>
-    <div class="">
-      <span>快捷组名：</span>
-      <a-select style="width: 250px;" @change="teamChange" placeholder="请选择">
-        <a-select-option :value='item.id' v-for="item in teamList" :key="item.id">{{item.team}}</a-select-option>
-      </a-select>
-    </div>
-    <div class="">
-      <span>快捷主题：</span>
-      <a-select style="width: 250px;" @change="themeChange" placeholder="请选择">
-        <a-select-option :value='item.id' v-for="item in themeList" :key="item.id">{{item.theme}}</a-select-option>
-      </a-select>
-    </div>
-    <div class="">快捷内容</div>
-    <div class="" v-for="item in contentList" :key="item.id">
-      <div v-if="item.contentType === '文件'" class="">
-        <div>{{item.contentFile}}</div>
-        <a-button @click="FileClick(item)">发送</a-button>
-      </div>
-      <div v-if="item.contentType === '图片'" class="">
-        <div>{{item.contentFile}}</div>
-        <a-button @click="pictureClick(item)">发送</a-button>
-      </div>
-      <div v-if="item.contentType === '视频'" class="">
-        <div>{{item.contentFile}}</div>
-        <a-button @click="videoClick(item)">发送</a-button>
-      </div>
-      <div v-if="item.contentType === '文本'" class="">
-        <div>{{item.contentText}}</div>
-        <a-button @click="textClick(item)">发送</a-button>
+  <div class="contentDiv">
+    <div class="teamDiv" v-for="item in teamList" :key="item.id">
+      <div @click="teamChange(item.id)">{{item.team}}</div>
+      <div class="themeDiv" v-for="theme in themeList" :key="theme.id" v-show="item.id === theme.teamId && theme.show">
+        <div @click="themeChange(theme.id)">{{theme.theme}}</div>
+        <div class="contentDiv" v-for="content in contentList" :key="content.id" v-show="theme.id === content.themeId  && content.show">
+          <div v-if="content.contentType === '文本'" class="text">
+            <div>
+              <span>{{item.contentText}}</span>
+              <button @click="textClick(content)">发送</button>
+            </div>
+          </div>
+          <div v-if="content.contentType === '文件'" class="text">
+            <div>
+              <span>{{content.contentFile.split("\\")[4]}}</span>
+              <button @click="FileClick(content)">发送</button>
+            </div>
+          </div>
+          <div v-if="content.contentType === '图片'" class="text">
+            <div>
+              <span>{{content.contentFile.split("\\")[4]}}</span>
+              <button @click="pictureClick(content)">发送</button>
+            </div>
+          </div>
+          <div v-if="content.contentType === '视频'" class="text">
+            <div>
+              <span>{{content.contentFile.split("\\")[4]}}</span>
+              <button @click="videoClick(content)">发送</button>
+            </div>
+          </div>
+          <div v-if="content.contentType === '组合'" class="team">
+            <div>
+              <div>{{item.contentText}}</div>
+              <div>{{content.contentFile.split("\\")[4]}}</div>
+              <button @click="teamClick(content)">发送</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -37,16 +45,9 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { treeList, mediaUpload } from '@/config/interFace'
-import { Tree, Select, Button } from 'ant-design-vue'
 import { invoke } from 'wecom-sidebar-jssdk'
 @Component({
-  name: 'company',
-  components: {
-    'a-tree': Tree,
-    'a-button': Button,
-    'a-select': Select,
-    'a-select-option': Select.Option
-  }
+  name: 'company'
 })
 
 export default class Actions extends Vue {
@@ -64,21 +65,55 @@ export default class Actions extends Vue {
   }
 
   async teamChange (teamId: any) {
-    this.themeList = []
     const req = {
       teamId: teamId
     }
     const data = await treeList('/speedy/theme/select', req)
-    this.themeList = data.data
+    let status = true
+    for (let i = 0; i < this.themeList.length; i++) {
+      const theme = this.themeList[i]
+      if (theme.teamId === teamId) {
+        if (theme.show === true) {
+          theme.show = false
+        } else {
+          theme.show = true
+        }
+        status = false
+      }
+    }
+    if (status) {
+      for (let i = 0; i < data.data.length; i++) {
+        const theme = data.data[i]
+        theme.show = true
+        this.themeList.push(theme)
+      }
+    }
   }
 
   async themeChange (themeId: any) {
-    this.contentList = []
     const req = {
       themeId: themeId
     }
-    const data = await treeList('/speedy/content/select', req)
-    this.contentList = data.data
+    let status = true
+    for (let i = 0; i < this.contentList.length; i++) {
+      const content = this.contentList[i]
+      if (content.themeId === themeId) {
+        if (content.show === true) {
+          content.show = false
+        } else {
+          content.show = true
+        }
+        status = false
+      }
+    }
+    if (status) {
+      const data = await treeList('/speedy/content/select', req)
+      for (let i = 0; i < data.data.length; i++) {
+        const content = data.data[i]
+        content.show = true
+        this.contentList.push(content)
+      }
+    }
   }
 
   async textClick (item: any) {
@@ -123,9 +158,43 @@ export default class Actions extends Vue {
       }
     })
   }
+
+  async teamClick (item: any) {
+    const data: any = await mediaUpload(item.contentFile)
+    await invoke('sendChatMessage', {
+      msgtype: 'text',
+      enterChat: true,
+      text: {
+        content: item.contentText
+      }
+    })
+    await invoke('sendChatMessage', {
+      msgtype: 'video',
+      enterChat: true,
+      video: {
+        mediaid: data.media_id
+      }
+    })
+  }
 }
 </script>
 
 <style>
+.contentDiv {
+  margin: 10px;
+  background-color: #ffffff;
+}
+.contentDiv *{
+  font-size: 16px !important;
+}
+.teamDiv{
+  margin: 5px 0px 0px 5px;
+}
+.themeDiv{
+  margin: 5px 0px 0px 10px;
+}
+.contentDiv{
+  margin: 5px 0px 0px 15px;
+}
 
 </style>
