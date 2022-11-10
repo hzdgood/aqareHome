@@ -94,16 +94,16 @@ const columns = [{
   title: '标题',
   dataIndex: 'contentTitle'
 }, {
-  title: '内容类型',
+  title: '类型',
   dataIndex: 'contentType'
 }, {
-  title: '内容信息',
+  title: '信息',
   dataIndex: 'contentText'
 }, {
-  title: '内容等级',
+  title: '等级',
   dataIndex: 'contentLevel'
 }, {
-  title: '文件名称',
+  title: '路劲',
   dataIndex: 'contentFile'
 }, {
   title: '操作',

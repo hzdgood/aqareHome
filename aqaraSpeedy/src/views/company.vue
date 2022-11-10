@@ -6,30 +6,35 @@
         <div @click="themeChange(theme.id)">{{theme.theme}}</div>
         <div class="contentDiv" v-for="content in contentList" :key="content.id" v-show="theme.id === content.themeId  && content.show">
           <div v-if="content.contentType === '文本'" class="content">
+            <div class="title">{{content.contentTitle}}</div>
             <div>
               <span>{{content.contentText}}</span>
             </div>
             <button @click="textClick(content)" :disabled="content.disabled">发送</button>
           </div>
           <div v-if="content.contentType === '文件'" class="content">
+            <div class="title">{{content.contentTitle}}</div>
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
             </div>
             <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
           </div>
           <div v-if="content.contentType === '图片'" class="content">
+            <div class="title">{{content.contentTitle}}</div>
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
             </div>
             <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
           </div>
           <div v-if="content.contentType === '视频'" class="content">
+            <div class="title">{{content.contentTitle}}</div>
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
             </div>
             <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
           </div>
           <div v-if="content.contentType === '组合'" class="content">
+            <div class="title">{{content.contentTitle}}</div>
             <div>
               <div>{{content.contentText}}</div>
               <div>{{content.contentFile.split("\\")[4]}}</div>
@@ -205,5 +210,12 @@ button:disabled {
   filter: alpha(opacity=65);
   box-shadow: none;
   opacity: .65;
+}
+.title {
+  margin: 5px;
+  padding: 5px;
+  width: 100%;
+  background-color: rgb(52, 51, 51);
+  color: #ffffff;
 }
 </style>

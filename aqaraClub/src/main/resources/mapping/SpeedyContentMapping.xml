@@ -23,7 +23,7 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		 SELECT c.id, c.mediaId, t2.teamId, c.themeId,  t1.type, t1.team, t2.theme, t1.company,
+		 SELECT c.id, c.mediaId, t2.teamId, c.themeId, t1.type, t1.team, t2.theme, t1.company,
 		    c.contentTitle, c.contentText, c.contentFile, c.contentType, c.contentLevel,
 			c.createName, c.createTime, c.updateName, c.updateTime
 			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 
@@ -40,7 +40,7 @@
 		<if test="type!=null and type!=''">
     		AND t1.type like concat('%',#{type,jdbcType=VARCHAR},'%')
 		</if>
-		order by c.themeId
+		order by c.contentLevel
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">

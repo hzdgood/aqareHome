@@ -12,7 +12,7 @@
         <a-form-item v-show="model && model.id > 0" label="主键ID">
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
-        <a-form-item label="主题名称">
+        <a-form-item label="主题">
           <a-select placeholder="请选择主题名称" v-decorator="['themeId', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option v-for="item in menuList" :value="item.id" :key="item.id">
               {{ item.theme }}
@@ -22,17 +22,17 @@
         <a-form-item label="标题" v-show="textStatus">
           <a-input v-decorator="['contentTitle', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
-        <a-form-item label="主题内容" v-show="textStatus">
+        <a-form-item label="内容" v-show="textStatus">
           <a-input v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
         <a-form-item label="等级">
           <a-select @change="selectChange" placeholder="请选择等级" v-decorator="['contentLevel', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
-            <a-select-option value="高">高</a-select-option>
-            <a-select-option value="中">中</a-select-option>
-            <a-select-option value="低">低</a-select-option>
+            <a-select-option value="1">高</a-select-option>
+            <a-select-option value="2">中</a-select-option>
+            <a-select-option value="3">低</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="内容类型">
+        <a-form-item label="类型">
           <a-select @change="selectChange" placeholder="请选择内容类型" v-decorator="['contentType', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option value="文本">文本</a-select-option>
             <a-select-option value="文件">文件</a-select-option>
@@ -41,12 +41,12 @@
             <a-select-option value="组合">组合</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="内容上传" v-show="fileStatus">
+        <a-form-item label="上传" v-show="fileStatus">
           <a-upload name="file" :beforeUpload="beforeUpload" :showUploadList="false">
             <a-button icon="upload">请选择文件</a-button>
           </a-upload>
         </a-form-item>
-        <a-form-item label="文件路径" v-show="fileStatus">
+        <a-form-item label="路径" v-show="fileStatus">
           <a-input v-decorator="['contentFile', { initialValue: '' }]" disabled />
         </a-form-item>
       </a-form>
