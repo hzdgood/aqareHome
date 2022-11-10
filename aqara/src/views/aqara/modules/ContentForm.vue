@@ -19,6 +19,19 @@
             </a-select-option>
           </a-select>
         </a-form-item>
+        <a-form-item label="标题" v-show="textStatus">
+          <a-input v-decorator="['contentTitle', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
+        </a-form-item>
+        <a-form-item label="主题内容" v-show="textStatus">
+          <a-input v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
+        </a-form-item>
+        <a-form-item label="等级">
+          <a-select @change="selectChange" placeholder="请选择等级" v-decorator="['contentLevel', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
+            <a-select-option value="高">高</a-select-option>
+            <a-select-option value="中">中</a-select-option>
+            <a-select-option value="低">低</a-select-option>
+          </a-select>
+        </a-form-item>
         <a-form-item label="内容类型">
           <a-select @change="selectChange" placeholder="请选择内容类型" v-decorator="['contentType', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option value="文本">文本</a-select-option>
@@ -27,9 +40,6 @@
             <a-select-option value="视频">视频</a-select-option>
             <a-select-option value="组合">组合</a-select-option>
           </a-select>
-        </a-form-item>
-        <a-form-item label="主题内容" v-show="textStatus">
-          <a-input v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
         <a-form-item label="内容上传" v-show="fileStatus">
           <a-upload name="file" :beforeUpload="beforeUpload" :showUploadList="false">
@@ -47,7 +57,7 @@
 import pick from 'lodash.pick'
 import { getPostData, uploadFile } from '@/api/axios'
 // 表单字段
-const fields = ['contentType', 'contentFile', 'contentText', 'themeId', 'id']
+const fields = ['contentTitle', 'contentLevel', 'contentType', 'contentFile', 'contentText', 'themeId', 'id']
 export default {
   props: {
     visible: {

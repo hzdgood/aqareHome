@@ -15,7 +15,12 @@ public class SpeedyContentService {
 	SpeedyContentMapper SpeedyContentMapper;
 	
 	public List<SpeedyContent> select(PageReq PageReq) {
-		return SpeedyContentMapper.select(Integer.parseInt(PageReq.getThemeId()), PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
+		System.out.println(PageReq.getThemeId());
+		if(PageReq.getThemeId() == null || PageReq.getThemeId().equals("null")){
+			return SpeedyContentMapper.select(null, PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
+		} else {
+			return SpeedyContentMapper.select(Integer.parseInt(PageReq.getThemeId()), PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
+		}
 	}
 	
 	public void insert(SpeedyContent SpeedyContent) {

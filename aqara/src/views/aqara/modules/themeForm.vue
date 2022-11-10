@@ -21,7 +21,7 @@
           </a-select>
         </a-form-item>
         <a-form-item label="主题名称">
-          <a-input v-decorator="['theme', {rules: [{required: true, min: 5, message: '请输入至少五个字符的规则描述！'}]}]" />
+          <a-input v-decorator="['theme', { rules: [{ required: true, message: '该字段是必填字段' }]}]" />
         </a-form-item>
       </a-form>
     </a-spin>

@@ -91,11 +91,17 @@ const columns = [{
   title: '主题',
   dataIndex: 'theme'
 }, {
+  title: '标题',
+  dataIndex: 'contentTitle'
+}, {
   title: '内容类型',
   dataIndex: 'contentType'
 }, {
   title: '内容信息',
   dataIndex: 'contentText'
+}, {
+  title: '内容等级',
+  dataIndex: 'contentLevel'
 }, {
   title: '文件名称',
   dataIndex: 'contentFile'

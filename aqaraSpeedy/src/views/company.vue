@@ -21,13 +21,13 @@
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
             </div>
-            <button @click="pictureClick(content)" :disabled="content.disabled">发送</button>
+            <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
           </div>
           <div v-if="content.contentType === '视频'" class="content">
             <div>
               <span>{{content.contentFile.split("\\")[4]}}</span>
             </div>
-            <button @click="videoClick(content)" :disabled="content.disabled">发送</button>
+            <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
           </div>
           <div v-if="content.contentType === '组合'" class="content">
             <div>
@@ -130,7 +130,6 @@ export default class Actions extends Vue {
   }
 
   async textClick (content: any) {
-    this.sendButton(content)
     await invoke('sendChatMessage', {
       msgtype: 'text',
       enterChat: true,
@@ -150,30 +149,7 @@ export default class Actions extends Vue {
         mediaid: data.media_id
       }
     })
-  }
-
-  async pictureClick (content: any) {
     this.sendButton(content)
-    const data: any = await mediaUpload(content.contentFile)
-    await invoke('sendChatMessage', {
-      msgtype: 'file',
-      enterChat: true,
-      file: {
-        mediaid: data.media_id
-      }
-    })
-  }
-
-  async videoClick (content: any) {
-    this.sendButton(content)
-    const data: any = await mediaUpload(content.contentFile)
-    await invoke('sendChatMessage', {
-      msgtype: 'video',
-      enterChat: true,
-      video: {
-        mediaid: data.media_id
-      }
-    })
   }
 
   async teamClick (content: any) {
@@ -187,12 +163,13 @@ export default class Actions extends Vue {
       }
     })
     await invoke('sendChatMessage', {
-      msgtype: 'video',
+      msgtype: 'file',
       enterChat: true,
-      video: {
+      file: {
         mediaid: data.media_id
       }
     })
+    this.sendButton(content)
   }
 }
 </script>

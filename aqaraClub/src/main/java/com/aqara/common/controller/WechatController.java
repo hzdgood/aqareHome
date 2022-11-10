@@ -209,7 +209,6 @@ public class WechatController {
 	public void calendarAdd() {
 		String token = getToken(CommonProperties.getServiceUrl());
 		String userInfo = WxProperties.getCalendarAdd() + "?access_token=" + token;
-		System.out.println(token);
 		String str = "{"
 			+ "\"calendar\" : {"
 			+ "\"organizer\" : \"HuangzhaoDong\","

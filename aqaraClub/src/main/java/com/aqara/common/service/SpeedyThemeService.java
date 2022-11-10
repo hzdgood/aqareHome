@@ -15,7 +15,11 @@ public class SpeedyThemeService {
 	SpeedyThemeMapper SpeedyThemeMapper;
 	
 	public List<SpeedyTheme> select(PageReq PageReq) {
-		return SpeedyThemeMapper.select(Integer.parseInt(PageReq.getTeamId()), PageReq.getTheme(), PageReq.getType());
+		if(PageReq.getTeamId() == null || PageReq.getTeamId().equals("null")){
+			return SpeedyThemeMapper.select(null, PageReq.getTheme(), PageReq.getType());
+		} else {
+			return SpeedyThemeMapper.select(Integer.parseInt(PageReq.getTeamId()), PageReq.getTheme(), PageReq.getType());
+		}
 	}
 	
 	public void insert(SpeedyTheme SpeedyTheme) {

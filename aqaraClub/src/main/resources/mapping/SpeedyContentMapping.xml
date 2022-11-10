@@ -4,15 +4,18 @@
 <mapper namespace="com.aqara.common.mapper.SpeedyContentMapper">
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
 		<result column="id" jdbcType="INTEGER" property="id" />
+		<result column="mediaId" jdbcType="VARCHAR" property="mediaId" />
 		<result column="teamId" jdbcType="INTEGER" property="teamId" />
 		<result column="themeId" jdbcType="INTEGER" property="themeId" />
-		<result column="type" jdbcType="INTEGER" property="type" />
-		<result column="team" jdbcType="INTEGER" property="team" />
-		<result column="theme" jdbcType="INTEGER" property="theme" />
-		<result column="company" jdbcType="INTEGER" property="company" />
+		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="team" jdbcType="VARCHAR" property="team" />
+		<result column="theme" jdbcType="VARCHAR" property="theme" />
+		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="contentTitle" jdbcType="VARCHAR" property="contentTitle" />
 		<result column="contentText" jdbcType="VARCHAR" property="contentText" />
 		<result column="contentFile" jdbcType="VARCHAR" property="contentFile" />
 		<result column="contentType" jdbcType="VARCHAR" property="contentType" />
+		<result column="contentLevel" jdbcType="VARCHAR" property="contentLevel" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
@@ -20,8 +23,9 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		 SELECT c.id, c.themeId, t2.theme, c.contentText, c.contentFile, c.contentType, t2.teamId,
-			t1.team, t1.company, t1.type, c.createName, c.createTime, c.updateName, c.updateTime 
+		 SELECT c.id, c.mediaId, t2.teamId, c.themeId,  t1.type, t1.team, t2.theme, t1.company,
+		    c.contentTitle, c.contentText, c.contentFile, c.contentType, c.contentLevel,
+			c.createName, c.createTime, c.updateName, c.updateTime
 			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 
     		where t2.id = c.themeId and t1.id = t2.teamId
 		<if test="themeId!=null and themeId!=''">
@@ -41,17 +45,22 @@
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
 		insert into speedyContent ( 
-			themeId, contentText, contentFile, contentType, createName, createTime
+			themeId, mediaId, contentTitle, contentText, contentFile,
+		    contentType, contentLevel, createName, createTime
 		) 
-		values ( #{themeId}, #{contentText}, #{contentFile}, #{contentType}, #{createName}, NOW())
+		values ( #{themeId}, #{mediaId}, #{contentTitle}, #{contentText},
+				 #{contentFile}, #{contentType}, #{contentLevel}, #{createName}, NOW())
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
 		update speedyContent set 
-			themeId = #{themeId}, 
+			themeId = #{themeId},
+			mediaId = #{mediaId},
+			contentTitle = #{contentTitle},
 			contentText = #{contentText},
 			contentFile = #{contentFile},
 			contentType = #{contentType},
+			contentLevel = #{contentLevel},
 			updateName = #{updateName}, 
 			updateTime = NOW() 
 		where id = #{id}

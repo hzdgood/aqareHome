@@ -4,15 +4,18 @@ import java.util.Date;
 
 public class SpeedyContent {
 	private Integer id;
+	private String mediaId; //企业微信ID
 	private Integer teamId;
 	private Integer themeId;
 	private String type;
 	private String team;
 	private String theme;
 	private String company;
+	private String contentTitle; //标题
 	private String contentText; //内容
 	private String contentFile; //路径
 	private String contentType; //类型 文本，文件
+	private String contentLevel; //内容等级 常用，不常用
 	private String createName;
 	private Date createTime;
 	private String updateName;
@@ -24,6 +27,14 @@ public class SpeedyContent {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getMediaId() {
+		return mediaId;
+	}
+
+	public void setMediaId(String mediaId) {
+		this.mediaId = mediaId;
 	}
 
 	public Integer getTeamId() {
@@ -74,6 +85,14 @@ public class SpeedyContent {
 		this.company = company;
 	}
 
+	public String getContentTitle() {
+		return contentTitle;
+	}
+
+	public void setContentTitle(String contentTitle) {
+		this.contentTitle = contentTitle;
+	}
+
 	public String getContentText() {
 		return contentText;
 	}
@@ -96,6 +115,14 @@ public class SpeedyContent {
 
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
+	}
+
+	public String getContentLevel() {
+		return contentLevel;
+	}
+
+	public void setContentLevel(String contentLevel) {
+		this.contentLevel = contentLevel;
 	}
 
 	public String getCreateName() {
