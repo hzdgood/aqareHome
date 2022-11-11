@@ -4,7 +4,9 @@ import java.io.*;
 import java.net.*;
 import java.nio.charset.Charset;
 import java.util.*;
-import org.apache.http.*;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -13,9 +15,17 @@ import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import com.alibaba.fastjson.*;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 public class HttpUtil {
 	
@@ -112,7 +122,7 @@ public class HttpUtil {
 		builder.setMode(HttpMultipartMode.RFC6532);
 		File file = new File(filename);
 		if (file != null && file.exists()) {
-			builder.addBinaryBody(file.getName(), file, ContentType.parse(boundary), file.getName() );
+			builder.addBinaryBody("file", file, ContentType.parse(boundary), file.getName() );
 		}
 		post.setEntity(builder.build());
 		HttpResponse response = client.execute(post);
@@ -124,6 +134,23 @@ public class HttpUtil {
 			sb.append(lines);
 		}
 		return sb.toString();
+	}
+	public static String uploadimg(String filename, String accessToken) {
+		RestTemplate restTemplate = new RestTemplate();
+		URI uri = UriComponentsBuilder.fromHttpUrl("https://qyapi.weixin.qq.com/cgi-bin/media/upload")
+			.queryParam("access_token", accessToken)
+			.queryParam("type", "image")
+			.build().toUri();
+		FileSystemResource fileSystemResource = new FileSystemResource(filename);
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		ContentDisposition build = ContentDisposition.builder("form-data").filename(fileSystemResource.getFilename()).build();
+		headers.setContentDisposition(build);
+		MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
+		params.add("media", fileSystemResource);
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(params, headers);
+		String s = restTemplate.postForObject(uri,requestEntity , String.class);
+		return s;
 	}
 
 	public static void workRequest(String temp, String WX_TOKEN) {

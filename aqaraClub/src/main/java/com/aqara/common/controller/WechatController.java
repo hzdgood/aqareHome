@@ -144,7 +144,12 @@ public class WechatController {
 	public String mediaUpload(String fileName, String type) throws IOException {
 		String token = getToken(type);
 		String mediaUrl = WxProperties.getMediaUpload() + "?access_token=" + token + "&type=file";
-		String res = HttpUtil.mediaPost(mediaUrl, fileName);
+		String res = "";
+		if(fileName.contains(".jpg") || fileName.contains(".png")){
+			res = HttpUtil.uploadimg(fileName, token);
+		} else {
+			res = HttpUtil.mediaPost(mediaUrl, fileName);
+		}
 		return res;
 	}
 	

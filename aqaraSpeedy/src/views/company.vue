@@ -22,7 +22,7 @@
           <div v-if="content.contentType === '图片'" class="content">
             <div class="title">{{content.contentTitle}}</div>
             <div>
-              <span>{{content.contentFile.split("/img/")[2]}}</span>
+              <span>{{content.contentFile.split("\\")[4]}}</span>
             </div>
             <button @click="pictureClick(content)" :disabled="content.disabled">发送</button>
           </div>
@@ -158,35 +158,24 @@ export default class Actions extends Vue {
   }
 
   async pictureClick (content: any) {
+    const data: any = await mediaUpload(content.contentFile)
     await invoke('sendChatMessage', {
-      msgtype: 'news',
+      msgtype: 'image',
       enterChat: true,
-      news: {
-        title: content.contentTitle,
-        link: '',
-        desc: '',
-        imgUrl: content.contentFile
+      image: {
+        mediaid: data.media_id
       }
     })
   }
 
   async teamClick (content: any) {
     this.sendButton(content)
-    const data: any = await mediaUpload(content.contentFile)
-    await invoke('sendChatMessage', {
-      msgtype: 'text',
-      enterChat: true,
-      text: {
-        content: content.contentText
-      }
-    })
-    await invoke('sendChatMessage', {
-      msgtype: 'file',
-      enterChat: true,
-      file: {
-        mediaid: data.media_id
-      }
-    })
+    await this.textClick(content)
+    if (content.contentFile.split('.jpg').length > 1 || content.contentFile.split('.png').length > 1) {
+      await this.pictureClick(content)
+    } else {
+      await this.FileClick(content)
+    }
     this.sendButton(content)
   }
 }
