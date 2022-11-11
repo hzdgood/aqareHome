@@ -22,9 +22,9 @@
           <div v-if="content.contentType === '图片'" class="content">
             <div class="title">{{content.contentTitle}}</div>
             <div>
-              <span>{{content.contentFile.split("\\")[4]}}</span>
+              <span>{{content.contentFile.split("/img/")[2]}}</span>
             </div>
-            <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
+            <button @click="pictureClick(content)" :disabled="content.disabled">发送</button>
           </div>
           <div v-if="content.contentType === '视频'" class="content">
             <div class="title">{{content.contentTitle}}</div>
@@ -155,6 +155,19 @@ export default class Actions extends Vue {
       }
     })
     this.sendButton(content)
+  }
+
+  async pictureClick (content: any) {
+    await invoke('sendChatMessage', {
+      msgtype: 'news',
+      enterChat: true,
+      news: {
+        title: content.contentTitle,
+        link: '',
+        desc: '',
+        imgUrl: content.contentFile
+      }
+    })
   }
 
   async teamClick (content: any) {

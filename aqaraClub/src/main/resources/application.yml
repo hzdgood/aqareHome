@@ -27,6 +27,7 @@ wx:
   
 common:
   localFiles: E:\\AqaraUpload\\
+  imgFiles: http://aqara.club/img/
   serviceUrl: http://aqara.club:8081
 
 huoban:

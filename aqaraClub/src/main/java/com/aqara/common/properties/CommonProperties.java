@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class CommonProperties {
 	private String serviceUrl;
 	private String localFiles;
+	private String imgFiles;
 
 	public String getServiceUrl() {
 		return serviceUrl;
@@ -25,4 +26,11 @@ public class CommonProperties {
 		this.localFiles = localFiles;
 	}
 
+	public String getImgFiles() {
+		return imgFiles;
+	}
+
+	public void setImgFiles(String imgFiles) {
+		this.imgFiles = imgFiles;
+	}
 }

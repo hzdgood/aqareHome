@@ -49,6 +49,9 @@ public class SpeedyContentController {
 	@ResponseBody
 	public String upload(@RequestParam("file") MultipartFile file) {
 		String path = CommonProperties.getLocalFiles();
+		if(file.getOriginalFilename().contains(".jpg") || file.getOriginalFilename().contains(".png")){
+			path = CommonProperties.getImgFiles();
+		}
 		return FileUtil.fileSave(file, path);
 	}
 
