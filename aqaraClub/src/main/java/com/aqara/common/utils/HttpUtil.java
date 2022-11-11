@@ -2,9 +2,7 @@ package com.aqara.common.utils;
 
 import java.io.*;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.util.*;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -135,7 +133,7 @@ public class HttpUtil {
 		}
 		return sb.toString();
 	}
-	public static String uploadimg(String filename, String accessToken) {
+	public static String uploadImg(String filename, String accessToken) {
 		RestTemplate restTemplate = new RestTemplate();
 		URI uri = UriComponentsBuilder.fromHttpUrl("https://qyapi.weixin.qq.com/cgi-bin/media/upload")
 			.queryParam("access_token", accessToken)
