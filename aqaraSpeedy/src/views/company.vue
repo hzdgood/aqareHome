@@ -146,14 +146,24 @@ export default class Actions extends Vue {
 
   async FileClick (content: any) {
     this.sendButton(content)
-    const data: any = await mediaUpload(content.contentFile)
-    await invoke('sendChatMessage', {
-      msgtype: 'file',
-      enterChat: true,
-      file: {
-        mediaid: data.media_id
-      }
-    })
+    if (typeof (content.mediaId) !== 'undefined' && content.mediaId !== null) {
+      await invoke('sendChatMessage', {
+        msgtype: 'file',
+        enterChat: true,
+        file: {
+          mediaid: content.mediaId
+        }
+      })
+    } else {
+      const data: any = await mediaUpload(content.contentFile)
+      await invoke('sendChatMessage', {
+        msgtype: 'file',
+        enterChat: true,
+        file: {
+          mediaid: data.media_id
+        }
+      })
+    }
     this.sendButton(content)
   }
 

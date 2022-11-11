@@ -19,7 +19,7 @@
             </a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="标题" v-show="textStatus">
+        <a-form-item label="标题">
           <a-input v-decorator="['contentTitle', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
         <a-form-item label="内容" v-show="textStatus">
