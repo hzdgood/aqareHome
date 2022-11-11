@@ -15,7 +15,6 @@ public class SpeedyContentService {
 	SpeedyContentMapper SpeedyContentMapper;
 	
 	public List<SpeedyContent> select(PageReq PageReq) {
-		System.out.println(PageReq.getThemeId());
 		if(PageReq.getThemeId() == null || PageReq.getThemeId().equals("null")){
 			return SpeedyContentMapper.select(null, PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
 		} else {

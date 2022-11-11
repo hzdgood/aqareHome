@@ -212,10 +212,9 @@ button:disabled {
   opacity: .65;
 }
 .title {
-  margin: 5px;
   padding: 5px;
   width: 100%;
-  background-color: rgb(52, 51, 51);
+  background-color: #8f8f8f;
   color: #ffffff;
 }
 </style>

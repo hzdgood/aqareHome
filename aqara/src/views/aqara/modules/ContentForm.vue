@@ -26,7 +26,7 @@
           <a-input v-decorator="['contentText', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
         <a-form-item label="等级">
-          <a-select @change="selectChange" placeholder="请选择等级" v-decorator="['contentLevel', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
+          <a-select placeholder="请选择等级" v-decorator="['contentLevel', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option value="1">高</a-select-option>
             <a-select-option value="2">中</a-select-option>
             <a-select-option value="3">低</a-select-option>
