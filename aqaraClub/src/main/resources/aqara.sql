@@ -57,18 +57,18 @@ CREATE TABLE `speedycontent` (
  `updateName` varchar(45) DEFAULT NULL,
  `updateTime` datetime DEFAULT NULL,
  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `speedytheme` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `teamId` varchar(45) DEFAULT NULL,
-  `theme` varchar(45) DEFAULT NULL,
-  `createName` varchar(45) DEFAULT NULL,
-  `createTime` datetime DEFAULT NULL,
-  `updateName` varchar(45) DEFAULT NULL,
-  `updateTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+   `id` int NOT NULL AUTO_INCREMENT,
+   `teamId` varchar(45) DEFAULT NULL,
+   `theme` varchar(45) DEFAULT NULL,
+   `createName` varchar(45) DEFAULT NULL,
+   `createTime` datetime DEFAULT NULL,
+   `updateName` varchar(45) DEFAULT NULL,
+   `updateTime` datetime DEFAULT NULL,
+   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `speedyteam` (
@@ -81,7 +81,7 @@ CREATE TABLE `speedyteam` (
   `updateName` varchar(45) DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `weixin` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -232,7 +232,7 @@ CREATE TABLE `scheme` (
   `serviceFee` varchar(45) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53822 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=53822 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `user` (
