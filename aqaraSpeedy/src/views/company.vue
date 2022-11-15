@@ -15,7 +15,12 @@
           <div v-if="content.contentType === '文件'" class="content">
             <div class="title">{{content.contentTitle}}</div>
             <div>
-              <span>{{content.contentFile.split("\\")[4]}}</span>
+              <table>
+                <tr>
+                  <td><img src="../img/pdf.png"/></td>
+                  <td><span>{{content.contentFile.split("\\")[4]}}</span></td>
+                </tr>
+              </table>
             </div>
             <button @click="FileClick(content)" :disabled="content.disabled">发送</button>
           </div>
@@ -201,9 +206,11 @@ export default class Actions extends Vue {
 }
 .teamDiv{
   margin: 5px 5px 5px 5px;
+  cursor: pointer;
 }
 .themeDiv{
   margin: 5px 5px 5px 10px;
+  cursor: pointer;
 }
 .contentDiv{
   border: 1px solid #cecece;
@@ -215,6 +222,7 @@ export default class Actions extends Vue {
 }
 button {
   margin: 5px 5px 5px 80%;
+  cursor: pointer;
 }
 button:disabled {
   pointer-events: none;
