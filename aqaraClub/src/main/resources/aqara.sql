@@ -43,18 +43,21 @@ CREATE TABLE `survey` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `speedyContent` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `themeId` varchar(45) DEFAULT NULL,
-  `contentText` varchar(4000) DEFAULT NULL,
-  `contentFile` varchar(4000) DEFAULT NULL,
-  `contentType` varchar(45) DEFAULT NULL,
-  `createName` varchar(45) DEFAULT NULL,
-  `createTime` datetime DEFAULT NULL,
-  `updateName` varchar(45) DEFAULT NULL,
-  `updateTime` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `speedycontent` (
+ `id` int NOT NULL AUTO_INCREMENT,
+ `themeId` varchar(45) DEFAULT NULL,
+ `mediaId` varchar(400) DEFAULT NULL,
+ `contentTitle` varchar(45) DEFAULT NULL,
+ `contentText` varchar(4000) DEFAULT NULL,
+ `contentFile` varchar(4000) DEFAULT NULL,
+ `contentType` varchar(45) DEFAULT NULL,
+ `contentLevel` varchar(45) DEFAULT NULL,
+ `createName` varchar(45) DEFAULT NULL,
+ `createTime` datetime DEFAULT NULL,
+ `updateName` varchar(45) DEFAULT NULL,
+ `updateTime` datetime DEFAULT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 
 CREATE TABLE `speedytheme` (
   `id` int NOT NULL AUTO_INCREMENT,
