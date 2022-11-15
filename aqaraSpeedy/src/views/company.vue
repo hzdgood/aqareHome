@@ -17,7 +17,7 @@
             <div>
               <table>
                 <tr>
-                  <td><img src="../img/pdf.png"/></td>
+                  <td v-show="content.contentFile.split('.pdf').length > 1"><img src="../img/pdf.png"/></td>
                   <td><span>{{content.contentFile.split("\\")[4]}}</span></td>
                 </tr>
               </table>
@@ -151,7 +151,7 @@ export default class Actions extends Vue {
 
   async FileClick (content: any) {
     this.sendButton(content)
-    if (typeof (content.mediaId) !== 'undefined' && content.mediaId !== null) {
+    if (typeof (content.mediaId) !== 'undefined' && content.mediaId !== null && content.mediaId !== '') {
       await invoke('sendChatMessage', {
         msgtype: 'file',
         enterChat: true,
@@ -221,7 +221,7 @@ export default class Actions extends Vue {
   margin: 5px 5px 5px 5px;
 }
 button {
-  margin: 5px 5px 5px 80%;
+  margin: 5px 5px 5px 70%;
   cursor: pointer;
 }
 button:disabled {
