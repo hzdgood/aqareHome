@@ -58,7 +58,6 @@ logging:
     root: info
   file:
     name: aqara.log
-    path: D:\\AqaraLog\\
 
 spring:
   datasource:

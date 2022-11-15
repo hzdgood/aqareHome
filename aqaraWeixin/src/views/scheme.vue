@@ -80,7 +80,7 @@ export default class Home extends Vue {
         ]
       },
       offset: 0,
-      limit: 20
+      limit: 100
     }
     // 查询客户方案表
     const result1 = await SearchInfo(this.customerPlan, data1)

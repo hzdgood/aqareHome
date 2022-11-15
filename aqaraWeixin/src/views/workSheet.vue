@@ -76,7 +76,7 @@ export default class Home extends Vue {
         ]
       },
       offset: 0,
-      limit: 200
+      limit: 100
     }
     const result1 = await SearchInfo(this.workSheet, data1)
     for (let i = 0; i < result1.length; i++) {
