@@ -184,7 +184,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, updateTable, deleteItem } from '@/config/interFace'
+import { SearchInfo, updateTable, deleteItem, logInsert } from '@/config/interFace'
 import { table, field, houseType, projectType, decorationStage } from '@/config/config'
 import myModal from '@/components/common/myModal.vue'
 import loading from '@/components/common/loading.vue'
@@ -514,6 +514,7 @@ export default class Home extends Vue {
     } else {
       this.errorInfo('保存成功')
     }
+    await logInsert('客户编辑')
   }
 
   errorInfo (str: any) {

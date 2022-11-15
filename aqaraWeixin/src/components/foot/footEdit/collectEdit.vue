@@ -90,7 +90,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
 import { getLocalSale, masterReq } from '@/config/common'
-import { SearchInfo, addInfo, uploadImg, procedure } from '@/config/interFace'
+import { SearchInfo, addInfo, uploadImg, procedure, logInsert } from '@/config/interFace'
 import myModal from '@/components/common/myModal.vue'
 import loading from '@/components/common/loading.vue'
 @Component({
@@ -200,6 +200,7 @@ export default class Home extends Vue {
       const result = await addInfo(table.collectTable, data)
       this.run(result)
     }
+    await logInsert('收款')
   }
 
   async upfile (file: any) {

@@ -14,7 +14,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { field, chatStageList1, chatStageList2 } from '@/config/config'
-import { updateTable } from '@/config/interFace'
+import { updateTable, logInsert } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   chatStageList1 = chatStageList1
@@ -46,6 +46,7 @@ export default class Home extends Vue {
       }
     }
     await updateTable(this.itemId, objs)
+    await logInsert(item.name)
     this.$emit('updateStage', item)
   }
 }

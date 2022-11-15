@@ -37,7 +37,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field } from '@/config/config'
 import { Select, Input, DatePicker } from 'ant-design-vue'
-import { SearchInfo, addInfo, uploadImg, SearchUser, updateTable } from '@/config/interFace'
+import { SearchInfo, addInfo, uploadImg, SearchUser, updateTable, logInsert } from '@/config/interFace'
 import survey from './components/survey.vue'
 import moment from 'moment'
 import 'moment/locale/zh-cn'
@@ -181,6 +181,7 @@ export default class Home extends Vue {
         }
       }
       await updateTable(this.itemId, data)
+      await logInsert('新增工勘')
       this.$emit('close')
     }
   }

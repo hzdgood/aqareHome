@@ -142,7 +142,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field } from '@/config/config'
-import { SearchInfo, updateTable } from '@/config/interFace'
+import { SearchInfo, updateTable, logInsert } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   taglist: any[] = []; // 标签list
@@ -321,6 +321,7 @@ export default class Home extends Vue {
     }
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
+    await logInsert('保存客户数据')
     this.$emit('reload')
     this.close()
   }

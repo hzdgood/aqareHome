@@ -159,7 +159,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, updateTable } from '@/config/interFace'
+import { SearchInfo, updateTable, logInsert } from '@/config/interFace'
 import { table, field, houseType, projectType, decorationStage } from '@/config/config'
 @Component({})
 export default class Home extends Vue {
@@ -399,6 +399,7 @@ export default class Home extends Vue {
     } else {
       this.$emit('reload')
     }
+    await logInsert('群编辑完成')
   }
   // 全部有数据才能够提交
 }

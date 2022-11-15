@@ -66,12 +66,7 @@
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, collectType } from '@/config/config'
-import {
-  SearchInfo,
-  addInfo,
-  updateTable,
-  uploadImg
-} from '@/config/interFace'
+import { SearchInfo, addInfo, updateTable, uploadImg, logInsert } from '@/config/interFace'
 import { masterReq } from '@/config/common'
 import myModal from '@/components/common/myModal.vue'
 import loading from '@/components/common/loading.vue'
@@ -150,6 +145,7 @@ export default class Home extends Vue {
     }
     await addInfo(table.proposal, obj)
     this.update('新增成功！')
+    await logInsert('新增报价单')
   }
 
   async uploadFile () {
@@ -243,6 +239,7 @@ export default class Home extends Vue {
       }
     }
     await updateTable(item.proposalId, data)
+    await logInsert('报价单修改')
     this.errorInfo('提交成功！')
   }
 

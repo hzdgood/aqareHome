@@ -37,7 +37,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, uploadPdf } from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, uploadPdf, logInsert } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import { masterReq } from '@/config/common'
 import myModal from '@/components/common/myModal.vue'
@@ -272,6 +272,7 @@ export default class Home extends Vue {
     }
     await updateTable(projectId, data) // 修改
     await batchAddPlan(table.customerPlan, json) // 新增
+    await logInsert('上传方案')
     this.errorInfo('上传成功！')
   }
 

@@ -38,7 +38,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field, projectType } from '@/config/config'
-import { SearchInfo, updateTable } from '@/config/interFace'
+import { SearchInfo, updateTable, logInsert } from '@/config/interFace'
 @Component({})
 export default class Home extends Vue {
   projectType = projectType;
@@ -111,6 +111,7 @@ export default class Home extends Vue {
     }
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
+    await logInsert('保存数据')
     this.$emit('reload')
     this.close()
   }
