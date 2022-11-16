@@ -1,8 +1,6 @@
 package com.aqara.common.mapper;
 
 import java.util.List;
-
-import com.aqara.common.entity.PageReq;
 import org.springframework.stereotype.Repository;
 import com.aqara.common.entity.SpeedyTheme;
 

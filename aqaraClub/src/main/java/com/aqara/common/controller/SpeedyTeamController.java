@@ -18,10 +18,14 @@ public class SpeedyTeamController {
 	public Map<String, Object> select(@RequestBody PageReq PageReq) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<SpeedyTeam> list = SpeedyTeamService.select(PageReq);
-		map.put("pageNo", 1);
-		map.put("pageSize", 10);
-		map.put("totalCount", list.size());
-		map.put("totalPage", list.size() / 10);
+		if(PageReq.getPageNo() != null || PageReq.getPageSize() != null){
+			Integer pageSize = Integer.parseInt(PageReq.getPageSize());
+			Integer pageNo = Integer.parseInt(PageReq.getPageNo());
+			map.put("pageNo", pageNo);
+			map.put("pageSize", pageSize);
+			map.put("totalCount", list.size());
+			map.put("totalPage", list.size() / pageSize);
+		}
 		map.put("data", list);
 		return map;
 	}
