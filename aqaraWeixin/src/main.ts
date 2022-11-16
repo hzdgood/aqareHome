@@ -5,7 +5,7 @@ import Calendar from '@/calendar/index.vue'
 import upload from '@/upload/index.vue'
 import router from './router'
 import store from './store'
-import { userInfo, fetchUserId, fetchSignatures, externalcontact, config } from '@/config/interFace'
+import { userInfo, fetchUserId, fetchSignatures, externalContact, config } from '@/config/interFace'
 import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
 import Cookies from 'js-cookie'
 import BaiduMap from 'vue-baidu-map'
@@ -49,7 +49,7 @@ const doInfo = async () => {
     const res = await invoke('getCurExternalContact')
     const userId = res.userId
     localStorage.setItem('userId', userId) // 外部客户userID
-    const res1: any = await externalcontact(userId)
+    const res1: any = await externalContact(userId)
     const userName = res1.external_contact.name
     const avatar = res1.external_contact.avatar
     const localName: any = Cookies.get('userId')

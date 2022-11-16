@@ -14,7 +14,7 @@ public class SpeedyTeamService {
 	SpeedyTeamMapper SpeedyTeamMapper;
 	
 	public List<SpeedyTeam> select(PageReq PageReq) {
-		return SpeedyTeamMapper.select(PageReq.getType());
+		return SpeedyTeamMapper.select(PageReq.getType(), PageReq.getName());
 	}
 	
 	public void insert(SpeedyTeam SpeedyTeam) {

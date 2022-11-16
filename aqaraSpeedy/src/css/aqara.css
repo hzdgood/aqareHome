@@ -5,6 +5,52 @@
   font-family: PingFangSC-Regular, PingFang SC;
   font-size: 14px;
 }
+/**
+  speedy 侧边栏 start
+*/
+.bodyDiv {
+  margin: 10px;
+  background-color: #ffffff;
+}
+.bodyDiv *{
+  font-size: 14px !important;
+}
+.teamDiv{
+  margin: 5px 5px 5px 5px;
+  cursor: pointer;
+}
+.themeDiv{
+  margin: 5px 5px 5px 10px;
+  cursor: pointer;
+}
+.contentDiv{
+  border: 1px solid #cecece;
+  border-radius: 5px;
+  margin: 5px 5px 5px 15px;
+}
+.contentDiv .content{
+  margin: 5px 5px 5px 5px;
+}
+button {
+  margin: 5px 5px 5px 70%;
+  cursor: pointer;
+}
+button:disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  box-shadow: none;
+  opacity: .65;
+}
+.title {
+  padding: 5px;
+  width: 100%;
+  background-color: #8f8f8f;
+  color: #ffffff;
+}
+/**
+  speedy 侧边栏 end
+*/
 
 .appbody {
   position: absolute;

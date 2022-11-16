@@ -6,6 +6,8 @@ public class SpeedyTeam {
 	private Integer id;
 	private String team; // 组名
 	private String type; // 类型
+	private String affiliatePerson; // 所属人员
+	private String affiliateTeam; // 所属团队
 	private String company; // 公司
 	private String createName;
 	private Date createTime;
@@ -35,7 +37,23 @@ public class SpeedyTeam {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
+
+	public String getAffiliatePerson() {
+		return affiliatePerson;
+	}
+
+	public void setAffiliatePerson(String affiliatePerson) {
+		this.affiliatePerson = affiliatePerson;
+	}
+
+	public String getAffiliateTeam() {
+		return affiliateTeam;
+	}
+
+	public void setAffiliateTeam(String affiliateTeam) {
+		this.affiliateTeam = affiliateTeam;
+	}
+
 	public String getCompany() {
 		return company;
 	}

@@ -8,7 +8,7 @@ import com.aqara.common.entity.SpeedyTeam;
 @Repository
 public interface SpeedyTeamMapper {
 	
-	List<SpeedyTeam> select(String type);
+	List<SpeedyTeam> select(String type, String name);
 	
 	void insert(SpeedyTeam SpeedyTheme);
 	

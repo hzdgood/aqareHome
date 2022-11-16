@@ -63,7 +63,7 @@ export const fetchSignatures = async (): Promise<SignRes> => {
 }
 
 // 获取联系人
-export const externalcontact = async (userId: string) => {
+export const externalContact = async (userId: string) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
     url: httpUrl + '/wechat/externalContact',
