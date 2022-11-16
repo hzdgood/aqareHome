@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="item in sendList" :key="item.index" class="sendDiv">
-      <table class="sendTable">
+      <table class="sendTable" v-if="item.orderType === '发货'">
         <thead>
           <td>{{ item.issuance }}{{ item.orderType }}</td>
           <td><span>{{ item.batchingState }}</span></td>

@@ -2,7 +2,7 @@
   <div class="centerDiv">
     <div class="workDiv" v-for="item in sheetList" :key="item.index">
       <span></span>
-      <table class="workTable">
+      <table class="workTable" v-if="item.orderType !== '发货'">
         <tr>
           <td>{{ item.orderType }}</td>
           <td>{{ item.technology }}</td>
