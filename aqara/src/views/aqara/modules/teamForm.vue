@@ -14,10 +14,15 @@
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
         <a-form-item label="话术类型">
-          <a-select placeholder="请选择类型" v-decorator="['type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+          <a-select @change="selectChange" placeholder="请选择类型" v-decorator="['type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option value="企业话术">企业话术</a-select-option>
             <a-select-option value="团体话术">团体话术</a-select-option>
             <a-select-option value="个人话术">个人话术</a-select-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item label="所属人员">
+          <a-select placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
+            <a-select-option v-for="item in personList" :key="item.id" :value="item.name">{{ item.name }}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item label="公司名称">
@@ -34,8 +39,9 @@
 </template>
 <script>
 import pick from 'lodash.pick'
+import { getPostData } from '@/api/axios'
 // 表单字段
-const fields = ['type', 'company', 'id', 'team']
+const fields = ['type', 'company', 'id', 'team', 'affiliatePerson']
 export default {
   props: {
     visible: {
@@ -67,6 +73,8 @@ export default {
       }
     }
     return {
+      personStatus: false,
+      personList: [],
       form: this.$form.createForm(this)
     }
   },
@@ -77,6 +85,13 @@ export default {
     this.$watch('model', () => {
       this.model && this.form.setFieldsValue(pick(this.model, fields))
     })
+    this.personList = getPostData('/weixin/select', {}).then((res) => {
+      return res.data
+    })
+  },
+  methods: {
+    selectChange (value) {
+    }
   }
 }
 </script>

@@ -17,7 +17,7 @@
               <a-form-item label="快捷组">
                 <!-- <a-input v-model="queryParam.team" placeholder=""/> -->
                 <a-select placeholder="请选择快捷组" v-model="queryParam.team">
-                  <a-select-option v-for="item in teamList" :key="item.id" value="{{ item.team }}">{{ item.team }}</a-select-option>
+                  <a-select-option v-for="item in teamList" :key="item.id" :value="item.team">{{ item.team }}</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>

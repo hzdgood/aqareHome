@@ -1,2 +1,5 @@
-package com.aqara.common.utils;public class WeixinUtil {
+package com.aqara.common.utils;
+
+public class WeixinUtil {
+
 }

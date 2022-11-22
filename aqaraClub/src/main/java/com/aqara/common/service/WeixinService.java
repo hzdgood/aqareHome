@@ -12,29 +12,24 @@ import com.aqara.common.utils.CommonUtil;
 
 @Service
 public class WeixinService {
-	
 	@Autowired
 	WeixinMapper WeixinMapper;
-	
 	@Autowired
 	HuobanProperties HuobanProperties;
-	
 	public List<Weixin> select() {
 		return WeixinMapper.select();
 	}
-	
+	public List<Weixin> selectAll() { return WeixinMapper.selectAll(); }
 	public List<Weixin> weekData() {
 		return WeixinMapper.weekData();
 	}
-	
 	public void insert(Weixin Weixin) {
 		WeixinMapper.insert(Weixin);
 	}
-	
 	public void delete(Integer id) {
 		WeixinMapper.delete(id);
 	}
-	
+	public void update(Weixin weixin) { WeixinMapper.update(weixin); }
 	public void getWeixinData(String ticket) {
 		String str = CommonUtil.getToday();
 		String requestUrl = HuobanProperties.getSearchInfo() + "2100000019533688/find";
@@ -64,3 +59,4 @@ public class WeixinService {
 		}
 	}
 }
+
