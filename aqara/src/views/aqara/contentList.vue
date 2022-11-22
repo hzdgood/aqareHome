@@ -6,7 +6,7 @@
           <a-row :gutter="48">
             <a-col :md="6" :sm="24">
               <a-form-item label="话术类型">
-                <a-select placeholder="请选择" v-model="queryParam.type">
+                <a-select @change="selectChange" placeholder="请选择" v-model="queryParam.type">
                   <a-select-option value="企业话术">企业话术</a-select-option>
                   <a-select-option value="团体话术">团体话术</a-select-option>
                   <a-select-option value="个人话术">个人话术</a-select-option>
@@ -15,7 +15,10 @@
             </a-col>
             <a-col :md="6" :sm="24">
               <a-form-item label="快捷组">
-                <a-input v-model="queryParam.team" placeholder=""/>
+                <!-- <a-input v-model="queryParam.team" placeholder=""/> -->
+                <a-select placeholder="请选择快捷组" v-model="queryParam.team">
+                  <a-select-option v-for="item in teamList" :key="item.id" value="{{ item.team }}">{{ item.team }}</a-select-option>
+                </a-select>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="24">
@@ -126,6 +129,7 @@ export default {
       visible: false,
       confirmLoading: false,
       mdl: null,
+      teamList: [],
       queryParam: {},
       selectedRowKeys: [],
       selectedRows: [],
@@ -136,6 +140,12 @@ export default {
         })
       }
     }
+  },
+  created () {
+    this.teamList = getPostData('/speedy/team/select', {}).then((res) => {
+      return res.data
+    })
+    console.log(this.teamList)
   },
   computed: {
     rowSelection () {
@@ -164,6 +174,12 @@ export default {
       const form = this.$refs.createModal.form
       form.resetFields() // 清理表单数据（可不做）
       this.visible = false
+    },
+    selectChange (value) {
+      const obj = { type: value }
+      this.teamList = getPostData('/speedy/team/select', obj).then((res) => {
+        return res.data
+      })
     },
     handleOk () {
       const form = this.$refs.createModal.form

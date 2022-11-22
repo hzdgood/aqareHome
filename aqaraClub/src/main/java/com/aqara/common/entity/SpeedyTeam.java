@@ -34,9 +34,7 @@ public class SpeedyTeam {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
+	public void setType(String type) { this.type = type; }
 
 	public String getAffiliatePerson() {
 		return affiliatePerson;
@@ -46,13 +44,9 @@ public class SpeedyTeam {
 		this.affiliatePerson = affiliatePerson;
 	}
 
-	public String getAffiliateTeam() {
-		return affiliateTeam;
-	}
+	public String getAffiliateTeam() { return affiliateTeam; }
 
-	public void setAffiliateTeam(String affiliateTeam) {
-		this.affiliateTeam = affiliateTeam;
-	}
+	public void setAffiliateTeam(String affiliateTeam) { this.affiliateTeam = affiliateTeam; }
 
 	public String getCompany() {
 		return company;
