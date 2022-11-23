@@ -21,7 +21,7 @@
         </a-form-item>
         <a-form-item label="所属人员" v-show="personStatus">
           <a-select placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
-            <a-select-option v-for="item in personList" :key="item.id" :value="item.name">{{ item.name }}</a-select-option>
+            <a-select-option v-for="item in personList" :key="item.id" :value="item.userName">{{ item.userName }}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item label="公司名称">
@@ -77,16 +77,15 @@ export default {
       form: this.$form.createForm(this)
     }
   },
-  created () {
+  async created () {
       // 防止表单未注册
     fields.forEach(v => this.form.getFieldDecorator(v))
       // 当 model 发生改变时，为表单设置值
     this.$watch('model', () => {
       this.model && this.form.setFieldsValue(pick(this.model, fields))
     })
-    this.personList = getPostData('/weixin/select', {}).then((res) => {
-      return res.data
-    })
+    const obj = await getPostData('/user/select', {})
+    this.personList = obj.data
   },
   methods: {
     selectChange (value) {

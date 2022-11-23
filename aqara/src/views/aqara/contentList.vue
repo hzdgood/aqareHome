@@ -13,9 +13,8 @@
                 </a-select>
               </a-form-item>
             </a-col>
-            <a-col :md="6" :sm="24">
+            <a-col :md="6" :sm="24" v-show="showTeam">
               <a-form-item label="快捷组">
-                <!-- <a-input v-model="queryParam.team" placeholder=""/> -->
                 <a-select placeholder="请选择快捷组" v-model="queryParam.team">
                   <a-select-option v-for="item in teamList" :key="item.id" :value="item.team">{{ item.team }}</a-select-option>
                 </a-select>
@@ -80,34 +79,51 @@
 import { STable, Ellipsis } from '@/components'
 import ContentForm from './modules/ContentForm'
 import { getPostData, getData } from '@/api/axios'
-
 const columns = [{
   title: '',
-  scopedSlots: { customRender: 'serial' }
+  scopedSlots: { customRender: 'serial' },
+  width: 50
 }, {
   title: '话术类型', // 企业，团队，个人
-  dataIndex: 'type'
+  dataIndex: 'type',
+  width: 100
 }, {
   title: '快捷组',
-  dataIndex: 'team'
+  dataIndex: 'team',
+  ellipsis: true
 }, {
   title: '主题',
-  dataIndex: 'theme'
+  dataIndex: 'theme',
+  ellipsis: true
 }, {
   title: '标题',
-  dataIndex: 'contentTitle'
+  dataIndex: 'contentTitle',
+  ellipsis: true
 }, {
   title: '类型',
-  dataIndex: 'contentType'
+  dataIndex: 'contentType',
+  width: 80
 }, {
   title: '信息',
-  dataIndex: 'contentText'
+  dataIndex: 'contentText',
+  ellipsis: true
 }, {
   title: '等级',
-  dataIndex: 'contentLevel'
+  dataIndex: 'contentLevel',
+  width: 80,
+  customRender: function (val) {
+    if (val === '1') {
+      return '高'
+    } else if (val === '2') {
+      return '中'
+    } else if (val === '3') {
+      return '低'
+    }
+  }
 }, {
   title: '路劲',
-  dataIndex: 'contentFile'
+  dataIndex: 'contentFile',
+  ellipsis: true
 }, {
   title: '操作',
   dataIndex: 'action',
@@ -129,6 +145,7 @@ export default {
       visible: false,
       confirmLoading: false,
       mdl: null,
+      showTeam: false,
       teamList: [],
       queryParam: {},
       selectedRowKeys: [],
@@ -140,12 +157,6 @@ export default {
         })
       }
     }
-  },
-  created () {
-    this.teamList = getPostData('/speedy/team/select', {}).then((res) => {
-      return res.data
-    })
-    console.log(this.teamList)
   },
   computed: {
     rowSelection () {
@@ -175,11 +186,16 @@ export default {
       form.resetFields() // 清理表单数据（可不做）
       this.visible = false
     },
-    selectChange (value) {
+    async selectChange (value) {
       const obj = { type: value }
-      this.teamList = getPostData('/speedy/team/select', obj).then((res) => {
-        return res.data
-      })
+      const data = await getPostData('/speedy/team/select', obj)
+      if (data.data.data.length === 0) {
+        this.showTeam = false
+        this.teamList = []
+      } else {
+        this.showTeam = true
+        this.teamList = data.data.data
+      }
     },
     handleOk () {
       const form = this.$refs.createModal.form

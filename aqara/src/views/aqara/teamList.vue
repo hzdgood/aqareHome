@@ -62,6 +62,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import TeamForm from './modules/teamForm'
+import moment from 'moment'
 import { getPostData, getData } from '@/api/axios'
 const columns = [{
   title: '',
@@ -70,14 +71,22 @@ const columns = [{
   title: '话术类型', // 企业，团队，个人
   dataIndex: 'type'
 }, {
+  title: '所属人员',
+  dataIndex: 'affiliatePerson',
+  ellipsis: true
+}, {
   title: '快捷组',
-  dataIndex: 'team'
+  dataIndex: 'team',
+  ellipsis: true
 }, {
   title: '公司名称',
   dataIndex: 'company'
 }, {
   title: '创建时间',
-  dataIndex: 'createTime'
+  dataIndex: 'createTime',
+  customRender: function (val) {
+    return val ? moment(val).format('YYYY-MM-DD HH:mm:ss') : ''
+  }
 }, {
   title: '操作',
   dataIndex: 'action',
