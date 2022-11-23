@@ -7,6 +7,7 @@
 		<result column="id" jdbcType="INTEGER" property="id" />
 		<result column="team" jdbcType="VARCHAR" property="team" />
 		<result column="type" jdbcType="VARCHAR" property="type" />
+		<result column="affiliatePerson" jdbcType="VARCHAR" property="affiliatePerson" />
 		<result column="company" jdbcType="VARCHAR" property="company" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
@@ -22,12 +23,18 @@
 	</select>
 	
 	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTeam" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyTeam ( team, type, company, createName, createTime ) 
-			values ( #{team}, #{type}, #{company}, #{createName}, NOW())
+		insert into speedyTeam ( team, type, affiliatePerson, company, createName, createTime )
+			values ( #{team}, #{type}, #{affiliatePerson}, #{company}, #{createName}, NOW())
 	</insert>
 	
 	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTeam">
-		update speedyTeam set team = #{team}, type = #{type}, company = #{company}, updateName = #{updateName}, updateTime = NOW() 
+		update speedyTeam set
+		    team = #{team},
+		    type = #{type},
+			affiliatePerson = #{affiliatePerson},
+		    company = #{company},
+		    updateName = #{updateName},
+		    updateTime = NOW()
 			where id = #{id} 
 	</insert>
 	

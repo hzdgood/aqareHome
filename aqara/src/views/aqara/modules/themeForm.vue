@@ -12,7 +12,14 @@
         <a-form-item v-show="model && model.id > 0" label="主键ID">
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
-        <a-form-item label="快捷组">
+        <a-form-item label="话术类型">
+          <a-select @change="selectType" placeholder="请选择类型" v-decorator="['type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
+            <a-select-option value="企业话术">企业话术</a-select-option>
+            <a-select-option value="团体话术">团体话术</a-select-option>
+            <a-select-option value="个人话术">个人话术</a-select-option>
+          </a-select>
+        </a-form-item>
+        <a-form-item label="快捷组" v-show="showTeam">
           <a-select placeholder="请选择组" v-decorator="['teamId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in teamList" :value="item.id" :key="item.id">
               {{ item.team }}
@@ -63,6 +70,7 @@ export default {
     }
     return {
       teamList: [],
+      showTeam: false,
       form: this.$form.createForm(this)
     }
   },
@@ -77,12 +85,19 @@ export default {
   },
   methods: {
     async getThemeList () {
-      const obj = {
-        pageNo: 1,
-        pageSize: 10
-      }
-      const data = await getPostData('/speedy/team/select', obj)
+      const data = await getPostData('/speedy/team/select', {})
       this.teamList = data.data.data
+    },
+    async selectType (value) {
+      const data = await getPostData('/speedy/team/select', { type: value })
+      if (data.data.data.length === 0) {
+        this.teamList = []
+        this.showTeam = false
+        this.$message.info('请为该话术添加组！')
+      } else {
+        this.teamList = data.data.data
+        this.showTeam = true
+      }
     }
   }
 }

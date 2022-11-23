@@ -21,7 +21,7 @@
         </a-form-item>
         <a-form-item label="所属人员" v-show="personStatus">
           <a-select placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
-            <a-select-option v-for="item in personList" :key="item.id" :value="item.userName">{{ item.userName }}</a-select-option>
+            <a-select-option v-for="item in personList" :key="item.id" :value="item.engName">{{ item.userName }}</a-select-option>
           </a-select>
         </a-form-item>
         <a-form-item label="公司名称">
