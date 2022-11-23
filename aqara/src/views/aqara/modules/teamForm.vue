@@ -20,7 +20,7 @@
             <a-select-option value="个人话术">个人话术</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="所属人员">
+        <a-form-item label="所属人员" v-show="personStatus">
           <a-select placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in personList" :key="item.id" :value="item.name">{{ item.name }}</a-select-option>
           </a-select>
@@ -91,6 +91,11 @@ export default {
   },
   methods: {
     selectChange (value) {
+      if (value === '个人话术') {
+        this.personStatus = true
+      } else {
+        this.personStatus = false
+      }
     }
   }
 }
