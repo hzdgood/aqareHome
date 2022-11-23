@@ -10,6 +10,7 @@ public class SpeedyContent {
 	private String type;
 	private String team;
 	private String theme;
+	private String affiliatePerson;
 	private String company;
 	private String contentTitle; //标题
 	private String contentText; //内容
@@ -67,6 +68,14 @@ public class SpeedyContent {
 
 	public void setTeam(String team) {
 		this.team = team;
+	}
+
+	public String getAffiliatePerson() {
+		return affiliatePerson;
+	}
+
+	public void setAffiliatePerson(String affiliatePerson) {
+		this.affiliatePerson = affiliatePerson;
 	}
 
 	public String getTheme() {

@@ -11,6 +11,7 @@
 		<result column="team" jdbcType="VARCHAR" property="team" />
 		<result column="theme" jdbcType="VARCHAR" property="theme" />
 		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="affiliatePerson" jdbcType="VARCHAR" property="affiliatePerson" />
 		<result column="contentTitle" jdbcType="VARCHAR" property="contentTitle" />
 		<result column="contentText" jdbcType="VARCHAR" property="contentText" />
 		<result column="contentFile" jdbcType="VARCHAR" property="contentFile" />
@@ -23,7 +24,7 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		 SELECT c.id, c.mediaId, t2.teamId, c.themeId, t1.type, t1.team, t2.theme, t1.company,
+		 SELECT c.id, c.mediaId, t2.teamId, c.themeId, t1.type, t1.team, t2.theme, t1.affiliatePerson, t1.company,
 		    c.contentTitle, c.contentText, c.contentFile, c.contentType, c.contentLevel,
 			c.createName, c.createTime, c.updateName, c.updateTime
 			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 

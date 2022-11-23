@@ -8,6 +8,7 @@ public class SpeedyTheme {
 	private String theme;
 	private String type;
 	private String team;
+	private String affiliatePerson;
 	private String company;
 	private String createName;
 	private Date createTime;
@@ -52,6 +53,14 @@ public class SpeedyTheme {
 
 	public void setTeam(String team) {
 		this.team = team;
+	}
+
+	public String getAffiliatePerson() {
+		return affiliatePerson;
+	}
+
+	public void setAffiliatePerson(String affiliatePerson) {
+		this.affiliatePerson = affiliatePerson;
 	}
 
 	public String getCompany() {

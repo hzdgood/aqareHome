@@ -19,6 +19,11 @@
             <a-select-option value="个人话术">个人话术</a-select-option>
           </a-select>
         </a-form-item>
+        <a-form-item label="所属人员" v-show="personStatus">
+          <a-select placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
+            <a-select-option v-for="item in personList" :key="item.id" :value="item.engName">{{ item.userName }}</a-select-option>
+          </a-select>
+        </a-form-item>
         <a-form-item label="快捷组" v-show="showTeam">
           <a-select placeholder="请选择组" v-decorator="['teamId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in teamList" :value="item.id" :key="item.id">
@@ -37,7 +42,7 @@
 import pick from 'lodash.pick'
 import { getPostData } from '@/api/axios'
 // 表单字段
-const fields = ['teamId', 'theme', 'id', 'type']
+const fields = ['teamId', 'theme', 'id', 'type', 'affiliatePerson']
 export default {
   props: {
     visible: {
@@ -69,21 +74,30 @@ export default {
       }
     }
     return {
-      teamList: [],
+      personStatus: false,
+      personList: [],
       showTeam: false,
+      teamList: [],
       form: this.$form.createForm(this)
     }
   },
-  created () {
+  async created () {
       // 防止表单未注册
     fields.forEach(v => this.form.getFieldDecorator(v))
       // 当 model 发生改变时，为表单设置值
     this.$watch('model', () => {
       this.model && this.form.setFieldsValue(pick(this.model, fields))
     })
+    const obj = await getPostData('/user/select', {})
+    this.personList = obj.data
   },
   methods: {
     async selectType (value) {
+      if (value === '个人话术') {
+        this.personStatus = true
+      } else {
+        this.personStatus = false
+      }
       const data = await getPostData('/speedy/team/select', { type: value })
       if (data.data.data.length === 0) {
         this.teamList = []

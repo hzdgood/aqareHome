@@ -9,6 +9,7 @@
 		<result column="type" jdbcType="VARCHAR" property="type" />
 		<result column="team" jdbcType="VARCHAR" property="team" />
 		<result column="company" jdbcType="VARCHAR" property="company" />
+		<result column="affiliatePerson" jdbcType="VARCHAR" property="affiliatePerson" />
 		<result column="createName" jdbcType="VARCHAR" property="createName" />
 		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
 		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
@@ -16,7 +17,7 @@
 	</resultMap>
 	
 	<select id="select" resultType="com.aqara.common.entity.SpeedyTheme">
-		select t2.id, t2.teamId, t1.team, t1.company, t1.type, t2.theme,
+		select t2.id, t2.teamId, t1.team, t1.company, t1.type, t2.theme, t1.affiliatePerson,
 			t2.createName, t2.createTime, t2.updateName, t2.updateTime
  			from aqara.speedyteam t1 , aqara.speedytheme t2 where t1.id = t2.teamId
 		<if test="theme!=null and theme!=''">
