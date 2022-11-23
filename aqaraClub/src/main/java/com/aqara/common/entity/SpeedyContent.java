@@ -22,9 +22,7 @@ public class SpeedyContent {
 	private String updateName;
 	private Date updateTime;
 
-	public Integer getId() {
-		return id;
-	}
+	public Integer getId() { return id; }
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -58,9 +56,7 @@ public class SpeedyContent {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
+	public void setType(String type) { this.type = type; }
 
 	public String getTeam() {
 		return team;
