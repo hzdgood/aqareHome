@@ -123,7 +123,14 @@ const columns = [{
 }, {
   title: '路劲',
   dataIndex: 'contentFile',
-  ellipsis: true
+  ellipsis: true,
+  customRender: function (val) {
+    if (val !== '') {
+      return val.split('\\')[4]
+    } else {
+      return val
+    }
+  }
 }, {
   title: '操作',
   dataIndex: 'action',

@@ -37,7 +37,7 @@
 import pick from 'lodash.pick'
 import { getPostData } from '@/api/axios'
 // 表单字段
-const fields = ['teamId', 'theme', 'id']
+const fields = ['teamId', 'theme', 'id', 'type']
 export default {
   props: {
     visible: {
@@ -75,7 +75,6 @@ export default {
     }
   },
   created () {
-    this.getThemeList()
       // 防止表单未注册
     fields.forEach(v => this.form.getFieldDecorator(v))
       // 当 model 发生改变时，为表单设置值
@@ -84,10 +83,6 @@ export default {
     })
   },
   methods: {
-    async getThemeList () {
-      const data = await getPostData('/speedy/team/select', {})
-      this.teamList = data.data.data
-    },
     async selectType (value) {
       const data = await getPostData('/speedy/team/select', { type: value })
       if (data.data.data.length === 0) {

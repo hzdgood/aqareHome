@@ -71,7 +71,7 @@
 import pick from 'lodash.pick'
 import { getPostData, uploadFile } from '@/api/axios'
 // 表单字段
-const fields = ['contentTitle', 'contentLevel', 'contentType', 'contentFile', 'contentText', 'themeId', 'id', 'teamId']
+const fields = ['contentTitle', 'contentLevel', 'contentType', 'contentFile', 'contentText', 'themeId', 'id', 'teamId', 'type']
 export default {
   props: {
     visible: {
@@ -114,8 +114,6 @@ export default {
     }
   },
   created () {
-    this.getMenuList()
-    this.getTeamList()
     // 防止表单未注册
     fields.forEach((v) => this.form.getFieldDecorator(v))
     // 当 model 发生改变时，为表单设置值
@@ -127,14 +125,6 @@ export default {
     })
   },
   methods: {
-    async getMenuList () {
-      const data = await getPostData('/speedy/theme/select', {})
-      this.menuList = data.data.data
-    },
-    async getTeamList () {
-      const data = await getPostData('/speedy/team/select', {})
-      this.teamList = data.data.data
-    },
     async beforeUpload (file) {
       const formData = new FormData()
       formData.append('file', file, file.name)
