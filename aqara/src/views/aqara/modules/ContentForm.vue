@@ -144,17 +144,6 @@ export default {
         contentFile: res
       }
     },
-    async selectTeam (value) {
-      const data = await getPostData('/speedy/theme/select', { teamId: value })
-      if (data.data.data.length === 0) {
-        this.menuList = []
-        this.showTheme = false
-        this.$message.info('请为当前组添加主题！')
-      } else {
-        this.showTheme = true
-        this.menuList = data.data.data
-      }
-    },
     async selectPerson (value) {
       const data = await getPostData('/speedy/team/select', { person: value, type: '个人话术' })
       if (data.data.data.length === 0) {
@@ -181,6 +170,17 @@ export default {
         this.showTeam = true
       }
       this.personStatus = false
+    },
+    async selectTeam (value) {
+      const data = await getPostData('/speedy/theme/select', { teamId: value })
+      if (data.data.data.length === 0) {
+        this.menuList = []
+        this.showTheme = false
+        this.$message.info('请为当前组添加主题！')
+      } else {
+        this.showTheme = true
+        this.menuList = data.data.data
+      }
     },
     selectChange (value) {
       if (value === '文本') {

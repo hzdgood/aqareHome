@@ -7,7 +7,7 @@ import com.aqara.common.entity.SpeedyContent;
 @Repository
 public interface SpeedyContentMapper {
 	
-    List<SpeedyContent> select(Integer themeId, String team, String theme, String type, String person);
+    List<SpeedyContent> select(Integer themeId, String team, String theme, String type, String affiliatePerson);
 	
 	void insert(SpeedyContent SpeedyContent);
 	

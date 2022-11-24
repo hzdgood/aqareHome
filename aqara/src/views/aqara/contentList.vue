@@ -88,6 +88,10 @@ const columns = [{
   dataIndex: 'type',
   width: 100
 }, {
+  title: '所属人员',
+  dataIndex: 'affiliatePerson',
+  ellipsis: true
+}, {
   title: '快捷组',
   dataIndex: 'team',
   ellipsis: true
@@ -194,8 +198,7 @@ export default {
       this.visible = false
     },
     async selectChange (value) {
-      const obj = { type: value }
-      const data = await getPostData('/speedy/team/select', obj)
+      const data = await getPostData('/speedy/team/select', { type: value })
       if (data.data.data.length === 0) {
         this.showTeam = false
         this.teamList = []
@@ -203,6 +206,7 @@ export default {
         this.showTeam = true
         this.teamList = data.data.data
       }
+      this.personStatus = false
     },
     handleOk () {
       const form = this.$refs.createModal.form

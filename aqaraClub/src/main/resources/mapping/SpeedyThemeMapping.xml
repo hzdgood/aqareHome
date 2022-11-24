@@ -23,8 +23,8 @@
 		<if test="theme!=null and theme!=''">
     		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
 		</if>
-		<if test="person!=null and person!=''">
-			AND t1.affiliatePerson = #{person}
+		<if test="affiliatePerson!=null and affiliatePerson!=''">
+			AND t1.affiliatePerson = #{affiliatePerson}
 		</if>
 		<if test="teamId!=null and teamId!=''">
 			AND t2.teamId = #{teamId}

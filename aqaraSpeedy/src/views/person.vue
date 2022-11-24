@@ -68,7 +68,7 @@ export default class Actions extends Vue {
   async mounted () {
     const req = {
       type: '个人话术',
-      name: localStorage.getItem('localName')
+      person: localStorage.getItem('localName')
     }
     const data = await treeList('/speedy/team/select', req)
     this.teamList = data.data

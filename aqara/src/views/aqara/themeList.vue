@@ -6,10 +6,17 @@
           <a-row :gutter="48">
             <a-col :md="6" :sm="24">
               <a-form-item label="话术类型">
-                <a-select placeholder="请选择" v-model="queryParam.type">
+                <a-select @change="selectType" placeholder="请选择" v-model="queryParam.type">
                   <a-select-option value="企业话术">企业话术</a-select-option>
                   <a-select-option value="团体话术">团体话术</a-select-option>
                   <a-select-option value="个人话术">个人话术</a-select-option>
+                </a-select>
+              </a-form-item>
+            </a-col>
+            <a-col :md="6" :sm="24" v-show="personStatus">
+              <a-form-item label="所属人员">
+                <a-select placeholder="请选择所属人员" v-model="queryParam.person">
+                  <a-select-option v-for="item in personList" :key="item.id" :value="item.engName">{{ item.userName }}</a-select-option>
                 </a-select>
               </a-form-item>
             </a-col>
@@ -78,6 +85,10 @@ const columns = [{
   title: '话术类型', // 企业，团队，个人
   dataIndex: 'type'
 }, {
+  title: '所属人员',
+  dataIndex: 'affiliatePerson',
+  ellipsis: true
+}, {
   title: '快捷组',
   dataIndex: 'team',
   ellipsis: true
@@ -108,9 +119,15 @@ export default {
     Ellipsis,
     themeForm
   },
+  async created () {
+    const obj = await getPostData('/user/select', {})
+    this.personList = obj.data
+  },
   data () {
     this.columns = columns
     return {
+      personStatus: false,
+      personList: [],
       formTitle: '',
       visible: false,
       confirmLoading: false,
@@ -182,6 +199,13 @@ export default {
       this.formTitle = '修改快捷组'
       this.visible = true
       this.mdl = { ...record }
+    },
+    selectType (value) {
+      if (value === '个人话术') {
+        this.personStatus = true
+      } else {
+        this.personStatus = false
+      }
     },
     async handleDelete (key) {
       const keys = this.selectedRowKeys

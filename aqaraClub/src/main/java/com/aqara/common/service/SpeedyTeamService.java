@@ -13,7 +13,7 @@ public class SpeedyTeamService {
 	SpeedyTeamMapper SpeedyTeamMapper;
 	
 	public List<SpeedyTeam> select(PageReq PageReq) {
-		return SpeedyTeamMapper.select(PageReq.getType(), PageReq.getName());
+		return SpeedyTeamMapper.select(PageReq.getType(), PageReq.getName(), PageReq.getPerson());
 	}
 	
 	public void insert(SpeedyTeam SpeedyTeam) {
