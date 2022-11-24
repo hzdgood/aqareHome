@@ -66,10 +66,12 @@ import moment from 'moment'
 import { getPostData, getData } from '@/api/axios'
 const columns = [{
   title: '',
-  scopedSlots: { customRender: 'serial' }
+  scopedSlots: { customRender: 'serial' },
+  width: 50
 }, {
   title: '话术类型', // 企业，团队，个人
-  dataIndex: 'type'
+  dataIndex: 'type',
+  width: 100
 }, {
   title: '所属人员',
   dataIndex: 'affiliatePerson',
