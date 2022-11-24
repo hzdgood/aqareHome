@@ -74,3 +74,16 @@ export const mediaUpload = async (fileName: any) => {
   })
   return response.data
 }
+
+export const logInsert = async (info: any) => {
+  const response = await axios.request({
+    method: 'GET',
+    url: httpUrl + '/log/insert',
+    params: {
+      name: localStorage.getItem('localName'),
+      custom: localStorage.getItem('userName'),
+      info: info
+    }
+  })
+  return response.data
+}

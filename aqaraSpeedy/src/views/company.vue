@@ -54,7 +54,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { treeList, mediaUpload } from '@/config/interFace'
+import { treeList, mediaUpload, logInsert } from '@/config/interFace'
 import { invoke } from 'wecom-sidebar-jssdk'
 @Component({
   name: 'company'
@@ -71,6 +71,7 @@ export default class Actions extends Vue {
     }
     const data = await treeList('/speedy/team/select', req)
     this.teamList = data.data
+    logInsert('登入快捷侧边栏')
   }
 
   async teamChange (teamId: any) {
