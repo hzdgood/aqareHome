@@ -32,6 +32,9 @@
 		<if test="themeId!=null and themeId!=''">
 			AND c.themeId = #{themeId}
 		</if>
+		<if test="person!=null and person!=''">
+			AND t1.affiliatePerson = #{person}
+		</if>
 		<if test="team!=null and team!=''">
 			AND t1.team like concat('%',#{team,jdbcType=VARCHAR},'%')
 		</if>

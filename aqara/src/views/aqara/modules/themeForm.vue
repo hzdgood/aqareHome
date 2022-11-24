@@ -20,7 +20,7 @@
           </a-select>
         </a-form-item>
         <a-form-item label="所属人员" v-show="personStatus">
-          <a-select placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
+          <a-select @change="selectPerson" placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in personList" :key="item.id" :value="item.engName">{{ item.userName }}</a-select-option>
           </a-select>
         </a-form-item>
@@ -95,14 +95,25 @@ export default {
     async selectType (value) {
       if (value === '个人话术') {
         this.personStatus = true
-      } else {
-        this.personStatus = false
+        return
       }
       const data = await getPostData('/speedy/team/select', { type: value })
       if (data.data.data.length === 0) {
         this.teamList = []
         this.showTeam = false
         this.$message.info('请为该话术添加组！')
+      } else {
+        this.teamList = data.data.data
+        this.showTeam = true
+      }
+      this.personStatus = false
+    },
+    async selectPerson (value) {
+      const data = await getPostData('/speedy/team/select', { person: value, type: '个人话术' })
+      if (data.data.data.length === 0) {
+        this.teamList = []
+        this.showTeam = false
+        this.$message.info('请为当前人员' + value + '添加组！')
       } else {
         this.teamList = data.data.data
         this.showTeam = true

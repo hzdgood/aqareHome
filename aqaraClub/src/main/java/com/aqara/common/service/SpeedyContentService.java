@@ -15,9 +15,9 @@ public class SpeedyContentService {
 	
 	public List<SpeedyContent> select(PageReq PageReq) {
 		if(PageReq.getThemeId() == null || PageReq.getThemeId().equals("null")){
-			return SpeedyContentMapper.select(null, PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
+			return SpeedyContentMapper.select(null, PageReq.getTeam(), PageReq.getTheme(), PageReq.getType(), PageReq.getPerson());
 		} else {
-			return SpeedyContentMapper.select(Integer.parseInt(PageReq.getThemeId()), PageReq.getTeam(), PageReq.getTheme(), PageReq.getType());
+			return SpeedyContentMapper.select(Integer.parseInt(PageReq.getThemeId()), PageReq.getTeam(), PageReq.getTheme(), PageReq.getType(), PageReq.getPerson());
 		}
 	}
 	
