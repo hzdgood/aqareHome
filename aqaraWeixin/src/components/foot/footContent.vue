@@ -4,6 +4,7 @@
     <div class="footContent" v-show="optionStatus">
       <div @click="clickInfo()" v-show="singleStatus">信息</div>
       <div @click="clickChat()" v-show="chatStatus">信息</div>
+      <div @click="clickFollow()" v-show="followStatus">跟进</div>
       <div @click="clickSurvey()" v-show="singleStatus">工勘</div>
       <div @click="clickScheme()" v-show="singleStatus">方案</div>
       <div @click="clickCollect()" v-show="singleStatus">收款</div>
@@ -15,17 +16,20 @@
     <div v-if="chatShow">
       <chat-edit @reload="reload()"></chat-edit>
     </div>
-    <div v-if="collectShow">
-      <collect-edit @close="clickCollect()"></collect-edit>
+    <div v-if="followStatus">
+      <follow-edit @close="clickFollow()"></follow-edit>
+    </div>
+    <div v-if="surveyStatus">
+      <survey-edit @close="clickSurvey()"></survey-edit>
     </div>
     <div v-if="schemeShow">
       <scheme-edit @close="clickScheme()"></scheme-edit>
     </div>
+    <div v-if="collectShow">
+      <collect-edit @close="clickCollect()"></collect-edit>
+    </div>
     <div v-if="ProposalStatus">
       <proposal-edit @close="clickProposal()"></proposal-edit>
-    </div>
-    <div v-if="surveyStatus">
-      <survey-edit @close="clickSurvey()"></survey-edit>
     </div>
   </div>
 </template>
@@ -39,6 +43,7 @@ import collectEdit from '@/components/foot/footEdit/collectEdit.vue'
 import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
 import ProposalEdit from '@/components/foot/footEdit/ProposalEdit.vue'
 import surveyEdit from '@/components/foot/footEdit/surveyEdit.vue'
+import followEdit from '@/components/foot/footEdit/followEdit.vue'
 @Component({
   name: 'foot',
   components: {
@@ -50,16 +55,18 @@ import surveyEdit from '@/components/foot/footEdit/surveyEdit.vue'
     'scheme-edit': schemeEdit,
     'chat-edit': chatEdit,
     'proposal-edit': ProposalEdit,
-    'survey-edit': surveyEdit
+    'survey-edit': surveyEdit,
+    'follow-edit': followEdit
   }
 })
 export default class Home extends Vue {
   infoShow: any = false;
-  collectShow: any = false;
-  schemeShow: any = false;
   chatShow = false;
   singleStatus = false;
   chatStatus = false;
+  collectShow: any = false;
+  schemeShow: any = false;
+  followStatus = false;
   optionStatus = false;
   ProposalStatus = false;
   surveyStatus = false;
@@ -87,6 +94,7 @@ export default class Home extends Vue {
   reload () {
     this.$store.dispatch('updateReload')
     this.infoShow = false
+    this.followStatus = false
     this.chatShow = false
     this.optionStatus = false
     this.ProposalStatus = false
@@ -97,6 +105,7 @@ export default class Home extends Vue {
     if (this.chatShow) {
       this.chatShow = false
     } else {
+      this.followStatus = false
       this.optionStatus = false
       this.chatShow = true
       this.schemeShow = false
@@ -110,6 +119,7 @@ export default class Home extends Vue {
     if (this.infoShow) {
       this.infoShow = false
     } else {
+      this.followStatus = false
       this.optionStatus = false
       this.infoShow = true
       this.schemeShow = false
@@ -123,6 +133,7 @@ export default class Home extends Vue {
     if (this.collectShow) {
       this.collectShow = false
     } else {
+      this.followStatus = false
       this.optionStatus = false
       this.collectShow = true
       this.schemeShow = false
@@ -137,6 +148,7 @@ export default class Home extends Vue {
     if (this.schemeShow) {
       this.schemeShow = false
     } else {
+      this.followStatus = false
       this.optionStatus = false
       this.schemeShow = true
       this.collectShow = false
@@ -151,6 +163,7 @@ export default class Home extends Vue {
     if (this.surveyStatus) {
       this.surveyStatus = false
     } else {
+      this.followStatus = false
       this.surveyStatus = true
       this.optionStatus = false
       this.ProposalStatus = false
@@ -164,6 +177,21 @@ export default class Home extends Vue {
     if (this.ProposalStatus) {
       this.ProposalStatus = false
     } else {
+      this.followStatus = false
+      this.optionStatus = false
+      this.ProposalStatus = true
+      this.chatShow = false
+      this.schemeShow = false
+      this.collectShow = false
+      this.surveyStatus = false
+    }
+  }
+
+  clickFollow () {
+    if (this.followStatus) {
+      this.followStatus = false
+    } else {
+      this.followStatus = true
       this.optionStatus = false
       this.ProposalStatus = true
       this.chatShow = false
