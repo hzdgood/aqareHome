@@ -39,7 +39,6 @@ import { table, field } from '@/config/config'
 import { Select, Input, DatePicker } from 'ant-design-vue'
 import { SearchInfo, addInfo, uploadImg, SearchUser, updateTable, logInsert } from '@/config/interFace'
 import survey from './components/survey.vue'
-import moment from 'moment'
 import 'moment/locale/zh-cn'
 @Component({
   name: 'surveyEdit',
@@ -52,7 +51,6 @@ import 'moment/locale/zh-cn'
   }
 })
 export default class Home extends Vue {
-  moment = moment
   userId = localStorage.getItem('userId')
   itemId = ''
   projectCode = ''

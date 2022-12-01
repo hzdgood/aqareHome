@@ -6,16 +6,114 @@
       <table class="EditTable">
         <tr>
           <td>跟进信息</td>
+          <td>
+            <input
+              id="followInfo"
+              type="text"
+              readonly
+              :value="followInfo"
+            />
+          </td>
+          <td>上传附件</td>
+          <td>
+            <input
+                id="file"
+                type="file"
+                multiple
+                accept="image/*"
+                placeholder="请选择文件"
+              />
+          </td>
         </tr>
       </table>
+      <div class="buttonSite">
+        <input
+          class="saveButton"
+          type="button"
+          @click="saveClick()"
+          value="保存"
+        />
+        <input
+          class="closeButton"
+          type="button"
+          @click="closeClick()"
+          value="关闭"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { table } from '@/config/config'
+import { masterReq, getLocalSale } from '@/config/common'
+import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
+import moment from 'moment'
 @Component({})
 export default class Home extends Vue {
+  followInfo = ''
+  itemId = ''
+  salesId = ''
+  userId = localStorage.getItem('userId');
+  localName = localStorage.getItem('localName');
 
+  async mounted () {
+    let result: any = {}
+    const data = masterReq(this.userId)
+    result = await SearchInfo(table.projectInfo, data)
+    for (let i = 0; i < result.length; i++) {
+      // const fields = result[i].fields
+      this.itemId = result[i].item_id
+    }
+    const req = getLocalSale(this.localName)
+    result = await SearchInfo(table.saleManInfo, req)
+    for (let i = 0; i < result.length; i++) {
+      this.salesId = result[0].item_id
+    }
+  }
+
+  async saveClick () {
+    const file: any = document.getElementById('file')
+    let fileId = null
+    if (typeof file.files[0] !== 'undefined') {
+      fileId = await this.upfile(file)
+    }
+    const date = new Date()
+    const d = date ? moment(date).format('YYYY-MM-DD') : ''
+    console.log(d)
+    this.$emit('close')
+    const data = {
+      fields: {
+        2200000316783265: d,
+        2200000316783266: [this.salesId], // 更新人
+        2200000316783267: this.followInfo, // 内容
+        2200000316783268: fileId, // 上传附件
+        2200000316783269: [this.itemId], // 关联项目
+        2200000316783324: null, // 关联工单
+        2200000316886478: null // 显示文本
+      }
+    }
+    await addInfo(table.collectTable, data)
+  }
+
+  closeClick () {
+    this.$emit('close')
+  }
+
+  async upfile (file: any) {
+    const list = []
+    for (let i = 0; i < file.files.length; i++) {
+      const files = file.files[i]
+      const formData = new FormData()
+      formData.append('source', files)
+      formData.append('name', files.name)
+      formData.append('domain', 'app.huoban.com')
+      formData.append('type', 'attachment')
+      const res = await uploadImg(formData)
+      list.push(res.file_id)
+    }
+    return list
+  }
 }
 </script>
