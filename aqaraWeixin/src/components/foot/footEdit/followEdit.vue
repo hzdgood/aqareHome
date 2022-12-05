@@ -89,12 +89,10 @@ export default class Home extends Vue {
         2200000316783266: [this.salesId], // 更新人
         2200000316783267: this.followInfo, // 内容
         2200000316783268: fileId, // 上传附件
-        2200000316783269: [this.itemId], // 关联项目
-        2200000316783324: null, // 关联工单
-        2200000316886478: null // 显示文本
+        2200000316783324: [this.itemId] // 关联项目
       }
     }
-    await addInfo(table.collectTable, data)
+    await addInfo('2100000039691275', data)
   }
 
   closeClick () {

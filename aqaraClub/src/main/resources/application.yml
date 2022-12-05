@@ -5,8 +5,8 @@
 wx:
   corpId: ww9a717b03b06063e3
   corpSecret: nZv_TArU4E_PavzhhU22B6LJtT-BjaRmDCGjE64v0xQ
-  corpHttp: http://aqara.club:8081
-  #corpHttp: http://localhost:8080
+  # corpHttp: http://aqara.club:8081
+  corpHttp: http://localhost:8081
   speedySecret: A23WY8us3mjumRduXd7cZ3Em17oL49eFbxIeArqdiN8
   speedyHttp: http://aqara.club:8082
   #speedyHttp: http://localhost:8081
