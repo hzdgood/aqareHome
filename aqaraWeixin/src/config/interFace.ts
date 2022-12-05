@@ -228,6 +228,13 @@ export const batchAddPlan = async (tableId: string, data: object) => {
   return response
 }
 
+export const huobanUser = async () => {
+  const formData = { space_id: 4000000003153003, limit: 50 }
+  const url = 'https://api.huoban.com/v2/users/find'
+  const info = await post(url, formData)
+  return info.data
+}
+
 // 获取联系人
 // export const externalList = async (userId: string) => {
 //   const response = await axios.request<SignRes>({

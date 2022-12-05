@@ -53,7 +53,7 @@ export default class Actions extends Vue {
       where: {
         and: [
           { field: 2200000145748100, query: { in: list } }, // 人员
-          { field: 2200000146398516, query: { in: [10, 6, 3, 2, 5, 4] } }, // 订单类型 除了发货
+          { field: 2200000146398516, query: { in: [10, 6, 3, 2, 5, 4, 12] } }, // 订单类型 除了发货
           {
             field: 2200000145748099, // 上门时间
             query: {

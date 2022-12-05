@@ -10,10 +10,11 @@
             <input
               id="followInfo"
               type="text"
-              readonly
               :value="followInfo"
             />
           </td>
+        </tr>
+        <tr>
           <td>上传附件</td>
           <td>
             <input
@@ -47,7 +48,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table } from '@/config/config'
-import { masterReq, getLocalSale } from '@/config/common'
+import { masterReq } from '@/config/common'
 import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
 import moment from 'moment'
 @Component({})
@@ -56,8 +57,6 @@ export default class Home extends Vue {
   itemId = ''
   salesId = ''
   userId = localStorage.getItem('userId');
-  localName = localStorage.getItem('localName');
-
   async mounted () {
     let result: any = {}
     const data = masterReq(this.userId)
@@ -66,11 +65,11 @@ export default class Home extends Vue {
       // const fields = result[i].fields
       this.itemId = result[i].item_id
     }
-    const req = getLocalSale(this.localName)
-    result = await SearchInfo(table.saleManInfo, req)
-    for (let i = 0; i < result.length; i++) {
-      this.salesId = result[0].item_id
-    }
+    // const req = huobanUser()
+    // result = await SearchInfo(table.saleManInfo, req)
+    // for (let i = 0; i < result.length; i++) {
+    //   this.salesId = result[0].user_id
+    // }
   }
 
   async saveClick () {
