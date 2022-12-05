@@ -23,8 +23,8 @@ public class UserController {
     
     @CrossOrigin
    	@RequestMapping("/select")
-    public List<User> select(String username) {
-   		return userService.select(username);
+    public List<User> select(String username, String engName) {
+   		return userService.select(username, engName);
    	}
     
     @CrossOrigin

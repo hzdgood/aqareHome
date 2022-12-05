@@ -57,6 +57,7 @@ export default class Home extends Vue {
   itemId = ''
   salesId = ''
   userId = localStorage.getItem('userId');
+  localName = localStorage.getItem('localName')
   async mounted () {
     let result: any = {}
     const data = masterReq(this.userId)

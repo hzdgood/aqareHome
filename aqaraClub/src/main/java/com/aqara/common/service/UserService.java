@@ -19,8 +19,8 @@ public class UserService {
 	@Autowired
 	HuobanProperties HuobanProperties;
 
-	public List<User> select(String username) {
-		return userMapper.select(username);
+	public List<User> select(String username, String engName) {
+		return userMapper.select(username, engName);
 	}
 	
 	public List<User> selectCode(String code) {

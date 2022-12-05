@@ -1,12 +1,18 @@
 <template>
   <div>
     <table width='100%' class='projectTable'>
+      <tr>
+        <td colspan="2">系统跟踪日志</td>
+      </tr>
       <tr v-for = 'item in logList' :key='item.id'>
         <td>{{ item.date }}</td>
         <td>{{ item.info }}</td>
       </tr>
     </table>
     <table width='100%' class='projectTable'>
+      <tr>
+        <td colspan="2">项目跟踪日志</td>
+      </tr>
       <tr v-for = 'item in logList1' :key='item.id'>
         <td>{{ item.date }}</td>
         <td>{{ item.info }}</td>
@@ -25,7 +31,6 @@ export default class Home extends Vue {
   logList1: any[] = []
   itemId = ''
   userId = localStorage.getItem('userId')
-
   async mounted () {
     const res = await logSelect()
     for (let i = 0; i < res.length; i++) {
@@ -51,7 +56,7 @@ export default class Home extends Vue {
     }
     const result1 = await SearchInfo('2100000039691275', obj)
     for (let i = 0; i < result1.length; i++) {
-      const fields = result[i].fields
+      const fields = result1[i].fields
       let date = ''
       let info = ''
       for (let j = 0; j < fields.length; j++) {
