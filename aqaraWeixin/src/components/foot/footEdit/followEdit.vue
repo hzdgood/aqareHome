@@ -5,6 +5,16 @@
       <div class="headerDiv">新增跟进</div>
       <table class="EditTable">
         <tr>
+          <td>跟进人员</td>
+          <td>
+            <select id="followPerson" :value="followInfo">
+              <option v-for="item in personList" :key="item.id" :value="item.id">
+                {{item.name}}
+              </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
           <td>跟进信息</td>
           <td>
             <input
@@ -49,13 +59,14 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { table } from '@/config/config'
 import { masterReq } from '@/config/common'
-import { SearchInfo, addInfo, uploadImg } from '@/config/interFace'
+import { SearchInfo, huobanUser, addInfo, uploadImg } from '@/config/interFace'
 import moment from 'moment'
 @Component({})
 export default class Home extends Vue {
   followInfo = ''
   itemId = ''
   salesId = ''
+  personList: any[] = []
   userId = localStorage.getItem('userId');
   localName = localStorage.getItem('localName')
   async mounted () {
@@ -63,14 +74,16 @@ export default class Home extends Vue {
     const data = masterReq(this.userId)
     result = await SearchInfo(table.projectInfo, data)
     for (let i = 0; i < result.length; i++) {
-      // const fields = result[i].fields
       this.itemId = result[i].item_id
     }
-    // const req = huobanUser()
-    // result = await SearchInfo(table.saleManInfo, req)
-    // for (let i = 0; i < result.length; i++) {
-    //   this.salesId = result[0].user_id
-    // }
+    const result1 = await huobanUser()
+    for (let i = 0; i < result1.length; i++) {
+      const obj = {
+        id: result1[i].user_id,
+        name: result1[i].name
+      }
+      this.personList.push(obj)
+    }
   }
 
   async saveClick () {
@@ -81,8 +94,6 @@ export default class Home extends Vue {
     }
     const date = new Date()
     const d = date ? moment(date).format('YYYY-MM-DD') : ''
-    console.log(d)
-    this.$emit('close')
     const data = {
       fields: {
         2200000316783265: d,
@@ -93,6 +104,7 @@ export default class Home extends Vue {
       }
     }
     await addInfo('2100000039691275', data)
+    this.$emit('close')
   }
 
   closeClick () {

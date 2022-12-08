@@ -18,7 +18,7 @@
 	<select id="select" resultType="com.aqara.common.entity.User">
 		select * from user where 1=1
 		<if test="userName!=null and userName!=''">
-			AND userName = #{userName}
+			AND userName = #{userName} and engName = #{engName}
 		</if>
 	</select>
 	
