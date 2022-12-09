@@ -9,7 +9,9 @@ public interface UserMapper {
 	List<User> select(String username, String engName);
 	
 	List<User> selectCode(String code);
-	
+
+	void update(User user);
+
 	void insert(User user);
 	
 	void delete();

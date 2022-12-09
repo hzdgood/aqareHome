@@ -7,7 +7,7 @@
         <tr>
           <td>跟进人员</td>
           <td>
-            <select id="followPerson" :value="followInfo">
+            <select id="followPerson">
               <option v-for="item in personList" :key="item.id" :value="item.id">
                 {{item.name}}
               </option>
@@ -17,11 +17,7 @@
         <tr>
           <td>跟进信息</td>
           <td>
-            <input
-              id="followInfo"
-              type="text"
-              :value="followInfo"
-            />
+            <input id="followInfo" type="text"/>
           </td>
         </tr>
         <tr>
@@ -87,6 +83,10 @@ export default class Home extends Vue {
   }
 
   async saveClick () {
+    const followPerson: any = document.getElementById('followPerson')
+    const followInfo: any = document.getElementById('followInfo')
+    this.salesId = followPerson.options[followPerson.selectedIndex].value
+    this.followInfo = followInfo.value
     const file: any = document.getElementById('file')
     let fileId = null
     if (typeof file.files[0] !== 'undefined') {

@@ -32,6 +32,12 @@ public class UserController {
 	public void insert(User user) {
 		userService.insert(user);
 	}
+
+	@CrossOrigin
+	@RequestMapping("/update")
+	public void update(User user) {
+		userService.update(user);
+	}
     
     @CrossOrigin
 	@RequestMapping("/synchronize")

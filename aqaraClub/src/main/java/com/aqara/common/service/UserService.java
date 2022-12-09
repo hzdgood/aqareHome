@@ -30,6 +30,10 @@ public class UserService {
 	public void insert(User user) {
 		userMapper.insert(user);
 	}
+
+	public void update(User user) {
+		userMapper.update(user);
+	}
 	
 	public void delete() {
 		userMapper.delete();

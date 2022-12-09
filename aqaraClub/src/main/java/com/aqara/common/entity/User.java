@@ -2,7 +2,6 @@ package com.aqara.common.entity;
 
 public class User {
 	private Integer id;
-	private Integer huobanId;
 	private String code;
 	private String userName;
 	private String passWord;
@@ -20,10 +19,6 @@ public class User {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getHuobanId() { return huobanId; }
-
-	public void setHuobanId(Integer huobanId) { this.huobanId = huobanId; }
 
 	public String getCode() {
 		return code;

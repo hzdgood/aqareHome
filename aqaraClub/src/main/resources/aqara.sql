@@ -237,7 +237,6 @@ CREATE TABLE `scheme` (
 
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `huobanId` int DEFAULT NULL,
   `code` varchar(45) DEFAULT NULL,
   `userName` varchar(32) DEFAULT NULL,
   `passWord` varchar(50) DEFAULT NULL,

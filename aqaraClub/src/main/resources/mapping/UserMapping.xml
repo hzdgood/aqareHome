@@ -4,7 +4,6 @@
 <mapper namespace="com.aqara.common.mapper.UserMapper">
 	<resultMap id="BaseResultMap" type="com.aqara.common.entity.User">
 		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="huobanId" jdbcType="INTEGER" property="huobanId" />
 		<result column="code" jdbcType="VARCHAR" property="code" />
 		<result column="userName" jdbcType="VARCHAR" property="userName" />
 		<result column="passWord" jdbcType="VARCHAR" property="passWord" />
@@ -18,7 +17,10 @@
 	<select id="select" resultType="com.aqara.common.entity.User">
 		select * from user where 1=1
 		<if test="userName!=null and userName!=''">
-			AND userName = #{userName} and engName = #{engName}
+			AND userName = #{userName}
+		</if>
+		<if test="engName!=null and engName!=''">
+			AND engName = #{engName}
 		</if>
 	</select>
 	
