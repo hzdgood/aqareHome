@@ -24,7 +24,14 @@ wx:
   calendarAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/calendar/add
   scheduleAdd: https://qyapi.weixin.qq.com/cgi-bin/oa/schedule/add
   mediaUpload: https://qyapi.weixin.qq.com/cgi-bin/media/upload
-  
+
+program:
+  code2Session: https://api.weixin.qq.com/sns/jscode2session
+  phoneNumber: https://api:weixin:qq:com/wxa/business/getuserphonenumber
+  accessToken: https://api.weixin.qq.com/cgi-bin/token
+  appid: wxa364df767870a7d5
+  secret: 6d45a568c7f410697a187e2cb7ede6d6
+
 common:
   localFiles: E:\\AqaraUpload\\
   imgFiles: http://aqara.club/img/
