@@ -5,14 +5,11 @@ import com.aqara.common.entity.*;
 import com.aqara.common.properties.*;
 import com.aqara.common.service.*;
 import com.aqara.common.utils.*;
-
-import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/wechat")
@@ -76,7 +73,7 @@ public class WechatController {
 	}
 
 	/**
-	 * JSJSD注册
+	 * JS-JSD注册
 	 */
 	@CrossOrigin
 	@RequestMapping("/signatures")
@@ -167,14 +164,14 @@ public class WechatController {
 		if(userId.contains("、")) {
 			String[] users = userId.split("、");
 			for(int i = 0; i < users.length; i++) {
-				List<User> userlist = UserService.select(users[i]);
+				List<User> userlist = UserService.select(users[i], "");
 				if(userlist.size() > 0) {
 					User User = userlist.get(0);
 					attendees += "{" +"	\"userid\": \""+User.getEngName()+"\"" + "},";
 				}
 			}
 		} else {
-			List<User> userlist = UserService.select(userId);
+			List<User> userlist = UserService.select(userId, "");
 			if(userlist.size() > 0) {
 				User User = userlist.get(0);
 				attendees += "{" +"	\"userid\": \""+User.getEngName()+"\"" + "},";
