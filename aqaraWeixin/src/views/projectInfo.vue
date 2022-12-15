@@ -43,7 +43,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { SearchInfo, externalList, groupList } from '@/config/interFace'
+import { SearchInfo } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import { masterReq, chatReq } from '@/config/common'
 @Component({})
@@ -52,23 +52,18 @@ export default class Home extends Vue {
   userId = localStorage.getItem('userId');
   contactType = localStorage.getItem('contactType');
   chatId = localStorage.getItem('chatID');
-  userList: any[] = [];
 
   @Watch('$store.state.reloadStatus')
   reloadPage () {
     setTimeout(this.onloadFunction, 2000)
   }
 
-  async getData () {
+  getData () {
     let data = {}
     if (this.contactType === 'single_chat_tools') {
       data = masterReq(this.userId)
-      const res = await externalList(this.userId)
-      console.log(res)
     } else {
       data = chatReq(this.chatId)
-      const res = await groupList(this.chatId)
-      console.log(res)
     }
     return data
   }

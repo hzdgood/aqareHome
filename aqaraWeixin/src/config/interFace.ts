@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
-// const httpUrl = 'http://localhost:8081' // 测试url
-const httpUrl = 'http://aqara.club:8081' // 生产环境
+const httpUrl = 'http://localhost:8081' // 测试url
+// const httpUrl = 'http://aqara.club:8081' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
 export const config = {
@@ -234,28 +234,3 @@ export const huobanUser = async () => {
   const info = await post(url, formData)
   return info.data
 }
-
-// 获取联系人
-// export const externalList = async (userId: string) => {
-//   const response = await axios.request<SignRes>({
-//     method: 'GET',
-//     url: httpUrl + '/wechat/externalList',
-//     params: {
-//       userId: userId,
-//       type: httpUrl
-//     }
-//   })
-//   return response.data
-// }
-// 获取群联系人
-// export const groupList = async (chatId: string) => {
-//   const response = await axios.request<SignRes>({
-//     method: 'GET',
-//     url: httpUrl + '/wechat/grouplist',
-//     params: {
-//       chatId: chatId,
-//       type: httpUrl
-//     }
-//   })
-//   return response.data
-// }
