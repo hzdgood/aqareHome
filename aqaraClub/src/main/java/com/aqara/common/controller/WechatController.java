@@ -80,6 +80,7 @@ public class WechatController {
 	public JSONObject signatures(String url, String type) {
 		String token = getToken(type);
 		JSONObject jsonObject = CommonUtil.signatures(url, token, WxProperties);
+		System.out.printf(jsonObject.toJSONString());
 		return jsonObject;
 	}
 

@@ -35,7 +35,7 @@ program:
 common:
   localFiles: E:\\AqaraUpload\\
   imgFiles: http://aqara.club/img/
-  serviceUrl: http://aqara.club:8081
+  serviceUrl: http://localhost:8081
 
 huoban:
   application_id: 1002449

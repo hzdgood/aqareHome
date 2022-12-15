@@ -6,7 +6,7 @@ import com.aqara.common.entity.User;
 
 @Repository
 public interface UserMapper {
-	List<User> select(String username, String engName);
+	List<User> select(String userName, String engName);
 	
 	List<User> selectCode(String code);
 
