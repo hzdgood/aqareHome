@@ -72,6 +72,14 @@ public class WechatController {
 		return UserId;
 	}
 
+	@CrossOrigin
+	@RequestMapping("/compUser")
+	public String compUser(String userId, String type) {
+		String token = getToken(type);
+		String res = WeChatUtil.compUser(WxProperties, token, userId);
+		return res;
+	}
+
 	/**
 	 * JS-JSD注册
 	 */

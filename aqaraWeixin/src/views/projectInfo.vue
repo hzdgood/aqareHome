@@ -52,6 +52,8 @@ export default class Home extends Vue {
   userId = localStorage.getItem('userId');
   contactType = localStorage.getItem('contactType');
   chatId = localStorage.getItem('chatID');
+  follow_user: any = localStorage.getItem('follow_user')
+  userList: any[] = []
 
   @Watch('$store.state.reloadStatus')
   reloadPage () {
@@ -62,6 +64,10 @@ export default class Home extends Vue {
     let data = {}
     if (this.contactType === 'single_chat_tools') {
       data = masterReq(this.userId)
+      const users: any[] = JSON.parse(this.follow_user)
+      for (let i = 0; i < users.length; i++) {
+        console.log(users[i])
+      }
     } else {
       data = chatReq(this.chatId)
     }

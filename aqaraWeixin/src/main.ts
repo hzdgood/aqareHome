@@ -56,6 +56,7 @@ const doInfo = async () => {
     localStorage.setItem('userName', userName)
     localStorage.setItem('avatar', avatar)
     localStorage.setItem('localName', localName)
+    localStorage.setItem('follow_user', JSON.stringify(res1.follow_user))
     getTicket()
   } else if (result.entry === 'group_chat_tools') {
     const localName: any = Cookies.get('userId')

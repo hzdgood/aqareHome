@@ -82,4 +82,16 @@ public class WeChatUtil {
         }
 		return result;
 	}
+
+    public static String compUser(WxProperties wxProperties, String token, String userId) {
+        String url = wxProperties.getCompUser();
+        String lastUrl = url + "?access_token=" + token + "&userid=" + userId;
+        String result = "";
+        try {
+            result = HttpUtil.get(lastUrl);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

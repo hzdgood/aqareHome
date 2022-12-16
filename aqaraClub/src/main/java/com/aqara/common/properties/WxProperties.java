@@ -24,6 +24,7 @@ public class WxProperties {
 	private String calendarAdd;
 	private String scheduleAdd;
 	private String mediaUpload;
+	private String compUser;
 
 	public String getCorpId() {
 		return corpId;
@@ -167,5 +168,13 @@ public class WxProperties {
 
 	public void setMediaUpload(String mediaUpload) {
 		this.mediaUpload = mediaUpload;
+	}
+
+	public String getCompUser() {
+		return compUser;
+	}
+
+	public void setCompUser(String compUser) {
+		this.compUser = compUser;
 	}
 }
