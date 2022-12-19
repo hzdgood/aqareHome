@@ -1,26 +1,30 @@
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.SchemeMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.Scheme">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="orderNumber" jdbcType="VARCHAR" property="orderNumber" />
-		<result column="customerName" jdbcType="VARCHAR" property="customerName" />
-		<result column="telephone" jdbcType="VARCHAR" property="telephone" />
-		<result column="productName" jdbcType="VARCHAR" property="productName" />
-		<result column="productCode" jdbcType="VARCHAR" property="productCode" />
-		<result column="number" jdbcType="VARCHAR" property="number" />
-		<result column="money" jdbcType="VARCHAR" property="money" />
-		<result column="yesNoFee" jdbcType="VARCHAR" property="yesNoFee" />
-		<result column="serviceFee" jdbcType="VARCHAR" property="serviceFee" />
-		<result column="date" jdbcType="TIMESTAMP" property="date" />
-	</resultMap>
-	<insert id="insert" parameterType="com.aqara.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-  		insert into scheme ( orderNumber, customerName, telephone, productName, productCode, number, money, yesNoFee, serviceFee, date) 
-  			values( #{orderNumber}, #{customerName}, #{telephone}, #{productName}, #{productCode}, #{number}, #{money}, #{yesNoFee}, #{serviceFee}, NOW())
-	</insert>
-	
-	<delete id="delete" parameterType="com.aqara.common.entity.Scheme">
-		delete from scheme where id = #{id}
-	</delete>
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Scheme">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber"/>
+        <result column="customerName" jdbcType="VARCHAR" property="customerName"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="productName" jdbcType="VARCHAR" property="productName"/>
+        <result column="productCode" jdbcType="VARCHAR" property="productCode"/>
+        <result column="number" jdbcType="VARCHAR" property="number"/>
+        <result column="money" jdbcType="VARCHAR" property="money"/>
+        <result column="yesNoFee" jdbcType="VARCHAR" property="yesNoFee"/>
+        <result column="serviceFee" jdbcType="VARCHAR" property="serviceFee"/>
+        <result column="date" jdbcType="TIMESTAMP" property="date"/>
+    </resultMap>
+    <insert id="insert" parameterType="com.aqara.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        insert into scheme (orderNumber, customerName, telephone, productName, productCode, number, money, yesNoFee,
+                            serviceFee, date)
+        values (#{orderNumber}, #{customerName}, #{telephone}, #{productName}, #{productCode}, #{number}, #{money},
+                #{yesNoFee}, #{serviceFee}, NOW())
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.Scheme">
+        delete
+        from scheme
+        where id = #{id}
+    </delete>
 </mapper>

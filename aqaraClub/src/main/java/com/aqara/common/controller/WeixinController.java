@@ -4,6 +4,7 @@ import com.aqara.common.entity.Weixin;
 import com.aqara.common.service.WeixinService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController

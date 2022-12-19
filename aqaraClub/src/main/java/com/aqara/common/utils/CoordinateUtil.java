@@ -3,17 +3,18 @@ package com.aqara.common.utils;
 import java.io.*;
 import java.net.*;
 import java.math.BigDecimal;
+
 import com.aqara.common.entity.Coordinate;
 import net.sf.json.JSONObject;
 
 public class CoordinateUtil {
-	private static String AK = "agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi"; // 百度地图密钥
+    private static String AK = "agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi"; // 百度地图密钥
 
     // 调用百度地图API根据地址，获取坐标
     public static Coordinate getCoordinate(String address) {
-    	Coordinate Coordinate = new Coordinate();
+        Coordinate Coordinate = new Coordinate();
         if (address != null && !"".equals(address)) {
-        	address = address.substring(2, address.length() -2);
+            address = address.substring(2, address.length() - 2);
             address = address.replaceAll("\\s*", "").replace("#", "栋");
             String url = "http://api.map.baidu.com/geocoder/v2/?address=" + address + "&output=json&ak=" + AK;
             String json = loadJSON(url);
@@ -36,10 +37,10 @@ public class CoordinateUtil {
         }
         return Coordinate;
     }
-    
+
     // 调用百度地图API根据地址，获取坐标
     public static Coordinate Coordinate(String address) {
-    	Coordinate Coordinate = new Coordinate();
+        Coordinate Coordinate = new Coordinate();
         if (address != null && !"".equals(address)) {
             String url = "http://api.map.baidu.com/geocoder/v2/?address=" + address + "&output=json&ak=" + AK;
             String json = loadJSON(url);
@@ -67,8 +68,8 @@ public class CoordinateUtil {
                 json.append(inputLine);
             }
             in.close();
-        } catch(Exception e) {
-        	e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return json.toString();
     }

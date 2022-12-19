@@ -10,14 +10,14 @@ import com.aqara.common.mapper.LoggingMapper;
 
 @Service
 public class LoggingService {
-	@Autowired
-	LoggingMapper LoggingMapper;
-	
-	public void insert(Logging log) {
-		LoggingMapper.insert(log);
-	}
+    @Autowired
+    LoggingMapper LoggingMapper;
 
-	public List<Logging> select(String name, String custom) {
-		return LoggingMapper.select(name, custom);
-	}
+    public void insert(Logging log) {
+        LoggingMapper.insert(log);
+    }
+
+    public List<Logging> select(String name, String custom) {
+        return LoggingMapper.select(name, custom);
+    }
 }

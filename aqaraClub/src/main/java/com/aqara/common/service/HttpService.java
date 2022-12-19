@@ -11,22 +11,22 @@ import com.aqara.common.utils.HuobanUtil;
 @Service
 public class HttpService {
 
-	@Retryable(value = { Exception.class }, maxAttempts = 3)
-	public static JSONObject getSchedule(String requestUrl, String ticket, JSONObject obj) {
-		try {
-			return HuobanUtil.getSchedule(requestUrl, ticket, obj);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+    @Retryable(value = {Exception.class}, maxAttempts = 3)
+    public static JSONObject getSchedule(String requestUrl, String ticket, JSONObject obj) {
+        try {
+            return HuobanUtil.getSchedule(requestUrl, ticket, obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-	@Recover
-	public void recover(RemoteAccessException e) {
-		System.out.println(e.getMessage());
-	}
+    @Recover
+    public void recover(RemoteAccessException e) {
+        System.out.println(e.getMessage());
+    }
 
-	public void workRequset(String str, String WX_TOKEN) {
-		HttpUtil.workRequest(str, WX_TOKEN);
-	}
+    public void workRequset(String str, String WX_TOKEN) {
+        HttpUtil.workRequest(str, WX_TOKEN);
+    }
 }

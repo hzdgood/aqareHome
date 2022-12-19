@@ -1,7 +1,6 @@
-
-  # 开发者应该设置成自己的wx相关信息
-  # corpId: ww728dd07f7641e567
-  # corpSecret: gI7rD-tDe6i47qzxuNc7xG7M4gUURgKOPWYY6QOAro4
+# 开发者应该设置成自己的wx相关信息
+# corpId: ww728dd07f7641e567
+# corpSecret: gI7rD-tDe6i47qzxuNc7xG7M4gUURgKOPWYY6QOAro4
 wx:
   corpId: ww9a717b03b06063e3
   corpSecret: nZv_TArU4E_PavzhhU22B6LJtT-BjaRmDCGjE64v0xQ
@@ -47,20 +46,20 @@ huoban:
   SearchInfo: https://api.huoban.com/v2/item/table/
   updateTable: https://api.huoban.com/v2/item/
   addInfo: https://api.huoban.com/v2/item/table/
-  
+
 reboot:
   customerBroadcast: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c
   projectBroadcast: https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0adf9002-d736-4921-b35f-f36c6429b097
-  
+
 baidu:
   key: agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi
   url: http://api.map.baidu.com/geocoder/v2/
-  
+
 server:
   port: 8081
   tomcat:
     uri-encoding: UTF-8
-    
+
 logging:
   level:
     root: info

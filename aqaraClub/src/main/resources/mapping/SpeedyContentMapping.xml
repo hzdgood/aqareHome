@@ -1,80 +1,78 @@
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.SpeedyContentMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="mediaId" jdbcType="VARCHAR" property="mediaId" />
-		<result column="teamId" jdbcType="INTEGER" property="teamId" />
-		<result column="themeId" jdbcType="INTEGER" property="themeId" />
-		<result column="type" jdbcType="VARCHAR" property="type" />
-		<result column="team" jdbcType="VARCHAR" property="team" />
-		<result column="theme" jdbcType="VARCHAR" property="theme" />
-		<result column="company" jdbcType="VARCHAR" property="company" />
-		<result column="affiliatePerson" jdbcType="VARCHAR" property="affiliatePerson" />
-		<result column="contentTitle" jdbcType="VARCHAR" property="contentTitle" />
-		<result column="contentText" jdbcType="VARCHAR" property="contentText" />
-		<result column="contentFile" jdbcType="VARCHAR" property="contentFile" />
-		<result column="contentType" jdbcType="VARCHAR" property="contentType" />
-		<result column="contentLevel" jdbcType="VARCHAR" property="contentLevel" />
-		<result column="createName" jdbcType="VARCHAR" property="createName" />
-		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
-		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
-		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
-	</resultMap>
-	
-	<select id="select" resultType="com.aqara.common.entity.SpeedyContent">
-		 SELECT c.id, c.mediaId, t2.teamId, c.themeId, t1.type, t1.team, t2.theme, t1.affiliatePerson, t1.company,
-		    c.contentTitle, c.contentText, c.contentFile, c.contentType, c.contentLevel,
-			c.createName, c.createTime, c.updateName, c.updateTime
-			FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c 
-    		where t2.id = c.themeId and t1.id = t2.teamId
-		<if test="themeId!=null and themeId!=''">
-			AND c.themeId = #{themeId}
-		</if>
-		<if test="affiliatePerson!=null and affiliatePerson!=''">
-			AND t1.affiliatePerson = #{affiliatePerson}
-		</if>
-		<if test="team!=null and team!=''">
-			AND t1.team like concat('%',#{team,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="theme!=null and theme!=''">
-    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="type!=null and type!=''">
-    		AND t1.type like concat('%',#{type,jdbcType=VARCHAR},'%')
-		</if>
-		order by c.contentLevel
-	</select>
-	
-	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyContent ( 
-			themeId, mediaId, contentTitle, contentText, contentFile,
-		    contentType, contentLevel, createName, createTime
-		) 
-		values ( #{themeId}, #{mediaId}, #{contentTitle}, #{contentText},
-				 #{contentFile}, #{contentType}, #{contentLevel}, #{createName}, NOW())
-	</insert>
-	
-	<insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
-		update speedyContent set 
-			themeId = #{themeId},
-			mediaId = #{mediaId},
-			contentTitle = #{contentTitle},
-			contentText = #{contentText},
-			contentFile = #{contentFile},
-			contentType = #{contentType},
-			contentLevel = #{contentLevel},
-			updateName = #{updateName}, 
-			updateTime = NOW() 
-		where id = #{id}
-	</insert>
-	
-	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">
-		delete from speedyContent where id in 
-		<foreach collection="ids" item="id" separator="," open="(" close=")">
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyContent">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="mediaId" jdbcType="VARCHAR" property="mediaId"/>
+        <result column="teamId" jdbcType="INTEGER" property="teamId"/>
+        <result column="themeId" jdbcType="INTEGER" property="themeId"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="team" jdbcType="VARCHAR" property="team"/>
+        <result column="theme" jdbcType="VARCHAR" property="theme"/>
+        <result column="company" jdbcType="VARCHAR" property="company"/>
+        <result column="affiliatePerson" jdbcType="VARCHAR" property="affiliatePerson"/>
+        <result column="contentTitle" jdbcType="VARCHAR" property="contentTitle"/>
+        <result column="contentText" jdbcType="VARCHAR" property="contentText"/>
+        <result column="contentFile" jdbcType="VARCHAR" property="contentFile"/>
+        <result column="contentType" jdbcType="VARCHAR" property="contentType"/>
+        <result column="contentLevel" jdbcType="VARCHAR" property="contentLevel"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="select" resultType="com.aqara.common.entity.SpeedyContent">
+        SELECT c.id, c.mediaId, t2.teamId, c.themeId, t1.type, t1.team, t2.theme, t1.affiliatePerson, t1.company,
+        c.contentTitle, c.contentText, c.contentFile, c.contentType, c.contentLevel,
+        c.createName, c.createTime, c.updateName, c.updateTime
+        FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c
+        where t2.id = c.themeId and t1.id = t2.teamId
+        <if test="themeId!=null and themeId!=''">
+            AND c.themeId = #{themeId}
+        </if>
+        <if test="affiliatePerson!=null and affiliatePerson!=''">
+            AND t1.affiliatePerson = #{affiliatePerson}
+        </if>
+        <if test="team!=null and team!=''">
+            AND t1.team like concat('%',#{team,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="theme!=null and theme!=''">
+            AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="type!=null and type!=''">
+            AND t1.type like concat('%',#{type,jdbcType=VARCHAR},'%')
+        </if>
+        order by c.contentLevel
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
+        insert into speedyContent (themeId, mediaId, contentTitle, contentText, contentFile,
+                                   contentType, contentLevel, createName, createTime)
+        values (#{themeId}, #{mediaId}, #{contentTitle}, #{contentText},
+                #{contentFile}, #{contentType}, #{contentLevel}, #{createName}, NOW())
+    </insert>
+
+    <insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
+        update speedyContent
+        set themeId      = #{themeId},
+            mediaId      = #{mediaId},
+            contentTitle = #{contentTitle},
+            contentText  = #{contentText},
+            contentFile  = #{contentFile},
+            contentType  = #{contentType},
+            contentLevel = #{contentLevel},
+            updateName   = #{updateName},
+            updateTime   = NOW()
+        where id = #{id}
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.SpeedyContent">
+        delete from speedyContent where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
             #{id}
         </foreach>
-	</delete>
+    </delete>
 
 </mapper>

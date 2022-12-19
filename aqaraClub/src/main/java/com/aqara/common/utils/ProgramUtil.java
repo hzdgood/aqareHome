@@ -10,7 +10,8 @@ public class ProgramUtil {
 
         String lastUrl = url + "?appid=" + Appid + "&secret=" + secret
                 + "&js_code=" + code + "&grant_type=authorization_code";
-        String result = HttpUtil.post(lastUrl);;
+        String result = HttpUtil.post(lastUrl);
+        ;
         return result;
     }
 }

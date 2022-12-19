@@ -1,52 +1,59 @@
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.QuotationMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.Quotation">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="code" jdbcType="VARCHAR" property="code" />
-		<result column="quotationType" jdbcType="VARCHAR" property="quotationType" />
-		<result column="quotationID" jdbcType="VARCHAR" property="quotationID" />
-		<result column="schemeAmount" jdbcType="VARCHAR" property="schemeAmount" />
-		<result column="preferentialAmount" jdbcType="VARCHAR" property="preferentialAmount" />
-		<result column="amountReceivable" jdbcType="VARCHAR" property="amountReceivable" />
-		<result column="amountReceived" jdbcType="VARCHAR" property="amountReceived" />
-		<result column="uncollectedAmount" jdbcType="VARCHAR" property="uncollectedAmount" />
-		<result column="remarks" jdbcType="VARCHAR" property="remarks" />
-		<result column="uploadContract" jdbcType="VARCHAR" property="uploadContract" />
-		<result column="createName" jdbcType="VARCHAR" property="createName" />
-		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
-		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
-		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
-	</resultMap>
-	
-	<select id="select" resultType="com.aqara.common.entity.Quotation">
-		select * from quotation where 1=1 and code = #{code}
-	</select>
-	
-	<select id="currentData" resultType="com.aqara.common.entity.Quotation">
-		select * from quotation where to_days(createTime) = to_days(now())
-	</select>
-	
-	<insert id="insert" parameterType="com.aqara.common.entity.Quotation" useGeneratedKeys="true" keyProperty="id">
-		insert into quotation ( code, quotationType, quotationID, schemeAmount, preferentialAmount, amountReceivable,
-		amountReceived, uncollectedAmount, remarks, uploadContract, createName, createTime, updateName, updateTime 
-		) values ( 
-		#{code}, #{quotationType}, #{quotationID}, #{schemeAmount}, #{preferentialAmount}, #{amountReceivable},
-		#{amountReceived}, #{uncollectedAmount}, #{remarks}, #{uploadContract}, 
-		#{createName}, NOW(), #{updateName}, NOW() )
-	</insert>
-	
-	<insert id="upload" parameterType="com.aqara.common.entity.Quotation" useGeneratedKeys="true" keyProperty="id">
-		insert into quotation ( code, quotationType, quotationID, schemeAmount, preferentialAmount, amountReceivable,
-		amountReceived, uncollectedAmount, remarks, uploadContract, createName, createTime, updateName, updateTime 
-		) values ( 
-		#{code}, #{quotationType}, #{quotationID}, #{schemeAmount}, #{preferentialAmount}, #{amountReceivable},
-		#{amountReceived}, #{uncollectedAmount}, #{remarks}, #{uploadContract}, 
-		#{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE} )
-	</insert>
-	
-	<delete id="delete" parameterType="com.aqara.common.entity.Quotation">
-		delete from quotation where id = #{id}
-	</delete>
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Quotation">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="quotationType" jdbcType="VARCHAR" property="quotationType"/>
+        <result column="quotationID" jdbcType="VARCHAR" property="quotationID"/>
+        <result column="schemeAmount" jdbcType="VARCHAR" property="schemeAmount"/>
+        <result column="preferentialAmount" jdbcType="VARCHAR" property="preferentialAmount"/>
+        <result column="amountReceivable" jdbcType="VARCHAR" property="amountReceivable"/>
+        <result column="amountReceived" jdbcType="VARCHAR" property="amountReceived"/>
+        <result column="uncollectedAmount" jdbcType="VARCHAR" property="uncollectedAmount"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+        <result column="uploadContract" jdbcType="VARCHAR" property="uploadContract"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="select" resultType="com.aqara.common.entity.Quotation">
+        select *
+        from quotation
+        where 1 = 1
+          and code = #{code}
+    </select>
+
+    <select id="currentData" resultType="com.aqara.common.entity.Quotation">
+        select *
+        from quotation
+        where to_days(createTime) = to_days(now())
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.Quotation" useGeneratedKeys="true" keyProperty="id">
+        insert into quotation (code, quotationType, quotationID, schemeAmount, preferentialAmount, amountReceivable,
+                               amountReceived, uncollectedAmount, remarks, uploadContract, createName, createTime,
+                               updateName, updateTime)
+        values (#{code}, #{quotationType}, #{quotationID}, #{schemeAmount}, #{preferentialAmount}, #{amountReceivable},
+                #{amountReceived}, #{uncollectedAmount}, #{remarks}, #{uploadContract},
+                #{createName}, NOW(), #{updateName}, NOW())
+    </insert>
+
+    <insert id="upload" parameterType="com.aqara.common.entity.Quotation" useGeneratedKeys="true" keyProperty="id">
+        insert into quotation (code, quotationType, quotationID, schemeAmount, preferentialAmount, amountReceivable,
+                               amountReceived, uncollectedAmount, remarks, uploadContract, createName, createTime,
+                               updateName, updateTime)
+        values (#{code}, #{quotationType}, #{quotationID}, #{schemeAmount}, #{preferentialAmount}, #{amountReceivable},
+                #{amountReceived}, #{uncollectedAmount}, #{remarks}, #{uploadContract},
+                #{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE})
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.Quotation">
+        delete
+        from quotation
+        where id = #{id}
+    </delete>
 </mapper>

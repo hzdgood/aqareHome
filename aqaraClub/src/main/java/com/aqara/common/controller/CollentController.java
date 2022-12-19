@@ -1,6 +1,7 @@
 package com.aqara.common.controller;
 
 import java.util.List;
+
 import com.aqara.common.service.CollentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,17 +15,17 @@ import com.aqara.common.utils.ReadExcelUtil;
 @RestController
 @RequestMapping("/collent")
 public class CollentController {
-	
-	@Autowired
-	CollentService CollentService;
-	
-	@CrossOrigin
-	@RequestMapping("/upload")
-	public void upload(@RequestParam("file") MultipartFile file) {
-		List<Collent> list = ReadExcelUtil.collentExcel(file);
-		for (int i = 0; i < list.size(); i++) {
-			Collent Collent = list.get(i);
-			CollentService.insert(Collent);
-		}
-	}
+
+    @Autowired
+    CollentService CollentService;
+
+    @CrossOrigin
+    @RequestMapping("/upload")
+    public void upload(@RequestParam("file") MultipartFile file) {
+        List<Collent> list = ReadExcelUtil.collentExcel(file);
+        for (int i = 0; i < list.size(); i++) {
+            Collent Collent = list.get(i);
+            CollentService.insert(Collent);
+        }
+    }
 }

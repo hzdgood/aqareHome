@@ -1,39 +1,43 @@
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.UserMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.User">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="code" jdbcType="VARCHAR" property="code" />
-		<result column="userName" jdbcType="VARCHAR" property="userName" />
-		<result column="passWord" jdbcType="VARCHAR" property="passWord" />
-		<result column="engName" jdbcType="VARCHAR" property="engName" />
-		<result column="sex" jdbcType="VARCHAR" property="sex" />
-		<result column="station" jdbcType="VARCHAR" property="station" />
-		<result column="department" jdbcType="VARCHAR" property="department" />
-		<result column="status" jdbcType="VARCHAR" property="status" />
-		<result column="company" jdbcType="VARCHAR" property="company" />
-	</resultMap>
-	<select id="select" resultType="com.aqara.common.entity.User">
-		select * from user where 1=1
-		<if test="userName!=null and userName!=''">
-			AND userName = #{userName}
-		</if>
-		<if test="engName!=null and engName!=''">
-			AND engName = #{engName}
-		</if>
-	</select>
-	
-	<select id="selectCode" resultType="com.aqara.common.entity.User">
-		select * from user where code = #{code}
-	</select>
-	
-	<insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
-  		insert into user (code, userName, passWord, engName, sex, station, department, status, company) 
-  			values( #{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company})
-	</insert>
-	
-	<delete id="delete" parameterType="com.aqara.common.entity.User">
-		delete from user where 1 = 1
-	</delete>
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.User">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="passWord" jdbcType="VARCHAR" property="passWord"/>
+        <result column="engName" jdbcType="VARCHAR" property="engName"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="station" jdbcType="VARCHAR" property="station"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="company" jdbcType="VARCHAR" property="company"/>
+    </resultMap>
+    <select id="select" resultType="com.aqara.common.entity.User">
+        select * from user where 1=1
+        <if test="userName!=null and userName!=''">
+            AND userName = #{userName}
+        </if>
+        <if test="engName!=null and engName!=''">
+            AND engName = #{engName}
+        </if>
+    </select>
+
+    <select id="selectCode" resultType="com.aqara.common.entity.User">
+        select *
+        from user
+        where code = #{code}
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
+        insert into user (code, userName, passWord, engName, sex, station, department, status, company)
+        values (#{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company})
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.User">
+        delete
+        from user
+        where 1 = 1
+    </delete>
 </mapper>

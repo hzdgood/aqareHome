@@ -1,46 +1,57 @@
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.ProjectMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.Project">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="code" jdbcType="VARCHAR" property="code" />
-		<result column="currrentTask" jdbcType="VARCHAR" property="currrentTask" />
-		<result column="decorationProgress" jdbcType="VARCHAR" property="decorationProgress" />
-		<result column="saleConfirm" jdbcType="VARCHAR" property="saleConfirm" />
-		<result column="end" jdbcType="VARCHAR" property="end" />
-		<result column="projectName" jdbcType="VARCHAR" property="projectName" />
-		<result column="projectTelephone" jdbcType="VARCHAR" property="projectTelephone" />
-		<result column="projectType" jdbcType="VARCHAR" property="projectType" />
-		<result column="mainProject" jdbcType="VARCHAR" property="mainProject" />
-		<result column="groupID" jdbcType="VARCHAR" property="groupID" />
-		<result column="sales" jdbcType="VARCHAR" property="sales" />
-		<result column="department" jdbcType="VARCHAR" property="department" />
-		<result column="itemId" jdbcType="VARCHAR" property="itemId" />
-		<result column="createName" jdbcType="VARCHAR" property="createName" />
-		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
-		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
-		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
-	</resultMap>
-	
-	<select id="select" resultType="com.aqara.common.entity.Project">
-		select * from project where 1=1 and code = #{code}
-	</select>
-	
-	<select id="currentData" resultType="com.aqara.common.entity.Project">
-		select * from project where 1=1 and to_days(createTime) = to_days(now()) order by department
-	</select>
-	
-	<insert id="insert" parameterType="com.aqara.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
-		insert into project (code, currrentTask, decorationProgress, saleConfirm, end,
-			projectName, projectTelephone, projectType, mainProject, groupID, sales, department, itemId,
-			createName, createTime, updateName, updateTime
-		)  values ( #{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end}, 
-		  	#{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{sales}, #{department}, #{itemId},
-		  	#{createName}, NOW(), #{updateName}, NOW() )
-	</insert>
-	
-	<delete id="delete" parameterType="com.aqara.common.entity.Project">
-		delete from project where 1=1
-	</delete>
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Project">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="currrentTask" jdbcType="VARCHAR" property="currrentTask"/>
+        <result column="decorationProgress" jdbcType="VARCHAR" property="decorationProgress"/>
+        <result column="saleConfirm" jdbcType="VARCHAR" property="saleConfirm"/>
+        <result column="end" jdbcType="VARCHAR" property="end"/>
+        <result column="projectName" jdbcType="VARCHAR" property="projectName"/>
+        <result column="projectTelephone" jdbcType="VARCHAR" property="projectTelephone"/>
+        <result column="projectType" jdbcType="VARCHAR" property="projectType"/>
+        <result column="mainProject" jdbcType="VARCHAR" property="mainProject"/>
+        <result column="groupID" jdbcType="VARCHAR" property="groupID"/>
+        <result column="sales" jdbcType="VARCHAR" property="sales"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="select" resultType="com.aqara.common.entity.Project">
+        select *
+        from project
+        where 1 = 1
+          and code = #{code}
+    </select>
+
+    <select id="currentData" resultType="com.aqara.common.entity.Project">
+        select *
+        from project
+        where 1 = 1
+          and to_days(createTime) = to_days(now())
+        order by department
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
+        insert into project (code, currrentTask, decorationProgress, saleConfirm, end,
+                             projectName, projectTelephone, projectType, mainProject, groupID, sales, department,
+                             itemId,
+                             createName, createTime, updateName, updateTime)
+        values (#{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end},
+                #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{sales},
+                #{department}, #{itemId},
+                #{createName}, NOW(), #{updateName}, NOW())
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.Project">
+        delete
+        from project
+        where 1 = 1
+    </delete>
 </mapper>

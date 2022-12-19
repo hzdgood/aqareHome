@@ -1,83 +1,86 @@
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.CustomerMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.Customer">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="companyId" jdbcType="VARCHAR" property="companyId" />
-		<result column="name" jdbcType="VARCHAR" property="name" />
-		<result column="telephone" jdbcType="VARCHAR" property="telephone" />
-		<result column="sales" jdbcType="VARCHAR" property="sales" />
-		<result column="department" jdbcType="VARCHAR" property="department" />
-		<result column="sex" jdbcType="VARCHAR" property="sex" />
-		<result column="source" jdbcType="VARCHAR" property="source" />
-		<result column="houseType" jdbcType="VARCHAR" property="houseType" />
-		<result column="houseState" jdbcType="VARCHAR" property="houseState" />
-		<result column="personnelAttr" jdbcType="VARCHAR" property="personnelAttr" />
-		<result column="customerAttr" jdbcType="VARCHAR" property="customerAttr" />
-		<result column="customerStage" jdbcType="VARCHAR" property="customerStage" />
-		<result column="SPcustomer" jdbcType="VARCHAR" property="SPcustomer" />
-		<result column="houseDemand" jdbcType="VARCHAR" property="houseDemand" />
-		<result column="lossStatus" jdbcType="VARCHAR" property="lossStatus" />
-		<result column="weiXin" jdbcType="VARCHAR" property="weiXin" />
-		<result column="UserID" jdbcType="VARCHAR" property="UserID" />
-		<result column="releWeixin" jdbcType="VARCHAR" property="releWeixin" />
-		<result column="createName" jdbcType="VARCHAR" property="createName" />
-		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
-		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
-		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
-	</resultMap>
-	<select id="select" resultType="com.aqara.common.entity.Customer">
-		select * from customer where 1=1 
-		<if test="sales!=null and sales!=''">
-			and sales = #{sales}
-		</if>
-		<if test="department!=null and department!=''">
-			and department = #{department}
-		</if>
-		<if test="startTime!=null and startTime!=''">
-			<![CDATA[ and DATE_FORMAT(createTime, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d') ]]>
-		</if>
-		<if test="endTime!=null and endTime!=''">
-			<![CDATA[ and DATE_FORMAT(createTime, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d') ]]>
-		</if>
-	</select>
-	
-	<select id="currentData" resultType="com.aqara.common.entity.Customer">
-		select * from customer where to_days(createTime) = to_days(now())
-	</select>
-	
-	<select id="weekData" resultType="com.aqara.common.entity.Collent">
-		select * from customer where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <=  ]]> date(createTime)
-	</select>
-	
-	<insert id="insert" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true" keyProperty="id">
-		insert into customer ( name, telephone, sales, department, sex, 
-		source, houseType, houseState, personnelAttr, customerAttr,
-		customerStage, SPcustomer, houseDemand, lossStatus, weiXin,
-		UserID, releWeixin, createName, createTime,  updateName, updateTime
-		) values (
-		#{name}, #{telephone}, #{sales}, #{department}, #{sex}, 
-		#{source}, #{houseType}, #{houseState}, #{personnelAttr}, #{customerAttr},
-		#{customerStage}, #{SPcustomer}, #{houseDemand}, #{lossStatus}, #{weiXin},
-		#{UserID}, #{releWeixin}, #{createName}, NOW(),  #{updateName}, NOW()
-		)
-	</insert>
-	
-	<insert id="upload" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true" keyProperty="id">
-		insert into customer ( name, telephone, sales, department, sex, 
-		source, houseType, houseState, personnelAttr, customerAttr,
-		customerStage, SPcustomer, houseDemand, lossStatus, weiXin,
-		UserID, releWeixin, createName, createTime,  updateName, updateTime
-		) values (
-		#{name}, #{telephone}, #{sales}, #{department}, #{sex}, 
-		#{source}, #{houseType}, #{houseState}, #{personnelAttr}, #{customerAttr},
-		#{customerStage}, #{SPcustomer}, #{houseDemand}, #{lossStatus}, #{weiXin},
-		#{UserID}, #{releWeixin}, #{createName}, #{createTime,jdbcType=DATE}, #{updateName}, #{updateTime,jdbcType=DATE}
-		)
-	</insert>
-	
-	<delete id="delete" parameterType="com.aqara.common.entity.Customer">
-		delete from customer where id = #{id}
-	</delete>
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Customer">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="companyId" jdbcType="VARCHAR" property="companyId"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="sales" jdbcType="VARCHAR" property="sales"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="source" jdbcType="VARCHAR" property="source"/>
+        <result column="houseType" jdbcType="VARCHAR" property="houseType"/>
+        <result column="houseState" jdbcType="VARCHAR" property="houseState"/>
+        <result column="personnelAttr" jdbcType="VARCHAR" property="personnelAttr"/>
+        <result column="customerAttr" jdbcType="VARCHAR" property="customerAttr"/>
+        <result column="customerStage" jdbcType="VARCHAR" property="customerStage"/>
+        <result column="SPcustomer" jdbcType="VARCHAR" property="SPcustomer"/>
+        <result column="houseDemand" jdbcType="VARCHAR" property="houseDemand"/>
+        <result column="lossStatus" jdbcType="VARCHAR" property="lossStatus"/>
+        <result column="weiXin" jdbcType="VARCHAR" property="weiXin"/>
+        <result column="UserID" jdbcType="VARCHAR" property="UserID"/>
+        <result column="releWeixin" jdbcType="VARCHAR" property="releWeixin"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <select id="select" resultType="com.aqara.common.entity.Customer">
+        select * from customer where 1=1
+        <if test="sales!=null and sales!=''">
+            and sales = #{sales}
+        </if>
+        <if test="department!=null and department!=''">
+            and department = #{department}
+        </if>
+        <if test="startTime!=null and startTime!=''">
+            <![CDATA[ and DATE_FORMAT(createTime, '%Y-%m-%d') >= DATE_FORMAT(#{startTime}, '%Y-%m-%d') ]]>
+        </if>
+        <if test="endTime!=null and endTime!=''">
+            <![CDATA[ and DATE_FORMAT(createTime, '%Y-%m-%d') <= DATE_FORMAT(#{endTime}, '%Y-%m-%d') ]]>
+        </if>
+    </select>
+
+    <select id="currentData" resultType="com.aqara.common.entity.Customer">
+        select *
+        from customer
+        where to_days(createTime) = to_days(now())
+    </select>
+
+    <select id="weekData" resultType="com.aqara.common.entity.Collent">
+        select *
+        from customer
+        where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <=  ]]> date(createTime)
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true" keyProperty="id">
+        insert into customer (name, telephone, sales, department, sex,
+                              source, houseType, houseState, personnelAttr, customerAttr,
+                              customerStage, SPcustomer, houseDemand, lossStatus, weiXin,
+                              UserID, releWeixin, createName, createTime, updateName, updateTime)
+        values (#{name}, #{telephone}, #{sales}, #{department}, #{sex},
+                #{source}, #{houseType}, #{houseState}, #{personnelAttr}, #{customerAttr},
+                #{customerStage}, #{SPcustomer}, #{houseDemand}, #{lossStatus}, #{weiXin},
+                #{UserID}, #{releWeixin}, #{createName}, NOW(), #{updateName}, NOW())
+    </insert>
+
+    <insert id="upload" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true" keyProperty="id">
+        insert into customer (name, telephone, sales, department, sex,
+                              source, houseType, houseState, personnelAttr, customerAttr,
+                              customerStage, SPcustomer, houseDemand, lossStatus, weiXin,
+                              UserID, releWeixin, createName, createTime, updateName, updateTime)
+        values (#{name}, #{telephone}, #{sales}, #{department}, #{sex},
+                #{source}, #{houseType}, #{houseState}, #{personnelAttr}, #{customerAttr},
+                #{customerStage}, #{SPcustomer}, #{houseDemand}, #{lossStatus}, #{weiXin},
+                #{UserID}, #{releWeixin}, #{createName}, #{createTime,jdbcType=DATE}, #{updateName},
+                #{updateTime,jdbcType=DATE})
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.Customer">
+        delete
+        from customer
+        where id = #{id}
+    </delete>
 </mapper>

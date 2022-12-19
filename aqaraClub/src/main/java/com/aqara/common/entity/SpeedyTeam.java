@@ -3,89 +3,95 @@ package com.aqara.common.entity;
 import java.util.Date;
 
 public class SpeedyTeam {
-	private Integer id;
-	private String team; // 组名
-	private String type; // 类型
-	private String affiliatePerson; // 所属人员
-	private String affiliateTeam; // 所属团队
-	private String company; // 公司
-	private String createName;
-	private Date createTime;
-	private String updateName;
-	private Date updateTime;
+    private Integer id;
+    private String team; // 组名
+    private String type; // 类型
+    private String affiliatePerson; // 所属人员
+    private String affiliateTeam; // 所属团队
+    private String company; // 公司
+    private String createName;
+    private Date createTime;
+    private String updateName;
+    private Date updateTime;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	
-	public String getTeam() {
-		return team;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public void setTeam(String team) {
-		this.team = team;
-	}
+    public String getTeam() {
+        return team;
+    }
 
-	public String getType() {
-		return type;
-	}
+    public void setTeam(String team) {
+        this.team = team;
+    }
 
-	public void setType(String type) { this.type = type; }
+    public String getType() {
+        return type;
+    }
 
-	public String getAffiliatePerson() {
-		return affiliatePerson;
-	}
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	public void setAffiliatePerson(String affiliatePerson) {
-		this.affiliatePerson = affiliatePerson;
-	}
+    public String getAffiliatePerson() {
+        return affiliatePerson;
+    }
 
-	public String getAffiliateTeam() { return affiliateTeam; }
+    public void setAffiliatePerson(String affiliatePerson) {
+        this.affiliatePerson = affiliatePerson;
+    }
 
-	public void setAffiliateTeam(String affiliateTeam) { this.affiliateTeam = affiliateTeam; }
+    public String getAffiliateTeam() {
+        return affiliateTeam;
+    }
 
-	public String getCompany() {
-		return company;
-	}
+    public void setAffiliateTeam(String affiliateTeam) {
+        this.affiliateTeam = affiliateTeam;
+    }
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
+    public String getCompany() {
+        return company;
+    }
 
-	public String getCreateName() {
-		return createName;
-	}
+    public void setCompany(String company) {
+        this.company = company;
+    }
 
-	public void setCreateName(String createName) {
-		this.createName = createName;
-	}
+    public String getCreateName() {
+        return createName;
+    }
 
-	public Date getCreateTime() {
-		return createTime;
-	}
+    public void setCreateName(String createName) {
+        this.createName = createName;
+    }
 
-	public void setCreateTime(Date createTime) {
-		this.createTime = createTime;
-	}
+    public Date getCreateTime() {
+        return createTime;
+    }
 
-	public String getUpdateName() {
-		return updateName;
-	}
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
-	public void setUpdateName(String updateName) {
-		this.updateName = updateName;
-	}
+    public String getUpdateName() {
+        return updateName;
+    }
 
-	public Date getUpdateTime() {
-		return updateTime;
-	}
+    public void setUpdateName(String updateName) {
+        this.updateName = updateName;
+    }
 
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
-	}
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
 }

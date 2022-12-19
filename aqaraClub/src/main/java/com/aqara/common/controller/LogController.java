@@ -12,23 +12,23 @@ import com.aqara.common.service.LoggingService;
 @RestController
 @RequestMapping("/log")
 public class LogController {
-	
-	@Autowired
-	LoggingService LoggingService;
-	
-	@CrossOrigin
-	@RequestMapping("/insert")
-	public void insert(String name, String custom, String info) {
-		Logging log = new Logging();
-		log.setName(name);
-		log.setCustom(custom);
-		log.setInfo(info);
-		LoggingService.insert(log);
-	}
-	
-	@CrossOrigin
-	@RequestMapping("/select")
-	public List<Logging> select(String name, String custom) {
-		return LoggingService.select(name, custom);
-	}
+
+    @Autowired
+    LoggingService LoggingService;
+
+    @CrossOrigin
+    @RequestMapping("/insert")
+    public void insert(String name, String custom, String info) {
+        Logging log = new Logging();
+        log.setName(name);
+        log.setCustom(custom);
+        log.setInfo(info);
+        LoggingService.insert(log);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/select")
+    public List<Logging> select(String name, String custom) {
+        return LoggingService.select(name, custom);
+    }
 }

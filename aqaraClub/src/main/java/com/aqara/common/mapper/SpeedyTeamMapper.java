@@ -1,18 +1,19 @@
 package com.aqara.common.mapper;
 
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
 import com.aqara.common.entity.SpeedyTeam;
 
 @Repository
 public interface SpeedyTeamMapper {
-	
-	List<SpeedyTeam> select(String type, String name, String affiliatePerson);
-	
-	void insert(SpeedyTeam SpeedyTheme);
-	
-	void update(SpeedyTeam SpeedyTheme);
-	
-	void delete(List<Integer> ids);
+
+    List<SpeedyTeam> select(String type, String name, String affiliatePerson);
+
+    void insert(SpeedyTeam SpeedyTheme);
+
+    void update(SpeedyTeam SpeedyTheme);
+
+    void delete(List<Integer> ids);
 
 }

@@ -1,77 +1,77 @@
 package com.aqara.common.entity;
 
 public class Schedule {
-	private String organizer;
-	private String userid;
-	private String startTime;
-	private String duration;
-	private String description;
-	private String summary;
-	private String location;
-	private String url;
-	
-	public String getOrganizer() {
-		return organizer;
-	}
+    private String organizer;
+    private String userid;
+    private String startTime;
+    private String duration;
+    private String description;
+    private String summary;
+    private String location;
+    private String url;
 
-	public void setOrganizer(String organizer) {
-		this.organizer = organizer;
-	}
+    public String getOrganizer() {
+        return organizer;
+    }
 
-	public String getUserid() {
-		return userid;
-	}
+    public void setOrganizer(String organizer) {
+        this.organizer = organizer;
+    }
 
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
+    public String getUserid() {
+        return userid;
+    }
 
-	public String getStartTime() {
-		return startTime;
-	}
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
 
-	public void setStartTime(String startTime) {
-		this.startTime = startTime;
-	}
+    public String getStartTime() {
+        return startTime;
+    }
 
-	public String getDuration() {
-		return duration;
-	}
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
 
-	public void setDuration(String duration) {
-		this.duration = duration;
-	}
+    public String getDuration() {
+        return duration;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public String getSummary() {
-		return summary;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
+    public String getSummary() {
+        return summary;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
 }

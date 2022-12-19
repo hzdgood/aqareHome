@@ -1,55 +1,59 @@
-<!DOCTYPE mapper 
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.SpeedyThemeMapper">
-	<resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyTheme">
-		<result column="id" jdbcType="INTEGER" property="id" />
-		<result column="teamId" jdbcType="INTEGER" property="teamId" />
-		<result column="theme" jdbcType="VARCHAR" property="theme" />
-		<result column="type" jdbcType="VARCHAR" property="type" />
-		<result column="team" jdbcType="VARCHAR" property="team" />
-		<result column="company" jdbcType="VARCHAR" property="company" />
-		<result column="affiliatePerson" jdbcType="VARCHAR" property="affiliatePerson" />
-		<result column="createName" jdbcType="VARCHAR" property="createName" />
-		<result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
-		<result column="updateName" jdbcType="VARCHAR" property="updateName" />
-		<result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
-	</resultMap>
-	
-	<select id="select" resultType="com.aqara.common.entity.SpeedyTheme">
-		select t2.id, t2.teamId, t1.team, t1.company, t1.type, t2.theme, t1.affiliatePerson,
-			t2.createName, t2.createTime, t2.updateName, t2.updateTime
- 			from aqara.speedyteam t1 , aqara.speedytheme t2 where t1.id = t2.teamId
-		<if test="theme!=null and theme!=''">
-    		AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
-		</if>
-		<if test="affiliatePerson!=null and affiliatePerson!=''">
-			AND t1.affiliatePerson = #{affiliatePerson}
-		</if>
-		<if test="teamId!=null and teamId!=''">
-			AND t2.teamId = #{teamId}
-		</if>
-		<if test="type!=null and type!=''">
-    		AND t1.type = #{type}
-		</if>
-		order by t2.teamId
-	</select>
-	
-	<insert id="insert" parameterType="com.aqara.common.entity.SpeedyTheme" useGeneratedKeys="true" keyProperty="id">
-		insert into speedyTheme ( teamId, theme, createName, createTime) 
-			values ( #{teamId}, #{theme}, #{createName}, NOW())
-	</insert>
-	
-	<insert id="update" parameterType="com.aqara.common.entity.SpeedyTheme">
-		update speedyTheme set theme = #{theme}, teamId = #{teamId}, updateName = #{updateName}, updateTime = NOW() 
-			where id = #{id}
-	</insert>
-	
-	<delete id="delete" parameterType="com.aqara.common.entity.SpeedyTheme">
-		delete from speedyTheme where id in 
-		<foreach collection="ids" item="id" separator="," open="(" close=")">
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.SpeedyTheme">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="teamId" jdbcType="INTEGER" property="teamId"/>
+        <result column="theme" jdbcType="VARCHAR" property="theme"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="team" jdbcType="VARCHAR" property="team"/>
+        <result column="company" jdbcType="VARCHAR" property="company"/>
+        <result column="affiliatePerson" jdbcType="VARCHAR" property="affiliatePerson"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="select" resultType="com.aqara.common.entity.SpeedyTheme">
+        select t2.id, t2.teamId, t1.team, t1.company, t1.type, t2.theme, t1.affiliatePerson,
+        t2.createName, t2.createTime, t2.updateName, t2.updateTime
+        from aqara.speedyteam t1 , aqara.speedytheme t2 where t1.id = t2.teamId
+        <if test="theme!=null and theme!=''">
+            AND t2.theme like concat('%',#{theme,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="affiliatePerson!=null and affiliatePerson!=''">
+            AND t1.affiliatePerson = #{affiliatePerson}
+        </if>
+        <if test="teamId!=null and teamId!=''">
+            AND t2.teamId = #{teamId}
+        </if>
+        <if test="type!=null and type!=''">
+            AND t1.type = #{type}
+        </if>
+        order by t2.teamId
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.SpeedyTheme" useGeneratedKeys="true" keyProperty="id">
+        insert into speedyTheme (teamId, theme, createName, createTime)
+        values (#{teamId}, #{theme}, #{createName}, NOW())
+    </insert>
+
+    <insert id="update" parameterType="com.aqara.common.entity.SpeedyTheme">
+        update speedyTheme
+        set theme      = #{theme},
+            teamId     = #{teamId},
+            updateName = #{updateName},
+            updateTime = NOW()
+        where id = #{id}
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.SpeedyTheme">
+        delete from speedyTheme where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
             #{id}
         </foreach>
-	</delete>
+    </delete>
 
 </mapper>

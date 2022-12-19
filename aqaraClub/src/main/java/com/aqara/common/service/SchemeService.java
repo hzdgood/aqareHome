@@ -9,18 +9,18 @@ import com.aqara.common.mapper.SchemeMapper;
 
 @Service
 public class SchemeService {
-	@Autowired
-	SchemeMapper schemeMapper;
-	
-	public List<Scheme> select(){
-		return schemeMapper.select();
-	}
-	
-	public void insert(Scheme scheme) {
-		schemeMapper.insert(scheme);
-	}
-	
-	public void delete(Integer id) {
-		schemeMapper.delete(id);
-	}
+    @Autowired
+    SchemeMapper schemeMapper;
+
+    public List<Scheme> select() {
+        return schemeMapper.select();
+    }
+
+    public void insert(Scheme scheme) {
+        schemeMapper.insert(scheme);
+    }
+
+    public void delete(Integer id) {
+        schemeMapper.delete(id);
+    }
 }

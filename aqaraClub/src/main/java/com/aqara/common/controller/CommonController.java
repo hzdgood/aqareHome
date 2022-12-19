@@ -10,9 +10,9 @@ import com.aqara.common.utils.CoordinateUtil;
 @RestController
 @RequestMapping("/common")
 public class CommonController {
-	@CrossOrigin
-	@RequestMapping("/getCoordinate")
-	public Coordinate getCoordinate(@RequestBody String address) {
-		return CoordinateUtil.Coordinate(address);
-	}
+    @CrossOrigin
+    @RequestMapping("/getCoordinate")
+    public Coordinate getCoordinate(@RequestBody String address) {
+        return CoordinateUtil.Coordinate(address);
+    }
 }
