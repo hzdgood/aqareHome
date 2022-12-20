@@ -43,7 +43,7 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { SearchInfo, compUser } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import { masterReq, chatReq } from '@/config/common'
 @Component({})
@@ -60,13 +60,17 @@ export default class Home extends Vue {
     setTimeout(this.onloadFunction, 2000)
   }
 
-  getData () {
+  async getData () {
     let data = {}
     if (this.contactType === 'single_chat_tools') {
       data = masterReq(this.userId)
       const users: any[] = JSON.parse(this.follow_user)
       for (let i = 0; i < users.length; i++) {
         console.log(users[i])
+        if (typeof (users[i].oper_userid) !== 'undefined') {
+          const res = await compUser(users[i].oper_userid)
+          console.log(res)
+        }
       }
     } else {
       data = chatReq(this.chatId)

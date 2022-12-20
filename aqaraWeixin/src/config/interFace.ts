@@ -49,6 +49,18 @@ export const fetchUserId = async (code: string): Promise<string> => {
   return response.data
 }
 
+export const compUser = async (userId: string): Promise<string> => {
+  const response = await axios.request({
+    method: 'GET',
+    url: httpUrl + '/wechat/getUserId',
+    params: {
+      userId: userId,
+      type: httpUrl
+    }
+  })
+  return response.data
+}
+
 // 获取签名接口（需要后端生成）
 export const fetchSignatures = async (): Promise<SignRes> => {
   const response = await axios.request<SignRes>({
