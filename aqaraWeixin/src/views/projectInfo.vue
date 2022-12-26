@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="addUser">
+      <div class="text1">Ta添加的</div>
+      <div class="text2">
+        员工
+        <span v-for="item in userList" :key="item.userid">
+          <img :src="item.avatar" width="25px" height="25px"/>
+          {{ item.name }}
+        </span>
+      </div>
+    </div>
     <div v-for="project in projectList" :key="project.id">
       <table width="100%" class="projectTable">
         <tr>
@@ -60,22 +70,31 @@ export default class Home extends Vue {
     setTimeout(this.onloadFunction, 2000)
   }
 
-  async getData () {
+  getData () {
     let data = {}
     if (this.contactType === 'single_chat_tools') {
       data = masterReq(this.userId)
-      const users: any[] = JSON.parse(this.follow_user)
-      for (let i = 0; i < users.length; i++) {
-        console.log(users[i])
-        if (typeof (users[i].oper_userid) !== 'undefined') {
-          const res = await compUser(users[i].oper_userid)
-          console.log(res)
-        }
-      }
     } else {
       data = chatReq(this.chatId)
     }
     return data
+  }
+
+  async getUserList () {
+    const users: any[] = JSON.parse(this.follow_user)
+    for (let i = 0; i < users.length; i++) {
+      if (typeof (users[i].oper_userid) !== 'undefined') {
+        const res: any = await compUser(users[i].oper_userid)
+        if (res.errmsg === 'ok') {
+          const obj = {
+            userid: res.userid,
+            avatar: res.avatar,
+            name: res.name
+          }
+          this.userList.push(obj)
+        }
+      }
+    }
   }
 
   async onloadFunction () {
@@ -172,7 +191,21 @@ export default class Home extends Vue {
 
   async mounted () {
     this.onloadFunction()
+    this.getUserList()
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.addUser div{
+  padding: 5px 0px 5px 10px;
+}
+.text1 {
+  font-size: 18px;
+  font-weight: bold;
+}
+.text2 img{
+  margin: 3px;
+  border-radius: 100%;
+  font-size: 14px;
+}
+</style>

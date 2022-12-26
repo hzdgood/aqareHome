@@ -8,7 +8,7 @@ wx:
   corpHttp: http://localhost:8081
   speedySecret: A23WY8us3mjumRduXd7cZ3Em17oL49eFbxIeArqdiN8
   speedyHttp: http://aqara.club:8082
-  #speedyHttp: http://localhost:8081
+  # speedyHttp: http://localhost:8081
   sessionSecret: F7lF9dM986yTDpAKlhN-CndaBA1OxCAL4j9EKZVtjbA
   httpUrl: https://qyapi.weixin.qq.com/cgi-bin/gettoken
   userIdUrl: https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo

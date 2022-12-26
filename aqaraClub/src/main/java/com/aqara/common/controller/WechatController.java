@@ -76,10 +76,11 @@ public class WechatController {
 
     @CrossOrigin
     @RequestMapping("/compUser")
-    public String compUser(String userId, String type) {
+    public JSONObject compUser(String userId, String type) {
         String token = getToken(type);
         String res = WeChatUtil.compUser(WxProperties, token, userId);
-        return res;
+        JSONObject jsonObject = JSONObject.parseObject(res);
+        return jsonObject;
     }
 
     /**
@@ -90,7 +91,6 @@ public class WechatController {
     public JSONObject signatures(String url, String type) {
         String token = getToken(type);
         JSONObject jsonObject = CommonUtil.signatures(url, token, WxProperties);
-        System.out.printf(jsonObject.toJSONString());
         return jsonObject;
     }
 

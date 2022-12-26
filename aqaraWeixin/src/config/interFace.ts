@@ -52,7 +52,7 @@ export const fetchUserId = async (code: string): Promise<string> => {
 export const compUser = async (userId: string): Promise<string> => {
   const response = await axios.request({
     method: 'GET',
-    url: httpUrl + '/wechat/getUserId',
+    url: httpUrl + '/wechat/compUser',
     params: {
       userId: userId,
       type: httpUrl
