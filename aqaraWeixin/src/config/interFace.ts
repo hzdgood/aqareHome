@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
-const httpUrl = 'http://localhost:8081' // 测试url
-// const httpUrl = 'http://aqara.club:8081' // 生产环境
+// const httpUrl = 'http://localhost:8081' // 测试url
+const httpUrl = 'http://aqara.club:8081' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
 export const config = {
@@ -242,7 +242,7 @@ export const batchAddPlan = async (tableId: string, data: object) => {
 
 export const huobanUser = async () => {
   const formData = { space_id: 4000000003153003, limit: 50 }
-  const url = 'https://api.huoban.com/v2/users/find'
+  const url = huobanUrl + '/v2/users/find'
   const info = await post(url, formData)
   return info.data
 }
