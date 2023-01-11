@@ -30,7 +30,7 @@ program:
   phoneNumber: https://api:weixin:qq:com/wxa/business/getuserphonenumber
   accessToken: https://api.weixin.qq.com/cgi-bin/token
   appid: wxa364df767870a7d5
-  secret: 1116d45a568c7f410697a187e2cb7ede6d6111
+  secret: 21b5fef5e9259d320826fde8e0375b92
 
 common:
   localFiles: E:\\AqaraUpload\\
@@ -59,6 +59,11 @@ server:
   port: 8081
   tomcat:
     uri-encoding: UTF-8
+  ssl:
+    key-store: classpath:aqara.club.jks
+    key-store-type: JKS
+    key-store-password: z57qlkz5cs04
+    enabled: true
 
 logging:
   level:

@@ -13,7 +13,7 @@ public class ProgramController {
 
     @RequestMapping("/getToken")
     public String getToken(@RequestBody String code) {
-        String token = ProgramUtil.getToken(ProgramProperties, code);
-        return token;
+        String res = ProgramUtil.getToken(ProgramProperties, code);
+        return res;
     }
 }
