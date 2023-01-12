@@ -64,5 +64,4 @@ public class SpeedyTeamController {
         }
         SpeedyTeamService.delete(list);
     }
-
 }

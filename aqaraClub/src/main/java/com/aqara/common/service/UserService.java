@@ -78,6 +78,5 @@ public class UserService {
         }
     }
 
-
+    public void deleteId(List<Integer> ids) { userMapper.deleteId(ids); }
 }
-

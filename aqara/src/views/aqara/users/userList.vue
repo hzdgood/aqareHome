@@ -65,7 +65,7 @@
 
 <script>
 import { STable, Ellipsis } from '@/components'
-import { getPostData } from '@/api/axios'
+import { getPostData, getData } from '@/api/axios'
 import UserForm from './modules/userForm'
 const columns = [
   {
@@ -170,8 +170,56 @@ export default {
       form.resetFields() // 清理表单数据（可不做）
       this.visible = false
     },
-    handleOk () {},
-    handleDelete (key) {}
+    handleOk () {
+      const form = this.$refs.createModal.form
+      this.confirmLoading = true
+      form.validateFields(async (errors, values) => {
+        if (!errors) {
+          console.log('values', values)
+          if (values.id > 0) {
+            await getData('/user/update', values)
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.$refs.table.refresh()
+            this.$message.info('修改成功')
+          } else {
+            await getData('/user/insert', values)
+            this.visible = false
+            this.confirmLoading = false
+            // 重置表单数据
+            form.resetFields()
+            // 刷新表格
+            this.$refs.table.refresh()
+            this.$message.info('新增成功')
+          }
+        }
+      })
+      this.confirmLoading = false
+    },
+    handleDelete (key) {
+      const keys = this.selectedRowKeys
+      const table = this.$refs.table
+      const message = this.$message
+      this.$confirm({
+        title: '警告',
+        content: `真的要删除吗?`,
+        okText: '删除',
+        okType: 'danger',
+        cancelText: '取消',
+        async onOk () {
+          const req = {
+            ids: keys.join()
+          }
+          await getData('/user/delete', req)
+          table.refresh()
+          message.info('删除成功')
+        },
+        onCancel () {}
+      })
+    }
   }
 }
 </script>
