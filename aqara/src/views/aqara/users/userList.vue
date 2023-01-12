@@ -6,7 +6,12 @@
           <a-row :gutter="48">
             <a-col :md="6" :sm="24">
               <a-form-item label="用户名称">
-                <a-input v-model="queryParam.theme" placeholder="" />
+                <a-input v-model="queryParam.name" placeholder="" />
+              </a-form-item>
+            </a-col>
+            <a-col :md="6" :sm="24">
+              <a-form-item label="英文名称">
+                <a-input v-model="queryParam.engName" placeholder="" />
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="24">
@@ -45,7 +50,7 @@
           </template>
         </span>
       </s-table>
-      <content-form
+      <user-form
         ref="createModal"
         :title="formTitle"
         :visible="visible"
@@ -61,6 +66,7 @@
 <script>
 import { STable, Ellipsis } from '@/components'
 import { getPostData } from '@/api/axios'
+import UserForm from './modules/userForm'
 const columns = [
   {
     title: '',
@@ -110,10 +116,11 @@ const columns = [
   }
 ]
 export default {
-  name: 'ContentList',
+  name: 'UserList',
   components: {
     STable,
-    Ellipsis
+    Ellipsis,
+    UserForm
   },
   data () {
     this.columns = columns
@@ -148,8 +155,16 @@ export default {
       this.selectedRowKeys = selectedRowKeys
       this.selectedRows = selectedRows
     },
-    handleAdd () {},
-    handleEdit (record) {},
+    handleAdd () {
+      this.formTitle = '新增用户信息'
+      this.mdl = null
+      this.visible = true
+    },
+    handleEdit (record) {
+      this.formTitle = '修改用户信息'
+      this.visible = true
+      this.mdl = { ...record }
+    },
     handleCancel () {
       const form = this.$refs.createModal.form
       form.resetFields() // 清理表单数据（可不做）

@@ -497,17 +497,6 @@ const userNav = options => {
       component: 'Workplace'
     },
     {
-      name: 'monitor',
-      path: 'https://www.baidu.com/',
-      parentId: 1,
-      id: 3,
-      meta: {
-        title: '监控页（外部）',
-        target: '_blank',
-        show: true
-      }
-    },
-    {
       name: 'Analysis',
       parentId: 1,
       id: 2,
@@ -517,6 +506,17 @@ const userNav = options => {
       },
       component: 'Analysis',
       path: '/dashboard/analysis'
+    },
+    {
+      name: 'quickForm',
+      parentId: 0,
+      id: 16,
+      meta: {
+        title: '用户管理',
+        show: true
+      },
+      redirect: 'userList',
+      component: '/aqara/userList'
     },
     {
       name: 'quickForm',
