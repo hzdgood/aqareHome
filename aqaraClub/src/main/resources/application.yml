@@ -63,7 +63,7 @@ server:
     key-store: classpath:aqara.club.jks
     key-store-type: JKS
     key-store-password: z57qlkz5cs04
-    enabled: true
+    enabled: false
 
 logging:
   level:
