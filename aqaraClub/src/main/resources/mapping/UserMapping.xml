@@ -41,7 +41,7 @@
         where 1 = 1
     </delete>
 
-    <delete id="delete" parameterType="com.aqara.common.entity.User">
+    <delete id="deleteId" parameterType="com.aqara.common.entity.User">
         delete
         from user
         where id in

@@ -25,7 +25,7 @@ public class UserService {
     }
 
     public List<User> selectAll(PageReq PageReq) {
-        return userMapper.select(PageReq.getName(), PageReq.getEngName());
+        return userMapper.select(PageReq.getUsername(), PageReq.getEngName());
     }
 
     public List<User> selectCode(String code) {
