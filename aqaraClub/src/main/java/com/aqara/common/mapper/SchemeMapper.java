@@ -1,9 +1,9 @@
 package com.aqara.common.mapper;
 
-import java.util.List;
-
-import org.springframework.stereotype.Repository;
 import com.aqara.common.entity.Scheme;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface SchemeMapper {

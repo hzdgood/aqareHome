@@ -1,15 +1,19 @@
 package com.aqara.common.service;
 
-import java.text.SimpleDateFormat;
-import java.util.*;
-
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.entity.OpenCurtain;
+import com.aqara.common.mapper.OpenCurtainMapper;
+import com.aqara.common.properties.HuobanProperties;
+import com.aqara.common.utils.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alibaba.fastjson.*;
-import com.aqara.common.entity.OpenCurtain;
-import com.aqara.common.mapper.*;
-import com.aqara.common.properties.HuobanProperties;
-import com.aqara.common.utils.*;
+
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class OpenCurtainService {

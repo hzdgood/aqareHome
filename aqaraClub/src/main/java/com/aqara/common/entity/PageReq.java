@@ -9,6 +9,7 @@ public class PageReq {
     private String team;
     private String type;
     private String name;
+    private String engName;
     private String person;
 
     public String getTeamId() {
@@ -73,6 +74,14 @@ public class PageReq {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEngName() {
+        return engName;
+    }
+
+    public void setEngName(String engName) {
+        this.engName = engName;
     }
 
     public String getPerson() {

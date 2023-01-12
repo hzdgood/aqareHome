@@ -1,20 +1,11 @@
 package com.aqara.common.utils;
 
-import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import org.apache.commons.codec.digest.DigestUtils;
-
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.properties.WxProperties;
+import org.apache.commons.codec.digest.DigestUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class CommonUtil {
 

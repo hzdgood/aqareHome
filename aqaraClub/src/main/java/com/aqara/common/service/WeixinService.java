@@ -1,15 +1,15 @@
 package com.aqara.common.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Weixin;
 import com.aqara.common.mapper.WeixinMapper;
 import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.CommonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class WeixinService {

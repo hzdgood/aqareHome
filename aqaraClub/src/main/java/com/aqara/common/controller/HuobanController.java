@@ -1,14 +1,16 @@
 package com.aqara.common.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Huoban;
 import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.service.HuobanService;
 import com.aqara.common.utils.HttpUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/huoban")

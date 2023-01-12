@@ -1,17 +1,26 @@
 package com.aqara.common.controller;
 
-import com.alibaba.fastjson.*;
-import com.aqara.common.entity.*;
-import com.aqara.common.properties.*;
-import com.aqara.common.service.*;
-import com.aqara.common.utils.*;
+import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.entity.Schedule;
+import com.aqara.common.entity.User;
+import com.aqara.common.entity.Wechat;
+import com.aqara.common.properties.CommonProperties;
+import com.aqara.common.properties.WxProperties;
+import com.aqara.common.service.UserService;
+import com.aqara.common.service.WechatService;
+import com.aqara.common.utils.CommonUtil;
+import com.aqara.common.utils.HttpUtil;
+import com.aqara.common.utils.WeChatUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/wechat")

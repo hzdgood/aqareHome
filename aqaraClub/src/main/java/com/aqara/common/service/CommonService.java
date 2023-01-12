@@ -2,11 +2,10 @@ package com.aqara.common.service;
 
 import com.aqara.common.entity.Common;
 import com.aqara.common.mapper.CommonMapper;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CommonService {

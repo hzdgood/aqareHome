@@ -1,15 +1,15 @@
 package com.aqara.common.service;
 
+import com.aqara.common.entity.Census;
+import com.aqara.common.mapper.CensusMapper;
+import com.aqara.common.utils.CommonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.aqara.common.entity.Census;
-import com.aqara.common.mapper.CensusMapper;
-import com.aqara.common.utils.CommonUtil;
 
 @Service
 public class CensusService {

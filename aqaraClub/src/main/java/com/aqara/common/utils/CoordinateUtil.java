@@ -1,11 +1,13 @@
 package com.aqara.common.utils;
 
-import java.io.*;
-import java.net.*;
-import java.math.BigDecimal;
-
 import com.aqara.common.entity.Coordinate;
 import net.sf.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.net.URL;
+import java.net.URLConnection;
 
 public class CoordinateUtil {
     private static String AK = "agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi"; // 百度地图密钥

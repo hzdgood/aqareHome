@@ -69,32 +69,37 @@ const columns = [
   },
   {
     title: '用户名称', // 企业，团队，个人
-    dataIndex: 'name',
+    dataIndex: 'userName',
     width: 100
   },
   {
     title: '英文名称',
-    dataIndex: 'userId',
+    dataIndex: 'engName',
     ellipsis: true
   },
   {
     title: '密码',
-    dataIndex: 'password',
+    dataIndex: 'passWord',
     ellipsis: true
   },
   {
     title: '性别',
-    dataIndex: 'contentTitle',
+    dataIndex: 'sex',
     ellipsis: true
   },
   {
+    title: '岗位',
+    dataIndex: 'station',
+    width: 80
+  },
+  {
     title: '部门',
-    dataIndex: 'contentType',
+    dataIndex: 'department',
     width: 80
   },
   {
     title: '状态',
-    dataIndex: 'contentText',
+    dataIndex: 'status',
     ellipsis: true
   },
   {
@@ -124,7 +129,7 @@ export default {
       selectedRows: [],
       loadData: (parameter) => {
         const requestParameters = Object.assign({}, parameter, this.queryParam)
-        return getPostData('/speedy/content/select', requestParameters).then((res) => {
+        return getPostData('/user/selectAll', requestParameters).then((res) => {
           return res.data
         })
       }

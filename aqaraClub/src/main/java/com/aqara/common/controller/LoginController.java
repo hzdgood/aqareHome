@@ -1,13 +1,13 @@
 package com.aqara.common.controller;
 
-import java.util.List;
-
+import com.aqara.common.entity.Login;
+import com.aqara.common.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.aqara.common.entity.Login;
-import com.aqara.common.service.LoginService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/login")

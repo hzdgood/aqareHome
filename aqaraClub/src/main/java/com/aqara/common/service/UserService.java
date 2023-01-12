@@ -1,16 +1,16 @@
 package com.aqara.common.service;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.entity.PageReq;
 import com.aqara.common.entity.User;
 import com.aqara.common.mapper.UserMapper;
 import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.CommonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -22,6 +22,10 @@ public class UserService {
 
     public List<User> select(String username, String engName) {
         return userMapper.select(username, engName);
+    }
+
+    public List<User> selectAll(PageReq PageReq) {
+        return userMapper.select(PageReq.getName(), PageReq.getEngName());
     }
 
     public List<User> selectCode(String code) {
@@ -73,5 +77,7 @@ public class UserService {
             userMapper.insert(User);
         }
     }
+
+
 }
 

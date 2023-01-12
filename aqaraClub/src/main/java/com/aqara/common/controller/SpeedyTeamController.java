@@ -1,12 +1,18 @@
 package com.aqara.common.controller;
 
-import com.aqara.common.entity.*;
-import com.aqara.common.service.*;
-
-import java.util.*;
-
+import com.aqara.common.entity.PageReq;
+import com.aqara.common.entity.SpeedyTeam;
+import com.aqara.common.service.SpeedyTeamService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/speedy/team")

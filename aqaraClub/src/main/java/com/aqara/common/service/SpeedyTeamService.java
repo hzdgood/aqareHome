@@ -1,12 +1,12 @@
 package com.aqara.common.service;
 
-import java.util.List;
-
 import com.aqara.common.entity.PageReq;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.aqara.common.entity.SpeedyTeam;
 import com.aqara.common.mapper.SpeedyTeamMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SpeedyTeamService {

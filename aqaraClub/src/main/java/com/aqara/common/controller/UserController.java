@@ -1,15 +1,21 @@
 package com.aqara.common.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.aqara.common.entity.Coordinate;
 import com.aqara.common.entity.Huoban;
+import com.aqara.common.entity.PageReq;
 import com.aqara.common.entity.User;
 import com.aqara.common.service.HuobanService;
 import com.aqara.common.service.UserService;
 import com.aqara.common.utils.CoordinateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -25,6 +31,23 @@ public class UserController {
     @RequestMapping("/select")
     public List<User> select(String username, String engName) {
         return userService.select(username, engName);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/selectAll")
+    public Map<String, Object> selectAll(@RequestBody PageReq PageReq) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        List<User> list = userService.selectAll(PageReq);
+        if (PageReq.getPageNo() != null || PageReq.getPageSize() != null) {
+            Integer pageSize = Integer.parseInt(PageReq.getPageSize());
+            Integer pageNo = Integer.parseInt(PageReq.getPageNo());
+            map.put("pageNo", pageNo);
+            map.put("pageSize", pageSize);
+            map.put("totalCount", list.size());
+            map.put("totalPage", list.size() / pageSize);
+        }
+        map.put("data", list);
+        return map;
     }
 
     @CrossOrigin

@@ -1,15 +1,18 @@
 package com.aqara.common.service;
 
-import java.util.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import com.aqara.common.mapper.CustomerMapper;
-import com.aqara.common.properties.HuobanProperties;
-import com.aqara.common.utils.CommonUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Customer;
+import com.aqara.common.mapper.CustomerMapper;
+import com.aqara.common.properties.HuobanProperties;
+import com.aqara.common.utils.CommonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class CustomerService {
