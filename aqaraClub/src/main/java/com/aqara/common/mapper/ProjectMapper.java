@@ -14,5 +14,7 @@ public interface ProjectMapper {
 
     void insert(Project project);
 
-    void delete();
+    void deleteAll(List<Integer> ids);
+
+    void delete(Integer id);
 }

@@ -17,4 +17,6 @@ public interface CustomerMapper {
     void insert(Customer customer);
 
     void delete(Integer id);
+
+    void deleteAll(List<Integer> ids);
 }

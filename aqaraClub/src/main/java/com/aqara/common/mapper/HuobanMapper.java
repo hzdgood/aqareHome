@@ -13,4 +13,6 @@ public interface HuobanMapper {
     void insert(Huoban huoban);
 
     void delete(Integer id);
+
+    void deleteAll(List<Integer> ids);
 }

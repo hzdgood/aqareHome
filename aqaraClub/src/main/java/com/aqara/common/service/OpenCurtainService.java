@@ -40,8 +40,8 @@ public class OpenCurtainService {
         OpenCurtainMapper.upload(OpenCurtain);
     }
 
-    public void delete() {
-        OpenCurtainMapper.delete();
+    public void delete(Integer id) {
+        OpenCurtainMapper.delete(id);
     }
 
     public void getCurtainList(String ticket) throws Exception {

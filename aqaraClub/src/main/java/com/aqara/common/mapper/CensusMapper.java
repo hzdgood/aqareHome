@@ -14,4 +14,6 @@ public interface CensusMapper {
     void insert(Census Census);
 
     void delete(Integer id);
+
+    void deleteAll(List<Integer> ids);
 }

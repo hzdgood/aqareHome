@@ -16,4 +16,6 @@ public interface TeamMapper {
 
     void delete(Integer id);
 
+    void deleteAll(List<Integer> ids);
+
 }

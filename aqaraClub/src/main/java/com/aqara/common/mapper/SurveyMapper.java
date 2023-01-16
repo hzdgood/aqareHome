@@ -17,4 +17,6 @@ public interface SurveyMapper {
     void insert(Survey survey);
 
     void delete(Integer id);
+
+    void deleteAll(List<Integer> ids);
 }

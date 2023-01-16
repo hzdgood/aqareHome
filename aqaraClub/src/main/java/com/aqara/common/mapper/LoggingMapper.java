@@ -15,4 +15,6 @@ public interface LoggingMapper {
     void update(Logging log);
 
     void delete(Integer id);
+
+    void deleteAll(List<Integer> ids);
 }

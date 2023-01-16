@@ -40,9 +40,7 @@ public class RollerShutterService {
         RollerShutterMapper.upload(RollerShutter);
     }
 
-    public void delete() {
-        RollerShutterMapper.delete();
-    }
+    public void delete(Integer id) { RollerShutterMapper.delete(id); }
 
     public void getShutterList(String ticket) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -44,6 +44,10 @@ public class SurveyService {
         surveyMapper.delete(id);
     }
 
+    public void delete(List<Integer> ids) {
+        surveyMapper.deleteAll(ids);
+    }
+
     public void getSurveyList(String ticket) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String str = CommonUtil.getSurveyTime();

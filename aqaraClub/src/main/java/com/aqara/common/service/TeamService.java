@@ -28,4 +28,8 @@ public class TeamService {
         TeamMapper.delete(id);
     }
 
+    public void delete(List<Integer> ids) {
+        TeamMapper.deleteAll(ids);
+    }
+
 }

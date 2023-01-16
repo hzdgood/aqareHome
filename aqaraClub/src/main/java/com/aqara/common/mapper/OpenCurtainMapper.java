@@ -16,5 +16,5 @@ public interface OpenCurtainMapper {
 
     void upload(OpenCurtain openCurtain);
 
-    void delete();
+    void delete(Integer id);
 }

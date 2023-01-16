@@ -18,4 +18,6 @@ public interface CollentMapper {
 
     void delete(Integer id);
 
+    void deleteAll(List<Integer> ids);
+
 }

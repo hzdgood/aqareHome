@@ -15,4 +15,6 @@ public interface QuotationMapper {
     void insert(Quotation quotation);
 
     void delete(Integer id);
+
+    void deleteAll(List<Integer> ids);
 }

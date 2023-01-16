@@ -32,8 +32,12 @@ public class ProjectService {
         projectMapper.insert(project);
     }
 
-    public void delete() {
-        projectMapper.delete();
+    public void delete(Integer id) {
+        projectMapper.delete(id);
+    }
+
+    public void deleteAll(List<Integer> ids) {
+        projectMapper.deleteAll(ids);
     }
 
     public void getProjectList(String ticket) throws Exception {

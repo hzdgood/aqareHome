@@ -15,4 +15,6 @@ public interface LoginMapper {
     void update(Login Login);
 
     void delete(Integer id);
+
+    void deleteAll(List<Integer> ids);
 }
