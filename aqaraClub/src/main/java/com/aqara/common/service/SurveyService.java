@@ -47,6 +47,18 @@ public class SurveyService {
     public void delete(List<Integer> ids) {
         surveyMapper.deleteAll(ids);
     }
+    
+    public String getSurveyData() {
+        String str = "**今日CRM新增工勘TOP** \n";
+        List<Survey> Survey = surveyMapper.currentData();
+        return getDepartInfo(str, Survey);
+    }
+
+    public String getWeekData() {
+        String str = "**上周CRM新增工勘TOP** \n";
+        List<Survey> Survey = surveyMapper.weekData();
+        return getDepartInfo(str, Survey);
+    }
 
     public void getSurveyList(String ticket) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -80,18 +92,6 @@ public class SurveyService {
             }
             surveyMapper.insert(Survey);
         }
-    }
-
-    public String getSurveyData() {
-        String str = "**今日CRM新增工勘TOP** \n";
-        List<Survey> Survey = surveyMapper.currentData();
-        return getDepartInfo(str, Survey);
-    }
-
-    public String getWeekData() {
-        String str = "**上周CRM新增工勘TOP** \n";
-        List<Survey> Survey = surveyMapper.weekData();
-        return getDepartInfo(str, Survey);
     }
 
     public String getDepartInfo(String str, List<Survey> list) {

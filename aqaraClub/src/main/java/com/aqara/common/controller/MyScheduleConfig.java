@@ -39,8 +39,6 @@ public class MyScheduleConfig {
     @Autowired
     CensusService CensusService;
 
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
     String url = "[查看详情](https://app.huoban.com/home)";
 
     @Scheduled(cron = "0 30 21 * * ?")
@@ -85,19 +83,19 @@ public class MyScheduleConfig {
     // @Scheduled(cron = "0 00 14 ? * MON")
     private void weekReboot() {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";
-        String CensusData = CensusService.getWeekData();
         String customer = customerService.getWeekData();
-        String collent = CollentService.getWeekData();
+        //String CensusData = CensusService.getWeekData();
+        //String collent = CollentService.getWeekData();
         String resStr = "";
-        if (!CensusData.equals("")) {
-            resStr += CensusData + "\n";
-        }
         if (!customer.equals("")) {
             resStr += customer + "\n";
         }
-        if (!collent.equals("")) {
-            resStr += collent + "\n";
-        }
+        //if (!CensusData.equals("")) {
+//            resStr += CensusData + "\n";
+//        }
+//        if (!collent.equals("")) {
+//            resStr += collent + "\n";
+//        }
         resStr += url;
         HttpService.workRequset(resStr, WX_TOKEN);
     }
