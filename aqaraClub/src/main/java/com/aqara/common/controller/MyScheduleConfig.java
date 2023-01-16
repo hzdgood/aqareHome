@@ -39,12 +39,6 @@ public class MyScheduleConfig {
     @Autowired
     CensusService CensusService;
 
-    @Autowired
-    OpenCurtainService OpenCurtainService;
-
-    @Autowired
-    RollerShutterService RollerShutterService;
-
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
     String url = "[查看详情](https://app.huoban.com/home)";
@@ -94,7 +88,6 @@ public class MyScheduleConfig {
         String CensusData = CensusService.getWeekData();
         String customer = customerService.getWeekData();
         String collent = CollentService.getWeekData();
-        // String survey = SurveyService.getWeekData();
         String resStr = "";
         if (!CensusData.equals("")) {
             resStr += CensusData + "\n";
@@ -108,7 +101,6 @@ public class MyScheduleConfig {
         resStr += url;
         HttpService.workRequset(resStr, WX_TOKEN);
     }
-
 
     @Scheduled(cron = "0 30 09 * * ?")
     private void projectSelect() {
@@ -134,36 +126,4 @@ public class MyScheduleConfig {
         String res = str0 + str + str1 + str2 + str3;
         HttpService.workRequset(res, WX_TOKEN);
     }
-
-    // @Scheduled(cron = "0 34 14 * * ?")
-//	private void myTasks2() {
-//		List<Huoban> list = huobanService.select();
-//		Huoban Huoban = list.get(list.size() - 1);
-//		String ticket = Huoban.getTicket();
-//		try {
-//			OpenCurtainService.getCurtainList(ticket);
-//			RollerShutterService.getShutterList(ticket);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	// @Scheduled(cron = "0 32 14 * * ?")
-//	private void deleteCurtain() {
-//		OpenCurtainService.delete();
-//		RollerShutterService.delete();
-//	}
-//	
-//	// @Scheduled(cron = "0 28 16 * * ?")
-//	private void weixinInfo() {
-//		String WX_TOKEN = "";
-//		String str1 = OpenCurtainService.getCurtainData1();
-//		String str = OpenCurtainService.getCurtainData();
-//		String str2 = RollerShutterService.getShutterData();
-//		String str3 = RollerShutterService.getShutterData1();
-//		HttpService.workRequset(str, WX_TOKEN);
-//		HttpService.workRequset(str1, WX_TOKEN);
-//		HttpService.workRequset(str2, WX_TOKEN);
-//		HttpService.workRequset(str3, WX_TOKEN);
-//	}
 }

@@ -43,6 +43,18 @@ public class CollentService {
         collentMapper.delete(id);
     }
 
+    public String getCollentData() {
+        String str = "**今日CRM新增全款TOP** \n";
+        List<Collent> collent = collentMapper.currentData();
+        return getDepartInfo(str, collent);
+    }
+
+    public String getWeekData() {
+        String str = "**上周CRM新增全款TOP** \n";
+        List<Collent> collent = collentMapper.weekData();
+        return getDepartInfo(str, collent);
+    }
+
     public void getCollentList(String ticket) {
         String str = CommonUtil.getToday();
         String requestUrl = HuobanProperties.getSearchInfo() + "2100000015000019/find";
@@ -72,18 +84,6 @@ public class CollentService {
             }
             collentMapper.insert(Collent);
         }
-    }
-
-    public String getCollentData() {
-        String str = "**今日CRM新增全款TOP** \n";
-        List<Collent> collent = collentMapper.currentData();
-        return getDepartInfo(str, collent);
-    }
-
-    public String getWeekData() {
-        String str = "**上周CRM新增全款TOP** \n";
-        List<Collent> collent = collentMapper.weekData();
-        return getDepartInfo(str, collent);
     }
 
     public String getDepartInfo(String str, List<Collent> list) {

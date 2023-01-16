@@ -42,6 +42,18 @@ public class CustomerService {
         customerMapper.delete(id);
     }
 
+    public String getCurrentData() {
+        String str = "**今日CRM新增客户TOP** \n";
+        List<Customer> customer = customerMapper.currentData();
+        return getDepartInfo(str, customer);
+    }
+
+    public String getWeekData() {
+        String str = "**上周CRM新增客户TOP** \n";
+        List<Customer> customer = customerMapper.weekData();
+        return getDepartInfo(str, customer);
+    }
+
     public void getCustomList(String ticket) {
         String str = CommonUtil.getToday();
         String requestUrl = HuobanProperties.getSearchInfo() + "2100000014955786/find";
@@ -67,18 +79,6 @@ public class CustomerService {
             }
             customerMapper.insert(Customer);
         }
-    }
-
-    public String getCurrentData() {
-        String str = "**今日CRM新增客户TOP** \n";
-        List<Customer> customer = customerMapper.currentData();
-        return getDepartInfo(str, customer);
-    }
-
-    public String getWeekData() {
-        String str = "**上周CRM新增客户TOP** \n";
-        List<Customer> customer = customerMapper.weekData();
-        return getDepartInfo(str, customer);
     }
 
     public String getDepartInfo(String str, List<Customer> list) {

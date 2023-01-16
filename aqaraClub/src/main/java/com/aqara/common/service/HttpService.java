@@ -21,11 +21,6 @@ public class HttpService {
         }
     }
 
-    @Recover
-    public void recover(RemoteAccessException e) {
-        System.out.println(e.getMessage());
-    }
-
     public void workRequset(String str, String WX_TOKEN) {
         HttpUtil.workRequest(str, WX_TOKEN);
     }
