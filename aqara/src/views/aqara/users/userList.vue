@@ -95,13 +95,11 @@ const columns = [
   },
   {
     title: '岗位',
-    dataIndex: 'station',
-    width: 80
+    dataIndex: 'station'
   },
   {
     title: '部门',
-    dataIndex: 'department',
-    width: 80
+    dataIndex: 'department'
   },
   {
     title: '状态',

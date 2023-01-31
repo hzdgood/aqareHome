@@ -508,15 +508,15 @@ const userNav = options => {
       path: '/dashboard/analysis'
     },
     {
-      name: 'quickForm',
-      parentId: 0,
+      name: 'userList',
+      parentId: 1,
       id: 16,
       meta: {
         title: '用户管理',
         show: true
       },
-      redirect: 'userList',
-      component: '/aqara/userList'
+      component: 'userList',
+      path: '/aqara/user-list'
     },
     {
       name: 'quickForm',
