@@ -102,7 +102,7 @@
             </span>
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>客户属性</td>
           <td>
             <span v-for="item in cAttribute" :key="item.id">
@@ -115,8 +115,8 @@
               {{ item.value }}
             </span>
           </td>
-        </tr>
-        <tr>
+        </tr> -->
+        <!-- <tr>
           <td>流失状态</td>
           <td>
             <span v-for="item in lostStatus" :key="item.id">
@@ -129,7 +129,7 @@
               {{ item.value }}
             </span>
           </td>
-        </tr>
+        </tr> -->
       </table>
       <div class="buttonSite">
         <button class="saveButton" @click="saveInfo()">保存</button>
@@ -148,10 +148,10 @@ export default class Home extends Vue {
   taglist: any[] = []; // 标签list
   houseInfo: any[] = [];
   personInfo: any[] = [];
-  cAttribute: any[] = [];
+  // cAttribute: any[] = [];
   fitmentStage: any[] = [];
   oneCustom: any[] = [];
-  lostStatus: any[] = [];
+  // lostStatus: any[] = [];
   hometype: any[] = [];
   custominto: any[] = [];
   houseNeed: any[] = [];
@@ -215,15 +215,15 @@ export default class Home extends Vue {
         }
         this.personInfo.push(ob)
       }
-      if (name === '客户属性') {
-        const ob = {
-          id: item_id,
-          name: name,
-          value: value,
-          field: field.cAttribute
-        }
-        this.cAttribute.push(ob)
-      }
+      // if (name === '客户属性') {
+      //   const ob = {
+      //     id: item_id,
+      //     name: name,
+      //     value: value,
+      //     field: field.cAttribute
+      //   }
+      //   this.cAttribute.push(ob)
+      // }
       if (name === '全屋需求') {
         const ob = {
           id: item_id,
@@ -242,15 +242,15 @@ export default class Home extends Vue {
         }
         this.oneCustom.push(ob)
       }
-      if (name === '流失状态') {
-        const ob = {
-          id: item_id,
-          name: name,
-          value: value,
-          field: field.lostStatus
-        }
-        this.lostStatus.push(ob)
-      }
+      // if (name === '流失状态') {
+      //   const ob = {
+      //     id: item_id,
+      //     name: name,
+      //     value: value,
+      //     field: field.lostStatus
+      //   }
+      //   this.lostStatus.push(ob)
+      // }
     }
     this.showEdit()
   }
@@ -316,12 +316,12 @@ export default class Home extends Vue {
     if (typeof (data.fields[field.houseNeed]) === 'undefined') {
       data.fields[field.houseNeed] = []
     }
-    if (typeof (data.fields[field.cAttribute]) === 'undefined') {
-      data.fields[field.cAttribute] = []
-    }
+    // if (typeof (data.fields[field.cAttribute]) === 'undefined') {
+    //   data.fields[field.cAttribute] = []
+    // }
     // 发送伙伴云修改
     await updateTable(this.itemId, data)
-    await logInsert('保存客户数据')
+    await logInsert('客户编辑：' + remark.value)
     this.$emit('reload')
     this.close()
   }
@@ -398,25 +398,7 @@ export default class Home extends Vue {
           dom.className = 'selected'
         }
       }
-      if (fields[i].field_id === field.cAttribute) {
-        const values = fields[i].values
-        for (let j = 0; j < values.length; j++) {
-          const itemid = values[j].item_id
-          const dom: any = document.getElementById(itemid)
-          dom.checked = 'true'
-          dom.className = 'selected'
-        }
-      }
       if (fields[i].field_id === field.oneCustom) {
-        const values = fields[i].values
-        for (let j = 0; j < values.length; j++) {
-          const itemid = values[j].item_id
-          const dom: any = document.getElementById(itemid)
-          dom.checked = 'true'
-          dom.className = 'selected'
-        }
-      }
-      if (fields[i].field_id === field.lostStatus) {
         const values = fields[i].values
         for (let j = 0; j < values.length; j++) {
           const itemid = values[j].item_id
@@ -434,6 +416,24 @@ export default class Home extends Vue {
           dom.className = 'selected'
         }
       }
+      // if (fields[i].field_id === field.cAttribute) {
+      //   const values = fields[i].values
+      //   for (let j = 0; j < values.length; j++) {
+      //     const itemid = values[j].item_id
+      //     const dom: any = document.getElementById(itemid)
+      //     dom.checked = 'true'
+      //     dom.className = 'selected'
+      //   }
+      // }
+      // if (fields[i].field_id === field.lostStatus) {
+      //   const values = fields[i].values
+      //   for (let j = 0; j < values.length; j++) {
+      //     const itemid = values[j].item_id
+      //     const dom: any = document.getElementById(itemid)
+      //     dom.checked = 'true'
+      //     dom.className = 'selected'
+      //   }
+      // }
     }
   }
 }

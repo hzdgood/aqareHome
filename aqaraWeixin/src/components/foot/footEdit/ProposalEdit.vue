@@ -13,7 +13,6 @@
           </tr>
         </table>
         <button class='saveButton' @click='create()' v-show='createStatus'>生成报价</button>
-        <button class='closeButton' @click='closeClick()'>关闭</button>
       </div>
       <div v-for='item in dataList' :key='item.id'>
         <table class='EditTable' v-show='errorStatus'>
@@ -39,18 +38,9 @@
           </tr>
         </table>
         <div class='buttonSite'>
-          <input
-            class='saveButton'
-            type='button'
-            value='同步'
-            @click='synchroClick(item)'
-          />
-          <input
-            class='saveButton'
-            type='button'
-            value='保存'
-            @click='saveClick(item)'
-          />
+          <button class='saveButton' @click='synchroClick(item)'>同步</button>
+          <button class='saveButton' @click='saveClick(item)'>保存</button>
+          <button class='closeButton' @click='closeClick()'>关闭</button>
         </div>
       </div>
       <div v-if='errorStatus == false'>

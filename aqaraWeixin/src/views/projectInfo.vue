@@ -84,7 +84,7 @@ export default class Home extends Vue {
     const users: any[] = JSON.parse(this.follow_user)
     for (let i = 0; i < users.length; i++) {
       if (typeof (users[i].oper_userid) !== 'undefined') {
-        const res: any = await compUser(users[i].oper_userid)
+        const res: any = await compUser(users[i].userid)
         if (res.errmsg === 'ok') {
           const obj = {
             userid: res.userid,

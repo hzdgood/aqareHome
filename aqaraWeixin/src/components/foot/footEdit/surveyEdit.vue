@@ -2,7 +2,7 @@
   <div>
     <div class='floatDiv'></div>
     <div class='infoDiv'>
-      <div class='headerDiv'>工勘</div>
+      <div class='headerDiv'>工勘/交底</div>
       <div class='addSite'>
         <button class='addButton' @click='addClick()' >新增 +</button>
         <button class='closeButton' @click='closeClick()'>关闭</button>
@@ -100,7 +100,7 @@ export default class Home extends Vue {
         surveyPersonnel: personList,
         surveyType: type
       }
-      this.surveyList.push(obj)
+      this.surveyList.unshift(obj)
     }
   }
 

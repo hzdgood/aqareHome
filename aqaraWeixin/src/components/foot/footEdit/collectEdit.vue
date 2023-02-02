@@ -110,7 +110,7 @@ export default class Home extends Vue {
   projectId = '';
   title = '';
   quotationId = '';
-  collectMoney = '';
+  collectMoney = '1500';
   visible = false
   loadVisible = false
   userId = localStorage.getItem('userId');

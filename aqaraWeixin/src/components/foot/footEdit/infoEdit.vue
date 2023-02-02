@@ -514,7 +514,7 @@ export default class Home extends Vue {
     } else {
       this.errorInfo('保存成功')
     }
-    await logInsert('客户编辑')
+    await logInsert('项目编辑:' + remarks.value)
   }
 
   errorInfo (str: any) {
