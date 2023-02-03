@@ -186,7 +186,6 @@ export default class Home extends Vue {
     }
     // 检查地址信息，赋值经纬度
     if (projectAddress !== '') {
-      projectAddress = '上海市' + projectArea + projectAddress
       const obj = await getCoordinate([projectAddress]) // 3
       if (obj.lng === 0 && obj.lat === 0) {
         this.errorInfo('项目地址错误！')

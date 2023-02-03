@@ -40,8 +40,6 @@ common:
 huoban:
   application_id: 1002449
   application_secret: 5F5aMmUtCBbhNM4ahhYeG1wMK4mstbsG85VpI9Qw
-  ticket: IXvB6iAouWyAwLr9W4Macgk1ajsxxfmPd4QqkKK2
-  expired: 1209600
   userInfo: https://api.huoban.com/v2/ticket
   SearchInfo: https://api.huoban.com/v2/item/table/
   updateTable: https://api.huoban.com/v2/item/

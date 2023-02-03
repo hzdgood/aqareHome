@@ -15,6 +15,11 @@ public class CoordinateUtil {
     // 调用百度地图API根据地址，获取坐标
     public static Coordinate getCoordinate(String address) {
         Coordinate Coordinate = new Coordinate();
+        if(address.equals("") || address == null) {
+            return null;
+        } else if(!address.contains("上海市")){
+            address = "上海市" + address;
+        }
         if (address != null && !"".equals(address)) {
             address = address.substring(2, address.length() - 2);
             address = address.replaceAll("\\s*", "").replace("#", "栋");
@@ -43,6 +48,9 @@ public class CoordinateUtil {
     // 调用百度地图API根据地址，获取坐标
     public static Coordinate Coordinate(String address) {
         Coordinate Coordinate = new Coordinate();
+        if(address.equals("") || address == null) {
+            return null;
+        }
         if (address != null && !"".equals(address)) {
             String url = "http://api.map.baidu.com/geocoder/v2/?address=" + address + "&output=json&ak=" + AK;
             String json = loadJSON(url);

@@ -158,11 +158,7 @@
           <tr>
             <td>*客户地址</td>
             <td>
-              <input
-                :id="project.id + 'projectAddress'"
-                type="text"
-                :value="project.address"
-              />
+              <input :id="project.id + 'projectAddress'" type="text" :value="project.address"/>
             </td>
           </tr>
           <tr>
@@ -226,7 +222,6 @@ export default class Home extends Vue {
       const obj = {
         saleName: saleName,
         saleId: saleId
-        // department: department
       }
       this.saleManList.push(obj)
     }
@@ -505,16 +500,19 @@ export default class Home extends Vue {
         [field.projectArea]: [area],
         [field.saleMan]: [saleMan],
         [field.department]: [department],
-        [field.projectStage]: [stage]
+        [field.projectStage]: [stage],
+        2200000147885693: {
+          coordinate: { lat: 31.080741, lon: 121.599877 }
+        }
       }
     }
+    await logInsert('项目编辑:' + remarks.value)
     const res: any = await updateTable(project.itemId, data)
     if (res.message) {
       this.errorInfo(res.message)
     } else {
       this.errorInfo('保存成功')
     }
-    await logInsert('项目编辑:' + remarks.value)
   }
 
   errorInfo (str: any) {

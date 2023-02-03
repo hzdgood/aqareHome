@@ -70,3 +70,8 @@ export const getLocalSale = (localName: any) => {
   }
   return data
 }
+
+export const Dateformater = () => {
+  const pubdate = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+  return pubdate
+}

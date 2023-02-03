@@ -1,12 +1,12 @@
 <template>
   <div>
     <table class='EditTable'>
-      <tr>
+      <!-- <tr>
         <td>项目编码</td>
         <td>
           <input id='projectCode' type='text' readonly :value='projectCode'/>
         </td>
-      </tr>
+      </tr> -->
       <tr>
         <td>预约时间</td>
         <td>

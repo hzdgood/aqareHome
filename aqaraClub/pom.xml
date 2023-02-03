@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.aqara</groupId>
     <artifactId>aqaraClub</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>demo</description>
     <properties>

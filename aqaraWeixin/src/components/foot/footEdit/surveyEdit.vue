@@ -39,6 +39,7 @@ import { table, field } from '@/config/config'
 import { Select, Input, DatePicker } from 'ant-design-vue'
 import { SearchInfo, addInfo, uploadImg, SearchUser, updateTable, logInsert } from '@/config/interFace'
 import survey from './components/survey.vue'
+import { Dateformater } from '@/config/common'
 import 'moment/locale/zh-cn'
 @Component({
   name: 'surveyEdit',
@@ -90,6 +91,11 @@ export default class Home extends Vue {
           }
         } else if (fields[j].field_id === 2200000168613835) {
           type = fields[j].values[0].id // 类型
+          if (type === 1) {
+            type = '工勘'
+          } else if (type === 2) {
+            type = '交底'
+          }
         }
       }
       const obj = {
@@ -100,7 +106,7 @@ export default class Home extends Vue {
         surveyPersonnel: personList,
         surveyType: type
       }
-      this.surveyList.unshift(obj)
+      this.surveyList.push(obj)
     }
   }
 
@@ -162,11 +168,11 @@ export default class Home extends Vue {
     const obj = {
       key: this.index + 1,
       itemId: res.item_id,
-      appointmentTime: null,
+      appointmentTime: Dateformater(),
       EDuration: '2',
       surveyType: '工勘'
     }
-    this.surveyList.push(obj)
+    this.surveyList.unshift(obj)
   }
 
   async signUpload () {
