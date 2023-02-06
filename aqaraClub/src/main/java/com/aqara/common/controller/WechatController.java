@@ -171,7 +171,7 @@ public class WechatController {
     }
 
     /*
-     * 工勘链接企业微信日程接口
+     * 工勘链接企业微信日程接口 *****
      * */
     @CrossOrigin
     @RequestMapping("/schedule/add")
@@ -224,24 +224,5 @@ public class WechatController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @CrossOrigin
-    @RequestMapping("/calendar/add")
-    public void calendarAdd() {
-        String token = getToken(CommonProperties.getServiceUrl());
-        String userInfo = WxProperties.getCalendarAdd() + "?access_token=" + token;
-        String str = "{"
-                + "\"calendar\" : {"
-                + "\"organizer\" : \"HuangzhaoDong\","
-                + "\"readonly\" : 1,"
-                + "\"set_as_default\" : 1,"
-                + "\"summary\" : \"test_summary\","
-                + "\"color\" : \"#FF3030\","
-                + "\"description\" : \"test_describe\""
-                + "}"
-                + "}";
-        JSONObject obj = new JSONObject();
-        HttpUtil.dataPost(userInfo, obj.parseObject(str));
     }
 }
