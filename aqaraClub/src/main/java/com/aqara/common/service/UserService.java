@@ -28,10 +28,6 @@ public class UserService {
         return userMapper.select(PageReq.getUsername(), PageReq.getEngName());
     }
 
-    public List<User> selectCode(String code) {
-        return userMapper.selectCode(code);
-    }
-
     public void insert(User user) {
         userMapper.insert(user);
     }

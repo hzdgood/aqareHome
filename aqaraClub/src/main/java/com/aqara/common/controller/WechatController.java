@@ -179,7 +179,6 @@ public class WechatController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String userId = Schedule.getUserid();
         String attendees = "";
-        String organizer = "";
         userId = userId.replaceAll(" ", "");
         if (userId.contains("、")) {
             String[] users = userId.split("、");
@@ -187,24 +186,17 @@ public class WechatController {
                 List<User> userlist = UserService.select(users[i], "");
                 if (userlist.size() > 0) {
                     User User = userlist.get(0);
-                    attendees += "{" + "	\"userid\": \"" + User.getEngName() + "\"" + "},";
+                    attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
                 }
             }
         } else {
             List<User> userlist = UserService.select(userId, "");
             if (userlist.size() > 0) {
                 User User = userlist.get(0);
-                attendees += "{" + "	\"userid\": \"" + User.getEngName() + "\"" + "},";
+                attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
             }
         }
-        List<User> userlist = UserService.selectCode(Schedule.getOrganizer());
-        if (userlist.size() > 0 && attendees != "") {
-            User User = userlist.get(0);
-            organizer = User.getEngName();
-            attendees = attendees.substring(0, attendees.length() - 1);
-        } else {
-            return;
-        }
+        attendees = attendees.substring(0, attendees.length() - 1);
         try {
             Date date = sdf.parse(Schedule.getStartTime());
             Long StartTime = date.getTime() / 1000;
@@ -213,7 +205,6 @@ public class WechatController {
             String token = getToken(CommonProperties.getServiceUrl());
             String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
             String str = "{\"schedule\": {"
-                    + "\"organizer\": \"" + organizer + "\","
                     + "\"start_time\": " + StartTime + ","
                     + "\"end_time\": " + endTime + ","
                     + "\"summary\": \"" + Schedule.getSummary() + "\","
@@ -221,6 +212,7 @@ public class WechatController {
                     + "\"location\": \"" + Schedule.getLocation() + "\","
                     + "\"attendees\": [" + attendees + "]}}";
             HttpUtil.scheduleReq(userInfo, str);
+            System.out.printf("日程请求：" + str);
         } catch (Exception e) {
             e.printStackTrace();
         }

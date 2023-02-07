@@ -79,6 +79,7 @@ public class CoordinateUtil {
             }
             in.close();
         } catch (Exception e) {
+            System.out.printf(json.toString() + "--------" + "loadJSON");
             e.printStackTrace();
         }
         return json.toString();

@@ -189,7 +189,8 @@ public class HttpUtil {
             httpPost.setEntity(entity);
             HttpResponse response = httpClient.execute(httpPost);
             if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                EntityUtils.toString(response.getEntity(), "UTF-8");
+                String res =  EntityUtils.toString(response.getEntity(), "UTF-8");
+                System.out.printf("日程返回：" + res);
             }
         } catch (Exception e) {
             e.printStackTrace();

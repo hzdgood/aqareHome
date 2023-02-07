@@ -39,10 +39,10 @@ export default class Home extends Vue {
 <style scoped>
 .ModalDiv{
   position: fixed;
-  width: 60%;
-  height: 22%;
+  width: 50%;
+  height: 17%;
   top: 33%;
-  left: 20%;
+  left: 26%;
   overflow: auto;
   z-index: 30;
   background-color: #fff;
@@ -53,6 +53,5 @@ export default class Home extends Vue {
 }
 .buttonFloat{
   margin-right: 10px;
-  float: right;
 }
 </style>

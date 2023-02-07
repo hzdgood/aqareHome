@@ -500,10 +500,7 @@ export default class Home extends Vue {
         [field.projectArea]: [area],
         [field.saleMan]: [saleMan],
         [field.department]: [department],
-        [field.projectStage]: [stage],
-        2200000147885693: {
-          coordinate: { lat: 31.080741, lon: 121.599877 }
-        }
+        [field.projectStage]: [stage]
       }
     }
     await logInsert('项目编辑:' + remarks.value)
