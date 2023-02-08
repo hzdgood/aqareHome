@@ -66,9 +66,11 @@ server:
 
 logging:
   level:
-    root: info
+    root: INFO
   file:
     name: aqara.log
+  charset:
+    console: UTF-8
 
 spring:
   datasource:

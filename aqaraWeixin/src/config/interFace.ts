@@ -3,6 +3,7 @@ import { SignRes } from 'wecom-sidebar-jssdk'
 const httpUrl = 'http://localhost:8081' // 测试url
 // const httpUrl = 'http://aqara.club:8081' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
+const clubHeader: any = { tokens: '12345678' }
 
 export const config = {
   corpId: 'ww9a717b03b06063e3', // 企业ID
@@ -25,7 +26,8 @@ const post = async (url: string, data: object) => {
 
 const UploadPost = async (url: string, data: object) => {
   const headers = {
-    'Content-Type': 'multipart/form-data'
+    'Content-Type': 'multipart/form-data',
+    tokens: '12345678'
   }
   const response = await axios({
     method: 'post',
@@ -41,6 +43,7 @@ export const fetchUserId = async (code: string): Promise<string> => {
   const response = await axios.request({
     method: 'GET',
     url: httpUrl + '/wechat/getUserId',
+    headers: clubHeader,
     params: {
       code: code,
       type: httpUrl
@@ -53,6 +56,7 @@ export const compUser = async (userId: string): Promise<string> => {
   const response = await axios.request({
     method: 'GET',
     url: httpUrl + '/wechat/compUser',
+    headers: clubHeader,
     params: {
       userId: userId,
       type: httpUrl
@@ -66,6 +70,7 @@ export const fetchSignatures = async (): Promise<SignRes> => {
   const response = await axios.request<SignRes>({
     method: 'GET',
     url: httpUrl + '/wechat/signatures',
+    headers: clubHeader,
     params: {
       url: window.location.href.split('#')[0],
       type: httpUrl
@@ -79,6 +84,7 @@ export const externalContact = async (userId: string) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
     url: httpUrl + '/wechat/externalContact',
+    headers: clubHeader,
     params: {
       userId: userId,
       type: httpUrl
@@ -91,6 +97,7 @@ export const groupchat = async (chatId: string) => {
   const response = await axios.request<SignRes>({
     method: 'GET',
     url: httpUrl + '/wechat/groupChat',
+    headers: clubHeader,
     params: {
       chatId: chatId,
       type: httpUrl
@@ -115,7 +122,8 @@ export const getCoordinate = async (formData: object) => {
   const info = await axios({
     method: 'post',
     url: url,
-    data: formData
+    data: formData,
+    headers: clubHeader
   })
   return info.data
 }
@@ -125,7 +133,8 @@ export const getCoordinate1 = async (formData: object) => {
   const info = await axios({
     method: 'post',
     url: url,
-    data: formData
+    data: formData,
+    headers: clubHeader
   })
   return info.data
 }
@@ -134,6 +143,7 @@ export const logInsert = async (info: any) => {
   const response = await axios.request({
     method: 'GET',
     url: httpUrl + '/log/insert',
+    headers: clubHeader,
     params: {
       name: localStorage.getItem('localName'),
       custom: localStorage.getItem('userName'),
@@ -147,6 +157,7 @@ export const logSelect = async () => {
   const response = await axios.request({
     method: 'GET',
     url: httpUrl + '/log/select',
+    headers: clubHeader,
     params: {
       name: localStorage.getItem('localName'),
       custom: localStorage.getItem('userName')

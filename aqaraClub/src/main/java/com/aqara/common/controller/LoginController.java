@@ -17,6 +17,12 @@ public class LoginController {
     LoginService LoginService;
 
     @CrossOrigin
+    @RequestMapping("/getTokens")
+    public String getTokens() {
+        return "";
+    }
+
+    @CrossOrigin
     @RequestMapping("/select")
     public List<Login> select(String username, String password) {
         return LoginService.select(username, password);

@@ -15,6 +15,8 @@
         <result column="contentTitle" jdbcType="VARCHAR" property="contentTitle"/>
         <result column="contentText" jdbcType="VARCHAR" property="contentText"/>
         <result column="contentFile" jdbcType="VARCHAR" property="contentFile"/>
+        <result column="contentImage" jdbcType="VARCHAR" property="contentImage"/>
+        <result column="contentVideo" jdbcType="VARCHAR" property="contentVideo"/>
         <result column="contentType" jdbcType="VARCHAR" property="contentType"/>
         <result column="contentLevel" jdbcType="VARCHAR" property="contentLevel"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
@@ -25,7 +27,7 @@
 
     <select id="select" resultType="com.aqara.common.entity.SpeedyContent">
         SELECT c.id, c.mediaId, t2.teamId, c.themeId, t1.type, t1.team, t2.theme, t1.affiliatePerson, t1.company,
-        c.contentTitle, c.contentText, c.contentFile, c.contentType, c.contentLevel,
+        c.contentTitle, c.contentText, c.contentFile, c.contentType, c.contentLevel, c.contentImage, c.contentVideo,
         c.createName, c.createTime, c.updateName, c.updateTime
         FROM aqara.speedyteam t1, aqara.speedytheme t2, aqara.speedycontent c
         where t2.id = c.themeId and t1.id = t2.teamId
@@ -48,10 +50,12 @@
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.SpeedyContent" useGeneratedKeys="true" keyProperty="id">
-        insert into speedyContent (themeId, mediaId, contentTitle, contentText, contentFile,
+        insert into speedyContent (themeId, mediaId, contentTitle, contentText,
+                                   contentFile, contentImage, contentVideo,
                                    contentType, contentLevel, createName, createTime)
         values (#{themeId}, #{mediaId}, #{contentTitle}, #{contentText},
-                #{contentFile}, #{contentType}, #{contentLevel}, #{createName}, NOW())
+                #{contentFile}, #{contentImage}, #{contentVideo},
+                 #{contentType}, #{contentLevel}, #{createName}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
@@ -63,6 +67,8 @@
             contentFile  = #{contentFile},
             contentType  = #{contentType},
             contentLevel = #{contentLevel},
+            contentImage = #{contentImage},
+            contentVideo = #{contentVideo},
             updateName   = #{updateName},
             updateTime   = NOW()
         where id = #{id}
