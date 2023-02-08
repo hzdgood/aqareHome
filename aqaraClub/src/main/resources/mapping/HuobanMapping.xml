@@ -13,6 +13,7 @@
         select *
         from huoban
         where 1 = 1
+        order by date desc
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.Huoban" useGeneratedKeys="true" keyProperty="id">

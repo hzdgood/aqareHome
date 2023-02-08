@@ -21,10 +21,16 @@
         <img src="../img/person/state-8.png" width="73%" v-show="stageImg8" />
       </span>
     </div>
+    <div>
+      <button class="statusButton">已工勘</button>
+      <button class="statusButton">已定金</button>
+      <button class="statusButton">已全款</button>
+      <button class="statusButton">已流失</button>
+    </div>
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue } from 'vue-property-decorator'
 import { SearchInfo, updateTable } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import tableSelect from '@/components/common/tableSelect.vue'
@@ -51,11 +57,6 @@ export default class Home extends Vue {
   screenWidth = document.body.clientWidth;
   comWidth: any = '100px';
   comHeight: any = '20px';
-
-  // @Watch('this.screenWidth')
-  // reloadTable () {
-  // }
-
   // 获取所有客户标签
   async mounted () {
     window.onresize = () => {
@@ -188,32 +189,5 @@ export default class Home extends Vue {
   updateStage (item: any) {
     this.updateImg(item.value)
   }
-
-  // // 选择
-  // onclick = (items: any) => {
-  //   // 获取选中对象 删除class
-  //   const obj: any = document.getElementsByClassName('selected')
-  //   for (let i = 0; i < obj.length; i++) {
-  //     const id = obj[i].id
-  //     const dom: any = document.getElementById(id)
-  //     dom.className = ''
-  //   }
-  //   // 设置新的选中对象
-  //   const dom: any = document.getElementById(items.id)
-  //   dom.className = 'selected'
-  //   // 发送请求
-  //   this.updateData(items)
-  // };
-
-  // // 更新
-  // async updateData (items: any) {
-  //   const objs: any = {
-  //     fields: {
-  //       [items.field]: [parseInt(items.id)]
-  //     }
-  //   }
-  //   await updateTable(this.itemId, objs)
-  // }
 }
 </script>
-<style scoped></style>

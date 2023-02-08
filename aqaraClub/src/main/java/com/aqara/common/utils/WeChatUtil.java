@@ -18,6 +18,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.post(lastUrl);
         } catch (Exception e) {
+            System.out.printf("获取token over");
             e.printStackTrace();
         }
         return result;

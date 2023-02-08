@@ -56,6 +56,7 @@ public class HttpUtil {
             return sb.toString();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.printf("get：" + requestUrl);
             return "";
         }
     }
@@ -83,6 +84,7 @@ public class HttpUtil {
             return sb.toString();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.printf("post:" + requestUrl);
             return "";
         }
     }
@@ -114,6 +116,7 @@ public class HttpUtil {
             return sb.toString();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.printf("dataPost" + requestUrl);
             return "";
         }
     }
@@ -177,21 +180,21 @@ public class HttpUtil {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.printf("workRequest" + WX_TOKEN);
         }
     }
 
     public static void scheduleReq(String requestUrl, String obj) {
         try {
-            HttpClient httpClient = new DefaultHttpClient();
+//            HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(requestUrl);
             httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
             StringEntity entity = new StringEntity(obj, "utf-8");
             httpPost.setEntity(entity);
-            HttpResponse response = httpClient.execute(httpPost);
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                String res =  EntityUtils.toString(response.getEntity(), "UTF-8");
-                System.out.printf("日程返回：" + res);
-            }
+//            HttpResponse response = httpClient.execute(httpPost);
+//            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+//                String res =  EntityUtils.toString(response.getEntity(), "UTF-8");
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }

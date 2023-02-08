@@ -57,6 +57,7 @@ server:
   port: 8081
   tomcat:
     uri-encoding: UTF-8
+    max-http-form-post-size: 8096
   ssl:
     key-store: classpath:aqara.club.jks
     key-store-type: JKS

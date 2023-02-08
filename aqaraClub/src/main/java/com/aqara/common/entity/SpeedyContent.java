@@ -14,8 +14,10 @@ public class SpeedyContent {
     private String company;
     private String contentTitle; //标题
     private String contentText; //内容
-    private String contentFile; //路径
-    private String contentType; //类型 文本，文件
+    private String contentImage; //图片
+    private String contentVideo; //视频
+    private String contentFile; //文件
+    private String contentType; //类型
     private String contentLevel; //内容等级 常用，不常用
     private String createName;
     private Date createTime;
@@ -105,6 +107,14 @@ public class SpeedyContent {
     public String getContentText() {
         return contentText;
     }
+
+    public String getContentImage() { return contentImage; }
+
+    public void setContentImage(String contentImage) { this.contentImage = contentImage; }
+
+    public String getContentVideo() { return contentVideo; }
+
+    public void setContentVideo(String contentVideo) { this.contentVideo = contentVideo; }
 
     public void setContentText(String contentText) {
         this.contentText = contentText;
