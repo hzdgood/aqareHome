@@ -12,24 +12,24 @@
         <a-form-item v-show="model && model.id > 0" label="主键ID">
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
-        <a-form-item label="话术类型">
+        <a-form-item label="*话术类型">
           <a-select @change="selectChange" placeholder="请选择类型" v-decorator="['type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option value="企业话术">企业话术</a-select-option>
             <a-select-option value="团体话术">团体话术</a-select-option>
             <a-select-option value="个人话术">个人话术</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="所属人员" v-show="personStatus">
+        <a-form-item label="*所属人员" v-show="personStatus">
           <a-select placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in personList" :key="item.id" :value="item.engName">{{ item.userName }}</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="公司名称">
+        <a-form-item label="*公司名称">
           <a-select placeholder="请选择" v-decorator="['company', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option value="上海汇社">上海汇社</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="组名称">
+        <a-form-item label="*组名称">
           <a-input v-decorator="['team', { rules: [{ required: true, message: '该字段是必填字段' }]}]" />
         </a-form-item>
       </a-form>

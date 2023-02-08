@@ -13,8 +13,8 @@ public class CommonService {
     @Autowired
     CommonMapper CommonMapper;
 
-    public List<Common> getValue(String name) {
-        return CommonMapper.getValue(name);
+    public List<Common> select(String name) {
+        return CommonMapper.select(name);
     }
 
     public void insert(Common Common) {

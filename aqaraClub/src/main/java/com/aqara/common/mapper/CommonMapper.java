@@ -8,12 +8,8 @@ import java.util.List;
 @Repository
 public interface CommonMapper {
 
-    List<Common> getValue(String name);
+    List<Common> select(String name);
 
     void insert(Common Common);
-
-    void delete(Integer id);
-
-    void deleteAll(List<Integer> ids);
 
 }

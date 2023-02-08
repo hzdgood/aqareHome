@@ -12,62 +12,63 @@
         <a-form-item v-show="model && model.id > 0" label="主键ID">
           <a-input v-decorator="['id', { initialValue: 0 }]" disabled />
         </a-form-item>
-        <a-form-item label="话术类型">
+        <a-form-item label="*话术类型">
           <a-select @change="selectType" placeholder="请选择类型" v-decorator="['type', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option value="企业话术">企业话术</a-select-option>
             <a-select-option value="团体话术">团体话术</a-select-option>
             <a-select-option value="个人话术">个人话术</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="所属人员" v-show="personStatus">
+        <a-form-item label="*所属人员" v-show="personStatus">
           <a-select @change="selectPerson" placeholder="请选择所属人员" v-decorator="['affiliatePerson', { rules: [{ required: personStatus, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in personList" :key="item.id" :value="item.engName">{{ item.userName }}</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="快捷组" v-show="showTeam">
+        <a-form-item label="*快捷组" v-show="showTeam">
           <a-select @change="selectTeam" placeholder="请选择组" v-decorator="['teamId', { rules: [{ required: true, message: '该字段是必填字段' }]}]">
             <a-select-option v-for="item in teamList" :value="item.id" :key="item.id">
               {{ item.team }}
             </a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="主题" v-show="showTheme">
+        <a-form-item label="*主题" v-show="showTheme">
           <a-select placeholder="请选择主题名称" v-decorator="['themeId', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option v-for="item in menuList" :value="item.id" :key="item.id">
               {{ item.theme }}
             </a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="标题">
+        <a-form-item label="*标题">
           <a-input v-decorator="['contentTitle', { rules: [{ required: true, message: '该字段是必填字段' }] }]"/>
         </a-form-item>
-        <a-form-item label="内容" v-show="textStatus">
-          <a-input v-decorator="['contentText', { rules: [{ required: textStatus, message: '该字段是必填字段' }] }]"/>
-        </a-form-item>
-        <a-form-item label="等级">
+        <a-form-item label="*等级">
           <a-select placeholder="请选择等级" v-decorator="['contentLevel', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
             <a-select-option value="1">高</a-select-option>
             <a-select-option value="2">中</a-select-option>
             <a-select-option value="3">低</a-select-option>
           </a-select>
         </a-form-item>
-        <a-form-item label="类型">
-          <a-select @change="selectChange" placeholder="请选择内容类型" v-decorator="['contentType', { rules: [{ required: true, message: '该字段是必填字段' }] }]">
-            <a-select-option value="文本">文本</a-select-option>
-            <a-select-option value="文件">文件</a-select-option>
-            <a-select-option value="图片">图片</a-select-option>
-            <a-select-option value="视频">视频</a-select-option>
-            <a-select-option value="组合">组合</a-select-option>
-          </a-select>
+        <a-form-item label="内容">
+          <a-input v-decorator="['contentFile', { initialValue: '' }]"/>
         </a-form-item>
-        <a-form-item label="上传" v-show="fileStatus">
-          <a-upload name="file" :beforeUpload="beforeUpload" :showUploadList="false">
+        <a-form-item label="文件上传">
+          <a-upload name="file" :beforeUpload="UploadFile" :showUploadList="false">
             <a-button icon="upload">请选择文件</a-button>
           </a-upload>
         </a-form-item>
-        <a-form-item label="路径" v-show="fileStatus">
-          <a-input v-decorator="['contentFile', { initialValue: '' }]" disabled />
+        <a-form-item label="图片上传">
+          <a-upload name="file" :beforeUpload="UploadImage" :showUploadList="false">
+            <a-button icon="upload">请选择文件</a-button>
+          </a-upload>
         </a-form-item>
+        <a-form-item label="视频上传">
+          <a-upload name="file" :beforeUpload="UploadVideo" :showUploadList="false">
+            <a-button icon="upload">请选择文件</a-button>
+          </a-upload>
+        </a-form-item>
+        <a-input v-decorator="['contentFile', { initialValue: '' }]" disabled />
+        <a-input v-decorator="['contentImage', { initialValue: '' }]" disabled />
+        <a-input v-decorator="['contentVideo', { initialValue: '' }]" disabled />
       </a-form>
     </a-spin>
   </a-modal>
@@ -76,8 +77,9 @@
 import pick from 'lodash.pick'
 import { getPostData, uploadFile } from '@/api/axios'
 // 表单字段
-const fields = ['contentTitle', 'contentLevel', 'contentType', 'contentFile',
- 'contentText', 'themeId', 'id', 'teamId', 'type', 'affiliatePerson']
+const fields = ['contentTitle', 'contentLevel', 'contentType',
+  'contentFile', 'contentImage', 'contentVideo',
+  'contentText', 'themeId', 'id', 'teamId', 'type', 'affiliatePerson']
 export default {
   props: {
     visible: {
@@ -116,7 +118,6 @@ export default {
       showTeam: false,
       showTheme: false,
       fileStatus: false,
-      textStatus: true,
       uploadFile: Object,
       form: this.$form.createForm(this)
     }
@@ -135,13 +136,28 @@ export default {
     this.personList = obj.data
   },
   methods: {
-    async beforeUpload (file) {
+    async UploadFile (file) {
       const formData = new FormData()
       formData.append('file', file, file.name)
       const res = await uploadFile(formData, '/speedy/content/upload')
       this.uploadFile = {
-        contentText: '已上传文件',
         contentFile: res
+      }
+    },
+    async UploadImage (file) {
+      const formData = new FormData()
+      formData.append('file', file, file.name)
+      const res = await uploadFile(formData, '/speedy/content/upload')
+      this.uploadFile = {
+        contentImage: res
+      }
+    },
+    async UploadVideo (file) {
+      const formData = new FormData()
+      formData.append('file', file, file.name)
+      const res = await uploadFile(formData, '/speedy/content/upload')
+      this.uploadFile = {
+        contentVideo: res
       }
     },
     async selectPerson (value) {
@@ -180,18 +196,6 @@ export default {
       } else {
         this.showTheme = true
         this.menuList = data.data.data
-      }
-    },
-    selectChange (value) {
-      if (value === '文本') {
-        this.fileStatus = false
-        this.textStatus = true
-      } else if (value === '组合') {
-        this.fileStatus = true
-        this.textStatus = true
-      } else {
-        this.fileStatus = true
-        this.textStatus = false
       }
     }
   }
