@@ -22,10 +22,12 @@
       </span>
     </div>
     <div>
-      <button class="statusButton">已工勘</button>
-      <button class="statusButton">已定金</button>
-      <button class="statusButton">已全款</button>
-      <button class="statusButton">已流失</button>
+      <button
+        v-for="item in statusData"
+        :key="item.id"
+        :class="item.status? 'statusButton1':'statusButton'"
+        @click="statusChange(item)"
+      >{{ item.name }}</button>
     </div>
   </div>
 </template>
@@ -45,6 +47,7 @@ export default class Home extends Vue {
   customStage: any[] = [];
   taglist: any[] = [];
   itemId: any = '';
+  statusList: any[] = [];
   userId = localStorage.getItem('userId');
   stageImg1 = false;
   stageImg2 = false;
@@ -57,6 +60,73 @@ export default class Home extends Vue {
   screenWidth = document.body.clientWidth;
   comWidth: any = '100px';
   comHeight: any = '20px';
+
+  statusData: any[] = [{
+    id: 1,
+    name: '已流失',
+    status: false
+  }, {
+    id: 2,
+    name: '已工勘',
+    status: false
+  }, {
+    id: 3,
+    name: '已全款',
+    status: false
+  }, {
+    id: 4,
+    name: '已定金',
+    status: false
+  }]
+
+  async statusChange (obj: any) {
+    const data = this.comReq()
+    const res = await SearchInfo(this.customerInfo, data)
+    const fields = res[0].fields
+    this.statusList = []
+    if (obj.status === true) {
+      this.statusData[obj.id - 1].status = false
+      for (let i = 0; i < fields.length; i++) {
+        if (fields[i].field_id === 2200000322407339) {
+          const values = fields[i].values
+          for (let j = 0; j < values.length; j++) {
+            if (Number(obj.id) !== Number(values[j].id)) {
+              this.statusList.push(values[j].id)
+            }
+          }
+        }
+      }
+    } else {
+      for (let i = 0; i < fields.length; i++) {
+        if (fields[i].field_id === 2200000322407339) {
+          const values = fields[i].values
+          for (let j = 0; j < values.length; j++) {
+            this.statusList.push(values[j].id)
+          }
+        }
+      }
+      this.statusList.push(obj.id)
+    }
+    this.setStatus()
+  }
+
+  setStatus () {
+    for (let i = 0; i < this.statusList.length; i++) {
+      const value = this.statusList[i]
+      this.statusData[value - 1].status = true
+    }
+    this.updateStatus()
+  }
+
+  async updateStatus () {
+    const objs: any = {
+      fields: {
+        2200000322407339: this.statusList
+      }
+    }
+    await updateTable(this.itemId, objs)
+  }
+
   // 获取所有客户标签
   async mounted () {
     window.onresize = () => {
@@ -64,18 +134,7 @@ export default class Home extends Vue {
       this.comWidth = this.screenWidth - 40 + 'px'
       this.comHeight = this.screenWidth / 3 - 10 + 'px'
     }
-    const data = {
-      where: {
-        and: [
-          {
-            field: 2200000182035321,
-            query: { em: false, in: [2300006607764731] }
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20
-    }
+    const data = this.tagRes()
     const result = await SearchInfo(this.tagInfo, data)
     this.taglist = result
     for (let i = 0; i < result.length; i++) {
@@ -97,20 +156,7 @@ export default class Home extends Vue {
 
   // 获取当前客户阶段
   async getCustomerTag () {
-    const data = {
-      where: {
-        and: [
-          {
-            query: { or: [{ eqm: [this.userId] }] },
-            query_option_mappings: [-1],
-            field: field.userTable
-          }
-        ]
-      },
-      offset: 0,
-      limit: 20,
-      order_by: [{ field: field.userTable, sort: 'desc' }]
-    }
+    const data = this.comReq()
     const res = await SearchInfo(this.customerInfo, data)
     if (res.length === 0) {
       return
@@ -127,7 +173,14 @@ export default class Home extends Vue {
           this.StageImg(itemid)
         }
       }
+      if (fields[i].field_id === 2200000322407339) {
+        const values = fields[i].values
+        for (let j = 0; j < values.length; j++) {
+          this.statusList.push(values[j].id)
+        }
+      }
     }
+    this.setStatus()
     // 取不到值
     if (!status) {
       const objs: any = {
@@ -188,6 +241,40 @@ export default class Home extends Vue {
 
   updateStage (item: any) {
     this.updateImg(item.value)
+  }
+
+  tagRes () {
+    const data = {
+      where: {
+        and: [
+          {
+            field: 2200000182035321,
+            query: { em: false, in: [2300006607764731] }
+          }
+        ]
+      },
+      offset: 0,
+      limit: 20
+    }
+    return data
+  }
+
+  comReq () {
+    const data = {
+      where: {
+        and: [
+          {
+            query: { or: [{ eqm: [this.userId] }] },
+            query_option_mappings: [-1],
+            field: field.userTable
+          }
+        ]
+      },
+      offset: 0,
+      limit: 20,
+      order_by: [{ field: field.userTable, sort: 'desc' }]
+    }
+    return data
   }
 }
 </script>

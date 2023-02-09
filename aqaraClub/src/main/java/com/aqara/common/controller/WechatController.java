@@ -62,6 +62,9 @@ public class WechatController {
     synchronized private String insert(String type) {
         String res = WeChatUtil.getWxToken(WxProperties, type);
         JSONObject jsonObject = JSONObject.parseObject(res);
+        if(jsonObject == null) {
+            return null;
+        }
         Wechat Wechat = new Wechat();
         Wechat.setTicket(jsonObject.getString("access_token"));
         Wechat.setType(type);
