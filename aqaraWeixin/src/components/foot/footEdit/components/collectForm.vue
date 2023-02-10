@@ -12,7 +12,7 @@
             </td>
           </tr>
           <tr>
-            <td>收款类型</td>
+            <td>*收款类型</td>
             <td>
               <select id="projectType" @change="typeChange">
                 <option value="1">定金</option>
@@ -20,14 +20,8 @@
               </select>
             </td>
           </tr>
-          <tr v-show="quotationStatus">
-            <td>报价单</td>
-            <td>
-              <input id="quotation" type="text" :value="title" readonly />
-            </td>
-          </tr>
           <tr>
-            <td>收款方式</td>
+            <td>*收款方式</td>
             <td>
               <select id="collectType">
                 <option v-for="item in collectType" :value="item.value" :key="item.value">
@@ -37,7 +31,7 @@
             </td>
           </tr>
           <tr>
-            <td>收款金额</td>
+            <td>*收款金额</td>
             <td><input id="collectMoney" type="text" v-model="collectMoney" /></td>
           </tr>
           <tr>
@@ -83,7 +77,6 @@ import loading from '@/components/common/loading.vue'
   }
 })
 export default class Home extends Vue {
-  quotationStatus = false;
   collectType = collectType;
   collectMoney = '1500';
   visible = false
@@ -126,7 +119,6 @@ export default class Home extends Vue {
     let projectType: any = document.getElementById('projectType')
     projectType = projectType.options[projectType.selectedIndex].value
     if (projectType === '2') {
-      this.quotationStatus = true
       const result1 = await SearchInfo(table.proposal, getProposal(this.projectId))
       this.title = result1[0].title
       this.quotationId = result1[0].item_id
@@ -138,7 +130,6 @@ export default class Home extends Vue {
         }
       }
     } else if (projectType === '1') {
-      this.quotationStatus = false
       this.collectMoney = ''
     }
   }
@@ -148,10 +139,6 @@ export default class Home extends Vue {
     const req = getLocalSale(this.localName)
     const result = await SearchInfo(table.saleManInfo, req)
     let salesId = ''
-    if (result.length === 0) {
-      this.errorInfo('找不到当前销售人员信息！' + this.localName)
-      return
-    }
     for (let i = 0; i < result.length; i++) {
       salesId = result[0].item_id
     }
@@ -199,7 +186,11 @@ export default class Home extends Vue {
       const result = await addInfo(table.collectTable, data)
       this.run(result)
     }
-    await logInsert('收款')
+  }
+
+  async collectCheck () {
+    this.errorInfo('收款成功！')
+    await logInsert('收款成功！')
   }
 
   // 启动收款流程

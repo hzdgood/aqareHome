@@ -62,46 +62,45 @@
           value="关闭"
         />
       </div>
-    </div>
-
-    <button class='saveButton' @click='proposalCreate()'>生成报价</button>
-    <div v-for='item in dataList' :key='item.id'>
-      <table class='EditTable'>
-        <tr>
-          <td>订单类型</td>
-          <td><input type='text' :value='item.type' readonly /></td>
-        </tr>
-        <tr>
-          <td>方案金额</td>
-          <td><input type='text' :value='item.schemeMoney' readonly /></td>
-        </tr>
-        <tr>
-          <td>优惠金额</td>
-          <td><input id='discount' type='text' :value='item.discount' /></td>
-        </tr>
-        <tr>
-          <td>应收金额</td>
-          <td><input type='text' :value='item.receivable' readonly /></td>
-        </tr>
-        <tr>
-          <td>已收金额</td>
-          <td><input type='text' :value='item.Received' readonly /></td>
-        </tr>
-        <tr>
-          <td>上传文件</td>
-          <td>
-            <input id="fileUpload" type="file" accept="image/*" placeholder="请选择文件" multiple />
-            <button class='saveButton' @click="uploadFile()">上传合同</button>
-          </td>
-        </tr>
-      </table>
-      <div class='buttonSite'>
-        <button class='saveButton' @click='synchroClick(item)'>同步</button>
-        <button class='saveButton' @click='saveProposal(item)'>保存</button>
+      <button class='saveButton' @click='proposalCreate()'>生成报价</button>
+      <div v-for='item in dataList' :key='item.id'>
+        <table class='EditTable'>
+          <tr>
+            <td>订单类型</td>
+            <td><input type='text' :value='item.type' readonly /></td>
+          </tr>
+          <tr>
+            <td>方案金额</td>
+            <td><input type='text' :value='item.schemeMoney' readonly /></td>
+          </tr>
+          <tr>
+            <td>优惠金额</td>
+            <td><input id='discount' type='text' :value='item.discount' /></td>
+          </tr>
+          <tr>
+            <td>应收金额</td>
+            <td><input type='text' :value='item.receivable' readonly /></td>
+          </tr>
+          <tr>
+            <td>已收金额</td>
+            <td><input type='text' :value='item.Received' readonly /></td>
+          </tr>
+          <tr>
+            <td>上传文件</td>
+            <td>
+              <input id="fileUpload" type="file" accept="image/*" placeholder="请选择文件" multiple />
+              <button class='saveButton' @click="uploadFile()">上传合同</button>
+            </td>
+          </tr>
+        </table>
+        <div class='buttonSite'>
+          <button class='saveButton' @click='synchroClick(item)'>同步</button>
+          <button class='saveButton' @click='saveProposal(item)'>保存</button>
+        </div>
       </div>
+      <my-Modal :visible="visible" :modalText="errorMsg"></my-Modal>
+      <my-load :loadVisible="loadVisible"></my-load>
     </div>
-    <my-Modal :visible="visible" :modalText="errorMsg"></my-Modal>
-    <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
 <script lang="ts">

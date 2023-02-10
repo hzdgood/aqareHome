@@ -42,16 +42,15 @@
   </div>
 </template>
 <script lang='ts'>
-import { Component, Vue } from 'vue-property-decorator'
-import { table, field } from '@/config/config'
-import { SearchInfo, addInfo, updateTable, uploadImg } from '@/config/interFace'
-import { masterReq, getProposal } from '@/config/common'
+import { Component, Vue, Prop } from 'vue-property-decorator'
+import { table } from '@/config/config'
+import { SearchInfo, updateTable, uploadImg, logInsert } from '@/config/interFace'
+import { getProposal } from '@/config/common'
 
 @Component({
   name: 'ProposalEdit'
 })
 export default class Home extends Vue {
-  // collectType = collectType
   proposalId = ''
   dataList: any[] = []
   type = ''
@@ -60,40 +59,27 @@ export default class Home extends Vue {
   receivable = ''
   Received = ''
   fileList: any = []
-  projectId = ''
-  itemId = ''
-  userId = localStorage.getItem('userId')
+  visible = false
+  loadVisible = false
+  errorMsg = ''
 
-  async mounted () {
-    let money: any
-    const obj1 = masterReq(this.userId)
-    const result1 = await SearchInfo(table.projectInfo, obj1)
-    if (result1.length === 0) {
-      // this.errorInfo('请先添加项目！')
-      return
-    }
-    for (let i = 0; i < result1.length; i++) {
-      const fields = result1[i].fields
-      this.itemId = result1[i].item_id
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === 2200000151011510) {
-          // 需补款
-          const values = fields[j].values[0].value
-          money = values
-        }
-        if (fields[j].field_id === field.projectId) {
-          const values = fields[j].values[0].value
-          this.projectId = values
-        }
-      }
-    }
-    if (money === '0' || money === 0) {
-      // this.errorInfo('请先上传方案！')
-      return
-    }
-    // this.errorStatus = true
-    this.search()
-  }
+  @Prop({
+    type: Object,
+    required: true
+  })
+  projectId: any
+
+  @Prop({
+    type: Object,
+    required: true
+  })
+  userId: any
+
+  @Prop({
+    type: Object,
+    required: true
+  })
+  itemId: any
 
   // 查询数据
   async search () {
@@ -146,21 +132,20 @@ export default class Home extends Vue {
 
   // 保存
   async saveClick (item: any) {
-    // this.loadVisible = true
     const discount: any = document.getElementById('discount')
     const data = {
       fields: {
-        2200000180589758: discount.value
+        2200000180589758: discount.value,
+        2200000203196675: this.fileList
       }
     }
     await updateTable(item.proposalId, data)
-    // await logInsert('报价单修改')
-    // this.errorInfo('提交成功！')
+    await logInsert('报价单修改')
+    this.errorInfo('提交报价单成功！')
   }
 
   // 同步
   async synchroClick (item: any) {
-    // this.loadVisible = true
     const data = {
       fields: {
         2200000180589754: [1],
@@ -168,7 +153,8 @@ export default class Home extends Vue {
       }
     }
     await updateTable(item.proposalId, data)
-    // this.update('同步完成！')
+    await logInsert('报价单同步')
+    this.errorInfo('同步报价单完成！')
   }
 
   async uploadFile () {
@@ -187,19 +173,29 @@ export default class Home extends Vue {
     }
   }
 
-  // 新增报价单
-  async create () {
-    const obj = {
-      fields: {
-        2200000180589754: [1],
-        2200000180589755: [this.itemId],
-        2200000180591563: [1],
-        2200000203196675: this.fileList
-      }
-    }
-    await addInfo(table.proposal, obj)
-    // this.update('新增成功！')
-    // await logInsert('新增报价单')
+  errorInfo (str: any) {
+    this.loadVisible = false
+    this.visible = true
+    this.errorMsg = str
   }
+
+  closeClick () {
+    this.$emit('close')
+  }
+
+  // // 新增报价单
+  // async create () {
+  //   const obj = {
+  //     fields: {
+  //       2200000180589754: [1],
+  //       2200000180589755: [this.itemId],
+  //       2200000180591563: [1],
+  //       2200000203196675: this.fileList
+  //     }
+  //   }
+  //   await addInfo(table.proposal, obj)
+  //   this.errorInfo('新增成功！')
+  //   await logInsert('新增报价单')
+  // }
 }
 </script>
