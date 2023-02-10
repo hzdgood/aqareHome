@@ -8,7 +8,6 @@
       <div @click="clickSurvey()" v-show="singleStatus">工勘</div>
       <div @click="clickScheme()" v-show="singleStatus">方案</div>
       <div @click="clickCollect()" v-show="singleStatus">收款</div>
-      <div @click="clickProposal()" v-show="singleStatus">报价</div>
     </div>
     <div v-if="infoShow">
       <info-edit @reload="reload()"></info-edit>
@@ -28,9 +27,6 @@
     <div v-if="collectShow">
       <collect-edit @close="clickCollect()"></collect-edit>
     </div>
-    <div v-if="ProposalStatus">
-      <proposal-edit @close="clickProposal()"></proposal-edit>
-    </div>
   </div>
 </template>
 
@@ -41,7 +37,6 @@ import infoEdit from '@/components/foot/footEdit/infoEdit.vue'
 import chatEdit from '@/components/foot/footEdit/chatEdit.vue'
 import collectEdit from '@/components/foot/footEdit/collectEdit.vue'
 import schemeEdit from '@/components/foot/footEdit/schemeEdit.vue'
-import ProposalEdit from '@/components/foot/footEdit/ProposalEdit.vue'
 import surveyEdit from '@/components/foot/footEdit/surveyEdit.vue'
 import followEdit from '@/components/foot/footEdit/followEdit.vue'
 @Component({
@@ -54,7 +49,6 @@ import followEdit from '@/components/foot/footEdit/followEdit.vue'
     'collect-edit': collectEdit,
     'scheme-edit': schemeEdit,
     'chat-edit': chatEdit,
-    'proposal-edit': ProposalEdit,
     'survey-edit': surveyEdit,
     'follow-edit': followEdit
   }
@@ -68,7 +62,6 @@ export default class Home extends Vue {
   schemeShow: any = false;
   followStatus = false;
   optionStatus = false;
-  ProposalStatus = false;
   surveyStatus = false;
   contactType = localStorage.getItem('contactType');
 
@@ -97,7 +90,6 @@ export default class Home extends Vue {
     this.followStatus = false
     this.chatShow = false
     this.optionStatus = false
-    this.ProposalStatus = false
     this.surveyStatus = false
   }
 
@@ -110,7 +102,6 @@ export default class Home extends Vue {
       this.chatShow = true
       this.schemeShow = false
       this.collectShow = false
-      this.ProposalStatus = false
       this.surveyStatus = false
     }
   }
@@ -124,7 +115,6 @@ export default class Home extends Vue {
       this.infoShow = true
       this.schemeShow = false
       this.collectShow = false
-      this.ProposalStatus = false
       this.surveyStatus = false
     }
   }
@@ -139,7 +129,6 @@ export default class Home extends Vue {
       this.schemeShow = false
       this.infoShow = false
       this.chatShow = false
-      this.ProposalStatus = false
       this.surveyStatus = false
     }
   }
@@ -154,7 +143,6 @@ export default class Home extends Vue {
       this.collectShow = false
       this.infoShow = false
       this.chatShow = false
-      this.ProposalStatus = false
       this.surveyStatus = false
     }
   }
@@ -166,24 +154,9 @@ export default class Home extends Vue {
       this.followStatus = false
       this.surveyStatus = true
       this.optionStatus = false
-      this.ProposalStatus = false
       this.chatShow = false
       this.schemeShow = false
       this.collectShow = false
-    }
-  }
-
-  clickProposal () {
-    if (this.ProposalStatus) {
-      this.ProposalStatus = false
-    } else {
-      this.followStatus = false
-      this.optionStatus = false
-      this.ProposalStatus = true
-      this.chatShow = false
-      this.schemeShow = false
-      this.collectShow = false
-      this.surveyStatus = false
     }
   }
 
@@ -193,7 +166,6 @@ export default class Home extends Vue {
     } else {
       this.followStatus = true
       this.optionStatus = false
-      this.ProposalStatus = false
       this.chatShow = false
       this.schemeShow = false
       this.collectShow = false

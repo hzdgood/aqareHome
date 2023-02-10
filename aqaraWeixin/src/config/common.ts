@@ -71,6 +71,23 @@ export const getLocalSale = (localName: any) => {
   return data
 }
 
+export const getProposal = (projectId: any) => {
+  const data = {
+    where: {
+      and: [
+        {
+          query: { or: [{ eqm: [projectId] }] },
+          query_option_mappings: [-1],
+          field: 1102001110000000 // 项目ID
+        }
+      ]
+    },
+    offset: 0,
+    limit: 20
+  }
+  return data
+}
+
 export const Dateformater = () => {
   const pubdate = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
   return pubdate
