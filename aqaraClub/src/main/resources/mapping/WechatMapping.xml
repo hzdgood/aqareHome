@@ -13,7 +13,7 @@
         select *
         from wechat
         where type = #{type}
-        order by date desc
+        order by date asc
     </select>
     <insert id="insert" parameterType="com.aqara.common.entity.Wechat" useGeneratedKeys="true" keyProperty="id">
         insert into wechat (ticket, type, expired, date)
