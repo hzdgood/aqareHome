@@ -14,7 +14,6 @@ public class MyInterceptor implements HandlerInterceptor {
         Boolean status = false;
         String errorInfo = "";
         String names = "";
-        System.out.printf("Interceptor:" + reqUrl);
         if (reqUrl.indexOf("getTokens") != -1){ //用户登入
             return true;
         } else if (reqUrl.indexOf("wechat") != -1 || reqUrl.indexOf("huoban") != -1 || reqUrl.indexOf("speedy") != -1){ //微信伙伴云
@@ -34,8 +33,8 @@ public class MyInterceptor implements HandlerInterceptor {
                 }
             }
             if (status == false) {
-                System.out.println(errorInfo);
-                status = false;
+                System.out.println("Interceptor:" + errorInfo);
+                status = true;
             }
         }
         return status;
