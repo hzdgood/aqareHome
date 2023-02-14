@@ -12,7 +12,6 @@ public class MyInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String reqUrl = request.getRequestURI();
         Boolean status = false;
-        String errorInfo = "";
         String names = "";
         if (reqUrl.indexOf("getTokens") != -1){ //用户登入
             return true;
@@ -28,15 +27,12 @@ public class MyInterceptor implements HandlerInterceptor {
                 names = names + name + "--";
                 if (name == "tokens" || name == "x-huoban-ticket") {
                     status = true;
-                } else {
-                    errorInfo = "Interceptor:" + reqUrl + ":" + names;
                 }
             }
             if (status == false) {
-                System.out.println("Interceptor:" + errorInfo);
                 status = true;
             }
         }
-        return status;
+        return true;
     }
 }

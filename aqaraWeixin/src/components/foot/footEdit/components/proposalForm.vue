@@ -36,6 +36,7 @@
           <button class='saveButton' @click="uploadFile()">上传合同</button>
           <button class='saveButton' @click='synchroClick(item)'>同步</button>
           <button class='saveButton' @click='saveClick(item)'>保存</button>
+          <button class="closeButton" @click="closeClick()">关闭</button>
         </div>
       </div>
     </div>
@@ -43,16 +44,12 @@
 </template>
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { table } from '@/config/config'
-import { SearchInfo, updateTable, uploadImg, logInsert } from '@/config/interFace'
-import { getProposal } from '@/config/common'
-
+import { updateTable, uploadImg, logInsert } from '@/config/interFace'
 @Component({
   name: 'ProposalEdit'
 })
 export default class Home extends Vue {
   proposalId = ''
-  dataList: any[] = []
   type = ''
   schemeMoney = ''
   discount = ''
@@ -81,54 +78,11 @@ export default class Home extends Vue {
   })
   itemId: any
 
-  // 查询数据
-  async search () {
-    // 查询报价单
-    this.dataList = []
-    const result1 = await SearchInfo(table.proposal, getProposal(this.projectId))
-    for (let i = 0; i < result1.length; i++) {
-      const fields = result1[i].fields
-      this.proposalId = result1[i].item_id
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === 2200000180589754) {
-          const values = fields[j].values[0].name
-          this.type = values
-        }
-        if (fields[j].field_id === 2200000180589757) {
-          const values = fields[j].values[0].value
-          this.schemeMoney = values
-        }
-        if (fields[j].field_id === 2200000180591044) {
-          const values = fields[j].values[0].value
-          this.Received = values
-        }
-        if (fields[j].field_id === 2200000180589759) {
-          const values = fields[j].values[0].value
-          this.receivable = values
-        }
-        if (fields[j].field_id === 2200000180589758) {
-          const values = fields[j].values[0].value
-          this.discount = values
-        }
-        if (fields[j].field_id === 2200000197781040) {
-          const values = fields[j].values
-          for (let k = 0; k < values.length; k++) {
-            this.fileList.push(values[k].file_id)
-          }
-        }
-      }
-      const obj = {
-        id: i,
-        proposalId: this.proposalId,
-        type: this.type,
-        schemeMoney: this.schemeMoney,
-        Received: this.Received,
-        receivable: this.receivable,
-        discount: this.discount
-      }
-      this.dataList.push(obj)
-    }
-  }
+  @Prop({
+    type: Object,
+    required: true
+  })
+  dataList: any
 
   // 保存
   async saveClick (item: any) {
@@ -182,20 +136,5 @@ export default class Home extends Vue {
   closeClick () {
     this.$emit('close')
   }
-
-  // // 新增报价单
-  // async create () {
-  //   const obj = {
-  //     fields: {
-  //       2200000180589754: [1],
-  //       2200000180589755: [this.itemId],
-  //       2200000180591563: [1],
-  //       2200000203196675: this.fileList
-  //     }
-  //   }
-  //   await addInfo(table.proposal, obj)
-  //   this.errorInfo('新增成功！')
-  //   await logInsert('新增报价单')
-  // }
 }
 </script>

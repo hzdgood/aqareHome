@@ -43,18 +43,8 @@
         </table>
       </div>
       <div class="buttonSite">
-        <input
-          class="saveButton"
-          type="button"
-          @click="saveClick()"
-          value="保存"
-        />
-        <input
-          class="closeButton"
-          type="button"
-          @click="closeClick()"
-          value="关闭"
-        />
+        <button class="saveButton" @click="saveClick()">保存</button>
+        <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
     </div>
     <my-Modal :visible="visible" :modalText="errorMsg"></my-Modal>
