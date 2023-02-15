@@ -113,7 +113,7 @@ export default class Home extends Vue {
     let projectName = ''
     let projectId = ''
     let projectAddress = ''
-    let projectArea = ''
+    // let projectArea = ''
     let uploadCode = ''
     const productCode = []
     const json: any = {
@@ -160,10 +160,10 @@ export default class Home extends Vue {
           const values = fields[i].values[0].value
           projectAddress = values
         }
-        if (fields[i].field_id === field.projectArea) {
-          const values = fields[i].values[0].value
-          projectArea = values
-        }
+        // if (fields[i].field_id === field.projectArea) {
+        //   const values = fields[i].values[0].value
+        //   projectArea = values
+        // }
         if (fields[i].field_id === field.uploadCode) {
           const values = fields[i].values[0].value
           uploadCode = values
@@ -182,6 +182,10 @@ export default class Home extends Vue {
       }
     }
     if (!status) {
+      return
+    }
+    if (projectAddress === '') {
+      this.errorInfo('请填写项目地址！')
       return
     }
     // 检查地址信息，赋值经纬度
