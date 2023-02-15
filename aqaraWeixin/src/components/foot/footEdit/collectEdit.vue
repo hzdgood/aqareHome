@@ -63,7 +63,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { table, field } from '@/config/config'
-import { masterReq, getProposal } from '@/config/common'
+import { masterReq, getProposal, getCollect } from '@/config/common'
 import { SearchInfo, addInfo, logInsert } from '@/config/interFace'
 import myModal from '@/components/common/myModal.vue'
 import loading from '@/components/common/loading.vue'
@@ -99,14 +99,26 @@ export default class Home extends Vue {
           this.projectCode = fields[j].values[0].value // 项目Code
         }
         if (fields[j].field_id === field.projectId) { // 项目ID
-          const values = fields[j].values[0].value
-          this.projectId = values
+          this.projectId = fields[j].values[0].value
         }
         if (fields[j].field_id === 2200000151011510) { // 需补款
           const values = fields[j].values[0].value
           this.proposalMoney = values
         }
       }
+    }
+  }
+
+  async searchCollect () {
+    const result1 = await SearchInfo(table.collectTable, getCollect(this.projectId))
+    for (let i = 0; i < result1.length; i++) {
+      const fields = result1[i].fields
+      for (let j = 0; j < fields.length; j++) {
+
+      }
+      const obj = {
+      }
+      this.collectList.push(obj)
     }
   }
 

@@ -88,6 +88,23 @@ export const getProposal = (projectId: any) => {
   return data
 }
 
+export const getCollect = (projectId: any) => {
+  const data = {
+    where: {
+      and: [
+        {
+          query: { or: [{ eqm: [projectId] }] },
+          query_option_mappings: [-1],
+          field: 2200000163419612
+        }
+      ]
+    },
+    offset: 0,
+    limit: 20
+  }
+  return data
+}
+
 export const Dateformater = () => {
   const pubdate = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
   return pubdate
