@@ -46,6 +46,9 @@ export default class Home extends Vue {
     for (let i = 0; i < result.length; i++) {
       this.itemId = result[i].item_id
     }
+    if (this.itemId === '') {
+      return
+    }
     const obj = {
       where: {
         and: [{ field: 2200000316783324, query: { in: [this.itemId] } }]
