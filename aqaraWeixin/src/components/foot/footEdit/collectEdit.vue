@@ -4,13 +4,13 @@
     <div class="infoDiv">
       <div class="headerDiv">新增收款</div>
       <div>
-        <button class='saveButton' @click='collectCreate()'>新增收款</button>
-        <button class='saveButton' @click='proposalCreate()'>生成报价</button>
+        <button class='saveButton' v-show="status" @click='collectCreate()'>新增收款</button>
+        <button class='saveButton' v-show="status" @click='proposalCreate()'>生成报价</button>
         <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
       <div class="contentDiv">当前收款单</div>
       <div v-show='collectList.length != 0'>
-        <table class='EditTable' >
+        <table class='EditTable'>
           <tr>
             <td>项目名称</td>
             <td>收款类型</td>
@@ -75,7 +75,7 @@ export default class Home extends Vue {
   loadVisible = false
   userId = localStorage.getItem('userId');
   fileList: any = []
-  // addCollectStatus = true
+  status = true
 
   // 初始化
   async mounted () {
@@ -98,10 +98,10 @@ export default class Home extends Vue {
     }
     if (this.projectId === '' || this.projectCode === '') {
       this.errorInfo('请先添加项目！')
-    } else if (this.proposalMoney === '' || this.proposalMoney === '0') {
-      this.errorInfo('请先上传方案！')
-      // this.addCollectStatus = false
+      this.status = false
+      return
     }
+    this.searchCollect() // 查询收款表
     this.searchProposal() // 查询报价单
   }
 
@@ -112,7 +112,6 @@ export default class Home extends Vue {
     let pType: any = ''
     let cType: any = ''
     let cMoney: any = ''
-
     const result1 = await SearchInfo(table.collectTable, getCollect(this.projectId))
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields
@@ -127,7 +126,7 @@ export default class Home extends Vue {
           cType = fields[j].values[0].name
         }
         if (fields[j].field_id === field.cMoney) {
-          cMoney = fields[j].values[0].name
+          cMoney = fields[j].values[0].value
         }
       }
       const obj = {

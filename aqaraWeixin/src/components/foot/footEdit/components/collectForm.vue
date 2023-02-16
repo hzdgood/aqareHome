@@ -105,6 +105,12 @@ export default class Home extends Vue {
   })
   localName: any
 
+  @Prop({
+    type: Object,
+    required: true
+  })
+  proposalMoney: any
+
   async typeChange () {
     let projectType: any = document.getElementById('projectType')
     projectType = projectType.options[projectType.selectedIndex].value
@@ -118,6 +124,9 @@ export default class Home extends Vue {
           const values = fields[i].values[0].value
           this.collectMoney = values
         }
+      }
+      if (this.proposalMoney === '0' || this.proposalMoney === '') {
+        this.errorInfo('请先上传方案！')
       }
     } else if (projectType === '1') {
       this.collectMoney = '1500'
@@ -143,6 +152,10 @@ export default class Home extends Vue {
     }
     if (typeof file.files[0] === 'undefined') {
       this.errorInfo('请上传图片!')
+      return
+    }
+    if (this.proposalMoney === '0' || this.proposalMoney === '') {
+      this.errorInfo('请先上传方案！')
       return
     }
     // 上传图片
