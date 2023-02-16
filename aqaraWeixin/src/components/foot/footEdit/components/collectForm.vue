@@ -85,6 +85,12 @@ export default class Home extends Vue {
     type: Object,
     required: true
   })
+  projectId: any
+
+  @Prop({
+    type: Object,
+    required: true
+  })
   itemId: any
 
   @Prop({
@@ -98,12 +104,6 @@ export default class Home extends Vue {
     required: true
   })
   localName: any
-
-  @Prop({
-    type: Object,
-    required: true
-  })
-  projectId: any
 
   async typeChange () {
     let projectType: any = document.getElementById('projectType')
@@ -120,7 +120,7 @@ export default class Home extends Vue {
         }
       }
     } else if (projectType === '1') {
-      this.collectMoney = ''
+      this.collectMoney = '1500'
     }
   }
 

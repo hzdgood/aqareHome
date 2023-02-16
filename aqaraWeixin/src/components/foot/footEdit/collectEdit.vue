@@ -4,56 +4,43 @@
     <div class="infoDiv">
       <div class="headerDiv">新增收款</div>
       <div>
+        <button class='saveButton' @click='collectCreate()'>新增收款</button>
         <button class='saveButton' @click='proposalCreate()'>生成报价</button>
-        <button class='saveButton'>新增收款</button>
         <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
+      <div class="contentDiv">当前收款单</div>
       <div v-show='collectList.length != 0'>
-        <table class='EditTable' v-for='item in collectList' :key='item.id'>
+        <table class='EditTable' >
           <tr>
             <td>项目名称</td>
-            <td></td>
-          </tr>
-          <tr>
             <td>收款类型</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>报价单</td>
-            <td></td>
-          </tr>
-          <tr>
             <td>收款方式</td>
-            <td></td>
-          </tr>
-          <tr>
             <td>收款金额</td>
-            <td></td>
+          </tr>
+          <tr v-for='item in collectList' :key='item.id'>
+            <td>{{ item.pName }}</td>
+            <td>{{ item.pType }}</td>
+            <td>{{ item.cType }}</td>
+            <td>{{ item.cMoney }}</td>
           </tr>
         </table>
       </div>
-
+      <div class="contentDiv">当前报价单</div>
       <div v-show='proposalList.length != 0'>
-        <table class='EditTable' v-for='item in proposalList' :key='item.id'>
+        <table class='EditTable'>
           <tr>
             <td>订单类型</td>
-            <td></td>
-          </tr>
-          <tr>
             <td>方案金额</td>
-            <td></td>
-          </tr>
-          <tr>
             <td>优惠金额</td>
-            <td></td>
-          </tr>
-          <tr>
             <td>应收金额</td>
-            <td></td>
-          </tr>
-          <tr>
             <td>已收金额</td>
-            <td></td>
+          </tr>
+          <tr v-for='item in proposalList' :key='item.id'>
+            <td>{{ item.type }}</td>
+            <td>{{ item.schemeMoney }}</td>
+            <td>{{ item.discount }}</td>
+            <td>{{ item.receivable }}</td>
+            <td>{{ item.Received }}</td>
           </tr>
         </table>
       </div>
@@ -88,6 +75,7 @@ export default class Home extends Vue {
   loadVisible = false
   userId = localStorage.getItem('userId');
   fileList: any = []
+  // addCollectStatus = true
 
   // 初始化
   async mounted () {
@@ -108,10 +96,11 @@ export default class Home extends Vue {
         }
       }
     }
-    if (this.projectId === '') {
+    if (this.projectId === '' || this.projectCode === '') {
       this.errorInfo('请先添加项目！')
-    } else if (this.proposalMoney === '') {
+    } else if (this.proposalMoney === '' || this.proposalMoney === '0') {
       this.errorInfo('请先上传方案！')
+      // this.addCollectStatus = false
     }
     this.searchProposal() // 查询报价单
   }
@@ -119,13 +108,34 @@ export default class Home extends Vue {
   // 查询收款表
   async searchCollect () {
     this.collectList = []
+    let pName: any = ''
+    let pType: any = ''
+    let cType: any = ''
+    let cMoney: any = ''
+
     const result1 = await SearchInfo(table.collectTable, getCollect(this.projectId))
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields
       for (let j = 0; j < fields.length; j++) {
-
+        if (fields[j].field_id === field.pName) {
+          pName = fields[j].values[0].name
+        }
+        if (fields[j].field_id === field.pType) {
+          pType = fields[j].values[0].name
+        }
+        if (fields[j].field_id === field.cType) {
+          cType = fields[j].values[0].name
+        }
+        if (fields[j].field_id === field.cMoney) {
+          cMoney = fields[j].values[0].name
+        }
       }
       const obj = {
+        id: i,
+        pName: pName,
+        pType: pType,
+        cType: cType,
+        cMoney: cMoney
       }
       this.collectList.push(obj)
     }
@@ -146,24 +156,19 @@ export default class Home extends Vue {
       proposalId = result1[i].item_id
       for (let j = 0; j < fields.length; j++) {
         if (fields[j].field_id === 2200000180589754) {
-          const values = fields[j].values[0].name
-          type = values
+          type = fields[j].values[0].name
         }
         if (fields[j].field_id === 2200000180589757) {
-          const values = fields[j].values[0].value
-          schemeMoney = values
+          schemeMoney = fields[j].values[0].value
         }
         if (fields[j].field_id === 2200000180591044) {
-          const values = fields[j].values[0].value
-          Received = values
+          Received = fields[j].values[0].value
         }
         if (fields[j].field_id === 2200000180589759) {
-          const values = fields[j].values[0].value
-          receivable = values
+          receivable = fields[j].values[0].value
         }
         if (fields[j].field_id === 2200000180589758) {
-          const values = fields[j].values[0].value
-          discount = values
+          discount = fields[j].values[0].value
         }
         if (fields[j].field_id === 2200000197781040) {
           const values = fields[j].values
@@ -198,6 +203,10 @@ export default class Home extends Vue {
     await addInfo(table.proposal, obj)
     await logInsert('新增报价单')
     this.errorInfo('新增报价单完成！')
+  }
+
+  collectCreate () {
+    console.log(1111)
   }
 
   errorInfo (str: any) {
