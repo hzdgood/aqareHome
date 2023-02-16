@@ -3,10 +3,12 @@
     <div class="floatDiv"></div>
     <div class="infoDiv">
       <div class="headerDiv">新增收款</div>
-      <button class='saveButton' @click='proposalCreate()'>生成报价</button>
-      <button class='saveButton'>新增收款</button>
-      <button class="closeButton" @click="closeClick()">关闭</button>
       <div>
+        <button class='saveButton' @click='proposalCreate()'>生成报价</button>
+        <button class='saveButton'>新增收款</button>
+        <button class="closeButton" @click="closeClick()">关闭</button>
+      </div>
+      <div v-show='collectList.length != 0'>
         <table class='EditTable' v-for='item in collectList' :key='item.id'>
           <tr>
             <td>项目名称</td>
@@ -31,7 +33,7 @@
         </table>
       </div>
 
-      <div>
+      <div v-show='proposalList.length != 0'>
         <table class='EditTable' v-for='item in proposalList' :key='item.id'>
           <tr>
             <td>订单类型</td>
@@ -102,14 +104,21 @@ export default class Home extends Vue {
           this.projectId = fields[j].values[0].value
         }
         if (fields[j].field_id === 2200000151011510) { // 需补款
-          const values = fields[j].values[0].value
-          this.proposalMoney = values
+          this.proposalMoney = fields[j].values[0].value
         }
       }
     }
+    if (this.projectId === '') {
+      this.errorInfo('请先添加项目！')
+    } else if (this.proposalMoney === '') {
+      this.errorInfo('请先上传方案！')
+    }
+    this.searchProposal() // 查询报价单
   }
 
+  // 查询收款表
   async searchCollect () {
+    this.collectList = []
     const result1 = await SearchInfo(table.collectTable, getCollect(this.projectId))
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields
@@ -130,6 +139,7 @@ export default class Home extends Vue {
     let Received: any = ''
     let receivable: any = ''
     let discount: any = ''
+    this.proposalList = []
     const result1 = await SearchInfo(table.proposal, getProposal(this.projectId))
     for (let i = 0; i < result1.length; i++) {
       const fields = result1[i].fields

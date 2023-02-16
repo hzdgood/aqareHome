@@ -13,26 +13,21 @@ public class MyInterceptor implements HandlerInterceptor {
         String reqUrl = request.getRequestURI();
         Boolean status = false;
         String names = "";
-        if (reqUrl.indexOf("getTokens") != -1){ //用户登入
+        if (reqUrl.contains("getTokens") || reqUrl.contains("wechat") || reqUrl.contains("huoban") || reqUrl.contains("speedy")) { //用户登入
             return true;
-        } else if (reqUrl.indexOf("wechat") != -1 || reqUrl.indexOf("huoban") != -1 || reqUrl.indexOf("speedy") != -1){ //微信伙伴云
-            return true;
-        } else if (reqUrl.indexOf("error") != -1){
+        } else if (reqUrl.contains("error")){
             return false;
         } else {
             Enumeration<String> headerNames = request.getHeaderNames();
             while (headerNames.hasMoreElements()){
                 String name = headerNames.nextElement();
-                String value = request.getHeader(name);
+                // String value = request.getHeader(name);
                 names = names + name + "--";
                 if (name == "tokens" || name == "x-huoban-ticket") {
                     status = true;
                 }
             }
-            if (status == false) {
-                status = true;
-            }
         }
-        return true;
+        return status;
     }
 }
