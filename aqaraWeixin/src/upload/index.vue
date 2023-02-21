@@ -5,7 +5,7 @@
       <input id="file" type="file" name="file" placeholder="请选择文件" />
       <button class="saveButton" @click="saveClick">方案导入</button>
     </div>
-    <my-Modal :visible="visible" :modalText="modalText"></my-Modal>
+    <my-Modal :visible="visible" :modalText="modalText" @close="closeModal()"></my-Modal>
     <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
@@ -210,6 +210,10 @@ export default class Home extends Vue {
   uploadStart () {
     this.visible = false
     this.loadVisible = true
+  }
+
+  closeModal () {
+    this.visible = false
   }
 }
 </script>

@@ -30,7 +30,7 @@
         <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
     </div>
-    <my-Modal :visible="visible" :modalText="modalText"></my-Modal>
+    <my-Modal :visible="visible" :modalText="modalText" @close="closeModal()"></my-Modal>
     <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
@@ -299,6 +299,10 @@ export default class Home extends Vue {
 
   closeClick () {
     this.$emit('close')
+  }
+
+  closeModal () {
+    this.visible = false
   }
 }
 </script>

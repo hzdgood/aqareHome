@@ -5,12 +5,12 @@
       <div class="bindHome">
         <img src="../../img/home.png" width="100%" />
         <div class="bindSite">
-          <button class="bindButton" type="button" @click="add()">
+          <button class="bindButton" @click="add()">
             新增用户
           </button>
         </div>
         <div class="bindSite">
-          <button class="bindButton1" type="button" @click="bind()">
+          <button class="bindButton1" @click="bind()">
             绑定用户
           </button>
         </div>

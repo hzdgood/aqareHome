@@ -94,10 +94,16 @@ export const field = {
   cType: 2200000145309764, // 收款方式
   cMoney: 2200000145309766, // 收款金额
   uploadFile: 2200000145309769, // 上传图片
+  // 报价单
+  proposalType: 2200000180589754, //  类型
+  proposalMoney: 2200000180589756,
+  proposalReceived: 2200000180591044,
+  proposalreceivable: 2200000180589757,
+  proposalDiscount: 2200000180589758,
+  proposalFile: 2200000197781040,
   // 物料表
   productName: 2200000143086697,
   productCode: 2200000143114148,
-
   // 销售人员信息表
   localName: 2200000166537030
 }

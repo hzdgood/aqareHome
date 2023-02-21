@@ -23,29 +23,13 @@
         <tr>
           <td>上传附件</td>
           <td>
-            <input
-                id="file"
-                type="file"
-                multiple
-                accept="image/*"
-                placeholder="请选择文件"
-              />
+            <input id="file" type="file" multiple accept="image/*" placeholder="请选择文件"/>
           </td>
         </tr>
       </table>
       <div class="buttonSite">
-        <input
-          class="saveButton"
-          type="button"
-          @click="saveClick()"
-          value="保存"
-        />
-        <input
-          class="closeButton"
-          type="button"
-          @click="closeClick()"
-          value="关闭"
-        />
+        <button class="saveButton" @click="saveClick()">保存</button>
+        <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
     </div>
   </div>

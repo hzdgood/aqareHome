@@ -15,7 +15,7 @@
           </tr>
           <tr>
             <td colspan="2">
-              <input class='saveButton' type="button" value="提交" @click="signUpload" />
+              <button class='saveButton' @click="signUpload">提交</button>
             </td>
           </tr>
         </table>

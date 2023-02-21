@@ -26,10 +26,10 @@
     </table>
     <div>
       <div class="buttonSite">
-        <button class="saveButton" type="button" @click="save()">
+        <button class="saveButton" @click="save()">
           绑定用户
         </button>
-        <button class="closeButton" type="button" @click="close()">
+        <button class="closeButton" @click="close()">
           返回
         </button>
       </div>

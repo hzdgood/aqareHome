@@ -33,7 +33,7 @@ export default class Home extends Vue {
   top: 33%;
   left: 20%;
   overflow: auto;
-  z-index: 30;
+  z-index: 100;
   background-color: #fff;
   border-radius: 8px;
   text-align: center;

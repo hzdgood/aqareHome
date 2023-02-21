@@ -51,8 +51,10 @@ CREATE TABLE `speedycontent`
     `themeId`      varchar(45)   DEFAULT NULL,
     `mediaId`      varchar(400)  DEFAULT NULL,
     `contentTitle` varchar(45)   DEFAULT NULL,
-    `contentText`  varchar(4000) DEFAULT NULL,
-    `contentFile`  varchar(4000) DEFAULT NULL,
+    `contentText`  varchar(400) DEFAULT NULL,
+    `contentImage` varchar(400) DEFAULT NULL,
+    `contentVideo` varchar(400) DEFAULT NULL,
+    `contentFile`  varchar(400) DEFAULT NULL,
     `contentType`  varchar(45)   DEFAULT NULL,
     `contentLevel` varchar(45)   DEFAULT NULL,
     `createName`   varchar(45)   DEFAULT NULL,
@@ -101,40 +103,6 @@ CREATE TABLE `weixin`
     `updateTime` datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `openCurtain`
-(
-    `id`              int NOT NULL AUTO_INCREMENT,
-    `code`            varchar(45) DEFAULT NULL,
-    `sales`           varchar(45) DEFAULT NULL,
-    `department`      varchar(45) DEFAULT NULL,
-    `number`          varchar(45) DEFAULT NULL,
-    `supplier`        varchar(45) DEFAULT NULL,
-    `merchantConfirm` varchar(45) DEFAULT NULL,
-    `createName`      varchar(45) DEFAULT NULL,
-    `createTime`      datetime    DEFAULT NULL,
-    `updateName`      varchar(45) DEFAULT NULL,
-    `updateTime`      datetime    DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-CREATE TABLE `rollerShutter`
-(
-    `id`              int NOT NULL AUTO_INCREMENT,
-    `code`            varchar(45) DEFAULT NULL,
-    `sales`           varchar(45) DEFAULT NULL,
-    `department`      varchar(45) DEFAULT NULL,
-    `number`          varchar(45) DEFAULT NULL,
-    `supplier`        varchar(45) DEFAULT NULL,
-    `merchantConfirm` varchar(45) DEFAULT NULL,
-    `createName`      varchar(45) DEFAULT NULL,
-    `createTime`      datetime    DEFAULT NULL,
-    `updateName`      varchar(45) DEFAULT NULL,
-    `updateTime`      datetime    DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 CREATE TABLE `quotation`
 (

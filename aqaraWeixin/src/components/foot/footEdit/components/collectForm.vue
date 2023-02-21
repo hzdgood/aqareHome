@@ -47,7 +47,7 @@
         <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
     </div>
-    <my-Modal :visible="visible" :modalText="errorMsg"></my-Modal>
+    <my-Modal :visible="visible" :modalText="errorMsg" @close="closeModal()"></my-Modal>
     <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
@@ -76,37 +76,31 @@ export default class Home extends Vue {
   errorMsg = '';
 
   @Prop({
-    type: Object,
+    type: String,
     required: true
   })
   projectCode: any
 
   @Prop({
-    type: Object,
+    type: String,
     required: true
   })
   projectId: any
 
   @Prop({
-    type: Object,
+    type: Number,
     required: true
   })
   itemId: any
 
   @Prop({
-    type: Object,
-    required: true
-  })
-  userId: any
-
-  @Prop({
-    type: Object,
+    type: String,
     required: true
   })
   localName: any
 
   @Prop({
-    type: Object,
+    type: Number,
     required: true
   })
   proposalMoney: any
@@ -231,9 +225,33 @@ export default class Home extends Vue {
   closeClick () {
     this.$emit('close')
   }
+
+  closeModal () {
+    this.visible = false
+  }
 }
 </script>
 
-<style>
+<style scoped>
+.floatDiv {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 25;
+  top: 0;
+  overflow: hidden;
+}
 
+.infoDiv {
+  position: fixed;
+  width: 100%;
+  height: 70%;
+  bottom: 0px;
+  overflow: auto;
+  z-index: 25;
+  background-color: #fff;
+  border-radius: 8px;
+}
 </style>

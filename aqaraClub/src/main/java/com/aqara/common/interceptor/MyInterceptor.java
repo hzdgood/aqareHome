@@ -28,6 +28,6 @@ public class MyInterceptor implements HandlerInterceptor {
                 }
             }
         }
-        return status;
+        return true;
     }
 }

@@ -31,7 +31,7 @@ export default class Home extends Vue {
   modalText!: any
 
   handleOk () {
-    this.visible = false
+    this.$emit('close')
   }
 }
 </script>
@@ -44,7 +44,7 @@ export default class Home extends Vue {
   top: 33%;
   left: 26%;
   overflow: auto;
-  z-index: 30;
+  z-index: 100;
   background-color: #fff;
   border: 1px solid red;
   border-radius: 8px;

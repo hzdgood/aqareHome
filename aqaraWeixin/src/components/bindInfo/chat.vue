@@ -25,8 +25,8 @@
       </tr>
     </table>
     <div class="buttonSite">
-      <input class="saveButton" type="button" value="绑定" @click="save()" />
-      <input class="closeButton" type="button" value="关闭" @click="close()" />
+      <button class="saveButton" @click="save()">绑定</button>
+      <button class="closeButton" @click="close()">关闭</button>
     </div>
   </div>
 </template>

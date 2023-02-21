@@ -3,6 +3,7 @@
     <div class='floatDiv'></div>
     <div class='infoDiv'>
       <div class='headerDiv'>报价单</div>
+      <button class="closeButton" @click="closeClick()">关闭</button>
       <div v-for='item in dataList' :key='item.id'>
         <table class='EditTable'>
           <tr>
@@ -36,17 +37,24 @@
           <button class='saveButton' @click="uploadFile()">上传合同</button>
           <button class='saveButton' @click='synchroClick(item)'>同步</button>
           <button class='saveButton' @click='saveClick(item)'>保存</button>
-          <button class="closeButton" @click="closeClick()">关闭</button>
         </div>
       </div>
     </div>
+    <my-Modal :visible="visible" :modalText="errorMsg" @close="closeModal()"></my-Modal>
+    <my-load :loadVisible="loadVisible"></my-load>
   </div>
 </template>
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
 import { updateTable, uploadImg, logInsert } from '@/config/interFace'
+import myModal from '@/components/common/myModal.vue'
+import loading from '@/components/common/loading.vue'
 @Component({
-  name: 'ProposalEdit'
+  name: 'ProposalEdit',
+  components: {
+    'my-Modal': myModal,
+    'my-load': loading
+  }
 })
 export default class Home extends Vue {
   proposalId = ''
@@ -61,25 +69,7 @@ export default class Home extends Vue {
   errorMsg = ''
 
   @Prop({
-    type: Object,
-    required: true
-  })
-  projectId: any
-
-  @Prop({
-    type: Object,
-    required: true
-  })
-  userId: any
-
-  @Prop({
-    type: Object,
-    required: true
-  })
-  itemId: any
-
-  @Prop({
-    type: Object,
+    type: Array,
     required: true
   })
   dataList: any
@@ -90,7 +80,9 @@ export default class Home extends Vue {
     const data = {
       fields: {
         2200000180589758: discount.value,
-        2200000203196675: this.fileList
+        2200000203196675: this.fileList,
+        2200000180589754: [1],
+        2200000180591563: [1]
       }
     }
     await updateTable(item.proposalId, data)
@@ -136,5 +128,33 @@ export default class Home extends Vue {
   closeClick () {
     this.$emit('close')
   }
+
+  closeModal () {
+    this.visible = false
+  }
 }
 </script>
+
+<style scoped>
+.floatDiv {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+  opacity: 0.5;
+  z-index: 25;
+  top: 0;
+  overflow: hidden;
+}
+
+.infoDiv {
+  position: fixed;
+  width: 100%;
+  height: 70%;
+  bottom: 0px;
+  overflow: auto;
+  z-index: 25;
+  background-color: #fff;
+  border-radius: 8px;
+}
+</style>

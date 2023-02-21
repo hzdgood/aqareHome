@@ -5,7 +5,7 @@
       <div class="bindHome">
         <img src="../../img/home.png" width="100%" />
         <div class="buttonSite">
-          <input class="bindButton" type="button" value="项目绑定" @click="bindChat()" />
+          <button class="bindButton" @click="bindChat()">项目绑定</button>
         </div>
       </div>
     </div>
