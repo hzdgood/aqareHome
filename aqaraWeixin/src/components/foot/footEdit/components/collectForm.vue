@@ -140,16 +140,18 @@ export default class Home extends Vue {
     let collectType: any = document.getElementById('collectType')
     collectType = collectType.options[collectType.selectedIndex].value
     const file: any = document.getElementById('file')
+    if (projectType === '2') { // 全款需要上传
+      if (this.proposalMoney === '0' || this.proposalMoney === '') {
+        this.errorInfo('请先上传方案！')
+        return
+      }
+    }
     if (this.collectMoney === '') {
       this.errorInfo('请输入金额!')
       return
     }
     if (typeof file.files[0] === 'undefined') {
       this.errorInfo('请上传图片!')
-      return
-    }
-    if (this.proposalMoney === '0' || this.proposalMoney === '') {
-      this.errorInfo('请先上传方案！')
       return
     }
     // 上传图片
@@ -198,6 +200,7 @@ export default class Home extends Vue {
     }
     await procedure('3000000000246006', obj)
     this.loadVisible = false
+    this.collectCheck()
   }
 
   // 上传文件 获取 file_id

@@ -76,6 +76,7 @@ export default class Home extends Vue {
 
   // 保存
   async saveClick (item: any) {
+    this.loadVisible = true
     const discount: any = document.getElementById('discount')
     const data = {
       fields: {
@@ -87,11 +88,13 @@ export default class Home extends Vue {
     }
     await updateTable(item.proposalId, data)
     await logInsert('报价单修改')
+    this.loadVisible = false
     this.errorInfo('提交报价单成功！')
   }
 
   // 同步
   async synchroClick (item: any) {
+    this.loadVisible = true
     const data = {
       fields: {
         2200000180589754: [1],
@@ -99,7 +102,48 @@ export default class Home extends Vue {
       }
     }
     await updateTable(item.proposalId, data)
-    await logInsert('报价单同步')
+    const result = await logInsert('报价单同步')
+    this.dataList = []
+    let type: any = ''
+    let schemeMoney: any = ''
+    let Received: any = ''
+    let receivable: any = ''
+    let discount: any = ''
+    const fields = result.fields
+    const proposalId = result.item_id
+    for (let j = 0; j < fields.length; j++) {
+      if (fields[j].field_id === 2200000180589754) {
+        type = fields[j].values[0].name
+      }
+      if (fields[j].field_id === 2200000180589756) {
+        schemeMoney = fields[j].values[0].value
+      }
+      if (fields[j].field_id === 2200000180591044) {
+        Received = fields[j].values[0].value
+      }
+      if (fields[j].field_id === 2200000180589757) {
+        receivable = fields[j].values[0].value
+      }
+      if (fields[j].field_id === 2200000180589758) {
+        discount = fields[j].values[0].value
+      }
+      if (fields[j].field_id === 2200000197781040) {
+        const values = fields[j].values
+        for (let k = 0; k < values.length; k++) {
+          this.fileList.push(values[k].file_id)
+        }
+      }
+    }
+    const obj = {
+      proposalId: proposalId,
+      type: type,
+      schemeMoney: schemeMoney,
+      Received: Received,
+      receivable: receivable,
+      discount: discount
+    }
+    this.dataList.push(obj)
+    this.loadVisible = false
     this.errorInfo('同步报价单完成！')
   }
 

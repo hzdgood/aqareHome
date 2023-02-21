@@ -4,8 +4,8 @@
     <div class="infoDiv">
       <div class="headerDiv">收款/报价</div>
       <div>
-        <button class='saveButton' v-show="status" @click='collectCreate()'>新增收款</button>
-        <button class='saveButton' v-show="status" @click='proposalCreate()'>新增报价</button>
+        <button class='saveButton' v-show="collectStatus" @click='collectCreate()'>新增收款</button>
+        <button class='saveButton' v-show="proposalStatus" @click='proposalCreate()'>新增报价</button>
         <button class="closeButton" @click="closeClick()">关闭</button>
       </div>
       <div class="contentDiv">收款单</div>
@@ -85,7 +85,8 @@ export default class Home extends Vue {
   userId = localStorage.getItem('userId');
   localName = localStorage.getItem('localName');
   fileList: any = []
-  status = true
+  collectStatus = false
+  proposalStatus = false
   proposalFromShow = false
   collectFromShow = false
   dataList: any[] = []
@@ -109,13 +110,16 @@ export default class Home extends Vue {
         }
       }
     }
-    if (this.projectId === '' || this.projectCode === '') {
-      this.errorInfo('请先添加项目！')
-      this.status = false
-      return
+    if (this.proposalMoney !== 0) {
+      this.proposalStatus = true
     }
-    this.searchCollect() // 查询收款表
-    this.searchProposal() // 查询报价单
+    if (this.projectId !== '' || this.projectCode !== '') {
+      this.collectStatus = true
+    }
+    if (this.collectStatus === true) {
+      this.searchCollect() // 查询收款表
+      this.searchProposal() // 查询报价单
+    }
   }
 
   // 查询收款表
@@ -204,11 +208,6 @@ export default class Home extends Vue {
 
   // 新增报价单
   async proposalCreate () {
-    if (this.proposalMoney === 0) {
-      this.errorInfo('项目需补款为0, 无法添加报价单！')
-      return
-    }
-
     this.dataList = []
     const req = {
       fields: {
@@ -259,7 +258,6 @@ export default class Home extends Vue {
       discount: discount
     }
     this.dataList.push(obj)
-    // 新增完成，迭代数据
     this.proposalFromShow = true
   }
 
@@ -278,10 +276,12 @@ export default class Home extends Vue {
   }
 
   closeCollectFrom () {
+    this.searchCollect()
     this.collectFromShow = false
   }
 
   closeProposalFrom () {
+    this.searchProposal()
     this.proposalFromShow = false
   }
 
