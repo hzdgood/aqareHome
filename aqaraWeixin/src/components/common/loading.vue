@@ -19,7 +19,7 @@ import { Spin } from 'ant-design-vue'
 export default class Home extends Vue {
   @Prop({
     type: Boolean,
-    required: false
+    required: true
   })
   loadVisible!: Boolean;
 }
