@@ -114,7 +114,7 @@ public class ProjectService {
                 currentNumber = currentNumber + 1;
             }
         }
-        if (currentNumber % 3 == 0) {
+        if (currentNumber < 10 && (currentNumber & 1) != 0) { // 奇数加/n
             xhData += " \n";
         }
         String res = depart + " 实际数量：" + currentNumber + "\n" + xhData;
