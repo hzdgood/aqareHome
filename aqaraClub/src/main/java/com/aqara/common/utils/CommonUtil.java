@@ -26,6 +26,20 @@ public class CommonUtil {
         return str;
     }
 
+    public static String getCurrentWorkData() {
+        String str = "{\"where\":{\"and\":[{\"field\":2200000146398522," +
+                "\"query\":{\"eq\":\"today\"}}]},\"offset\":0,\"limit\":20," +
+                "\"order_by\":[{\"field\":2200000146398522,\"sort\":\"desc\"}]}";
+        return str;
+    }
+
+    public static String getTomorrowWorkData() {
+        String str = "{\"where\":{\"and\":[{\"field\":2200000145748099," +
+                "\"query\":{\"eq\":\"tomorrow\"}}]},\"offset\":0,\"limit\":20," +
+                "\"order_by\":[{\"field\":2200000146398522,\"sort\":\"desc\"}]}";
+        return str;
+    }
+
     public static String getProjectData() {
         Date date = new Date();
         date.setMonth(date.getMonth() - 1);

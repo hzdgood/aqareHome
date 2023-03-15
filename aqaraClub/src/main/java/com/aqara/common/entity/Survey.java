@@ -6,7 +6,7 @@ public class Survey {
     private Integer id;
     private String code; // 项目
     private String sales; //销售
-    private String department;
+    private String department; // 部门
     private Date appointmentTime; // 预约时间
     private String estimatedDuration; // 预计时长
     private String participants; // 参与人

@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.WorkSheetMapper">
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Weixin">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
+        <result column="custom" jdbcType="VARCHAR" property="custom"/>
+        <result column="technology" jdbcType="VARCHAR" property="technology"/>
+        <result column="actualWork" jdbcType="VARCHAR" property="actualWork"/>
+        <result column="workType" jdbcType="VARCHAR" property="workType"/>
+        <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
+        <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
+        <result column="completeTime" jdbcType="TIMESTAMP" property="completeTime"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="select" resultType="com.aqara.common.entity.WorkSheet">
+        select *
+        from workSheet w
+        where 1 = 1
+          and to_days(w.completeTime) = to_days(now())
+    </select>
+
+    <select id="select1" resultType="com.aqara.common.entity.WorkSheet">
+        select *
+        from workSheet w
+        where 1 = 1
+          and to_days(w.dateOfVisit) - to_days(now()) = 1;
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
+        insert into workSheet (
+            itemId, custom, technology, actualWork, workType, area,
+            orderDate, dateOfVisit, completeTime,
+            createName, createTime, updateName, updateTime)
+        values (
+            #{itemId},#{custom},#{technology},#{actualWork},#{workType}, #{area},
+            #{orderDate}, #{dateOfVisit}, #{completeTime},
+            #{createName}, NOW(), #{updateName}, NOW()
+        )
+    </insert>
+</mapper>
