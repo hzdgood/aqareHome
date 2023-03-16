@@ -40,12 +40,6 @@
           and collectionStatus = '全款'
     </select>
 
-    <select id="weekData" resultType="com.aqara.common.entity.Collent">
-        select *
-        from collent
-        where DATE_SUB(CURDATE(), INTERVAL 7 DAY) <![CDATA[ <=  ]]> date(createTime)
-    </select>
-
     <insert id="insert" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">
         insert into collent (code, sales, department, collectionStatus, paymentMethod,
                              createName, createTime, updateName, updateTime)

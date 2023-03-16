@@ -11,4 +11,8 @@ public interface WechatMapper {
     public List<Wechat> select(String type);
 
     public void insert(Wechat wechat);
+
+    public void update(Wechat wechat);
+
+    public void delete(Integer id);
 }

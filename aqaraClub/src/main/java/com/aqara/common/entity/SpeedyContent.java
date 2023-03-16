@@ -108,13 +108,21 @@ public class SpeedyContent {
         return contentText;
     }
 
-    public String getContentImage() { return contentImage; }
+    public String getContentImage() {
+        return contentImage;
+    }
 
-    public void setContentImage(String contentImage) { this.contentImage = contentImage; }
+    public void setContentImage(String contentImage) {
+        this.contentImage = contentImage;
+    }
 
-    public String getContentVideo() { return contentVideo; }
+    public String getContentVideo() {
+        return contentVideo;
+    }
 
-    public void setContentVideo(String contentVideo) { this.contentVideo = contentVideo; }
+    public void setContentVideo(String contentVideo) {
+        this.contentVideo = contentVideo;
+    }
 
     public void setContentText(String contentText) {
         this.contentText = contentText;

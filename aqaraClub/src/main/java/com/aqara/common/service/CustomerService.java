@@ -48,12 +48,6 @@ public class CustomerService {
         return getDepartInfo(str, customer);
     }
 
-    public String getWeekData() {
-        String str = "**上周CRM新增客户TOP** \n";
-        List<Customer> customer = customerMapper.weekData();
-        return getDepartInfo(str, customer);
-    }
-
     public void getCustomList(String ticket) {
         String str = CommonUtil.getToday();
         String requestUrl = HuobanProperties.getSearchInfo() + "2100000014955786/find";

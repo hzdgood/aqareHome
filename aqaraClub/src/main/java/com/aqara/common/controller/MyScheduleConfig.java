@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+
 import java.util.List;
 
 @Configuration // 标记配置类
@@ -122,6 +123,7 @@ public class MyScheduleConfig {
             e.printStackTrace();
         }
     }
+
     @Scheduled(cron = "0 00 10 * * ?")
     private void projectBroadcast() {
         List<Project> Project = ProjectService.currentData();

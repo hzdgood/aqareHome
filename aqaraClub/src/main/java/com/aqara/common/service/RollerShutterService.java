@@ -33,5 +33,7 @@ public class RollerShutterService {
         RollerShutterMapper.upload(RollerShutter);
     }
 
-    public void delete(Integer id) { RollerShutterMapper.delete(id); }
+    public void delete(Integer id) {
+        RollerShutterMapper.delete(id);
+    }
 }

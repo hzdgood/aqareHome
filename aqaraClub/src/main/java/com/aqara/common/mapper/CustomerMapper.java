@@ -7,12 +7,9 @@ import java.util.List;
 
 @Repository
 public interface CustomerMapper {
-
     List<Customer> select(String sales, String depart, String startTime, String endTime);
 
     List<Customer> currentData();
-
-    List<Customer> weekData();
 
     void insert(Customer customer);
 

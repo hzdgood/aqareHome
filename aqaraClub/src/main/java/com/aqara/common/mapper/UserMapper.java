@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserMapper {
     List<User> select(String userName, String engName);
 
+    List<User> selectTech();
+
     void update(User user);
 
     void insert(User user);

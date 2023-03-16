@@ -9,8 +9,6 @@ import java.util.List;
 public interface CensusMapper {
     List<Census> select();
 
-    List<Census> weekData();
-
     void insert(Census Census);
 
     void delete(Integer id);

@@ -11,6 +11,7 @@ public class User {
     private String department;
     private String status;
     private String company;
+    private String level;
 
     public Integer getId() {
         return id;
@@ -92,4 +93,11 @@ public class User {
         this.company = company;
     }
 
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
 }

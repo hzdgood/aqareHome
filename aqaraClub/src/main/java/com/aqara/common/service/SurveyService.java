@@ -47,7 +47,7 @@ public class SurveyService {
     public void delete(List<Integer> ids) {
         surveyMapper.deleteAll(ids);
     }
-    
+
     public String getSurveyData() {
         String str = "**今日CRM新增工勘TOP** \n";
         List<Survey> Survey = surveyMapper.currentData();

@@ -2,6 +2,7 @@ package com.aqara.common.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
+
 import javax.servlet.http.*;
 import java.util.Enumeration;
 
@@ -15,11 +16,11 @@ public class MyInterceptor implements HandlerInterceptor {
         String names = "";
         if (reqUrl.contains("getTokens") || reqUrl.contains("wechat") || reqUrl.contains("huoban") || reqUrl.contains("speedy")) { //用户登入
             return true;
-        } else if (reqUrl.contains("error")){
+        } else if (reqUrl.contains("error")) {
             return false;
         } else {
             Enumeration<String> headerNames = request.getHeaderNames();
-            while (headerNames.hasMoreElements()){
+            while (headerNames.hasMoreElements()) {
                 String name = headerNames.nextElement();
                 // String value = request.getHeader(name);
                 names = names + name + "--";

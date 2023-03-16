@@ -13,6 +13,7 @@
         <result column="department" jdbcType="VARCHAR" property="department"/>
         <result column="status" jdbcType="VARCHAR" property="status"/>
         <result column="company" jdbcType="VARCHAR" property="company"/>
+        <result column="level" jdbcType="VARCHAR" property="level"/>
     </resultMap>
     <select id="select" resultType="com.aqara.common.entity.User">
         select * from user where 1=1
@@ -24,9 +25,13 @@
         </if>
     </select>
 
+    <select id="selectTech" resultType="com.aqara.common.entity.User">
+        SELECT * FROM aqara.user a where a.station = '技术' and a.level = '员工'
+    </select>
+
     <insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
-        insert into user (code, userName, passWord, engName, sex, station, department, status, company)
-        values (#{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company})
+        insert into user (code, userName, passWord, engName, sex, station, department, status, company, level)
+        values (#{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company}, #{level})
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.User">

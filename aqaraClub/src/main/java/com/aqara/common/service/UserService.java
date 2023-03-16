@@ -24,6 +24,10 @@ public class UserService {
         return userMapper.select(username, engName);
     }
 
+    public List<User> selectTech() {
+        return userMapper.selectTech();
+    }
+
     public List<User> selectAll(PageReq PageReq) {
         return userMapper.select(PageReq.getUsername(), PageReq.getEngName());
     }
@@ -67,6 +71,8 @@ public class UserService {
                     User.setDepartment(obj2.getString("title"));
                 } else if (field_id.equals("2200000297757385")) {
                     User.setCompany(obj2.getString("title"));
+                } else if (field_id.equals("2200000325742242")) {
+                    User.setLevel(obj2.getString("name"));
                 }
                 User.setStatus("在职");
             }
@@ -74,5 +80,7 @@ public class UserService {
         }
     }
 
-    public void deleteId(List<Integer> ids) { userMapper.deleteAll(ids); }
+    public void deleteId(List<Integer> ids) {
+        userMapper.deleteAll(ids);
+    }
 }

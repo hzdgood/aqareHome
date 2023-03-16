@@ -29,6 +29,7 @@ public class WorkSheet {
     public String getItemId() {
         return itemId;
     }
+
     public void setItemId(String itemId) {
         this.itemId = itemId;
     }
@@ -96,6 +97,7 @@ public class WorkSheet {
     public void setArea(String area) {
         this.area = area;
     }
+
     public String getCreateName() {
         return createName;
     }

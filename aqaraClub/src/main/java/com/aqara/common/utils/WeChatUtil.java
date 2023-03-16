@@ -26,7 +26,7 @@ public class WeChatUtil {
 
     public static String getUserId(WxProperties wxProperties, String token, String code) {
         String url = wxProperties.getUserIdUrl();
-        if(token.equals("") || token == null){
+        if (token.equals("") || token == null) {
             return null;
         }
         String lastUrl = url + "?access_token=" + token + "&code=" + code;
@@ -41,7 +41,7 @@ public class WeChatUtil {
 
     public static String getJsApiTicket(WxProperties wxProperties, String token) {
         String url = wxProperties.getJsapiUrl();
-        if(token.equals("") || token == null) {
+        if (token.equals("") || token == null) {
             return null;
         }
         String lastUrl = url + "?access_token=" + token;
@@ -56,7 +56,7 @@ public class WeChatUtil {
 
     public static String getAppTicket(WxProperties wxProperties, String token) {
         String url = wxProperties.getAppUrl();
-        if(token.equals("") || token == null){
+        if (token.equals("") || token == null) {
             return null;
         }
         String lastUrl = url + "?access_token=" + token + "&type=agent_config";
@@ -71,7 +71,7 @@ public class WeChatUtil {
 
     public static String getExternalContact(String userId, String token, WxProperties wxProperties) {
         String url = wxProperties.getExternalContact();
-        if(token.equals("") || token == null){
+        if (token.equals("") || token == null) {
             return null;
         }
         String lastUrl = url + "?access_token=" + token + "&external_userid=" + userId;
@@ -86,7 +86,7 @@ public class WeChatUtil {
 
     public static String externalList(String userId, String token, WxProperties wxProperties) {
         String url = wxProperties.getExternalList();
-        if(token.equals("") || token == null){
+        if (token.equals("") || token == null) {
             return null;
         }
         String lastUrl = url + "?access_token=" + token + "&userid=" + userId;
@@ -101,7 +101,7 @@ public class WeChatUtil {
 
     public static String compUser(WxProperties wxProperties, String token, String userId) {
         String url = wxProperties.getCompUser();
-        if(token.equals("") || token == null){
+        if (token.equals("") || token == null) {
             return null;
         }
         String lastUrl = url + "?access_token=" + token + "&userid=" + userId;

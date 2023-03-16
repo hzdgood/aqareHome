@@ -62,7 +62,7 @@ public class WechatController {
     synchronized private String insert(String type) {
         String res = WeChatUtil.getWxToken(WxProperties, type);
         JSONObject jsonObject = JSONObject.parseObject(res);
-        if(jsonObject == null) {
+        if (jsonObject == null) {
             return null;
         }
         Wechat Wechat = new Wechat();
@@ -80,7 +80,7 @@ public class WechatController {
     @RequestMapping("/getUserId")
     public String getUserId(String code, String type) {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         String res = WeChatUtil.getUserId(WxProperties, token, code);
@@ -93,7 +93,7 @@ public class WechatController {
     @RequestMapping("/compUser")
     public JSONObject compUser(String userId, String type) {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         String res = WeChatUtil.compUser(WxProperties, token, userId);
@@ -108,7 +108,7 @@ public class WechatController {
     @RequestMapping("/signatures")
     public JSONObject signatures(String url, String type) {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         JSONObject jsonObject = CommonUtil.signatures(url, token, WxProperties);
@@ -122,7 +122,7 @@ public class WechatController {
     @RequestMapping("/externalContact")
     public String externalContact(String userId, String type) {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         String res = WeChatUtil.getExternalContact(userId, token, WxProperties);
@@ -136,7 +136,7 @@ public class WechatController {
     @RequestMapping("/externalList")
     public String externalList(String userId, String type) {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         String res = WeChatUtil.externalList(userId, token, WxProperties);
@@ -150,7 +150,7 @@ public class WechatController {
     @RequestMapping("/groupChat")
     public String groupChat(String chatId, String type) {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         String userInfo = WxProperties.getGroupChat() + "?access_token=" + token;
@@ -167,7 +167,7 @@ public class WechatController {
     @RequestMapping("/groupList")
     public String groupList(String chatId, String type) {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         String userInfo = WxProperties.getGroupList() + "?access_token=" + token;
@@ -184,7 +184,7 @@ public class WechatController {
     @RequestMapping("/mediaUpload")
     public String mediaUpload(String fileName, String type) throws IOException {
         String token = getToken(type);
-        if(token == null || token.equals("")){
+        if (token == null || token.equals("")) {
             return null;
         }
         String mediaUrl = WxProperties.getMediaUpload() + "?access_token=" + token + "&type=file";

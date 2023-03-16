@@ -11,8 +11,6 @@ public interface WeixinMapper {
 
     List<Weixin> selectAll();
 
-    List<Weixin> weekData();
-
     void insert(Weixin Weixin);
 
     void update(Weixin weixin);
