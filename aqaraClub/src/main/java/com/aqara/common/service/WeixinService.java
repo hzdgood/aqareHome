@@ -26,10 +26,6 @@ public class WeixinService {
         return WeixinMapper.selectAll();
     }
 
-    public List<Weixin> weekData() {
-        return WeixinMapper.weekData();
-    }
-
     public void insert(Weixin Weixin) {
         WeixinMapper.insert(Weixin);
     }

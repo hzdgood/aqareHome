@@ -30,10 +30,6 @@ public class CustomerService {
         return customerMapper.currentData();
     }
 
-    public List<Customer> weekData() {
-        return customerMapper.weekData();
-    }
-
     public void insert(Customer customer) {
         customerMapper.insert(customer);
     }

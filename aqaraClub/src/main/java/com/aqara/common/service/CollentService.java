@@ -31,10 +31,6 @@ public class CollentService {
         return collentMapper.currentData();
     }
 
-    public List<Collent> weekData() {
-        return collentMapper.weekData();
-    }
-
     public void insert(Collent collent) {
         collentMapper.insert(collent);
     }

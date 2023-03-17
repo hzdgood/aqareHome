@@ -73,8 +73,9 @@ public class UserService {
                     User.setCompany(obj2.getString("title"));
                 } else if (field_id.equals("2200000325742242")) {
                     User.setLevel(obj2.getString("name"));
+                } else if (field_id.equals("2200000164612733")) {
+                    User.setStatus(obj2.getString("name"));
                 }
-                User.setStatus("在职");
             }
             userMapper.insert(User);
         }

@@ -2,10 +2,11 @@ package com.aqara.common.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.entity.User;
 import com.aqara.common.entity.WorkSheet;
 import com.aqara.common.properties.HuobanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.aqara.common.mapper.WorkSheetMapper;
+import com.aqara.common.mapper.*;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +20,9 @@ public class WorkSheetService {
 
     @Autowired
     HuobanProperties HuobanProperties;
+
+    @Autowired
+    UserMapper UserMapper;
 
     public List<WorkSheet> select() {
         return WorkSheetMapper.select();
@@ -145,7 +149,26 @@ public class WorkSheetService {
                 names.add(technology);
             }
         }
+        List<User> users = mergeData(list); // 工单为0的
+        for (int i = 0; i < users.size(); i++) {
+            User User = users.get(i);
+            str += User.getUserName() + "   工单数:" + 0 + "\n";
+        }
         return str;
+    }
+
+    private List<User> mergeData(List<WorkSheet> list) {
+        List<User> users = UserMapper.selectTech();
+        for (int i = 0; i < users.size(); i++) {
+            User User = users.get(i);
+            for (int j = 0; j < list.size(); j++) {
+                WorkSheet WorkSheet = list.get(j);
+                if(User.getUserName().equals(WorkSheet.getTechnology()) ) {
+                    users.remove(i);
+                }
+            }
+        }
+        return users;
     }
 
     private boolean getStatus(List<String> names, String technology) {

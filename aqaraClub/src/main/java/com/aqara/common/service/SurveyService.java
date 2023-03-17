@@ -32,10 +32,6 @@ public class SurveyService {
         return surveyMapper.currentData();
     }
 
-    public List<Survey> weekData() {
-        return surveyMapper.weekData();
-    }
-
     public void insert(Survey survey) {
         surveyMapper.insert(survey);
     }
@@ -51,12 +47,6 @@ public class SurveyService {
     public String getSurveyData() {
         String str = "**今日CRM新增工勘TOP** \n";
         List<Survey> Survey = surveyMapper.currentData();
-        return getDepartInfo(str, Survey);
-    }
-
-    public String getWeekData() {
-        String str = "**上周CRM新增工勘TOP** \n";
-        List<Survey> Survey = surveyMapper.weekData();
         return getDepartInfo(str, Survey);
     }
 
