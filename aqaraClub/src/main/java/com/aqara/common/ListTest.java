@@ -9,15 +9,15 @@ public class ListTest {
         List list = new ArrayList();
 
         list.add("1111");
-        list.add("222");
-        list.add("333");
+        list.add("汪克祥");
+        list.add("张凯凯");
         list.add("444");
         list.add("555");
 
         List list1 = new ArrayList();
         list1.add("1111");
-        list1.add("222");
-        list1.add("333");
+        list1.add("汪克祥");
+        list1.add("张凯凯");
 
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < list1.size(); j++) {

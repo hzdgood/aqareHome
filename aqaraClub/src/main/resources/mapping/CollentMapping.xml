@@ -37,7 +37,7 @@
         select *
         from collent
         where to_days(createTime) = to_days(now())
-          and collectionStatus = '全款'
+          and collectionStatus = '合同款'
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">

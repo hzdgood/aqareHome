@@ -9,7 +9,7 @@ import java.util.List;
 public interface WorkSheetMapper {
     List<WorkSheet> select();
 
-    List<WorkSheet> select1();
+    List<WorkSheet> selectTom();
 
     void insert(WorkSheet WorkSheet);
 

@@ -229,6 +229,7 @@ CREATE TABLE `user`
     `department` varchar(45) DEFAULT NULL,
     `status`     varchar(45) DEFAULT NULL,
     `company`    varchar(45) DEFAULT NULL,
+    `level`      varchar(45) DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 
@@ -242,3 +243,21 @@ CREATE TABLE `wechat`
     `expired` varchar(45)  DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `worksheet` (
+     `id` int NOT NULL AUTO_INCREMENT,
+     `itemId` varchar(45) DEFAULT NULL,
+     `custom` varchar(45) DEFAULT NULL,
+     `technology` varchar(45) DEFAULT NULL,
+     `actualWork` varchar(45) DEFAULT NULL,
+     `workType` varchar(45) DEFAULT NULL,
+     `orderDate` datetime DEFAULT NULL,
+     `dateOfVisit` datetime DEFAULT NULL,
+     `completeTime` datetime DEFAULT NULL,
+     `area` varchar(45) DEFAULT NULL,
+     `createName` varchar(45) DEFAULT NULL,
+     `createTime` datetime DEFAULT NULL,
+     `updateName` varchar(45) DEFAULT NULL,
+     `updateTime` datetime DEFAULT NULL,
+     PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

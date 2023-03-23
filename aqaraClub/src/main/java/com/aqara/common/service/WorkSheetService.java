@@ -2,13 +2,11 @@ package com.aqara.common.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.aqara.common.entity.User;
 import com.aqara.common.entity.WorkSheet;
 import com.aqara.common.properties.HuobanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.aqara.common.mapper.*;
 import org.springframework.stereotype.Service;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,15 +19,12 @@ public class WorkSheetService {
     @Autowired
     HuobanProperties HuobanProperties;
 
-    @Autowired
-    UserMapper UserMapper;
-
     public List<WorkSheet> select() {
         return WorkSheetMapper.select();
     }
 
     public List<WorkSheet> select1() {
-        return WorkSheetMapper.select1();
+        return WorkSheetMapper.selectTom();
     }
 
     public void insert(WorkSheet WorkSheet) {
@@ -93,130 +88,90 @@ public class WorkSheetService {
             }
             WorkSheetMapper.insert(WorkSheet);
         }
-
     }
 
     public String getWorkSend() {
-        List<WorkSheet> list = formatList(WorkSheetMapper.select());
+        List<WorkSheet> list = WorkSheetMapper.select();
+        List<String> users = new ArrayList<>();
+        List<String> names = new ArrayList<>();
         String str = "**今日完成工单情况** \n";
-        return getSendStr(list, str);
-    }
-
-    public String getWorkSend1() {
-        List<WorkSheet> list = formatList(WorkSheetMapper.select1());
-        String str = "**明日工单情况** \n";
-        return getSendStr1(list, str);
-    }
-
-    private String getSendStr(List<WorkSheet> list, String str) {
-        List<String> names = new ArrayList();
         for (int i = 0; i < list.size(); i++) {
             WorkSheet WorkSheet = list.get(i);
-            String technology = WorkSheet.getTechnology();
-            if (!getStatus(names, technology)) {
-                List<WorkSheet> current = getTechWork(list, technology);
-                if (current.size() != 0) {
-                    str += technology + "   完成工单数:" + current.size() + "\n";
-                    for (int j = 0; j < current.size(); j++) {
-                        WorkSheet w = current.get(j);
+            String engName = WorkSheet.getEngName();
+            String userName = WorkSheet.getUserName();
+            String count = WorkSheet.getCount();
+            if(count == null || count.equals("") || count.equals(null)) {
+                users.add(userName);
+            } else {
+                if(!getStatus(names, engName)){
+                    List<WorkSheet> techList = getTechWork(list, engName);
+                    str += userName + "   完成工单数:" + techList.size() + "\n";
+                    for (int j = 0; j < techList.size(); j++) {
+                        WorkSheet w = techList.get(j);
                         String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getActualWork();
                         str += "[" + res + "](https://app.huoban.com/tables/2100000015054992/items/" + w.getItemId() + ")" + "    ";
                     }
                     str += "\n";
+                    names.add(engName);
                 }
-                names.add(technology);
             }
+        }
+        for (int i = 0; i < users.size(); i++) {
+            str += users.get(i) + "   工单数:" + 0 + "\n";
         }
         return str;
     }
 
-    private String getSendStr1(List<WorkSheet> list, String str) {
-        List<String> names = new ArrayList();
+    public String getWorkSendTow() {
+        List<WorkSheet> list = WorkSheetMapper.selectTom();
+        List<String> users = new ArrayList<>();
+        List<String> names = new ArrayList<>();
+        String str = "**明日工单情况** \n";
         for (int i = 0; i < list.size(); i++) {
             WorkSheet WorkSheet = list.get(i);
-            String technology = WorkSheet.getTechnology();
-            if (!getStatus(names, technology)) {
-                List<WorkSheet> current = getTechWork(list, technology);
-                if (current.size() != 0) {
-                    str += technology + "   工单数:" + current.size() + "\n";
-                    for (int j = 0; j < current.size(); j++) {
-                        WorkSheet w = current.get(j);
+            String engName = WorkSheet.getEngName();
+            String userName = WorkSheet.getUserName();
+            String count = WorkSheet.getCount();
+            if(count == null || count.equals("") || count.equals(null)) {
+                users.add(userName);
+            } else {
+                if(!getStatus(names, engName)){
+                    List<WorkSheet> techList = getTechWork(list, engName);
+                    str += userName + "   工单数:" + techList.size() + "\n";
+                    for (int j = 0; j < techList.size(); j++) {
+                        WorkSheet w = techList.get(j);
                         String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getArea();
                         str += "[" + res + "](https://app.huoban.com/tables/2100000015054992/items/" + w.getItemId() + ")" + "    ";
                     }
                     str += "\n";
+                    names.add(engName);
                 }
-                names.add(technology);
             }
         }
-        List<User> users = mergeData(list); // 工单为0的
         for (int i = 0; i < users.size(); i++) {
-            User User = users.get(i);
-            str += User.getUserName() + "   工单数:" + 0 + "\n";
+            str += users.get(i) + "   工单数:" + 0 + "\n";
         }
         return str;
     }
 
-    private List<User> mergeData(List<WorkSheet> list) {
-        List<User> users = UserMapper.selectTech();
-        for (int i = 0; i < users.size(); i++) {
-            User User = users.get(i);
-            for (int j = 0; j < list.size(); j++) {
-                WorkSheet WorkSheet = list.get(j);
-                if(User.getUserName().equals(WorkSheet.getTechnology()) ) {
-                    users.remove(i);
-                }
-            }
-        }
-        return users;
-    }
-
-    private boolean getStatus(List<String> names, String technology) {
-        boolean b = false;
-        for (int i = 0; i < names.size(); i++) {
-            if (technology.equals(names.get(i))) {
-                b = true;
-            }
-        }
-        return b;
-    }
-
-    /**
-     * 获取技术人员List
-     */
-    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String technology) {
+    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
         List<WorkSheet> newList = new ArrayList();
         for (int i = 0; i < list.size(); i++) {
             WorkSheet WorkSheet = list.get(i);
-            if (technology.equals(WorkSheet.getTechnology())) {
+            if (engName.equals(WorkSheet.getEngName())) {
                 newList.add(WorkSheet);
             }
         }
         return newList;
     }
 
-    /**
-     * 数据重组，技术人员分开
-     */
-    private static List<WorkSheet> formatList(List<WorkSheet> list) {
-        List<WorkSheet> newList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            WorkSheet WorkSheet = list.get(i);
-            String technology = WorkSheet.getTechnology();
-            if (!technology.equals("") && technology != null) {
-                String[] str = technology.split(",");
-                for (int j = 0; j < str.length; j++) {
-                    WorkSheet w = new WorkSheet();
-                    w.setWorkType(WorkSheet.getWorkType());
-                    w.setActualWork(WorkSheet.getActualWork());
-                    w.setCustom(WorkSheet.getCustom());
-                    w.setItemId(WorkSheet.getItemId());
-                    w.setArea(WorkSheet.getArea());
-                    w.setTechnology(str[j]);
-                    newList.add(w);
-                }
+    private boolean getStatus(List<String> names, String engName) {
+        boolean b = false;
+        for (int i = 0; i < names.size(); i++) {
+            if (engName.equals(names.get(i))) {
+                b = true;
             }
         }
-        return newList;
+        return b;
     }
 }

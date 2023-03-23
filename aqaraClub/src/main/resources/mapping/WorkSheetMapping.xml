@@ -10,6 +10,9 @@
         <result column="actualWork" jdbcType="VARCHAR" property="actualWork"/>
         <result column="workType" jdbcType="VARCHAR" property="workType"/>
         <result column="area" jdbcType="VARCHAR" property="area"/>
+        <result column="userName" jdbcType="VARCHAR" property="userName"/>
+        <result column="engName" jdbcType="VARCHAR" property="engName"/>
+        <result column="count" jdbcType="VARCHAR" property="count"/>
         <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
         <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
         <result column="completeTime" jdbcType="TIMESTAMP" property="completeTime"/>
@@ -20,17 +23,11 @@
     </resultMap>
 
     <select id="select" resultType="com.aqara.common.entity.WorkSheet">
-        select *
-        from workSheet w
-        where 1 = 1
-          and to_days(w.completeTime) = to_days(now())
+        select * from worksheetviewnow
     </select>
 
-    <select id="select1" resultType="com.aqara.common.entity.WorkSheet">
-        select *
-        from workSheet w
-        where 1 = 1
-          and to_days(w.dateOfVisit) - to_days(now()) = 1;
+    <select id="selectTom" resultType="com.aqara.common.entity.WorkSheet">
+        select * from worksheetviewtom
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">

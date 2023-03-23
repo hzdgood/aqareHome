@@ -12,6 +12,9 @@ public class WorkSheet {
     private String actualWork; // 实际工时
     private Date completeTime; // 完成时间
     private String workType; // 工单类型
+    private String userName; // 技术
+    private String engName; // 技术英文
+    private String count;
     private String area; // 区域
     private String createName;
     private Date createTime;
@@ -88,6 +91,30 @@ public class WorkSheet {
 
     public void setWorkType(String workType) {
         this.workType = workType;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getEngName() {
+        return engName;
+    }
+
+    public void setEngName(String engName) {
+        this.engName = engName;
+    }
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
     }
 
     public String getArea() {

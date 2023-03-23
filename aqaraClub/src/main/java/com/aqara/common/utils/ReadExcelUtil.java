@@ -145,67 +145,67 @@ public class ReadExcelUtil {
         }
     }
 
-    public static List<Quotation> quotationExcel(MultipartFile files) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try {
-            XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
-            // 两种方式读取工作表
-            // Sheet sheet=workbook.getSheet("Sheet0");
-            Sheet sheet = workbook.getSheetAt(0);
-            // 获取sheet中最后一行行号
-            int lastRowNum = sheet.getLastRowNum();
-            List<Quotation> list = new ArrayList<Quotation>();
-            for (int i = 1; i <= lastRowNum; i++) {
-                Quotation Quotation = new Quotation();
-                Row row = sheet.getRow(i);
-                int lastCellNum = row.getLastCellNum();
-                for (int j = 0; j < lastCellNum; j++) {
-                    Cell cell = row.getCell(j);
-                    if (cell == null || cell.equals(null)) {
-                    } else {
-                        if (cell == null || cell.equals(null)) {
-
-                        } else {
-                            if (j == 1) {
-                                Quotation.setQuotationType(cell.getStringCellValue());
-                            } else if (j == 2) {
-                                Quotation.setQuotationID(cell.getStringCellValue());
-                            } else if (j == 3) {
-                                Quotation.setCode(cell.getStringCellValue());
-                            } else if (j == 15) {
-                                Quotation.setSchemeAmount(cell.getNumericCellValue() + "");
-                            } else if (j == 16) {
-                                Quotation.setPreferentialAmount(cell.getNumericCellValue() + "");
-                            } else if (j == 17) {
-                                Quotation.setAmountReceivable(cell.getNumericCellValue() + "");
-                            } else if (j == 18) {
-                                Quotation.setAmountReceived(cell.getNumericCellValue() + "");
-                            } else if (j == 19) {
-                                Quotation.setUncollectedAmount(cell.getNumericCellValue() + "");
-                            } else if (j == 20) {
-                                Quotation.setRemarks(cell.getStringCellValue());
-                            } else if (j == 28) {
-                                Quotation.setCreateName(cell.getStringCellValue());
-                            } else if (j == 29) {
-                                Date data = simpleDateFormat.parse(cell.getStringCellValue());
-                                Quotation.setCreateTime(data);
-                            } else if (j == 30) {
-                                Quotation.setUpdateName(cell.getStringCellValue());
-                            } else if (j == 31) {
-                                Date data = simpleDateFormat.parse(cell.getStringCellValue());
-                                Quotation.setUpdateTime(data);
-                            }
-                        }
-                    }
-                }
-                list.add(Quotation);
-            }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
+//    public static List<Quotation> quotationExcel(MultipartFile files) {
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        try {
+//            XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
+//            // 两种方式读取工作表
+//            // Sheet sheet=workbook.getSheet("Sheet0");
+//            Sheet sheet = workbook.getSheetAt(0);
+//            // 获取sheet中最后一行行号
+//            int lastRowNum = sheet.getLastRowNum();
+//            List<Quotation> list = new ArrayList<Quotation>();
+//            for (int i = 1; i <= lastRowNum; i++) {
+//                Quotation Quotation = new Quotation();
+//                Row row = sheet.getRow(i);
+//                int lastCellNum = row.getLastCellNum();
+//                for (int j = 0; j < lastCellNum; j++) {
+//                    Cell cell = row.getCell(j);
+//                    if (cell == null || cell.equals(null)) {
+//                    } else {
+//                        if (cell == null || cell.equals(null)) {
+//
+//                        } else {
+//                            if (j == 1) {
+//                                Quotation.setQuotationType(cell.getStringCellValue());
+//                            } else if (j == 2) {
+//                                Quotation.setQuotationID(cell.getStringCellValue());
+//                            } else if (j == 3) {
+//                                Quotation.setCode(cell.getStringCellValue());
+//                            } else if (j == 15) {
+//                                Quotation.setSchemeAmount(cell.getNumericCellValue() + "");
+//                            } else if (j == 16) {
+//                                Quotation.setPreferentialAmount(cell.getNumericCellValue() + "");
+//                            } else if (j == 17) {
+//                                Quotation.setAmountReceivable(cell.getNumericCellValue() + "");
+//                            } else if (j == 18) {
+//                                Quotation.setAmountReceived(cell.getNumericCellValue() + "");
+//                            } else if (j == 19) {
+//                                Quotation.setUncollectedAmount(cell.getNumericCellValue() + "");
+//                            } else if (j == 20) {
+//                                Quotation.setRemarks(cell.getStringCellValue());
+//                            } else if (j == 28) {
+//                                Quotation.setCreateName(cell.getStringCellValue());
+//                            } else if (j == 29) {
+//                                Date data = simpleDateFormat.parse(cell.getStringCellValue());
+//                                Quotation.setCreateTime(data);
+//                            } else if (j == 30) {
+//                                Quotation.setUpdateName(cell.getStringCellValue());
+//                            } else if (j == 31) {
+//                                Date data = simpleDateFormat.parse(cell.getStringCellValue());
+//                                Quotation.setUpdateTime(data);
+//                            }
+//                        }
+//                    }
+//                }
+//                list.add(Quotation);
+//            }
+//            return list;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//    }
 
     public static List<Survey> SurveyExcel(MultipartFile file) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
