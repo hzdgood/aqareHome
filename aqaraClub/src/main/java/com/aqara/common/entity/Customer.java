@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Customer {
     private Integer id;
-    private String companyId; //公司
     private String name; //客户姓名
     private String telephone; // 客户电话
     private String sales; //销售
@@ -33,14 +32,6 @@ public class Customer {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(String companyId) {
-        this.companyId = companyId;
     }
 
     public String getName() {
@@ -209,17 +200,6 @@ public class Customer {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer [id=" + id + ", companyId=" + companyId + ", name=" + name + ", telephone=" + telephone
-                + ", sales=" + sales + ", department=" + department + ", sex=" + sex + ", source=" + source
-                + ", houseType=" + houseType + ", houseState=" + houseState + ", personnelAttr=" + personnelAttr
-                + ", customerAttr=" + customerAttr + ", customerStage=" + customerStage + ", SPcustomer=" + SPcustomer
-                + ", houseDemand=" + houseDemand + ", lossStatus=" + lossStatus + ", weiXin=" + weiXin + ", UserID="
-                + UserID + ", releWeixin=" + releWeixin + ", createName=" + createName + ", createTime=" + createTime
-                + ", updateName=" + updateName + ", updateTime=" + updateTime + "]";
     }
 
 }

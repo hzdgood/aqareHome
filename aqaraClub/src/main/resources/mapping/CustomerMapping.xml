@@ -4,7 +4,6 @@
 <mapper namespace="com.aqara.common.mapper.CustomerMapper">
     <resultMap id="BaseResultMap" type="com.aqara.common.entity.Customer">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="companyId" jdbcType="VARCHAR" property="companyId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
         <result column="sales" jdbcType="VARCHAR" property="sales"/>

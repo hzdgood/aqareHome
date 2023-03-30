@@ -6,7 +6,7 @@ public class Collent {
     private Integer id;
     private String code; // 项目编码
     private String sales; //销售
-    private String department;
+    private String department; //部门
     private String projectStatus; // 当前项目状态
     private String totalReceipts; // 收款总额17
     private String finalPrice; // 最终价格18
