@@ -41,8 +41,7 @@
     <insert id="insert" parameterType="com.aqara.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
         insert into project (code, currrentTask, decorationProgress, saleConfirm, end,
                              projectName, projectTelephone, projectType, mainProject, groupID, sales, department,
-                             itemId,
-                             createName, createTime, updateName, updateTime)
+                             itemId, createName, createTime, updateName, updateTime)
         values (#{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end},
                 #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{sales},
                 #{department}, #{itemId},

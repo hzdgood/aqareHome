@@ -178,6 +178,28 @@ CREATE TABLE `project`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `product`
+(
+    `id`                 int NOT NULL AUTO_INCREMENT,
+    `itemId`               varchar(45) DEFAULT NULL,
+    `name`       varchar(45) DEFAULT NULL,
+    `realName` varchar(45) DEFAULT NULL,
+    `code`        varchar(45) DEFAULT NULL,
+    `bomType`                varchar(45) DEFAULT NULL,
+    `classification`        varchar(45) DEFAULT NULL,
+    `scanCode`   varchar(45) DEFAULT NULL,
+    `shipType`        varchar(45) DEFAULT NULL,
+    `repairPrice`        varchar(45) DEFAULT NULL,
+    `purchasePrice`            varchar(45) DEFAULT NULL,
+    `price`              varchar(45) DEFAULT NULL,
+    `brand`         varchar(45) DEFAULT NULL,
+    `createName`         varchar(45) DEFAULT NULL,
+    `createTime`         datetime    DEFAULT NULL,
+    `updateName`         varchar(45) DEFAULT NULL,
+    `updateTime`         datetime    DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `huoban`
 (

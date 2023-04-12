@@ -1,18 +1,16 @@
 package com.aqara.common.mapper;
 
-import com.aqara.common.entity.Login;
+import com.aqara.common.entity.Product;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
-public interface LoginMapper {
+public interface ProductMapper {
+    List<Product> select();
 
-    List<Login> select(String username, String password);
+    void insert(Product Product);
 
-    void insert(Login Login);
-
-    void update(Login Login);
+    void update(Product Product);
 
     void delete(Integer id);
 
