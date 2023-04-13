@@ -85,7 +85,7 @@ public class CommonUtil {
 
     public static JSONObject signatures(String url, String token, WxProperties WxProperties) {
         String nonceStr = CommonUtil.getRandomString(16);
-        String timeNew = System.currentTimeMillis() + "";
+        String timeNew = String.valueOf(System.currentTimeMillis());
         String jsapi_ticket = WeChatUtil.getJsApiTicket(WxProperties, token);
         String appticket = WeChatUtil.getAppTicket(WxProperties, token);
         JSONObject jsonObject = JSONObject.parseObject(jsapi_ticket);

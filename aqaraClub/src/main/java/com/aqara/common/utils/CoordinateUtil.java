@@ -8,9 +8,10 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 public class CoordinateUtil {
-    private static String AK = "agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi"; // 百度地图密钥
+    private static final String AK = "agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi"; // 百度地图密钥
 
     // 调用百度地图API根据地址，获取坐标
     public static Coordinate getCoordinate(String address) {
@@ -33,8 +34,8 @@ public class CoordinateUtil {
                     BigDecimal b1 = new BigDecimal(lng);
                     BigDecimal b2 = new BigDecimal(lat);
                     BigDecimal b3 = new BigDecimal(100);
-                    BigDecimal b4 = new BigDecimal(12146.31);
-                    BigDecimal b5 = new BigDecimal(3118.99);
+                    BigDecimal b4 = new BigDecimal("12146.31");
+                    BigDecimal b5 = new BigDecimal("3118.99");
                     b1 = b1.multiply(b3).subtract(b4);
                     b2 = b2.multiply(b3).subtract(b5);
                     Coordinate.setLng(b1.doubleValue());
@@ -72,14 +73,14 @@ public class CoordinateUtil {
         try {
             URL oracle = new URL(url);
             URLConnection yc = oracle.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream(), "UTF-8"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream(), StandardCharsets.UTF_8));
             String inputLine = null;
             while ((inputLine = in.readLine()) != null) {
                 json.append(inputLine);
             }
             in.close();
         } catch (Exception e) {
-            System.out.printf(json.toString() + "--------" + "loadJSON");
+            System.out.printf(json + "--------" + "loadJSON");
             e.printStackTrace();
         }
         return json.toString();

@@ -8,11 +8,11 @@ import java.util.List;
 @Repository
 public interface WechatMapper {
 
-    public List<Wechat> select(String type);
+    List<Wechat> select(String type);
 
-    public void insert(Wechat wechat);
+    void insert(Wechat wechat);
 
-    public void update(Wechat wechat);
+    void update(Wechat wechat);
 
-    public void delete(Integer id);
+    void delete(Integer id);
 }

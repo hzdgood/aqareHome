@@ -27,6 +27,7 @@ import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -49,9 +50,9 @@ public class HttpUtil {
             connection.connect();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String lines;
-            StringBuffer sb = new StringBuffer("");
+            StringBuffer sb = new StringBuffer();
             while ((lines = reader.readLine()) != null) {
-                lines = new String(lines.getBytes(), "utf-8");
+                lines = new String(lines.getBytes(), StandardCharsets.UTF_8);
                 sb.append(lines);
             }
             reader.close();
@@ -80,9 +81,9 @@ public class HttpUtil {
             connection.connect();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String lines;
-            StringBuffer sb = new StringBuffer("");
+            StringBuffer sb = new StringBuffer();
             while ((lines = reader.readLine()) != null) {
-                lines = new String(lines.getBytes(), "utf-8");
+                lines = new String(lines.getBytes(), StandardCharsets.UTF_8);
                 sb.append(lines);
             }
             reader.close();
@@ -115,9 +116,9 @@ public class HttpUtil {
             out.close();
             BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String lines;
-            StringBuffer sb = new StringBuffer("");
+            StringBuffer sb = new StringBuffer();
             while ((lines = reader.readLine()) != null) {
-                lines = new String(lines.getBytes(), "utf-8");
+                lines = new String(lines.getBytes(), StandardCharsets.UTF_8);
                 sb.append(lines);
             }
             reader.close();
@@ -142,11 +143,11 @@ public class HttpUtil {
         }
         post.setEntity(builder.build());
         HttpResponse response = client.execute(post);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), "UTF-8"), 8 * 1024);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.UTF_8), 8 * 1024);
         String lines;
-        StringBuffer sb = new StringBuffer("");
+        StringBuffer sb = new StringBuffer();
         while ((lines = reader.readLine()) != null) {
-            lines = new String(lines.getBytes(), "utf-8");
+            lines = new String(lines.getBytes(), StandardCharsets.UTF_8);
             sb.append(lines);
         }
         return sb.toString();

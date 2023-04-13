@@ -3,9 +3,9 @@ package com.aqara.common.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.WorkSheet;
+import com.aqara.common.mapper.WorkSheetMapper;
 import com.aqara.common.properties.HuobanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.aqara.common.mapper.*;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -171,6 +171,7 @@ public class WorkSheetService {
         for (int i = 0; i < names.size(); i++) {
             if (engName.equals(names.get(i))) {
                 b = true;
+                break;
             }
         }
         return b;

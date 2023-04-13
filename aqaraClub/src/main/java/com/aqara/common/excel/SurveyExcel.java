@@ -41,7 +41,7 @@ public class SurveyExcel {
                         } else if (j == 18) {
                             Survey.setAppointmentTime(cell.getDateCellValue());
                         } else if (j == 19) {
-                            Survey.setEstimatedDuration(cell.getNumericCellValue() + "");
+                            Survey.setEstimatedDuration(String.valueOf(cell.getNumericCellValue()));
                         } else if (j == 20) {
                             Survey.setParticipants(cell.getStringCellValue());
                         } else if (j == 22) {

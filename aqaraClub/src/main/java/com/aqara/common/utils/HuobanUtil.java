@@ -7,6 +7,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class HuobanUtil {
     public static JSONObject getSchedule(String requestUrl, String ticket, JSONObject obj) throws Exception {
@@ -27,9 +28,9 @@ public class HuobanUtil {
         out.close();
         BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String lines;
-        StringBuffer sb = new StringBuffer("");
+        StringBuffer sb = new StringBuffer();
         while ((lines = reader.readLine()) != null) {
-            lines = new String(lines.getBytes(), "utf-8");
+            lines = new String(lines.getBytes(), StandardCharsets.UTF_8);
             sb.append(lines);
         }
         reader.close();
