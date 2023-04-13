@@ -21,7 +21,7 @@ public class ListTest {
 
         for (int i = 0; i < list.size(); i++) {
             for (int j = 0; j < list1.size(); j++) {
-                if(list.get(i) == list1.get(j)) {
+                if (list.get(i) == list1.get(j)) {
                     list.remove(i);
                 }
             }

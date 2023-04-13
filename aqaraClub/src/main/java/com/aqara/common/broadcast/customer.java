@@ -53,7 +53,7 @@ public class customer {
 
     /**
      * 今日的信息机器人
-     * */
+     */
     @Scheduled(cron = "0 35 21 * * ?")
     private void currentDayBroadcast() {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=283f104b-f171-41a0-a7cc-fd977884330c";

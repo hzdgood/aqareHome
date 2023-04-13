@@ -7,6 +7,7 @@ import com.aqara.common.properties.HuobanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.aqara.common.mapper.*;
 import org.springframework.stereotype.Service;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -100,10 +101,10 @@ public class WorkSheetService {
             String engName = WorkSheet.getEngName();
             String userName = WorkSheet.getUserName();
             String count = WorkSheet.getCount();
-            if(count == null || count.equals("") || count.equals(null)) {
+            if (count == null || count.equals("") || count.equals(null)) {
                 users.add(userName);
             } else {
-                if(!getStatus(names, engName)){
+                if (!getStatus(names, engName)) {
                     List<WorkSheet> techList = getTechWork(list, engName);
                     str += userName + "   完成工单数:" + techList.size() + "\n";
                     for (int j = 0; j < techList.size(); j++) {
@@ -132,10 +133,10 @@ public class WorkSheetService {
             String engName = WorkSheet.getEngName();
             String userName = WorkSheet.getUserName();
             String count = WorkSheet.getCount();
-            if(count == null || count.equals("") || count.equals(null)) {
+            if (count == null || count.equals("") || count.equals(null)) {
                 users.add(userName);
             } else {
-                if(!getStatus(names, engName)){
+                if (!getStatus(names, engName)) {
                     List<WorkSheet> techList = getTechWork(list, engName);
                     str += userName + "   工单数:" + techList.size() + "\n";
                     for (int j = 0; j < techList.size(); j++) {

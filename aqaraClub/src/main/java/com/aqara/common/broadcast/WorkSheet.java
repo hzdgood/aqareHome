@@ -38,9 +38,10 @@ public class WorkSheet {
             e.printStackTrace();
         }
     }
+
     /**
      * 今日工单
-     * */
+     */
     @Scheduled(cron = "0 00 21 * * ?")
     private void currentWorkSend() {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
@@ -51,7 +52,7 @@ public class WorkSheet {
 
     /**
      * 明日工单
-     * */
+     */
     @Scheduled(cron = "0 01 21 * * ?")
     private void currentWorkSend1() {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";

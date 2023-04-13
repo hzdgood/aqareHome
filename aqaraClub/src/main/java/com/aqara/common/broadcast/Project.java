@@ -36,7 +36,7 @@ public class Project {
 
     /**
      * 项目提醒机器人
-     * */
+     */
     @Scheduled(cron = "0 00 10 * * ?")
     private void projectBroadcast() {
         List<com.aqara.common.entity.Project> Project = ProjectService.currentData();
