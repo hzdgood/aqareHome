@@ -2,10 +2,8 @@ package com.aqara.common.controller;
 
 import com.aqara.common.entity.Customer;
 import com.aqara.common.service.CustomerService;
-import com.aqara.common.utils.ReadExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -28,13 +26,4 @@ public class CustomerController {
         customerService.insert(Customer);
     }
 
-    @CrossOrigin
-    @RequestMapping("/upload")
-    public void upload(@RequestParam("file") MultipartFile file) {
-        List<Customer> list = ReadExcelUtil.customerExcel(file);
-        for (int i = 0; i < list.size(); i++) {
-            Customer Customer = list.get(i);
-            customerService.insert(Customer);
-        }
-    }
 }
