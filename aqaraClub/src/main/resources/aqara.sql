@@ -48,19 +48,19 @@ CREATE TABLE `survey`
 CREATE TABLE `speedycontent`
 (
     `id`           int NOT NULL AUTO_INCREMENT,
-    `themeId`      varchar(45)  DEFAULT NULL,
-    `mediaId`      varchar(400) DEFAULT NULL,
-    `contentTitle` varchar(45)  DEFAULT NULL,
+    `themeId`      varchar(45)   DEFAULT NULL,
+    `mediaId`      varchar(400)  DEFAULT NULL,
+    `contentTitle` varchar(45)   DEFAULT NULL,
     `contentText`  varchar(400) DEFAULT NULL,
     `contentImage` varchar(400) DEFAULT NULL,
     `contentVideo` varchar(400) DEFAULT NULL,
     `contentFile`  varchar(400) DEFAULT NULL,
-    `contentType`  varchar(45)  DEFAULT NULL,
-    `contentLevel` varchar(45)  DEFAULT NULL,
-    `createName`   varchar(45)  DEFAULT NULL,
-    `createTime`   datetime     DEFAULT NULL,
-    `updateName`   varchar(45)  DEFAULT NULL,
-    `updateTime`   datetime     DEFAULT NULL,
+    `contentType`  varchar(45)   DEFAULT NULL,
+    `contentLevel` varchar(45)   DEFAULT NULL,
+    `createName`   varchar(45)   DEFAULT NULL,
+    `createTime`   datetime      DEFAULT NULL,
+    `updateName`   varchar(45)   DEFAULT NULL,
+    `updateTime`   datetime      DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=299 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -180,23 +180,23 @@ CREATE TABLE `project`
 
 CREATE TABLE `product`
 (
-    `id`             int NOT NULL AUTO_INCREMENT,
-    `itemId`         varchar(45) DEFAULT NULL,
-    `name`           varchar(45) DEFAULT NULL,
-    `realName`       varchar(45) DEFAULT NULL,
-    `code`           varchar(45) DEFAULT NULL,
-    `bomType`        varchar(45) DEFAULT NULL,
-    `classification` varchar(45) DEFAULT NULL,
-    `scanCode`       varchar(45) DEFAULT NULL,
-    `shipType`       varchar(45) DEFAULT NULL,
-    `repairPrice`    varchar(45) DEFAULT NULL,
-    `purchasePrice`  varchar(45) DEFAULT NULL,
-    `price`          varchar(45) DEFAULT NULL,
-    `brand`          varchar(45) DEFAULT NULL,
-    `createName`     varchar(45) DEFAULT NULL,
-    `createTime`     datetime    DEFAULT NULL,
-    `updateName`     varchar(45) DEFAULT NULL,
-    `updateTime`     datetime    DEFAULT NULL,
+    `id`                 int NOT NULL AUTO_INCREMENT,
+    `itemId`               varchar(45) DEFAULT NULL,
+    `name`       varchar(45) DEFAULT NULL,
+    `realName` varchar(45) DEFAULT NULL,
+    `code`        varchar(45) DEFAULT NULL,
+    `bomType`                varchar(45) DEFAULT NULL,
+    `classification`        varchar(45) DEFAULT NULL,
+    `scanCode`   varchar(45) DEFAULT NULL,
+    `shipType`        varchar(45) DEFAULT NULL,
+    `repairPrice`        varchar(45) DEFAULT NULL,
+    `purchasePrice`            varchar(45) DEFAULT NULL,
+    `price`              varchar(45) DEFAULT NULL,
+    `brand`         varchar(45) DEFAULT NULL,
+    `createName`         varchar(45) DEFAULT NULL,
+    `createTime`         datetime    DEFAULT NULL,
+    `updateName`         varchar(45) DEFAULT NULL,
+    `updateTime`         datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -266,21 +266,20 @@ CREATE TABLE `wechat`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `worksheet`
-(
-    `id`           int NOT NULL AUTO_INCREMENT,
-    `itemId`       varchar(45) DEFAULT NULL,
-    `custom`       varchar(45) DEFAULT NULL,
-    `technology`   varchar(45) DEFAULT NULL,
-    `actualWork`   varchar(45) DEFAULT NULL,
-    `workType`     varchar(45) DEFAULT NULL,
-    `orderDate`    datetime    DEFAULT NULL,
-    `dateOfVisit`  datetime    DEFAULT NULL,
-    `completeTime` datetime    DEFAULT NULL,
-    `area`         varchar(45) DEFAULT NULL,
-    `createName`   varchar(45) DEFAULT NULL,
-    `createTime`   datetime    DEFAULT NULL,
-    `updateName`   varchar(45) DEFAULT NULL,
-    `updateTime`   datetime    DEFAULT NULL,
-    PRIMARY KEY (`id`)
+CREATE TABLE `worksheet` (
+     `id` int NOT NULL AUTO_INCREMENT,
+     `itemId` varchar(45) DEFAULT NULL,
+     `custom` varchar(45) DEFAULT NULL,
+     `technology` varchar(45) DEFAULT NULL,
+     `actualWork` varchar(45) DEFAULT NULL,
+     `workType` varchar(45) DEFAULT NULL,
+     `orderDate` datetime DEFAULT NULL,
+     `dateOfVisit` datetime DEFAULT NULL,
+     `completeTime` datetime DEFAULT NULL,
+     `area` varchar(45) DEFAULT NULL,
+     `createName` varchar(45) DEFAULT NULL,
+     `createTime` datetime DEFAULT NULL,
+     `updateName` varchar(45) DEFAULT NULL,
+     `updateTime` datetime DEFAULT NULL,
+     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

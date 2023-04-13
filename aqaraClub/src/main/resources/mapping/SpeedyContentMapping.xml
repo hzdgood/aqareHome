@@ -55,7 +55,7 @@
                                    contentType, contentLevel, createName, createTime)
         values (#{themeId}, #{mediaId}, #{contentTitle}, #{contentText},
                 #{contentFile}, #{contentImage}, #{contentVideo},
-                #{contentType}, #{contentLevel}, #{createName}, NOW())
+                 #{contentType}, #{contentLevel}, #{createName}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.SpeedyContent">
