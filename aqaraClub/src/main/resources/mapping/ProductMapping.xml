@@ -23,11 +23,17 @@
     </resultMap>
 
     <select id="select" resultType="com.aqara.common.entity.Product">
-        select * from product
+        select *
+        from product
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
-
+        insert into product (itemId, name, realName, code, bomType, classification, scanCode,
+                             shipType, repairPrice, purchasePrice, price, brand,
+                             createName, createTime, updateName, updateTime)
+        values (#{itemId}, #{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
+                #{shipType}, #{repairPrice}, #{purchasePrice}, #{price}, #{brand},
+                #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.Product">
@@ -35,7 +41,9 @@
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.Product">
-        delete from product where id = #{id}
+        delete
+        from product
+        where id = #{id}
     </delete>
 
     <delete id="deleteAll" parameterType="com.aqara.common.entity.Product">

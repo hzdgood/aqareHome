@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Customer {
     private Integer id;
+    private String itemId;
     private String name; //客户姓名
     private String telephone; // 客户电话
     private String sales; //销售
-    private String department; //部门
     private String sex; // 性别
     private String source; //客户来源
     private String houseType; //房型
@@ -34,6 +34,14 @@ public class Customer {
         this.id = id;
     }
 
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
     public String getName() {
         return name;
     }
@@ -56,14 +64,6 @@ public class Customer {
 
     public void setSales(String sales) {
         this.sales = sales;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
     }
 
     public String getSex() {

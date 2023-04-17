@@ -23,22 +23,21 @@
     </resultMap>
 
     <select id="select" resultType="com.aqara.common.entity.WorkSheet">
-        select * from worksheetviewnow
+        select *
+        from worksheetviewnow
     </select>
 
     <select id="selectTom" resultType="com.aqara.common.entity.WorkSheet">
-        select * from worksheetviewtom
+        select *
+        from worksheetviewtom
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
-        insert into workSheet (
-            itemId, custom, technology, actualWork, workType, area,
-            orderDate, dateOfVisit, completeTime,
-            createName, createTime, updateName, updateTime)
-        values (
-            #{itemId},#{custom},#{technology},#{actualWork},#{workType}, #{area},
-            #{orderDate}, #{dateOfVisit}, #{completeTime},
-            #{createName}, NOW(), #{updateName}, NOW()
-        )
+        insert into workSheet (itemId, custom, technology, actualWork, workType, area,
+                               orderDate, dateOfVisit, completeTime,
+                               createName, createTime, updateName, updateTime)
+        values (#{itemId}, #{custom}, #{technology}, #{actualWork}, #{workType}, #{area},
+                #{orderDate}, #{dateOfVisit}, #{completeTime},
+                #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 </mapper>

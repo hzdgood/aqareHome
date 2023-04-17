@@ -1,17 +1,19 @@
 package com.aqara.common.broadcast;
 
 import com.aqara.common.entity.Huoban;
+import com.aqara.common.excel.CustomerExcel;
 import com.aqara.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.io.File;
 import java.util.List;
 
 @Configuration // 标记配置类
 @EnableScheduling // 开启定时任务
-public class customer {
+public class Customer {
 
     @Autowired
     HttpService HttpService;
@@ -76,5 +78,18 @@ public class customer {
         }
         resStr += url;
         HttpService.workRequset(resStr, WX_TOKEN);
+    }
+
+    // @Scheduled(cron = "0 25 16 * * ?")
+    private void CustomerData() {
+        File file = new File("D:\\客户信息表_20230413160334.xlsx");
+        if (file.exists()) {
+            System.out.print("OK");
+            try {
+                CustomerExcel.customerExcel(file, CustomerService);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

@@ -26,12 +26,17 @@
     </select>
 
     <select id="selectTech" resultType="com.aqara.common.entity.User">
-        SELECT * FROM aqara.user a where a.station = '技术' and a.level = '员工' and a.status = '在职'
+        SELECT *
+        FROM aqara.user a
+        where a.station = '技术'
+          and a.level = '员工'
+          and a.status = '在职'
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
         insert into user (code, userName, passWord, engName, sex, station, department, status, company, level)
-        values (#{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company}, #{level})
+        values (#{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company},
+                #{level})
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.User">

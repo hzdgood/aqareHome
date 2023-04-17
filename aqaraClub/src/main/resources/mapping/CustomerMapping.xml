@@ -4,10 +4,10 @@
 <mapper namespace="com.aqara.common.mapper.CustomerMapper">
     <resultMap id="BaseResultMap" type="com.aqara.common.entity.Customer">
         <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
         <result column="sales" jdbcType="VARCHAR" property="sales"/>
-        <result column="department" jdbcType="VARCHAR" property="department"/>
         <result column="sex" jdbcType="VARCHAR" property="sex"/>
         <result column="source" jdbcType="VARCHAR" property="source"/>
         <result column="houseType" jdbcType="VARCHAR" property="houseType"/>
@@ -49,26 +49,18 @@
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true" keyProperty="id">
-        insert into customer (name, telephone, sales, department, sex,
+        insert into customer (itemId, name, telephone, sales, sex,
                               source, houseType, houseState, personnelAttr, customerAttr,
                               customerStage, SPcustomer, houseDemand, lossStatus, weiXin,
                               UserID, releWeixin, createName, createTime, updateName, updateTime)
-        values (#{name}, #{telephone}, #{sales}, #{department}, #{sex},
+        values (#{itemId}, #{name}, #{telephone}, #{sales}, #{sex},
                 #{source}, #{houseType}, #{houseState}, #{personnelAttr}, #{customerAttr},
                 #{customerStage}, #{SPcustomer}, #{houseDemand}, #{lossStatus}, #{weiXin},
                 #{UserID}, #{releWeixin}, #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
     <insert id="upload" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true" keyProperty="id">
-        insert into customer (name, telephone, sales, department, sex,
-                              source, houseType, houseState, personnelAttr, customerAttr,
-                              customerStage, SPcustomer, houseDemand, lossStatus, weiXin,
-                              UserID, releWeixin, createName, createTime, updateName, updateTime)
-        values (#{name}, #{telephone}, #{sales}, #{department}, #{sex},
-                #{source}, #{houseType}, #{houseState}, #{personnelAttr}, #{customerAttr},
-                #{customerStage}, #{SPcustomer}, #{houseDemand}, #{lossStatus}, #{weiXin},
-                #{UserID}, #{releWeixin}, #{createName}, #{createTime,jdbcType=DATE}, #{updateName},
-                #{updateTime,jdbcType=DATE})
+
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.Customer">

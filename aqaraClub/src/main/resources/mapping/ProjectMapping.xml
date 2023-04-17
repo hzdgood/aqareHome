@@ -44,8 +44,7 @@
                              itemId, createName, createTime, updateName, updateTime)
         values (#{code}, #{currrentTask}, #{decorationProgress}, #{saleConfirm}, #{end},
                 #{projectName}, #{projectTelephone}, #{projectType}, #{mainProject}, #{groupID}, #{sales},
-                #{department}, #{itemId},
-                #{createName}, NOW(), #{updateName}, NOW())
+                #{department}, #{itemId}, #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.Project">

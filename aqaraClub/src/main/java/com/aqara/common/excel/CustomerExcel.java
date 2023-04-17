@@ -1,26 +1,28 @@
 package com.aqara.common.excel;
 
 import com.aqara.common.entity.Customer;
+import com.aqara.common.service.CustomerService;
+import com.aqara.common.utils.ExcelUtil;
+import com.monitorjbl.xlsx.StreamingReader;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.text.SimpleDateFormat;
+import org.apache.poi.ss.usermodel.Workbook;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class CustomerExcel {
-    public static List<Customer> customerExcel(MultipartFile files) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static void customerExcel(File file, CustomerService CustomerService) throws FileNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(file);
         try {
-            XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
-            // 两种方式读取工作表
-            // Sheet sheet=workbook.getSheet("Sheet0");
+            Workbook workbook = StreamingReader.builder()
+                    .rowCacheSize(100)  //缓存到内存中的行数，默认是10
+                    .bufferSize(4096)  //读取资源时，缓存到内存的字节大小，默认是1024
+                    .open(fileInputStream);  //打开资源，必须，可以是InputStream或者是File，注意：只能打开XLSX格式的文件
             Sheet sheet = workbook.getSheetAt(0);
-            // 获取sheet中最后一行行号
             int lastRowNum = sheet.getLastRowNum();
             List<Customer> list = new ArrayList<Customer>();
             for (int i = 1; i <= lastRowNum; i++) {
@@ -29,61 +31,49 @@ public class CustomerExcel {
                 int lastCellNum = row.getLastCellNum();
                 for (int j = 0; j < lastCellNum; j++) {
                     Cell cell = row.getCell(j);
-                    if (cell == null || cell.equals(null)) {
-                    } else {
-                        if (j == 1) {
-                            customer.setName(cell.getStringCellValue());
+                    if (cell != null) {
+                        String value = ExcelUtil.getCellValue(cell);
+                        if (j == 0) {
+                            customer.setItemId(value);
+                        } else if (j == 1) {
+                            customer.setName(value);
                         } else if (j == 2) {
-                            customer.setTelephone(cell.getStringCellValue());
+                            customer.setTelephone(value);
+                        } else if (j == 3) {
+                            customer.setSales(value);
                         } else if (j == 4) {
-                            customer.setSales(cell.getStringCellValue());
+                            customer.setSex(value);
+                        } else if (j == 5) {
+                            customer.setSource(value);
                         } else if (j == 6) {
-                            customer.setDepartment(cell.getStringCellValue());
+                            customer.setHouseType(value);
+                        } else if (j == 7) {
+                            customer.setHouseState(value);
+                        } else if (j == 8) {
+                            customer.setPersonnelAttr(value);
                         } else if (j == 9) {
-                            customer.setSex(cell.getStringCellValue());
+                            customer.setCustomerAttr(value);
                         } else if (j == 10) {
-                            customer.setSource(cell.getStringCellValue());
+                            customer.setCustomerStage(value);
                         } else if (j == 11) {
-                            customer.setHouseType(cell.getStringCellValue());
+                            customer.setSPcustomer(value);
                         } else if (j == 12) {
-                            customer.setHouseState(cell.getStringCellValue());
+                            customer.setHouseDemand(value);
                         } else if (j == 13) {
-                            customer.setPersonnelAttr(cell.getStringCellValue());
+                            customer.setLossStatus(value);
                         } else if (j == 14) {
-                            customer.setCustomerAttr(cell.getStringCellValue());
+                            customer.setWeiXin(value);
                         } else if (j == 15) {
-                            customer.setCustomerStage(cell.getStringCellValue());
+                            customer.setUserID(value);
                         } else if (j == 16) {
-                            customer.setSPcustomer(cell.getStringCellValue());
-                        } else if (j == 17) {
-                            customer.setHouseDemand(cell.getStringCellValue());
-                        } else if (j == 18) {
-                            customer.setLossStatus(cell.getStringCellValue());
-                        } else if (j == 19) {
-                            customer.setWeiXin(cell.getStringCellValue());
-                        } else if (j == 26) {
-                            customer.setUserID(cell.getStringCellValue());
-                        } else if (j == 27) {
-                            customer.setReleWeixin(cell.getStringCellValue());
-                        } else if (j == 29) {
-                            customer.setCreateName(cell.getStringCellValue());
-                        } else if (j == 30) {
-                            Date data = simpleDateFormat.parse(cell.getStringCellValue());
-                            customer.setCreateTime(data);
-                        } else if (j == 31) {
-                            customer.setUpdateName(cell.getStringCellValue());
-                        } else if (j == 32) {
-                            Date data = simpleDateFormat.parse(cell.getStringCellValue());
-                            customer.setUpdateTime(data);
+                            customer.setReleWeixin(value);
                         }
                     }
                 }
-                list.add(customer);
+                CustomerService.insert(customer);
             }
-            return list;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
     }
 }
