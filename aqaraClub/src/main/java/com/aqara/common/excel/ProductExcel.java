@@ -16,7 +16,6 @@ import java.util.List;
 
 public class ProductExcel {
     public static void productExcel(File file, ProductService ProductService) throws FileNotFoundException {
-        List<Product> list = new ArrayList<>();
         FileInputStream fileInputStream = new FileInputStream(file);
         try {
             Workbook workbook = StreamingReader.builder()
