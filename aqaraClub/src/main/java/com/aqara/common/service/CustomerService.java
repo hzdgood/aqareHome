@@ -62,8 +62,6 @@ public class CustomerService {
                     Customer.setName(obj2.getString("value"));
                 } else if (field_id.equals("2200000144968566")) {
                     Customer.setSales(obj2.getString("title"));
-                } else if (field_id.equals("1107001107000000")) {
-                    Customer.setDepartment(obj2.getString("title"));
                 }
                 Customer.setCreateName("上海汇社");
             }

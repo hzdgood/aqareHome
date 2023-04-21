@@ -79,16 +79,16 @@ CREATE TABLE `speedytheme`
 
 CREATE TABLE `speedyteam`
 (
-    `id`         int NOT NULL AUTO_INCREMENT,
-    `team`       varchar(45) DEFAULT NULL,
-    `type`       varchar(45) DEFAULT NULL,
-    `company`    varchar(45) DEFAULT NULL,
+    `id`              int NOT NULL AUTO_INCREMENT,
+    `team`            varchar(45) DEFAULT NULL,
+    `type`            varchar(45) DEFAULT NULL,
+    `company`         varchar(45) DEFAULT NULL,
     `affiliatePerson` varchar(45) DEFAULT NULL,
     `affiliateTeam`   varchar(45) DEFAULT NULL,
-    `createName` varchar(45) DEFAULT NULL,
-    `createTime` datetime    DEFAULT NULL,
-    `updateName` varchar(45) DEFAULT NULL,
-    `updateTime` datetime    DEFAULT NULL,
+    `createName`      varchar(45) DEFAULT NULL,
+    `createTime`      datetime    DEFAULT NULL,
+    `updateName`      varchar(45) DEFAULT NULL,
+    `updateTime`      datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

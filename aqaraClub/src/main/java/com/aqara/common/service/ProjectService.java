@@ -60,10 +60,10 @@ public class ProjectService {
                     Project.setCode(obj2.getString("value"));
                 }
                 if (field_id.equals("2200000154568276")) {
-                    Project.setCurrrentTask(obj2.getString("name"));
+                    Project.setTask(obj2.getString("name"));
                 }
                 if (field_id.equals("2200000149037697")) {
-                    Project.setDecorationProgress(obj2.getString("name"));
+                    Project.setProgress(obj2.getString("name"));
                 }
                 if (field_id.equals("2200000145571993")) {
                     Project.setSaleConfirm(obj2.getString("name"));
@@ -72,10 +72,10 @@ public class ProjectService {
                     Project.setEnd(obj2.getString("name"));
                 }
                 if (field_id.equals("1101001102000000")) {
-                    Project.setProjectName(obj2.getString("value"));
+                    Project.setName(obj2.getString("value"));
                 }
                 if (field_id.equals("1101001103000000")) {
-                    Project.setProjectTelephone(obj2.getString("value"));
+                    Project.setTelephone(obj2.getString("value"));
                 }
                 if (field_id.equals("2200000184791041")) {
                     Project.setMainProject(obj2.getString("name"));
@@ -86,7 +86,6 @@ public class ProjectService {
                 if (field_id.equals("1294001101000000")) {
                     Project.setDepartment(obj2.getString("value"));
                 }
-
             }
             projectMapper.insert(Project);
         }
@@ -99,7 +98,7 @@ public class ProjectService {
         String xhData = "";
         int currentNumber = 0;
         for (int i = 0; i < Project.size(); i++) {
-            String name = Project.get(i).getProjectName();
+            String name = Project.get(i).getName();
             String itemId = Project.get(i).getItemId();
             if (Project.get(i).getDepartment() == null || Project.get(i).getDepartment().equals(null)) {
 

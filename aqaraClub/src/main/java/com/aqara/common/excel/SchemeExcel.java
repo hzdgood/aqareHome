@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,10 +15,7 @@ public class SchemeExcel {
     public static List<Scheme> schemeExcel(MultipartFile files) {
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
-            // 两种方式读取工作表
-            // Sheet sheet=workbook.getSheet("Sheet0");
             Sheet sheet = workbook.getSheetAt(0);
-            // 获取sheet中最后一行行号
             int lastRowNum = sheet.getLastRowNum();
             List<Scheme> list = new ArrayList<Scheme>();
             String CustomerName = "";
@@ -30,7 +28,7 @@ public class SchemeExcel {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
-                        String saleMoney = "";
+                        // String saleMoney = "";
                         if (j == 0) {
                             scheme.setOrderNumber(value);
                         } else if (j == 3) {
@@ -50,8 +48,6 @@ public class SchemeExcel {
                             scheme.setNumber(value);
                         } else if (j == 16) {
                             scheme.setMoney(value);
-                        } else if (j == 17) {
-                            saleMoney = value;
                         } else if (j == 20) {
                             if (value.equals("") || value.equals("0.00")) {
                                 scheme.setYesNoFee("0");
