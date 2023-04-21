@@ -1,12 +1,12 @@
 package com.aqara.common.excel;
 
 import com.aqara.common.entity.Scheme;
+import com.aqara.common.utils.ExcelUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +29,8 @@ public class SchemeExcel {
                 for (int j = 0; j < lastCellNum; j++) {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
-                        String value = cell.getStringCellValue();
+                        String value = ExcelUtil.getCellValue(cell);
+                        String saleMoney = "";
                         if (j == 0) {
                             scheme.setOrderNumber(value);
                         } else if (j == 3) {
@@ -49,6 +50,8 @@ public class SchemeExcel {
                             scheme.setNumber(value);
                         } else if (j == 16) {
                             scheme.setMoney(value);
+                        } else if (j == 17) {
+                            saleMoney = value;
                         } else if (j == 20) {
                             if (value.equals("") || value.equals("0.00")) {
                                 scheme.setYesNoFee("0");

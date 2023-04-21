@@ -11,8 +11,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProductExcel {
     public static void productExcel(File file, ProductService ProductService) throws FileNotFoundException {
