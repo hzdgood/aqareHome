@@ -7,10 +7,8 @@ import java.util.List;
 
 @Repository
 public interface SchemeMapper {
-
     List<Scheme> select();
-
     void insert(Scheme scheme);
-
+    void insertToExcel(Scheme scheme);
     void delete(Integer id);
 }

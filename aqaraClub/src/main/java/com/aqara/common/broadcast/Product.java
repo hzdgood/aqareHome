@@ -5,9 +5,7 @@ import com.aqara.common.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
 import java.io.File;
-
 
 @Configuration // 标记配置类
 @EnableScheduling // 开启定时任务

@@ -20,6 +20,10 @@ public class SchemeService {
         schemeMapper.insert(scheme);
     }
 
+    public void insertToExcel(Scheme scheme) {
+        schemeMapper.insertToExcel(scheme);
+    }
+
     public void delete(Integer id) {
         schemeMapper.delete(id);
     }

@@ -4,6 +4,10 @@
 <mapper namespace="com.aqara.common.mapper.SchemeMapper">
     <resultMap id="BaseResultMap" type="com.aqara.common.entity.Scheme">
         <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
+        <result column="projectId" jdbcType="VARCHAR" property="projectId"/>
+        <result column="productId" jdbcType="VARCHAR" property="productId"/>
+        <result column="contractQuantity" jdbcType="VARCHAR" property="contractQuantity"/>
         <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber"/>
         <result column="customerName" jdbcType="VARCHAR" property="customerName"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
@@ -13,13 +17,28 @@
         <result column="money" jdbcType="VARCHAR" property="money"/>
         <result column="yesNoFee" jdbcType="VARCHAR" property="yesNoFee"/>
         <result column="serviceFee" jdbcType="VARCHAR" property="serviceFee"/>
-        <result column="date" jdbcType="TIMESTAMP" property="date"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
     <insert id="insert" parameterType="com.aqara.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         insert into scheme (orderNumber, customerName, telephone, productName, productCode, number, money, yesNoFee,
-                            serviceFee, date)
+                            serviceFee, createName, createTime, updateName, updateTime)
         values (#{orderNumber}, #{customerName}, #{telephone}, #{productName}, #{productCode}, #{number}, #{money},
-                #{yesNoFee}, #{serviceFee}, NOW())
+                #{yesNoFee}, #{serviceFee}, #{createName}, NOW(), #{updateName}, NOW())
+    </insert>
+
+    <insert id="insertToExcel" parameterType="com.aqara.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        insert into scheme (
+                itemId, projectId, productId, contractQuantity,
+                number, money, yesNoFee, serviceFee,
+                createName, createTime, updateName, updateTime )
+        values (
+               #{itemId}, #{projectId}, #{productId}, #{contractQuantity},
+               #{number}, #{money}, #{yesNoFee}, #{serviceFee},
+               #{createName}, NOW(), #{updateName}, NOW()
+        )
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.Scheme">

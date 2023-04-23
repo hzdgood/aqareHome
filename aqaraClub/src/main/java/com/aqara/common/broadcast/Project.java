@@ -1,6 +1,8 @@
 package com.aqara.common.broadcast;
 
 import com.aqara.common.entity.Huoban;
+import com.aqara.common.excel.CustomerExcel;
+import com.aqara.common.excel.ProjectExcel;
 import com.aqara.common.service.HttpService;
 import com.aqara.common.service.HuobanService;
 import com.aqara.common.service.ProjectService;
@@ -9,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import java.io.File;
 import java.util.List;
 
 @Configuration // 标记配置类
@@ -50,5 +53,17 @@ public class Project {
         String str3 = ProjectService.getCurtainData("闵行龙之梦店", Project) + "\n";
         String res = str0 + str + str1 + str2 + str3;
         HttpService.workRequset(res, WX_TOKEN);
+    }
+
+    private void ProjectData() {
+        File file = new File("D:\\项目信息表_20230413160334.xlsx");
+        if (file.exists()) {
+            System.out.print("OK");
+            try {
+                ProjectExcel.projectExcel(file, ProjectService);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

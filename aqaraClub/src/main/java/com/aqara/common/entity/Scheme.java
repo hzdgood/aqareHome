@@ -5,6 +5,10 @@ import java.util.Date;
 //用户方案
 public class Scheme {
     private Integer id;
+    private String itemId;
+    private String projectId;
+    private String productId;
+    private String contractQuantity; // 合同数量
     private String orderNumber; // 订单编号
     private String customerName; //客户名称
     private String telephone;  //客户电话
@@ -12,10 +16,13 @@ public class Scheme {
     private String productName; //产品名称
     private String productCode; // 产品条码
     private String number; // 数量
-    private String money; // 单价
+    private String money; // 销售单价
     private String yesNoFee; // 是否服务费
     private String serviceFee; // 服务费
-    private Date date;
+    private String createName;
+    private Date createTime;
+    private String updateName;
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -23,6 +30,38 @@ public class Scheme {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getContractQuantity() {
+        return contractQuantity;
+    }
+
+    public void setContractQuantity(String contractQuantity) {
+        this.contractQuantity = contractQuantity;
     }
 
     public String getOrderNumber() {
@@ -105,12 +144,35 @@ public class Scheme {
         this.serviceFee = serviceFee;
     }
 
-    public Date getDate() {
-        return date;
+    public String getCreateName() {
+        return createName;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreateName(String createName) {
+        this.createName = createName;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateName() {
+        return updateName;
+    }
+
+    public void setUpdateName(String updateName) {
+        this.updateName = updateName;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 }
