@@ -21,6 +21,7 @@ CREATE TABLE `survey`
 CREATE TABLE `quotation`
 (
     `id`                 int NOT NULL AUTO_INCREMENT,
+    `itemId`             varchar(45)  DEFAULT NULL,
     `code`               varchar(45) DEFAULT NULL,
     `sales`              varchar(45) DEFAULT NULL,
     `department`         varchar(45) DEFAULT NULL,
@@ -44,6 +45,7 @@ CREATE TABLE `quotation`
 CREATE TABLE `collent`
 (
     `id`               int NOT NULL AUTO_INCREMENT,
+    `itemId`           varchar(45)  DEFAULT NULL,
     `code`             varchar(45) DEFAULT NULL,
     `sales`            varchar(45) DEFAULT NULL,
     `department`       varchar(45) DEFAULT NULL,

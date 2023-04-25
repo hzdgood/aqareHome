@@ -71,10 +71,10 @@ public class ProjectService {
                 if (field_id.equals("2200000147975001")) {
                     Project.setEnd(obj2.getString("name"));
                 }
-                if (field_id.equals("1101001102000000")) {
+                if (field_id.equals("2200000160386765")) {
                     Project.setName(obj2.getString("value"));
                 }
-                if (field_id.equals("1101001103000000")) {
+                if (field_id.equals("2200000160386766")) {
                     Project.setTelephone(obj2.getString("value"));
                 }
                 if (field_id.equals("2200000184791041")) {
