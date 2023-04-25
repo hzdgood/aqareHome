@@ -20,6 +20,17 @@ public class WorkSheetService {
     @Autowired
     HuobanProperties HuobanProperties;
 
+    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
+        List<WorkSheet> newList = new ArrayList();
+        for (int i = 0; i < list.size(); i++) {
+            WorkSheet WorkSheet = list.get(i);
+            if (engName.equals(WorkSheet.getEngName())) {
+                newList.add(WorkSheet);
+            }
+        }
+        return newList;
+    }
+
     public List<WorkSheet> select() {
         return WorkSheetMapper.select();
     }
@@ -153,17 +164,6 @@ public class WorkSheetService {
             str += users.get(i) + "   工单数:" + 0 + "\n";
         }
         return str;
-    }
-
-    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
-        List<WorkSheet> newList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            WorkSheet WorkSheet = list.get(i);
-            if (engName.equals(WorkSheet.getEngName())) {
-                newList.add(WorkSheet);
-            }
-        }
-        return newList;
     }
 
     private boolean getStatus(List<String> names, String engName) {

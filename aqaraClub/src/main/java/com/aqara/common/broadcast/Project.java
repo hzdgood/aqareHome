@@ -1,7 +1,6 @@
 package com.aqara.common.broadcast;
 
 import com.aqara.common.entity.Huoban;
-import com.aqara.common.excel.CustomerExcel;
 import com.aqara.common.excel.ProjectExcel;
 import com.aqara.common.service.HttpService;
 import com.aqara.common.service.HuobanService;

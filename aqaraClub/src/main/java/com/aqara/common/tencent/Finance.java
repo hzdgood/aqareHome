@@ -16,6 +16,10 @@ typedef struct MediaData {
 */
 
 public class Finance {
+    static {
+        System.loadLibrary("WeWorkFinanceSdk");
+    }
+
     public native static long NewSdk();
 
     /**
@@ -121,8 +125,4 @@ public class Finance {
      * @brief 判断mediadata是否结束
      */
     public native static int IsMediaDataFinish(long mediaData);
-
-    static {
-        System.loadLibrary("WeWorkFinanceSdk");
-    }
 }

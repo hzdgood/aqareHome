@@ -108,6 +108,10 @@ public class SpeedyContent {
         return contentText;
     }
 
+    public void setContentText(String contentText) {
+        this.contentText = contentText;
+    }
+
     public String getContentImage() {
         return contentImage;
     }
@@ -122,10 +126,6 @@ public class SpeedyContent {
 
     public void setContentVideo(String contentVideo) {
         this.contentVideo = contentVideo;
-    }
-
-    public void setContentText(String contentText) {
-        this.contentText = contentText;
     }
 
     public String getContentFile() {

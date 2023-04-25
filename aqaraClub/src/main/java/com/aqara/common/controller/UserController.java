@@ -23,10 +23,9 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    private UserService userService;
-
-    @Autowired
     HuobanService huobanService;
+    @Autowired
+    private UserService userService;
 
     @CrossOrigin
     @RequestMapping("/select")

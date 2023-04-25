@@ -8,6 +8,7 @@ import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service

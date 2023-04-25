@@ -30,15 +30,12 @@
     </insert>
 
     <insert id="insertToExcel" parameterType="com.aqara.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-        insert into scheme (
-                itemId, projectId, productId, contractQuantity,
-                number, money, yesNoFee, serviceFee,
-                createName, createTime, updateName, updateTime )
-        values (
-               #{itemId}, #{projectId}, #{productId}, #{contractQuantity},
-               #{number}, #{money}, #{yesNoFee}, #{serviceFee},
-               #{createName}, NOW(), #{updateName}, NOW()
-        )
+        insert into scheme (itemId, projectId, productId, contractQuantity,
+                            number, money, yesNoFee, serviceFee,
+                            createName, createTime, updateName, updateTime)
+        values (#{itemId}, #{projectId}, #{productId}, #{contractQuantity},
+                #{number}, #{money}, #{yesNoFee}, #{serviceFee},
+                #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.Scheme">

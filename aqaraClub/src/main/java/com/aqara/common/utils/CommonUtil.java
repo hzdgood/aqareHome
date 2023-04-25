@@ -49,8 +49,10 @@ public class CommonUtil {
                 + "{\"field\":\"updated_on\",\"query\":{\"range\":[null,{\"model\":\"static\",\"datetime\":\"" + serData + "\"}]}}," // 修改日期
                 + "{\"field\":2200000147975001,\"query\":{\"em\":true,\"in\":[2]}}," // 是否完结
                 + "{\"field\":2200000148980437,\"query\":{\"in\":[1]}}," // 类型
-                + "{\"query\":{\"or\":[{\"gte\":\"1\"}]},\"query_option_mappings\":[-1],\"field\":2200000150080669}," // 总价
-                + "{\"field\":2200000154568276,\"query\":{\"em\":true,\"in\":[7,6,5,4,3,2,1]}}]},\"offset\":0,\"limit\":100,\"order_by\":" // 装修进度
+                + "{\"query\":{\"or\":[{\"gte\":\"1\"}]},\"query_option_mappings\":[-1],\"field\":2200000150080669}" // 总价
+                // + "{\"field\":2200000154568276,\"query\":{\"em\":true,\"in\":[7,6,5,4,3,2,1]}}" // 装修进度
+                + " ]},"
+                + "\"offset\":0,\"limit\":100,\"order_by\":"
                 + "[{\"field\":2200000149037697,\"sort\":\"desc\"}]}";
         return str;
     }
