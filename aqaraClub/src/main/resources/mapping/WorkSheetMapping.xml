@@ -40,4 +40,19 @@
                 #{orderDate}, #{dateOfVisit}, #{completeTime},
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>
+
+    <insert id="update" parameterType="com.aqara.common.entity.WorkSheet">
+
+    </insert>
+
+    <delete id="deleteAll" parameterType="com.aqara.common.entity.WorkSheet">
+        delete from workSheet where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteData" parameterType="com.aqara.common.entity.WorkSheet">
+        delete from workSheet where 1 = 1
+    </delete>
 </mapper>

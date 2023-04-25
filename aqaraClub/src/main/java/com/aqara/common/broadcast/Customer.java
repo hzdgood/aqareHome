@@ -80,7 +80,7 @@ public class Customer {
         HttpService.workRequset(resStr, WX_TOKEN);
     }
 
-    // @Scheduled(cron = "0 25 16 * * ?")
+    // @Scheduled(cron = "0 30 17 * * ?")
     private void CustomerData() {
         File file = new File("D:\\客户信息表_20230413160334.xlsx");
         if (file.exists()) {

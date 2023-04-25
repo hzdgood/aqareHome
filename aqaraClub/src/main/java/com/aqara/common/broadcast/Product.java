@@ -5,6 +5,7 @@ import com.aqara.common.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.File;
 
@@ -15,7 +16,7 @@ public class Product {
     @Autowired
     ProductService ProductService;
 
-    // @Scheduled(cron = "0 46 15 * * ?")
+    // @Scheduled(cron = "0 53 16 * * ?")
     private void productData() {
         File file = new File("D:\\物料清单_20230411151439.xlsx");
         if (file.exists()) {

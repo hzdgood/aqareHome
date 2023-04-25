@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,10 +19,7 @@ public class CollentExcel {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
-            Workbook workbook = StreamingReader.builder()
-                    .rowCacheSize(100)  //缓存到内存中的行数，默认是10
-                    .bufferSize(4096)  //读取资源时，缓存到内存的字节大小，默认是1024
-                    .open(fileInputStream);  //打开资源，必须，可以是InputStream或者是File，注意：只能打开XLSX格式的文件
+            XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
             int lastRowNum = sheet.getLastRowNum();
             for (int i = 1; i <= lastRowNum; i++) {

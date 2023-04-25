@@ -64,9 +64,24 @@
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
+    <insert id="update" parameterType="com.aqara.common.entity.Project">
+
+    </insert>
+
     <delete id="delete" parameterType="com.aqara.common.entity.Project">
         delete
         from project
         where 1 = 1
+    </delete>
+
+    <delete id="deleteAll" parameterType="com.aqara.common.entity.Project">
+        delete from project where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteData" parameterType="com.aqara.common.entity.Project">
+        delete from project where 1 = 1
     </delete>
 </mapper>

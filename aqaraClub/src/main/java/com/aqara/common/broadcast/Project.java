@@ -54,8 +54,9 @@ public class Project {
         HttpService.workRequset(res, WX_TOKEN);
     }
 
+    @Scheduled(cron = "0 08 18 * * ?")
     private void ProjectData() {
-        File file = new File("D:\\项目信息表_20230413160334.xlsx");
+        File file = new File("D:\\项目汇总表_20230425173542.xlsx");
         if (file.exists()) {
             System.out.print("OK");
             try {
