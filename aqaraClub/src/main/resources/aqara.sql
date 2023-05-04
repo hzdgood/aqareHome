@@ -114,6 +114,7 @@ CREATE TABLE `project`
     `telephone`    varchar(45) DEFAULT NULL,
     `department`   varchar(45) DEFAULT NULL,
     `sales`        varchar(45) DEFAULT NULL,
+    `techId`       varchar(45) DEFAULT NULL,
     `projectType`  varchar(45) DEFAULT NULL,
     `designer`     varchar(45) DEFAULT NULL,
     `intention`    varchar(45) DEFAULT NULL,
@@ -125,7 +126,6 @@ CREATE TABLE `project`
     `mainProject`  varchar(45) DEFAULT NULL,
     `groupID`      varchar(45) DEFAULT NULL,
     `address`      varchar(45) DEFAULT NULL,
-    `techId`       varchar(45) DEFAULT NULL,
     `createName`   varchar(45) DEFAULT NULL,
     `createTime`   datetime    DEFAULT NULL,
     `updateName`   varchar(45) DEFAULT NULL,
@@ -140,15 +140,27 @@ CREATE TABLE `product`
     `itemId`         varchar(45) DEFAULT NULL,
     `name`           varchar(45) DEFAULT NULL,
     `realName`       varchar(45) DEFAULT NULL,
-    `code`           varchar(45) DEFAULT NULL,
-    `bomType`        varchar(45) DEFAULT NULL,
-    `classification` varchar(45) DEFAULT NULL,
-    `scanCode`       varchar(45) DEFAULT NULL,
-    `shipType`       varchar(45) DEFAULT NULL,
-    `repairPrice`    varchar(45) DEFAULT NULL,
-    `purchasePrice`  varchar(45) DEFAULT NULL,
-    `price`          varchar(45) DEFAULT NULL,
-    `brand`          varchar(45) DEFAULT NULL,
+    `code`           varchar(45) DEFAULT NULL,--条码
+    `scan`           varchar(45) DEFAULT NULL,--扫码
+    `Measure`        varchar(45) DEFAULT NULL,--测量单
+    `unit`           varchar(45) DEFAULT NULL,--单位
+    `bomType`        varchar(45) DEFAULT NULL,--bom类型
+    `performance`    varchar(45) DEFAULT NULL, --业绩
+    `rebate`         varchar(45) DEFAULT NULL, --返利
+    `dimmingRebate`  varchar(45) DEFAULT NULL, --调光返利
+    `category`       varchar(45) DEFAULT NULL, --类别
+    `sendType`       varchar(45) DEFAULT NULL, --发货类型
+    `weight`         varchar(45) DEFAULT NULL, --重量
+    `volume`         varchar(45) DEFAULT NULL, --体积
+    `reserve`        varchar(45) DEFAULT NULL, --备用
+    `disabled`       varchar(45) DEFAULT NULL, --禁用
+    `repairPrice`    varchar(45) DEFAULT NULL, --维修
+    `purchasePrice`  varchar(45) DEFAULT NULL, --进价
+    `price`          varchar(45) DEFAULT NULL, --价格
+    `brand`          varchar(45) DEFAULT NULL, --品牌
+    `serviceFee`     varchar(45) DEFAULT NULL, --服务费
+    `installFee`     varchar(45) DEFAULT NULL, --安装费
+    `testFee`        varchar(45) DEFAULT NULL, --调试费
     `createName`     varchar(45) DEFAULT NULL,
     `createTime`     datetime    DEFAULT NULL,
     `updateName`     varchar(45) DEFAULT NULL,

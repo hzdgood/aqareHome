@@ -55,7 +55,7 @@ public class SchemeExcel {
                                 scheme.setServiceFee("0.00");
                             } else {
                                 scheme.setYesNoFee("1");
-                                scheme.setServiceFee("0.15");
+                                scheme.setServiceFee("0.25");
                             }
                         }
                     }

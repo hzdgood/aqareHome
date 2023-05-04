@@ -16,6 +16,7 @@ public class Product {
     private String purchasePrice; //产品进价
     private String price; //产品价格
     private String brand; //品牌
+    private String disabled; //禁用
     private String createName;
     private Date createTime;
     private String updateName;
@@ -123,6 +124,14 @@ public class Product {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
     }
 
     public String getCreateName() {
