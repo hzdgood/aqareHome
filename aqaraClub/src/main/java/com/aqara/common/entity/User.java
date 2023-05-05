@@ -12,6 +12,7 @@ public class User {
     private String status;
     private String company;
     private String level;
+    private String restDay;
 
     public Integer getId() {
         return id;
@@ -99,5 +100,13 @@ public class User {
 
     public void setLevel(String level) {
         this.level = level;
+    }
+
+    public String getRestDay() {
+        return restDay;
+    }
+
+    public void setRestDay(String restDay) {
+        this.restDay = restDay;
     }
 }

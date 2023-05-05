@@ -51,6 +51,10 @@ public class WorkSheetService {
         WorkSheetMapper.delete(id);
     }
 
+    public void deleteData() {
+        WorkSheetMapper.deleteData();
+    }
+
     public void getCurrentWork(String ticket, String selectStr) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String requestUrl = HuobanProperties.getSearchInfo() + "2100000015054992/find";
@@ -138,7 +142,7 @@ public class WorkSheetService {
         List<WorkSheet> list = WorkSheetMapper.selectTom();
         List<String> users = new ArrayList<>();
         List<String> names = new ArrayList<>();
-        String str = "**明日工单情况** \n";
+        StringBuilder str = new StringBuilder("**明日工单情况** \n");
         for (int i = 0; i < list.size(); i++) {
             WorkSheet WorkSheet = list.get(i);
             String engName = WorkSheet.getEngName();
@@ -149,29 +153,34 @@ public class WorkSheetService {
             } else {
                 if (!getStatus(names, engName)) {
                     List<WorkSheet> techList = getTechWork(list, engName);
-                    str += userName + "   工单数:" + techList.size() + "\n";
+                    str.append(userName).append("   工单数:").append(techList.size()).append("\n");
                     for (int j = 0; j < techList.size(); j++) {
                         WorkSheet w = techList.get(j);
                         String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getArea();
-                        str += "[" + res + "](https://app.huoban.com/tables/2100000015054992/items/" + w.getItemId() + ")" + "    ";
+                        str.append("[").append(res).append("](https://app.huoban.com/tables/2100000015054992/items/").append(w.getItemId()).append(")").append("    ");
                     }
-                    str += "\n";
+                    str.append("\n");
                     names.add(engName);
                 }
             }
         }
         for (int i = 0; i < users.size(); i++) {
-            str += users.get(i) + "   工单数:" + 0 + "\n";
+            str.append(users.get(i)).append("   工单数:").append(0).append("\n");
         }
-        return str;
+        return str.toString();
     }
 
     public String getNoComplete() {
-        String str = "**未预定上门工单** \n";
-
-
-
-        return str;
+        StringBuilder str = new StringBuilder("**未预约上门工单** \n");
+        List<WorkSheet> list = WorkSheetMapper.selectNoComplete();
+        for (int i = 0; i < list.size(); i++) {
+            WorkSheet WorkSheet = list.get(i);
+            String custom = WorkSheet.getCustom();
+            String technology = WorkSheet.getTechnology();
+            str.append("客户: ").append(custom).append("   技术: ").append(technology).append("   ");
+            str.append("[立即预约](https://app.huoban.com/tables/2100000015054992/items/").append(WorkSheet.getItemId()).append(")\n");
+        }
+        return str.toString();
     }
 
 

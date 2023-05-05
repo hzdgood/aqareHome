@@ -11,9 +11,13 @@ public interface WorkSheetMapper {
 
     List<WorkSheet> selectTom();
 
+    List<WorkSheet> selectNoComplete();
+
     void insert(WorkSheet WorkSheet);
 
     void update(WorkSheet WorkSheet);
 
     void delete(Integer id);
+
+    void deleteData();
 }

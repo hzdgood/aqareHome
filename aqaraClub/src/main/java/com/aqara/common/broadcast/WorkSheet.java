@@ -19,14 +19,13 @@ public class WorkSheet {
     @Autowired
     HuobanService HuobanService;
 
-
     @Autowired
     WorkSheetService WorkSheetService;
 
     @Autowired
     HttpService HttpService;
 
-    @Scheduled(cron = "0 50 20 * * ?")
+    @Scheduled(cron = "0 55 20 * * ?")
     private void currentWorkData() {
         List<Huoban> list = HuobanService.select();
         Huoban Huoban = list.get(list.size() - 1);
@@ -36,6 +35,19 @@ public class WorkSheet {
             String str2 = CommonUtil.getNoCompleteWorkData();
             WorkSheetService.getCurrentWork(ticket, str);
             WorkSheetService.getCurrentWork(ticket, str2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Scheduled(cron = "0 55 17 * * ?")
+    private void currentWorkData1() {
+        List<Huoban> list = HuobanService.select();
+        Huoban Huoban = list.get(list.size() - 1);
+        String ticket = Huoban.getTicket();
+        try {
+            String str = CommonUtil.getNoCompleteWorkData();
+            WorkSheetService.getCurrentWork(ticket, str);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,11 +75,21 @@ public class WorkSheet {
         HttpService.workRequset(workSheet, WX_TOKEN);
     }
 
-    @Scheduled(cron = "0 01 21 * * ?")
+    @Scheduled(cron = "0 02 21 * * ?")
     private void currentWorkSend2() {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
         // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
         String workSheet = WorkSheetService.getNoComplete();
+        WorkSheetService.deleteData();
+        HttpService.workRequset(workSheet, WX_TOKEN);
+    }
+
+    @Scheduled(cron = "0 00 18 * * ?")
+    private void currentWorkSend3() {
+        String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
+        // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
+        String workSheet = WorkSheetService.getNoComplete();
+        WorkSheetService.deleteData();
         HttpService.workRequset(workSheet, WX_TOKEN);
     }
 }

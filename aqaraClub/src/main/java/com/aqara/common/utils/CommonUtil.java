@@ -31,13 +31,12 @@ public class CommonUtil {
         Date data = new Date();
         String today = simpleDateFormat.format(data);
         String tom = simpleDateFormat.format(dateAddOne(data));
-        // System.out.printf(today + "----" + tom);
-        String datas = "\"query\":{\"em\":true,\"range\":[{\"model\":\"static\",\"datetime\":\"" + today + "\"}," +
-                "{\"model\":\"static\",\"datetime\":\"" + tom + "\"}]}},";
-        String str = "{\"where\":{\"and\":[{\"field\":2200000146398522," + datas +
-                // "\"query\":{\"in\":\"today\"}}]}," +
-                "\"offset\":0,\"limit\":20," +
-                "\"order_by\":[{\"field\":2200000146398522,\"sort\":\"desc\"}]}";
+        String str = "{\"where\":{\"and\":[{\"field\":2200000145748099," +
+                "\"query\":{\"range\":[{\"model\":\"static\",\"datetime\":\"" + today + "\"}," +
+                "{\"model\":\"static\",\"datetime\":\"" + tom + "\"}]}}," +
+                "{\"field\":2200000145748100,\"query\":{\"em\":false}}," +
+                "{\"field\":2200000146473059,\"query\":{\"in\":[1]}}]},\"offset\":0,\"limit\":20,\"order_by\":" +
+                "[{\"field\":2200000146199958,\"sort\":\"desc\"}]}";
         return str;
     }
 
