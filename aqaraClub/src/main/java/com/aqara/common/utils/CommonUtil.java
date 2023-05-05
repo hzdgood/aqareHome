@@ -26,17 +26,30 @@ public class CommonUtil {
         return str;
     }
 
-    public static String getCurrentWorkData() {
-        String str = "{\"where\":{\"and\":[{\"field\":2200000146398522," +
-                "\"query\":{\"eq\":\"today\"}}]},\"offset\":0,\"limit\":20," +
+    public static String getWorkData() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date data = new Date();
+        String today = simpleDateFormat.format(data);
+        String tom = simpleDateFormat.format(dateAddOne(data));
+        // System.out.printf(today + "----" + tom);
+        String datas = "\"query\":{\"em\":true,\"range\":[{\"model\":\"static\",\"datetime\":\"" + today + "\"}," +
+                "{\"model\":\"static\",\"datetime\":\"" + tom + "\"}]}},";
+        String str = "{\"where\":{\"and\":[{\"field\":2200000146398522," + datas +
+                // "\"query\":{\"in\":\"today\"}}]}," +
+                "\"offset\":0,\"limit\":20," +
                 "\"order_by\":[{\"field\":2200000146398522,\"sort\":\"desc\"}]}";
         return str;
     }
 
-    public static String getTomorrowWorkData() {
+    public static String getNoCompleteWorkData() {
         String str = "{\"where\":{\"and\":[{\"field\":2200000145748099," +
-                "\"query\":{\"eq\":\"tomorrow\"}}]},\"offset\":0,\"limit\":20," +
-                "\"order_by\":[{\"field\":2200000146398522,\"sort\":\"desc\"}]}";
+                "\"query\":{\"em\":true}},{\"field\":2200000145748100," + // 上门技术
+                "\"query\":{\"em\":false}},{\"field\":\"created_on\"," + // 上门日期
+                "\"query\":{\"eq\":\"this_year\"}},{\"field\":2200000146199958," + // 今年
+                "\"query\":{\"em\":false}},{\"field\":2200000146398522," + // 完成时间
+                "\"query\":{\"em\":true}},{\"field\":2200000146473059," + // 订单日期
+                "\"query\":{\"in\":[1]}}]},\"offset\":0,\"limit\":100," + // 有效
+                "\"order_by\":[{\"field\":2200000146199958,\"sort\":\"desc\"}]}";
         return str;
     }
 
@@ -83,6 +96,14 @@ public class CommonUtil {
             temp.put(aa.getKey(), aa.getValue());
         }
         return temp;
+    }
+
+    public static Date dateAddOne(Date date) {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(date);
+        calendar.add(calendar.DATE,1); //把日期往后增加一天,整数  往后推,负数往前移动
+        date = calendar.getTime(); //这个时间就是日期往后推一天的结果
+        return date;
     }
 
     public static JSONObject signatures(String url, String token, WxProperties WxProperties) {

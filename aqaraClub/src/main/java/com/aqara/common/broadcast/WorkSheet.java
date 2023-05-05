@@ -32,10 +32,10 @@ public class WorkSheet {
         Huoban Huoban = list.get(list.size() - 1);
         String ticket = Huoban.getTicket();
         try {
-            String str = CommonUtil.getCurrentWorkData();
-            String str1 = CommonUtil.getTomorrowWorkData();
+            String str = CommonUtil.getWorkData();
+            String str2 = CommonUtil.getNoCompleteWorkData();
             WorkSheetService.getCurrentWork(ticket, str);
-            WorkSheetService.getCurrentWork(ticket, str1);
+            WorkSheetService.getCurrentWork(ticket, str2);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -60,6 +60,14 @@ public class WorkSheet {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
         // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
         String workSheet = WorkSheetService.getWorkSendTow();
+        HttpService.workRequset(workSheet, WX_TOKEN);
+    }
+
+    @Scheduled(cron = "0 01 21 * * ?")
+    private void currentWorkSend2() {
+        String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
+        // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
+        String workSheet = WorkSheetService.getNoComplete();
         HttpService.workRequset(workSheet, WX_TOKEN);
     }
 }

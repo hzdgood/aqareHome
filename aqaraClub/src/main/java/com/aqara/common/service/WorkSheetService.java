@@ -166,6 +166,15 @@ public class WorkSheetService {
         return str;
     }
 
+    public String getNoComplete() {
+        String str = "**未预定上门工单** \n";
+
+
+
+        return str;
+    }
+
+
     private boolean getStatus(List<String> names, String engName) {
         boolean b = false;
         for (int i = 0; i < names.size(); i++) {
