@@ -75,6 +75,8 @@ public class UserService {
                     User.setLevel(obj2.getString("name"));
                 } else if (field_id.equals("2200000164612733")) {
                     User.setStatus(obj2.getString("name"));
+                } else if (field_id.equals("2200000330327359")) {
+                    User.setRestDay(obj2.getString("value"));
                 }
             }
             userMapper.insert(User);

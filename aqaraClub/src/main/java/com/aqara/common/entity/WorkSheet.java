@@ -16,6 +16,7 @@ public class WorkSheet {
     private String engName; // 技术英文
     private String count;
     private String area; // 区域
+    private String restDay; //技术休息日
     private String createName;
     private Date createTime;
     private String updateName;
@@ -123,6 +124,14 @@ public class WorkSheet {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+    public String getRestDay() {
+        return restDay;
+    }
+
+    public void setRestDay(String restDay) {
+        this.restDay = restDay;
     }
 
     public String getCreateName() {

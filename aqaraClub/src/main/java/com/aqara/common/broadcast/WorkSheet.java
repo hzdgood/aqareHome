@@ -54,34 +54,22 @@ public class WorkSheet {
     }
 
     /**
-     * 今日工单
+     * 今日明日工单
      */
     @Scheduled(cron = "0 00 21 * * ?")
     private void currentWorkSend() {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
         // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
+        String WX_DEPART = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0adf9002-d736-4921-b35f-f36c6429b097";
         String workSheet = WorkSheetService.getWorkSend();
+        String workSheet1 = WorkSheetService.getWorkSendTow();
+        String workSheet2 = WorkSheetService.getNoComplete();
         HttpService.workRequset(workSheet, WX_TOKEN);
-    }
-
-    /**
-     * 明日工单
-     */
-    @Scheduled(cron = "0 01 21 * * ?")
-    private void currentWorkSend1() {
-        String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
-        // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
-        String workSheet = WorkSheetService.getWorkSendTow();
-        HttpService.workRequset(workSheet, WX_TOKEN);
-    }
-
-    @Scheduled(cron = "0 02 21 * * ?")
-    private void currentWorkSend2() {
-        String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
-        // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
-        String workSheet = WorkSheetService.getNoComplete();
+        HttpService.workRequset(workSheet, WX_DEPART);
+        HttpService.workRequset(workSheet1, WX_TOKEN);
+        HttpService.workRequset(workSheet1, WX_DEPART);
+        HttpService.workRequset(workSheet2, WX_TOKEN);
         WorkSheetService.deleteData();
-        HttpService.workRequset(workSheet, WX_TOKEN);
     }
 
     @Scheduled(cron = "0 00 18 * * ?")
@@ -89,7 +77,7 @@ public class WorkSheet {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f";
         // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
         String workSheet = WorkSheetService.getNoComplete();
-        WorkSheetService.deleteData();
         HttpService.workRequset(workSheet, WX_TOKEN);
+        WorkSheetService.deleteData();
     }
 }

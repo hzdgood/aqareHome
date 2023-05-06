@@ -14,6 +14,7 @@
         <result column="status" jdbcType="VARCHAR" property="status"/>
         <result column="company" jdbcType="VARCHAR" property="company"/>
         <result column="level" jdbcType="VARCHAR" property="level"/>
+        <result column="restDay" jdbcType="VARCHAR" property="restDay"/>
     </resultMap>
     <select id="select" resultType="com.aqara.common.entity.User">
         select * from user where 1=1
@@ -34,9 +35,9 @@
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
-        insert into user (code, userName, passWord, engName, sex, station, department, status, company, level)
+        insert into user (code, userName, passWord, engName, sex, station, department, status, company, level, restDay)
         values (#{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company},
-                #{level})
+                #{level}, #{restDay} )
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.User">

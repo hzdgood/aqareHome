@@ -226,6 +226,7 @@ CREATE TABLE `user`
     `status`     varchar(45) DEFAULT NULL,
     `company`    varchar(45) DEFAULT NULL,
     `level`      varchar(45) DEFAULT NULL,
+    `restDay`    varchar(45) DEFAULT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 

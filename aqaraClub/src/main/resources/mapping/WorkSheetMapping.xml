@@ -2,7 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.aqara.common.mapper.WorkSheetMapper">
-    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Weixin">
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.WorkSheet">
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
         <result column="custom" jdbcType="VARCHAR" property="custom"/>
@@ -13,6 +13,7 @@
         <result column="userName" jdbcType="VARCHAR" property="userName"/>
         <result column="engName" jdbcType="VARCHAR" property="engName"/>
         <result column="count" jdbcType="VARCHAR" property="count"/>
+        <result column="restDay" jdbcType="VARCHAR" property="restDay"/>
         <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
         <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
         <result column="completeTime" jdbcType="TIMESTAMP" property="completeTime"/>

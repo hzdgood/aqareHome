@@ -21,9 +21,8 @@ public class WorkSheetService {
     HuobanProperties HuobanProperties;
 
     private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
-        List<WorkSheet> newList = new ArrayList();
-        for (int i = 0; i < list.size(); i++) {
-            WorkSheet WorkSheet = list.get(i);
+        List<WorkSheet> newList = new ArrayList<>();
+        for (WorkSheet WorkSheet : list) {
             if (engName.equals(WorkSheet.getEngName())) {
                 newList.add(WorkSheet);
             }
@@ -33,10 +32,6 @@ public class WorkSheetService {
 
     public List<WorkSheet> select() {
         return WorkSheetMapper.select();
-    }
-
-    public List<WorkSheet> select1() {
-        return WorkSheetMapper.selectTom();
     }
 
     public void insert(WorkSheet WorkSheet) {
@@ -59,50 +54,55 @@ public class WorkSheetService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String requestUrl = HuobanProperties.getSearchInfo() + "2100000015054992/find";
         JSONObject object = HttpService.getSchedule(requestUrl, ticket, JSONObject.parseObject(selectStr));
-        JSONArray array = object.getJSONArray("items");
-        for (int i = 0; i < array.size(); i++) {
-            JSONObject obj = array.getJSONObject(i);
-            JSONArray array1 = obj.getJSONArray("fields");
-            WorkSheet WorkSheet = new WorkSheet();
-            WorkSheet.setItemId(obj.getString("item_id"));
-            for (int j = 0; j < array1.size(); j++) {
-                JSONObject obj1 = array1.getJSONObject(j);
-                String field_id = obj1.getString("field_id");
-                JSONArray array2 = obj1.getJSONArray("values");
-                JSONObject obj2 = array2.getJSONObject(0);
-                if (field_id.equals("2200000145748100")) {
-                    String title = "";
-                    for (int k = 0; k < array2.size(); k++) {
-                        JSONObject obj3 = array2.getJSONObject(k);
-                        title += obj3.getString("title") + ",";
+        JSONArray array = null;
+        if (object != null) {
+            array = object.getJSONArray("items");
+        }
+        if (array != null) {
+            for (int i = 0; i < array.size(); i++) {
+                JSONObject obj = array.getJSONObject(i);
+                JSONArray array1 = obj.getJSONArray("fields");
+                WorkSheet WorkSheet = new WorkSheet();
+                WorkSheet.setItemId(obj.getString("item_id"));
+                for (int j = 0; j < array1.size(); j++) {
+                    JSONObject obj1 = array1.getJSONObject(j);
+                    String field_id = obj1.getString("field_id");
+                    JSONArray array2 = obj1.getJSONArray("values");
+                    JSONObject obj2 = array2.getJSONObject(0);
+                    if (field_id.equals("2200000145748100")) {
+                        StringBuilder title = new StringBuilder();
+                        for (int k = 0; k < array2.size(); k++) {
+                            JSONObject obj3 = array2.getJSONObject(k);
+                            title.append(obj3.getString("title")).append(",");
+                        }
+                        title = new StringBuilder(title.substring(0, title.length() - 1));
+                        WorkSheet.setTechnology(title.toString());
                     }
-                    title = title.substring(0, title.length() - 1);
-                    WorkSheet.setTechnology(title);
+                    if (field_id.equals("2200000146199958")) {
+                        WorkSheet.setOrderDate(simpleDateFormat.parse(obj2.getString("value")));
+                    }
+                    if (field_id.equals("2200000145748099")) {
+                        WorkSheet.setDateOfVisit(simpleDateFormat.parse(obj2.getString("value")));
+                    }
+                    if (field_id.equals("1101001291000000")) {
+                        WorkSheet.setCustom(obj2.getString("value"));
+                    }
+                    if (field_id.equals("2200000147884674")) {
+                        WorkSheet.setActualWork(obj2.getString("value"));
+                    }
+                    if (field_id.equals("2200000146398522")) {
+                        WorkSheet.setCompleteTime(simpleDateFormat.parse(obj2.getString("value")));
+                    }
+                    if (field_id.equals("2200000146398516")) {
+                        WorkSheet.setWorkType(obj2.getString("name"));
+                    }
+                    if (field_id.equals("1101001257000000")) {
+                        WorkSheet.setArea(obj2.getString("title"));
+                    }
+                    WorkSheet.setCreateName("上海汇社");
                 }
-                if (field_id.equals("2200000146199958")) {
-                    WorkSheet.setOrderDate(simpleDateFormat.parse(obj2.getString("value")));
-                }
-                if (field_id.equals("2200000145748099")) {
-                    WorkSheet.setDateOfVisit(simpleDateFormat.parse(obj2.getString("value")));
-                }
-                if (field_id.equals("1101001291000000")) {
-                    WorkSheet.setCustom(obj2.getString("value"));
-                }
-                if (field_id.equals("2200000147884674")) {
-                    WorkSheet.setActualWork(obj2.getString("value"));
-                }
-                if (field_id.equals("2200000146398522")) {
-                    WorkSheet.setCompleteTime(simpleDateFormat.parse(obj2.getString("value")));
-                }
-                if (field_id.equals("2200000146398516")) {
-                    WorkSheet.setWorkType(obj2.getString("name"));
-                }
-                if (field_id.equals("1101001257000000")) {
-                    WorkSheet.setArea(obj2.getString("title"));
-                }
-                WorkSheet.setCreateName("上海汇社");
+                WorkSheetMapper.insert(WorkSheet);
             }
-            WorkSheetMapper.insert(WorkSheet);
         }
     }
 
@@ -110,32 +110,32 @@ public class WorkSheetService {
         List<WorkSheet> list = WorkSheetMapper.select();
         List<String> users = new ArrayList<>();
         List<String> names = new ArrayList<>();
-        String str = "**今日完成工单情况** \n";
+        StringBuilder str = new StringBuilder("**今日完成工单情况** \n");
         for (int i = 0; i < list.size(); i++) {
             WorkSheet WorkSheet = list.get(i);
             String engName = WorkSheet.getEngName();
             String userName = WorkSheet.getUserName();
             String count = WorkSheet.getCount();
-            if (count == null || count.equals("") || count.equals(null)) {
-                users.add(userName);
+            String restDay = WorkSheet.getRestDay();
+            if (count == null || count.equals("")) {
+                users.add(userName + "  " + restDay + "休  ");
             } else {
                 if (!getStatus(names, engName)) {
                     List<WorkSheet> techList = getTechWork(list, engName);
-                    str += userName + "   完成工单数:" + techList.size() + "\n";
-                    for (int j = 0; j < techList.size(); j++) {
-                        WorkSheet w = techList.get(j);
+                    str.append(userName + " " + restDay + "休  ").append("完成工单数：").append(techList.size()).append("\n");
+                    for (WorkSheet w : techList) {
                         String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getActualWork();
-                        str += "[" + res + "](https://app.huoban.com/tables/2100000015054992/items/" + w.getItemId() + ")" + "    ";
+                        str.append("[").append(res).append("](https://app.huoban.com/tables/2100000015054992/items/").append(w.getItemId()).append(")").append("    ");
                     }
-                    str += "\n";
+                    str.append("\n");
                     names.add(engName);
                 }
             }
         }
-        for (int i = 0; i < users.size(); i++) {
-            str += users.get(i) + "   工单数:" + 0 + "\n";
+        for (String user : users) {
+            str.append(user).append("工单数:").append(0).append("\n");
         }
-        return str;
+        return str.toString();
     }
 
     public String getWorkSendTow() {
@@ -148,14 +148,14 @@ public class WorkSheetService {
             String engName = WorkSheet.getEngName();
             String userName = WorkSheet.getUserName();
             String count = WorkSheet.getCount();
-            if (count == null || count.equals("") || count.equals(null)) {
-                users.add(userName);
+            String restDay = WorkSheet.getRestDay();
+            if (count == null || count.equals("")) {
+                users.add(userName + "  " + restDay + "休  ");
             } else {
                 if (!getStatus(names, engName)) {
                     List<WorkSheet> techList = getTechWork(list, engName);
-                    str.append(userName).append("   工单数:").append(techList.size()).append("\n");
-                    for (int j = 0; j < techList.size(); j++) {
-                        WorkSheet w = techList.get(j);
+                    str.append(userName + " " + restDay + "休  ").append("工单数：").append(techList.size()).append("\n");
+                    for (WorkSheet w : techList) {
                         String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getArea();
                         str.append("[").append(res).append("](https://app.huoban.com/tables/2100000015054992/items/").append(w.getItemId()).append(")").append("    ");
                     }
@@ -164,8 +164,8 @@ public class WorkSheetService {
                 }
             }
         }
-        for (int i = 0; i < users.size(); i++) {
-            str.append(users.get(i)).append("   工单数:").append(0).append("\n");
+        for (String user : users) {
+            str.append(user).append("工单数:").append(0).append("\n");
         }
         return str.toString();
     }
@@ -173,8 +173,7 @@ public class WorkSheetService {
     public String getNoComplete() {
         StringBuilder str = new StringBuilder("**未预约上门工单** \n");
         List<WorkSheet> list = WorkSheetMapper.selectNoComplete();
-        for (int i = 0; i < list.size(); i++) {
-            WorkSheet WorkSheet = list.get(i);
+        for (WorkSheet WorkSheet : list) {
             String custom = WorkSheet.getCustom();
             String technology = WorkSheet.getTechnology();
             str.append("客户: ").append(custom).append("   技术: ").append(technology).append("   ");
@@ -186,8 +185,8 @@ public class WorkSheetService {
 
     private boolean getStatus(List<String> names, String engName) {
         boolean b = false;
-        for (int i = 0; i < names.size(); i++) {
-            if (engName.equals(names.get(i))) {
+        for (String name : names) {
+            if (engName.equals(name)) {
                 b = true;
                 break;
             }
