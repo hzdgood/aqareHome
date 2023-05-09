@@ -7,18 +7,11 @@
         <result column="code" jdbcType="VARCHAR" property="code"/>
         <result column="sales" jdbcType="VARCHAR" property="sales"/>
         <result column="department" jdbcType="VARCHAR" property="department"/>
-        <result column="projectStatus" jdbcType="VARCHAR" property="projectStatus"/>
-        <result column="totalReceipts" jdbcType="VARCHAR" property="totalReceipts"/>
-        <result column="finalPrice" jdbcType="VARCHAR" property="finalPrice"/>
-        <result column="changePrice" jdbcType="VARCHAR" property="changePrice"/>
         <result column="collectionStatus" jdbcType="VARCHAR" property="collectionStatus"/>
         <result column="refundType" jdbcType="VARCHAR" property="refundType"/>
         <result column="paymentMethod" jdbcType="VARCHAR" property="paymentMethod"/>
         <result column="collection" jdbcType="VARCHAR" property="collection"/>
         <result column="quotationID" jdbcType="VARCHAR" property="quotationID"/>
-        <result column="documentDate" jdbcType="TIMESTAMP" property="documentDate"/>
-        <result column="settlementDate" jdbcType="TIMESTAMP" property="settlementDate"/>
-        <result column="uploadVoucher" jdbcType="VARCHAR" property="uploadVoucher"/>
         <result column="payee" jdbcType="VARCHAR" property="payee"/>
         <result column="crossCheck" jdbcType="VARCHAR" property="crossCheck"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
