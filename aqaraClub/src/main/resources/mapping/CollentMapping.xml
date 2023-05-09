@@ -4,7 +4,8 @@
 <mapper namespace="com.aqara.common.mapper.CollentMapper">
     <resultMap id="BaseResultMap" type="com.aqara.common.entity.Collent">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
+        <result column="projectId" jdbcType="VARCHAR" property="projectId"/>
         <result column="sales" jdbcType="VARCHAR" property="sales"/>
         <result column="department" jdbcType="VARCHAR" property="department"/>
         <result column="collectionStatus" jdbcType="VARCHAR" property="collectionStatus"/>
@@ -34,9 +35,11 @@
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">
-        insert into collent (code, sales, department, collectionStatus, paymentMethod,
+        insert into collent (itemId, projectId, sales, department, collectionStatus, refundType,
+                             paymentMethod, collection, quotationID, payee, crossCheck,
                              createName, createTime, updateName, updateTime)
-        values (#{code}, #{sales}, #{department}, #{collectionStatus}, #{paymentMethod},
+        values ( #{itemId}, #{projectId}, #{sales}, #{department}, #{collectionStatus}, #{refundType},
+                #{paymentMethod}, #{collection}, #{quotationID}, #{payee}, #{crossCheck},
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 

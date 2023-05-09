@@ -5,7 +5,7 @@ import java.util.Date;
 public class Collent {
     private Integer id;
     private String itemId;
-    private String code; // 项目编码
+    private String projectId; // 项目编码
     private String sales; //销售
     private String department; //部门
     private String collectionStatus; //收款状态
@@ -36,12 +36,12 @@ public class Collent {
         this.itemId = itemId;
     }
 
-    public String getCode() {
-        return code;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setProjectId(String projectId) {
+        this.projectId = projectId;
     }
 
     public String getSales() {

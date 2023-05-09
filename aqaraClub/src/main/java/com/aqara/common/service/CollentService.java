@@ -60,7 +60,7 @@ public class CollentService {
                 JSONArray array2 = obj1.getJSONArray("values");
                 JSONObject obj2 = array2.getJSONObject(0);
                 if (field_id.equals("2200000145309762")) {
-                    Collent.setCode(obj2.getString("title"));
+                    Collent.setProjectId(obj2.getString("title"));
                 } else if (field_id.equals("1101001117000000")) {
                     Collent.setSales(obj2.getString("title"));
                 } else if (field_id.equals("1101001117001107")) {

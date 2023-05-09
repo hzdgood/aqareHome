@@ -31,7 +31,7 @@ public class CollentExcel {
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 3) {
-                            Collent.setCode(value);
+                            Collent.setProjectId(value);
                         }
                     }
                 }
