@@ -28,9 +28,7 @@ public class ProjectService {
         return projectMapper.currentData();
     }
 
-    public void insert(Project project) {
-        projectMapper.insert(project);
-    }
+    public void insert(Project project) { projectMapper.insert(project); }
 
     public void delete(Integer id) {
         projectMapper.delete(id);
