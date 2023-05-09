@@ -92,14 +92,16 @@ public class SchemeExcel {
                         } else if (j == 2) {
                             Scheme.setProductId(value);
                         } else if (j == 3) {
-                            Scheme.setContractQuantity(value);
+                            Scheme.setSchemeId(value);
                         } else if (j == 4) {
-                            Scheme.setNumber(value);
+                            Scheme.setContractQuantity(value);
                         } else if (j == 5) {
-                            Scheme.setMoney(value);
+                            Scheme.setNumber(value);
                         } else if (j == 6) {
-                            Scheme.setYesNoFee(value);
+                            Scheme.setMoney(value);
                         } else if (j == 7) {
+                            Scheme.setYesNoFee(value);
+                        } else if (j == 8) {
                             Scheme.setServiceFee(value);
                         }
                     }

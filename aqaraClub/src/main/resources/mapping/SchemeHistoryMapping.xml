@@ -1,0 +1,44 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.SchemeHistoryMapper">
+    <resultMap id="BaseResultMap" type="com.aqara.common.entity.SchemeHistory">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
+        <result column="number" jdbcType="VARCHAR" property="number"/>
+        <result column="schemeId" jdbcType="VARCHAR" property="schemeId"/>
+        <result column="quotationId" jdbcType="VARCHAR" property="quotationId"/>
+        <result column="quoteOrNot" jdbcType="VARCHAR" property="quoteOrNot"/>
+        <result column="createName" jdbcType="VARCHAR" property="createName"/>
+        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
+        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="select" resultType="com.aqara.common.entity.SchemeHistory">
+        select *
+        from schemeHistory
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.SchemeHistory" useGeneratedKeys="true" keyProperty="id">
+
+    </insert>
+
+    <insert id="update" parameterType="com.aqara.common.entity.SchemeHistory">
+
+    </insert>
+
+    <delete id="delete" parameterType="com.aqara.common.entity.SchemeHistory">
+        delete
+        from schemeHistory
+        where 1 = 1
+          and id = #{id}
+    </delete>
+
+    <delete id="deleteAll" parameterType="com.aqara.common.entity.SchemeHistory">
+        delete from schemeHistory where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

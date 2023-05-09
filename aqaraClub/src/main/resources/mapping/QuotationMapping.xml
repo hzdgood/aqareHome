@@ -9,7 +9,7 @@
         <result column="quotationId" jdbcType="VARCHAR" property="quotationId"/>
         <result column="projectId" jdbcType="VARCHAR" property="projectId"/>
         <result column="sales" jdbcType="VARCHAR" property="sales"/>
-        <result column="depart" jdbcType="VARCHAR" property="depart"/>
+        <result column="department" jdbcType="VARCHAR" property="department"/>
         <result column="schemeAmount" jdbcType="VARCHAR" property="schemeAmount"/>
         <result column="discountAmount" jdbcType="VARCHAR" property="discountAmount"/>
         <result column="receivedAmount" jdbcType="VARCHAR" property="receivedAmount"/>

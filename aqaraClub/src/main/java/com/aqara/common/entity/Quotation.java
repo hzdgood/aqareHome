@@ -9,7 +9,7 @@ public class Quotation {
     private String quotationId;
     private String projectId;
     private String sales;
-    private String depart;
+    private String department;
     private String schemeAmount;
     private String discountAmount;
     private String receivedAmount;
@@ -68,12 +68,12 @@ public class Quotation {
         this.sales = sales;
     }
 
-    public String getDepart() {
-        return depart;
+    public String getDepartment() {
+        return department;
     }
 
-    public void setDepart(String depart) {
-        this.depart = depart;
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public String getSchemeAmount() {

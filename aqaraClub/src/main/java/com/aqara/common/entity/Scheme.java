@@ -8,6 +8,7 @@ public class Scheme {
     private String itemId;
     private String projectId;
     private String productId;
+    private String schemeId;
     private String contractQuantity; // 合同数量
     private String orderNumber; // 订单编号
     private String customerName; //客户名称
@@ -54,6 +55,14 @@ public class Scheme {
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public String getSchemeId() {
+        return schemeId;
+    }
+
+    public void setSchemeId(String schemeId) {
+        this.schemeId = schemeId;
     }
 
     public String getContractQuantity() {
