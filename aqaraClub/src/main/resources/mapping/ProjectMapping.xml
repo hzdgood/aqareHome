@@ -71,7 +71,8 @@
     <delete id="delete" parameterType="com.aqara.common.entity.Project">
         delete
         from project
-        where 1 = 1 and id = #{id}
+        where 1 = 1
+          and id = #{id}
     </delete>
 
     <delete id="deleteAll" parameterType="com.aqara.common.entity.Project">
@@ -82,6 +83,8 @@
     </delete>
 
     <delete id="deleteData" parameterType="com.aqara.common.entity.Project">
-        delete from project where 1 = 1
+        delete
+        from project
+        where 1 = 1
     </delete>
 </mapper>

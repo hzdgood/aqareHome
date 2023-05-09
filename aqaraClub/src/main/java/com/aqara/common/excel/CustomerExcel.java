@@ -8,15 +8,16 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerExcel {
     public static void customerExcel(File file, CustomerService CustomerService) throws Exception {
-         FileInputStream fileInputStream = new FileInputStream(file);
-         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
-         Sheet sheet = workbook.getSheetAt(0);
+        FileInputStream fileInputStream = new FileInputStream(file);
+        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
+        Sheet sheet = workbook.getSheetAt(0);
         int lastRowNum = sheet.getLastRowNum();
         List<Customer> list = new ArrayList<Customer>();
         for (int i = 1; i <= lastRowNum; i++) {

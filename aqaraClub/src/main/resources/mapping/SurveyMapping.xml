@@ -61,6 +61,8 @@
     </delete>
 
     <delete id="deleteData" parameterType="com.aqara.common.entity.Survey">
-        delete from survey where 1 = 1
+        delete
+        from survey
+        where 1 = 1
     </delete>
 </mapper>

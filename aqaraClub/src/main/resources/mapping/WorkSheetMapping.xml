@@ -35,7 +35,9 @@
 
     <select id="selectNoComplete" resultType="com.aqara.common.entity.WorkSheet">
         select *
-        from workSheet w where w.dateOfVisit is null and w.custom is not null
+        from workSheet w
+        where w.dateOfVisit is null
+          and w.custom is not null
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
@@ -59,6 +61,8 @@
     </delete>
 
     <delete id="deleteData" parameterType="com.aqara.common.entity.WorkSheet">
-        delete from workSheet w where w.dateOfVisit is null
+        delete
+        from workSheet w
+        where w.dateOfVisit is null
     </delete>
 </mapper>

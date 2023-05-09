@@ -38,7 +38,7 @@
         insert into collent (itemId, projectId, sales, department, collectionStatus, refundType,
                              paymentMethod, collection, quotationID, payee, crossCheck,
                              createName, createTime, updateName, updateTime)
-        values ( #{itemId}, #{projectId}, #{sales}, #{department}, #{collectionStatus}, #{refundType},
+        values (#{itemId}, #{projectId}, #{sales}, #{department}, #{collectionStatus}, #{refundType},
                 #{paymentMethod}, #{collection}, #{quotationID}, #{payee}, #{crossCheck},
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>
@@ -61,6 +61,8 @@
     </delete>
 
     <delete id="deleteData" parameterType="com.aqara.common.entity.Collent">
-        delete from collent where 1 = 1
+        delete
+        from collent
+        where 1 = 1
     </delete>
 </mapper>

@@ -37,7 +37,7 @@
     <insert id="insert" parameterType="com.aqara.common.entity.User" useGeneratedKeys="true" keyProperty="id">
         insert into user (code, userName, passWord, engName, sex, station, department, status, company, level, restDay)
         values (#{code}, #{userName}, #{passWord}, #{engName}, #{sex}, #{station}, #{department}, #{status}, #{company},
-                #{level}, #{restDay} )
+                #{level}, #{restDay})
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.User">

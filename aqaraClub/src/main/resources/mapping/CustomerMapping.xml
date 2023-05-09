@@ -77,6 +77,8 @@
     </delete>
 
     <delete id="deleteData" parameterType="com.aqara.common.entity.Customer">
-        delete from customer where 1 = 1
+        delete
+        from customer
+        where 1 = 1
     </delete>
 </mapper>
