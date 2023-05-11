@@ -29,7 +29,7 @@ public class CollentExcel {
                         if (j == 0) {
                             Collent.setItemId(value);
                         } else if (j == 1) {
-                            Collent.setProjectId(value);
+                            Collent.setProjectId(value); //项目
                         } else if (j == 2) {
                             Collent.setCollectionStatus(value);
                         } else if (j == 3) {
@@ -37,13 +37,13 @@ public class CollentExcel {
                         } else if (j == 4) {
                             Collent.setPaymentMethod(value);
                         } else if (j == 5) {
-                            Collent.setQuotationID(value);
+                            Collent.setQuotationID(value);//报价单
                         } else if (j == 6) {
                             Collent.setCollection(value);
                         } else if (j == 7) {
-                            Collent.setDepartment(value);
+                            Collent.setDepartment(value); //部门
                         } else if (j == 8) {
-                            Collent.setPayee(value);
+                            Collent.setPayee(value);//人
                         }
                     }
                 }

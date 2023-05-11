@@ -77,6 +77,8 @@ public class UserService {
                     User.setStatus(obj2.getString("name"));
                 } else if (field_id.equals("2200000330327359")) {
                     User.setRestDay(obj2.getString("value"));
+                } else if (field_id.equals("2200000326443888")) {
+                    User.setPassWord(obj2.getString("value"));
                 }
             }
             userMapper.insert(User);

@@ -4,7 +4,6 @@
 <mapper namespace="com.aqara.common.mapper.ProductMapper">
     <resultMap id="BaseResultMap" type="com.aqara.common.entity.Product">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="realName" jdbcType="VARCHAR" property="realName"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
@@ -16,6 +15,7 @@
         <result column="purchasePrice" jdbcType="VARCHAR" property="purchasePrice"/>
         <result column="price" jdbcType="VARCHAR" property="price"/>
         <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -24,20 +24,29 @@
 
     <select id="select" resultType="com.aqara.common.entity.Product">
         select *
-        from product
+        from product where 1 = 1
+            and disabled is null
+            and disabled = ''
+        <if test="code!=null and code!=''">
+            and code = #{code}
+        </if>
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        insert into product (itemId, name, realName, code, bomType, classification, scanCode,
-                             shipType, repairPrice, purchasePrice, price, brand,
+        insert into product (name, realName, code, bomType, classification, scanCode,
+                             shipType, repairPrice, purchasePrice, price, brand, disabled,
                              createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
-                #{shipType}, #{repairPrice}, #{purchasePrice}, #{price}, #{brand},
+        values ( #{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
+                #{shipType}, #{repairPrice}, #{purchasePrice}, #{price}, #{brand}, #{disabled},
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.Product">
-
+        update product
+           set disabled = 'false',
+               updateName = #{updateName},
+               updateTime = NOW()
+        where code = #{code}
     </insert>
 
     <delete id="delete" parameterType="com.aqara.common.entity.Product">

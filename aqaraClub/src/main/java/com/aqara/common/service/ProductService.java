@@ -13,8 +13,8 @@ public class ProductService {
     @Autowired
     ProductMapper ProductMapper;
 
-    public List<Product> select() {
-        return ProductMapper.select();
+    public List<Product> select(String code) {
+        return ProductMapper.select(code);
     }
 
     public void insert(Product Product) {

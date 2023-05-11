@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface ProductMapper {
-    List<Product> select();
+    List<Product> select(String code);
 
     void insert(Product Product);
 

@@ -88,13 +88,13 @@ public class SchemeExcel {
                         if (j == 0) {
                             Scheme.setItemId(value);
                         } else if (j == 1) {
-                            Scheme.setProjectId(value);
+                            Scheme.setProjectId(value); //项目
                         } else if (j == 2) {
-                            Scheme.setProductId(value);
+                            Scheme.setProductId(value);//产品
                         } else if (j == 3) {
-                            Scheme.setSchemeId(value);
+                            Scheme.setSchemeId(value);//方案
                         } else if (j == 4) {
-                            Scheme.setContractQuantity(value);
+                            Scheme.setContractQuantity(value); //合同数量
                         } else if (j == 5) {
                             Scheme.setNumber(value);
                         } else if (j == 6) {

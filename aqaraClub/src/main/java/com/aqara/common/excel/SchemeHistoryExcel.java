@@ -31,9 +31,9 @@ public class SchemeHistoryExcel {
                         } else if (j == 1) {
                             SchemeHistory.setNumber(value);
                         } else if (j == 2) {
-                            SchemeHistory.setSchemeId(value);
+                            SchemeHistory.setSchemeId(value);//方案
                         } else if (j == 3) {
-                            SchemeHistory.setQuotationId(value);
+                            SchemeHistory.setQuotationId(value);//报价单
                         } else if (j == 4) {
                             SchemeHistory.setQuoteOrNot(value);
                         }

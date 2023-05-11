@@ -31,11 +31,9 @@ public class QuotationExcel {
                         } else if (j == 1) {
                             Quotation.setType(value);
                         } else if (j == 2) {
-                            Quotation.setQuotationId(value);
-                        } else if (j == 3) {
-                            Quotation.setProjectId(value);
+                            Quotation.setQuotationId(value); //报价单
                         } else if (j == 4) {
-                            Quotation.setSales(value);
+                            Quotation.setSales(value);//销售
                         } else if (j == 5) {
                             Quotation.setSchemeAmount(value);
                         } else if (j == 6) {
@@ -47,7 +45,7 @@ public class QuotationExcel {
                         } else if (j == 9) {
                             Quotation.setRemark(value);
                         } else if (j == 10) {
-                            Quotation.setDepartment(value);
+                            Quotation.setDepartment(value);// 部门
                         }
                     }
                 }

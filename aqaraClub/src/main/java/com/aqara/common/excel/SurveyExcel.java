@@ -30,26 +30,26 @@ public class SurveyExcel {
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 1) {
-                            Survey.setCode(cell.getStringCellValue());
+                            Survey.setCode(value);
                         } else if (j == 4) {
-                            Survey.setSales(cell.getStringCellValue());
+                            Survey.setSales(value);
                         } else if (j == 6) {
-                            Survey.setDepartment(cell.getStringCellValue());
+                            Survey.setDepartment(value);
                         } else if (j == 18) {
                             Survey.setAppointmentTime(cell.getDateCellValue());
                         } else if (j == 19) {
-                            Survey.setEstimatedDuration(String.valueOf(cell.getNumericCellValue()));
+                            Survey.setEstimatedDuration(value);
                         } else if (j == 20) {
-                            Survey.setParticipants(cell.getStringCellValue());
+                            Survey.setParticipants(value);
                         } else if (j == 22) {
-                            Survey.setSurveyPictures(cell.getStringCellValue());
+                            Survey.setSurveyPictures(value);
                         } else if (j == 23) {
-                            Survey.setCreateName(cell.getStringCellValue());
+                            Survey.setCreateName(value);
                         } else if (j == 24) {
-                            Date data = simpleDateFormat.parse(cell.getStringCellValue());
+                            Date data = simpleDateFormat.parse(value);
                             Survey.setCreateTime(data);
                         } else if (j == 25) {
-                            Survey.setUpdateName(cell.getStringCellValue());
+                            Survey.setUpdateName(value);
                         } else if (j == 26) {
                             Date data = simpleDateFormat.parse(cell.getStringCellValue());
                             Survey.setUpdateTime(data);
