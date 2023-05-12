@@ -17,9 +17,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/speedy/theme")
 public class SpeedyThemeController {
+    private SpeedyThemeService SpeedyThemeService;
 
     @Autowired
-    SpeedyThemeService SpeedyThemeService;
+    public void setMapper(SpeedyThemeService SpeedyThemeService) {
+        this.SpeedyThemeService = SpeedyThemeService;
+    }
 
     @CrossOrigin
     @RequestMapping("/select")

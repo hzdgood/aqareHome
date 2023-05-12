@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/collent")
 public class CollentController {
+    private CollentService CollentService;
 
     @Autowired
-    CollentService CollentService;
-
+    public void setMapper(CollentService CollentService) {
+        this.CollentService = CollentService;
+    }
 }

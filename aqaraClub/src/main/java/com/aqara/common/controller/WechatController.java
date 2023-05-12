@@ -25,17 +25,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/wechat")
 public class WechatController {
-    @Autowired
-    CommonProperties CommonProperties;
+    private CommonProperties CommonProperties;
+    private WxProperties WxProperties;
+    private WechatService WechatService;
+    private UserService UserService;
 
     @Autowired
-    WxProperties WxProperties;
-
-    @Autowired
-    WechatService WechatService;
-
-    @Autowired
-    UserService UserService;
+    public void setMapper(CommonProperties CommonProperties, WxProperties WxProperties, WechatService WechatService, UserService UserService) {
+        this.CommonProperties = CommonProperties;
+        this.UserService = UserService;
+        this.WechatService = WechatService;
+        this.WxProperties = WxProperties;
+    }
 
     /**
      * 获取企业微信token

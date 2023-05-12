@@ -30,7 +30,9 @@ public class SchemeHistory {
         this.itemId = itemId;
     }
 
-    public String getNumber() { return number; }
+    public String getNumber() {
+        return number;
+    }
 
     public void setNumber(String number) {
         this.number = number;

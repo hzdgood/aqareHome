@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class QuotationService {
+    private QuotationMapper QuotationMapper;
+
     @Autowired
-    QuotationMapper QuotationMapper;
+    public void setMapper(QuotationMapper QuotationMapper) {
+        this.QuotationMapper = QuotationMapper;
+    }
 
     public List<Quotation> select(String code) {
         return QuotationMapper.select(code);

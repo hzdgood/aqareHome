@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class SchemeService {
+    private SchemeMapper schemeMapper;
+
     @Autowired
-    SchemeMapper schemeMapper;
+    public void setMapper(SchemeMapper schemeMapper) {
+        this.schemeMapper = schemeMapper;
+    }
 
     public List<Scheme> select() {
         return schemeMapper.select();

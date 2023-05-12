@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class SchemeHistoryService {
+    private SchemeHistoryMapper SchemeHistoryMapper;
+
     @Autowired
-    SchemeHistoryMapper SchemeHistoryMapper;
+    public void setMapper(SchemeHistoryMapper SchemeHistoryMapper) {
+        this.SchemeHistoryMapper = SchemeHistoryMapper;
+    }
 
     public List<SchemeHistory> select() {
         return SchemeHistoryMapper.select();

@@ -10,9 +10,12 @@ import java.util.List;
 
 @Service
 public class SpeedyThemeService {
+    private SpeedyThemeMapper SpeedyThemeMapper;
 
     @Autowired
-    SpeedyThemeMapper SpeedyThemeMapper;
+    public void setMapper(SpeedyThemeMapper SpeedyThemeMapper) {
+        this.SpeedyThemeMapper = SpeedyThemeMapper;
+    }
 
     public List<SpeedyTheme> select(PageReq PageReq) {
         if (PageReq.getTeamId() == null || PageReq.getTeamId().equals("null")) {

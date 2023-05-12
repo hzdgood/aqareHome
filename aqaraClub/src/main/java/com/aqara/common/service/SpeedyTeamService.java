@@ -10,8 +10,12 @@ import java.util.List;
 
 @Service
 public class SpeedyTeamService {
+    private SpeedyTeamMapper SpeedyTeamMapper;
+
     @Autowired
-    SpeedyTeamMapper SpeedyTeamMapper;
+    public void setMapper(SpeedyTeamMapper SpeedyTeamMapper) {
+        this.SpeedyTeamMapper = SpeedyTeamMapper;
+    }
 
     public List<SpeedyTeam> select(PageReq PageReq) {
         return SpeedyTeamMapper.select(PageReq.getType(), PageReq.getName(), PageReq.getPerson());

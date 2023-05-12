@@ -13,12 +13,14 @@ import java.util.List;
 
 @Service
 public class ProjectService {
+    private ProjectMapper projectMapper;
+    private HuobanProperties HuobanProperties;
 
     @Autowired
-    ProjectMapper projectMapper;
-
-    @Autowired
-    HuobanProperties HuobanProperties;
+    public void setMapper(ProjectMapper projectMapper, HuobanProperties HuobanProperties) {
+        this.projectMapper = projectMapper;
+        this.HuobanProperties = HuobanProperties;
+    }
 
     public List<Project> select(String code) {
         return projectMapper.select(code);

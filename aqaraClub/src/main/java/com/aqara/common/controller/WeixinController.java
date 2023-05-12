@@ -12,8 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/weixin")
 public class WeixinController {
+    private WeixinService WeixinService;
+
     @Autowired
-    WeixinService WeixinService;
+    public void setMapper(WeixinService WeixinService) {
+        this.WeixinService = WeixinService;
+    }
 
     @CrossOrigin
     @RequestMapping("/selectAll")

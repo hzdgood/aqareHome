@@ -9,9 +9,12 @@ import java.util.List;
 
 @Service
 public class ProductService {
+    private ProductMapper ProductMapper;
 
     @Autowired
-    ProductMapper ProductMapper;
+    public void setMapper(ProductMapper ProductMapper) {
+        this.ProductMapper = ProductMapper;
+    }
 
     public List<Product> select(String code) {
         return ProductMapper.select(code);

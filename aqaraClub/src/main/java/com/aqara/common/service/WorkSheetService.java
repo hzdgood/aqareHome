@@ -14,11 +14,8 @@ import java.util.List;
 
 @Service
 public class WorkSheetService {
-    @Autowired
-    WorkSheetMapper WorkSheetMapper;
-
-    @Autowired
-    HuobanProperties HuobanProperties;
+    private WorkSheetMapper WorkSheetMapper;
+    private HuobanProperties HuobanProperties;
 
     private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
         List<WorkSheet> newList = new ArrayList<>();
@@ -28,6 +25,12 @@ public class WorkSheetService {
             }
         }
         return newList;
+    }
+
+    @Autowired
+    public void setMapper(WorkSheetMapper WorkSheetMapper, HuobanProperties HuobanProperties) {
+        this.WorkSheetMapper = WorkSheetMapper;
+        this.HuobanProperties = HuobanProperties;
     }
 
     public List<WorkSheet> select() {
@@ -122,7 +125,7 @@ public class WorkSheetService {
             } else {
                 if (!getStatus(names, engName)) {
                     List<WorkSheet> techList = getTechWork(list, engName);
-                    str.append(userName + " " + restDay + "休  ").append("完成工单数：").append(techList.size()).append("\n");
+                    str.append(userName).append(" ").append(restDay).append("休  ").append("完成工单数：").append(techList.size()).append("\n");
                     for (WorkSheet w : techList) {
                         String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getActualWork();
                         str.append("[").append(res).append("](https://app.huoban.com/tables/2100000015054992/items/").append(w.getItemId()).append(")").append("    ");
@@ -154,7 +157,7 @@ public class WorkSheetService {
             } else {
                 if (!getStatus(names, engName)) {
                     List<WorkSheet> techList = getTechWork(list, engName);
-                    str.append(userName + " " + restDay + "休  ").append("工单数：").append(techList.size()).append("\n");
+                    str.append(userName).append(" ").append(restDay).append("休  ").append("工单数：").append(techList.size()).append("\n");
                     for (WorkSheet w : techList) {
                         String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getArea();
                         str.append("[").append(res).append("](https://app.huoban.com/tables/2100000015054992/items/").append(w.getItemId()).append(")").append("    ");

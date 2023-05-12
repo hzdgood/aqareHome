@@ -25,8 +25,8 @@
     <select id="select" resultType="com.aqara.common.entity.Product">
         select *
         from product where 1 = 1
-            and disabled is null
-            and disabled = ''
+        and disabled is null
+        and disabled = ''
         <if test="code!=null and code!=''">
             and code = #{code}
         </if>
@@ -36,16 +36,16 @@
         insert into product (name, realName, code, bomType, classification, scanCode,
                              shipType, repairPrice, purchasePrice, price, brand, disabled,
                              createName, createTime, updateName, updateTime)
-        values ( #{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
+        values (#{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
                 #{shipType}, #{repairPrice}, #{purchasePrice}, #{price}, #{brand}, #{disabled},
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.Product">
         update product
-           set disabled = 'false',
-               updateName = #{updateName},
-               updateTime = NOW()
+        set disabled   = 'false',
+            updateName = #{updateName},
+            updateTime = NOW()
         where code = #{code}
     </insert>
 

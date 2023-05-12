@@ -17,12 +17,14 @@ import java.util.Map;
 @RestController
 @RequestMapping("/speedy/content")
 public class SpeedyContentController {
+    private SpeedyContentService SpeedyContentService;
+    private CommonProperties CommonProperties;
 
     @Autowired
-    SpeedyContentService SpeedyContentService;
-
-    @Autowired
-    CommonProperties CommonProperties;
+    public void setMapper(SpeedyContentService SpeedyContentService, CommonProperties CommonProperties) {
+        this.SpeedyContentService = SpeedyContentService;
+        this.CommonProperties = CommonProperties;
+    }
 
     @CrossOrigin
     @RequestMapping("/select")

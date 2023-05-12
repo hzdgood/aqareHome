@@ -17,12 +17,14 @@ import java.util.Map;
 
 @Service
 public class SurveyService {
+    private SurveyMapper surveyMapper;
+    private HuobanProperties HuobanProperties;
 
     @Autowired
-    SurveyMapper surveyMapper;
-
-    @Autowired
-    HuobanProperties HuobanProperties;
+    public void setMapper(SurveyMapper surveyMapper, HuobanProperties HuobanProperties) {
+        this.surveyMapper = surveyMapper;
+        this.HuobanProperties = HuobanProperties;
+    }
 
     public List<Survey> select(String code, String startTime, String endTime) {
         return surveyMapper.select(code, startTime, endTime);

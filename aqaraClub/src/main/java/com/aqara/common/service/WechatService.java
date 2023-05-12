@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class WechatService {
+    private WechatMapper WechatMapper;
+
     @Autowired
-    WechatMapper WechatMapper;
+    public void setMapper(WechatMapper WechatMapper) {
+        this.WechatMapper = WechatMapper;
+    }
 
     public void insert(Wechat Wechat) {
         WechatMapper.insert(Wechat);

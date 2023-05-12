@@ -10,8 +10,12 @@ import java.util.List;
 @Service
 public class CommonService {
 
+    private CommonMapper CommonMapper;
+
     @Autowired
-    CommonMapper CommonMapper;
+    public void setMapper(CommonMapper CommonMapper) {
+        this.CommonMapper = CommonMapper;
+    }
 
     public List<Common> select(String name) {
         return CommonMapper.select(name);

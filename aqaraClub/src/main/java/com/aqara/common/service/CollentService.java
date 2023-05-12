@@ -16,12 +16,14 @@ import java.util.Map;
 
 @Service
 public class CollentService {
+    private CollentMapper collentMapper;
+    private HuobanProperties HuobanProperties;
 
     @Autowired
-    CollentMapper collentMapper;
-
-    @Autowired
-    HuobanProperties HuobanProperties;
+    public void setMapper(CollentMapper CollentMapper, HuobanProperties HuobanProperties) {
+        this.collentMapper = CollentMapper;
+        this.HuobanProperties = HuobanProperties;
+    }
 
     public List<Collent> select(String code, String startTime, String endTime) {
         return collentMapper.select(code, startTime, endTime);

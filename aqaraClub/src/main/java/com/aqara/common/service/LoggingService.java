@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class LoggingService {
+    private LoggingMapper LoggingMapper;
+
     @Autowired
-    LoggingMapper LoggingMapper;
+    public void setMapper(LoggingMapper LoggingMapper) {
+        this.LoggingMapper = LoggingMapper;
+    }
 
     public void insert(Logging log) {
         LoggingMapper.insert(log);

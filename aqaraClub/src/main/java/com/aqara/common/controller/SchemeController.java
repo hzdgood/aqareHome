@@ -13,8 +13,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/file")
 public class SchemeController {
+    private SchemeService SchemeService;
+
     @Autowired
-    SchemeService schemeService;
+    public void setMapper(SchemeService SchemeService) {
+        this.SchemeService = SchemeService;
+    }
 
     @PostMapping("/upload")
     @CrossOrigin
@@ -23,7 +27,7 @@ public class SchemeController {
         List<Scheme> list = SchemeExcel.schemeExcel(file); // 读取文件
         for (int i = 0; i < list.size(); i++) {
             Scheme scheme = list.get(i);
-            schemeService.insert(scheme);
+            SchemeService.insert(scheme);
         }
         return list;
     }

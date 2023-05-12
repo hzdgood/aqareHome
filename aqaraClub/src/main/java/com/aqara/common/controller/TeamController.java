@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/team")
 public class TeamController {
 
+    private TeamService TeamService;
+
     @Autowired
-    TeamService TeamService;
+    public void setMapper(TeamService TeamService) {
+        this.TeamService = TeamService;
+    }
 
     @CrossOrigin
     @RequestMapping("/select")

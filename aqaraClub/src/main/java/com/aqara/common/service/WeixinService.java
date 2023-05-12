@@ -13,10 +13,14 @@ import java.util.List;
 
 @Service
 public class WeixinService {
+    private WeixinMapper WeixinMapper;
+    private HuobanProperties HuobanProperties;
+
     @Autowired
-    WeixinMapper WeixinMapper;
-    @Autowired
-    HuobanProperties HuobanProperties;
+    public void setMapper(WeixinMapper WeixinMapper, HuobanProperties HuobanProperties) {
+        this.WeixinMapper = WeixinMapper;
+        this.HuobanProperties = HuobanProperties;
+    }
 
     public List<Weixin> select() {
         return WeixinMapper.select();

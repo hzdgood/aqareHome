@@ -16,31 +16,34 @@ import java.util.Map;
 
 @Service
 public class CustomerService {
-    @Autowired
-    CustomerMapper customerMapper;
+    private CustomerMapper CustomerMapper;
+    private HuobanProperties HuobanProperties;
 
     @Autowired
-    HuobanProperties HuobanProperties;
+    public void setMapper(CustomerMapper CustomerMapper, HuobanProperties HuobanProperties) {
+        this.CustomerMapper = CustomerMapper;
+        this.HuobanProperties = HuobanProperties;
+    }
 
     public List<Customer> select(String sales, String depart, String startTime, String endTime) {
-        return customerMapper.select(sales, depart, startTime, endTime);
+        return CustomerMapper.select(sales, depart, startTime, endTime);
     }
 
     public List<Customer> currentData() {
-        return customerMapper.currentData();
+        return CustomerMapper.currentData();
     }
 
     public void insert(Customer customer) {
-        customerMapper.insert(customer);
+        CustomerMapper.insert(customer);
     }
 
     public void delete(Integer id) {
-        customerMapper.delete(id);
+        CustomerMapper.delete(id);
     }
 
     public String getCurrentData() {
         String str = "**今日CRM新增客户TOP** \n";
-        List<Customer> customer = customerMapper.currentData();
+        List<Customer> customer = CustomerMapper.currentData();
         return getDepartInfo(str, customer);
     }
 
@@ -65,7 +68,7 @@ public class CustomerService {
                 }
                 Customer.setCreateName("上海汇社");
             }
-            customerMapper.insert(Customer);
+            CustomerMapper.insert(Customer);
         }
     }
 

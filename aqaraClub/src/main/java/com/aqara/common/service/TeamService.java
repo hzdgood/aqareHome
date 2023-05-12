@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class TeamService {
+    private TeamMapper TeamMapper;
+
     @Autowired
-    TeamMapper TeamMapper;
+    public void setMapper(TeamMapper TeamMapper) {
+        this.TeamMapper = TeamMapper;
+    }
 
     public List<Team> select() {
         return TeamMapper.select();
@@ -31,5 +35,4 @@ public class TeamService {
     public void delete(List<Integer> ids) {
         TeamMapper.deleteAll(ids);
     }
-
 }

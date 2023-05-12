@@ -15,17 +15,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/huoban")
 public class HuobanController {
-    @Autowired
-    HuobanProperties huobanProperties;
+    private HuobanProperties HuobanProperties;
+    private HuobanService HuobanService;
 
     @Autowired
-    HuobanService huobanService;
+    public void setMapper(HuobanService HuobanService, HuobanProperties HuobanProperties) {
+        this.HuobanService = HuobanService;
+        this.HuobanProperties = HuobanProperties;
+    }
 
     @CrossOrigin
     @RequestMapping("/getTicket")
     public String getTicket() {
         String result = "";
-        List<Huoban> list = huobanService.select();
+        List<Huoban> list = HuobanService.select();
         if (list.size() == 0) {
             return insert();
         }
@@ -44,9 +47,9 @@ public class HuobanController {
     }
 
     synchronized private String insert() {
-        String application_id = huobanProperties.getApplication_id();
-        String application_secret = huobanProperties.getApplication_secret();
-        String userInfo = huobanProperties.getUserInfo();
+        String application_id = HuobanProperties.getApplication_id();
+        String application_secret = HuobanProperties.getApplication_secret();
+        String userInfo = HuobanProperties.getUserInfo();
         JSONObject obj = new JSONObject();
         obj.put("application_id", application_id);
         obj.put("application_secret", application_secret);
@@ -55,7 +58,7 @@ public class HuobanController {
         Huoban huoban = new Huoban();
         huoban.setTicket(jsonObject.getString("ticket"));
         huoban.setExpired(jsonObject.getString("expired"));
-        huobanService.insert(huoban);
+        HuobanService.insert(huoban);
         return result;
     }
 }

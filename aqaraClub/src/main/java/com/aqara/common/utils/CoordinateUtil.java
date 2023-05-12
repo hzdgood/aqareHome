@@ -1,7 +1,7 @@
 package com.aqara.common.utils;
 
+import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Coordinate;
-import net.sf.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -27,7 +27,7 @@ public class CoordinateUtil {
             String url = "http://api.map.baidu.com/geocoder/v2/?address=" + address + "&output=json&ak=" + AK;
             String json = loadJSON(url);
             if (json != null && !"".equals(json)) {
-                JSONObject obj = JSONObject.fromObject(json);
+                JSONObject obj = JSONObject.parseObject(json);
                 if ("0".equals(obj.getString("status"))) {
                     double lng = obj.getJSONObject("result").getJSONObject("location").getDouble("lng"); // 经度
                     double lat = obj.getJSONObject("result").getJSONObject("location").getDouble("lat"); // 纬度
@@ -56,7 +56,7 @@ public class CoordinateUtil {
             String url = "http://api.map.baidu.com/geocoder/v2/?address=" + address + "&output=json&ak=" + AK;
             String json = loadJSON(url);
             if (json != null && !"".equals(json)) {
-                JSONObject obj = JSONObject.fromObject(json);
+                JSONObject obj = JSONObject.parseObject(json);
                 if ("0".equals(obj.getString("status"))) {
                     double lng = obj.getJSONObject("result").getJSONObject("location").getDouble("lng"); // 经度
                     double lat = obj.getJSONObject("result").getJSONObject("location").getDouble("lat"); // 纬度

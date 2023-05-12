@@ -13,8 +13,12 @@ import java.util.Map;
 
 @Service
 public class CensusService {
+    private CensusMapper CensusMapper;
+
     @Autowired
-    CensusMapper CensusMapper;
+    public void setMapper(CensusMapper CensusMapper) {
+        this.CensusMapper = CensusMapper;
+    }
 
     public List<Census> select() {
         return CensusMapper.select();

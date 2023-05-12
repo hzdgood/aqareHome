@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class HuobanService {
+    private HuobanMapper HuobanMapper;
+
     @Autowired
-    HuobanMapper HuobanMapper;
+    public void setMapper(HuobanMapper HuobanMapper) {
+        this.HuobanMapper = HuobanMapper;
+    }
 
     public void insert(Huoban huoban) {
         HuobanMapper.insert(huoban);

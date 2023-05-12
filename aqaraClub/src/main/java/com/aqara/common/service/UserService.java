@@ -14,11 +14,15 @@ import java.util.List;
 
 @Service
 public class UserService {
-    @Autowired
-    UserMapper userMapper;
+
+    private UserMapper userMapper;
+    private HuobanProperties HuobanProperties;
 
     @Autowired
-    HuobanProperties HuobanProperties;
+    public void setMapper(UserMapper userMapper, HuobanProperties HuobanProperties) {
+        this.userMapper = userMapper;
+        this.HuobanProperties = HuobanProperties;
+    }
 
     public List<User> select(String username, String engName) {
         return userMapper.select(username, engName);

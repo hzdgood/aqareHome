@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HttpService {
-
     @Retryable(value = {Exception.class}, maxAttempts = 3)
     public static JSONObject getSchedule(String requestUrl, String ticket, JSONObject obj) {
         try {

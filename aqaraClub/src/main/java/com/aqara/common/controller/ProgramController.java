@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/program")
 public class ProgramController {
+    private ProgramProperties ProgramProperties;
+
     @Autowired
-    ProgramProperties ProgramProperties;
+    public void setMapper(ProgramProperties ProgramProperties) {
+        this.ProgramProperties = ProgramProperties;
+    }
 
     @RequestMapping("/getToken")
     public String getToken(@RequestBody String code) {

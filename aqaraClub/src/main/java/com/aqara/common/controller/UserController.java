@@ -1,12 +1,10 @@
 package com.aqara.common.controller;
 
-import com.aqara.common.entity.Coordinate;
 import com.aqara.common.entity.Huoban;
 import com.aqara.common.entity.PageReq;
 import com.aqara.common.entity.User;
 import com.aqara.common.service.HuobanService;
 import com.aqara.common.service.UserService;
-import com.aqara.common.utils.CoordinateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,10 +20,14 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    HuobanService huobanService;
-    @Autowired
+    private HuobanService huobanService;
     private UserService userService;
+
+    @Autowired
+    public void setMapper(HuobanService huobanService, UserService userService) {
+        this.userService = userService;
+        this.huobanService = huobanService;
+    }
 
     @CrossOrigin
     @RequestMapping("/select")
@@ -90,9 +92,9 @@ public class UserController {
     /**
      * 根据地址获取坐标
      */
-    @CrossOrigin
-    @RequestMapping("/getCoordinate")
-    public Coordinate getCoordinate(@RequestBody String address) {
-        return CoordinateUtil.getCoordinate(address);
-    }
+//    @CrossOrigin
+//    @RequestMapping("/getCoordinate")
+//    public Coordinate getCoordinate(@RequestBody String address) {
+//        return CoordinateUtil.getCoordinate(address);
+//    }
 }

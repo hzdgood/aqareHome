@@ -12,9 +12,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/log")
 public class LogController {
+    private LoggingService LoggingService;
 
     @Autowired
-    LoggingService LoggingService;
+    public void setMapper(LoggingService LoggingService) {
+        this.LoggingService = LoggingService;
+    }
 
     @CrossOrigin
     @RequestMapping("/insert")

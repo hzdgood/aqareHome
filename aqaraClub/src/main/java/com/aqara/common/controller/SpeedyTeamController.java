@@ -17,9 +17,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/speedy/team")
 public class SpeedyTeamController {
+    private SpeedyTeamService SpeedyTeamService;
 
     @Autowired
-    SpeedyTeamService SpeedyTeamService;
+    public void setMapper(SpeedyTeamService SpeedyTeamService) {
+        this.SpeedyTeamService = SpeedyTeamService;
+    }
 
     @CrossOrigin
     @RequestMapping("/select")

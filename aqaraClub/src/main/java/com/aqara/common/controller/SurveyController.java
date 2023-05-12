@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/survey")
 public class SurveyController {
 
-    @Autowired
-    SurveyService SurveyService;
+    private SurveyService SurveyService;
 
+    @Autowired
+    public void setMapper(SurveyService SurveyService) {
+        this.SurveyService = SurveyService;
+    }
 }

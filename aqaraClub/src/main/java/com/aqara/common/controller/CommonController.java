@@ -1,12 +1,9 @@
 package com.aqara.common.controller;
 
 import com.aqara.common.entity.Common;
-import com.aqara.common.entity.Coordinate;
 import com.aqara.common.service.CommonService;
-import com.aqara.common.utils.CoordinateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,14 +12,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/common")
 public class CommonController {
-    @Autowired
-    CommonService CommonService;
+    private CommonService CommonService;
 
-    @CrossOrigin
-    @RequestMapping("/getCoordinate")
-    public Coordinate getCoordinate(@RequestBody String address) {
-        return CoordinateUtil.Coordinate(address);
+    @Autowired
+    public void setMapper(CommonService CommonService) {
+        this.CommonService = CommonService;
     }
+//    @CrossOrigin
+//    @RequestMapping("/getCoordinate")
+//    public Coordinate getCoordinate(@RequestBody String address) {
+//        return CoordinateUtil.Coordinate(address);
+//    }
 
     @CrossOrigin
     @RequestMapping("/select")

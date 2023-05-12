@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/project")
 public class ProjectController {
+    private ProjectService ProjectService;
 
     @Autowired
-    ProjectService ProjectService;
-
+    public void setMapper(ProjectService ProjectService) {
+        this.ProjectService = ProjectService;
+    }
 }
