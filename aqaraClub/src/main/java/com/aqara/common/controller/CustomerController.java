@@ -32,4 +32,16 @@ public class CustomerController {
         customerService.insert(Customer);
     }
 
+    @CrossOrigin
+    @RequestMapping("/synchronize")
+    public void synchronize(Customer Customer) {
+        String itemId = Customer.getItemId();
+        List<Customer> list = customerService.selectId(itemId);
+        if (list.size() == 0) {
+            customerService.insert(Customer);
+        } else {
+            customerService.delete(itemId);
+            customerService.insert(Customer);
+        }
+    }
 }

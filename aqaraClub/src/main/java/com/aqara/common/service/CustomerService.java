@@ -29,6 +29,10 @@ public class CustomerService {
         return CustomerMapper.select(sales, depart, startTime, endTime);
     }
 
+    public List<Customer> selectId(String itemId) {
+        return CustomerMapper.selectId(itemId);
+    }
+
     public List<Customer> currentData() {
         return CustomerMapper.currentData();
     }
@@ -37,8 +41,12 @@ public class CustomerService {
         CustomerMapper.insert(customer);
     }
 
-    public void delete(Integer id) {
-        CustomerMapper.delete(id);
+    public void update(Customer customer) {
+        CustomerMapper.update(customer);
+    }
+
+    public void delete(String itemId) {
+        CustomerMapper.delete(itemId);
     }
 
     public String getCurrentData() {
@@ -96,4 +104,6 @@ public class CustomerService {
         }
         return str;
     }
+
+
 }

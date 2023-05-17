@@ -9,11 +9,16 @@ import java.util.List;
 public interface CustomerMapper {
     List<Customer> select(String sales, String depart, String startTime, String endTime);
 
+    List<Customer> selectId(String itemId);
+
     List<Customer> currentData();
 
     void insert(Customer customer);
 
-    void delete(Integer id);
+    void update(Customer customer);
+
+    void delete(String itemId);
 
     void deleteAll(List<Integer> ids);
+
 }
