@@ -1,9 +1,13 @@
 package com.aqara.common.controller;
 
+import com.aqara.common.entity.Project;
 import com.aqara.common.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/project")
@@ -13,5 +17,18 @@ public class ProjectController {
     @Autowired
     public void setMapper(ProjectService ProjectService) {
         this.ProjectService = ProjectService;
+    }
+
+    @CrossOrigin
+    @RequestMapping("/synchronize")
+    public void synchronize(Project Project) {
+        String code = Project.getCode();
+        List<Project> list = ProjectService.select(code);
+        if (list.size() == 0) {
+            ProjectService.insert(Project);
+        } else {
+            ProjectService.update(Project);
+            ProjectService.insert(Project);
+        }
     }
 }

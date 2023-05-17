@@ -29,8 +29,16 @@ public class CollentService {
         return collentMapper.select(code, startTime, endTime);
     }
 
+    public List<Collent> selectId(String itemId) {
+        return collentMapper.selectId(itemId);
+    }
+
     public List<Collent> currentData() {
         return collentMapper.currentData();
+    }
+
+    public void update(Collent collent) {
+        collentMapper.update(collent);
     }
 
     public void insert(Collent collent) {

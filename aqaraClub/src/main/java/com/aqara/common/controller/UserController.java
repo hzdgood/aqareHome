@@ -67,7 +67,7 @@ public class UserController {
     @CrossOrigin
     @RequestMapping("/delete")
     public void delete(String ids) {
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<>();
         if (ids.contains(",")) {
             String[] a = ids.split(",");
             for (int i = 0; i < a.length; i++) {

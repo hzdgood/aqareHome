@@ -28,6 +28,10 @@ public class QuotationService {
         QuotationMapper.insert(Quotation);
     }
 
+    public void update(Quotation quotation) {
+        QuotationMapper.update(quotation);
+    }
+
     public void delete(Integer id) {
         QuotationMapper.delete(id);
     }

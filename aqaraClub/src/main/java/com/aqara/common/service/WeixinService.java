@@ -30,6 +30,10 @@ public class WeixinService {
         return WeixinMapper.selectAll();
     }
 
+    public List<Weixin> selectId(String code) {
+        return WeixinMapper.selectId(code);
+    }
+
     public void insert(Weixin Weixin) {
         WeixinMapper.insert(Weixin);
     }

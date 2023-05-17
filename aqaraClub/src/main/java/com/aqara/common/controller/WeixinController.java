@@ -42,4 +42,17 @@ public class WeixinController {
     public void update(Integer id) {
         WeixinService.delete(id);
     }
+
+    @CrossOrigin
+    @RequestMapping("/synchronize")
+    public void synchronize(Weixin Weixin) {
+        String code = Weixin.getUuid();
+        List<Weixin> list = WeixinService.selectId(code);
+        if (list.size() == 0) {
+            WeixinService.insert(Weixin);
+        } else {
+            WeixinService.update(Weixin);
+            WeixinService.insert(Weixin);
+        }
+    }
 }

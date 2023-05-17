@@ -13,7 +13,11 @@ public interface CollentMapper {
 
     void insert(Collent collent);
 
+    void update(Collent collent);
+
     void delete(Integer id);
 
     void deleteAll(List<Integer> ids);
+
+    List<Collent> selectId(String itemId);
 }

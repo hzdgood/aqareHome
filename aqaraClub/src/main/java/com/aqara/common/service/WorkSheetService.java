@@ -37,6 +37,10 @@ public class WorkSheetService {
         return WorkSheetMapper.select();
     }
 
+    public List<WorkSheet> selectId(String code) {
+        return WorkSheetMapper.selectId(code);
+    }
+
     public void insert(WorkSheet WorkSheet) {
         WorkSheetMapper.insert(WorkSheet);
     }

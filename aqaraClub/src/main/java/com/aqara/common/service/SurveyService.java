@@ -34,6 +34,14 @@ public class SurveyService {
         return surveyMapper.currentData();
     }
 
+    public List<Survey> selectId(String code) {
+        return surveyMapper.selectId(code);
+    }
+
+    public void update(Survey survey) {
+        surveyMapper.update(survey);
+    }
+
     public void insert(Survey survey) {
         surveyMapper.insert(survey);
     }

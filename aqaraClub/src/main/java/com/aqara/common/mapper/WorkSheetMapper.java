@@ -9,6 +9,8 @@ import java.util.List;
 public interface WorkSheetMapper {
     List<WorkSheet> select();
 
+    List<WorkSheet> selectId(String code);
+
     List<WorkSheet> selectTom();
 
     List<WorkSheet> selectNoComplete();

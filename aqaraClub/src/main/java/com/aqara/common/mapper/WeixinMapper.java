@@ -9,6 +9,8 @@ import java.util.List;
 public interface WeixinMapper {
     List<Weixin> select();
 
+    List<Weixin> selectId(String code);
+
     List<Weixin> selectAll();
 
     void insert(Weixin Weixin);
