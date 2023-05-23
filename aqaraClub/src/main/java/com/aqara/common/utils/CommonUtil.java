@@ -52,6 +52,14 @@ public class CommonUtil {
         return str;
     }
 
+    public static String getSubPayProject() {
+        String str = "{\"where\":{\"and\":[{\"field\":2200000147975001," +
+                "\"query\":{\"em\":true,\"in\":[2]}},{\"field\":2200000149037697," +
+                "\"query\":{\"in\":[10]}},{\"query\":{\"or\":[{\"gte\":\"1\"}]}," +
+                "\"query_option_mappings\":[-1],\"field\":2200000151011510}]},\"offset\":0,\"limit\":100}";
+        return str;
+    }
+
     public static String getProjectData() {
         Date date = new Date();
         date.setMonth(date.getMonth() - 1);

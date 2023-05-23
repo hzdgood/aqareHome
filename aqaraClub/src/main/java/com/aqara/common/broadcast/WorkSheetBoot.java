@@ -14,7 +14,7 @@ import java.util.List;
 
 @Configuration // 标记配置类
 @EnableScheduling // 开启定时任务
-public class WorkSheet {
+public class WorkSheetBoot {
 
     @Autowired
     HuobanService HuobanService;

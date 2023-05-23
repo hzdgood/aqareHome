@@ -6,6 +6,7 @@
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="addPayReq" jdbcType="VARCHAR" property="addPayReq"/>
         <result column="task" jdbcType="VARCHAR" property="task"/>
         <result column="progress" jdbcType="VARCHAR" property="progress"/>
         <result column="saleConfirm" jdbcType="VARCHAR" property="saleConfirm"/>
@@ -50,13 +51,13 @@
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
-        insert into project (itemId, code, task, progress, saleConfirm,
+        insert into project (itemId, code, task, addPayReq, progress, saleConfirm,
                              end, customer, projectId, name, telephone,
                              department, sales, techId, projectType, designer,
                              intention, track, preferential, totalPrice, fullPrice,
                              totalAmount, mainProject, groupID, address,
                              createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{code}, #{task}, #{progress}, #{saleConfirm},
+        values (#{itemId}, #{code}, #{task}, #{addPayReq}, #{progress}, #{saleConfirm},
                 #{end}, #{customer}, #{projectId}, #{name}, #{telephone},
                 #{department}, #{sales}, #{techId}, #{projectType}, #{designer},
                 #{intention}, #{track}, #{preferential}, #{totalPrice}, #{fullPrice},

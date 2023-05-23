@@ -10,7 +10,7 @@ import java.io.File;
 
 @Configuration // 标记配置类
 @EnableScheduling // 开启定时任务
-public class Product {
+public class ProductBoot {
 
     @Autowired
     ProductService ProductService;

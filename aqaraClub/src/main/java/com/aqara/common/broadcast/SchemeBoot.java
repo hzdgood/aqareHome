@@ -11,11 +11,11 @@ import java.io.File;
 
 @Configuration // 标记配置类
 @EnableScheduling // 开启定时任务
-public class Scheme {
+public class SchemeBoot {
     @Autowired
     SchemeService SchemeService;
 
-    @Scheduled(cron = "0 43 17 * * ?")
+    // @Scheduled(cron = "0 43 17 * * ?")
     private void SchemeData() {
         File file = new File("D:\\客户方案_20230414150758.xlsx");
         if (file.exists()) {

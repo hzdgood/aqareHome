@@ -13,7 +13,7 @@ import java.util.List;
 
 @Configuration // 标记配置类
 @EnableScheduling // 开启定时任务
-public class Customer {
+public class CustomerBoot {
 
     @Autowired
     HttpService HttpService;

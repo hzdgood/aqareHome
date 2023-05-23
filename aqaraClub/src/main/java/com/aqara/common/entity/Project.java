@@ -6,6 +6,7 @@ public class Project {
     private Integer id;
     private String itemId;
     private String code; // 项目编码
+    private String addPayReq; //需补款
     private String task; // 目前任务
     private String progress; // 装修进度
     private String saleConfirm; // 销售确认
@@ -55,6 +56,14 @@ public class Project {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getAddPayReq() {
+        return addPayReq;
+    }
+
+    public void setAddPayReq(String addPayReq) {
+        this.addPayReq = addPayReq;
     }
 
     public String getTask() {

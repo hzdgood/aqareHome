@@ -97,6 +97,7 @@ CREATE TABLE `project`
     `id`           int NOT NULL AUTO_INCREMENT,
     `itemId`       varchar(45) DEFAULT NULL,
     `code`         varchar(45) DEFAULT NULL,
+    `addPayReq`    varchar(45) DEFAULT NULL,
     `task`         varchar(45) DEFAULT NULL,
     `progress`     varchar(45) DEFAULT NULL,
     `saleConfirm`  varchar(45) DEFAULT NULL,

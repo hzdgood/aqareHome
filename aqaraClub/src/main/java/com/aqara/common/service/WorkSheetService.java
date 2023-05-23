@@ -71,6 +71,7 @@ public class WorkSheetService {
                 JSONArray array1 = obj.getJSONArray("fields");
                 WorkSheet WorkSheet = new WorkSheet();
                 WorkSheet.setItemId(obj.getString("item_id"));
+                // WorkSheet.setCreateTime(simpleDateFormat.parse(obj.getString("created_on")));
                 for (int j = 0; j < array1.size(); j++) {
                     JSONObject obj1 = array1.getJSONObject(j);
                     String field_id = obj1.getString("field_id");
