@@ -43,10 +43,10 @@
     <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
         insert into workSheet (itemId, custom, technology, actualWork, workType, area,
                                orderDate, dateOfVisit, completeTime,
-                               createName, createTime, updateName, updateTime)
+                               createName, createTime)
         values (#{itemId}, #{custom}, #{technology}, #{actualWork}, #{workType}, #{area},
                 #{orderDate}, #{dateOfVisit}, #{completeTime},
-                #{createName}, NOW(), #{updateName}, NOW())
+                #{createName}, #{createTime})
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.WorkSheet">

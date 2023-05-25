@@ -24,7 +24,7 @@ public class CommonController {
 
     /**
      * 日程系统获取地址
-     * */
+     */
     @CrossOrigin
     @RequestMapping("/getCoordinate")
     public Coordinate getCoordinate(@RequestBody String address) {

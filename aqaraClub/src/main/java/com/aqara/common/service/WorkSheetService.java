@@ -5,11 +5,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.WorkSheet;
 import com.aqara.common.mapper.WorkSheetMapper;
 import com.aqara.common.properties.HuobanProperties;
+import com.aqara.common.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -59,6 +61,7 @@ public class WorkSheetService {
 
     public void getCurrentWork(String ticket, String selectStr) throws Exception {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String requestUrl = HuobanProperties.getSearchInfo() + "2100000015054992/find";
         JSONObject object = HttpService.getSchedule(requestUrl, ticket, JSONObject.parseObject(selectStr));
         JSONArray array = null;
@@ -71,7 +74,8 @@ public class WorkSheetService {
                 JSONArray array1 = obj.getJSONArray("fields");
                 WorkSheet WorkSheet = new WorkSheet();
                 WorkSheet.setItemId(obj.getString("item_id"));
-                // WorkSheet.setCreateTime(simpleDateFormat.parse(obj.getString("created_on")));
+                WorkSheet.setCreateTime(simpleDateFormat1.parse(obj.getString("created_on")));
+                WorkSheet.setCreateName("上海汇社");
                 for (int j = 0; j < array1.size(); j++) {
                     JSONObject obj1 = array1.getJSONObject(j);
                     String field_id = obj1.getString("field_id");
@@ -107,7 +111,6 @@ public class WorkSheetService {
                     if (field_id.equals("1101001257000000")) {
                         WorkSheet.setArea(obj2.getString("title"));
                     }
-                    WorkSheet.setCreateName("上海汇社");
                 }
                 WorkSheetMapper.insert(WorkSheet);
             }
@@ -184,12 +187,15 @@ public class WorkSheetService {
         for (WorkSheet WorkSheet : list) {
             String custom = WorkSheet.getCustom();
             String technology = WorkSheet.getTechnology();
+            Date time = WorkSheet.getCreateTime();
+            Long hours = TimeUtil.getDaysDifference(time);
             str.append("客户: ").append(custom).append("   技术: ").append(technology).append("   ");
-            str.append("[立即预约](https://app.huoban.com/tables/2100000015054992/items/").append(WorkSheet.getItemId()).append(")\n");
+            str.append("[立即预约](https://app.huoban.com/tables/2100000015054992/items/")
+                    .append(WorkSheet.getItemId())
+                    .append(")  ").append("已过").append(hours).append("小时").append("\n");
         }
         return str.toString();
     }
-
 
     private boolean getStatus(List<String> names, String engName) {
         boolean b = false;

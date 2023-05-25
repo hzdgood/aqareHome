@@ -58,7 +58,7 @@ public class ProjectBoot {
         ProjectService.deleteData();
     }
 
-    @Scheduled(cron = "0 50 07 * * ?")
+    @Scheduled(cron = "0 20 09 * * ?")
     private void subPayProject() {
         List<Huoban> list = HuobanService.select();
         Huoban Huoban = list.get(list.size() - 1);
@@ -71,7 +71,7 @@ public class ProjectBoot {
         }
     }
 
-    @Scheduled(cron = "0 00 08 * * ?")
+    @Scheduled(cron = "0 30 09 * * ?")
     private void subProjectBroadcast() {
         List<Project> Project = ProjectService.currentData();
         // String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0adf9002-d736-4921-b35f-f36c6429b097";

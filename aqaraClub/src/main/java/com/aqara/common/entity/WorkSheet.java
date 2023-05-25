@@ -14,9 +14,10 @@ public class WorkSheet {
     private String workType; // 工单类型
     private String userName; // 技术
     private String engName; // 技术英文
-    private String count;
+    private String count; //数量--视图
     private String area; // 区域
     private String restDay; //技术休息日
+    private String disabled; //有效
     private String createName;
     private Date createTime;
     private String updateName;
@@ -132,6 +133,14 @@ public class WorkSheet {
 
     public void setRestDay(String restDay) {
         this.restDay = restDay;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
     }
 
     public String getCreateName() {

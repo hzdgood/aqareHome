@@ -7,6 +7,7 @@ import com.aqara.common.mapper.ProjectMapper;
 import com.aqara.common.properties.HuobanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -32,7 +33,9 @@ public class ProjectService {
         projectMapper.insert(project);
     }
 
-    public void update(Project project) { projectMapper.update(project); }
+    public void update(Project project) {
+        projectMapper.update(project);
+    }
 
     public void delete(Integer id) {
         projectMapper.delete(id);
@@ -42,7 +45,9 @@ public class ProjectService {
         projectMapper.deleteAll(ids);
     }
 
-    public void deleteData() { projectMapper.deleteData(); }
+    public void deleteData() {
+        projectMapper.deleteData();
+    }
 
     public void getProjectList(String ticket, String str) throws Exception {
         String requestUrl = HuobanProperties.getSearchInfo() + "2100000014956047/find";
