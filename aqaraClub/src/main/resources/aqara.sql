@@ -42,25 +42,26 @@ CREATE TABLE `quotation`
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-CREATE TABLE `collent` (
-   `id` int NOT NULL AUTO_INCREMENT,
-   `itemId` varchar(45) DEFAULT NULL,
-   `projectId` varchar(45) DEFAULT NULL,
-   `sales` varchar(45) DEFAULT NULL,
-   `department` varchar(45) DEFAULT NULL,
-   `projectStatus` varchar(45) DEFAULT NULL,
-   `collectionStatus` varchar(45) DEFAULT NULL,
-   `refundType` varchar(45) DEFAULT NULL,
-   `paymentMethod` varchar(45) DEFAULT NULL,
-   `collection` varchar(45) DEFAULT NULL,
-   `quotationID` varchar(45) DEFAULT NULL,
-   `payee` varchar(45) DEFAULT NULL,
-   `crossCheck` varchar(45) DEFAULT NULL,
-   `createName` varchar(45) DEFAULT NULL,
-   `createTime` datetime DEFAULT NULL,
-   `updateName` varchar(45) DEFAULT NULL,
-   `updateTime` datetime DEFAULT NULL,
-   PRIMARY KEY (`id`)
+CREATE TABLE `collent`
+(
+    `id`               int NOT NULL AUTO_INCREMENT,
+    `itemId`           varchar(45) DEFAULT NULL,
+    `projectId`        varchar(45) DEFAULT NULL,
+    `sales`            varchar(45) DEFAULT NULL,
+    `department`       varchar(45) DEFAULT NULL,
+    `projectStatus`    varchar(45) DEFAULT NULL,
+    `collectionStatus` varchar(45) DEFAULT NULL,
+    `refundType`       varchar(45) DEFAULT NULL,
+    `paymentMethod`    varchar(45) DEFAULT NULL,
+    `collection`       varchar(45) DEFAULT NULL,
+    `quotationID`      varchar(45) DEFAULT NULL,
+    `payee`            varchar(45) DEFAULT NULL,
+    `crossCheck`       varchar(45) DEFAULT NULL,
+    `createName`       varchar(45) DEFAULT NULL,
+    `createTime`       datetime    DEFAULT NULL,
+    `updateName`       varchar(45) DEFAULT NULL,
+    `updateTime`       datetime    DEFAULT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -128,25 +129,26 @@ CREATE TABLE `project`
 ) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-CREATE TABLE `product` (
-   `id` int NOT NULL AUTO_INCREMENT,
-   `name` varchar(45) DEFAULT NULL,
-   `realName` varchar(45) DEFAULT NULL,
-   `code` varchar(45) DEFAULT NULL,
-   `bomType` varchar(45) DEFAULT NULL,
-   `classification` varchar(45) DEFAULT NULL,
-   `scanCode` varchar(45) DEFAULT NULL,
-   `shipType` varchar(45) DEFAULT NULL,
-   `repairPrice` varchar(45) DEFAULT NULL,
-   `purchasePrice` varchar(45) DEFAULT NULL,
-   `price` varchar(45) DEFAULT NULL,
-   `brand` varchar(45) DEFAULT NULL,
-   `disabled` varchar(45) DEFAULT NULL,
-   `createName` varchar(45) DEFAULT NULL,
-   `createTime` datetime DEFAULT NULL,
-   `updateName` varchar(45) DEFAULT NULL,
-   `updateTime` datetime DEFAULT NULL,
-   PRIMARY KEY (`id`)
+CREATE TABLE `product`
+(
+    `id`             int NOT NULL AUTO_INCREMENT,
+    `name`           varchar(45) DEFAULT NULL,
+    `realName`       varchar(45) DEFAULT NULL,
+    `code`           varchar(45) DEFAULT NULL,
+    `bomType`        varchar(45) DEFAULT NULL,
+    `classification` varchar(45) DEFAULT NULL,
+    `scanCode`       varchar(45) DEFAULT NULL,
+    `shipType`       varchar(45) DEFAULT NULL,
+    `repairPrice`    varchar(45) DEFAULT NULL,
+    `purchasePrice`  varchar(45) DEFAULT NULL,
+    `price`          varchar(45) DEFAULT NULL,
+    `brand`          varchar(45) DEFAULT NULL,
+    `disabled`       varchar(45) DEFAULT NULL,
+    `createName`     varchar(45) DEFAULT NULL,
+    `createTime`     datetime    DEFAULT NULL,
+    `updateName`     varchar(45) DEFAULT NULL,
+    `updateTime`     datetime    DEFAULT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4430 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 

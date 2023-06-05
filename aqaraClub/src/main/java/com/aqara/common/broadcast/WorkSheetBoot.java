@@ -45,16 +45,14 @@ public class WorkSheetBoot {
      */
     @Scheduled(cron = "0 00 21 * * ?")
     private void currentWorkSend() {
-        String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f"; //技术群
-        String WX_DEPART = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0adf9002-d736-4921-b35f-f36c6429b097"; //店长群
         String workSheet = WorkSheetService.getWorkSend();
         String workSheet1 = WorkSheetService.getWorkSendTow();
-        // String workSheet2 = WorkSheetService.getNoComplete();
+        String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f"; //技术群
+        String WX_DEPART = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=0adf9002-d736-4921-b35f-f36c6429b097"; //店长群
         String WX_XH = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=a64c0c5f-914a-4acf-9f27-e3ada0e5e043"; //徐汇
         String WX_PY = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=ebab5fdf-2191-482c-9ba5-39b0263a165c"; //普陀
         String WX_TY = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=78919d9d-37c5-47df-8f4a-05d6fe6fb08c"; //太阳宫
         String WX_MH = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=2366b22e-9811-4539-b501-4849d378924a"; //闵行
-
         HttpService.workRequset(workSheet, WX_TOKEN);
         HttpService.workRequset(workSheet, WX_DEPART);
         HttpService.workRequset(workSheet1, WX_TOKEN);

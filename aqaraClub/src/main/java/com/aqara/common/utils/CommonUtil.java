@@ -14,16 +14,14 @@ public class CommonUtil {
     }
 
     public static String getToday() {
-        String str = "{\"where\":{\"and\":[{\"field\":\"created_on\","
+        return "{\"where\":{\"and\":[{\"field\":\"created_on\","
                 + "\"query\":{\"eq\":\"today\"}}]},\"offset\":0,\"limit\":20}";
-        return str;
     }
 
     public static String getSurveyTime() {
-        String str = "{\"where\":{\"and\":[{\"field\":2200000168338254,"
+        return "{\"where\":{\"and\":[{\"field\":2200000168338254,"
                 + "\"query\":{\"eq\":\"today\"}}]},\"offset\":0,\"limit\":20,"
                 + "\"order_by\":[{\"field\":2200000169723711,\"sort\":\"asc\"}]}";
-        return str;
     }
 
     public static String getWorkData() {
@@ -31,17 +29,16 @@ public class CommonUtil {
         Date data = new Date();
         String today = simpleDateFormat.format(data);
         String tom = simpleDateFormat.format(dateAddOne(data));
-        String str = "{\"where\":{\"and\":[{\"field\":2200000145748099," +
+        return "{\"where\":{\"and\":[{\"field\":2200000145748099," +
                 "\"query\":{\"range\":[{\"model\":\"static\",\"datetime\":\"" + today + "\"}," +
                 "{\"model\":\"static\",\"datetime\":\"" + tom + "\"}]}}," +
                 "{\"field\":2200000145748100,\"query\":{\"em\":false}}," +
                 "{\"field\":2200000146473059,\"query\":{\"in\":[1]}}]},\"offset\":0,\"limit\":20,\"order_by\":" +
                 "[{\"field\":2200000146199958,\"sort\":\"desc\"}]}";
-        return str;
     }
 
     public static String getNoCompleteWorkData() {
-        String str = "{\"where\":{\"and\":[{\"field\":2200000145748099," +
+        return "{\"where\":{\"and\":[{\"field\":2200000145748099," +
                 "\"query\":{\"em\":true}},{\"field\":2200000145748100," + // 上门技术
                 "\"query\":{\"em\":false}},{\"field\":\"created_on\"," + // 上门日期
                 "\"query\":{\"eq\":\"this_year\"}},{\"field\":2200000146199958," + // 今年
@@ -49,15 +46,13 @@ public class CommonUtil {
                 "\"query\":{\"em\":true}},{\"field\":2200000146473059," + // 订单日期
                 "\"query\":{\"in\":[1]}}]},\"offset\":0,\"limit\":100," + // 有效
                 "\"order_by\":[{\"field\":2200000146199958,\"sort\":\"desc\"}]}";
-        return str;
     }
 
     public static String getSubPayProject() {
-        String str = "{\"where\":{\"and\":[{\"field\":2200000147975001," +
+        return "{\"where\":{\"and\":[{\"field\":2200000147975001," +
                 "\"query\":{\"em\":true,\"in\":[2]}},{\"field\":2200000149037697," +
                 "\"query\":{\"in\":[10]}},{\"query\":{\"or\":[{\"gte\":\"1\"}]}," +
                 "\"query_option_mappings\":[-1],\"field\":2200000151011510}]},\"offset\":0,\"limit\":100}";
-        return str;
     }
 
     public static String getProjectData() {
@@ -65,7 +60,7 @@ public class CommonUtil {
         date.setMonth(date.getMonth() - 1);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String serData = simpleDateFormat.format(date);
-        String str = "{\"where\":{\"and\":["
+        return "{\"where\":{\"and\":["
                 + "{\"field\":\"updated_on\",\"query\":{\"range\":[null,{\"model\":\"static\",\"datetime\":\"" + serData + "\"}]}}," // 修改日期
                 + "{\"field\":2200000147975001,\"query\":{\"em\":true,\"in\":[2]}}," // 是否完结
                 + "{\"field\":2200000148980437,\"query\":{\"in\":[1]}}," // 类型
@@ -74,7 +69,6 @@ public class CommonUtil {
                 + " ]},"
                 + "\"offset\":0,\"limit\":100,\"order_by\":"
                 + "[{\"field\":2200000149037697,\"sort\":\"desc\"}]}";
-        return str;
     }
 
     public static String getRandomString(int length) {
@@ -119,9 +113,15 @@ public class CommonUtil {
         String jsapi_ticket = WeChatUtil.getJsApiTicket(WxProperties, token);
         String appticket = WeChatUtil.getAppTicket(WxProperties, token);
         JSONObject jsonObject = JSONObject.parseObject(jsapi_ticket);
-        String ticket = jsonObject.getString("ticket");
+        String ticket = null;
+        if (jsonObject != null) {
+            ticket = jsonObject.getString("ticket");
+        }
         jsonObject = JSONObject.parseObject(appticket);
-        String LastAppticket = jsonObject.getString("ticket");
+        String LastAppticket = null;
+        if (jsonObject != null) {
+            LastAppticket = jsonObject.getString("ticket");
+        }
         String str = "jsapi_ticket=" + ticket + "&noncestr=" + nonceStr + "&timestamp=" + timeNew + "&url=" + url;
         String sign = DigestUtils.shaHex(str);
         String str1 = "jsapi_ticket=" + LastAppticket + "&noncestr=" + nonceStr + "&timestamp=" + timeNew + "&url=" + url;

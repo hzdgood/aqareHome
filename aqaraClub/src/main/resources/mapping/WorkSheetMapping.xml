@@ -17,6 +17,7 @@
         <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
         <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
         <result column="completeTime" jdbcType="TIMESTAMP" property="completeTime"/>
+        <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -25,18 +26,21 @@
 
     <select id="select" resultType="com.aqara.common.entity.WorkSheet">
         select *
-        from worksheetviewnow
+        from worksheetviewnow w
+        where w.disabled is null
     </select>
 
     <select id="selectTom" resultType="com.aqara.common.entity.WorkSheet">
         select *
-        from worksheetviewtom
+        from worksheetviewtom w
+        where w.disabled is null
     </select>
 
     <select id="selectNoComplete" resultType="com.aqara.common.entity.WorkSheet">
         select *
         from workSheet w
         where w.dateOfVisit is null
+          and w.disabled is null
           and w.custom is not null
     </select>
 
@@ -50,7 +54,11 @@
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.WorkSheet">
-
+        update workSheet
+        set disabled   = 'false',
+            updateName = #{updateName},
+            updateTime = NOW()
+        where itemId = #{itemId}
     </insert>
 
     <delete id="deleteAll" parameterType="com.aqara.common.entity.WorkSheet">
@@ -63,6 +71,5 @@
     <delete id="deleteData" parameterType="com.aqara.common.entity.WorkSheet">
         delete
         from workSheet w
-        where w.dateOfVisit is null
     </delete>
 </mapper>
