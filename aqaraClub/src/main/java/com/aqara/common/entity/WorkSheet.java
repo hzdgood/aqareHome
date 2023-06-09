@@ -5,13 +5,19 @@ import java.util.Date;
 public class WorkSheet {
     private Integer id;
     private String itemId;
-    private Date orderDate;  // 订单日期
-    private Date dateOfVisit; // 上门日期
     private String custom; // 用户
     private String technology; // 上门技术
     private String actualWork; // 实际工时
+    private Date orderDate;  // 订单日期
+    private Date dateOfVisit; // 上门日期
     private Date completeTime; // 完成时间
+    private Date signInTime; // 签到时间
+    private String orderStr;
+    private String dateOfStr;
+    private String completeStr;
+    private String signInStr;
     private String workType; // 工单类型
+    private String workStatus; //工单状态
     private String userName; // 技术
     private String engName; // 技术英文
     private String count; //数量--视图
@@ -39,22 +45,6 @@ public class WorkSheet {
         this.itemId = itemId;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Date getDateOfVisit() {
-        return dateOfVisit;
-    }
-
-    public void setDateOfVisit(Date dateOfVisit) {
-        this.dateOfVisit = dateOfVisit;
-    }
-
     public String getCustom() {
         return custom;
     }
@@ -79,6 +69,22 @@ public class WorkSheet {
         this.actualWork = actualWork;
     }
 
+    public Date getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public Date getDateOfVisit() {
+        return dateOfVisit;
+    }
+
+    public void setDateOfVisit(Date dateOfVisit) {
+        this.dateOfVisit = dateOfVisit;
+    }
+
     public Date getCompleteTime() {
         return completeTime;
     }
@@ -87,12 +93,60 @@ public class WorkSheet {
         this.completeTime = completeTime;
     }
 
+    public Date getSignInTime() {
+        return signInTime;
+    }
+
+    public void setSignInTime(Date signInTime) {
+        this.signInTime = signInTime;
+    }
+
+    public String getOrderStr() {
+        return orderStr;
+    }
+
+    public void setOrderStr(String orderStr) {
+        this.orderStr = orderStr;
+    }
+
+    public String getDateOfStr() {
+        return dateOfStr;
+    }
+
+    public void setDateOfStr(String dateOfStr) {
+        this.dateOfStr = dateOfStr;
+    }
+
+    public String getCompleteStr() {
+        return completeStr;
+    }
+
+    public void setCompleteStr(String completeStr) {
+        this.completeStr = completeStr;
+    }
+
+    public String getSignInStr() {
+        return signInStr;
+    }
+
+    public void setSignInStr(String signInStr) {
+        this.signInStr = signInStr;
+    }
+
     public String getWorkType() {
         return workType;
     }
 
     public void setWorkType(String workType) {
         this.workType = workType;
+    }
+
+    public String getWorkStatus() {
+        return workStatus;
+    }
+
+    public void setWorkStatus(String workStatus) {
+        this.workStatus = workStatus;
     }
 
     public String getUserName() {

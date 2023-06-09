@@ -9,7 +9,7 @@ import java.util.List;
 public interface WorkSheetMapper {
     List<WorkSheet> select();
 
-    List<WorkSheet> selectId(String code);
+    List<WorkSheet> selectId(String itemId);
 
     List<WorkSheet> selectTom();
 
@@ -20,6 +20,4 @@ public interface WorkSheetMapper {
     void update(WorkSheet WorkSheet);
 
     void delete(Integer id);
-
-    void deleteData();
 }

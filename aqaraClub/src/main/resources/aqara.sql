@@ -184,16 +184,19 @@ CREATE TABLE `worksheet`
     `technology`   varchar(45) DEFAULT NULL,
     `actualWork`   varchar(45) DEFAULT NULL,
     `workType`     varchar(45) DEFAULT NULL,
+    `workStatus`   varchar(45) DEFAULT NULL,
     `orderDate`    datetime    DEFAULT NULL,
     `dateOfVisit`  datetime    DEFAULT NULL,
     `completeTime` datetime    DEFAULT NULL,
+    `signInTime`   datetime    DEFAULT NULL,
     `area`         varchar(45) DEFAULT NULL,
+    `disabled`     varchar(45) DEFAULT NULL,
     `createName`   varchar(45) DEFAULT NULL,
     `createTime`   datetime    DEFAULT NULL,
     `updateName`   varchar(45) DEFAULT NULL,
     `updateTime`   datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=327 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `user`

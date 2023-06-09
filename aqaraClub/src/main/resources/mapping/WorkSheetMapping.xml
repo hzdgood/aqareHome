@@ -9,6 +9,7 @@
         <result column="technology" jdbcType="VARCHAR" property="technology"/>
         <result column="actualWork" jdbcType="VARCHAR" property="actualWork"/>
         <result column="workType" jdbcType="VARCHAR" property="workType"/>
+        <result column="workStatus" jdbcType="VARCHAR" property="workStatus"/>
         <result column="area" jdbcType="VARCHAR" property="area"/>
         <result column="userName" jdbcType="VARCHAR" property="userName"/>
         <result column="engName" jdbcType="VARCHAR" property="engName"/>
@@ -17,6 +18,7 @@
         <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
         <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
         <result column="completeTime" jdbcType="TIMESTAMP" property="completeTime"/>
+        <result column="signInTime" jdbcType="TIMESTAMP" property="signInTime"/>
         <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
@@ -24,38 +26,44 @@
         <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
+    <select id="selectId" resultType="com.aqara.common.entity.WorkSheet">
+        select *
+        from workSheet w
+        where w.itemId = #{itemId}
+    </select>
+
     <select id="select" resultType="com.aqara.common.entity.WorkSheet">
         select *
         from worksheetviewnow w
-        where w.disabled is null
     </select>
 
     <select id="selectTom" resultType="com.aqara.common.entity.WorkSheet">
         select *
         from worksheetviewtom w
-        where w.disabled is null
     </select>
 
     <select id="selectNoComplete" resultType="com.aqara.common.entity.WorkSheet">
         select *
         from workSheet w
         where w.dateOfVisit is null
-          and w.disabled is null
+          and w.disabled = '有效'
           and w.custom is not null
+          and w.technology != ''
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
-        insert into workSheet (itemId, custom, technology, actualWork, workType, area,
+        insert into workSheet (itemId, custom, technology, actualWork, workType, workStatus, area, signInTime, disabled,
                                orderDate, dateOfVisit, completeTime,
                                createName, createTime)
-        values (#{itemId}, #{custom}, #{technology}, #{actualWork}, #{workType}, #{area},
+        values (#{itemId}, #{custom}, #{technology}, #{actualWork}, #{workType}, #{workStatus}, #{area}, #{signInTime},
+                #{disabled},
                 #{orderDate}, #{dateOfVisit}, #{completeTime},
-                #{createName}, #{createTime})
+                #{createName}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.WorkSheet">
         update workSheet
-        set disabled   = 'false',
+        set disabled   = '无效',
             updateName = #{updateName},
             updateTime = NOW()
         where itemId = #{itemId}
@@ -66,10 +74,5 @@
         <foreach collection="ids" item="id" separator="," open="(" close=")">
             #{id}
         </foreach>
-    </delete>
-
-    <delete id="deleteData" parameterType="com.aqara.common.entity.WorkSheet">
-        delete
-        from workSheet w
     </delete>
 </mapper>

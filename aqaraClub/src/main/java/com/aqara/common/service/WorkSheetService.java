@@ -39,8 +39,8 @@ public class WorkSheetService {
         return WorkSheetMapper.select();
     }
 
-    public List<WorkSheet> selectId(String code) {
-        return WorkSheetMapper.selectId(code);
+    public List<WorkSheet> selectId(String itemId) {
+        return WorkSheetMapper.selectId(itemId);
     }
 
     public void insert(WorkSheet WorkSheet) {
@@ -53,10 +53,6 @@ public class WorkSheetService {
 
     public void delete(Integer id) {
         WorkSheetMapper.delete(id);
-    }
-
-    public void deleteData() {
-        WorkSheetMapper.deleteData();
     }
 
     public void getCurrentWork(String ticket, String selectStr) throws Exception {
@@ -111,6 +107,12 @@ public class WorkSheetService {
                     if (field_id.equals("1101001257000000")) {
                         WorkSheet.setArea(obj2.getString("title"));
                     }
+                    if (field_id.equals("2200000148897469")) {
+                        WorkSheet.setWorkStatus(obj2.getString("name"));
+                    }
+                    if (field_id.equals("2200000146398521")) {
+                        WorkSheet.setSignInTime(simpleDateFormat.parse(obj2.getString("value")));
+                    }
                 }
                 WorkSheetMapper.insert(WorkSheet);
             }
@@ -135,7 +137,7 @@ public class WorkSheetService {
                     List<WorkSheet> techList = getTechWork(list, engName);
                     str.append(userName).append(" ").append(restDay).append("休  ").append("完成工单数：").append(techList.size()).append("\n");
                     for (WorkSheet w : techList) {
-                        String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getActualWork();
+                        String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getActualWork() + "-" + w.getWorkStatus();
                         str.append("[").append(res).append("](https://app.huoban.com/tables/2100000015054992/items/").append(w.getItemId()).append(")").append("    ");
                     }
                     str.append("\n");
