@@ -42,7 +42,12 @@
         from worksheetviewtom w
     </select>
 
-    <select id="selectNoComplete" resultType="com.aqara.common.entity.WorkSheet">
+    <select id="getNotComplete" resultType="com.aqara.common.entity.WorkSheet">
+        select *
+        from worksheetviewnot w
+    </select>
+
+    <select id="selectNotVisit" resultType="com.aqara.common.entity.WorkSheet">
         select *
         from workSheet w
         where w.dateOfVisit is null

@@ -13,7 +13,9 @@ public interface WorkSheetMapper {
 
     List<WorkSheet> selectTom();
 
-    List<WorkSheet> selectNoComplete();
+    List<WorkSheet> selectNotVisit();
+
+    List<WorkSheet> getNotComplete();
 
     void insert(WorkSheet WorkSheet);
 

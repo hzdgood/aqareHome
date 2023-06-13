@@ -1,15 +1,10 @@
 package com.aqara.common.service;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.WorkSheet;
 import com.aqara.common.mapper.WorkSheetMapper;
-import com.aqara.common.properties.HuobanProperties;
 import com.aqara.common.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,22 +12,10 @@ import java.util.List;
 @Service
 public class WorkSheetService {
     private WorkSheetMapper WorkSheetMapper;
-    private HuobanProperties HuobanProperties;
-
-    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
-        List<WorkSheet> newList = new ArrayList<>();
-        for (WorkSheet WorkSheet : list) {
-            if (engName.equals(WorkSheet.getEngName())) {
-                newList.add(WorkSheet);
-            }
-        }
-        return newList;
-    }
 
     @Autowired
-    public void setMapper(WorkSheetMapper WorkSheetMapper, HuobanProperties HuobanProperties) {
+    public void setMapper(WorkSheetMapper WorkSheetMapper) {
         this.WorkSheetMapper = WorkSheetMapper;
-        this.HuobanProperties = HuobanProperties;
     }
 
     public List<WorkSheet> select() {
@@ -53,70 +36,6 @@ public class WorkSheetService {
 
     public void delete(Integer id) {
         WorkSheetMapper.delete(id);
-    }
-
-    public void getCurrentWork(String ticket, String selectStr) throws Exception {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat simpleDateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        String requestUrl = HuobanProperties.getSearchInfo() + "2100000015054992/find";
-        JSONObject object = HttpService.getSchedule(requestUrl, ticket, JSONObject.parseObject(selectStr));
-        JSONArray array = null;
-        if (object != null) {
-            array = object.getJSONArray("items");
-        }
-        if (array != null) {
-            for (int i = 0; i < array.size(); i++) {
-                JSONObject obj = array.getJSONObject(i);
-                JSONArray array1 = obj.getJSONArray("fields");
-                WorkSheet WorkSheet = new WorkSheet();
-                WorkSheet.setItemId(obj.getString("item_id"));
-                WorkSheet.setCreateTime(simpleDateFormat1.parse(obj.getString("created_on")));
-                WorkSheet.setCreateName("上海汇社");
-                for (int j = 0; j < array1.size(); j++) {
-                    JSONObject obj1 = array1.getJSONObject(j);
-                    String field_id = obj1.getString("field_id");
-                    JSONArray array2 = obj1.getJSONArray("values");
-                    JSONObject obj2 = array2.getJSONObject(0);
-                    if (field_id.equals("2200000145748100")) {
-                        StringBuilder title = new StringBuilder();
-                        for (int k = 0; k < array2.size(); k++) {
-                            JSONObject obj3 = array2.getJSONObject(k);
-                            title.append(obj3.getString("title")).append(",");
-                        }
-                        title = new StringBuilder(title.substring(0, title.length() - 1));
-                        WorkSheet.setTechnology(title.toString());
-                    }
-                    if (field_id.equals("2200000146199958")) {
-                        WorkSheet.setOrderDate(simpleDateFormat.parse(obj2.getString("value")));
-                    }
-                    if (field_id.equals("2200000145748099")) {
-                        WorkSheet.setDateOfVisit(simpleDateFormat.parse(obj2.getString("value")));
-                    }
-                    if (field_id.equals("1101001291000000")) {
-                        WorkSheet.setCustom(obj2.getString("value"));
-                    }
-                    if (field_id.equals("2200000147884674")) {
-                        WorkSheet.setActualWork(obj2.getString("value"));
-                    }
-                    if (field_id.equals("2200000146398522")) {
-                        WorkSheet.setCompleteTime(simpleDateFormat.parse(obj2.getString("value")));
-                    }
-                    if (field_id.equals("2200000146398516")) {
-                        WorkSheet.setWorkType(obj2.getString("name"));
-                    }
-                    if (field_id.equals("1101001257000000")) {
-                        WorkSheet.setArea(obj2.getString("title"));
-                    }
-                    if (field_id.equals("2200000148897469")) {
-                        WorkSheet.setWorkStatus(obj2.getString("name"));
-                    }
-                    if (field_id.equals("2200000146398521")) {
-                        WorkSheet.setSignInTime(simpleDateFormat.parse(obj2.getString("value")));
-                    }
-                }
-                WorkSheetMapper.insert(WorkSheet);
-            }
-        }
     }
 
     public String getWorkSend() {
@@ -183,9 +102,9 @@ public class WorkSheetService {
         return str.toString();
     }
 
-    public String getNoComplete() {
+    public String getNoVisit() {
         StringBuilder str = new StringBuilder("**未预约上门工单** \n");
-        List<WorkSheet> list = WorkSheetMapper.selectNoComplete();
+        List<WorkSheet> list = WorkSheetMapper.selectNotVisit();
         for (WorkSheet WorkSheet : list) {
             String custom = WorkSheet.getCustom();
             String technology = WorkSheet.getTechnology();
@@ -197,6 +116,38 @@ public class WorkSheetService {
                     .append(")  ").append("已过").append(hours).append("小时").append("\n");
         }
         return str.toString();
+    }
+
+    public String getNotComplete() {
+        StringBuilder str = new StringBuilder("**今日未完成工单** \n");
+        List<WorkSheet> list = WorkSheetMapper.getNotComplete();
+        for (WorkSheet WorkSheet : list) {
+            String custom = WorkSheet.getCustom();
+            String userName = WorkSheet.getUserName();
+            Date signTime = WorkSheet.getSignInTime();
+            if (signTime == null){
+                str.append("客户: ").append(custom).append("   技术: ").append(userName).append("  没有签到 ");
+                str.append("[点击查看](https://app.huoban.com/tables/2100000015054992/items/")
+                        .append(WorkSheet.getItemId())
+                        .append(")  ").append("\n");
+            } else {
+                str.append("客户: ").append(custom).append("   技术: ").append(userName).append("  ");
+                str.append("[点击查看](https://app.huoban.com/tables/2100000015054992/items/")
+                        .append(WorkSheet.getItemId())
+                        .append(")  ").append("\n");
+            }
+        }
+        return str.toString();
+    }
+
+    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
+        List<WorkSheet> newList = new ArrayList<>();
+        for (WorkSheet WorkSheet : list) {
+            if (engName.equals(WorkSheet.getEngName())) {
+                newList.add(WorkSheet);
+            }
+        }
+        return newList;
     }
 
     private boolean getStatus(List<String> names, String engName) {
