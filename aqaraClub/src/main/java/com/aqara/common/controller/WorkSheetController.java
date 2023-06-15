@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -29,19 +30,38 @@ public class WorkSheetController {
         String dateOfStr = WorkSheet.getDateOfStr();
         String completeStr = WorkSheet.getCompleteStr();
         String signInStr = WorkSheet.getSignInStr();
+        String CompleteImage = WorkSheet.getCompleteImage();
+        String signInImage = WorkSheet.getSignInImage();
+        String handSignIn = WorkSheet.getHandSignIn();
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        if (!"".equals(orderStr) && orderStr != null) {
+
+        if (objectNull(orderStr)) {
             WorkSheet.setOrderDate(simpleDateFormat.parse(orderStr));
         }
-        if (!"".equals(dateOfStr) && dateOfStr != null) {
+        if (objectNull(dateOfStr)) {
             WorkSheet.setDateOfVisit(simpleDateFormat.parse(dateOfStr));
         }
-        if (!"".equals(completeStr) && completeStr != null) {
+        if (objectNull(completeStr)) {
             WorkSheet.setCompleteTime(simpleDateFormat.parse(completeStr));
         }
-        if (!"".equals(signInStr) && signInStr != null) {
+        if (objectNull(signInStr)) {
             WorkSheet.setSignInTime(simpleDateFormat.parse(signInStr));
         }
+
+        if (!objectNull(completeStr) &&  objectNull(CompleteImage)) {
+            WorkSheet.setCompleteTime(new Date());
+            WorkSheet.setWorkStatus("已完成");
+        }
+        if (!objectNull(signInStr) &&  objectNull(signInImage)) {
+            WorkSheet.setSignInTime(new Date());
+            WorkSheet.setWorkStatus("待核销");
+        }
+        if (!objectNull(signInStr) &&  objectNull(handSignIn)) {
+            WorkSheet.setSignInTime(new Date());
+            WorkSheet.setWorkStatus("待核销");
+        }
+
         String itemId = WorkSheet.getItemId();
         List<WorkSheet> list = WorkSheetService.selectId(itemId);
         if (list.size() == 0) {
@@ -50,5 +70,9 @@ public class WorkSheetController {
             WorkSheetService.update(WorkSheet);
             WorkSheetService.insert(WorkSheet);
         }
+    }
+
+    public boolean objectNull(String str){
+        return str != null && !str.equals("");
     }
 }

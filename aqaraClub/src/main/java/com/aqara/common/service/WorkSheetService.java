@@ -5,6 +5,8 @@ import com.aqara.common.mapper.WorkSheetMapper;
 import com.aqara.common.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -120,21 +122,23 @@ public class WorkSheetService {
 
     public String getNotComplete() {
         StringBuilder str = new StringBuilder("**今日未完成工单** \n");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
         List<WorkSheet> list = WorkSheetMapper.getNotComplete();
         for (WorkSheet WorkSheet : list) {
             String custom = WorkSheet.getCustom();
             String userName = WorkSheet.getUserName();
             Date signTime = WorkSheet.getSignInTime();
+            Date dateOfVisit = WorkSheet.getDateOfVisit();
             if (signTime == null){
                 str.append("客户: ").append(custom).append("   技术: ").append(userName).append("  没有签到 ");
                 str.append("[点击查看](https://app.huoban.com/tables/2100000015054992/items/")
                         .append(WorkSheet.getItemId())
-                        .append(")  ").append("\n");
+                        .append(")  时间：").append(simpleDateFormat.format(dateOfVisit)).append("\n");
             } else {
                 str.append("客户: ").append(custom).append("   技术: ").append(userName).append("  ");
                 str.append("[点击查看](https://app.huoban.com/tables/2100000015054992/items/")
                         .append(WorkSheet.getItemId())
-                        .append(")  ").append("\n");
+                        .append(")  时间：").append(simpleDateFormat.format(dateOfVisit)).append("\n");
             }
         }
         return str.toString();

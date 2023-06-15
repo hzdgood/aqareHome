@@ -11,6 +11,9 @@ public class WorkSheet {
     private Date orderDate;  // 订单日期
     private Date dateOfVisit; // 上门日期
     private Date completeTime; // 完成时间
+    private String completeImage; // 完成照片
+    private String signInImage; //签到水印
+    private String handSignIn; //手工签到
     private Date signInTime; // 签到时间
     private String orderStr;
     private String dateOfStr;
@@ -91,6 +94,26 @@ public class WorkSheet {
 
     public void setCompleteTime(Date completeTime) {
         this.completeTime = completeTime;
+    }
+
+    public String getCompleteImage() { return completeImage; }
+
+    public void setCompleteImage(String completeImage) { this.completeImage = completeImage; }
+
+    public String getSignInImage() {
+        return signInImage;
+    }
+
+    public void setSignInImage(String signInImage) {
+        this.signInImage = signInImage;
+    }
+
+    public String getHandSignIn() {
+        return handSignIn;
+    }
+
+    public void setHandSignIn(String handSignIn) {
+        this.handSignIn = handSignIn;
     }
 
     public Date getSignInTime() {

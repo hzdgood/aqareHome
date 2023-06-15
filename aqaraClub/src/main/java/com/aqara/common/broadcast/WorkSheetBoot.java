@@ -51,7 +51,7 @@ public class WorkSheetBoot {
     /**
      * 没有预约的工单
      */
-    @Scheduled(cron = "0 00 18 * * ?")
+    @Scheduled(cron = "0 30 21 * * ?")
     private void currentWorkSend3() {
         String WX_TOKEN = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=04132b83-0692-47e0-b54d-6326ea8a921f"; //技术群
         // String WX_TOKEN1 = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=1fc95ced-6cb2-406a-b204-a109202dfded"; // 测试
