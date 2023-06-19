@@ -70,6 +70,9 @@ export default class Actions extends Vue {
       order_by: [{ field: 2200000146199958, sort: 'desc' }]
     }
     const result = await SearchInfo('2100000015054992', obj)
+    if (result.length === 0) {
+      this.$store.state.layerList = []
+    }
     for (let i = 0; i < result.length; i++) {
       const fields = result[i].fields
       const itemId = result[i].item_id
