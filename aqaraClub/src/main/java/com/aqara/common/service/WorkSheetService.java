@@ -90,7 +90,7 @@ public class WorkSheetService {
                     List<WorkSheet> techList = getTechWork(list, engName);
                     str.append(userName).append(" ").append(restDay).append("休  ").append("工单数：").append(techList.size()).append("\n");
                     for (WorkSheet w : techList) {
-                        String res = w.getCustom() + "-" + w.getWorkType() + "-" + w.getArea();
+                        String res = w.getCustom() + "-" + w.getWorkType();
                         str.append("[").append(res).append("](https://app.huoban.com/tables/2100000015054992/items/").append(w.getItemId()).append(")").append("    ");
                     }
                     str.append("\n");

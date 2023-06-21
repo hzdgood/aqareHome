@@ -52,8 +52,9 @@
         from workSheet w
         where w.dateOfVisit is null
           and w.disabled = '有效'
-          and w.custom is not null
           and w.technology != ''
+          and w.technology is not null
+          and w.workType != '发货'
     </select>
 
     <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
