@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import Chat from './Chat.vue'
-import Calendar from '@/calendar/index.vue'
-import upload from '@/upload/index.vue'
 import router from './router'
 import store from './store'
 import { userInfo, fetchUserId, fetchSignatures, externalContact, config } from '@/config/interFace'
@@ -65,24 +63,6 @@ const doInfo = async () => {
     localStorage.setItem('localName', localName)
     localStorage.setItem('chatID', result.chatId) // 群ID
     getChat()
-  } else {
-    const url = window.location.href
-    await userInfo().then(function (response) {
-      localStorage.setItem('ticket', response.data.ticket)
-      if (url.split('#')[1] === '/Calendar') {
-        new Vue({
-          router,
-          store,
-          render: (h) => h(Calendar)
-        }).$mount('#app')
-      } else if (url.split('#')[1] === '/upload') {
-        new Vue({
-          router,
-          store,
-          render: (h) => h(upload)
-        }).$mount('#app')
-      }
-    })
   }
 }
 
