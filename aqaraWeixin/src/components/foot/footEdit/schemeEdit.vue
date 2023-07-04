@@ -232,16 +232,16 @@ export default class Home extends Vue {
           }
         }
       }
+      if (json.items.length % 5 === 0) {
+        await batchAddPlan(table.customerPlan, json)
+        json.items = []
+      }
     }
-    // const data = {
-    //   fields: {
-    //     [field.uploadCode]: res[0].orderNumber + ',' + uploadCode
-    //   }
-    // }
-    // await updateTable(projectId, data) // 修改
-    await batchAddPlan(table.customerPlan, json) // 新增
-    await logInsert('上传方案')
     this.errorInfo('上传成功！')
+    if (json.items.length !== 0) {
+      await batchAddPlan(table.customerPlan, json) // 新增
+    }
+    await logInsert('上传方案')
   }
 
   uploadStart () {
@@ -265,45 +265,5 @@ export default class Home extends Vue {
     this.visible = false
   }
 }
-
-// diff (arr1: any[], arr2: any[]) {
-//   var newArr = []
-//   newArr = arr1.filter((cur) => arr2.indexOf(cur) === -1)
-//   return newArr.concat(arr2.filter((cur) => arr1.indexOf(cur) === -1))
-// }
-// const code = uploadCode.split(',')
-// let status = true
-// for (let i = 0; i < code.length; i++) {
-//   if (res[0].orderNumber === code[i]) {
-//     this.errorInfo('该方案已上传，请勿重复上传！')
-//     status = false
-//   }
-// }
-// if (!status) {
-//   return
-// }
-// if (projectAddress === '') {
-//   this.errorInfo('请填写项目地址！')
-//   return
-// }
-// 检查地址信息，赋值经纬度
-// if (projectAddress !== '') {
-//   const obj = await getCoordinate([projectAddress]) // 3
-//   if (obj.lng === 0 && obj.lat === 0) {
-//     this.errorInfo('项目地址错误！')
-//     return
-//   } else {
-//     const data = {
-//       fields: {
-//         [field.X]: obj.lng,
-//         [field.Y]: obj.lat
-//       }
-//     }
-//     await updateTable(projectId, data) // 4
-//   }
-// } else {
-//   this.errorInfo('请填写项目地址信息！')
-//   return
-// }
 
 </script>

@@ -11,8 +11,11 @@ public class FileUtil {
     public static String fileSave(MultipartFile file, String path) {
         String fileName = file.getOriginalFilename();
         try {
-            File files = new File(path, fileName);
-            file.transferTo(files);
+            File dest = new File(new File(path).getAbsolutePath());
+            if (!dest.getParentFile().exists()) {
+                dest.getParentFile().mkdirs();
+            }
+            file.transferTo(dest);
             return path + fileName;
         } catch (Exception e) {
             e.printStackTrace();
