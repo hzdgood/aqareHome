@@ -7,24 +7,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class getToken {
+    static String url = "https://open-cn.aqara.com/v3.0/open/api";
     static String date = "{\n" +
-            "    \"intent\": \"config.auth.getToken\",\n" +
-            "    \"data\": {\n" +
-            "        \"authCode\": \"9262137771311233\",\n" +
-            "        \"accountType\": 1\n" +
-            "    }\n" +
+            "  \"intent\": \"query.device.info\",\n" +
+            "  \"data\": {\n" +
+            "    \"positionId\": \"\",\n" +
+            "    \"pageNum\": 1,\n" +
+            "    \"pageSize\": 50\n" +
+            "  }\n" +
             "}";
+    static String token = "9150d91bedf37c78800aa3ce7a831770";
+
     public static void main(String[] args) {
-        String sign = SignUtil.createSign("", common.appId, common.keyId, common.nonce, common.time, common.appKey);
+        String sign = SignUtil.createSign(token, common.appId, common.keyId, common.nonce, common.time, common.appKey);
         Map<String, String> map = new HashMap<>();
         map.put("Content-Type", "application/json; charset=utf-8");
-        map.put("Appid", "application/json; charset=utf-8");
-        map.put("Appkey", "application/json; charset=utf-8");
-        map.put("Keyid", "application/json; charset=utf-8");
-        map.put("Nonce", "application/json; charset=utf-8");
-        map.put("Time", "application/json; charset=utf-8");
-        map.put("Sign", "application/json; charset=utf-8");
-        String dataPost = PostUtil.workRequest(common.url, date, sign, map);
+        map.put("Accesstoken", token);
+        map.put("Appid", common.appId);
+        map.put("Keyid", common.keyId);
+        map.put("Nonce", common.nonce);
+        map.put("Time", common.time);
+        map.put("Sign", sign);
+        String dataPost = PostUtil.workRequest(url, date, map);
         System.out.println(dataPost);
     }
 }

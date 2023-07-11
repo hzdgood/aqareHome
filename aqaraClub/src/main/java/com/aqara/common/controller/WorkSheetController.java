@@ -33,6 +33,8 @@ public class WorkSheetController {
         String CompleteImage = WorkSheet.getCompleteImage();
         String signInImage = WorkSheet.getSignInImage();
         String handSignIn = WorkSheet.getHandSignIn();
+        String createStr = WorkSheet.getCreateStr();
+        String updateStr = WorkSheet.getUpdateStr();
 
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
 
@@ -47,6 +49,12 @@ public class WorkSheetController {
         }
         if (objectNull(signInStr)) {
             WorkSheet.setSignInTime(simpleDateFormat.parse(signInStr));
+        }
+        if (objectNull(createStr)) {
+            WorkSheet.setCompleteTime(simpleDateFormat.parse(createStr));
+        }
+        if (objectNull(updateStr)) {
+            WorkSheet.setUpdateTime(simpleDateFormat.parse(updateStr));
         }
 
         if (!objectNull(completeStr) &&  objectNull(CompleteImage)) {

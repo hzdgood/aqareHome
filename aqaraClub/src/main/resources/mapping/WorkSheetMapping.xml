@@ -32,7 +32,15 @@
         where w.itemId = #{itemId}
     </select>
 
-    <select id="select" resultType="com.aqara.common.entity.WorkSheet">
+    <select id="selectToday" resultType="com.aqara.common.entity.WorkSheet">
+        select *
+        from workSheet w
+        where
+            TO_DAYS(`w`.`createTime`) = TO_DAYS(NOW())
+            and w.workType != '发货'
+    </select>
+
+    <select id="selectNow" resultType="com.aqara.common.entity.WorkSheet">
         select *
         from worksheetviewnow w
     </select>
@@ -60,18 +68,18 @@
     <insert id="insert" parameterType="com.aqara.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
         insert into workSheet (itemId, custom, technology, actualWork, workType, workStatus, area, signInTime, disabled,
                                orderDate, dateOfVisit, completeTime,
-                               createName, createTime)
+                               createName, createTime, updateName, updateTime)
         values (#{itemId}, #{custom}, #{technology}, #{actualWork}, #{workType}, #{workStatus}, #{area}, #{signInTime},
                 #{disabled},
                 #{orderDate}, #{dateOfVisit}, #{completeTime},
-                #{createName}, NOW())
+                #{createName}, #{createTime}, #{updateName}, #{updateTime})
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.WorkSheet">
         update workSheet
         set disabled   = '无效',
             updateName = #{updateName},
-            updateTime = NOW()
+            updateTime = #{updateTime}
         where itemId = #{itemId}
     </insert>
 

@@ -19,6 +19,8 @@ public class WorkSheet {
     private String dateOfStr;
     private String completeStr;
     private String signInStr;
+    private String createStr;
+    private String updateStr;
     private String workType; // 工单类型
     private String workStatus; //工单状态
     private String userName; // 技术
@@ -146,6 +148,22 @@ public class WorkSheet {
 
     public void setSignInStr(String signInStr) {
         this.signInStr = signInStr;
+    }
+
+    public String getCreateStr() {
+        return createStr;
+    }
+
+    public void setCreateStr(String createStr) {
+        this.createStr = createStr;
+    }
+
+    public String getUpdateStr() {
+        return updateStr;
+    }
+
+    public void setUpdateStr(String updateStr) {
+        this.updateStr = updateStr;
     }
 
     public String getWorkType() {

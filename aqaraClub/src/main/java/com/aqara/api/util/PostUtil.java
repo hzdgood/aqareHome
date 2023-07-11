@@ -11,15 +11,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 public class PostUtil {
-    public static String workRequest(String url, String date, String Sign, Map<String, String> header) {
+    public static String workRequest(String url, String date, Map<String, String> header) {
         try {
             HttpClient httpClient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);
-            httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
             for (Map.Entry<String, String> entry : header.entrySet()) {
                 httpPost.addHeader(entry.getKey(), entry.getValue());
             }
-            StringEntity entity = new StringEntity(date, "utf-8");
+            StringEntity entity = new StringEntity(date, "UTF-8");
             httpPost.setEntity(entity);
             HttpResponse response = httpClient.execute(httpPost);
             BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent(), StandardCharsets.UTF_8), 8 * 1024);

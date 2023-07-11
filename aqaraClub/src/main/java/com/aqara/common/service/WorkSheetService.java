@@ -20,10 +20,6 @@ public class WorkSheetService {
         this.WorkSheetMapper = WorkSheetMapper;
     }
 
-    public List<WorkSheet> select() {
-        return WorkSheetMapper.select();
-    }
-
     public List<WorkSheet> selectId(String itemId) {
         return WorkSheetMapper.selectId(itemId);
     }
@@ -41,7 +37,7 @@ public class WorkSheetService {
     }
 
     public String getWorkSend() {
-        List<WorkSheet> list = WorkSheetMapper.select();
+        List<WorkSheet> list = WorkSheetMapper.selectNow();
         List<String> users = new ArrayList<>();
         List<String> names = new ArrayList<>();
         StringBuilder str = new StringBuilder("**今日完成工单情况** \n");
@@ -142,6 +138,39 @@ public class WorkSheetService {
             }
         }
         return str.toString();
+    }
+
+    public boolean workSheetSyn() {
+        List<WorkSheet> list = WorkSheetMapper.selectToday();
+        for (WorkSheet WorkSheet : list) {
+            String itemId = WorkSheet.getItemId();
+            List<WorkSheet> list1 = getItemIDData(list, itemId); //获取同itemId数据
+            if (list1.size() == 1) {
+                Date dateOfVisit = WorkSheet.getDateOfVisit();
+                if (dateOfVisit == null){
+                    // 发送
+                    System.out.println("1111");
+                }
+            } else {
+                Date updateTime = null;
+                for (WorkSheet work : list1) {
+                    if (updateTime != null && WorkSheet.getDateOfVisit() != null) {
+                        long time = TimeUtil.getTowDaysDifference(updateTime, work.getUpdateTime()); //计算时间 需要排序时间
+                        System.out.println(time); // 如果大于2小时发送
+                    } else if (updateTime != null && WorkSheet.getDateOfVisit() == null) {
+                        long time = TimeUtil.getTowDaysDifference(updateTime, work.getUpdateTime()); //计算时间 需要排序时间
+                        System.out.println(time); // 如果大于2小时发送
+                    } else {
+                        updateTime = work.getUpdateTime();
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    public List<WorkSheet> getItemIDData(List<WorkSheet> list, String itemId) {
+        return null;
     }
 
     private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {

@@ -7,9 +7,11 @@ import java.util.List;
 
 @Repository
 public interface WorkSheetMapper {
-    List<WorkSheet> select();
+    List<WorkSheet> selectNow();
 
     List<WorkSheet> selectId(String itemId);
+
+    List<WorkSheet> selectToday();
 
     List<WorkSheet> selectTom();
 
