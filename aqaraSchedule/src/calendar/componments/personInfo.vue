@@ -135,7 +135,9 @@ export default class Actions extends Vue {
           for (let m = 0; m < d1.length; m++) {
             for (let n = 0; n < data.length; n++) {
               if (d1[m] === data[n].name) {
-                data[n].workStatus = workStatus
+                if (data[n].workStatus === '' && workStatus === 'workStatus') {
+                  data[n].workStatus = workStatus
+                }
                 for (let m = 0; m <= workTime; m++) {
                   const times = time + m
                   if (times === 10) {
@@ -161,7 +163,9 @@ export default class Actions extends Vue {
           }
         } else {
           if (technologys === data[j].name) {
-            data[j].workStatus = workStatus
+            if (data[j].workStatus === '' && workStatus === 'workStatus') {
+              data[j].workStatus = workStatus
+            }
             for (let m = 0; m <= workTime; m++) {
               const times = time + m
               if (times === 10) {

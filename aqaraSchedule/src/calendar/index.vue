@@ -12,6 +12,7 @@
       <div class="cententDiv">
         <select-info></select-info>
         <baidu-map></baidu-map>
+        <!-- <tables-map></tables-map> -->
       </div>
     </div>
     <div class="right-div">
@@ -25,6 +26,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import selectInfo from './componments/selectInfo.vue'
 import personInfo from './componments/personInfo.vue'
 import baiduMap from './componments/baiduMap.vue'
+import tableMaps from './componments/tableMap.vue'
 import workInfo from './componments/workInfo.vue'
 import '@/calendar/css/index.css'
 @Component({
@@ -33,6 +35,7 @@ import '@/calendar/css/index.css'
     'select-info': selectInfo,
     'person-info': personInfo,
     'baidu-map': baiduMap,
+    'tables-map': tableMaps,
     'work-info': workInfo
   }
 })
