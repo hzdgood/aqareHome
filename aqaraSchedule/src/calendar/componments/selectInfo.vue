@@ -44,6 +44,9 @@ export default class Actions extends Vue {
     }
     this.date = date.getFullYear() + '-' + m + '-' + d
     this.$store.state.CalendarDate = this.date
+    setTimeout(() => {
+      this.select()
+    }, 1000)
   }
 
   selectDate () {

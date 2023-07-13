@@ -140,7 +140,7 @@ public class WorkSheetService {
         return str.toString();
     }
 
-    public boolean workSheetSyn() {
+    public void workSheetSyn() {
         List<WorkSheet> list = WorkSheetMapper.selectToday();
         for (WorkSheet WorkSheet : list) {
             String itemId = WorkSheet.getItemId();
@@ -166,7 +166,6 @@ public class WorkSheetService {
                 }
             }
         }
-        return true;
     }
 
     public List<WorkSheet> getItemIDData(List<WorkSheet> list, String itemId) {

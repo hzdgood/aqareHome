@@ -62,7 +62,7 @@ public class WorkSheetBoot {
         HttpService.workRequset(workSheet1, WX_DEPART);
     }
 
-    @Scheduled(cron = "0 00 22 * * ?")
+//    @Scheduled(cron = "0 00 22 * * ?")
     private void currentWorkSyn() {
         WorkSheetService.workSheetSyn();
     }
