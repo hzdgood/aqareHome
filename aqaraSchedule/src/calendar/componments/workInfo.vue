@@ -2,7 +2,7 @@
   <div v-show="dataList.length !== 0" class="right-info">
     <div>工单详情</div>
     <table v-for="item in dataList" :key="item.id">
-        <tr>
+      <tr>
         <td>工单类型</td>
         <td>{{ item.type }}</td>
       </tr>

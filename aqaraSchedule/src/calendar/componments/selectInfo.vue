@@ -15,6 +15,10 @@
       />
       <button class="myButton" @click="select">查询</button>
     </div>
+    <div>
+      <button :class="mapModel? 'showButton':'hidButton'" @click="setMapModel">地图模式</button>
+      <button :class="tabModel? 'showButton':'hidButton'" @click="setTabModel">表单模式</button>
+    </div>
   </div>
 </template>
 
@@ -31,6 +35,8 @@ export default class Actions extends Vue {
   fullscreen = false;
   selectStatus = false;
   date = '';
+  mapModel = true
+  tabModel = false
 
   mounted () {
     const date = new Date()
@@ -65,6 +71,20 @@ export default class Actions extends Vue {
 
   select () {
     this.$store.dispatch('search')
+  }
+
+  setMapModel () {
+    this.$emit('setModel', true)
+    this.mapModel = true
+    this.tabModel = false
+    console.log(111)
+  }
+
+  setTabModel () {
+    this.$emit('setModel', false)
+    this.mapModel = false
+    this.tabModel = true
+    console.log(111)
   }
 }
 </script>

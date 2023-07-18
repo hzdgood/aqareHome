@@ -10,9 +10,9 @@
         <person-info></person-info>
       </div>
       <div class="cententDiv">
-        <select-info></select-info>
-        <baidu-map></baidu-map>
-        <!-- <tables-map></tables-map> -->
+        <select-info @setModel="setModel"></select-info>
+        <baidu-map v-show="mapStatus"></baidu-map>
+        <tables-map v-show="tabStatus"></tables-map>
       </div>
     </div>
     <div class="right-div">
@@ -39,5 +39,19 @@ import '@/calendar/css/index.css'
     'work-info': workInfo
   }
 })
-export default class Actions extends Vue {}
+export default class Actions extends Vue {
+  mapStatus = true
+  tabStatus = false
+
+  setModel (model: boolean) {
+    console.log(model)
+    if (model) {
+      this.mapStatus = true
+      this.tabStatus = false
+    } else {
+      this.mapStatus = false
+      this.tabStatus = true
+    }
+  }
+}
 </script>
