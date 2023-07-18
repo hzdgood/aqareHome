@@ -12,7 +12,7 @@
         </tr>
         <tr>
           <td>客户地址</td>
-          <td>{{ item.date[0].address }}</td>
+          <td :title="item.date[0].address">{{ item.date[0].address }}</td>
         </tr>
         <tr>
           <td>开始时间</td>
