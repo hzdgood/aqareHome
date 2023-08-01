@@ -2,7 +2,7 @@
   <div>
     <div class="head">
       <div>
-        <div style="font-size: 24px; line-height: 40px;">日程系统</div>
+        <div style="font-size: 24px; line-height: 40px;">汇社日程系统</div>
       </div>
     </div>
     <div class="body-div">
@@ -17,6 +17,9 @@
     </div>
     <div class="right-div">
       <work-info></work-info>
+    </div>
+    <div class="filings">
+      <a href="https://beian.miit.gov.cn/">沪ICP备2022007443号</a>
     </div>
   </div>
 </template>
