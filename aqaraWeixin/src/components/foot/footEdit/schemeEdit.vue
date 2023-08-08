@@ -37,7 +37,7 @@
 
 <script lang='ts'>
 import { Component, Vue } from 'vue-property-decorator'
-import { SearchInfo, uploadFile, updateTable, batchAddPlan, getCoordinate, uploadPdf, logInsert } from '@/config/interFace'
+import { SearchInfo, uploadFile, updateTable, batchAddPlan, uploadPdf, logInsert } from '@/config/interFace'
 import { table, field } from '@/config/config'
 import { masterReq } from '@/config/common'
 import myModal from '@/components/common/myModal.vue'
@@ -113,11 +113,15 @@ export default class Home extends Vue {
     let projectName = ''
     let projectId = ''
     let projectAddress = ''
-    // let uploadCode = ''
+    let uploadCode = ''
     const productCode = []
     const json: any = {
       items: []
     }
+    const json1: any = {
+      items: []
+    }
+
     const formData = new FormData()
     // 拼接伙伴云JSON
     let file: any = document.getElementsByName('file')[0]
@@ -159,10 +163,10 @@ export default class Home extends Vue {
           const values = fields[i].values[0].value
           projectAddress = values
         }
-        // if (fields[i].field_id === field.uploadCode) {
-        //   const values = fields[i].values[0].value
-        //   uploadCode = values
-        // }
+        if (fields[i].field_id === field.uploadCode) {
+          const values = fields[i].values[0].value
+          uploadCode = values
+        }
       }
     } else {
       this.errorInfo('项目信息不存在！')
@@ -170,6 +174,18 @@ export default class Home extends Vue {
     }
     if (projectAddress === '') {
       this.errorInfo('项目地址不存在！')
+      return
+    }
+
+    const code = uploadCode.split(',')
+    let status = true
+    for (let i = 0; i < code.length; i++) {
+      if (res[0].orderNumber === code[i]) {
+        this.errorInfo('该方案已上传，请勿重复上传！')
+        status = false
+      }
+    }
+    if (!status) {
       return
     }
     // 查询伙伴云是否存在产品
@@ -215,7 +231,7 @@ export default class Home extends Vue {
                 [field.present]: [1]
               }
             }
-            json.items.push(obj)
+            json1.items.push(obj)
           } else {
             const obj = {
               fields: {
@@ -237,11 +253,18 @@ export default class Home extends Vue {
         json.items = []
       }
     }
+    const data = {
+      fields: {
+        [field.uploadCode]: res[0].orderNumber + ',' + uploadCode
+      }
+    }
+    await updateTable(projectId, data) // 修改
     this.errorInfo('上传成功！')
     if (json.items.length !== 0) {
       await batchAddPlan(table.customerPlan, json) // 新增
     }
     await logInsert('上传方案')
+    await batchAddPlan(table.customerPlan, json1)
   }
 
   uploadStart () {
