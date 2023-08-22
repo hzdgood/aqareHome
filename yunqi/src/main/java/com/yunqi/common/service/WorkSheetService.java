@@ -1,8 +1,8 @@
-package com.aqara.common.service;
+package com.yunqi.common.service;
 
-import com.aqara.common.entity.WorkSheet;
-import com.aqara.common.mapper.WorkSheetMapper;
-import com.aqara.common.utils.TimeUtil;
+import com.yunqi.common.entity.WorkSheet;
+import com.yunqi.common.mapper.WorkSheetMapper;
+import com.yunqi.common.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +14,16 @@ import java.util.List;
 @Service
 public class WorkSheetService {
     private WorkSheetMapper WorkSheetMapper;
+
+    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
+        List<WorkSheet> newList = new ArrayList<>();
+        for (WorkSheet WorkSheet : list) {
+            if (engName.equals(WorkSheet.getEngName())) {
+                newList.add(WorkSheet);
+            }
+        }
+        return newList;
+    }
 
     @Autowired
     public void setMapper(WorkSheetMapper WorkSheetMapper) {
@@ -125,7 +135,7 @@ public class WorkSheetService {
             String userName = WorkSheet.getUserName();
             Date signTime = WorkSheet.getSignInTime();
             Date dateOfVisit = WorkSheet.getDateOfVisit();
-            if (signTime == null){
+            if (signTime == null) {
                 str.append("客户: ").append(custom).append("   技术: ").append(userName).append("  没有签到 ");
                 str.append("[点击查看](https://app.huoban.com/tables/2100000015054992/items/")
                         .append(WorkSheet.getItemId())
@@ -147,7 +157,7 @@ public class WorkSheetService {
             List<WorkSheet> list1 = getItemIDData(list, itemId); //获取同itemId数据
             if (list1.size() == 1) {
                 Date dateOfVisit = WorkSheet.getDateOfVisit();
-                if (dateOfVisit == null){
+                if (dateOfVisit == null) {
                     // 发送
                     System.out.println("1111");
                 }
@@ -170,16 +180,6 @@ public class WorkSheetService {
 
     public List<WorkSheet> getItemIDData(List<WorkSheet> list, String itemId) {
         return null;
-    }
-
-    private static List<WorkSheet> getTechWork(List<WorkSheet> list, String engName) {
-        List<WorkSheet> newList = new ArrayList<>();
-        for (WorkSheet WorkSheet : list) {
-            if (engName.equals(WorkSheet.getEngName())) {
-                newList.add(WorkSheet);
-            }
-        }
-        return newList;
     }
 
     private boolean getStatus(List<String> names, String engName) {

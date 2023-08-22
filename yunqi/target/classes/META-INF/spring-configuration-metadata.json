@@ -1,0 +1,232 @@
+{
+  "groups": [
+    {
+      "name": "baidu",
+      "type": "com.yunqi.common.properties.BaiduProperties",
+      "sourceType": "com.yunqi.common.properties.BaiduProperties"
+    },
+    {
+      "name": "common",
+      "type": "com.yunqi.common.properties.CommonProperties",
+      "sourceType": "com.yunqi.common.properties.CommonProperties"
+    },
+    {
+      "name": "huoban",
+      "type": "com.yunqi.common.properties.HuobanProperties",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "program",
+      "type": "com.yunqi.common.properties.ProgramProperties",
+      "sourceType": "com.yunqi.common.properties.ProgramProperties"
+    },
+    {
+      "name": "reboot",
+      "type": "com.yunqi.common.properties.RebootProperties",
+      "sourceType": "com.yunqi.common.properties.RebootProperties"
+    },
+    {
+      "name": "wx",
+      "type": "com.yunqi.common.properties.WxProperties",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "baidu.key",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.BaiduProperties"
+    },
+    {
+      "name": "baidu.url",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.BaiduProperties"
+    },
+    {
+      "name": "common.img-files",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.CommonProperties"
+    },
+    {
+      "name": "common.local-files",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.CommonProperties"
+    },
+    {
+      "name": "common.service-url",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.CommonProperties"
+    },
+    {
+      "name": "huoban.add-info",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "huoban.application-id",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "huoban.application-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "huoban.expired",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "huoban.search-info",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "huoban.ticket",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "huoban.update-table",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "huoban.user-info",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.HuobanProperties"
+    },
+    {
+      "name": "program.access-token",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.ProgramProperties"
+    },
+    {
+      "name": "program.appid",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.ProgramProperties"
+    },
+    {
+      "name": "program.code2-session",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.ProgramProperties"
+    },
+    {
+      "name": "program.phone-number",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.ProgramProperties"
+    },
+    {
+      "name": "program.secret",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.ProgramProperties"
+    },
+    {
+      "name": "reboot.customer-broadcast",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.RebootProperties"
+    },
+    {
+      "name": "reboot.project-broadcast",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.RebootProperties"
+    },
+    {
+      "name": "wx.app-url",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.calendar-add",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.check-agree",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.comp-user",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.corp-http",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.corp-id",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.corp-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.external-contact",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.external-list",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.group-chat",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.group-list",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.http-url",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.jsapi-url",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.media-upload",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.permit-list",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.schedule-add",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.speedy-http",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.speedy-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    },
+    {
+      "name": "wx.user-id-url",
+      "type": "java.lang.String",
+      "sourceType": "com.yunqi.common.properties.WxProperties"
+    }
+  ],
+  "hints": []
+}

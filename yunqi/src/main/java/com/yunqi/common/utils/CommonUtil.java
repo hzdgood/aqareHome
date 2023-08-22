@@ -1,7 +1,7 @@
-package com.aqara.common.utils;
+package com.yunqi.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.aqara.common.properties.WxProperties;
+import com.yunqi.common.properties.WxProperties;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.text.SimpleDateFormat;

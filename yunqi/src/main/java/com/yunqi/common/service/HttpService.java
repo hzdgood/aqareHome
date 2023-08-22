@@ -1,8 +1,8 @@
-package com.aqara.common.service;
+package com.yunqi.common.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.aqara.common.utils.HttpUtil;
-import com.aqara.common.utils.HuobanUtil;
+import com.yunqi.common.utils.HttpUtil;
+import com.yunqi.common.utils.HuobanUtil;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
 

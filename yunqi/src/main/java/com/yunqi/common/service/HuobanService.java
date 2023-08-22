@@ -1,7 +1,7 @@
-package com.aqara.common.service;
+package com.yunqi.common.service;
 
-import com.aqara.common.entity.Huoban;
-import com.aqara.common.mapper.HuobanMapper;
+import com.yunqi.common.entity.Huoban;
+import com.yunqi.common.mapper.HuobanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

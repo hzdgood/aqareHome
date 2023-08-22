@@ -1,7 +1,7 @@
-package com.aqara.common.service;
+package com.yunqi.common.service;
 
-import com.aqara.common.entity.Scheme;
-import com.aqara.common.mapper.SchemeMapper;
+import com.yunqi.common.entity.Scheme;
+import com.yunqi.common.mapper.SchemeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

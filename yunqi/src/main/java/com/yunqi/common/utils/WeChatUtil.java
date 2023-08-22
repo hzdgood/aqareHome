@@ -1,6 +1,6 @@
-package com.aqara.common.utils;
+package com.yunqi.common.utils;
 
-import com.aqara.common.properties.WxProperties;
+import com.yunqi.common.properties.WxProperties;
 
 public class WeChatUtil {
     public static String getWxToken(WxProperties wxProperties, String type) {

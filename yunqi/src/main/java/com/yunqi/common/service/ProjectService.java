@@ -1,10 +1,10 @@
-package com.aqara.common.service;
+package com.yunqi.common.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.aqara.common.entity.Project;
-import com.aqara.common.mapper.ProjectMapper;
-import com.aqara.common.properties.HuobanProperties;
+import com.yunqi.common.entity.Project;
+import com.yunqi.common.mapper.ProjectMapper;
+import com.yunqi.common.properties.HuobanProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

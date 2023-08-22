@@ -1,7 +1,7 @@
-package com.aqara.common.controller;
+package com.yunqi.common.controller;
 
-import com.aqara.common.entity.WorkSheet;
-import com.aqara.common.service.WorkSheetService;
+import com.yunqi.common.entity.WorkSheet;
+import com.yunqi.common.service.WorkSheetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -57,15 +57,15 @@ public class WorkSheetController {
             WorkSheet.setUpdateTime(simpleDateFormat.parse(updateStr));
         }
 
-        if (!objectNull(completeStr) &&  objectNull(CompleteImage)) {
+        if (!objectNull(completeStr) && objectNull(CompleteImage)) {
             WorkSheet.setCompleteTime(new Date());
             WorkSheet.setWorkStatus("已完成");
         }
-        if (!objectNull(signInStr) &&  objectNull(signInImage)) {
+        if (!objectNull(signInStr) && objectNull(signInImage)) {
             WorkSheet.setSignInTime(new Date());
             WorkSheet.setWorkStatus("待核销");
         }
-        if (!objectNull(signInStr) &&  objectNull(handSignIn)) {
+        if (!objectNull(signInStr) && objectNull(handSignIn)) {
             WorkSheet.setSignInTime(new Date());
             WorkSheet.setWorkStatus("待核销");
         }
@@ -80,7 +80,7 @@ public class WorkSheetController {
         }
     }
 
-    public boolean objectNull(String str){
+    public boolean objectNull(String str) {
         return str != null && !str.equals("");
     }
 }

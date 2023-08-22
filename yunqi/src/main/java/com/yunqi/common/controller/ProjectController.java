@@ -1,7 +1,7 @@
-package com.aqara.common.controller;
+package com.yunqi.common.controller;
 
-import com.aqara.common.entity.Project;
-import com.aqara.common.service.ProjectService;
+import com.yunqi.common.entity.Project;
+import com.yunqi.common.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

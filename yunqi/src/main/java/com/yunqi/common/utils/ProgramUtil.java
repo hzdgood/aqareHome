@@ -1,6 +1,6 @@
-package com.aqara.common.utils;
+package com.yunqi.common.utils;
 
-import com.aqara.common.properties.ProgramProperties;
+import com.yunqi.common.properties.ProgramProperties;
 
 public class ProgramUtil {
     public static String getToken(ProgramProperties programProperties, String code) {

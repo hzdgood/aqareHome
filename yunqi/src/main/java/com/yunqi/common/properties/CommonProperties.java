@@ -1,4 +1,4 @@
-package com.aqara.common.properties;
+package com.yunqi.common.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

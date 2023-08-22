@@ -1,4 +1,4 @@
-package com.aqara.common.utils;
+package com.yunqi.common.utils;
 
 import org.springframework.web.multipart.MultipartFile;
 

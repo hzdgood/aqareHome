@@ -1,8 +1,8 @@
-package com.aqara.common.broadcast;
+package com.yunqi.common.broadcast;
 
-import com.aqara.common.service.HttpService;
-import com.aqara.common.service.HuobanService;
-import com.aqara.common.service.WorkSheetService;
+import com.yunqi.common.service.HttpService;
+import com.yunqi.common.service.HuobanService;
+import com.yunqi.common.service.WorkSheetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -62,7 +62,7 @@ public class WorkSheetBoot {
         HttpService.workRequset(workSheet1, WX_DEPART);
     }
 
-//    @Scheduled(cron = "0 00 22 * * ?")
+    //    @Scheduled(cron = "0 00 22 * * ?")
     private void currentWorkSyn() {
         WorkSheetService.workSheetSyn();
     }

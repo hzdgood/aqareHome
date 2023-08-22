@@ -1,8 +1,8 @@
-package com.aqara.common.controller;
+package com.yunqi.common.controller;
 
-import com.aqara.common.entity.Scheme;
-import com.aqara.common.excel.SchemeExcel;
-import com.aqara.common.service.SchemeService;
+import com.yunqi.common.entity.Scheme;
+import com.yunqi.common.excel.SchemeExcel;
+import com.yunqi.common.service.SchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

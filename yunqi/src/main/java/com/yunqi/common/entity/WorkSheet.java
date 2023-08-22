@@ -1,4 +1,4 @@
-package com.aqara.common.entity;
+package com.yunqi.common.entity;
 
 import java.util.Date;
 
@@ -98,17 +98,29 @@ public class WorkSheet {
         this.completeTime = completeTime;
     }
 
-    public String getCompleteImage() { return completeImage; }
+    public String getCompleteImage() {
+        return completeImage;
+    }
 
-    public void setCompleteImage(String completeImage) { this.completeImage = completeImage; }
+    public void setCompleteImage(String completeImage) {
+        this.completeImage = completeImage;
+    }
 
-    public String getSignInImage() { return signInImage; }
+    public String getSignInImage() {
+        return signInImage;
+    }
 
-    public void setSignInImage(String signInImage) { this.signInImage = signInImage; }
+    public void setSignInImage(String signInImage) {
+        this.signInImage = signInImage;
+    }
 
-    public String getHandSignIn() { return handSignIn; }
+    public String getHandSignIn() {
+        return handSignIn;
+    }
 
-    public void setHandSignIn(String handSignIn) { this.handSignIn = handSignIn; }
+    public void setHandSignIn(String handSignIn) {
+        this.handSignIn = handSignIn;
+    }
 
     public Date getSignInTime() {
         return signInTime;

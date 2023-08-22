@@ -1,4 +1,4 @@
-package com.aqara.common.utils;
+package com.yunqi.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 

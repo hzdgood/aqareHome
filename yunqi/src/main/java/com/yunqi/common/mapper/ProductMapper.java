@@ -1,6 +1,6 @@
-package com.aqara.common.mapper;
+package com.yunqi.common.mapper;
 
-import com.aqara.common.entity.Product;
+import com.yunqi.common.entity.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

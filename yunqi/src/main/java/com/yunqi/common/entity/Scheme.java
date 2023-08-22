@@ -1,4 +1,4 @@
-package com.aqara.common.entity;
+package com.yunqi.common.entity;
 
 import java.util.Date;
 
