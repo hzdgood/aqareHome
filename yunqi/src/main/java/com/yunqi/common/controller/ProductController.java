@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/product")
 public class ProductController {
@@ -20,15 +18,20 @@ public class ProductController {
     }
 
     @CrossOrigin
-    @RequestMapping("/synchronize")
-    public void synchronize(Product Product) {
-        String code = Product.getCode();
-        List<Product> list = ProductService.select(code);
-        if (list.size() == 0) {
-            ProductService.insert(Product);
-        } else {
-            ProductService.update(Product);
-            ProductService.insert(Product);
-        }
+    @RequestMapping("/insert")
+    public void insert(Product Product) {
+        ProductService.insert(Product);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/update")
+    public void update(Product Product) {
+        ProductService.update(Product);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/delete")
+    public void delete(Integer id) {
+        ProductService.delete(id);
     }
 }

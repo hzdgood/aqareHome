@@ -14,4 +14,6 @@ public interface SchemeMapper {
     void insertToExcel(Scheme scheme);
 
     void delete(Integer id);
+
+    void update(Scheme scheme);
 }

@@ -20,6 +20,18 @@ public class SchemeController {
         this.SchemeService = SchemeService;
     }
 
+    @CrossOrigin
+    @RequestMapping("/insert")
+    public void insert(Scheme Scheme) { SchemeService.insert(Scheme); }
+
+    @CrossOrigin
+    @RequestMapping("/update")
+    public void update(Scheme Scheme) { SchemeService.update(Scheme); }
+
+    @CrossOrigin
+    @RequestMapping("/delete")
+    public void delete(Integer id) { SchemeService.delete(id); }
+
     @PostMapping("/upload")
     @CrossOrigin
     @ResponseBody

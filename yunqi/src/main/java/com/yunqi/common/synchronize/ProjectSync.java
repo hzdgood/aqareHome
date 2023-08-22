@@ -1,4 +1,4 @@
-package com.yunqi.common.controller;
+package com.yunqi.common.synchronize;
 
 import com.yunqi.common.entity.Project;
 import com.yunqi.common.service.ProjectService;
@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
-@RequestMapping("/project")
-public class ProjectController {
+@RequestMapping("/synchronize")
+public class ProjectSync {
     private ProjectService ProjectService;
 
     @Autowired
@@ -18,20 +19,15 @@ public class ProjectController {
     }
 
     @CrossOrigin
-    @RequestMapping("/insert")
-    public void insert(Project Project) {
-        ProjectService.insert(Project);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/update")
-    public void update(Project Project) {
-        ProjectService.update(Project);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/delete")
-    public void delete(Integer id) {
-        ProjectService.delete(id);
+    @RequestMapping("/project")
+    public void synchronize(Project Project) {
+        String code = Project.getCode();
+        List<Project> list = ProjectService.select(code);
+        if (list.size() == 0) {
+            ProjectService.insert(Project);
+        } else {
+            ProjectService.update(Project);
+            ProjectService.insert(Project);
+        }
     }
 }
