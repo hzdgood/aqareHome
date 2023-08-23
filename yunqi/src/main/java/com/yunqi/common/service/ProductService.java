@@ -16,8 +16,8 @@ public class ProductService {
         this.ProductMapper = ProductMapper;
     }
 
-    public List<Product> select(String code) {
-        return ProductMapper.select(code);
+    public List<Product> select() {
+        return ProductMapper.select();
     }
 
     public void insert(Product Product) {
@@ -30,9 +30,5 @@ public class ProductService {
 
     public void delete(Integer id) {
         ProductMapper.delete(id);
-    }
-
-    public void deleteAll(List<Integer> ids) {
-        ProductMapper.deleteAll(ids);
     }
 }

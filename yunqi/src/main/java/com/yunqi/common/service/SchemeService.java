@@ -24,14 +24,11 @@ public class SchemeService {
         schemeMapper.insert(scheme);
     }
 
-    public void update(Scheme scheme) { schemeMapper.update(scheme); }
-
-    public void insertToExcel(Scheme scheme) {
-        schemeMapper.insertToExcel(scheme);
+    public void update(Scheme scheme) {
+        schemeMapper.update(scheme);
     }
 
     public void delete(Integer id) {
         schemeMapper.delete(id);
     }
-
 }

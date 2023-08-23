@@ -1,17 +1,13 @@
 package com.yunqi.common.mapper;
 
-
 import com.yunqi.common.entity.Huoban;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class HuobanMapper {
-    public List<Huoban> select() {
-        return null;
-    }
+public interface HuobanMapper {
+    List<Huoban> select();
 
-    public void insert(Huoban huoban) {
-    }
+    void insert(Huoban huoban);
 }

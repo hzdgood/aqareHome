@@ -7,13 +7,11 @@ import java.util.List;
 
 @Repository
 public interface ProductMapper {
-    List<Product> select(String code);
+    List<Product> select();
 
     void insert(Product Product);
 
     void update(Product Product);
 
     void delete(Integer id);
-
-    void deleteAll(List<Integer> ids);
 }

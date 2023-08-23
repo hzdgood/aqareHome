@@ -27,30 +27,16 @@ public class ProductExcel {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
-                        if (j == 0) {
-                            Product.setItemId(value);
-                        } else if (j == 1) {
+                        if (j == 1) {
                             Product.setName(value);
-                        } else if (j == 2) {
-                            Product.setRealName(value);
                         } else if (j == 3) {
                             Product.setCode(value);
-                        } else if (j == 4) {
-                            Product.setScanCode(value);
-                        } else if (j == 5) {
-                            Product.setBomType(value);
                         } else if (j == 6) {
                             Product.setClassification(value);
                         } else if (j == 7) {
                             Product.setShipType(value);
-                        } else if (j == 8) {
-                            Product.setRepairPrice(value);
-                        } else if (j == 9) {
-                            Product.setPurchasePrice(value);
                         } else if (j == 10) {
                             Product.setPrice(value);
-                        } else if (j == 11) {
-                            Product.setBrand(value);
                         }
                     }
                 }

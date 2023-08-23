@@ -1,12 +1,10 @@
 package com.yunqi.common.entity;
 
-import java.util.Date;
-
-public class Logging {
+public class Tech {
     private Integer id;
     private String name;
-    private String info;
-    private Date date;
+    private String telephone;
+    private String status;
 
     public Integer getId() {
         return id;
@@ -24,19 +22,19 @@ public class Logging {
         this.name = name;
     }
 
-    public String getInfo() {
-        return info;
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
-    public Date getDate() {
-        return date;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

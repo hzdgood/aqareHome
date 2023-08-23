@@ -21,8 +21,6 @@ public class SchemeExcel {
             Sheet sheet = workbook.getSheetAt(0);
             int lastRowNum = sheet.getLastRowNum();
             List<Scheme> list = new ArrayList<Scheme>();
-            String CustomerName = "";
-            String telephone = "";
             for (int i = 2; i <= lastRowNum; i++) {
                 Scheme scheme = new Scheme();
                 Row row = sheet.getRow(i);
@@ -31,34 +29,8 @@ public class SchemeExcel {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
-                        // String saleMoney = "";
-                        if (j == 0) {
-                            scheme.setOrderNumber(value);
-                        } else if (j == 3) {
-                            CustomerName = value;
-                            scheme.setCustomerName(value);
-                        } else if (j == 4) {
-                            telephone = value;
-                            scheme.setTelephone(value);
-                        } else if (j == 5) {
-                            scheme.setProjectName(CustomerName + telephone);
-                        } else if (j == 12) {
-                            scheme.setProductName(value);
-                        } else if (j == 14) {
-                            value = value.replaceAll("\t", ""); // 空格不判断
-                            scheme.setProductCode(value);
-                        } else if (j == 15) {
+                        if (j == 15) {
                             scheme.setNumber(value);
-                        } else if (j == 16) {
-                            scheme.setMoney(value);
-                        } else if (j == 20) {
-                            if (value.equals("") || value.equals("0.00")) {
-                                scheme.setYesNoFee("0");
-                                scheme.setServiceFee("0.00");
-                            } else {
-                                scheme.setYesNoFee("1");
-                                scheme.setServiceFee("0.25");
-                            }
                         }
                     }
                 }
@@ -85,28 +57,17 @@ public class SchemeExcel {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
-                        if (j == 0) {
-                            Scheme.setItemId(value);
-                        } else if (j == 1) {
+                        if (j == 1) {
                             Scheme.setProjectId(value); //项目
                         } else if (j == 2) {
                             Scheme.setProductId(value);//产品
-                        } else if (j == 3) {
-                            Scheme.setSchemeId(value);//方案
-                        } else if (j == 4) {
-                            Scheme.setContractQuantity(value); //合同数量
-                        } else if (j == 5) {
+                        }
+                        if (j == 5) {
                             Scheme.setNumber(value);
-                        } else if (j == 6) {
-                            Scheme.setMoney(value);
-                        } else if (j == 7) {
-                            Scheme.setYesNoFee(value);
-                        } else if (j == 8) {
-                            Scheme.setServiceFee(value);
                         }
                     }
                 }
-                schemeService.insertToExcel(Scheme);
+                schemeService.insert(Scheme);
             }
         } catch (Exception e) {
             e.printStackTrace();

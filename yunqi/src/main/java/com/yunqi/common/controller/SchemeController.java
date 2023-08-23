@@ -22,15 +22,21 @@ public class SchemeController {
 
     @CrossOrigin
     @RequestMapping("/insert")
-    public void insert(Scheme Scheme) { SchemeService.insert(Scheme); }
+    public void insert(Scheme Scheme) {
+        SchemeService.insert(Scheme);
+    }
 
     @CrossOrigin
     @RequestMapping("/update")
-    public void update(Scheme Scheme) { SchemeService.update(Scheme); }
+    public void update(Scheme Scheme) {
+        SchemeService.update(Scheme);
+    }
 
     @CrossOrigin
     @RequestMapping("/delete")
-    public void delete(Integer id) { SchemeService.delete(id); }
+    public void delete(Integer id) {
+        SchemeService.delete(id);
+    }
 
     @PostMapping("/upload")
     @CrossOrigin

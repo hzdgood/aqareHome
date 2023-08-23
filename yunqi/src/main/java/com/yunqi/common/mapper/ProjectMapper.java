@@ -7,18 +7,11 @@ import java.util.List;
 
 @Repository
 public interface ProjectMapper {
-
-    List<Project> select(String code);
-
-    List<Project> currentData();
+    List<Project> select();
 
     void insert(Project project);
 
     void update(Project project);
 
-    void deleteAll(List<Integer> ids);
-
     void delete(Integer id);
-
-    void deleteData();
 }

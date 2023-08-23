@@ -9,7 +9,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -52,29 +55,28 @@ public class HttpUtil {
         }
     }
 
-    public static void workRequest(String temp, String WX_TOKEN) {
-        try {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(WX_TOKEN);
-            httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
-            Map<String, Object> param = new HashMap<String, Object>();
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("content", temp);
-            param.put("msgtype", "markdown");
-            param.put("markdown", map);
-            String p = JSON.toJSONString(param);
-            StringEntity entity = new StringEntity(p, "utf-8");
-            httpPost.setEntity(entity);
-            HttpResponse response = httpClient.execute(httpPost);
-            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-                EntityUtils.toString(response.getEntity(), "UTF-8");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.printf("workRequest" + WX_TOKEN);
-        }
-    }
-
+//    public static void workRequest(String temp, String WX_TOKEN) {
+//        try {
+//            HttpClient httpClient = new DefaultHttpClient();
+//            HttpPost httpPost = new HttpPost(WX_TOKEN);
+//            httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
+//            Map<String, Object> param = new HashMap<String, Object>();
+//            Map<String, String> map = new HashMap<String, String>();
+//            map.put("content", temp);
+//            param.put("msgtype", "markdown");
+//            param.put("markdown", map);
+//            String p = JSON.toJSONString(param);
+//            StringEntity entity = new StringEntity(p, "utf-8");
+//            httpPost.setEntity(entity);
+//            HttpResponse response = httpClient.execute(httpPost);
+//            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+//                EntityUtils.toString(response.getEntity(), "UTF-8");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            System.out.printf("workRequest" + WX_TOKEN);
+//        }
+//    }
 //    public static String mediaPost(String requestUrl, String filename) throws IOException {
 //        String boundary = UUID.randomUUID().toString().replace("-", "");
 //        HttpPost post = new HttpPost(requestUrl);
