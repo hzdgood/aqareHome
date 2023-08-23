@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.common.mapper.LoginMapper">
+    <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Login">
+        <result column="id" jdbcType="INTEGER" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+    </resultMap>
+
+    <select id="select" resultType="com.yunqi.common.entity.Login">
+        select *
+        from Login
+    </select>
+
+    <insert id="insert" parameterType="com.yunqi.common.entity.Login" useGeneratedKeys="true" keyProperty="id">
+        insert into Login(username, password) value ( #{username}, #{password} )
+    </insert>
+
+    <delete id="delete" parameterType="com.yunqi.common.entity.Login">
+
+    </delete>
+</mapper>

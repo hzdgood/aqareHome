@@ -4,30 +4,11 @@
 <mapper namespace="com.yunqi.common.mapper.ProjectMapper">
     <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Project">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
-        <result column="code" jdbcType="VARCHAR" property="code"/>
-        <result column="addPayReq" jdbcType="VARCHAR" property="addPayReq"/>
-        <result column="task" jdbcType="VARCHAR" property="task"/>
-        <result column="progress" jdbcType="VARCHAR" property="progress"/>
-        <result column="saleConfirm" jdbcType="VARCHAR" property="saleConfirm"/>
-        <result column="end" jdbcType="VARCHAR" property="end"/>
         <result column="customer" jdbcType="VARCHAR" property="customer"/>
         <result column="projectId" jdbcType="VARCHAR" property="projectId"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
-        <result column="department" jdbcType="VARCHAR" property="department"/>
         <result column="sales" jdbcType="VARCHAR" property="sales"/>
-        <result column="techId" jdbcType="VARCHAR" property="techId"/>
-        <result column="projectType" jdbcType="VARCHAR" property="projectType"/>
-        <result column="designer" jdbcType="VARCHAR" property="designer"/>
-        <result column="intention" jdbcType="VARCHAR" property="intention"/>
-        <result column="track" jdbcType="VARCHAR" property="track"/>
-        <result column="preferential" jdbcType="VARCHAR" property="preferential"/>
-        <result column="totalPrice" jdbcType="VARCHAR" property="totalPrice"/>
-        <result column="fullPrice" jdbcType="VARCHAR" property="fullPrice"/>
-        <result column="totalAmount" jdbcType="VARCHAR" property="totalAmount"/>
-        <result column="mainProject" jdbcType="VARCHAR" property="mainProject"/>
-        <result column="groupID" jdbcType="VARCHAR" property="groupID"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
@@ -36,33 +17,11 @@
     </resultMap>
 
     <select id="select" resultType="com.yunqi.common.entity.Project">
-        select *
-        from project
-        where 1 = 1
-          and code = #{code}
-    </select>
 
-    <select id="currentData" resultType="com.yunqi.common.entity.Project">
-        select *
-        from project
-        where 1 = 1
-          and to_days(createTime) = to_days(now())
-        order by department
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
-        insert into project (itemId, code, task, addPayReq, progress, saleConfirm,
-                             end, customer, projectId, name, telephone,
-                             department, sales, techId, projectType, designer,
-                             intention, track, preferential, totalPrice, fullPrice,
-                             totalAmount, mainProject, groupID, address,
-                             createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{code}, #{task}, #{addPayReq}, #{progress}, #{saleConfirm},
-                #{end}, #{customer}, #{projectId}, #{name}, #{telephone},
-                #{department}, #{sales}, #{techId}, #{projectType}, #{designer},
-                #{intention}, #{track}, #{preferential}, #{totalPrice}, #{fullPrice},
-                #{totalAmount}, #{mainProject}, #{groupID}, #{address},
-                #{createName}, NOW(), #{updateName}, NOW())
+
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Project">
@@ -70,22 +29,6 @@
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.Project">
-        delete
-        from project
-        where 1 = 1
-          and id = #{id}
-    </delete>
 
-    <delete id="deleteAll" parameterType="com.yunqi.common.entity.Project">
-        delete from project where id in
-        <foreach collection="ids" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
-    </delete>
-
-    <delete id="deleteData" parameterType="com.yunqi.common.entity.Project">
-        delete
-        from project
-        where 1 = 1
     </delete>
 </mapper>
