@@ -27,15 +27,15 @@ public class ProductExcel {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
-                        if (j == 1) {
+                        if (j == 0) {
                             Product.setName(value);
-                        } else if (j == 3) {
+                        } else if (j == 1) {
                             Product.setCode(value);
-                        } else if (j == 6) {
+                        } else if (j == 2) {
                             Product.setClassification(value);
-                        } else if (j == 7) {
+                        } else if (j == 3) {
                             Product.setShipType(value);
-                        } else if (j == 10) {
+                        } else if (j == 4) {
                             Product.setPrice(value);
                         }
                     }
