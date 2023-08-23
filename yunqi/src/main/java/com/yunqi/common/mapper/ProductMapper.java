@@ -9,6 +9,8 @@ import java.util.List;
 public interface ProductMapper {
     List<Product> select();
 
+    List<Product> selectCode(String code);
+
     void insert(Product Product);
 
     void update(Product Product);

@@ -9,6 +9,8 @@ import java.util.List;
 public interface ProjectMapper {
     List<Project> select();
 
+    List<Project> selectHunID(String itemId);
+
     void insert(Project project);
 
     void update(Project project);

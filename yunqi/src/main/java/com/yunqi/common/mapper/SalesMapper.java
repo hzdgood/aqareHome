@@ -10,6 +10,8 @@ import java.util.List;
 public interface SalesMapper {
     List<Sales> select();
 
+    List<Sales> selectName(String name);
+
     void insert(Sales Sales);
 
     void update(Sales scheme);

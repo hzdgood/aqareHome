@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface TechMapper {
     List<Tech> select();
+    List<Tech> selectName(String name);
 
     void insert(Tech Tech);
 
