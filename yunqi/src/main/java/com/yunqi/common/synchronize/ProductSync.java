@@ -19,16 +19,16 @@ public class ProductSync {
         this.ProductService = ProductService;
     }
 
-    @CrossOrigin
-    @RequestMapping("/product")
-    public void synchronize(Product Product) {
-        String code = Product.getCode();
-        List<Product> list = ProductService.select(code);
-        if (list.size() == 0) {
-            ProductService.insert(Product);
-        } else {
-            ProductService.update(Product);
-            ProductService.insert(Product);
-        }
-    }
+//    @CrossOrigin
+//    @RequestMapping("/product")
+//    public void synchronize(Product Product) {
+//        String code = Product.getCode();
+//        List<Product> list = ProductService.select(code);
+//        if (list.size() == 0) {
+//            ProductService.insert(Product);
+//        } else {
+//            ProductService.update(Product);
+//            ProductService.insert(Product);
+//        }
+//    }
 }

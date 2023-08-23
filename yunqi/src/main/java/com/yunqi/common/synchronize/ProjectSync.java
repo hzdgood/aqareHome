@@ -19,16 +19,16 @@ public class ProjectSync {
         this.ProjectService = ProjectService;
     }
 
-    @CrossOrigin
-    @RequestMapping("/project")
-    public void synchronize(Project Project) {
-        String code = Project.getCode();
-        List<Project> list = ProjectService.select(code);
-        if (list.size() == 0) {
-            ProjectService.insert(Project);
-        } else {
-            ProjectService.update(Project);
-            ProjectService.insert(Project);
-        }
-    }
+//    @CrossOrigin
+//    @RequestMapping("/project")
+//    public void synchronize(Project Project) {
+//        String code = Project.getCode();
+//        List<Project> list = ProjectService.select(code);
+//        if (list.size() == 0) {
+//            ProjectService.insert(Project);
+//        } else {
+//            ProjectService.update(Project);
+//            ProjectService.insert(Project);
+//        }
+//    }
 }
