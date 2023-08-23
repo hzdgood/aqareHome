@@ -31,7 +31,10 @@ CREATE TABLE `project`
     `updateName`   varchar(45) DEFAULT NULL,
     `updateTime`   datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 125
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE TABLE `product`
 (
@@ -53,7 +56,10 @@ CREATE TABLE `product`
     `updateName`     varchar(45) DEFAULT NULL,
     `updateTime`     datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4430 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 4430
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE TABLE `scheme`
 (
@@ -76,7 +82,10 @@ CREATE TABLE `scheme`
     `updateName`       varchar(45) DEFAULT NULL,
     `updateTime`       datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=53822 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 53822
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE TABLE `worksheet`
 (
@@ -98,7 +107,10 @@ CREATE TABLE `worksheet`
     `updateName`   varchar(45) DEFAULT NULL,
     `updateTime`   datetime    DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=327 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 327
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
 
 CREATE TABLE `huoban`
 (
@@ -107,7 +119,10 @@ CREATE TABLE `huoban`
     `date`    datetime    DEFAULT NULL,
     `expired` varchar(45) DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 24
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
 
 
 CREATE TABLE `log`
@@ -118,4 +133,7 @@ CREATE TABLE `log`
     `date`   datetime     DEFAULT NULL,
     `info`   varchar(200) DEFAULT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 20
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
