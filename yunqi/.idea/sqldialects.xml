@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/resources/yunqi.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapping/HuobanMapping.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapping/LoggingMapping.xml" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/mapping/ProductMapping.xml" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/yunqi.sql" dialect="MySQL" />
+    <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>
