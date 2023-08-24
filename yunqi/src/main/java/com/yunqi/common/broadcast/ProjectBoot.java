@@ -1,9 +1,9 @@
 package com.yunqi.common.broadcast;
 
+import com.yunqi.common.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import com.yunqi.common.service.*;
 import org.springframework.scheduling.annotation.Scheduled;
 
 @Configuration // 标记配置类

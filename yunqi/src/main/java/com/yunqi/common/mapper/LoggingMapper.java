@@ -8,5 +8,6 @@ import java.util.List;
 @Repository
 public interface LoggingMapper {
     List<Logging> select();
+
     void insert(Logging Logging);
 }

@@ -1,14 +1,6 @@
 package com.yunqi.common.utils;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -16,8 +8,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.Map;
 
 public class HttpUtil {
     public static String dataPost(String requestUrl, JSONObject obj) {

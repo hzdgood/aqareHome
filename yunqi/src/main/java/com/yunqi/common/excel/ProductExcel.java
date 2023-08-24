@@ -11,6 +11,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Date;
 
 public class ProductExcel {
     public static void productExcel(File file, ProductService ProductService) throws FileNotFoundException {
@@ -40,6 +41,8 @@ public class ProductExcel {
                         }
                     }
                 }
+                Product.setCreateName("汇社");
+                Product.setCreateTime(new Date());
                 ProductService.insert(Product);
             }
         } catch (Exception e) {

@@ -1,16 +1,9 @@
 package com.yunqi.common.synchronize;
 
-import com.yunqi.common.entity.WorkSheet;
 import com.yunqi.common.service.WorkSheetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/synchronize")

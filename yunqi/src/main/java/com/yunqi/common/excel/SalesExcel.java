@@ -29,9 +29,9 @@ public class SalesExcel {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 0) {
                             Sales.setName(value);
-                        } else if (j == 1){
+                        } else if (j == 1) {
                             Sales.setTelephone(value);
-                        } else if (j == 2){
+                        } else if (j == 2) {
                             Sales.setStatus(value);
                         }
                     }

@@ -17,11 +17,13 @@
     </resultMap>
 
     <select id="select" resultType="com.yunqi.common.entity.Product">
-
+        select * from product
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
-
+        insert into product (name, code, classification, shipType, price) value (
+            #{name}, #{code}, #{classification}, #{shipType}, #{price}
+        )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Product">

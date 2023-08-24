@@ -7,6 +7,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,9 +30,9 @@ public class TechExcel {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 0) {
                             Tech.setName(value);
-                        } else if (j == 1){
+                        } else if (j == 1) {
                             Tech.setTelephone(value);
-                        } else if (j == 2){
+                        } else if (j == 2) {
                             Tech.setStatus(value);
                         }
                     }

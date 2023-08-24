@@ -4,30 +4,17 @@ import java.util.Date;
 
 public class WorkSheet {
     private Integer id;
-    private String itemId;
-    private String custom; // 用户
-    private String technology; // 上门技术
-    private String actualWork; // 实际工时
-    private Date orderDate;  // 订单日期
+    private Integer projectId;
+    private String techIds;
     private Date dateOfVisit; // 上门日期
-    private Date completeTime; // 完成时间
-    private String completeImage; // 完成照片
-    private String signInImage; //签到水印
-    private String handSignIn; //手工签到
-    private Date signInTime; // 签到时间
-    private String orderStr;
-    private String dateOfStr;
-    private String completeStr;
-    private String signInStr;
-    private String createStr;
-    private String updateStr;
-    private String workType; // 工单类型
-    private String workStatus; //工单状态
-    private String userName; // 技术
-    private String engName; // 技术英文
-    private String count; //数量--视图
-    private String area; // 区域
-    private String restDay; //技术休息日
+    private Date orderDate;  // 订单日期
+    private String type; //类型
+    private String status; //状态
+    private String actualWork; // 工时
+    private String watermark; //水印图片
+    private String signImg; //签字图片
+    private Date signTime; //签到时间
+    private Date writeTime; //核销时间
     private String disabled; //有效
     private String createName;
     private Date createTime;
@@ -42,44 +29,20 @@ public class WorkSheet {
         this.id = id;
     }
 
-    public String getItemId() {
-        return itemId;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
-    public String getCustom() {
-        return custom;
+    public String getTechIds() {
+        return techIds;
     }
 
-    public void setCustom(String custom) {
-        this.custom = custom;
-    }
-
-    public String getTechnology() {
-        return technology;
-    }
-
-    public void setTechnology(String technology) {
-        this.technology = technology;
-    }
-
-    public String getActualWork() {
-        return actualWork;
-    }
-
-    public void setActualWork(String actualWork) {
-        this.actualWork = actualWork;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setTechIds(String techIds) {
+        this.techIds = techIds;
     }
 
     public Date getDateOfVisit() {
@@ -90,148 +53,68 @@ public class WorkSheet {
         this.dateOfVisit = dateOfVisit;
     }
 
-    public Date getCompleteTime() {
-        return completeTime;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setCompleteTime(Date completeTime) {
-        this.completeTime = completeTime;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
-    public String getCompleteImage() {
-        return completeImage;
+    public String getType() {
+        return type;
     }
 
-    public void setCompleteImage(String completeImage) {
-        this.completeImage = completeImage;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getSignInImage() {
-        return signInImage;
+    public String getStatus() {
+        return status;
     }
 
-    public void setSignInImage(String signInImage) {
-        this.signInImage = signInImage;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public String getHandSignIn() {
-        return handSignIn;
+    public String getActualWork() {
+        return actualWork;
     }
 
-    public void setHandSignIn(String handSignIn) {
-        this.handSignIn = handSignIn;
+    public void setActualWork(String actualWork) {
+        this.actualWork = actualWork;
     }
 
-    public Date getSignInTime() {
-        return signInTime;
+    public String getWatermark() {
+        return watermark;
     }
 
-    public void setSignInTime(Date signInTime) {
-        this.signInTime = signInTime;
+    public void setWatermark(String watermark) {
+        this.watermark = watermark;
     }
 
-    public String getOrderStr() {
-        return orderStr;
+    public String getSignImg() {
+        return signImg;
     }
 
-    public void setOrderStr(String orderStr) {
-        this.orderStr = orderStr;
+    public void setSignImg(String signImg) {
+        this.signImg = signImg;
     }
 
-    public String getDateOfStr() {
-        return dateOfStr;
+    public Date getSignTime() {
+        return signTime;
     }
 
-    public void setDateOfStr(String dateOfStr) {
-        this.dateOfStr = dateOfStr;
+    public void setSignTime(Date signTime) {
+        this.signTime = signTime;
     }
 
-    public String getCompleteStr() {
-        return completeStr;
+    public Date getWriteTime() {
+        return writeTime;
     }
 
-    public void setCompleteStr(String completeStr) {
-        this.completeStr = completeStr;
-    }
-
-    public String getSignInStr() {
-        return signInStr;
-    }
-
-    public void setSignInStr(String signInStr) {
-        this.signInStr = signInStr;
-    }
-
-    public String getCreateStr() {
-        return createStr;
-    }
-
-    public void setCreateStr(String createStr) {
-        this.createStr = createStr;
-    }
-
-    public String getUpdateStr() {
-        return updateStr;
-    }
-
-    public void setUpdateStr(String updateStr) {
-        this.updateStr = updateStr;
-    }
-
-    public String getWorkType() {
-        return workType;
-    }
-
-    public void setWorkType(String workType) {
-        this.workType = workType;
-    }
-
-    public String getWorkStatus() {
-        return workStatus;
-    }
-
-    public void setWorkStatus(String workStatus) {
-        this.workStatus = workStatus;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getEngName() {
-        return engName;
-    }
-
-    public void setEngName(String engName) {
-        this.engName = engName;
-    }
-
-    public String getCount() {
-        return count;
-    }
-
-    public void setCount(String count) {
-        this.count = count;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getRestDay() {
-        return restDay;
-    }
-
-    public void setRestDay(String restDay) {
-        this.restDay = restDay;
+    public void setWriteTime(Date writeTime) {
+        this.writeTime = writeTime;
     }
 
     public String getDisabled() {

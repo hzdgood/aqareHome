@@ -1,7 +1,9 @@
 CREATE TABLE `project`
 (
     `id`           int NOT NULL AUTO_INCREMENT,
+    `salesId`      int NOT NULL,
     `name`         varchar(45) DEFAULT NULL,
+    `telephone`    varchar(45) DEFAULT NULL,
     `address`      varchar(45) DEFAULT NULL,
     `createName`   varchar(45) DEFAULT NULL,
     `createTime`   datetime    DEFAULT NULL,
@@ -17,6 +19,10 @@ CREATE TABLE `product`
 (
     `id`             int NOT NULL AUTO_INCREMENT,
     `name`           varchar(45) DEFAULT NULL,
+    `code`           varchar(45) DEFAULT NULL,
+    `classification` varchar(45) DEFAULT NULL,
+    `shipType`       varchar(45) DEFAULT NULL,
+    `price`          varchar(45) DEFAULT NULL,
     `disabled`       varchar(45) DEFAULT NULL,
     `createName`     varchar(45) DEFAULT NULL,
     `createTime`     datetime    DEFAULT NULL,
@@ -31,6 +37,10 @@ CREATE TABLE `product`
 CREATE TABLE `scheme`
 (
     `id`               int NOT NULL AUTO_INCREMENT,
+    `projectId`        int NOT NULL,
+    `productId`        int NOT NULL,
+    `number`           int NOT NULL,
+    `serviceFee`       varchar(45) DEFAULT NULL,
     `createName`       varchar(45) DEFAULT NULL,
     `createTime`       datetime    DEFAULT NULL,
     `updateName`       varchar(45) DEFAULT NULL,
@@ -44,6 +54,17 @@ CREATE TABLE `scheme`
 CREATE TABLE `worksheet`
 (
     `id`           int NOT NULL AUTO_INCREMENT,
+    `projectId`    int NOT NULL,
+    `techIds`      varchar(45) NOT NULL,
+    `dateOfVisit`  datetime    DEFAULT NULL,
+    `orderDate`    datetime    DEFAULT NULL,
+    `type`         varchar(45) DEFAULT NULL,
+    `status`       varchar(45) DEFAULT NULL,
+    `actualWork`   varchar(45) DEFAULT NULL,
+    `watermark`    varchar(45) DEFAULT NULL,
+    `signImg`      varchar(45) DEFAULT NULL,
+    `signTime`    datetime    DEFAULT NULL,
+    `writeTime`   datetime    DEFAULT NULL,
     `disabled`     varchar(45) DEFAULT NULL,
     `createName`   varchar(45) DEFAULT NULL,
     `createTime`   datetime    DEFAULT NULL,

@@ -7,9 +7,9 @@ public class Product {
     private String name; // 产品名称
     private String code; //商品条码
     private String classification; //类别
-    private String shipType;// 发货类型
+    private String shipType;// 类型
     private String price; //产品价格
-    private String disabled; //禁用
+    private String disabled; //有效
     private String createName;
     private Date createTime;
     private String updateName;

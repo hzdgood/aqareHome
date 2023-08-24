@@ -10,12 +10,16 @@ import java.util.List;
 @Service
 public class LoggingService {
     private LoggingMapper LoggingMapper;
+
     @Autowired
     public void setMapper(LoggingMapper LoggingMapper) {
         this.LoggingMapper = LoggingMapper;
     }
 
-    public List<Logging> select() { return LoggingMapper.select(); }
+    public List<Logging> select() {
+        return LoggingMapper.select();
+    }
+
     public void insert(Logging Logging) {
         LoggingMapper.insert(Logging);
     }

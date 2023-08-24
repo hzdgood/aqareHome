@@ -3,9 +3,6 @@ package com.yunqi.common.utils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.Base64;
 
 public class FileUtil {
     public static String fileSave(MultipartFile file, String path) {
