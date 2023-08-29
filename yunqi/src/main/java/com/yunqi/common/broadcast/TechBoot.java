@@ -16,9 +16,9 @@ public class TechBoot {
     @Autowired
     private TechService TechService;
 
-    @Scheduled(cron = "0 00 21 * * ?")
+    // @Scheduled(cron = "0 48 14 * * ?")
     private void uploadExcel() {
-        File file = new File("");
+        File file = new File("D:\\download\\技术人员.xlsx");
         try {
             TechExcel.TechExcel(file, TechService);
         } catch (FileNotFoundException e) {

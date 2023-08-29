@@ -38,11 +38,11 @@ public class ProductExcel {
                             Product.setShipType(value);
                         } else if (j == 4) {
                             Product.setPrice(value);
+                        } else if (j == 5) {
+                            Product.setBrand(value);
                         }
                     }
                 }
-                Product.setCreateName("汇社");
-                Product.setCreateTime(new Date());
                 ProductService.insert(Product);
             }
         } catch (Exception e) {

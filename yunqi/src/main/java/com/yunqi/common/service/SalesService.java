@@ -20,6 +20,10 @@ public class SalesService {
         return SalesMapper.select();
     }
 
+    public List<Sales> selectName(String name) {
+        return SalesMapper.selectName(name);
+    }
+
     public void insert(Sales Sales) {
         SalesMapper.insert(Sales);
     }

@@ -4,18 +4,32 @@
 <mapper namespace="com.yunqi.common.mapper.SchemeMapper">
     <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Scheme">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="serviceFee" jdbcType="VARCHAR" property="serviceFee"/>
+        <result column="projectId" jdbcType="INTEGER" property="projectId"/>
+        <result column="productId" jdbcType="INTEGER" property="productId"/>
+        <result column="number" jdbcType="VARCHAR" property="number"/>
+        <result column="totalShip" jdbcType="VARCHAR" property="totalShip"/>
+        <result column="installNumber" jdbcType="VARCHAR" property="installNumber"/>
+        <result column="debugNumber" jdbcType="VARCHAR" property="debugNumber"/>
+        <result column="notInstalled" jdbcType="VARCHAR" property="notInstalled"/>
+        <result column="unregulated" jdbcType="VARCHAR" property="unregulated"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
         <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
+
+    <select id="select" resultType="com.yunqi.common.entity.Scheme">
+        select *
+        from scheme
+    </select>
+
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-
-    </insert>
-
-    <insert id="insertToExcel" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-
+        insert into scheme (projectId, productId, number, totalShip,
+            installNumber, debugNumber, notInstalled, unregulated
+        ) value (
+            #{projectId}, #{productId}, #{number}, #{totalShip},
+            #{installNumber}, #{debugNumber}, #{notInstalled}, #{unregulated}
+        )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Scheme">

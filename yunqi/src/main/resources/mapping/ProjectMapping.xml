@@ -4,12 +4,19 @@
 <mapper namespace="com.yunqi.common.mapper.ProjectMapper">
     <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Project">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="customer" jdbcType="VARCHAR" property="customer"/>
-        <result column="projectId" jdbcType="VARCHAR" property="projectId"/>
+        <result column="saleId" jdbcType="VARCHAR" property="saleId"/>
+        <result column="techID" jdbcType="VARCHAR" property="techID"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
-        <result column="sales" jdbcType="VARCHAR" property="sales"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="node" jdbcType="VARCHAR" property="node"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="houseState" jdbcType="VARCHAR" property="houseState"/>
+        <result column="situation" jdbcType="VARCHAR" property="situation"/>
+        <result column="village" jdbcType="VARCHAR" property="village"/>
+        <result column="schedule" jdbcType="VARCHAR" property="schedule"/>
+        <result column="region" jdbcType="VARCHAR" property="region"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -17,11 +24,22 @@
     </resultMap>
 
     <select id="select" resultType="com.yunqi.common.entity.Project">
+        select * from project
+    </select>
 
+    <select id="selectName" resultType="com.yunqi.common.entity.Project">
+        select * from project where name = #{name}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
-
+        insert into project (saleId, techID, name, telephone,
+            address, type, node, status,
+            houseState, situation, village, schedule, region)
+            value (
+                   #{saleId}, #{techID}, #{name}, #{telephone},
+                   #{address}, #{type}, #{node}, #{status},
+                   #{houseState}, #{situation}, #{village}, #{schedule}, #{region}
+            )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Project">

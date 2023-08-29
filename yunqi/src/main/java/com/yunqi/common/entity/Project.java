@@ -4,10 +4,19 @@ import java.util.Date;
 
 public class Project {
     private Integer id;
-    private String salesId; //销售
+    private Integer saleId; //销售
+    private Integer techID; //技术
     private String name;// 姓名
     private String telephone;// 电话
     private String address; // 地址
+    private String type; //类型
+    private String node; //阶段
+    private String status; //状态
+    private String houseState; //房型
+    private String situation; //情况
+    private String village; //小区
+    private String schedule; //进度
+    private String region; //区域
     private String createName;
     private Date createTime;
     private String updateName;
@@ -21,12 +30,20 @@ public class Project {
         this.id = id;
     }
 
-    public String getSalesId() {
-        return salesId;
+    public Integer getSaleId() {
+        return saleId;
     }
 
-    public void setSalesId(String salesId) {
-        this.salesId = salesId;
+    public void setSaleId(Integer saleId) {
+        this.saleId = saleId;
+    }
+
+    public Integer getTechID() {
+        return techID;
+    }
+
+    public void setTechID(Integer techID) {
+        this.techID = techID;
     }
 
     public String getName() {
@@ -51,6 +68,70 @@ public class Project {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getNode() {
+        return node;
+    }
+
+    public void setNode(String node) {
+        this.node = node;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getHouseState() {
+        return houseState;
+    }
+
+    public void setHouseState(String houseState) {
+        this.houseState = houseState;
+    }
+
+    public String getSituation() {
+        return situation;
+    }
+
+    public void setSituation(String situation) {
+        this.situation = situation;
+    }
+
+    public String getVillage() {
+        return village;
+    }
+
+    public void setVillage(String village) {
+        this.village = village;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
     }
 
     public String getCreateName() {
@@ -83,5 +164,24 @@ public class Project {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "saleId=" + saleId +
+                ", techID=" + techID +
+                ", name='" + name + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", address='" + address + '\'' +
+                ", type='" + type + '\'' +
+                ", node='" + node + '\'' +
+                ", status='" + status + '\'' +
+                ", houseState='" + houseState + '\'' +
+                ", situation='" + situation + '\'' +
+                ", village='" + village + '\'' +
+                ", schedule='" + schedule + '\'' +
+                ", region='" + region + '\'' +
+                '}';
     }
 }

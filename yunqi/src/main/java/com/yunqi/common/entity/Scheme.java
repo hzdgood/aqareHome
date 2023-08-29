@@ -5,10 +5,14 @@ import java.util.Date;
 //用户方案
 public class Scheme {
     private Integer id;
-    private String projectId;
-    private String productId;
-    private String number; // 数量
-    private String serviceFee; // 服务费
+    private Integer projectId;
+    private Integer productId;
+    private String number; // 实际数量
+    private String totalShip; // 总发货数
+    private String installNumber; //总安装数
+    private String debugNumber; //总调试数
+    private String notInstalled; //未装
+    private String unregulated; //未调
     private String createName;
     private Date createTime;
     private String updateName;
@@ -22,19 +26,19 @@ public class Scheme {
         this.id = id;
     }
 
-    public String getProjectId() {
+    public Integer getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(String projectId) {
+    public void setProjectId(Integer projectId) {
         this.projectId = projectId;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -46,12 +50,45 @@ public class Scheme {
         this.number = number;
     }
 
-    public String getServiceFee() {
-        return serviceFee;
+
+    public String getTotalShip() {
+        return totalShip;
     }
 
-    public void setServiceFee(String serviceFee) {
-        this.serviceFee = serviceFee;
+    public void setTotalShip(String totalShip) {
+        this.totalShip = totalShip;
+    }
+
+    public String getInstallNumber() {
+        return installNumber;
+    }
+
+    public void setInstallNumber(String installNumber) {
+        this.installNumber = installNumber;
+    }
+
+    public String getDebugNumber() {
+        return debugNumber;
+    }
+
+    public void setDebugNumber(String debugNumber) {
+        this.debugNumber = debugNumber;
+    }
+
+    public String getNotInstalled() {
+        return notInstalled;
+    }
+
+    public void setNotInstalled(String notInstalled) {
+        this.notInstalled = notInstalled;
+    }
+
+    public String getUnregulated() {
+        return unregulated;
+    }
+
+    public void setUnregulated(String unregulated) {
+        this.unregulated = unregulated;
     }
 
     public String getCreateName() {

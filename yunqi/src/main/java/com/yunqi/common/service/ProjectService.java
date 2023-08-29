@@ -20,6 +20,10 @@ public class ProjectService {
         return projectMapper.select();
     }
 
+    public List<Project> selectName(String name) {
+        return projectMapper.selectName(name);
+    }
+
     public void insert(Project project) {
         projectMapper.insert(project);
     }

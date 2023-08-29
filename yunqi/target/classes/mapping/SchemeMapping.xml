@@ -4,38 +4,32 @@
 <mapper namespace="com.yunqi.common.mapper.SchemeMapper">
     <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Scheme">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
-        <result column="projectId" jdbcType="VARCHAR" property="projectId"/>
-        <result column="productId" jdbcType="VARCHAR" property="productId"/>
-        <result column="contractQuantity" jdbcType="VARCHAR" property="contractQuantity"/>
-        <result column="orderNumber" jdbcType="VARCHAR" property="orderNumber"/>
-        <result column="customerName" jdbcType="VARCHAR" property="customerName"/>
-        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
-        <result column="productName" jdbcType="VARCHAR" property="productName"/>
-        <result column="productCode" jdbcType="VARCHAR" property="productCode"/>
+        <result column="projectId" jdbcType="INTEGER" property="projectId"/>
+        <result column="productId" jdbcType="INTEGER" property="productId"/>
         <result column="number" jdbcType="VARCHAR" property="number"/>
-        <result column="money" jdbcType="VARCHAR" property="money"/>
-        <result column="yesNoFee" jdbcType="VARCHAR" property="yesNoFee"/>
-        <result column="serviceFee" jdbcType="VARCHAR" property="serviceFee"/>
+        <result column="totalShip" jdbcType="VARCHAR" property="totalShip"/>
+        <result column="installNumber" jdbcType="VARCHAR" property="installNumber"/>
+        <result column="debugNumber" jdbcType="VARCHAR" property="debugNumber"/>
+        <result column="notInstalled" jdbcType="VARCHAR" property="notInstalled"/>
+        <result column="unregulated" jdbcType="VARCHAR" property="unregulated"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
         <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
-    <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-        insert into scheme (orderNumber, customerName, telephone, productName, productCode, number, money, yesNoFee,
-                            serviceFee, createName, createTime, updateName, updateTime)
-        values (#{orderNumber}, #{customerName}, #{telephone}, #{productName}, #{productCode}, #{number}, #{money},
-                #{yesNoFee}, #{serviceFee}, #{createName}, NOW(), #{updateName}, NOW())
-    </insert>
 
-    <insert id="insertToExcel" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-        insert into scheme (itemId, projectId, productId, contractQuantity,
-                            number, money, yesNoFee, serviceFee,
-                            createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{projectId}, #{productId}, #{contractQuantity},
-                #{number}, #{money}, #{yesNoFee}, #{serviceFee},
-                #{createName}, NOW(), #{updateName}, NOW())
+    <select id="select" resultType="com.yunqi.common.entity.Scheme">
+        select *
+        from scheme
+    </select>
+
+    <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        insert into scheme (projectId, productId, number, totalShip,
+            installNumber, debugNumber, notInstalled, unregulated
+        ) value (
+            #{projectId}, #{productId}, #{number}, #{totalShip},
+            #{installNumber}, #{debugNumber}, #{notInstalled}, #{unregulated}
+        )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Scheme">
@@ -44,21 +38,6 @@
 
 
     <delete id="delete" parameterType="com.yunqi.common.entity.Scheme">
-        delete
-        from scheme
-        where id = #{id}
-    </delete>
 
-    <delete id="deleteAll" parameterType="com.yunqi.common.entity.Scheme">
-        delete from scheme where id in
-        <foreach collection="ids" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
-    </delete>
-
-    <delete id="deleteData" parameterType="com.yunqi.common.entity.Scheme">
-        delete
-        from scheme
-        where 1 = 1
     </delete>
 </mapper>

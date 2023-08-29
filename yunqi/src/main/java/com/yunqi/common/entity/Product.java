@@ -9,7 +9,7 @@ public class Product {
     private String classification; //类别
     private String shipType;// 类型
     private String price; //产品价格
-    private String disabled; //有效
+    private String brand; //品牌
     private String createName;
     private Date createTime;
     private String updateName;
@@ -63,12 +63,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getDisabled() {
-        return disabled;
+    public String getBrand() {
+        return brand;
     }
 
-    public void setDisabled(String disabled) {
-        this.disabled = disabled;
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
     public String getCreateName() {

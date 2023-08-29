@@ -20,6 +20,10 @@ public class TechService {
         return TechMapper.select();
     }
 
+    public List<Tech> selectName(String name) {
+        return TechMapper.selectName(name);
+    }
+
     public void insert(Tech Tech) {
         TechMapper.insert(Tech);
     }

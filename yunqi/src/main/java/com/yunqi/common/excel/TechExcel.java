@@ -30,10 +30,6 @@ public class TechExcel {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 0) {
                             Tech.setName(value);
-                        } else if (j == 1) {
-                            Tech.setTelephone(value);
-                        } else if (j == 2) {
-                            Tech.setStatus(value);
                         }
                     }
                 }

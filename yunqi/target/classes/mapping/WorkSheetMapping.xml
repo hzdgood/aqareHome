@@ -4,21 +4,6 @@
 <mapper namespace="com.yunqi.common.mapper.WorkSheetMapper">
     <resultMap id="BaseResultMap" type="com.yunqi.common.entity.WorkSheet">
         <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
-        <result column="custom" jdbcType="VARCHAR" property="custom"/>
-        <result column="technology" jdbcType="VARCHAR" property="technology"/>
-        <result column="actualWork" jdbcType="VARCHAR" property="actualWork"/>
-        <result column="workType" jdbcType="VARCHAR" property="workType"/>
-        <result column="workStatus" jdbcType="VARCHAR" property="workStatus"/>
-        <result column="area" jdbcType="VARCHAR" property="area"/>
-        <result column="userName" jdbcType="VARCHAR" property="userName"/>
-        <result column="engName" jdbcType="VARCHAR" property="engName"/>
-        <result column="count" jdbcType="VARCHAR" property="count"/>
-        <result column="restDay" jdbcType="VARCHAR" property="restDay"/>
-        <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
-        <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
-        <result column="completeTime" jdbcType="TIMESTAMP" property="completeTime"/>
-        <result column="signInTime" jdbcType="TIMESTAMP" property="signInTime"/>
         <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
@@ -26,66 +11,20 @@
         <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
-    <select id="selectId" resultType="com.yunqi.common.entity.WorkSheet">
+    <select id="select" resultType="com.yunqi.common.entity.WorkSheet">
         select *
-        from workSheet w
-        where w.itemId = #{itemId}
-    </select>
-
-    <select id="selectToday" resultType="com.yunqi.common.entity.WorkSheet">
-        select *
-        from workSheet w
-        where TO_DAYS(`w`.`createTime`) = TO_DAYS(NOW())
-          and w.workType != '发货'
-    </select>
-
-    <select id="selectNow" resultType="com.yunqi.common.entity.WorkSheet">
-        select *
-        from worksheetviewnow w
-    </select>
-
-    <select id="selectTom" resultType="com.yunqi.common.entity.WorkSheet">
-        select *
-        from worksheetviewtom w
-    </select>
-
-    <select id="getNotComplete" resultType="com.yunqi.common.entity.WorkSheet">
-        select *
-        from worksheetviewnot w
-    </select>
-
-    <select id="selectNotVisit" resultType="com.yunqi.common.entity.WorkSheet">
-        select *
-        from workSheet w
-        where w.dateOfVisit is null
-          and w.disabled = '有效'
-          and w.technology != ''
-          and w.technology is not null
-          and w.workType != '发货'
+        from worksheet w
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
-        insert into workSheet (itemId, custom, technology, actualWork, workType, workStatus, area, signInTime, disabled,
-                               orderDate, dateOfVisit, completeTime,
-                               createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{custom}, #{technology}, #{actualWork}, #{workType}, #{workStatus}, #{area}, #{signInTime},
-                #{disabled},
-                #{orderDate}, #{dateOfVisit}, #{completeTime},
-                #{createName}, #{createTime}, #{updateName}, #{updateTime})
+
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">
-        update workSheet
-        set disabled   = '无效',
-            updateName = #{updateName},
-            updateTime = #{updateTime}
-        where itemId = #{itemId}
+
     </insert>
 
-    <delete id="deleteAll" parameterType="com.yunqi.common.entity.WorkSheet">
-        delete from workSheet where id in
-        <foreach collection="ids" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
+    <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">
+
     </delete>
 </mapper>

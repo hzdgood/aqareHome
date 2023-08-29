@@ -30,8 +30,6 @@ public class SalesExcel {
                         if (j == 0) {
                             Sales.setName(value);
                         } else if (j == 1) {
-                            Sales.setTelephone(value);
-                        } else if (j == 2) {
                             Sales.setStatus(value);
                         }
                     }

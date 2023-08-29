@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProjectMapper {
     List<Project> select();
 
-    List<Project> selectHunID(String itemId);
+    List<Project> selectName(String name);
 
     void insert(Project project);
 

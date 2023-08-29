@@ -17,9 +17,9 @@ public class SalesBoot {
     @Autowired
     private SalesService SalesService;
 
-    @Scheduled(cron = "0 00 21 * * ?")
+    // @Scheduled(cron = "0 44 14 * * ?")
     private void uploadExcel() {
-        File file = new File("");
+        File file = new File("D:\\download\\人员统计表.xlsx");
         try {
             SalesExcel.SalesExcel(file, SalesService);
         } catch (FileNotFoundException e) {

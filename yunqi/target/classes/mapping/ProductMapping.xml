@@ -5,17 +5,11 @@
     <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Product">
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="realName" jdbcType="VARCHAR" property="realName"/>
         <result column="code" jdbcType="VARCHAR" property="code"/>
-        <result column="bomType" jdbcType="VARCHAR" property="bomType"/>
         <result column="classification" jdbcType="VARCHAR" property="classification"/>
-        <result column="scanCode" jdbcType="VARCHAR" property="scanCode"/>
         <result column="shipType" jdbcType="VARCHAR" property="shipType"/>
-        <result column="repairPrice" jdbcType="VARCHAR" property="repairPrice"/>
-        <result column="purchasePrice" jdbcType="VARCHAR" property="purchasePrice"/>
         <result column="price" jdbcType="VARCHAR" property="price"/>
         <result column="brand" jdbcType="VARCHAR" property="brand"/>
-        <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -23,48 +17,20 @@
     </resultMap>
 
     <select id="select" resultType="com.yunqi.common.entity.Product">
-        select *
-        from product where 1 = 1
-        and disabled is null
-        and disabled = ''
-        <if test="code!=null and code!=''">
-            and code = #{code}
-        </if>
+        select * from product
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        insert into product (name, realName, code, bomType, classification, scanCode,
-                             shipType, repairPrice, purchasePrice, price, brand, disabled,
-                             createName, createTime, updateName, updateTime)
-        values (#{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
-                #{shipType}, #{repairPrice}, #{purchasePrice}, #{price}, #{brand}, #{disabled},
-                #{createName}, NOW(), #{updateName}, NOW())
+        insert into product (name, code, classification, shipType, price, brand) value (
+            #{name}, #{code}, #{classification}, #{shipType}, #{price}, #{brand}
+        )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Product">
-        update product
-        set disabled   = 'false',
-            updateName = #{updateName},
-            updateTime = NOW()
-        where code = #{code}
+
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.Product">
-        delete
-        from product
-        where id = #{id}
-    </delete>
 
-    <delete id="deleteAll" parameterType="com.yunqi.common.entity.Product">
-        delete from product where id in
-        <foreach collection="ids" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
-    </delete>
-
-    <delete id="deleteData" parameterType="com.yunqi.common.entity.Product">
-        delete
-        from product
-        where 1 = 1
     </delete>
 </mapper>
