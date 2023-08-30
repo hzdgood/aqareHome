@@ -10,6 +10,7 @@ public class Product {
     private String shipType;// 类型
     private String price; //产品价格
     private String brand; //品牌
+    private String category; //品类
     private String createName;
     private Date createTime;
     private String updateName;
@@ -69,6 +70,14 @@ public class Product {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getCreateName() {

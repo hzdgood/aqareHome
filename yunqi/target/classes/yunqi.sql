@@ -32,7 +32,8 @@ CREATE TABLE `product`
     `classification` varchar(45) DEFAULT NULL,
     `shipType`       varchar(45) DEFAULT NULL,
     `price`          varchar(45) DEFAULT NULL,
-    `brand`       varchar(45) DEFAULT NULL,
+    `brand`          varchar(45) DEFAULT NULL,
+    `category`       varchar(45) DEFAULT NULL,
     `createName`     varchar(45) DEFAULT NULL,
     `createTime`     datetime    DEFAULT NULL,
     `updateName`     varchar(45) DEFAULT NULL,
@@ -100,6 +101,27 @@ CREATE TABLE `login`
   AUTO_INCREMENT = 53822
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE `commission`
+(
+    `id`               int NOT NULL AUTO_INCREMENT,
+    `category`         varchar(45) DEFAULT NULL,
+    `cost`         varchar(45) DEFAULT NULL,
+    `installRatio`         varchar(45) DEFAULT NULL,
+    `debugRatio`         varchar(45) DEFAULT NULL,
+    `install`         varchar(45) DEFAULT NULL,
+    `debug`         varchar(45) DEFAULT NULL,
+    `disclose`         varchar(45) DEFAULT NULL,
+    `check`         varchar(45) DEFAULT NULL,
+    `headDoor`         varchar(45) DEFAULT NULL,
+    `headDisclose`         varchar(45) DEFAULT NULL,
+    `headComplete`         varchar(45) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 53822
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_0900_ai_ci;
+
 
 CREATE TABLE `sales`
 (

@@ -10,6 +10,7 @@
         <result column="shipType" jdbcType="VARCHAR" property="shipType"/>
         <result column="price" jdbcType="VARCHAR" property="price"/>
         <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="category" jdbcType="VARCHAR" property="category"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -21,8 +22,8 @@
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        insert into product (name, code, classification, shipType, price, brand) value (
-            #{name}, #{code}, #{classification}, #{shipType}, #{price}, #{brand}
+        insert into product (name, code, classification, shipType, price, brand, category) value (
+            #{name}, #{code}, #{classification}, #{shipType}, #{price}, #{brand}, #{category}
         )
     </insert>
 

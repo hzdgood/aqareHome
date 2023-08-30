@@ -43,6 +43,14 @@
 
     </insert>
 
+    <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
+
+    </insert>
+
+    <insert id="write" parameterType="com.yunqi.common.entity.WorkSheet">
+
+    </insert>
+
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">
 
     </delete>

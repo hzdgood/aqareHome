@@ -39,6 +39,8 @@ public class ProductExcel {
                             Product.setPrice(value);
                         } else if (j == 5) {
                             Product.setBrand(value);
+                        } else if (j == 6) {
+                            Product.setCategory(value);
                         }
                     }
                 }
