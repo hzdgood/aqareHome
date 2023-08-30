@@ -23,7 +23,7 @@ public class SalesController {
     @CrossOrigin
     @RequestMapping("/select")
     public List<Sales> select(Sales Sales) {
-         return SalesService.select();
+        return SalesService.select();
     }
 
     @CrossOrigin

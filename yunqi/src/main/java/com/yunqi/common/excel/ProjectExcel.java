@@ -1,6 +1,8 @@
 package com.yunqi.common.excel;
 
-import com.yunqi.common.entity.*;
+import com.yunqi.common.entity.Project;
+import com.yunqi.common.entity.Sales;
+import com.yunqi.common.entity.Tech;
 import com.yunqi.common.service.ProjectService;
 import com.yunqi.common.utils.ExcelUtil;
 import org.apache.poi.ss.usermodel.Cell;

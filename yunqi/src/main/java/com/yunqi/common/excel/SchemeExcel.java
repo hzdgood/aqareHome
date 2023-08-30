@@ -60,13 +60,13 @@ public class SchemeExcel {
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 1) {
-                            for (Project p: project){
+                            for (Project p : project) {
                                 if (p.getTelephone().equals(value)) {
                                     Scheme.setProjectId(p.getId());
                                 }
                             }
                         } else if (j == 2) {
-                            for (Product p: product){
+                            for (Product p : product) {
                                 if (p.getCode().equals(value)) {
                                     Scheme.setProductId(p.getId());
                                 }
@@ -86,7 +86,7 @@ public class SchemeExcel {
                         }
                     }
                 }
-                if(Scheme.getProjectId() != null && Scheme.getProductId() != null) {
+                if (Scheme.getProjectId() != null && Scheme.getProductId() != null) {
                     schemeService.insert(Scheme);
                 }
             }

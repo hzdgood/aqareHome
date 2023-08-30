@@ -31,4 +31,12 @@ public class WorkSheetService {
     public void delete(Integer id) {
         WorkSheetMapper.delete(id);
     }
+
+    public void sign(Integer id) {
+        WorkSheetMapper.sign(id);
+    }
+
+    public void write(Integer id) {
+        WorkSheetMapper.write(id);
+    }
 }

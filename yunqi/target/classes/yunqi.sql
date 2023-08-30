@@ -74,6 +74,7 @@ CREATE TABLE `worksheet`
     `type`         varchar(45) DEFAULT NULL,
     `status`       varchar(45) DEFAULT NULL,
     `actualWork`   varchar(45) DEFAULT NULL,
+    `schedule`     varchar(45) DEFAULT NULL,
     `watermark`    varchar(45) DEFAULT NULL,
     `signImg`      varchar(45) DEFAULT NULL,
     `signTime`    datetime    DEFAULT NULL,

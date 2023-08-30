@@ -13,5 +13,9 @@ public interface WorkSheetMapper {
 
     void update(WorkSheet WorkSheet);
 
+    void sign(Integer id);
+
+    void write(Integer id);
+
     void delete(Integer id);
 }

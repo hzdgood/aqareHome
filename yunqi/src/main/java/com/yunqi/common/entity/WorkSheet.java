@@ -11,6 +11,7 @@ public class WorkSheet {
     private String type; //类型
     private String status; //状态
     private String actualWork; // 工时
+    private String schedule; //进度
     private String watermark; //水印图片
     private String signImg; //签字图片
     private Date signTime; //签到时间
@@ -83,6 +84,14 @@ public class WorkSheet {
 
     public void setActualWork(String actualWork) {
         this.actualWork = actualWork;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
     }
 
     public String getWatermark() {
