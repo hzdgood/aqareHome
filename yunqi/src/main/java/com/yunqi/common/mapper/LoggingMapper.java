@@ -10,4 +10,6 @@ public interface LoggingMapper {
     List<Logging> select();
 
     void insert(Logging Logging);
+
+    void update(Logging Logging);
 }

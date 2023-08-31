@@ -16,8 +16,8 @@ public class LoginService {
         this.LoginMapper = LoginMapper;
     }
 
-    public List<Login> select() {
-        return LoginMapper.select();
+    public List<Login> select(Login Login) {
+        return LoginMapper.select(Login);
     }
 
     public void insert(Login Login) {

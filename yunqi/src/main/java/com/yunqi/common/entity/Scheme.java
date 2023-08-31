@@ -8,11 +8,11 @@ public class Scheme {
     private Integer projectId;
     private Integer productId;
     private String number; // 实际数量
-    private String totalShip; // 总发货数
     private String installNumber; //总安装数
     private String debugNumber; //总调试数
     private String notInstalled; //未装
     private String unregulated; //未调
+    private String unissued; //未发
     private String createName;
     private Date createTime;
     private String updateName;
@@ -50,15 +50,6 @@ public class Scheme {
         this.number = number;
     }
 
-
-    public String getTotalShip() {
-        return totalShip;
-    }
-
-    public void setTotalShip(String totalShip) {
-        this.totalShip = totalShip;
-    }
-
     public String getInstallNumber() {
         return installNumber;
     }
@@ -89,6 +80,14 @@ public class Scheme {
 
     public void setUnregulated(String unregulated) {
         this.unregulated = unregulated;
+    }
+
+    public String getUnissued() {
+        return unissued;
+    }
+
+    public void setUnissued(String unissued) {
+        this.unissued = unissued;
     }
 
     public String getCreateName() {

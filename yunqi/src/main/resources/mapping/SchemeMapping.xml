@@ -7,11 +7,11 @@
         <result column="projectId" jdbcType="INTEGER" property="projectId"/>
         <result column="productId" jdbcType="INTEGER" property="productId"/>
         <result column="number" jdbcType="VARCHAR" property="number"/>
-        <result column="totalShip" jdbcType="VARCHAR" property="totalShip"/>
         <result column="installNumber" jdbcType="VARCHAR" property="installNumber"/>
         <result column="debugNumber" jdbcType="VARCHAR" property="debugNumber"/>
         <result column="notInstalled" jdbcType="VARCHAR" property="notInstalled"/>
         <result column="unregulated" jdbcType="VARCHAR" property="unregulated"/>
+        <result column="unissued" jdbcType="VARCHAR" property="unissued"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -24,11 +24,11 @@
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-        insert into scheme (projectId, productId, number, totalShip,
-            installNumber, debugNumber, notInstalled, unregulated
+        insert into scheme (projectId, productId, number, installNumber,
+             debugNumber, notInstalled, unregulated, unissued
         ) value (
-            #{projectId}, #{productId}, #{number}, #{totalShip},
-            #{installNumber}, #{debugNumber}, #{notInstalled}, #{unregulated}
+            #{projectId}, #{productId}, #{number},  #{installNumber},
+            #{debugNumber}, #{notInstalled}, #{unregulated}, #{unissued}
         )
     </insert>
 

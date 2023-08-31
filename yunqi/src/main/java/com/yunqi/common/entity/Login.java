@@ -2,8 +2,9 @@ package com.yunqi.common.entity;
 
 public class Login {
     private Integer id;
-    private String username;
-    private String password;
+    private String username; //登入用户
+    private String password; //密码
+    private String techId; //绑定技术
 
     public Integer getId() {
         return id;
@@ -27,5 +28,13 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getTechId() {
+        return techId;
+    }
+
+    public void setTechId(String techId) {
+        this.techId = techId;
     }
 }

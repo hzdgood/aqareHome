@@ -74,15 +74,15 @@ public class SchemeExcel {
                         } else if (j == 3) {
                             Scheme.setNumber(value);
                         } else if (j == 4) {
-                            Scheme.setTotalShip(value);
-                        } else if (j == 5) {
                             Scheme.setInstallNumber(value);
-                        } else if (j == 6) {
+                        } else if (j == 5) {
                             Scheme.setDebugNumber(value);
-                        } else if (j == 7) {
+                        } else if (j == 6) {
                             Scheme.setNotInstalled(value);
-                        } else if (j == 8) {
+                        } else if (j == 7) {
                             Scheme.setUnregulated(value);
+                        } else if (j == 8) {
+                            Scheme.setUnissued(value);
                         }
                     }
                 }
