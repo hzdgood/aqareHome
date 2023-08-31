@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/project")
 public class ProjectController {
@@ -18,9 +20,21 @@ public class ProjectController {
     }
 
     @CrossOrigin
+    @RequestMapping("/select")
+    public List<Project> select() {
+        return ProjectService.select();
+    }
+
+    @CrossOrigin
     @RequestMapping("/insert")
     public void insert(Project Project) {
         ProjectService.insert(Project);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/sysnc")
+    public void sysnc(Project Project) {
+
     }
 
     @CrossOrigin

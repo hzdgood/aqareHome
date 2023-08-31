@@ -13,10 +13,12 @@ import java.util.List;
 @RequestMapping("/login")
 public class LoginController {
     private LoginService LoginService;
+
     @Autowired
     public void setMapper(LoginService LoginService) {
         this.LoginService = LoginService;
     }
+
     @CrossOrigin
     @RequestMapping("/select")
     public List<Login> select(Login Login) {

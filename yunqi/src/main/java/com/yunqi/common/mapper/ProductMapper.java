@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductMapper {
     List<Product> select();
 
-    List<Product> selectCode(String code);
+    List<Product> selectItemId(Integer itemId);
 
     void insert(Product Product);
 

@@ -1,12 +1,11 @@
 package com.yunqi.common.controller;
 
 import com.yunqi.common.entity.Scheme;
-import com.yunqi.common.excel.SchemeExcel;
 import com.yunqi.common.service.SchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -21,9 +20,21 @@ public class SchemeController {
     }
 
     @CrossOrigin
+    @RequestMapping("/select")
+    public List<Scheme> select() {
+        return SchemeService.select();
+    }
+
+    @CrossOrigin
     @RequestMapping("/insert")
     public void insert(Scheme Scheme) {
         SchemeService.insert(Scheme);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/sysnc")
+    public void sysnc(Scheme Scheme) {
+
     }
 
     @CrossOrigin
@@ -37,16 +48,17 @@ public class SchemeController {
     public void delete(Integer id) {
         SchemeService.delete(id);
     }
-
-    @PostMapping("/upload")
-    @CrossOrigin
-    @ResponseBody
-    public List<Scheme> upload(@RequestParam("file") MultipartFile file) {
-        List<Scheme> list = SchemeExcel.schemeExcel(file); // 读取文件
-        for (int i = 0; i < list.size(); i++) {
-            Scheme scheme = list.get(i);
-            SchemeService.insert(scheme);
-        }
-        return list;
-    }
 }
+
+//    @PostMapping("/upload")
+//    @CrossOrigin
+//    @ResponseBody
+//    public List<Scheme> upload(@RequestParam("file") MultipartFile file) {
+//        List<Scheme> list = SchemeExcel.schemeExcel(file); // 读取文件
+//        for (int i = 0; i < list.size(); i++) {
+//            Scheme scheme = list.get(i);
+//            SchemeService.insert(scheme);
+//        }
+//        return list;
+//    }
+

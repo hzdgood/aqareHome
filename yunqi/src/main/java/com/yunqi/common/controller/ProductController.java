@@ -32,6 +32,12 @@ public class ProductController {
     }
 
     @CrossOrigin
+    @RequestMapping("/sysnc")
+    public void sysnc(Product Product) {
+
+    }
+
+    @CrossOrigin
     @RequestMapping("/update")
     public void update(Product Product) {
         ProductService.update(Product);

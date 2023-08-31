@@ -7,12 +7,12 @@ public class Scheme {
     private Integer id;
     private Integer projectId;
     private Integer productId;
-    private String number; // 实际数量
-    private String installNumber; //总安装数
-    private String debugNumber; //总调试数
-    private String notInstalled; //未装
-    private String unregulated; //未调
-    private String unissued; //未发
+    private Integer number; // 实际数量
+    private Integer installNumber; //总安装数
+    private Integer debugNumber; //总调试数
+    private Integer notInstalled; //未装
+    private Integer unregulated; //未调
+    private Integer unissued; //未发
     private String createName;
     private Date createTime;
     private String updateName;
@@ -42,51 +42,51 @@ public class Scheme {
         this.productId = productId;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
-    public String getInstallNumber() {
+    public Integer getInstallNumber() {
         return installNumber;
     }
 
-    public void setInstallNumber(String installNumber) {
+    public void setInstallNumber(Integer installNumber) {
         this.installNumber = installNumber;
     }
 
-    public String getDebugNumber() {
+    public Integer getDebugNumber() {
         return debugNumber;
     }
 
-    public void setDebugNumber(String debugNumber) {
+    public void setDebugNumber(Integer debugNumber) {
         this.debugNumber = debugNumber;
     }
 
-    public String getNotInstalled() {
+    public Integer getNotInstalled() {
         return notInstalled;
     }
 
-    public void setNotInstalled(String notInstalled) {
+    public void setNotInstalled(Integer notInstalled) {
         this.notInstalled = notInstalled;
     }
 
-    public String getUnregulated() {
+    public Integer getUnregulated() {
         return unregulated;
     }
 
-    public void setUnregulated(String unregulated) {
+    public void setUnregulated(Integer unregulated) {
         this.unregulated = unregulated;
     }
 
-    public String getUnissued() {
+    public Integer getUnissued() {
         return unissued;
     }
 
-    public void setUnissued(String unissued) {
+    public void setUnissued(Integer unissued) {
         this.unissued = unissued;
     }
 

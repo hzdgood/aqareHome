@@ -6,15 +6,20 @@
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="techId" jdbcType="INTEGER" property="techId"/>
     </resultMap>
 
     <select id="select" resultType="com.yunqi.common.entity.Login">
         select *
-        from Login
+        from Login where username = #{username} and password = #{password}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Login" useGeneratedKeys="true" keyProperty="id">
-        insert into Login(username, password) value ( #{username}, #{password} )
+        insert into Login(username, password, techId) value ( #{username}, #{password} ,#{techId})
+    </insert>
+
+    <insert id="update" parameterType="com.yunqi.common.entity.Login" useGeneratedKeys="true" keyProperty="id">
+
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.Login">

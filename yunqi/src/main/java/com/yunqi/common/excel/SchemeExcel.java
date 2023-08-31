@@ -9,42 +9,12 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SchemeExcel {
-    public static List<Scheme> schemeExcel(MultipartFile files) {
-        try {
-            XSSFWorkbook workbook = new XSSFWorkbook(files.getInputStream());
-            Sheet sheet = workbook.getSheetAt(0);
-            int lastRowNum = sheet.getLastRowNum();
-            List<Scheme> list = new ArrayList<Scheme>();
-            for (int i = 2; i <= lastRowNum; i++) {
-                Scheme scheme = new Scheme();
-                Row row = sheet.getRow(i);
-                int lastCellNum = row.getLastCellNum();
-                for (int j = 0; j < lastCellNum; j++) {
-                    Cell cell = row.getCell(j);
-                    if (cell != null) {
-                        String value = ExcelUtil.getCellValue(cell);
-                        if (j == 15) {
-                            scheme.setNumber(value);
-                        }
-                    }
-                }
-                list.add(scheme);
-            }
-            return list;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
     public static void schemeToExcel(File file, SchemeService schemeService, List<Project> project, List<Product> product) {
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -72,17 +42,17 @@ public class SchemeExcel {
                                 }
                             }
                         } else if (j == 3) {
-                            Scheme.setNumber(value);
+                            Scheme.setNumber(Integer.parseInt(value));
                         } else if (j == 4) {
-                            Scheme.setInstallNumber(value);
+                            Scheme.setInstallNumber(Integer.parseInt(value));
                         } else if (j == 5) {
-                            Scheme.setDebugNumber(value);
+                            Scheme.setDebugNumber(Integer.parseInt(value));
                         } else if (j == 6) {
-                            Scheme.setNotInstalled(value);
+                            Scheme.setNotInstalled(Integer.parseInt(value));
                         } else if (j == 7) {
-                            Scheme.setUnregulated(value);
+                            Scheme.setUnregulated(Integer.parseInt(value));
                         } else if (j == 8) {
-                            Scheme.setUnissued(value);
+                            Scheme.setUnissued(Integer.parseInt(value));
                         }
                     }
                 }

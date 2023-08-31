@@ -6,12 +6,12 @@
         <result column="id" jdbcType="INTEGER" property="id"/>
         <result column="projectId" jdbcType="INTEGER" property="projectId"/>
         <result column="productId" jdbcType="INTEGER" property="productId"/>
-        <result column="number" jdbcType="VARCHAR" property="number"/>
-        <result column="totalShip" jdbcType="VARCHAR" property="totalShip"/>
-        <result column="installNumber" jdbcType="VARCHAR" property="installNumber"/>
-        <result column="debugNumber" jdbcType="VARCHAR" property="debugNumber"/>
-        <result column="notInstalled" jdbcType="VARCHAR" property="notInstalled"/>
-        <result column="unregulated" jdbcType="VARCHAR" property="unregulated"/>
+        <result column="number" jdbcType="INTEGER" property="number"/>
+        <result column="installNumber" jdbcType="INTEGER" property="installNumber"/>
+        <result column="debugNumber" jdbcType="INTEGER" property="debugNumber"/>
+        <result column="notInstalled" jdbcType="INTEGER" property="notInstalled"/>
+        <result column="unregulated" jdbcType="INTEGER" property="unregulated"/>
+        <result column="unissued" jdbcType="INTEGER" property="unissued"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -24,11 +24,11 @@
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-        insert into scheme (projectId, productId, number, totalShip,
-            installNumber, debugNumber, notInstalled, unregulated
+        insert into scheme (projectId, productId, number, installNumber,
+             debugNumber, notInstalled, unregulated, unissued
         ) value (
-            #{projectId}, #{productId}, #{number}, #{totalShip},
-            #{installNumber}, #{debugNumber}, #{notInstalled}, #{unregulated}
+            #{projectId}, #{productId}, #{number},  #{installNumber},
+            #{debugNumber}, #{notInstalled}, #{unregulated}, #{unissued}
         )
     </insert>
 

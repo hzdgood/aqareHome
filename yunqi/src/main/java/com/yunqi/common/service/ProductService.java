@@ -20,6 +20,10 @@ public class ProductService {
         return ProductMapper.select();
     }
 
+    public List<Product> selectItemId(Integer itemId) {
+        return ProductMapper.selectItemId(itemId);
+    }
+
     public void insert(Product Product) {
         ProductMapper.insert(Product);
     }

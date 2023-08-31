@@ -2,6 +2,7 @@ package com.yunqi.common.mapper;
 
 import com.yunqi.common.entity.Login;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository

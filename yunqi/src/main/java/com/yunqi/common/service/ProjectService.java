@@ -24,6 +24,10 @@ public class ProjectService {
         return projectMapper.selectName(name);
     }
 
+    public List<Project> selectItemId(Integer itemId) {
+        return projectMapper.selectItemId(itemId);
+    }
+
     public void insert(Project project) {
         projectMapper.insert(project);
     }

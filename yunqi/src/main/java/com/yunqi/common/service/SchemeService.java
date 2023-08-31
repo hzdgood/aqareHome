@@ -20,6 +20,10 @@ public class SchemeService {
         return schemeMapper.select();
     }
 
+    public List<Scheme> selectItemId(Integer itemId) {
+        return schemeMapper.selectItemId(itemId);
+    }
+
     public void insert(Scheme scheme) {
         schemeMapper.insert(scheme);
     }
