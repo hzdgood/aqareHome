@@ -1,30 +1,16 @@
-import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
-import company from '@/views/company.vue'
-import person from '@/views/person.vue'
-import team from '@/views/team.vue'
+import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
+import HomeView from '../component/HomeView.vue'
 
-Vue.use(VueRouter)
-
-const routes: Array<RouteConfig> = [
+const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    name: 'company',
-    component: company
-  },
-  {
-    path: '/person',
-    name: 'person',
-    component: person
-  },
-  {
-    path: '/team',
-    name: 'team',
-    component: team
+    path: '/home',
+    name: 'home',
+    component: HomeView
   }
 ]
 
-const router = new VueRouter({
+const router = createRouter({
+  history: createWebHashHistory(''),
   routes
 })
 
