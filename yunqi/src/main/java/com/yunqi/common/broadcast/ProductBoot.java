@@ -5,6 +5,7 @@ import com.yunqi.common.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +17,7 @@ public class ProductBoot {
     @Autowired
     private ProductService ProductService;
 
-    // @Scheduled(cron = "0 24 17 * * ?")
+    @Scheduled(cron = "0 13 18 * * ?")
     private void uploadExcel() {
         File file = new File("D:\\download\\物料清单.xlsx");
         try {
