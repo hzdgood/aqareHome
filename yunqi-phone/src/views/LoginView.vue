@@ -30,12 +30,12 @@
       </a-input-password>
     </a-form-item>
 
-    <!-- <a-form-item>
+    <a-form-item>
       <a-form-item name="remember" no-style>
         <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
       </a-form-item>
       <a class="login-form-forgot" href="">Forgot password</a>
-    </a-form-item> -->
+    </a-form-item>
 
     <a-form-item>
       <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">

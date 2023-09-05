@@ -1,6 +1,5 @@
 <template>
   <main>
-    HOME
     <div class="wrapper">
       <nav>
         <RouterLink to="/workSheet">我的工单</RouterLink>
