@@ -21,7 +21,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/WorkSheetView.vue')
+      component: () => import('../components/WorkSheetView.vue')
     },
     {
       path: '/project',
@@ -29,7 +29,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ProjectView.vue')
+      component: () => import('../components/ProjectView.vue')
     }
   ]
 })
