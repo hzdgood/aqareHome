@@ -7,7 +7,7 @@
     @finishFailed="onFinishFailed"
   >
     <a-form-item
-      label="Username"
+      label="用户名"
       name="username"
       :rules="[{ required: true, message: 'Please input your username!' }]"
     >
@@ -19,7 +19,7 @@
     </a-form-item>
 
     <a-form-item
-      label="Password"
+      label="密码"
       name="password"
       :rules="[{ required: true, message: 'Please input your password!' }]"
     >
@@ -30,25 +30,26 @@
       </a-input-password>
     </a-form-item>
 
-    <a-form-item>
+    <!-- <a-form-item>
       <a-form-item name="remember" no-style>
         <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
       </a-form-item>
       <a class="login-form-forgot" href="">Forgot password</a>
-    </a-form-item>
+    </a-form-item> -->
 
     <a-form-item>
       <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">
-        Log in
+        登入
       </a-button>
-      Or
-      <a href="">register now!</a>
+      <!-- Or
+      <a href="">register now!</a> -->
     </a-form-item>
   </a-form>
 </template>
 <script lang="ts" setup>
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
+import router from '@/router';
 interface FormState {
   username: string;
   password: string;
@@ -61,6 +62,10 @@ const formState = reactive<FormState>({
 });
 const onFinish = (values: any) => {
   console.log('Success:', values);
+  router.push({ path: "/home", params: {
+    username: formState.username,
+    password: formState.password
+  }})
 };
 
 const onFinishFailed = (errorInfo: any) => {
