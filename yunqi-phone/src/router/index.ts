@@ -42,30 +42,6 @@ const router = createRouter({
         }        
       ]
     },
-    // {
-    //   path: '/workSheet',
-    //   name: 'workSheet',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../components/WorkSheetView.vue')
-    // },
-    // {
-    //   path: '/project',
-    //   name: 'project',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../components/ProjectView.vue')
-    // },
-    // {
-    //   path: '/measure',
-    //   name: 'measure',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../components/MeasureView.vue')
-    // }
   ]
 })
 
