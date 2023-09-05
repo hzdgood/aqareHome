@@ -13,6 +13,7 @@ public class Scheme {
     private Integer notInstalled; //未装
     private Integer unregulated; //未调
     private Integer unissued; //未发
+    private String itemId;
     private String createName;
     private Date createTime;
     private String updateName;
@@ -88,6 +89,14 @@ public class Scheme {
 
     public void setUnissued(Integer unissued) {
         this.unissued = unissued;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     public String getCreateName() {

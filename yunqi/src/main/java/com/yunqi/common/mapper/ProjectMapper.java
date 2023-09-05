@@ -11,7 +11,7 @@ public interface ProjectMapper {
 
     List<Project> selectName(String name);
 
-    List<Project> selectItemId(Integer itemId);
+    List<Project> selectItemId(String itemId);
 
     void insert(Project project);
 

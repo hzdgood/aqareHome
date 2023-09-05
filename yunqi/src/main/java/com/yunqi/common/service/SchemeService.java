@@ -20,7 +20,7 @@ public class SchemeService {
         return schemeMapper.select();
     }
 
-    public List<Scheme> selectItemId(Integer itemId) {
+    public List<Scheme> selectItemId(String itemId) {
         return schemeMapper.selectItemId(itemId);
     }
 

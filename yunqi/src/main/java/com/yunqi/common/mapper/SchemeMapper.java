@@ -9,7 +9,7 @@ import java.util.List;
 public interface SchemeMapper {
     List<Scheme> select();
 
-    List<Scheme> selectItemId(Integer itemId);
+    List<Scheme> selectItemId(String itemId);
 
     void insert(Scheme scheme);
 

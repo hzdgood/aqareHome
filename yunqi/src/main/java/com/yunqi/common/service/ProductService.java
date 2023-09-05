@@ -20,7 +20,7 @@ public class ProductService {
         return ProductMapper.select();
     }
 
-    public List<Product> selectItemId(Integer itemId) {
+    public List<Product> selectItemId(String itemId) {
         return ProductMapper.selectItemId(itemId);
     }
 

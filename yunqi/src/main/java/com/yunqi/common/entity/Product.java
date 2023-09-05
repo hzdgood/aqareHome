@@ -11,6 +11,7 @@ public class Product {
     private String price; //产品价格
     private String brand; //品牌
     private String category; //品类
+    private String itemId;
     private String createName;
     private Date createTime;
     private String updateName;
@@ -78,6 +79,14 @@ public class Product {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     public String getCreateName() {
