@@ -13,24 +13,59 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: () => import('../views/HomeView.vue')
+      component: () => import('../views/HomeView.vue'),
+      children: [
+        {
+          path: '/workSheet',
+          name: 'workSheet',
+          component: import('../components/WorkSheetView.vue')
+        },
+        {
+          path: '/project',
+          name: 'project',
+          component: () => import('../components/ProjectView.vue')
+        },
+        {
+          path: '/measure',
+          name: 'measure',
+          component: () => import('../components/MeasureView.vue')
+        },
+        {
+          path: '/commission',
+          name: 'commission',
+          component: () => import('../components/CommissionView.vue')
+        },
+        {
+          path: '/write',
+          name: 'write',
+          component: () => import('../components/WriteView.vue')
+        }        
+      ]
     },
-    {
-      path: '/workSheet',
-      name: 'workSheet',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../components/WorkSheetView.vue')
-    },
-    {
-      path: '/project',
-      name: 'project',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../components/ProjectView.vue')
-    }
+    // {
+    //   path: '/workSheet',
+    //   name: 'workSheet',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../components/WorkSheetView.vue')
+    // },
+    // {
+    //   path: '/project',
+    //   name: 'project',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../components/ProjectView.vue')
+    // },
+    // {
+    //   path: '/measure',
+    //   name: 'measure',
+    //   // route level code-splitting
+    //   // this generates a separate chunk (About.[hash].js) for this route
+    //   // which is lazy-loaded when the route is visited.
+    //   component: () => import('../components/MeasureView.vue')
+    // }
   ]
 })
 

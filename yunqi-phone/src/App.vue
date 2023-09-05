@@ -1,9 +1,3 @@
-<script setup lang="ts">
-// // import { RouterLink, RouterView } from 'vue-router'
-// // import HelloWorld from './components/HelloWorld.vue'
-// import LoginView from './views/LoginView.vue';
-</script>
-
 <template>
   <!-- <div>
     <LoginView></LoginView>
@@ -19,8 +13,14 @@
       </nav>
     </div>
   </header> -->
-  <RouterView />
+  <RouterView></RouterView>
 </template>
+
+<script setup lang="ts">
+// // import { RouterLink, RouterView } from 'vue-router'
+// // import HelloWorld from './components/HelloWorld.vue'
+// import LoginView from './views/LoginView.vue';
+</script>
 
 <style scoped>
 header {
