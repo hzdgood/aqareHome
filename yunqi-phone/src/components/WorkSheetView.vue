@@ -1,41 +1,34 @@
 <template>
+  <main>
     <a-form
       :model="formState"
-      name="normal_login"
-      class="login-form"
+      name="workView"
+      class="workView"
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <a-form-item
-        label="Username"
-        name="username"
-        :rules="[{ required: true, message: 'Please input your username!' }]"
-      >
-        <a-input v-model:value="formState.username"></a-input>
-      </a-form-item>
+      <span>技术人员：</span>
+      <a-input style="width: 13%;" v-model:value="formState.techName"></a-input>
+      <span>上门日期：</span>
+      <a-date-picker show-time placeholder="Select Time" format="YYYY-MM-DD HH:mm" @change="onChange" @ok="onOk" style="width: 20%;"/>
+      <span>
+        <a-button type="primary" html-type="submit">查询</a-button>
+      </span>
     </a-form>
-
-
-    <!-- <WorkCardView></WorkCardView>
     <WorkCardView></WorkCardView>
-    <WorkCardView></WorkCardView>
-  </div> -->
+  </main>
 </template>
 
 <script setup lang="ts">
-
-const labelCol = { style: { width: '100px' } };
-const wrapperCol = { span: 20 };
-
 import WorkCardView from './card/WorkCardView.vue';
-import { reactive, computed } from 'vue';
+import { reactive } from 'vue';
+import { Dayjs } from 'dayjs'
+
 interface FormState {
-  username: string;
-  password: string;
+  techName: string;
 }
 const formState = reactive<FormState>({
-  username: '',
-  password: '',
+  techName: ''
 });
 const onFinish = (values: any) => {
   console.log('Success:', values);
@@ -44,7 +37,24 @@ const onFinish = (values: any) => {
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };
-const disabled = computed(() => {
-  return !(formState.username && formState.password);
-});
+
+const onChange = (value: Dayjs, dateString: string) => {
+  console.log('Selected Time: ', value);
+  console.log('Formatted Selected Time: ', dateString);
+};
+
+const onOk = (value: Dayjs) => {
+  console.log('onOk: ', value);
+};
+
 </script>
+
+<style lang="less" scoped>
+span {
+  padding: 5px;
+}
+.workView{
+  margin-top: 40px;
+  margin-bottom: 5px;
+}
+</style>
