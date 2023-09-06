@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     <div class="wrapper">
       <nav>
         <RouterLink to="/workSheet">我的工单</RouterLink>
@@ -10,9 +10,23 @@
       </nav>
     </div>
     <RouterView></RouterView>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 
+onMounted (function () {
+  const router = useRouter()
+  const username = localStorage.getItem("username")
+  const password = localStorage.getItem("password")
+  if(typeof(username) === 'undefined' || typeof(password) === 'undefined') {
+    router.push({ name: "login"})
+  } else if(username === 'null' || password === 'null') {
+    router.push({ name: "login"})
+  } else {
+    router.push({ name: "workSheet"})
+  }
+});
 </script>

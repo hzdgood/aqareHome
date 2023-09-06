@@ -20,6 +20,7 @@ const router = createRouter({
       path: '/home',
       name: 'home',
       component: () => import('../views/HomeView.vue'),
+      props: true,
       children: [
         {
           path: '/workSheet',

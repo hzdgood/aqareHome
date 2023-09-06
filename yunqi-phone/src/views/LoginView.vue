@@ -17,7 +17,6 @@
         </template>
       </a-input>
     </a-form-item>
-
     <a-form-item
       label="密码"
       name="password"
@@ -29,27 +28,25 @@
         </template>
       </a-input-password>
     </a-form-item>
-
     <a-form-item>
       <a-form-item name="remember" no-style>
         <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
       </a-form-item>
       <a class="login-form-forgot" href="">Forgot password</a>
     </a-form-item>
-
     <a-form-item>
       <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">
         登入
       </a-button>
-      <!-- Or
-      <a href="">register now!</a> -->
     </a-form-item>
   </a-form>
 </template>
 <script lang="ts" setup>
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
-import router from '@/router';
+import { useRouter } from "vue-router";
+const router = useRouter()
+
 interface FormState {
   username: string;
   password: string;
@@ -60,14 +57,13 @@ const formState = reactive<FormState>({
   password: '',
   remember: true,
 });
-const onFinish = (values: any) => {
-  console.log('Success:', values);
-  router.push({ path: "/home", params: {
-    username: formState.username,
-    password: formState.password
-  }})
-};
 
+localStorage.clear();
+const onFinish = (values: any) => {
+  router.push({ name: "home"})
+  localStorage.setItem("username",values.username)
+  localStorage.setItem("password",values.password)
+};
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };

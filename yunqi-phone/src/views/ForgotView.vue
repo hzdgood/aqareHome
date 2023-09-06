@@ -19,7 +19,7 @@
       </a-form-item>
   
       <a-form-item
-        label="密码"
+        label="新密码"
         name="password"
         :rules="[{ required: true, message: 'Please input your password!' }]"
       >
@@ -29,20 +29,23 @@
           </template>
         </a-input-password>
       </a-form-item>
-  
-      <!-- <a-form-item>
-        <a-form-item name="remember" no-style>
-          <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
-        </a-form-item>
-        <a class="login-form-forgot" href="">Forgot password</a>
-      </a-form-item> -->
+
+      <a-form-item
+        label="确认密码"
+        name="surePassword"
+        :rules="[{ required: true, message: 'Please input your password!' }]"
+      >
+        <a-input-password v-model:value="formState.surePassword">
+          <template #prefix>
+            <LockOutlined class="site-form-item-icon" />
+          </template>
+        </a-input-password>
+      </a-form-item>
   
       <a-form-item>
         <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">
-          登入
+          确认
         </a-button>
-        <!-- Or
-        <a href="">register now!</a> -->
       </a-form-item>
     </a-form>
   </template>
@@ -53,16 +56,16 @@
   interface FormState {
     username: string;
     password: string;
-    remember: boolean;
+    surePassword: string
   }
   const formState = reactive<FormState>({
     username: '',
     password: '',
-    remember: true,
+    surePassword: ''
   });
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    router.push({ path: "/home", params: {
+    router.push({ path: "/", params: {
       username: formState.username,
       password: formState.password
     }})
