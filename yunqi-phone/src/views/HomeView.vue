@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="wrapper">
-      <nav>
-        <RouterLink to="/workSheet">我的工单</RouterLink>
-        <RouterLink to="/project">我的项目</RouterLink>
-        <RouterLink to="/measure">测量单</RouterLink>
-        <RouterLink to="/write">核销</RouterLink>
-        <RouterLink to="/commission">提成</RouterLink>
-      </nav>
+      <div class="selected"><RouterLink to="/workSheet">我的工单</RouterLink></div>
+      <div><RouterLink to="/project">我的项目</RouterLink></div>
+      <div><RouterLink to="/measure">测量单</RouterLink></div>
+      <div><RouterLink to="/write">我的核销</RouterLink></div>
+      <div><RouterLink to="/commission">提成</RouterLink></div>
     </div>
-    <RouterView></RouterView>
+    <div class="bodyContent">
+      <RouterView></RouterView>
+    </div>
   </div>
 </template>
 
@@ -30,3 +30,42 @@ onMounted (function () {
   }
 });
 </script>
+
+<style scoped>
+.wrapper {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: inline-block;
+  background-color: #001529;
+  border: 1px solid #cecece;
+}
+
+.wrapper div{
+  padding: 5px 10px 5px 10px;
+  display: inline-block;
+  line-height: 25px;
+  border-right: 0.5px solid #cecece;
+  font-size: 14px;
+}
+
+.wrapper div a{
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration:none;
+}
+
+.selected a {
+  color: rgb(255, 255, 255) !important;
+  color-scheme: light;
+}
+
+.selected {
+  background-color: rgb(22, 119, 255);
+}
+
+.bodyContent{
+  margin-top: 35px;
+}
+</style>
