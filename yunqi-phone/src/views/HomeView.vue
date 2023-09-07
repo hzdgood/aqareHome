@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pageConter">
     <div class="headTop">
       技术服务系统
     </div>
@@ -7,7 +7,7 @@
       <div class="selected"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div><RouterLink to="/project">我的项目</RouterLink></div>
       <div><RouterLink to="/measure">测量单</RouterLink></div>
-      <div><RouterLink to="/write">核销单</RouterLink></div>
+      <div><RouterLink to="/write">核销记录</RouterLink></div>
       <div><RouterLink to="/commission">提成</RouterLink></div>
     </div>
     <div class="bodyContent">
@@ -37,14 +37,13 @@ onMounted (function () {
 <style scoped lang="less">
 .headTop{
   width: 100%;
-  background-color: #001529;
+  background-color: #000dff;
   font-size: 20px;
   color: rgb(255, 255, 255) !important;
   color-scheme: light;
   text-align: center;
   padding: 10px;
 }
-
 .wrapper {
   width: 100%;
   position: fixed;
@@ -52,7 +51,7 @@ onMounted (function () {
   left: 0;
   z-index: 10;
   display: inline-block;
-  background-color: #001529;
+  background-color: #1a3b5a;
   border: 1px solid #cecece;
 }
 .wrapper div{
@@ -70,29 +69,16 @@ onMounted (function () {
   color: rgb(255, 255, 255) !important;
   color-scheme: light;
 }
-
 .selected {
   background-color: rgb(22, 119, 255);
 }
-.footer{
+.bodyContent{
+  background-color: rgb(236, 236, 236);
+  position: absolute;
   width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  display: inline-block;
-  background-color: #001529;
-  border: 1px solid #cecece;
-}
-.footer div{
-  padding: 5px 10px 5px 10px;
-  display: inline-block;
-  line-height: 25px;
-  border-right: 0.5px solid #cecece;
-  font-size: 14px;
-}
-.footer div{
-  color: rgba(255, 255, 255, 0.65);
-  text-decoration:none;
+  bottom: 40px;
+  top: 40px;
+  overflow: auto;
+  padding-bottom: 10px;
 }
 </style>

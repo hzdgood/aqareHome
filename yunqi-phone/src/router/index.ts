@@ -26,29 +26,42 @@ const router = createRouter({
           path: '/workSheet',
           name: 'workSheet',
           component: import('../components/WorkSheetView.vue')
-        },
-        {
+        },{
           path: '/project',
           name: 'project',
           component: () => import('../components/ProjectView.vue')
-        },
-        {
+        },{
           path: '/measure',
           name: 'measure',
           component: () => import('../components/MeasureView.vue')
-        },
-        {
+        },{
           path: '/commission',
           name: 'commission',
           component: () => import('../components/CommissionView.vue')
-        },
-        {
+        },{
           path: '/write',
           name: 'write',
           component: () => import('../components/WriteView.vue')
-        }        
+        },{
+          path: '/subWriter',
+          name: 'subWriter',
+          component: () => import('../components/subview/writerInfo.vue')
+        },
+        {
+          path: '/subWork',
+          name: 'subWork',
+          component: () => import('../components/subview/workInfo.vue')
+        },{
+          path: '/subSchemem',
+          name: 'subSchemem',
+          component: () => import('../components/subview/workInfo.vue')
+        },{
+          path: '/subMeasure',
+          name: 'subMeasure',
+          component: () => import('../components/subview/workInfo.vue')
+        }     
       ]
-    },
+    }
   ]
 })
 

@@ -15,13 +15,18 @@
         </span>
       </a-form>
     </div>
-    <ProjectCardView></ProjectCardView>
+    <ProjectCardView @toPage="toPage"></ProjectCardView>
+    <ProjectCardView @toPage="toPage"></ProjectCardView>
   </div>
 </template>
 
 <script setup lang="ts">
+import router from '@/router';
 import ProjectCardView from './card/ProjectCardView.vue';
 import { reactive } from 'vue';
+const toPage = (str: any) => {
+  router.push({name: str})
+}
 interface FormState {
   techName: string;
   projectName: string;
@@ -46,6 +51,5 @@ span {
 }
 .projectView{
   margin-top: 10px;
-  margin-bottom: 5px;
 }
 </style>

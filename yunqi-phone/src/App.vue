@@ -16,6 +16,11 @@ const getPopupContainer = (el:any, dialogContext:any) => {
 }
 </script>
 
-<style scoped>
-
+<style>
+.ant-card .ant-card-head {
+  padding: 0 10px !important;
+}
+.ant-card .ant-card-body {
+  padding: 10px !important;
+}
 </style>

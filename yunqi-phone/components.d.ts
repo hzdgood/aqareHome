@@ -32,14 +32,18 @@ declare module 'vue' {
     CommissionCardView: typeof import('./src/components/card/CommissionCardView.vue')['default']
     CommissionView: typeof import('./src/components/CommissionView.vue')['default']
     MeasureCardView: typeof import('./src/components/card/MeasureCardView.vue')['default']
+    MeasureInfo: typeof import('./src/components/subview/measureInfo.vue')['default']
     MeasureView: typeof import('./src/components/MeasureView.vue')['default']
     ProjectCardView: typeof import('./src/components/card/ProjectCardView.vue')['default']
     ProjectView: typeof import('./src/components/ProjectView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SchememInfo: typeof import('./src/components/subview/schememInfo.vue')['default']
     WorkCardView: typeof import('./src/components/card/WorkCardView.vue')['default']
+    WorkInfo: typeof import('./src/components/subview/workInfo.vue')['default']
     WorkSheetView: typeof import('./src/components/WorkSheetView.vue')['default']
     WriteCardView: typeof import('./src/components/card/WriteCardView.vue')['default']
+    WriterInfo: typeof import('./src/components/subview/writerInfo.vue')['default']
     WriteView: typeof import('./src/components/WriteView.vue')['default']
   }
 }

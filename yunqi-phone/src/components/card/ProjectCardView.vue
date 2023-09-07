@@ -1,6 +1,9 @@
 <template>
-    <div style="background: #ececec; padding: 10px;">
+    <div style="background: #ececec; padding: 10px 10px 0px 10px;">
       <a-card title="缪丹霞 全屋" :bordered="false">
+        <div class="buttonPos">
+          <a-button :style="style">详情</a-button>
+        </div>
         <table class="cardTale">
           <tr>
             <td>项目姓名</td>
@@ -26,14 +29,28 @@
           </tr>
         </table>
         <div class="buttons">
-          <a-button type="primary">工单</a-button>
-          <a-button type="primary">方案</a-button>
-          <a-button type="primary">测量</a-button>
+          <a-button @click="sendWork" type="primary">发单</a-button>
+          <a-button @click="schemeInfo" type="primary">方案</a-button>
+          <a-button @click="measureInfo" type="primary">测量</a-button>
         </div>
       </a-card>
     </div>
 </template>
-
+<script setup lang="ts">
+const emit = defineEmits(['toPage'])
+const style = {
+  backgroundColor: '#0099DD',color: '#fff'
+}
+const sendWork = () => {
+  emit('toPage','subWork')
+}
+const schemeInfo = () => {
+  emit('toPage','subSchemem')
+}
+const measureInfo = () => {
+  emit('toPage','subMeasure')
+}
+</script>
 <style scoped>
 .cardTale{
   width: 100%;
@@ -42,7 +59,12 @@
   padding: 3px;
   text-align: left;
 }
-.buttons button{
+button{
   margin: 3px;
+}
+.buttonPos {
+  position: absolute;
+  top: 10px;
+  right: 10px
 }
 </style>

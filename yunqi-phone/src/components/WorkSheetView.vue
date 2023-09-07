@@ -15,7 +15,9 @@
         <a-button type="primary" html-type="submit">查询</a-button>
       </span>
     </a-form>
-    <WorkCardView></WorkCardView>
+    <WorkCardView @toPage="toPage"></WorkCardView>
+    <WorkCardView @toPage="toPage"></WorkCardView>
+    <WorkCardView @toPage="toPage"></WorkCardView>
   </main>
 </template>
 
@@ -23,7 +25,10 @@
 import WorkCardView from './card/WorkCardView.vue';
 import { reactive } from 'vue';
 import { Dayjs } from 'dayjs'
-
+import router from '@/router';
+const toPage = (str: any) => {
+  router.push({name: str})
+}
 interface FormState {
   techName: string;
 }
@@ -51,6 +56,5 @@ span {
 }
 .workView{
   margin-top: 10px;
-  margin-bottom: 5px;
 }
 </style>

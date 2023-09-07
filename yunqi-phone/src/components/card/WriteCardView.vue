@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div style="background: #ececec; padding: 10px;">
+    <div style="background: #ececec; padding: 10px 10px 0px 10px;">
       <a-card title="" :bordered="false">
         <table class="cardTale">
           <tr>
@@ -22,9 +22,6 @@
             <td>2023-09-10</td>
           </tr>
         </table>
-        <div class="buttons">
-          <a-button type="primary">详情</a-button>
-        </div>
       </a-card>
     </div>
   </div>
@@ -42,7 +39,12 @@
   padding: 3px;
   text-align: left;
 }
-.buttons button{
+button{
   margin: 3px;
+}
+.buttonPos {
+  position: absolute;
+  top: 10px;
+  right: 10px
 }
 </style>

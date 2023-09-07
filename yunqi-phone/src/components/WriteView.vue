@@ -7,12 +7,13 @@
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <span>核销日期:</span>
+      <span>结算日期:</span>
       <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 40%;"/>
       <span>
         <a-button type="primary" html-type="submit">查询</a-button>
       </span>
     </a-form>
+    <WriteCardView></WriteCardView>
     <WriteCardView></WriteCardView>
   </div>
 </template>
@@ -21,7 +22,6 @@
 import WriteCardView from './card/WriteCardView.vue';
 import { reactive } from 'vue';
 import { Dayjs } from 'dayjs'
-
 interface FormState {
   techName: string;
 }
@@ -49,6 +49,5 @@ span {
 }
 .writeView{
   margin-top: 10px;
-  margin-bottom: 5px;
 }
 </style>
