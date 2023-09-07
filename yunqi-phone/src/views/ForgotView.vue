@@ -53,10 +53,7 @@
   });
   const onFinish = (values: any) => {
     console.log('Success:', values);
-    router.push({ path: "/", params: {
-      username: formState.username,
-      password: formState.password
-    }})
+    router.push({ path: "/"})
   };
   const toLogin = () => {
     router.push({ name: "login"})

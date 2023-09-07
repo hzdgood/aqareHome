@@ -54,11 +54,11 @@ const router = createRouter({
         },{
           path: '/subSchemem',
           name: 'subSchemem',
-          component: () => import('../components/subview/workInfo.vue')
+          component: () => import('../components/subview/schememInfo.vue')
         },{
           path: '/subMeasure',
           name: 'subMeasure',
-          component: () => import('../components/subview/workInfo.vue')
+          component: () => import('../components/subview/measureInfo.vue')
         }     
       ]
     }

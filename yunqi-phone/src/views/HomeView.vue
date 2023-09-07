@@ -6,8 +6,8 @@
     <div class="wrapper">
       <div class="selected"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div><RouterLink to="/project">我的项目</RouterLink></div>
-      <div><RouterLink to="/measure">测量单</RouterLink></div>
       <div><RouterLink to="/write">核销记录</RouterLink></div>
+      <div><RouterLink to="/measure">测量单</RouterLink></div>
       <div><RouterLink to="/commission">提成</RouterLink></div>
     </div>
     <div class="bodyContent">
@@ -15,11 +15,9 @@
     </div>
   </div>
 </template>
-
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-
 onMounted (function () {
   const router = useRouter()
   const username = localStorage.getItem("username")
@@ -33,7 +31,6 @@ onMounted (function () {
   }
 });
 </script>
-
 <style scoped lang="less">
 .headTop{
   width: 100%;

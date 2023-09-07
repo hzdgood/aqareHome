@@ -29,6 +29,9 @@
       <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">
         登入
       </a-button>
+      <a-button type="primary">
+        注册
+      </a-button>
     </div>
   </a-form>
 </template>
@@ -69,5 +72,8 @@ const disabled = computed(() => {
 <style lang="less" scoped>
 div{
   margin: 15px;
+}
+button {
+  margin: 0px 10px;
 }
 </style>
