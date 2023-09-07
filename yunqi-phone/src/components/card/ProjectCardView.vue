@@ -1,6 +1,6 @@
 <template>
     <div style="background: #ececec; padding: 10px;">
-      <a-card title="" :bordered="false" style="width: 98%;">
+      <a-card title="" :bordered="false">
         <table class="cardTale">
           <tr>
             <td>项目姓名</td>
@@ -26,7 +26,9 @@
           </tr>
         </table>
         <div class="buttons">
-          <a-button type="primary">方案</a-button>
+          <a-button type="primary">新增工单</a-button>
+          <a-button type="primary">项目方案</a-button>
+          <a-button type="primary">项目详情</a-button>
         </div>
       </a-card>
     </div>

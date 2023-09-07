@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="headTop">
+      技术服务系统
+    </div>
     <div class="wrapper">
       <div class="selected"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div><RouterLink to="/project">我的项目</RouterLink></div>
@@ -32,10 +35,20 @@ onMounted (function () {
 </script>
 
 <style scoped lang="less">
+.headTop{
+  width: 100%;
+  background-color: #001529;
+  font-size: 20px;
+  color: rgb(255, 255, 255) !important;
+  color-scheme: light;
+  text-align: center;
+  padding: 10px;
+}
+
 .wrapper {
   width: 100%;
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   z-index: 10;
   display: inline-block;
@@ -45,7 +58,7 @@ onMounted (function () {
 .wrapper div{
   padding: 5px 10px 5px 10px;
   display: inline-block;
-  line-height: 25px;
+  line-height: 30px;
   border-right: 0.5px solid #cecece;
   font-size: 14px;
 }

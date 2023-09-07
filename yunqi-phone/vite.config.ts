@@ -15,8 +15,12 @@ export default defineConfig({
           importStyle: false, // css in js
         }),
       ],
-    })
+    }),
   ],
+  server: {                // ← ← ← ← ← ←
+    host: '0.0.0.0',    // ← 新增内容 ←
+    port: 8080
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

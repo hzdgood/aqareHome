@@ -7,10 +7,10 @@
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <span>技术人员：</span>
-      <a-input style="width: 13%;" v-model:value="formState.techName"></a-input>
-      <span>上门日期：</span>
-      <a-date-picker show-time placeholder="Select Time" format="YYYY-MM-DD HH:mm" @change="onChange" @ok="onOk" style="width: 20%;"/>
+      <span>技术人员:</span>
+      <a-input style="width: 16%;" v-model:value="formState.techName"></a-input>
+      <span>上门日期:</span>
+      <a-date-picker show-time format="YYYY-MM-DD HH:mm" @change="onChange" @ok="onOk" style="width: 20%;"/>
       <span>
         <a-button type="primary" html-type="submit">查询</a-button>
       </span>
@@ -52,9 +52,10 @@ const onOk = (value: Dayjs) => {
 <style lang="less" scoped>
 span {
   padding: 5px;
+  font-size: 1em;
 }
 .workView{
-  margin-top: 40px;
+  margin-top: 10px;
   margin-bottom: 5px;
 }
 </style>

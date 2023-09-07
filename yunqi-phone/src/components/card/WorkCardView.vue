@@ -1,6 +1,6 @@
 <template>
     <div style="background: #ececec; padding: 10px;">
-      <a-card title="郭佳伟，张恒 安装" :bordered="false" style="width: 98%;">
+      <a-card title="郭佳伟，张恒 安装" :bordered="false">
         <table class="cardTale">
           <tr>
             <td>项目姓名</td>
@@ -10,7 +10,9 @@
           </tr>
           <tr>
             <td>项目电话</td>
-            <td colspan="3">18328430072</td>
+            <td>18328430072</td>
+            <td>工单状态</td>
+            <td>待上门</td>
           </tr>
           <tr>
             <td>上门日期</td>
@@ -20,7 +22,7 @@
         <div class="buttons">
           <a-button type="primary">签到</a-button>
           <a-button type="primary">核销</a-button>
-          <a-button type="primary">上传</a-button>
+          <a-button type="primary">图片</a-button>
           <a-button type="primary">详情</a-button>
         </div>
       </a-card>
