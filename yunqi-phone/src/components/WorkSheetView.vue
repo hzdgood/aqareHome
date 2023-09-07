@@ -10,7 +10,7 @@
       <span>技术人员:</span>
       <a-input style="width: 16%;" v-model:value="formState.techName"></a-input>
       <span>上门日期:</span>
-      <a-date-picker show-time format="YYYY-MM-DD HH:mm" @change="onChange" @ok="onOk" style="width: 20%;"/>
+      <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 20%;"/>
       <span>
         <a-button type="primary" html-type="submit">查询</a-button>
       </span>
@@ -42,11 +42,6 @@ const onChange = (value: Dayjs, dateString: string) => {
   console.log('Selected Time: ', value);
   console.log('Formatted Selected Time: ', dateString);
 };
-
-const onOk = (value: Dayjs) => {
-  console.log('onOk: ', value);
-};
-
 </script>
 
 <style lang="less" scoped>

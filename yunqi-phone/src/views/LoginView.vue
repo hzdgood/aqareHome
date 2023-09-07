@@ -23,7 +23,7 @@
       <a-form-item name="remember" no-style>
         <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
       </a-form-item>
-      <a class="login-form-forgot" href="">Forgot password</a>
+      <a class="login-form-forgot" @click="forgotWord()">Forgot password</a>
     </div>
     <div>
       <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">
@@ -48,6 +48,10 @@ const formState = reactive<FormState>({
   password: '',
   remember: true,
 });
+
+const forgotWord = () => {
+  router.push({ name: "forgot"})
+}
 
 localStorage.clear();
 const onFinish = (values: any) => {
