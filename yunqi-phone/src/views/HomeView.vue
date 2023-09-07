@@ -7,7 +7,7 @@
       <div class="selected"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div><RouterLink to="/project">我的项目</RouterLink></div>
       <div><RouterLink to="/measure">测量单</RouterLink></div>
-      <div><RouterLink to="/write">我的核销</RouterLink></div>
+      <div><RouterLink to="/write">核销单</RouterLink></div>
       <div><RouterLink to="/commission">提成</RouterLink></div>
     </div>
     <div class="bodyContent">

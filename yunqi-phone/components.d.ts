@@ -39,6 +39,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     WorkCardView: typeof import('./src/components/card/WorkCardView.vue')['default']
     WorkSheetView: typeof import('./src/components/WorkSheetView.vue')['default']
+    WriteCardView: typeof import('./src/components/card/WriteCardView.vue')['default']
     WriteView: typeof import('./src/components/WriteView.vue')['default']
   }
 }
