@@ -35,7 +35,7 @@
           </td>
         </tr>
       </table>
-      <div class="buttons">
+      <div class="buttonPos">
         <a-button type="primary" html-type="submit">提交</a-button>
         <a-button type="primary">取消</a-button>
       </div>
@@ -69,9 +69,11 @@ const onFinishFailed = (errorInfo: any) => {
 .writerTable tr td{
   padding: 5px;
 }
-
-button {
-  margin-left: 10px;
+.buttonPos {
+  width: 100%;
+  text-align: right;
 }
-
+button{
+  margin: 10px;
+}
 </style>

@@ -1,45 +1,43 @@
 <template>
   <div>
-    <div>
-      <a-form
-        :model="formState"
-        name="workInfo"
-        class="workInfo"
-        @finish="onFinish"
-        @finishFailed="onFinishFailed"
-      >
-        <table class="workTable">
-          <tr>
-            <td width="70px">项目姓名:</td>
-            <td>
-              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>技术人员:</td>
-            <td>
-              <a-input style="width: 95%;" v-model:value="formState.techName"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>工单类型:</td>
-            <td>
-              <a-input style="width: 95%;" v-model:value="formState.workType"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>上门时间:</td>
-            <td>
-              <a-input style="width: 95%;" v-model:value="formState.time"></a-input>
-            </td>
-          </tr>
-        </table>
-        <div>
-          <a-button type="primary" html-type="submit">发单</a-button>
-          <a-button type="primary">取消</a-button>
-        </div>
-      </a-form>
-    </div>
+    <a-form
+      :model="formState"
+      name="workInfo"
+      class="workInfo"
+      @finish="onFinish"
+      @finishFailed="onFinishFailed"
+    >
+      <table class="workTable">
+        <tr>
+          <td width="70px">项目姓名:</td>
+          <td>
+            <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
+          </td>
+        </tr>
+        <tr>
+          <td>技术人员:</td>
+          <td>
+            <a-input style="width: 95%;" v-model:value="formState.techName"></a-input>
+          </td>
+        </tr>
+        <tr>
+          <td>工单类型:</td>
+          <td>
+            <a-input style="width: 95%;" v-model:value="formState.workType"></a-input>
+          </td>
+        </tr>
+        <tr>
+          <td>上门时间:</td>
+          <td>
+            <a-input style="width: 95%;" v-model:value="formState.time"></a-input>
+          </td>
+        </tr>
+      </table>
+      <div class="buttonPos">
+        <a-button type="primary" html-type="submit">发单</a-button>
+        <a-button type="primary">取消</a-button>
+      </div>
+    </a-form>
   </div>
 </template>
 
@@ -74,7 +72,11 @@ const onFinishFailed = (errorInfo: any) => {
 .workTable tr td{
   padding: 5px;
 }
-button {
-  margin-left: 10px;
+.buttonPos {
+  width: 100%;
+  text-align: right;
+}
+button{
+  margin: 10px;
 }
 </style>

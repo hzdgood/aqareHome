@@ -16,8 +16,6 @@
       </span>
     </a-form>
     <WorkCardView @toPage="toPage"></WorkCardView>
-    <WorkCardView @toPage="toPage"></WorkCardView>
-    <WorkCardView @toPage="toPage"></WorkCardView>
   </main>
 </template>
 

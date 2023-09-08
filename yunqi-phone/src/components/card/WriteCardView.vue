@@ -39,12 +39,4 @@
   padding: 3px;
   text-align: left;
 }
-button{
-  margin: 3px;
-}
-.buttonPos {
-  position: absolute;
-  top: 10px;
-  right: 10px
-}
 </style>

@@ -14,7 +14,6 @@
       </span>
     </a-form>
     <WriteCardView></WriteCardView>
-    <WriteCardView></WriteCardView>
   </div>
 </template>
 

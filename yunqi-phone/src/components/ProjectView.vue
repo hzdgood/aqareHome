@@ -8,14 +8,13 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
-        <span>技术人员:</span><a-input style="width: 16%;" v-model:value="formState.techName"></a-input>
+        <span>负责人:</span><a-input style="width: 16%;" v-model:value="formState.techName"></a-input>
         <span>项目名称:</span><a-input style="width: 20%;" v-model:value="formState.projectName"></a-input>
         <span>
           <a-button type="primary" html-type="submit">查询</a-button>
         </span>
       </a-form>
     </div>
-    <ProjectCardView @toPage="toPage"></ProjectCardView>
     <ProjectCardView @toPage="toPage"></ProjectCardView>
   </div>
 </template>

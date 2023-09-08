@@ -23,7 +23,7 @@
           <td colspan="3">2023-09-09 10:12</td>
         </tr>
       </table>
-      <div class="buttons">
+      <div class="buttonPos">
         <a-button type="primary">签到</a-button>
         <a-button type="primary">离开</a-button>
         <a-button type="primary" @click="WriterInfo">核销</a-button>
@@ -58,12 +58,11 @@ const style = {
   padding: 3px;
   text-align: left;
 }
-button{
-  margin: 3px;
-}
 .buttonPos {
-  position: absolute;
-  top: 10px;
-  right: 10px;
+  width: 100%;
+  text-align: right;
+}
+button{
+  margin: 10px;
 }
 </style>

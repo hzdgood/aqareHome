@@ -1,8 +1,6 @@
 <template>
   <div>
     <schemeTable></schemeTable>
-    <schemeTable></schemeTable>
-    <schemeTable></schemeTable>
     <div class="buttonPos">
       <a-button type="primary">返回</a-button>
     </div>
