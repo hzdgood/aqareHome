@@ -59,7 +59,15 @@ const router = createRouter({
           path: '/subMeasure',
           name: 'subMeasure',
           component: () => import('../components/subview/measureInfo.vue')
-        }     
+        },{
+          path: '/workEdit',
+          name: 'workEdit',
+          component: () => import('../components/edit/workEdit.vue')
+        },{
+          path: '/uploadImg',
+          name: 'uploadImg',
+          component: () => import('../components/edit/uploadImg.vue')
+        }        
       ]
     }
   ]

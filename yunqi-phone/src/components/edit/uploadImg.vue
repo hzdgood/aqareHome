@@ -1,6 +1,6 @@
 <template>
     <div>
-        测量
+        上传图片
     </div>
 </template>
 

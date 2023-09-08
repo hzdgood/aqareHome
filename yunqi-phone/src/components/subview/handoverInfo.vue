@@ -1,6 +1,6 @@
 <template>
     <div>
-        测量
+        交接信息
     </div>
 </template>
 

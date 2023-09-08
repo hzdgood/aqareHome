@@ -2,7 +2,7 @@
     <div style="background: #ececec; padding: 10px 10px 0px 10px;">
       <a-card title="缪丹霞 全屋" :bordered="false">
         <div class="buttonPos">
-          <a-button :style="style">详情</a-button>
+          <a-button :style="style" @click="handoverInfo">交接信息</a-button>
         </div>
         <table class="cardTale">
           <tr>
@@ -49,6 +49,9 @@ const schemeInfo = () => {
 }
 const measureInfo = () => {
   emit('toPage','subMeasure')
+}
+const handoverInfo = () => {
+  emit('toPage','handoverInfo')
 }
 </script>
 <style scoped>

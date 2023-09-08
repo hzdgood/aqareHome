@@ -13,7 +13,7 @@
             <td>产品名称</td>
             <td>iphone 12PS</td>
             <td>核销数量</td>
-            <td>娄德</td>
+            <td>10</td>
           </tr>
           <tr>
             <td>贡献度</td>

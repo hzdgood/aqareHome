@@ -7,7 +7,7 @@
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <span>技术人员:</span>
+      <span>工单类型:</span>
       <a-input style="width: 16%;" v-model:value="formState.techName"></a-input>
       <span>上门日期:</span>
       <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 20%;"/>

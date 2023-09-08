@@ -8,7 +8,7 @@
       <div><RouterLink to="/project">我的项目</RouterLink></div>
       <div><RouterLink to="/write">核销记录</RouterLink></div>
       <div><RouterLink to="/measure">测量单</RouterLink></div>
-      <div><RouterLink to="/commission">提成</RouterLink></div>
+      <div><RouterLink to="/commission">我的提成</RouterLink></div>
     </div>
     <div class="bodyContent">
       <RouterView></RouterView>
@@ -58,6 +58,10 @@ onMounted (function () {
   border-right: 0.5px solid #cecece;
   font-size: 14px;
 }
+.wrapper div:last-child {
+  border-right: 0px solid #cecece;
+}
+
 .wrapper div a{
   color: rgba(255, 255, 255, 0.65);
   text-decoration:none;

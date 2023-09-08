@@ -1,6 +1,6 @@
 <template>
     <div>
-        测量
+        提成
     </div>
 </template>
 
