@@ -25,12 +25,12 @@
           <td></td>
         </tr>
       </table>
+      <div class="buttonPos">
+        <a-button type="primary">提交</a-button>
+        <a-button type="primary">取消</a-button>
+        <a-button type="primary">有效性</a-button>
+      </div>
     </a-card>
-    <div class="buttonPos">
-      <a-button type="primary">提交</a-button>
-      <a-button type="primary">取消</a-button>
-      <a-button type="primary">有效性</a-button>
-    </div>
   </div>
 </template>
 

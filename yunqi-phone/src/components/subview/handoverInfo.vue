@@ -35,10 +35,10 @@
           <td colspan="3"></td>
         </tr>
       </table>
+      <div class="buttonPos">
+        <a-button>返回</a-button>
+      </div>
     </a-card>
-    <div class="buttonPos">
-      <a-button>返回</a-button>
-    </div>
   </div>
 </template>
 

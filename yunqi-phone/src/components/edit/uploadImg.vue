@@ -43,10 +43,10 @@
           </a-button>
         </a-upload>
       </div>
+      <div class="buttonPos">
+        <a-button type="primary">返回</a-button>
+      </div>
     </a-card>
-    <div class="buttonPos">
-      <a-button type="primary">返回</a-button>
-    </div>
   </div>
 </template>
 <script lang="ts" setup>

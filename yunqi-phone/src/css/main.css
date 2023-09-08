@@ -5,3 +5,6 @@
 .buttonPos button{
   margin: 5px;
 }
+.ant-input[disabled] {
+  color: blue;
+}
