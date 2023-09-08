@@ -12,11 +12,5 @@
 </script>
 
 <style lang="less" scoped>
-.buttonPos {
-  width: 100%;
-  text-align: right;
-}
-button{
-  margin: 10px;
-}
+
 </style>

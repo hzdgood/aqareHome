@@ -1,1 +1,7 @@
-
+.buttonPos {
+  width: 100%;
+  text-align: right;
+}
+.buttonPos button{
+  margin: 10px;
+}

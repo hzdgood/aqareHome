@@ -69,11 +69,4 @@ const onFinishFailed = (errorInfo: any) => {
 .writerTable tr td{
   padding: 5px;
 }
-.buttonPos {
-  width: 100%;
-  text-align: right;
-}
-button{
-  margin: 10px;
-}
 </style>

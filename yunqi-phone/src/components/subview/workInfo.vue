@@ -72,11 +72,4 @@ const onFinishFailed = (errorInfo: any) => {
 .workTable tr td{
   padding: 5px;
 }
-.buttonPos {
-  width: 100%;
-  text-align: right;
-}
-button{
-  margin: 10px;
-}
 </style>

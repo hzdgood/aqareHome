@@ -38,11 +38,4 @@
   padding: 3px;
   text-align: left;
 }
-.buttonPos {
-  width: 100%;
-  text-align: right;
-}
-button{
-  margin: 10px;
-}
 </style>
