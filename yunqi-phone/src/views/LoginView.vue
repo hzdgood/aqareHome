@@ -39,7 +39,16 @@
 import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useRouter } from "vue-router";
+import { onMounted } from "vue";
 const router = useRouter()
+
+onMounted (function () {
+  const username = localStorage.getItem("username")
+  const password = localStorage.getItem("password")
+  if(typeof(username) !== 'undefined' && typeof(password) !== 'undefined' ) {
+    router.push({ name: "page"})
+  }
+});
 
 interface FormState {
   username: string;
@@ -58,7 +67,7 @@ const forgotWord = () => {
 
 localStorage.clear();
 const onFinish = (values: any) => {
-  router.push({ name: "home"})
+  router.push({ name: "page"})
   localStorage.setItem("username",values.username)
   localStorage.setItem("password",values.password)
 };

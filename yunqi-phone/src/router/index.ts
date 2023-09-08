@@ -1,26 +1,23 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import LoginView from '../views/LoginView.vue'
-import ForgotView from '../views/ForgotView.vue'
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/cood',
       name: 'login',
-      component: LoginView
-    },
-    {
-      path: '/',
-      name: 'forgot',
-      component: ForgotView
-    },
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import('../views/HomeView.vue'),
       props: true,
+      component:  () => import('../views/LoginView.vue'),
+    },
+    {
+      path: '/forget',
+      name: 'forgot',
+      component: () => import('../views/ForgotView.vue'),
+    },
+    {
+      path: '/page',
+      name: 'page',
+      component: () => import('../views/PageView.vue'),
       children: [
         {
           path: '/workSheet',
@@ -46,8 +43,7 @@ const router = createRouter({
           path: '/subWriter',
           name: 'subWriter',
           component: () => import('../components/subview/writerInfo.vue')
-        },
-        {
+        },{
           path: '/subWork',
           name: 'subWork',
           component: () => import('../components/subview/workInfo.vue')

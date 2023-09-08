@@ -27,8 +27,6 @@ onMounted (function () {
     router.push({ name: "login"})
   } else if(username === 'null' || password === 'null') {
     router.push({ name: "login"})
-  } else {
-    router.push({ name: "workSheet"})
   }
 });
 </script>
