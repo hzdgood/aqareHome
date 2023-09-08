@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #ececec; padding: 10px 10px 0px 10px;">
+  <div class="cardDiv">
     <a-card title="郭佳伟，张恒 安装" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit">详情</a-button>
@@ -51,11 +51,5 @@ const style = {
 }
 </script>
 <style scoped>
-.cardTale{
-  width: 100%;
-}
-.cardTale tr td{
-  padding: 3px;
-  text-align: left;
-}
+
 </style>

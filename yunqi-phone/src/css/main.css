@@ -2,9 +2,29 @@
   width: 100%;
   text-align: right;
 }
+
 .buttonPos button{
   margin: 5px;
 }
+
 .ant-input[disabled] {
   color: blue;
+}
+
+.cardDiv{
+  background: #ececec; 
+  padding: 10px 10px 0px 10px;
+}
+
+.cardTale{
+  width: 100%;
+}
+
+.cardTale tr td{
+  padding: 3px;
+  text-align: left;
+}
+
+.pageView{
+  margin-top: 10px;
 }

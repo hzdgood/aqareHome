@@ -2,15 +2,15 @@
   <div>
     <a-form
       :model="formState"
-      name="writeView"
-      class="writeView"
+      name="pageView"
+      class="pageView"
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <span>结算日期:</span>
+      <span>&nbsp;&nbsp;结算日期: &nbsp;</span>
       <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 40%;"/>
       <span>
-        <a-button type="primary" html-type="submit">查询</a-button>
+        &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
       </span>
     </a-form>
     <WriteCardView></WriteCardView>
@@ -42,11 +42,5 @@ const onChange = (value: Dayjs, dateString: string) => {
 </script>
 
 <style scoped lang="less">
-span {
-  padding: 5px;
-  font-size: 1em;
-}
-.writeView{
-  margin-top: 10px;
-}
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #ececec; padding: 10px 10px 0px 10px;">
+  <div class="cardDiv">
     <a-card title="" :bordered="false">
       <table class="schemeTable">
         <tr>

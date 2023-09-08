@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #ececec; padding: 10px 10px 0px 10px;">
+  <div class="cardDiv">
     <a-card title="" :bordered="false">
       <a-form
         :model="formState"
@@ -8,7 +8,7 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
-        <table class="writerTable">
+        <table class="cardTale">
           <tr>
             <td width="70px">产品名称:</td>
             <td colspan="3">
@@ -64,12 +64,5 @@ const onFinishFailed = (errorInfo: any) => {
 </script>
 
 <style lang="less" scoped>
-.writerTable{
-  width: 100%;
-  margin: 5px;
-}
 
-.writerTable tr td{
-  padding: 5px;
-}
 </style>

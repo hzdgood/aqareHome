@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #ececec; padding: 10px 10px 0px 10px;">
+  <div class="cardDiv">
     <a-card title="缪丹霞 全屋" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="handoverInfo">交接信息</a-button>
@@ -55,11 +55,5 @@ const handoverInfo = () => {
 }
 </script>
 <style scoped>
-.cardTale{
-  width: 100%;
-}
-.cardTale tr td{
-  padding: 3px;
-  text-align: left;
-}
+
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div style="background: #ececec; padding: 10px 10px 0px 10px;">
+  <div class="cardDiv">
     <a-card title="" :bordered="false">
-      <table class="workTable">
+      <table class="cardTale">
         <tr>
           <td width="70px">项目姓名</td>
           <td>缪丹霞</td>
@@ -39,10 +39,5 @@
 </script>
 
 <style lang="less" scoped>
-.workTable{
-  width: 100%;
-}
-.workTable tr td{
-  padding: 5px;
-}
+
 </style>
