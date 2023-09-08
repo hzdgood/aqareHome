@@ -67,7 +67,11 @@ const router = createRouter({
           path: '/uploadImg',
           name: 'uploadImg',
           component: () => import('../components/edit/uploadImg.vue')
-        }        
+        },{
+          path: '/handoverInfo',
+          name: 'handoverInfo',
+          component: () => import('../components/subview/handoverInfo.vue')
+        }
       ]
     }
   ]

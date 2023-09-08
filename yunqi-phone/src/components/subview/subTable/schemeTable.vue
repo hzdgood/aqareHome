@@ -20,9 +20,6 @@
         </tr>
       </table>
     </a-card>
-    <div class="buttonPos">
-      <a-button>返回</a-button>
-    </div>
   </div>
 </template>
 

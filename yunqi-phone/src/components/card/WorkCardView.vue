@@ -2,7 +2,7 @@
   <div style="background: #ececec; padding: 10px 10px 0px 10px;">
     <a-card title="郭佳伟，张恒 安装" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" @click="WriterEdit">详情</a-button>
+        <a-button :style="style" @click="workEdit">详情</a-button>
         <a-button :style="style" @click="uploadImg">图片</a-button>
       </div>
       <table class="cardTale">
@@ -40,8 +40,8 @@ const WriterInfo = () => {
 const measureInfo = () => {
   emit('toPage','subMeasure')
 }
-const WriterEdit = () => {
-  emit('toPage','WriterEdit')
+const workEdit = () => {
+  emit('toPage','workEdit')
 }
 const uploadImg = () => {
   emit('toPage','uploadImg')
