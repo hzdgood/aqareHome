@@ -44,7 +44,7 @@
         </a-upload>
       </div>
       <div class="buttonPos">
-        <a-button type="primary">返回</a-button>
+        <a-button type="primary" @click="resPage()">返回</a-button>
       </div>
     </a-card>
   </div>
@@ -54,6 +54,11 @@ import { ref } from 'vue';
 import { message } from 'ant-design-vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import type { UploadChangeParam } from 'ant-design-vue';
+import router from '@/router';
+
+const resPage = () => {
+  router.push({name: 'workSheet'})
+}
 
 const handleChange = (info: UploadChangeParam) => {
   if (info.file.status !== 'uploading') {

@@ -1,12 +1,9 @@
-package com.yunqi.common.entity;
+package com.yunqi.common.view;
 
-import java.util.Date;
-
-public class Project {
-    private Integer id;
-    private Integer saleId; //销售
-    private Integer techID; //技术
-    private String name;// 姓名
+public class ProjectView {
+    private Integer salesName; //销售
+    private Integer techName; //技术
+    private String projectName;// 姓名
     private String telephone;// 电话
     private String address; // 地址
     private String type; //类型
@@ -17,42 +14,29 @@ public class Project {
     private String village; //小区
     private String schedule; //进度
     private String region; //区域
-    private String itemId;
-    private String createName;
-    private Date createTime;
-    private String updateName;
-    private Date updateTime;
 
-    public Integer getId() {
-        return id;
+    public Integer getSalesName() {
+        return salesName;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSalesName(Integer salesName) {
+        this.salesName = salesName;
     }
 
-    public Integer getSaleId() {
-        return saleId;
+    public Integer getTechName() {
+        return techName;
     }
 
-    public void setSaleId(Integer saleId) {
-        this.saleId = saleId;
+    public void setTechName(Integer techName) {
+        this.techName = techName;
     }
 
-    public Integer getTechID() {
-        return techID;
+    public String getProjectName() {
+        return projectName;
     }
 
-    public void setTechID(Integer techID) {
-        this.techID = techID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public String getTelephone() {
@@ -133,45 +117,5 @@ public class Project {
 
     public void setRegion(String region) {
         this.region = region;
-    }
-
-    public String getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

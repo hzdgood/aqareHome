@@ -16,7 +16,8 @@
 
     <select id="selectName" resultType="com.yunqi.common.entity.Tech">
         select *
-        from tech where name = #{name}
+        from tech
+        where name = #{name}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Tech" useGeneratedKeys="true" keyProperty="id">
@@ -24,6 +25,8 @@
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.Tech">
-        delete from tech where id = #{id}
+        delete
+        from tech
+        where id = #{id}
     </delete>
 </mapper>

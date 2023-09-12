@@ -26,10 +26,11 @@ public class WorkSheetController {
     @RequestMapping("/select")
     private List<WorkSheet> select(String type, String dateOfVisit, String techIds) {
         SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyy-MM-dd");
-
         WorkSheet WorkSheet = new WorkSheet();
         try {
-            WorkSheet.setDateOfVisit(SimpleDateFormat.parse(dateOfVisit));
+            if (dateOfVisit != null) {
+                WorkSheet.setDateOfVisit(SimpleDateFormat.parse(dateOfVisit));
+            }
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }

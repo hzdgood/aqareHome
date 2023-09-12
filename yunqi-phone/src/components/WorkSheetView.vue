@@ -43,8 +43,9 @@ onMounted (async function () {
   formState.dataList = res
 })
 
-const toPage = (str: any) => {
-  router.push({name: str})
+const toPage = (str: any, id: any) => {
+  console.log(id);
+  router.push({name: str, query: {id: id}})
 }
 
 interface FormState {

@@ -16,14 +16,17 @@
 
     <select id="selectName" resultType="com.yunqi.common.entity.Sales">
         select *
-        from sales where name = #{name}
+        from sales
+        where name = #{name}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Sales" useGeneratedKeys="true" keyProperty="id">
-        insert into sales (name, status) value (#{name},#{status})
+        insert into sales (name, status) value (#{name}, #{status})
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.Sales">
-        delete from sales where id = #{id}
+        delete
+        from sales
+        where id = #{id}
     </delete>
 </mapper>

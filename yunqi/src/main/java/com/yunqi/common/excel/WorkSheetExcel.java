@@ -62,9 +62,9 @@ public class WorkSheetExcel {
                                 }
                             }
                         } else if (j == 2) {
-                            WorkSheet.setDateOfVisit(cell.getDateCellValue());
-                        } else if (j == 3) {
                             WorkSheet.setOrderDate(cell.getDateCellValue());
+                        } else if (j == 3) {
+                            WorkSheet.setDateOfVisit(cell.getDateCellValue());
                         } else if (j == 4) {
                             WorkSheet.setType(value);
                         } else if (j == 5) {

@@ -34,13 +34,15 @@
     </select>
 
     <select id="selectName" resultType="com.yunqi.common.entity.Project">
-        select * from project where name = #{name}
+        select *
+        from project
+        where name = #{name}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
         insert into project (saleId, techID, name, telephone,
-            address, type, node, status,
-            houseState, situation, village, schedule, region)
+                             address, type, node, status,
+                             houseState, situation, village, schedule, region)
             value (
                    #{saleId}, #{techID}, #{name}, #{telephone},
                    #{address}, #{type}, #{node}, #{status},

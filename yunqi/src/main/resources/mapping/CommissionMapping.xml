@@ -18,17 +18,18 @@
     </resultMap>
 
     <select id="select" resultType="com.yunqi.common.entity.Commission">
-        select * from commission
+        select *
+        from commission
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Commission" useGeneratedKeys="true" keyProperty="id">
         insert into commission (category, cost, installRatio, debugRatio,
-            install, debug, disclose, `check`,
-            headDoor, headDisclose, headComplete)
-        value (
-               #{category}, #{cost}, #{installRatio}, #{debugRatio},
-               #{install}, #{debug}, #{disclose}, #{check},
-               #{headDoor}, #{headDisclose}, #{headComplete}
+                                install, debug, disclose, `check`,
+                                headDoor, headDisclose, headComplete)
+            value (
+                   #{category}, #{cost}, #{installRatio}, #{debugRatio},
+                   #{install}, #{debug}, #{disclose}, #{check},
+                   #{headDoor}, #{headDisclose}, #{headComplete}
             )
     </insert>
 

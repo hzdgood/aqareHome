@@ -32,18 +32,20 @@
         <if test="dateOfVisit!=null">
             and dateOfVisit between #{dateOfVisit} and #{dateOfVisit}
         </if>
-        LIMIT 10
+        LIMIT 100
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
         insert into worksheet (projectId, techIds, dateOfVisit, orderDate,
-            type, status, actualWork, schedule,
-            watermark, signImg, signTime, writeTime
-        ) value (
-           #{projectId}, #{techIds}, #{dateOfVisit}, #{orderDate},
-           #{type}, #{status}, #{actualWork}, #{schedule},
-           #{watermark}, #{signImg}, #{signTime}, #{writeTime}
-        )
+                               type, status, actualWork, schedule,
+                               watermark, signImg, signTime, writeTime) value (
+                                                                               #{projectId}, #{techIds}, #{dateOfVisit},
+                                                                               #{orderDate},
+                                                                               #{type}, #{status}, #{actualWork},
+                                                                               #{schedule},
+                                                                               #{watermark}, #{signImg}, #{signTime},
+                                                                               #{writeTime}
+            )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">

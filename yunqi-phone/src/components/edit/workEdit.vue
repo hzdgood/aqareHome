@@ -27,7 +27,7 @@
       </table>
       <div class="buttonPos">
         <a-button type="primary">提交</a-button>
-        <a-button type="primary">返回</a-button>
+        <a-button type="primary" @click="resPage()">返回</a-button>
         <a-button type="primary">有效性</a-button>
       </div>
     </a-card>
@@ -35,7 +35,11 @@
 </template>
 
 <script setup lang="ts">
+import router from '@/router';
 
+const resPage = () => {
+  router.push({name: 'workSheet'})
+}
 </script>
 
 <style lang="less" scoped>

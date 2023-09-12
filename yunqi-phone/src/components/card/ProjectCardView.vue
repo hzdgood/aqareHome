@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="data.name" :bordered="false">
+    <a-card :title="data.name +'&nbsp;&nbsp;'+  data.schedule" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="handoverInfo(data.id)">交接信息</a-button>
       </div>
@@ -53,22 +53,22 @@ const style = {
 
 const sendWork = (id: any) => {
   console.log(id);
-  emit('toPage','subWork')
+  emit('toPage','subWork', id)
 }
 
 const schemeInfo = (id: any) => {
   console.log(id);
-  emit('toPage','subSchemem')
+  emit('toPage','subSchemem', id)
 }
 
 const measureInfo = (id: any) => {
   console.log(id);
-  emit('toPage','subMeasure')
+  emit('toPage','subMeasure', id)
 }
 
 const handoverInfo = (id: any) => {
   console.log(id);
-  emit('toPage','handoverInfo')
+  emit('toPage','handoverInfo', id)
 }
 </script>
 <style scoped>

@@ -2,13 +2,17 @@
   <div>
     <schemeTable></schemeTable>
     <div class="buttonPos">
-      <a-button type="primary">返回</a-button>
+      <a-button type="primary" @click="resPage()">返回</a-button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import schemeTable from './subTable/schemeTable.vue'
+import schemeTable from './subTable/schemeTable.vue'
+import router from '@/router';
+const resPage = () => {
+  router.push({name: 'project'})
+}
 </script>
 
 <style lang="less" scoped>
