@@ -40,14 +40,17 @@ import { reactive, computed } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useRouter } from "vue-router";
 import { onMounted } from "vue";
+import { httpGet } from '../config/interFace'
+
 const router = useRouter()
 
 onMounted (function () {
   const username = localStorage.getItem("username")
   const password = localStorage.getItem("password")
-  if(typeof(username) !== 'undefined' && typeof(password) !== 'undefined' ) {
-    router.push({ name: "page"})
+  if(username !== null && password !== null) {
+    router.push({ name: "login"})
   }
+  localStorage.clear();
 });
 
 interface FormState {
@@ -55,6 +58,7 @@ interface FormState {
   password: string;
   remember: boolean;
 }
+
 const formState = reactive<FormState>({
   username: '',
   password: '',
@@ -65,15 +69,20 @@ const forgotWord = () => {
   router.push({ name: "forgot"})
 }
 
-localStorage.clear();
-const onFinish = (values: any) => {
-  router.push({ name: "page"})
-  localStorage.setItem("username",values.username)
-  localStorage.setItem("password",values.password)
+const onFinish = async () => {
+  const obj = {
+    username: formState.username,
+    password: formState.password,
+    techId: '111'
+  }
+  const res = await httpGet('/login/select',obj)
+  console.log(res);
 };
+
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };
+
 const disabled = computed(() => {
   return !(formState.username && formState.password);
 });
