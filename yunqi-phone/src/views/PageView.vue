@@ -21,25 +21,18 @@ import { useRouter } from "vue-router";
 
 onMounted (function () {
   const router = useRouter()
-  router.push({ name: "workSheet"})
-  // 
   const username = localStorage.getItem("username")
   const password = localStorage.getItem("password")
-
-  console.log(username);
-
-  if(username === null || password === null) {
+  const techId = localStorage.getItem('techId')
+  if(typeof(techId) === 'undefined' ){
     router.push({ name: "login"})
+  } else {
+    if(username === null || password === null ) {
+      router.push({ name: "login"})
+    } else {
+      router.push({ name: "workSheet"})
+    }
   }
-  
-
-  // if(typeof(username) === 'undefined' || typeof(password) === 'undefined') {
-  //   router.push({ name: "login"})
-  // } else if(username === 'null' || password === 'null') {
-  //   router.push({ name: "login"})
-  // } else {
-  //   router.push({ name: "workSheet"})
-  // }
 });
 </script>
 

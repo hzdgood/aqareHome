@@ -25,7 +25,14 @@
 
     <select id="select" resultType="com.yunqi.common.entity.WorkSheet">
         select *
-        from worksheet w
+        from worksheet w where 1 = 1
+        <if test="type!=null and type!=''">
+            and type = #{type}
+        </if>
+        <if test="dateOfVisit!=null">
+            and dateOfVisit between #{dateOfVisit} and #{dateOfVisit}
+        </if>
+        LIMIT 10
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">

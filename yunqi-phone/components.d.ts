@@ -16,6 +16,8 @@ declare module 'vue' {
     AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AInput: typeof import('ant-design-vue/es')['Input']
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
+    ASelect: typeof import('ant-design-vue/es')['Select']
+    ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
     AUpload: typeof import('ant-design-vue/es')['Upload']
     CommissionCardView: typeof import('./src/components/card/CommissionCardView.vue')['default']
     CommissionView: typeof import('./src/components/CommissionView.vue')['default']

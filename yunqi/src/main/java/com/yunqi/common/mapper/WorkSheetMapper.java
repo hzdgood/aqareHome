@@ -7,7 +7,7 @@ import java.util.List;
 
 @Repository
 public interface WorkSheetMapper {
-    List<WorkSheet> select();
+    List<WorkSheet> select(WorkSheet WorkSheet);
 
     void insert(WorkSheet WorkSheet);
 

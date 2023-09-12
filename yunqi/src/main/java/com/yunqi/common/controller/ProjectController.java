@@ -21,8 +21,8 @@ public class ProjectController {
 
     @CrossOrigin
     @RequestMapping("/select")
-    public List<Project> select() {
-        return ProjectService.select();
+    public List<Project> select(Project Project) {
+        return ProjectService.select(Project);
     }
 
     @CrossOrigin

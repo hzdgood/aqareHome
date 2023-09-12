@@ -1,56 +1,73 @@
 <template>
   <div class="cardDiv">
-    <a-card title="缪丹霞 全屋" :bordered="false">
+    <a-card :title="data.name" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" @click="handoverInfo">交接信息</a-button>
+        <a-button :style="style" @click="handoverInfo(data.id)">交接信息</a-button>
       </div>
       <table class="cardTale">
         <tr>
           <td>项目姓名</td>
-          <td>缪丹霞</td>
+          <td>{{data.name}}</td>
           <td>装修进度</td>
-          <td>水电完成</td>
+          <td>{{data.schedule}}</td>
         </tr>
         <tr>
           <td>项目类型</td>
-          <td>全屋</td>
+          <td>{{data.type}}</td>
           <td>目前任务</td>
-          <td>跟踪装修进度</td>
+          <td>{{data.node}}</td>
         </tr>
         <tr>
           <td>销售</td>
-          <td>郑海朋</td>
+          <td>{{data.saleId}}</td>
           <td>负责人</td>
-          <td>娄德</td>
+          <td>{{data.techID}}</td>
         </tr>
         <tr>
           <td>项目电话</td>
-          <td colspan="3">18328430072</td>
+          <td colspan="3">{{data.telephone}}</td>
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button @click="sendWork" type="primary">发单</a-button>
-        <a-button @click="schemeInfo" type="primary">方案</a-button>
-        <a-button @click="measureInfo" type="primary">测量</a-button>
+        <a-button @click="sendWork(data.id)" type="primary">发单</a-button>
+        <a-button @click="schemeInfo(data.id)" type="primary">方案</a-button>
+        <a-button @click="measureInfo(data.id)" type="primary">测量</a-button>
       </div>
     </a-card>
   </div>
 </template>
 <script setup lang="ts">
+
+defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
 const emit = defineEmits(['toPage'])
+
 const style = {
   backgroundColor: '#0099DD',color: '#fff'
 }
-const sendWork = () => {
+
+const sendWork = (id: any) => {
+  console.log(id);
   emit('toPage','subWork')
 }
-const schemeInfo = () => {
+
+const schemeInfo = (id: any) => {
+  console.log(id);
   emit('toPage','subSchemem')
 }
-const measureInfo = () => {
+
+const measureInfo = (id: any) => {
+  console.log(id);
   emit('toPage','subMeasure')
 }
-const handoverInfo = () => {
+
+const handoverInfo = (id: any) => {
+  console.log(id);
   emit('toPage','handoverInfo')
 }
 </script>

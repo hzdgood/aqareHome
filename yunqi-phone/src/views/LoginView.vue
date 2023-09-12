@@ -48,9 +48,8 @@ onMounted (function () {
   const username = localStorage.getItem("username")
   const password = localStorage.getItem("password")
   if(username !== null && password !== null) {
-    router.push({ name: "login"})
+    router.push({ name: "page"})
   }
-  localStorage.clear();
 });
 
 interface FormState {
@@ -72,11 +71,15 @@ const forgotWord = () => {
 const onFinish = async () => {
   const obj = {
     username: formState.username,
-    password: formState.password,
-    techId: '111'
+    password: formState.password
   }
   const res = await httpGet('/login/select',obj)
-  console.log(res);
+  if(res.length !== 0){
+    localStorage.setItem('username', formState.username)
+    localStorage.setItem('password', formState.password)
+    localStorage.setItem('techId', res[0].techId)
+    router.push({ name: "page"})
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {

@@ -38,7 +38,7 @@
         </table>
         <div class="buttonPos">
           <a-button type="primary" html-type="submit">提交</a-button>
-          <a-button type="primary">取消</a-button>
+          <a-button type="primary">返回</a-button>
         </div>
       </a-form>
     </a-card>

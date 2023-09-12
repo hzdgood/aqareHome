@@ -30,8 +30,8 @@ public class SchemeBoot {
     @Scheduled(cron = "0 28 18 * * ?")
     private void uploadExcel() {
         File file = new File("D:\\download\\客户方案.xlsx");
-        List<Project> Project = ProjectService.select();
+        //List<Project> Project = ProjectService.select();
         List<Product> Product = ProductService.select();
-        SchemeExcel.schemeToExcel(file, SchemeService, Project, Product);
+        //SchemeExcel.schemeToExcel(file, SchemeService, Project, Product);
     }
 }
