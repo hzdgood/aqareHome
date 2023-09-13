@@ -7,10 +7,6 @@ import java.util.List;
 
 @Repository
 public interface SchemeMapper {
-    List<Scheme> select();
-
-    List<Scheme> selectItemId(String itemId);
-
     void insert(Scheme scheme);
 
     void update(Scheme scheme);

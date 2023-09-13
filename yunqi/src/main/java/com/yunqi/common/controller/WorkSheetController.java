@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
-
 @RestController
 @RequestMapping("/workSheet")
 public class WorkSheetController {
@@ -19,24 +15,6 @@ public class WorkSheetController {
     @Autowired
     public void setMapper(WorkSheetService WorkSheetService) {
         this.WorkSheetService = WorkSheetService;
-    }
-
-
-    @CrossOrigin
-    @RequestMapping("/select")
-    private List<WorkSheet> select(String type, String dateOfVisit, String techIds) {
-        SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyy-MM-dd");
-        WorkSheet WorkSheet = new WorkSheet();
-        try {
-            if (dateOfVisit != null) {
-                WorkSheet.setDateOfVisit(SimpleDateFormat.parse(dateOfVisit));
-            }
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        WorkSheet.setType(type);
-        WorkSheet.setTechIds(techIds);
-        return WorkSheetService.select(WorkSheet);
     }
 
     @CrossOrigin

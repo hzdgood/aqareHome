@@ -16,14 +16,6 @@ public class SchemeService {
         this.schemeMapper = schemeMapper;
     }
 
-    public List<Scheme> select() {
-        return schemeMapper.select();
-    }
-
-    public List<Scheme> selectItemId(String itemId) {
-        return schemeMapper.selectItemId(itemId);
-    }
-
     public void insert(Scheme scheme) {
         schemeMapper.insert(scheme);
     }

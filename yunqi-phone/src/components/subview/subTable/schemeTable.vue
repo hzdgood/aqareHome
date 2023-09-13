@@ -3,20 +3,36 @@
     <a-card title="" :bordered="false">
       <table class="schemeTable">
         <tr>
-          <td width="70px">产品名称</td>
-          <td colspan="3">高精度人体传感器</td>
-        </tr>
-        <tr>
+          <td>产品名称</td>
+          <td>类型</td>
           <td>数量</td>
-          <td>10</td>
           <td>未装</td>
+          <td>未试</td>
+          <td>未发</td>
+        </tr>
+        <tr>
+          <td>高精度人体传感器</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
           <td>10</td>
         </tr>
         <tr>
-          <td>未试</td>
-          <td>5</td>
-          <td>未发</td>
-          <td>5</td>
+          <td>高精度人体传感器</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>高精度人体传感器</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
+          <td>10</td>
         </tr>
       </table>
     </a-card>
@@ -24,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-
+  // 项目方案
 </script>
 
 <style scoped lang="less">

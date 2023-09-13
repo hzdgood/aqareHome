@@ -8,6 +8,9 @@
 </template>
 
 <script setup lang="ts">
+// 方案
+
+
 import schemeTable from './subTable/schemeTable.vue'
 import router from '@/router';
 const resPage = () => {

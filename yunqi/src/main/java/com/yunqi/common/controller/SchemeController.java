@@ -20,12 +20,6 @@ public class SchemeController {
     }
 
     @CrossOrigin
-    @RequestMapping("/select")
-    public List<Scheme> select() {
-        return SchemeService.select();
-    }
-
-    @CrossOrigin
     @RequestMapping("/insert")
     public void insert(Scheme Scheme) {
         SchemeService.insert(Scheme);

@@ -16,10 +16,6 @@ public class WorkSheetService {
         this.WorkSheetMapper = WorkSheetMapper;
     }
 
-    public List<WorkSheet> select(WorkSheet WorkSheet) {
-        return WorkSheetMapper.select(WorkSheet);
-    }
-
     public void insert(WorkSheet WorkSheet) {
         WorkSheetMapper.insert(WorkSheet);
     }

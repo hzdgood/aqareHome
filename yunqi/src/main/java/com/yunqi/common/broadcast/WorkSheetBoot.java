@@ -1,9 +1,8 @@
 package com.yunqi.common.broadcast;
 
-import com.yunqi.common.entity.Tech;
-import com.yunqi.common.service.ProjectService;
-import com.yunqi.common.service.TechService;
-import com.yunqi.common.service.WorkSheetService;
+import com.yunqi.common.entity.*;
+import com.yunqi.common.excel.WorkSheetExcel;
+import com.yunqi.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -28,8 +27,8 @@ public class WorkSheetBoot {
     @Scheduled(cron = "0 06 15 * * ?")
     private void uploadExcel() {
         File file = new File("D:\\download\\工单.xlsx");
-        //List<Project> Project = ProjectService.select();
+        List<Project> Project = ProjectService.select();
         List<Tech> Tech = TechService.select();
-        //WorkSheetExcel.WorkSheetToExcel(file, WorkSheetService, Project, Tech);
+        WorkSheetExcel.WorkSheetToExcel(file, WorkSheetService, Project, Tech);
     }
 }

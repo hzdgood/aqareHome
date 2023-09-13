@@ -24,13 +24,25 @@
           <tr>
             <td>工单类型:</td>
             <td>
-              <a-input style="width: 95%;" v-model:value="formState.workType"></a-input>
+              <a-select style="width: 95%;" v-model:value="formState.workType">
+                <a-select-option value="安装">安装</a-select-option>
+                <a-select-option value="调试">调试</a-select-option>
+                <a-select-option value="交底">交底</a-select-option>
+                <a-select-option value="检测">检测</a-select-option>
+                <a-select-option value="售后">售后</a-select-option>
+              </a-select>
             </td>
           </tr>
           <tr>
             <td>上门时间:</td>
             <td>
-              <a-input style="width: 95%;" v-model:value="formState.time"></a-input>
+              <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 95%;"/>
+            </td>
+          </tr>
+          <tr>
+            <td>工单备注:</td>
+            <td>
+              <a-input style="width: 95%;" v-model:value="formState.remark"></a-input>
             </td>
           </tr>
         </table>
@@ -44,24 +56,27 @@
 </template>
 
 <script setup lang="ts">
+//发单
 import { reactive } from 'vue';
 import router from '@/router';
+import { Dayjs } from 'dayjs'
 
 const resPage = () => {
   router.push({name: 'workSheet'})
 }
-
 interface FormState {
   techName: string;
   projectName: string;
   workType: string;
   time: string;
+  remark: String;
 }
 const formState = reactive<FormState>({
   techName: '',
   projectName: '',
   workType: '',
-  time: ''
+  time: '',
+  remark: ''
 });
 const onFinish = (values: any) => {
   console.log('Success:', values);
@@ -70,6 +85,11 @@ const onFinish = (values: any) => {
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };
+
+const onChange = (value: Dayjs, dateString: string) => {
+  formState.time = dateString
+};
+
 </script>
 
 <style lang="less" scoped>

@@ -19,7 +19,6 @@ public class TechController {
         this.TechService = TechService;
     }
 
-
     @CrossOrigin
     @RequestMapping("/select")
     public List<Tech> select(Tech Tech) {

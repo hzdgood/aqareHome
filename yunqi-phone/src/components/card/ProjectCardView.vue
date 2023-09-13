@@ -38,6 +38,8 @@
 </template>
 <script setup lang="ts">
 
+// 项目卡片
+
 defineProps({
   data: {
     type: Object,

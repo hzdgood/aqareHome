@@ -11,7 +11,7 @@
           </tr>
           <tr>
             <td>产品名称</td>
-            <td>iphone 12PS</td>
+            <td>高精度人体传感器</td>
             <td>核销数量</td>
             <td>10</td>
           </tr>
@@ -22,13 +22,16 @@
             <td>2023-09-10</td>
           </tr>
         </table>
+        <div class="buttonPos">
+        <a-button type="primary">报错</a-button>
+      </div>
       </a-card>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
+// 核销卡片
 </script>
 
 <style scoped lang="less">

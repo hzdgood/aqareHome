@@ -7,9 +7,7 @@ import java.util.List;
 
 @Repository
 public interface ProjectMapper {
-    List<Project> select(Project Project);
-
-    List<Project> selectName(String name);
+    List<Project> select();
 
     List<Project> selectItemId(String itemId);
 

@@ -50,6 +50,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+// 工单图片
 import { ref } from 'vue';
 import { message } from 'ant-design-vue';
 import { UploadOutlined } from '@ant-design/icons-vue';

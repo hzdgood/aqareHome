@@ -5,7 +5,6 @@
     <resultMap id="BaseResultMap" type="com.yunqi.common.view.WorkView">
         <result column="workID" jdbcType="INTEGER" property="workID"/>
         <result column="projectId" jdbcType="INTEGER" property="projectId"/>
-        <result column="techID" jdbcType="VARCHAR" property="techID"/>
         <result column="projectName" jdbcType="VARCHAR" property="projectName"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
         <result column="address" jdbcType="VARCHAR" property="address"/>

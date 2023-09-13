@@ -10,6 +10,16 @@
       >
         <table class="cardTale">
           <tr>
+            <td width="70px">项目姓名:</td>
+            <td>
+              <a-input :disabled="true" style="width: 95%;"></a-input>
+            </td>
+            <td width="70px">工单类型:</td>
+            <td>
+              <a-input :disabled="true" style="width: 95%;"></a-input>
+            </td>
+          </tr>
+          <tr>
             <td width="70px">产品名称:</td>
             <td colspan="3">
               <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
@@ -46,6 +56,7 @@
 </template>
 
 <script setup lang="ts">
+// 工单核销
 import { reactive } from 'vue';
 import router from '@/router';
 

@@ -5,7 +5,6 @@ import java.util.Date;
 public class WorkView {
     private Integer workID;
     private Integer projectId;
-    private String techID;
     private String projectName;// 姓名
     private String telephone;// 电话
     private String address; // 地址
@@ -37,14 +36,6 @@ public class WorkView {
 
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
-    }
-
-    public String getTechID() {
-        return techID;
-    }
-
-    public void setTechID(String techID) {
-        this.techID = techID;
     }
 
     public String getProjectName() {

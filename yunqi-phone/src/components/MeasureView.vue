@@ -1,10 +1,11 @@
 <template>
     <div>
-        测量
-        开合 卷帘  门锁  晾衣架
+        <MeasureCardView></MeasureCardView>
     </div>
 </template>
 
 <script setup lang="ts">
+// 测量 开合 卷帘  内容
+import MeasureCardView from './card/MeasureCardView.vue'
 
 </script>

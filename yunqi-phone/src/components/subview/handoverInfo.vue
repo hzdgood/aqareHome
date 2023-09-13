@@ -43,11 +43,13 @@
 </template>
 
 <script setup lang="ts">
+/// 交接页面
 import router from '@/router';
 const resPage = () => {
   router.push({name: 'project'})
 }
 </script>
+
 
 <style scoped lang="less">
 

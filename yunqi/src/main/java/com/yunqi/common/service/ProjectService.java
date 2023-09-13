@@ -16,12 +16,8 @@ public class ProjectService {
         this.projectMapper = projectMapper;
     }
 
-    public List<Project> select(Project Project) {
-        return projectMapper.select(Project);
-    }
-
-    public List<Project> selectName(String name) {
-        return projectMapper.selectName(name);
+    public List<Project> select() {
+        return projectMapper.select();
     }
 
     public List<Project> selectItemId(String itemId) {
