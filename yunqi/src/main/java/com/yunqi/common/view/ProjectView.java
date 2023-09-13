@@ -1,8 +1,10 @@
 package com.yunqi.common.view;
 
 public class ProjectView {
-    private Integer salesName; //销售
-    private Integer techName; //技术
+    private Integer projectId;
+    private Integer techID;
+    private String salesName; //销售
+    private String techName; //技术
     private String projectName;// 姓名
     private String telephone;// 电话
     private String address; // 地址
@@ -15,19 +17,35 @@ public class ProjectView {
     private String schedule; //进度
     private String region; //区域
 
-    public Integer getSalesName() {
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
+    public Integer getTechID() {
+        return techID;
+    }
+
+    public void setTechID(Integer techID) {
+        this.techID = techID;
+    }
+
+    public String getSalesName() {
         return salesName;
     }
 
-    public void setSalesName(Integer salesName) {
+    public void setSalesName(String salesName) {
         this.salesName = salesName;
     }
 
-    public Integer getTechName() {
+    public String getTechName() {
         return techName;
     }
 
-    public void setTechName(Integer techName) {
+    public void setTechName(String techName) {
         this.techName = techName;
     }
 

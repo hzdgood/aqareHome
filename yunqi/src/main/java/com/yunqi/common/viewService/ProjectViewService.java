@@ -1,6 +1,6 @@
 package com.yunqi.common.viewService;
 
-import com.yunqi.common.mapper.ProjectViewMapper;
+import com.yunqi.common.viewMapper.ProjectViewMapper;
 import com.yunqi.common.view.ProjectView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.common.viewMapper.WorkViewMapper">
+    <resultMap id="BaseResultMap" type="com.yunqi.common.view.WorkView">
+        <result column="workID" jdbcType="INTEGER" property="workID"/>
+        <result column="projectId" jdbcType="INTEGER" property="projectId"/>
+        <result column="techID" jdbcType="VARCHAR" property="techID"/>
+        <result column="projectName" jdbcType="VARCHAR" property="projectName"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="techName" jdbcType="VARCHAR" property="techName"/>
+        <result column="salesName" jdbcType="VARCHAR" property="salesName"/>
+        <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
+        <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="actualWork" jdbcType="VARCHAR" property="actualWork"/>
+        <result column="schedule" jdbcType="VARCHAR" property="schedule"/>
+        <result column="watermark" jdbcType="VARCHAR" property="watermark"/>
+        <result column="signImg" jdbcType="VARCHAR" property="signImg"/>
+        <result column="signTime" jdbcType="TIMESTAMP" property="signTime"/>
+        <result column="writeTime" jdbcType="TIMESTAMP" property="writeTime"/>
+        <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
+    </resultMap>
+
+    <select id="select" resultType="com.yunqi.common.view.WorkView">
+        select *
+        from workView w where 1 = 1
+        <if test="workID!=null and workID!=''">
+            and workID = #{workID}
+        </if>
+        <if test="type!=null and type!=''">
+            and type = #{type}
+        </if>
+        <if test="dateOfVisit!=null">
+            and dateOfVisit between #{dateOfVisit} and #{dateOfVisit}
+        </if>
+        LIMIT 100
+    </select>
+</mapper>

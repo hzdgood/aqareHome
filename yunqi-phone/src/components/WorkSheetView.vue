@@ -37,7 +37,7 @@ import { httpGet } from '../config/interFace'
 const techIds = localStorage.getItem('techId')
 
 onMounted (async function () {
-  const res = await httpGet('/workSheet/select',{
+  const res = await httpGet('/view/work',{
     techIds: techIds
   })
   formState.dataList = res
@@ -61,7 +61,7 @@ const formState = reactive<FormState>({
 });
 
 const onFinish = async () => {
-  const res = await httpGet('/workSheet/select',{
+  const res = await httpGet('/view/work',{
     type: formState.type,
     dateOfVisit: formState.dateOfVisit,
     techIds: techIds

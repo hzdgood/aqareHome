@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="data.name + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
+    <a-card :title="data.techName + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.id)">详情</a-button>
         <a-button :style="style" @click="uploadImg(data.id)">图片</a-button>
@@ -8,7 +8,7 @@
       <table class="cardTale">
         <tr>
           <td>项目姓名</td>
-          <td>{{ data.name }}</td>
+          <td>{{ data.projectName }}</td>
           <td>工单类型</td>
           <td>{{ data.type }}</td>
         </tr>

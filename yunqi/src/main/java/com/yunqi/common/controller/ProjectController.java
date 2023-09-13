@@ -20,12 +20,6 @@ public class ProjectController {
     }
 
     @CrossOrigin
-    @RequestMapping("/select")
-    public List<Project> select(Project Project) {
-        return ProjectService.select(Project);
-    }
-
-    @CrossOrigin
     @RequestMapping("/insert")
     public void insert(Project Project) {
         ProjectService.insert(Project);

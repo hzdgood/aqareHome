@@ -3,6 +3,9 @@ package com.yunqi.common.view;
 import java.util.Date;
 
 public class WorkView {
+    private Integer workID;
+    private Integer projectId;
+    private String techID;
     private String projectName;// 姓名
     private String telephone;// 电话
     private String address; // 地址
@@ -19,6 +22,30 @@ public class WorkView {
     private Date signTime; //签到时间
     private Date writeTime; //核销时间
     private String disabled; //有效
+
+    public Integer getWorkID() {
+        return workID;
+    }
+
+    public void setWorkID(Integer workID) {
+        this.workID = workID;
+    }
+
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getTechID() {
+        return techID;
+    }
+
+    public void setTechID(String techID) {
+        this.techID = techID;
+    }
 
     public String getProjectName() {
         return projectName;

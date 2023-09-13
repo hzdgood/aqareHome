@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.common.viewMapper.ProjectViewMapper">
+    <resultMap id="BaseResultMap" type="com.yunqi.common.view.ProjectView">
+        <result column="projectId" jdbcType="INTEGER" property="projectId"/>
+        <result column="techID" jdbcType="INTEGER" property="techID"/>
+        <result column="salesName" jdbcType="VARCHAR" property="salesName"/>
+        <result column="techName" jdbcType="VARCHAR" property="techName"/>
+        <result column="projectName" jdbcType="VARCHAR" property="projectName"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="node" jdbcType="VARCHAR" property="node"/>
+        <result column="status" jdbcType="VARCHAR" property="status"/>
+        <result column="houseState" jdbcType="VARCHAR" property="houseState"/>
+        <result column="situation" jdbcType="VARCHAR" property="situation"/>
+        <result column="village" jdbcType="VARCHAR" property="village"/>
+        <result column="schedule" jdbcType="VARCHAR" property="schedule"/>
+        <result column="region" jdbcType="VARCHAR" property="region"/>
+    </resultMap>
+
+    <select id="select" resultType="com.yunqi.common.view.ProjectView">
+        select * from projectView p where 1 = 1
+        <if test="projectName!=null and projectName!=''">
+            and projectName like "%"#{name}"%"
+        </if>
+        <if test="projectId!=null and projectId!=''">
+            and projectId = #{projectId}
+        </if>
+        <if test="techID!=null and techID!=''">
+            and techID = #{techID}
+        </if>
+    </select>
+</mapper>

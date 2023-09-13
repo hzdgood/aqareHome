@@ -2,6 +2,7 @@ package com.yunqi.common.entity;
 
 public class Sales {
     private Integer id;
+    private Integer departId; //部门
     private String name;
     private String telephone;
     private String status;
@@ -12,6 +13,14 @@ public class Sales {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getDepartId() {
+        return departId;
+    }
+
+    public void setDepartId(Integer departId) {
+        this.departId = departId;
     }
 
     public String getName() {

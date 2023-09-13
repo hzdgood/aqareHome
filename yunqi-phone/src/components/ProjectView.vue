@@ -35,7 +35,7 @@ import { reactive, onMounted } from 'vue';
 import { httpGet } from '../config/interFace'
 
 onMounted (async function () {
-  const res = await httpGet('/project/select',{})
+  const res = await httpGet('/view/project',{})
   formState.dataList = res
 })
 
@@ -57,9 +57,9 @@ const formState = reactive<FormState>({
 });
 
 const onFinish = async () => {
-  const res = await httpGet('/project/select',{
+  const res = await httpGet('/view/project',{
     techID: formState.techName,
-    name: formState.projectName
+    projectName: formState.projectName
   })
   formState.dataList = res
 };

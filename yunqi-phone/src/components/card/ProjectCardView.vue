@@ -1,13 +1,13 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="data.name +'&nbsp;&nbsp;'+  data.schedule" :bordered="false">
+    <a-card :title="data.projectName +'&nbsp;&nbsp;'+  data.schedule" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" @click="handoverInfo(data.id)">交接信息</a-button>
+        <a-button :style="style" @click="handoverInfo(data.projectId)">交接信息</a-button>
       </div>
       <table class="cardTale">
         <tr>
           <td>项目姓名</td>
-          <td>{{data.name}}</td>
+          <td>{{data.projectName}}</td>
           <td>装修进度</td>
           <td>{{data.schedule}}</td>
         </tr>
@@ -19,9 +19,9 @@
         </tr>
         <tr>
           <td>销售</td>
-          <td>{{data.saleId}}</td>
+          <td>{{data.salesName}}</td>
           <td>负责人</td>
-          <td>{{data.techID}}</td>
+          <td>{{data.techName}}</td>
         </tr>
         <tr>
           <td>项目电话</td>
@@ -29,9 +29,9 @@
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button @click="sendWork(data.id)" type="primary">发单</a-button>
-        <a-button @click="schemeInfo(data.id)" type="primary">方案</a-button>
-        <a-button @click="measureInfo(data.id)" type="primary">测量</a-button>
+        <a-button @click="sendWork(data.projectId)" type="primary">发单</a-button>
+        <a-button @click="schemeInfo(data.projectId)" type="primary">方案</a-button>
+        <a-button @click="measureInfo(data.projectId)" type="primary">测量</a-button>
       </div>
     </a-card>
   </div>

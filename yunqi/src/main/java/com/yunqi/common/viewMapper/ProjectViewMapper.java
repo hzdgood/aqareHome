@@ -1,4 +1,4 @@
-package com.yunqi.common.mapper;
+package com.yunqi.common.viewMapper;
 
 import com.yunqi.common.view.ProjectView;
 import org.springframework.stereotype.Repository;

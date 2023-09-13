@@ -5,6 +5,7 @@ public class Tech {
     private String name;
     private String telephone;
     private String status;
+    private String position; //职位
 
     public Integer getId() {
         return id;
@@ -36,5 +37,13 @@ public class Tech {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }
