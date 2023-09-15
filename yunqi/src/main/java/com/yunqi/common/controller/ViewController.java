@@ -1,9 +1,7 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.view.ProjectView;
-import com.yunqi.common.view.WorkView;
-import com.yunqi.common.viewService.ProjectViewService;
-import com.yunqi.common.viewService.WorkViewService;
+import com.yunqi.common.view.*;
+import com.yunqi.common.viewService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +13,8 @@ import java.util.List;
 public class ViewController {
     private ProjectViewService ProjectViewService;
     private WorkViewService WorkViewService;
+
+    private SchemeViewService SchemeViewService;
     @Autowired
     public void setMapper(ProjectViewService ProjectViewService) {
         this.ProjectViewService = ProjectViewService;
@@ -23,6 +23,11 @@ public class ViewController {
     public void setMapper(WorkViewService WorkViewService) {
         this.WorkViewService = WorkViewService;
     }
+    @Autowired
+    public void setMapper(SchemeViewService SchemeViewService) {
+        this.SchemeViewService = SchemeViewService;
+    }
+
     @CrossOrigin
     @RequestMapping("/project")
     public List<ProjectView> select(ProjectView ProjectView) {
@@ -32,5 +37,10 @@ public class ViewController {
     @RequestMapping("/work")
     public List<WorkView> select(WorkView WorkView) {
         return WorkViewService.select(WorkView);
+    }
+    @CrossOrigin
+    @RequestMapping("/scheme")
+    public List<SchemeView> select(SchemeView SchemeView) {
+        return SchemeViewService.select(SchemeView);
     }
 }

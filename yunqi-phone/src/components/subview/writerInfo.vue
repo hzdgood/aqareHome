@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv">
-    <a-card title="" :bordered="false">
+    <a-card title="王优 安装" :bordered="false">
       <a-form
         :model="formState"
         name="writerInfo"
@@ -8,17 +8,9 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
+
+        <div> 产品类型： </div>
         <table class="cardTale">
-          <tr>
-            <td width="70px">项目姓名:</td>
-            <td>
-              <a-input :disabled="true" style="width: 95%;"></a-input>
-            </td>
-            <td width="70px">工单类型:</td>
-            <td>
-              <a-input :disabled="true" style="width: 95%;"></a-input>
-            </td>
-          </tr>
           <tr>
             <td width="70px">产品名称:</td>
             <td colspan="3">

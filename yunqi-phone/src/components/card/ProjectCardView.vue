@@ -54,22 +54,18 @@ const style = {
 }
 
 const sendWork = (id: any) => {
-  console.log(id);
   emit('toPage','subWork', id)
 }
 
 const schemeInfo = (id: any) => {
-  console.log(id);
   emit('toPage','subSchemem', id)
 }
 
 const measureInfo = (id: any) => {
-  console.log(id);
   emit('toPage','subMeasure', id)
 }
 
 const handoverInfo = (id: any) => {
-  console.log(id);
   emit('toPage','handoverInfo', id)
 }
 </script>

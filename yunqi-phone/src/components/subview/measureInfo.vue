@@ -2,9 +2,9 @@
   <div>
     <div>
       <a-card title="" :bordered="false" >
-        <div>
-          <a-button @click="check1()">开合帘</a-button>
-          <a-button @click="check2()">卷帘</a-button>
+        <div class="buttonPos">
+          <a-button type="primary" @click="check1()">开合帘</a-button>
+          <a-button type="primary" @click="check2()">卷帘</a-button>
         </div>
         <div v-show="formState.formDiv1">
           <table class="cardTale">
@@ -157,8 +157,8 @@
           </table>
         </div>
         <div class="buttonPos">
-          <a-button>提交</a-button>
-          <a-button @click="resPage()">返回</a-button>
+          <a-button type="primary">提交</a-button>
+          <a-button type="primary" @click="resPage()">返回</a-button>
         </div>
       </a-card>
     </div>

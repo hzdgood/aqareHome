@@ -1,30 +1,47 @@
 package com.yunqi.common.view;
 
 public class SchemeView {
-    private Integer salesName; //销售
-    private Integer techName; //技术
+    private Integer projectId;
+    private Integer schemeId;
+    private String salesName; //销售
+    private String techName; //负责人
     private String projectName;// 姓名
     private String productName; //产品
     private Integer number; // 实际数量
-    private Integer installNumber; //总安装数
-    private Integer debugNumber; //总调试数
+    private Integer installNumber; //已安装
+    private Integer debugNumber; //已调试
     private Integer notInstalled; //未装
     private Integer unregulated; //未调
-    private Integer unissued; //未发
 
-    public Integer getSalesName() {
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
+    public Integer getSchemeId() {
+        return schemeId;
+    }
+
+    public void setSchemeId(Integer schemeId) {
+        this.schemeId = schemeId;
+    }
+
+    public String getSalesName() {
         return salesName;
     }
 
-    public void setSalesName(Integer salesName) {
+    public void setSalesName(String salesName) {
         this.salesName = salesName;
     }
 
-    public Integer getTechName() {
+    public String getTechName() {
         return techName;
     }
 
-    public void setTechName(Integer techName) {
+    public void setTechName(String techName) {
         this.techName = techName;
     }
 
@@ -82,13 +99,5 @@ public class SchemeView {
 
     public void setUnregulated(Integer unregulated) {
         this.unregulated = unregulated;
-    }
-
-    public Integer getUnissued() {
-        return unissued;
-    }
-
-    public void setUnissued(Integer unissued) {
-        this.unissued = unissued;
     }
 }

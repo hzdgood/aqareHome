@@ -40,7 +40,6 @@ onMounted (async function () {
 })
 
 const toPage = (str: any, id: any) => {
-  console.log(id);
   router.push({name: str, query: {id: id}})
 }
 

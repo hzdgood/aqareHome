@@ -50,7 +50,7 @@ const router = createRouter({
         },{
           path: '/subSchemem',
           name: 'subSchemem',
-          component: () => import('../components/subview/schememInfo.vue')
+          component: () => import('../components/info/schememInfo.vue')
         },{
           path: '/subMeasure',
           name: 'subMeasure',
@@ -66,7 +66,7 @@ const router = createRouter({
         },{
           path: '/handoverInfo',
           name: 'handoverInfo',
-          component: () => import('../components/subview/handoverInfo.vue')
+          component: () => import('../components/info/handoverInfo.vue')
         }
       ]
     }

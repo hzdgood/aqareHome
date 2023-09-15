@@ -8,7 +8,7 @@
       <div><RouterLink to="/project">我的项目</RouterLink></div>
       <div><RouterLink to="/write">核销记录</RouterLink></div>
       <div><RouterLink to="/measure">测量单</RouterLink></div>
-      <div><RouterLink to="/commission">我的提成</RouterLink></div>
+      <div><RouterLink to="/commission">提成</RouterLink></div>
     </div>
     <div class="bodyContent">
       <RouterView></RouterView>

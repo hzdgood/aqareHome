@@ -24,7 +24,7 @@ public class SchemeBoot {
     @Autowired
     private ProductService ProductService;
 
-    // @Scheduled(cron = "0 28 18 * * ?")
+    // @Scheduled(cron = "0 05 15 * * ?")
     private void uploadExcel() {
         File file = new File("D:\\download\\客户方案.xlsx");
         List<Project> Project = ProjectService.select();

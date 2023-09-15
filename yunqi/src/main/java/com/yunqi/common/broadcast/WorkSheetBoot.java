@@ -24,7 +24,7 @@ public class WorkSheetBoot {
     @Autowired
     private TechService TechService;
 
-    @Scheduled(cron = "0 06 15 * * ?")
+    // @Scheduled(cron = "0 06 15 * * ?")
     private void uploadExcel() {
         File file = new File("D:\\download\\工单.xlsx");
         List<Project> Project = ProjectService.select();

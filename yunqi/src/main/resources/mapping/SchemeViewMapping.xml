@@ -1,11 +1,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.SchemeMapper">
-    <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Scheme">
-        <result column="id" jdbcType="INTEGER" property="id"/>
+<mapper namespace="com.yunqi.common.viewMapper.SchemeViewMapper">
+    <resultMap id="BaseResultMap" type="com.yunqi.common.view.SchemeView">
         <result column="projectId" jdbcType="INTEGER" property="projectId"/>
-        <result column="productId" jdbcType="INTEGER" property="productId"/>
+        <result column="schemeId" jdbcType="INTEGER" property="schemeId"/>
+        <result column="salesName" jdbcType="VARCHAR" property="salesName"/>
+        <result column="techName" jdbcType="VARCHAR" property="techName"/>
+        <result column="projectName" jdbcType="VARCHAR" property="projectName"/>
+        <result column="productName" jdbcType="VARCHAR" property="productName"/>
         <result column="number" jdbcType="INTEGER" property="number"/>
         <result column="installNumber" jdbcType="INTEGER" property="installNumber"/>
         <result column="debugNumber" jdbcType="INTEGER" property="debugNumber"/>
@@ -17,26 +20,8 @@
         <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
-    <select id="select" resultType="com.yunqi.common.entity.Scheme">
+    <select id="select" resultType="com.yunqi.common.view.SchemeView">
         select *
-        from scheme
+        from schemeView where projectId = #{projectId}
     </select>
-
-    <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-        insert into scheme (projectId, productId, number, installNumber,
-            debugNumber, notInstalled, unregulated) value (
-         #{projectId}, #{productId},
-         #{number}, #{installNumber},
-         #{debugNumber}, #{notInstalled},
-         #{unregulated}
-        )
-    </insert>
-
-    <insert id="update" parameterType="com.yunqi.common.entity.Scheme">
-
-    </insert>
-
-    <delete id="delete" parameterType="com.yunqi.common.entity.Scheme">
-
-    </delete>
 </mapper>

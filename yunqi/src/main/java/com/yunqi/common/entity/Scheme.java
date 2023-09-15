@@ -8,11 +8,10 @@ public class Scheme {
     private Integer projectId;
     private Integer productId;
     private Integer number; // 实际数量
-    private Integer installNumber; //总安装数
-    private Integer debugNumber; //总调试数
+    private Integer installNumber; //已装
+    private Integer debugNumber; //已调
     private Integer notInstalled; //未装
     private Integer unregulated; //未调
-    private Integer unissued; //未发
     private String itemId;
     private String createName;
     private Date createTime;
@@ -81,14 +80,6 @@ public class Scheme {
 
     public void setUnregulated(Integer unregulated) {
         this.unregulated = unregulated;
-    }
-
-    public Integer getUnissued() {
-        return unissued;
-    }
-
-    public void setUnissued(Integer unissued) {
-        this.unissued = unissued;
     }
 
     public String getItemId() {

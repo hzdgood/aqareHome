@@ -42,17 +42,15 @@ public class SchemeExcel {
                                 }
                             }
                         } else if (j == 3) {
-                            Scheme.setNumber(Integer.parseInt(value));
+                            Scheme.setNumber((int) cell.getNumericCellValue());
                         } else if (j == 4) {
-                            Scheme.setInstallNumber(Integer.parseInt(value));
+                            Scheme.setInstallNumber((int) cell.getNumericCellValue());
                         } else if (j == 5) {
-                            Scheme.setDebugNumber(Integer.parseInt(value));
+                            Scheme.setDebugNumber((int) cell.getNumericCellValue());
                         } else if (j == 6) {
-                            Scheme.setNotInstalled(Integer.parseInt(value));
+                            Scheme.setNotInstalled((int) cell.getNumericCellValue());
                         } else if (j == 7) {
-                            Scheme.setUnregulated(Integer.parseInt(value));
-                        } else if (j == 8) {
-                            Scheme.setUnissued(Integer.parseInt(value));
+                            Scheme.setUnregulated((int) cell.getNumericCellValue());
                         }
                     }
                 }
