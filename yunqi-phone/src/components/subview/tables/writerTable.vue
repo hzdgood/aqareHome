@@ -20,11 +20,11 @@
       <tr>
         <td>本次安装:</td>
         <td>
-          <a-input style="width: 90%;" v-model:value="formState.install"></a-input>
+          <a-input style="width: 90%;" v-model:value="formState.install" @change="installChange()"></a-input>
         </td>
         <td>本次调试:</td>
         <td>
-          <a-input style="width: 90%;" v-model:value="formState.debug"></a-input>
+          <a-input style="width: 90%;" v-model:value="formState.debug" @change="debugChange()"></a-input>
         </td>
       </tr>
     </table>
@@ -41,6 +41,14 @@ const props = defineProps({
     default: null
   }
 })
+
+const installChange = () => {
+
+}
+
+const debugChange = () => {
+
+}
 
 interface FormState {
   install: string;
