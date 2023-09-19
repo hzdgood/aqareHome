@@ -7,7 +7,6 @@
         <result column="projectId" jdbcType="INTEGER" property="projectId"/>
         <result column="techIds" jdbcType="VARCHAR" property="techIds"/>
         <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
-        <result column="orderDate" jdbcType="TIMESTAMP" property="orderDate"/>
         <result column="type" jdbcType="VARCHAR" property="type"/>
         <result column="status" jdbcType="VARCHAR" property="status"/>
         <result column="actualWork" jdbcType="VARCHAR" property="actualWork"/>
@@ -15,8 +14,12 @@
         <result column="watermark" jdbcType="VARCHAR" property="watermark"/>
         <result column="signImg" jdbcType="VARCHAR" property="signImg"/>
         <result column="signTime" jdbcType="TIMESTAMP" property="signTime"/>
+        <result column="departureTime" jdbcType="TIMESTAMP" property="departureTime"/>
         <result column="writeTime" jdbcType="TIMESTAMP" property="writeTime"/>
         <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
+        <result column="workSummary" jdbcType="VARCHAR" property="workSummary"/>
+        <result column="visitNode" jdbcType="VARCHAR" property="visitNode"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="createName" jdbcType="VARCHAR" property="createName"/>
         <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
@@ -36,16 +39,11 @@
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
-        insert into worksheet (projectId, techIds, dateOfVisit, orderDate,
-                               type, status, actualWork, schedule,
-                               watermark, signImg, signTime, writeTime) value (
-                                                                               #{projectId}, #{techIds}, #{dateOfVisit},
-                                                                               #{orderDate},
-                                                                               #{type}, #{status}, #{actualWork},
-                                                                               #{schedule},
-                                                                               #{watermark}, #{signImg}, #{signTime},
-                                                                               #{writeTime}
-            )
+        insert into worksheet (projectId, techIds, dateOfVisit,
+           type, status, schedule, remark) value (
+           #{projectId}, #{techIds}, #{dateOfVisit},
+           #{type}, #{status}, #{schedule}, #{remark}
+        )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">
@@ -53,14 +51,24 @@
     </insert>
 
     <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
+        update worksheet set signTime = sysdate()
+            and updateTime = sysdate()
+        where id = #{id}
+    </insert>
 
+    <insert id="depart" parameterType="com.yunqi.common.entity.WorkSheet">
+        update worksheet set departureTime = sysdate()
+           and updateTime = sysdate()
+        where id = #{id}
     </insert>
 
     <insert id="write" parameterType="com.yunqi.common.entity.WorkSheet">
-
+        update worksheet set writeTime = sysdate()
+            and updateTime = sysdate()
+        where id = #{id}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">
-
+        update worksheet set disabled = 'false' where id = #{id}
     </delete>
 </mapper>

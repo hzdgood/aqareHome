@@ -36,10 +36,14 @@ public class WorkSheetController {
     }
 
     @CrossOrigin
-    @RequestMapping("/write")
-    private void write(Integer id) {
-        WorkSheetService.write(id);
+    @RequestMapping("/depart")
+    private void depart(Integer id) {
+        WorkSheetService.depart(id);
     }
+
+    @CrossOrigin
+    @RequestMapping("/write")
+    private void write(Integer id) { WorkSheetService.write(id); }
 
     @CrossOrigin
     @RequestMapping("/delete")

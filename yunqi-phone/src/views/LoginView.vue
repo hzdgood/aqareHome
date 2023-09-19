@@ -48,7 +48,7 @@ onMounted (function () {
   const username = localStorage.getItem("username")
   const password = localStorage.getItem("password")
   if(username !== null && password !== null) {
-    router.push({ name: "page"})
+    //router.push({ name: "page"})
   }
 });
 

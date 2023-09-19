@@ -61,8 +61,6 @@ public class WorkSheetExcel {
                                     WorkSheet.setProjectId(p.getId());
                                 }
                             }
-                        } else if (j == 2) {
-                            WorkSheet.setOrderDate(cell.getDateCellValue());
                         } else if (j == 3) {
                             WorkSheet.setDateOfVisit(cell.getDateCellValue());
                         } else if (j == 4) {

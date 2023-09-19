@@ -2,8 +2,8 @@
   <div class="cardDiv">
     <a-card :title="data.techName + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" @click="workEdit(data.id)">详情</a-button>
-        <a-button :style="style" @click="uploadImg(data.id)">图片</a-button>
+        <a-button :style="style" @click="workEdit(data.workID)">详情</a-button>
+        <a-button :style="style" @click="uploadImg(data.workID)">图片</a-button>
       </div>
       <table class="cardTale">
         <tr>
@@ -26,8 +26,8 @@
       <div class="buttonPos">
         <a-button type="primary">签到</a-button>
         <a-button type="primary">离开</a-button>
-        <a-button type="primary" @click="WriterInfo(data.id)">核销</a-button>
-        <a-button type="primary" @click="measureInfo(data.id)">测量</a-button>
+        <a-button type="primary" @click="WriterInfo(data.workID)">核销</a-button>
+        <a-button type="primary" @click="measureInfo(data.workID)">测量</a-button>
       </div>
     </a-card>
   </div>
@@ -47,22 +47,18 @@ defineProps({
 
 const emit = defineEmits(['toPage'])
 const WriterInfo = (id: any) => {
-  console.log(id);
   emit('toPage','subWriter', id)
 }
 
 const measureInfo = (id: any) => {
-  console.log(id);
   emit('toPage','subMeasure',id)
 }
 
 const workEdit = (id: any) => {
-  console.log(id);
   emit('toPage','workEdit', id)
 }
 
 const uploadImg = (id: any) => {
-  console.log(id);
   emit('toPage','uploadImg', id)
 }
 

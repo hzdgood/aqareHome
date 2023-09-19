@@ -21,7 +21,7 @@ public class TechController {
 
     @CrossOrigin
     @RequestMapping("/select")
-    public List<Tech> select(Tech Tech) {
+    public List<Tech> select() {
         return TechService.select();
     }
 

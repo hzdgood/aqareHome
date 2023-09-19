@@ -34,8 +34,13 @@
           <td>交接信息</td>
           <td colspan="3"></td>
         </tr>
+        <tr>
+          <td>备注</td>
+          <td colspan="3"></td>
+        </tr>
       </table>
       <div class="buttonPos">
+        <a-button>提交</a-button>
         <a-button @click="resPage()">返回</a-button>
       </div>
     </a-card>
@@ -49,7 +54,6 @@ const resPage = () => {
   router.push({name: 'project'})
 }
 </script>
-
 
 <style scoped lang="less">
 

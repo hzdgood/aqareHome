@@ -2,7 +2,7 @@
   <div class="cardDiv">
     <a-card :title="data.projectName +'&nbsp;&nbsp;'+  data.schedule" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" @click="handoverInfo(data.projectId)">交接信息</a-button>
+        <a-button :style="style" @click="handoverInfo(data.projectId)">项目详情</a-button>
       </div>
       <table class="cardTale">
         <tr>
@@ -39,7 +39,6 @@
 <script setup lang="ts">
 
 // 项目卡片
-
 defineProps({
   data: {
     type: Object,

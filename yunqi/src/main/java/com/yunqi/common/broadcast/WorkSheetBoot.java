@@ -26,9 +26,9 @@ public class WorkSheetBoot {
 
     // @Scheduled(cron = "0 06 15 * * ?")
     private void uploadExcel() {
-        File file = new File("D:\\download\\工单.xlsx");
-        List<Project> Project = ProjectService.select();
-        List<Tech> Tech = TechService.select();
-        WorkSheetExcel.WorkSheetToExcel(file, WorkSheetService, Project, Tech);
+//        File file = new File("D:\\download\\工单.xlsx");
+//        List<Project> Project = ProjectService.select();
+//        List<Tech> Tech = TechService.select();
+//        WorkSheetExcel.WorkSheetToExcel(file, WorkSheetService, Project, Tech);
     }
 }

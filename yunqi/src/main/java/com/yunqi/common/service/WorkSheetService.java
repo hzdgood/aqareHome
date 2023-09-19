@@ -35,4 +35,6 @@ public class WorkSheetService {
     public void write(Integer id) {
         WorkSheetMapper.write(id);
     }
+
+    public void depart(Integer id) { WorkSheetMapper.depart(id); }
 }

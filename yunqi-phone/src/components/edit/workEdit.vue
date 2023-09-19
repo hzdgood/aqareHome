@@ -30,6 +30,14 @@
           <td>无效说明</td>
           <td colspan="3"><a-input style="width: 90%;"></a-input></td>
         </tr>
+        <tr>
+          <td>交接信息</td>
+          <td colspan="3"></td>
+        </tr>
+        <tr>
+          <td>工单备注</td>
+          <td colspan="3"><a-input style="width: 90%;"></a-input></td>
+        </tr>
       </table>
       <div class="buttonPos">
         <a-button type="primary">提交</a-button>

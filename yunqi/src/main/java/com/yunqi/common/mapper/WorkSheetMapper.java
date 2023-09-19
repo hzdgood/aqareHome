@@ -16,4 +16,6 @@ public interface WorkSheetMapper {
     void write(Integer id);
 
     void delete(Integer id);
+
+    void depart(Integer id);
 }

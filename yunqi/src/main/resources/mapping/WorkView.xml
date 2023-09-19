@@ -35,6 +35,6 @@
         <if test="dateOfVisit!=null">
             and dateOfVisit between #{dateOfVisit} and #{dateOfVisit}
         </if>
-        LIMIT 100
+        order by status desc
     </select>
 </mapper>

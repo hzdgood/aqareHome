@@ -15,13 +15,8 @@ public class ProjectService {
     public void setMapper(ProjectMapper projectMapper) {
         this.projectMapper = projectMapper;
     }
-
-    public List<Project> select() {
-        return projectMapper.select();
-    }
-
-    public List<Project> selectItemId(String itemId) {
-        return projectMapper.selectItemId(itemId);
+    public List<Project> selectId(Integer id) {
+        return projectMapper.selectId(id);
     }
 
     public void insert(Project project) {

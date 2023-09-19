@@ -8,8 +8,12 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
-
-        <div> 产品类型： </div>
+        <div>
+          今日工作总结: <a-input style="width: 90%;"></a-input>
+        </div>
+        <div>
+          下次上门节点: <a-input style="width: 90%;"></a-input>
+        </div>
         <table class="cardTale">
           <tr>
             <td width="70px">产品名称:</td>
@@ -37,11 +41,92 @@
               <a-input style="width: 90%;"></a-input>
             </td>
           </tr>
+          <tr>
+            <td width="70px">产品名称:</td>
+            <td colspan="3">
+              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td>未安装:</td>
+            <td>
+              <a-input :disabled="true" style="width: 90%;"></a-input>
+            </td>
+            <td width="70px">未调试:</td>
+            <td>
+              <a-input :disabled="true" style="width: 90%;"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td>本次安装:</td>
+            <td>
+              <a-input style="width: 90%;"></a-input>
+            </td>
+            <td>本次调试:</td>
+            <td>
+              <a-input style="width: 90%;"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td width="70px">产品名称:</td>
+            <td colspan="3">
+              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td>未安装:</td>
+            <td>
+              <a-input :disabled="true" style="width: 90%;"></a-input>
+            </td>
+            <td width="70px">未调试:</td>
+            <td>
+              <a-input :disabled="true" style="width: 90%;"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td>本次安装:</td>
+            <td>
+              <a-input style="width: 90%;"></a-input>
+            </td>
+            <td>本次调试:</td>
+            <td>
+              <a-input style="width: 90%;"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td width="70px">产品名称:</td>
+            <td colspan="3">
+              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td>未安装:</td>
+            <td>
+              <a-input :disabled="true" style="width: 90%;"></a-input>
+            </td>
+            <td width="70px">未调试:</td>
+            <td>
+              <a-input :disabled="true" style="width: 90%;"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td>本次安装:</td>
+            <td>
+              <a-input style="width: 90%;"></a-input>
+            </td>
+            <td>本次调试:</td>
+            <td>
+              <a-input style="width: 90%;"></a-input>
+            </td>
+          </tr>
         </table>
+
+
         <div class="buttonPos">
           <a-button type="primary" html-type="submit">提交</a-button>
           <a-button type="primary" @click="resPage()">返回</a-button>
         </div>
+
       </a-form>
     </a-card>
   </div>

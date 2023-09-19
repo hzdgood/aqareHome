@@ -23,8 +23,8 @@
         <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
-    <select id="select" resultType="com.yunqi.common.entity.Project">
-        select * from project p where 1 = 1
+    <select id="selectId" resultType="com.yunqi.common.entity.Project">
+        select * from project p where id = #{id}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
