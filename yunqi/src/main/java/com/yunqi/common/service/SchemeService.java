@@ -23,8 +23,4 @@ public class SchemeService {
     public void update(Scheme scheme) {
         schemeMapper.update(scheme);
     }
-
-    public void delete(Integer id) {
-        schemeMapper.delete(id);
-    }
 }

@@ -26,8 +26,4 @@ public class ProjectService {
     public void update(Project project) {
         projectMapper.update(project);
     }
-
-    public void delete(Integer id) {
-        projectMapper.delete(id);
-    }
 }

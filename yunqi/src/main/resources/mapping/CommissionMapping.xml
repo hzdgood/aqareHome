@@ -2,21 +2,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.CommissionMapper">
-    <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Commission">
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="category" jdbcType="VARCHAR" property="category"/>
-        <result column="cost" jdbcType="VARCHAR" property="cost"/>
-        <result column="installRatio" jdbcType="VARCHAR" property="installRatio"/>
-        <result column="debugRatio" jdbcType="VARCHAR" property="debugRatio"/>
-        <result column="install" jdbcType="VARCHAR" property="install"/>
-        <result column="debug" jdbcType="VARCHAR" property="debug"/>
-        <result column="disclose" jdbcType="VARCHAR" property="disclose"/>
-        <result column="check" jdbcType="VARCHAR" property="check"/>
-        <result column="headDoor" jdbcType="VARCHAR" property="headDoor"/>
-        <result column="headDisclose" jdbcType="VARCHAR" property="headDisclose"/>
-        <result column="headComplete" jdbcType="VARCHAR" property="headComplete"/>
-    </resultMap>
-
     <select id="select" resultType="com.yunqi.common.entity.Commission">
         select *
         from commission

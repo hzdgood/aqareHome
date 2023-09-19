@@ -11,5 +11,4 @@ public interface SchemeMapper {
 
     void update(Scheme scheme);
 
-    void delete(Integer id);
 }

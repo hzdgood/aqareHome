@@ -7,7 +7,7 @@
             <td>产品名称</td>
             <td>数量</td>
             <td>未装</td>
-            <td>未试</td>
+            <td>未调</td>
           </tr>
         </thead>
         <tr v-for="item in data" :key="item.schemeId">

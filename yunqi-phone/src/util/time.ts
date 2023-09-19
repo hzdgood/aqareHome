@@ -1,4 +1,7 @@
 export const dateFilter = (data: any, format: string) => {
+    if(data === null) {
+        return ""
+    }
     const dt = new Date(data);
     const y = dt.getFullYear();
     const m = (dt.getMonth()+1).toString().padStart(2,"0");

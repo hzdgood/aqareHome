@@ -1,0 +1,26 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.common.mapper.WriterMapper">
+    <insert id="insert" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
+        # 新增
+        insert into writer (
+            projectId, productId, schemeId, workId,
+            install, debug, createName, createTime
+        ) value (
+            #{projectId}, #{productId}, #{schemeId}, #{workId},
+            #{install}, #{debug}, #{createName}, NOW()
+        )
+    </insert>
+
+    <insert id="update" parameterType="com.yunqi.common.entity.Writer">
+        # 修改
+        update writer set install = #{install}, debug = #{debug}, updateTime = now()
+        where id= #{id}
+    </insert>
+
+    <insert id="delete" parameterType="com.yunqi.common.entity.Writer">
+        # 无效
+        update writer set disabled = 'false', updateTime = now() where id = #{id}
+    </insert>
+</mapper>

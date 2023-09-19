@@ -36,23 +36,5 @@ public class SchemeController {
     public void update(Scheme Scheme) {
         SchemeService.update(Scheme);
     }
-
-    @CrossOrigin
-    @RequestMapping("/delete")
-    public void delete(Integer id) {
-        SchemeService.delete(id);
-    }
 }
-
-//    @PostMapping("/upload")
-//    @CrossOrigin
-//    @ResponseBody
-//    public List<Scheme> upload(@RequestParam("file") MultipartFile file) {
-//        List<Scheme> list = SchemeExcel.schemeExcel(file); // 读取文件
-//        for (int i = 0; i < list.size(); i++) {
-//            Scheme scheme = list.get(i);
-//            SchemeService.insert(scheme);
-//        }
-//        return list;
-//    }
 

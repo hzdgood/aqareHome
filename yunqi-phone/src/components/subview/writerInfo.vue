@@ -8,118 +8,15 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
+        
+        <writerTable></writerTable>
+
         <div>
-          今日工作总结: <a-input style="width: 90%;"></a-input>
+          今日工作总结: <a-input style="width: 90%;" :value="formState.workSummary"></a-input>
         </div>
         <div>
-          下次上门节点: <a-input style="width: 90%;"></a-input>
+          下次上门节点: <a-input style="width: 90%;" :value="formState.visitNode"></a-input>
         </div>
-        <table class="cardTale">
-          <tr>
-            <td width="70px">产品名称:</td>
-            <td colspan="3">
-              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>未安装:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-            <td width="70px">未调试:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>本次安装:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-            <td>本次调试:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td width="70px">产品名称:</td>
-            <td colspan="3">
-              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>未安装:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-            <td width="70px">未调试:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>本次安装:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-            <td>本次调试:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td width="70px">产品名称:</td>
-            <td colspan="3">
-              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>未安装:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-            <td width="70px">未调试:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>本次安装:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-            <td>本次调试:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td width="70px">产品名称:</td>
-            <td colspan="3">
-              <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>未安装:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-            <td width="70px">未调试:</td>
-            <td>
-              <a-input :disabled="true" style="width: 90%;"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>本次安装:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-            <td>本次调试:</td>
-            <td>
-              <a-input style="width: 90%;"></a-input>
-            </td>
-          </tr>
-        </table>
 
 
         <div class="buttonPos">
@@ -134,8 +31,21 @@
 
 <script setup lang="ts">
 // 工单核销
-import { reactive } from 'vue';
+import { reactive, onMounted } from 'vue';
 import router from '@/router';
+import { httpGet } from '../../config/interFace'
+import { useRoute } from "vue-router";
+import writerTable from './tables/writerTable.vue'
+
+const route = useRoute()  
+
+onMounted (async function () {
+  const res = await httpGet('/view/writer',{
+    workId: route.query.id
+  })
+  console.log(res);
+  
+})
 
 const resPage = () => {
   router.push({name: 'workSheet'})
@@ -143,11 +53,18 @@ const resPage = () => {
 
 interface FormState {
   projectName: string;
-
+  workSummary: string
+  visitNode: string
+  data: object
 }
+
 const formState = reactive<FormState>({
-  projectName: '高精度人体传感器'
+  projectName: '',
+  workSummary: '11',
+  visitNode: '11',
+  data: []
 });
+
 const onFinish = (values: any) => {
   console.log('Success:', values);
 };

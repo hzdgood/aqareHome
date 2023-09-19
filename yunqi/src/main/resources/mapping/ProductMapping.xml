@@ -2,32 +2,16 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.ProductMapper">
-    <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Product">
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="code" jdbcType="VARCHAR" property="code"/>
-        <result column="classification" jdbcType="VARCHAR" property="classification"/>
-        <result column="shipType" jdbcType="VARCHAR" property="shipType"/>
-        <result column="price" jdbcType="VARCHAR" property="price"/>
-        <result column="brand" jdbcType="VARCHAR" property="brand"/>
-        <result column="category" jdbcType="VARCHAR" property="category"/>
-        <result column="createName" jdbcType="VARCHAR" property="createName"/>
-        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
-        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
-    </resultMap>
-
     <select id="select" resultType="com.yunqi.common.entity.Product">
         select *
         from product
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        insert into product (name, code, classification, shipType, price, brand, category) value (
-          #{name}, #{code},
-          #{classification},
-          #{shipType}, #{price},
-          #{brand}, #{category}
+        insert into product (name, code, classification, shipType,
+            price, brand, category, createName, createTime) value (
+          #{name}, #{code}, #{classification}, #{shipType},
+          #{price}, #{brand}, #{category}, #{createName}, NOW()
         )
     </insert>
 

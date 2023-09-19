@@ -19,13 +19,23 @@
           <td>{{ data.status }}</td>
         </tr>
         <tr>
+          <td>装修进度</td>
+          <td>{{ data.schedule }}</td>
           <td>上门日期</td>
-          <td colspan="3">{{ dateFilter(data.dateOfVisit,'yyyy-mm-dd hh:mm:ss') }}</td>
+          <td>{{ dateFilter(data.dateOfVisit,'yyyy-mm-dd') }}</td>
+        </tr>
+        <tr v-if="data.signTime !== null">
+          <td>签到时间</td>
+          <td colspan="3">{{ dateFilter(data.signTime,'yyyy-mm-dd hh:mm:ss') }}</td>
+        </tr>
+        <tr v-if="data.departureTime !== null">
+          <td>离场时间</td>
+          <td colspan="3">{{ dateFilter(data.departureTime,'yyyy-mm-dd hh:mm:ss') }}</td>
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button type="primary">签到</a-button>
-        <a-button type="primary">离开</a-button>
+        <a-button type="primary" @click="sign(data.workID)">签到</a-button>
+        <a-button type="primary" @click="depart(data.workID)" >离开</a-button>
         <a-button type="primary" @click="WriterInfo(data.workID)">核销</a-button>
         <a-button type="primary" @click="measureInfo(data.workID)">测量</a-button>
       </div>
@@ -33,10 +43,9 @@
   </div>
 </template>
 <script setup lang="ts">
-
 // 工单卡片
-
 import { dateFilter } from '../../util/time'
+import { httpGet } from '../../config/interFace'
 
 defineProps({
   data: {
@@ -44,6 +53,20 @@ defineProps({
     default: null
   }
 })
+
+const sign = async (id: number) => {
+  const res = await httpGet('/workSheet/sign',{
+    id: id
+  })
+  console.log(res);
+}
+
+const depart = async (id: number) => {
+  const res = await httpGet('/workSheet/depart',{
+    id: id
+  })
+  console.log(res);
+}
 
 const emit = defineEmits(['toPage'])
 const WriterInfo = (id: any) => {

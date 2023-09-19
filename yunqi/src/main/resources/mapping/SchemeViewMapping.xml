@@ -2,25 +2,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.viewMapper.SchemeViewMapper">
-    <resultMap id="BaseResultMap" type="com.yunqi.common.view.SchemeView">
-        <result column="projectId" jdbcType="INTEGER" property="projectId"/>
-        <result column="schemeId" jdbcType="INTEGER" property="schemeId"/>
-        <result column="salesName" jdbcType="VARCHAR" property="salesName"/>
-        <result column="techName" jdbcType="VARCHAR" property="techName"/>
-        <result column="projectName" jdbcType="VARCHAR" property="projectName"/>
-        <result column="productName" jdbcType="VARCHAR" property="productName"/>
-        <result column="number" jdbcType="INTEGER" property="number"/>
-        <result column="installNumber" jdbcType="INTEGER" property="installNumber"/>
-        <result column="debugNumber" jdbcType="INTEGER" property="debugNumber"/>
-        <result column="notInstalled" jdbcType="INTEGER" property="notInstalled"/>
-        <result column="unregulated" jdbcType="INTEGER" property="unregulated"/>
-        <result column="createName" jdbcType="VARCHAR" property="createName"/>
-        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
-        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
-    </resultMap>
-
     <select id="select" resultType="com.yunqi.common.view.SchemeView">
+        # 方案查询
         select *
         from schemeView where projectId = #{projectId}
     </select>

@@ -2,73 +2,38 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.WorkSheetMapper">
-    <resultMap id="BaseResultMap" type="com.yunqi.common.entity.WorkSheet">
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="projectId" jdbcType="INTEGER" property="projectId"/>
-        <result column="techIds" jdbcType="VARCHAR" property="techIds"/>
-        <result column="dateOfVisit" jdbcType="TIMESTAMP" property="dateOfVisit"/>
-        <result column="type" jdbcType="VARCHAR" property="type"/>
-        <result column="status" jdbcType="VARCHAR" property="status"/>
-        <result column="actualWork" jdbcType="VARCHAR" property="actualWork"/>
-        <result column="schedule" jdbcType="VARCHAR" property="schedule"/>
-        <result column="watermark" jdbcType="VARCHAR" property="watermark"/>
-        <result column="signImg" jdbcType="VARCHAR" property="signImg"/>
-        <result column="signTime" jdbcType="TIMESTAMP" property="signTime"/>
-        <result column="departureTime" jdbcType="TIMESTAMP" property="departureTime"/>
-        <result column="writeTime" jdbcType="TIMESTAMP" property="writeTime"/>
-        <result column="disabled" jdbcType="VARCHAR" property="disabled"/>
-        <result column="workSummary" jdbcType="VARCHAR" property="workSummary"/>
-        <result column="visitNode" jdbcType="VARCHAR" property="visitNode"/>
-        <result column="remark" jdbcType="VARCHAR" property="remark"/>
-        <result column="createName" jdbcType="VARCHAR" property="createName"/>
-        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
-        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
-    </resultMap>
-
-    <select id="select" resultType="com.yunqi.common.entity.WorkSheet">
-        select *
-        from worksheet w where 1 = 1
-        <if test="type!=null and type!=''">
-            and type = #{type}
-        </if>
-        <if test="dateOfVisit!=null">
-            and dateOfVisit between #{dateOfVisit} and #{dateOfVisit}
-        </if>
-        LIMIT 100
-    </select>
-
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
         insert into worksheet (projectId, techIds, dateOfVisit,
-           type, status, schedule, remark) value (
+           type, status, schedule, remark, createName, createTime) value (
            #{projectId}, #{techIds}, #{dateOfVisit},
-           #{type}, #{status}, #{schedule}, #{remark}
+           #{type}, #{status}, #{schedule}, #{remark}, #{createName}, NOW()
         )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">
-
+        # 详情
     </insert>
 
     <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
-        update worksheet set signTime = sysdate()
-            and updateTime = sysdate()
+        # 签到
+        update worksheet set signTime = NOW(), updateTime = NOW()
         where id = #{id}
     </insert>
 
     <insert id="depart" parameterType="com.yunqi.common.entity.WorkSheet">
-        update worksheet set departureTime = sysdate()
-           and updateTime = sysdate()
+        # 离开
+        update worksheet set departureTime = NOW(), updateTime = NOW()
         where id = #{id}
     </insert>
 
     <insert id="write" parameterType="com.yunqi.common.entity.WorkSheet">
-        update worksheet set writeTime = sysdate()
-            and updateTime = sysdate()
+        # 核销
+        update worksheet set writeTime = NOW(), updateTime = NOW()
         where id = #{id}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">
-        update worksheet set disabled = 'false' where id = #{id}
+        # 无效
+        update worksheet set disabled = 'false', updateTime = NOW() where id = #{id}
     </delete>
 </mapper>

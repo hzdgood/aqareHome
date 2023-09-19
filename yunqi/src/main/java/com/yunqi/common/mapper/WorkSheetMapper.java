@@ -8,14 +8,9 @@ import java.util.List;
 @Repository
 public interface WorkSheetMapper {
     void insert(WorkSheet WorkSheet);
-
     void update(WorkSheet WorkSheet);
-
     void sign(Integer id);
-
-    void write(Integer id);
-
-    void delete(Integer id);
-
     void depart(Integer id);
+    void delete(Integer id);
+    void write(Integer id);
 }

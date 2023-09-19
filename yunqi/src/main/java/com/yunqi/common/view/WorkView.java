@@ -11,14 +11,12 @@ public class WorkView {
     private String techName; // 技术
     private String salesName; // 销售
     private Date dateOfVisit; // 上门日期
-    private Date orderDate;  // 订单日期
     private String type; //类型
     private String status; //状态
     private String actualWork; // 工时
     private String schedule; //进度
-    private String watermark; //水印图片
-    private String signImg; //签字图片
     private Date signTime; //签到时间
+    private Date departureTime;//离开时间
     private Date writeTime; //核销时间
     private String disabled; //有效
 
@@ -86,14 +84,6 @@ public class WorkView {
         this.dateOfVisit = dateOfVisit;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
     public String getType() {
         return type;
     }
@@ -126,28 +116,20 @@ public class WorkView {
         this.schedule = schedule;
     }
 
-    public String getWatermark() {
-        return watermark;
-    }
-
-    public void setWatermark(String watermark) {
-        this.watermark = watermark;
-    }
-
-    public String getSignImg() {
-        return signImg;
-    }
-
-    public void setSignImg(String signImg) {
-        this.signImg = signImg;
-    }
-
     public Date getSignTime() {
         return signTime;
     }
 
     public void setSignTime(Date signTime) {
         this.signTime = signTime;
+    }
+
+    public Date getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
     }
 
     public Date getWriteTime() {

@@ -2,14 +2,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.LoggingMapper">
-    <resultMap id="BaseResultMap" type="com.yunqi.common.entity.Logging">
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="custom" jdbcType="VARCHAR" property="custom"/>
-        <result column="info" jdbcType="VARCHAR" property="info"/>
-        <result column="date" jdbcType="TIMESTAMP" property="date"/>
-    </resultMap>
-
     <select id="select" resultType="com.yunqi.common.entity.Logging">
         select *
         from log

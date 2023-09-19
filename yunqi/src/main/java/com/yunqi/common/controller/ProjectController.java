@@ -36,10 +36,4 @@ public class ProjectController {
     public void update(Project Project) {
         ProjectService.update(Project);
     }
-
-    @CrossOrigin
-    @RequestMapping("/delete")
-    public void delete(Integer id) {
-        ProjectService.delete(id);
-    }
 }

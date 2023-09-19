@@ -10,31 +10,22 @@ import java.util.List;
 @Service
 public class WorkSheetService {
     private WorkSheetMapper WorkSheetMapper;
-
     @Autowired
     public void setMapper(WorkSheetMapper WorkSheetMapper) {
         this.WorkSheetMapper = WorkSheetMapper;
     }
-
     public void insert(WorkSheet WorkSheet) {
         WorkSheetMapper.insert(WorkSheet);
     }
-
+    public void sign(Integer id) { WorkSheetMapper.sign(id); }
+    public void depart(Integer id) { WorkSheetMapper.depart(id); }
     public void update(WorkSheet WorkSheet) {
         WorkSheetMapper.update(WorkSheet);
     }
-
     public void delete(Integer id) {
         WorkSheetMapper.delete(id);
     }
-
-    public void sign(Integer id) {
-        WorkSheetMapper.sign(id);
-    }
-
     public void write(Integer id) {
         WorkSheetMapper.write(id);
     }
-
-    public void depart(Integer id) { WorkSheetMapper.depart(id); }
 }
