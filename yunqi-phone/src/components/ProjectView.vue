@@ -57,7 +57,7 @@ const formState = reactive<FormState>({
 
 const onFinish = async () => {
   const res = await httpGet('/view/project',{
-    techID: formState.techName,
+    techId: formState.techName,
     projectName: formState.projectName
   })
   formState.dataList = res

@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Writer {
     private Integer id;
-    private Integer techID;
+    private Integer techId;
     private Integer projectId;
     private Integer productId;
     private Integer schemeId;
-    private Integer workId;
-    private Integer install;
-    private Integer debug;
+    private String workId;
+    private String install;
+    private String debug;
     private String disabled; //有效
     private String createName;
     private Date createTime;
@@ -25,9 +25,13 @@ public class Writer {
         this.id = id;
     }
 
-    public Integer getTechID() { return techID; }
+    public Integer getTechId() {
+        return techId;
+    }
 
-    public void setTechID(Integer techID) { this.techID = techID; }
+    public void setTechId(Integer techId) {
+        this.techId = techId;
+    }
 
     public Integer getProjectId() {
         return projectId;
@@ -53,27 +57,27 @@ public class Writer {
         this.schemeId = schemeId;
     }
 
-    public Integer getWorkId() {
+    public String getWorkId() {
         return workId;
     }
 
-    public void setWorkId(Integer workId) {
+    public void setWorkId(String workId) {
         this.workId = workId;
     }
 
-    public Integer getInstall() {
+    public String getInstall() {
         return install;
     }
 
-    public void setInstall(Integer install) {
+    public void setInstall(String install) {
         this.install = install;
     }
 
-    public Integer getDebug() {
+    public String getDebug() {
         return debug;
     }
 
-    public void setDebug(Integer debug) {
+    public void setDebug(String debug) {
         this.debug = debug;
     }
 

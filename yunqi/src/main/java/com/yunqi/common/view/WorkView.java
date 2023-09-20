@@ -3,7 +3,7 @@ package com.yunqi.common.view;
 import java.util.Date;
 
 public class WorkView {
-    private Integer workID;
+    private Integer workId;
     private Integer projectId;
     private String projectName;// 姓名
     private String telephone;// 电话
@@ -20,12 +20,12 @@ public class WorkView {
     private Date writeTime; //核销时间
     private String disabled; //有效
 
-    public Integer getWorkID() {
-        return workID;
+    public Integer getWorkId() {
+        return workId;
     }
 
-    public void setWorkID(Integer workID) {
-        this.workID = workID;
+    public void setWorkId(Integer workId) {
+        this.workId = workId;
     }
 
     public Integer getProjectId() {

@@ -13,8 +13,8 @@ import java.util.List;
 public class ViewController {
     private ProjectViewService ProjectViewService;
     private WorkViewService WorkViewService;
-
     private SchemeViewService SchemeViewService;
+    private WriterViewService WriterViewService;
     @Autowired
     public void setMapper(ProjectViewService ProjectViewService) {
         this.ProjectViewService = ProjectViewService;
@@ -27,7 +27,10 @@ public class ViewController {
     public void setMapper(SchemeViewService SchemeViewService) {
         this.SchemeViewService = SchemeViewService;
     }
-
+    @Autowired
+    public void setMapper(WriterViewService WriterViewService) {
+        this.WriterViewService = WriterViewService;
+    }
     @CrossOrigin
     @RequestMapping("/project")
     public List<ProjectView> select(ProjectView ProjectView) {
@@ -42,5 +45,10 @@ public class ViewController {
     @RequestMapping("/scheme")
     public List<SchemeView> select(SchemeView SchemeView) {
         return SchemeViewService.select(SchemeView);
+    }
+    @CrossOrigin
+    @RequestMapping("/writer")
+    public List<WriterView> select(WriterView WriterView) {
+        return WriterViewService.select(WriterView);
     }
 }

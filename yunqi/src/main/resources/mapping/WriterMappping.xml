@@ -5,10 +5,10 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into writer (
-            projectId, productId, schemeId, workId,
+            projectId, productId, schemeId, workId, techID,
             install, debug, createName, createTime
         ) value (
-            #{projectId}, #{productId}, #{schemeId}, #{workId},
+            #{projectId}, #{productId}, #{schemeId}, #{workId}, #{techID},
             #{install}, #{debug}, #{createName}, NOW()
         )
     </insert>

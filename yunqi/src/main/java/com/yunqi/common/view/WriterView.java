@@ -3,10 +3,10 @@ package com.yunqi.common.view;
 import java.util.Date;
 
 public class WriterView {
-    private Integer projectId; //项目ID
+    private Integer projectId; //项目Id
     private Integer schemeId; // 方案Id
-    private Integer workId; // 工单ID
-    private Integer productId; // 产品ID
+    private Integer workId; // 工单Id
+    private Integer productId; // 产品Id
     private String projectName; //项目名称
     private String productName;  //产品名称
     private String techName;  // 技术

@@ -2,8 +2,8 @@
   <div class="cardDiv">
     <a-card :title="data.techName + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" @click="workEdit(data.workID)">详情</a-button>
-        <a-button :style="style" @click="uploadImg(data.workID)">图片</a-button>
+        <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
+        <a-button :style="style" @click="uploadImg(data.workId)">图片</a-button>
       </div>
       <table class="cardTale">
         <tr>
@@ -34,10 +34,10 @@
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button type="primary" @click="sign(data.workID)">签到</a-button>
-        <a-button type="primary" @click="depart(data.workID)" >离开</a-button>
-        <a-button type="primary" @click="WriterInfo(data.workID)">核销</a-button>
-        <a-button type="primary" @click="measureInfo(data.workID)">测量</a-button>
+        <a-button type="primary" @click="sign(data.workId)">签到</a-button>
+        <a-button type="primary" @click="depart(data.workId)" >离开</a-button>
+        <a-button type="primary" @click="WriterInfo(data.workId)">核销</a-button>
+        <a-button type="primary" @click="measureInfo(data.workId)">测量</a-button>
       </div>
     </a-card>
   </div>
@@ -58,14 +58,12 @@ const sign = async (id: number) => {
   const res = await httpGet('/workSheet/sign',{
     id: id
   })
-  console.log(res);
 }
 
 const depart = async (id: number) => {
   const res = await httpGet('/workSheet/depart',{
     id: id
   })
-  console.log(res);
 }
 
 const emit = defineEmits(['toPage'])

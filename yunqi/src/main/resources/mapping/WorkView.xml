@@ -6,8 +6,8 @@
         # 工单查询
         select *
         from workView w where 1 = 1
-        <if test="workID!=null and workID!=''">
-            and workID = #{workID}
+        <if test="workId!=null and workId!=''">
+            and workId = #{workId}
         </if>
         <if test="type!=null and type!=''">
             and type = #{type}

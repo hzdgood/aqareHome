@@ -20,11 +20,11 @@
       <tr>
         <td>本次安装:</td>
         <td>
-          <a-input style="width: 90%;" v-model:value="formState.install" @change="installChange()"></a-input>
+          <a-input style="width: 90%;" v-model:value="formState.install" @change="formChange()"></a-input>
         </td>
         <td>本次调试:</td>
         <td>
-          <a-input style="width: 90%;" v-model:value="formState.debug" @change="debugChange()"></a-input>
+          <a-input style="width: 90%;" v-model:value="formState.debug" @change="formChange()"></a-input>
         </td>
       </tr>
     </table>
@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 
-import { reactive } from 'vue';
+import { reactive, onMounted } from 'vue';
 
 const props = defineProps({
   data: {
@@ -42,12 +42,24 @@ const props = defineProps({
   }
 })
 
-const installChange = () => {
+onMounted (async function () {
+  
+})
 
-}
+const emit = defineEmits(['change'])
 
-const debugChange = () => {
-
+const formChange = () => {
+  // 判断数量
+  const obj = {
+    projectId: props.data.projectId,
+    schemeId: props.data.schemeId,
+    workId: props.data.workId,
+    productId: props.data.productId,
+    techId: localStorage.getItem("techId"),
+    install: formState.install,
+    debug: formState.debug
+  }
+  emit('change',obj)
 }
 
 interface FormState {

@@ -2,7 +2,7 @@ package com.yunqi.common.view;
 
 public class ProjectView {
     private Integer projectId;
-    private Integer techID;
+    private Integer techId;
     private Integer schemeId;
     private String salesName; //销售
     private String techName; //技术
@@ -26,12 +26,12 @@ public class ProjectView {
         this.projectId = projectId;
     }
 
-    public Integer getTechID() {
-        return techID;
+    public Integer getTechId() {
+        return techId;
     }
 
-    public void setTechID(Integer techID) {
-        this.techID = techID;
+    public void setTechId(Integer techId) {
+        this.techId = techId;
     }
 
     public Integer getSchemeId() {

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Project {
     private Integer id;
     private Integer saleId; //销售
-    private Integer techID; //技术
+    private Integer techId; //技术
     private String name;// 姓名
     private String telephone;// 电话
     private String address; // 地址
@@ -39,12 +39,12 @@ public class Project {
         this.saleId = saleId;
     }
 
-    public Integer getTechID() {
-        return techID;
+    public Integer getTechId() {
+        return techId;
     }
 
-    public void setTechID(Integer techID) {
-        this.techID = techID;
+    public void setTechId(Integer techId) {
+        this.techId = techId;
     }
 
     public String getName() {

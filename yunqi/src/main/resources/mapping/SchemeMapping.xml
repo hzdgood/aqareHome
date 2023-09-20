@@ -2,6 +2,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.SchemeMapper">
+
+    <select id="selectId" resultType="com.yunqi.common.entity.Scheme">
+        # 方案ID查询
+        select * from scheme w where id = #{id};
+    </select>
+
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         insert into scheme (projectId, productId, number, installNumber,
@@ -13,5 +19,7 @@
 
     <insert id="update" parameterType="com.yunqi.common.entity.Scheme">
         # 方案修改
+        update scheme set installNumber = #{installNumber}, debugNumber = #{debugNumber},
+            notInstalled = #{notInstalled}, unregulated = #{unregulated} where id = #{id}
     </insert>
 </mapper>

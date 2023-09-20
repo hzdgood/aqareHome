@@ -39,7 +39,7 @@ public class ProjectExcel {
                         } else if (j == 1) {
                             for (Tech techs : tech) {
                                 if (techs.getName().equals(value)) {
-                                    Project.setTechID(techs.getId());
+                                    Project.setTechId(techs.getId());
                                 }
                             }
                         } else if (j == 2) {
