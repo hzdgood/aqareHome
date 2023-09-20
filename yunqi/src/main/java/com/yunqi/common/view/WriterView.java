@@ -3,38 +3,49 @@ package com.yunqi.common.view;
 import java.util.Date;
 
 public class WriterView {
-    private Integer headId; //项目负责人
-    private Integer installNumber; // 安装数量
-    private Integer debugNumber; // 调试数量
+    private Integer projectId; //项目ID
+    private Integer schemeId; // 方案Id
+    private Integer workId; // 工单ID
+    private Integer productId; // 产品ID
     private String projectName; //项目名称
     private String productName;  //产品名称
-    private String techIds;  // 技术
     private String techName;  // 技术
-    private String type; // 工单类型
-    private Date completeTime; // 结算日期
+    private Integer number; // 数量
+    private Integer installNumber; //已装
+    private Integer debugNumber; //已调
+    private Integer notInstalled; //未装
+    private Integer unregulated; //未调
 
-    public Integer getHeadId() {
-        return headId;
+    public Integer getProjectId() {
+        return projectId;
     }
 
-    public void setHeadId(Integer headId) {
-        this.headId = headId;
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
     }
 
-    public Integer getInstallNumber() {
-        return installNumber;
+    public Integer getSchemeId() {
+        return schemeId;
     }
 
-    public void setInstallNumber(Integer installNumber) {
-        this.installNumber = installNumber;
+    public void setSchemeId(Integer schemeId) {
+        this.schemeId = schemeId;
     }
 
-    public Integer getDebugNumber() {
-        return debugNumber;
+    public Integer getWorkId() {
+        return workId;
     }
 
-    public void setDebugNumber(Integer debugNumber) {
-        this.debugNumber = debugNumber;
+    public void setWorkId(Integer workId) {
+        this.workId = workId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public String getProjectName() {
@@ -53,14 +64,6 @@ public class WriterView {
         this.productName = productName;
     }
 
-    public String getTechIds() {
-        return techIds;
-    }
-
-    public void setTechIds(String techIds) {
-        this.techIds = techIds;
-    }
-
     public String getTechName() {
         return techName;
     }
@@ -69,19 +72,43 @@ public class WriterView {
         this.techName = techName;
     }
 
-    public String getType() {
-        return type;
+    public Integer getNumber() {
+        return number;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
-    public Date getCompleteTime() {
-        return completeTime;
+    public Integer getInstallNumber() {
+        return installNumber;
     }
 
-    public void setCompleteTime(Date completeTime) {
-        this.completeTime = completeTime;
+    public void setInstallNumber(Integer installNumber) {
+        this.installNumber = installNumber;
+    }
+
+    public Integer getDebugNumber() {
+        return debugNumber;
+    }
+
+    public void setDebugNumber(Integer debugNumber) {
+        this.debugNumber = debugNumber;
+    }
+
+    public Integer getNotInstalled() {
+        return notInstalled;
+    }
+
+    public void setNotInstalled(Integer notInstalled) {
+        this.notInstalled = notInstalled;
+    }
+
+    public Integer getUnregulated() {
+        return unregulated;
+    }
+
+    public void setUnregulated(Integer unregulated) {
+        this.unregulated = unregulated;
     }
 }

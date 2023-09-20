@@ -97,9 +97,7 @@ public class Writer {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+    public void setCreateTime(Date createTime) { this.createTime = createTime; }
 
     public String getUpdateName() {
         return updateName;
