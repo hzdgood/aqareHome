@@ -2,6 +2,8 @@ package com.yunqi.common.controller;
 
 import com.yunqi.common.entity.WorkSheet;
 import com.yunqi.common.service.WorkSheetService;
+import com.yunqi.common.view.WriterView;
+import com.yunqi.common.viewService.WriterViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,9 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class WorkSheetController {
     private WorkSheetService WorkSheetService;
 
+    private WriterViewService WriterViewService;
+
     @Autowired
     public void setMapper(WorkSheetService WorkSheetService) {
         this.WorkSheetService = WorkSheetService;
+    }
+
+    @Autowired
+    public void setMapper(WriterViewService WriterViewService) {
+        this.WriterViewService = WriterViewService;
     }
 
     @CrossOrigin
@@ -44,6 +53,10 @@ public class WorkSheetController {
     @CrossOrigin
     @RequestMapping("/depart") // 离场
     private void depart(Integer id, String updateName) {
+        WriterView WriterView = new WriterView();
+        WriterView.setWorkId(id);
+        WriterViewService.select(WriterView);
+
         WorkSheetService.depart(id, updateName);
     }
 
