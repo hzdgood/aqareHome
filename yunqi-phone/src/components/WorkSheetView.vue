@@ -22,7 +22,7 @@
       </span>
     </a-form>
     <div v-for="item in formState.dataList" :key="item">
-      <WorkCardView :data="item"  @toPage="toPage"></WorkCardView>
+      <WorkCardView :data="item"  @toPage="toPage" @pageReset="pageReset" ></WorkCardView>
     </div>
   </main>
 </template>
@@ -45,6 +45,14 @@ onMounted (async function () {
 
 const toPage = (str: any, id: any) => {
   router.push({name: str, query: {id: id}})
+}
+
+const pageReset = async () => {
+  const res = await httpGet('/view/work',{
+    techIds: techIds,
+    headId: techIds
+  })
+  formState.dataList = res
 }
 
 interface FormState {

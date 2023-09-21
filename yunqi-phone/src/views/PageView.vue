@@ -5,14 +5,14 @@
     </div>
 
     <div class="logout">
-      {{ techId }} <span class="logout-span" @click="logout">登出</span>
+      {{ loginName }} <span class="logout-span" @click="logout">登出</span>
     </div>
 
     <div class="wrapper">
       <div class="selected"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div><RouterLink to="/project">我的项目</RouterLink></div>
       <div><RouterLink to="/write">核销记录</RouterLink></div>
-      <div><RouterLink to="/measure">测量单</RouterLink></div>
+      <!-- <div><RouterLink to="/measure">测量单</RouterLink></div> -->
       <!-- <div><RouterLink to="/commission">提成</RouterLink></div> -->
     </div>
     <div class="bodyContent">
@@ -26,11 +26,11 @@ import { useRouter } from "vue-router";
 
 const router = useRouter()
 const techId = localStorage.getItem('techId')
+const loginName = localStorage.getItem('loginName')
 
 onMounted (function () {  
   const username = localStorage.getItem("username")
   const password = localStorage.getItem("password")
-  const techId = localStorage.getItem('techId')
   if(typeof(techId) === 'undefined' ){
     router.push({ name: "login"})
   } else {
@@ -43,7 +43,6 @@ onMounted (function () {
 });
 
 const logout = () => {
-  console.log(1111);
   localStorage.clear()
   router.push({ name: "login"})
 }

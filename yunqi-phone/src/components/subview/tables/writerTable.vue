@@ -20,11 +20,11 @@
       <tr>
         <td>本次安装:</td>
         <td>
-          <a-input style="width: 90%;" v-model:value="formState.install" @change="formChange()"></a-input>
+          <a-input :disabled="props.data.departureTime === null" style="width: 90%;" v-model:value="formState.install" @change="formChange()"></a-input>
         </td>
         <td>本次调试:</td>
         <td>
-          <a-input style="width: 90%;" v-model:value="formState.debug" @change="formChange()"></a-input>
+          <a-input :disabled="props.data.departureTime === null" style="width: 90%;" v-model:value="formState.debug" @change="formChange()"></a-input>
         </td>
       </tr>
     </table>
@@ -44,6 +44,14 @@ const props = defineProps({
 const emit = defineEmits(['change'])
 
 const formChange = () => {
+  let install = formState.install;
+  let debug = formState.debug;
+  if(install === '') {
+    install = '0'
+  }
+  if(debug === '') {
+    debug = '0'
+  }
   // 判断数量
   const obj = {
     projectId: props.data.projectId,
@@ -51,8 +59,8 @@ const formChange = () => {
     workId: props.data.workId,
     productId: props.data.productId,
     techId: techId,
-    install: formState.install,
-    debug: formState.debug,
+    install: install,
+    debug: debug,
     updateName: techId
   }
   emit('change',obj)

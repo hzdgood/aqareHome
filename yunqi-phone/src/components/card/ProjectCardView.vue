@@ -30,11 +30,11 @@
       </table>
       <div class="buttonPos" v-show="data.schemeId !== null">
         <a-button @click="sendWork(data.projectId)" type="primary" 
-          v-show="techId === '1' || data.techId === techId"
+          v-show="techId === '1' || data.techId + '' === '' + techId"
         >发单</a-button>
         <a-button @click="schemeInfo(data.projectId)" type="primary">方案</a-button>
         <a-button @click="measureInfo(data.projectId)" type="primary"
-          v-show="techId === '1' || data.techId === techId"
+          v-show="techId === '1' || data.techId + '' === '' + techId"
         >测量</a-button>
       </div>
     </a-card>

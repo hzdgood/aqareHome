@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Date;
 import java.util.List;
 
 public class ProjectExcel {
@@ -62,10 +63,11 @@ public class ProjectExcel {
                             Project.setRegion(value);
                         } else if (j == 11) {
                             Project.setSchedule(value);
+                        } else if (j == 12) {
+                            Project.setCreateName(value);
                         }
                     }
                 }
-                // System.out.printf(Project.toString());
                 ProjectService.insert(Project);
             }
         } catch (Exception e) {

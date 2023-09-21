@@ -24,9 +24,9 @@ public class SchemeBoot {
     @Autowired
     private ProductService ProductService;
 
-    // @Scheduled(cron = "0 05 15 * * ?")
+    @Scheduled(cron = "0 23 14 * * ?")
     private void uploadExcel() {
-        File file = new File("D:\\download\\客户方案.xlsx");
+        File file = new File("D:\\download\\客户方案921.xlsx");
         List<Project> Project = ProjectService.select();
         List<Product> Product = ProductService.select();
         SchemeExcel.schemeToExcel(file, SchemeService, Project, Product);

@@ -45,6 +45,7 @@ public class ViewController {
         String techIds = WorkView.getTechIds();
         if(techIds.equals("1")) {
             WorkView.setTechIds(null);
+            WorkView.setHeadId(null);
         }
         return WorkViewService.select(WorkView);
     }

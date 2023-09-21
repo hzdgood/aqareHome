@@ -58,18 +58,4 @@ const resPage = () => {
 </script>
 
 <style scoped lang="less">
-.schemeTable{
-  width: 100%;
-}
-.schemeTable tr td{
-  padding: 3px;
-  text-align: left;
-  border: 0.5px solid #cecece;
-}
-
-.schemeTable thead td {
-  text-align: center;
-  font-weight: 550;
-  background-color: #f7f8fa;
-}
 </style>

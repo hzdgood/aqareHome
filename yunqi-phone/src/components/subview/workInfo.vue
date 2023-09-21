@@ -43,7 +43,8 @@
           <tr>
             <td>上门时间:</td>
             <td>
-              <a-date-picker format="YYYY-MM-DD" v-model:value="formState.time" style="width: 95%;"/>
+              <a-date-picker format="YYYY-MM-DD HH:mm" :show-time="{ format: 'HH:mm' }"
+                 v-model:value="formState.time" style="width: 95%;"/>
             </td>
           </tr>
           <tr>
@@ -59,6 +60,9 @@
         </div>
       </a-form>
     </a-card>
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
+      <p>发单成功！</p>
+    </a-modal>
   </div>
 </template>
 
@@ -69,6 +73,7 @@ import router from '@/router';
 import { useRoute } from "vue-router";
 import { httpGet } from '../../config/interFace'
 
+const open = ref<boolean>(false);
 const value = ref<string[]>([]);
 const route = useRoute()
 const techId = localStorage.getItem("techId");
@@ -103,7 +108,7 @@ interface FormState {
   techName: string;
   projectName: string;
   workType: string;
-  time: string;
+  time: any;
   remark: String;
 }
 
@@ -112,7 +117,7 @@ const formState = reactive<FormState>({
   techName: '',
   projectName: '',
   workType: '',
-  time: '',
+  time: null,
   remark: '',
   schedule: ''
 });
@@ -134,6 +139,17 @@ const onFinish = async () => {
     createName: techId
   })
   console.log('Success:', res);
+  showModal()
+};
+
+const showModal = () => {
+  open.value = true;
+};
+
+const handleOk = (e: MouseEvent) => {
+  console.log(e);
+  open.value = false;
+  router.push({name: 'workSheet'})
 };
 
 const onFinishFailed = (errorInfo: any) => {

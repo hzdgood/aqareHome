@@ -9,6 +9,7 @@ import com.yunqi.common.service.TechService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,9 +28,9 @@ public class ProjectBoot {
     @Autowired
     private TechService TechService;
 
-    //@Scheduled(cron = "0 09 17 * * ?")
+    //@Scheduled(cron = "0 14 14 * * ?")
     private void uploadExcel() {
-        File file = new File("D:\\download\\项目汇总表.xlsx");
+        File file = new File("D:\\download\\项目汇总表921.xlsx");
         try {
             List<Tech> tech = TechService.select();
             List<Sales> sales = SalesService.select();

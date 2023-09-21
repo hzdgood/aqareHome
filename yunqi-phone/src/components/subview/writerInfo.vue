@@ -8,32 +8,45 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
+        <table class="cardTale">
+          <tr>
+            <td>今日工作总结: </td>
+            <td>
+              <a-input style="width: 90%;" v-model:value="formState.workSummary"></a-input>
+            </td>
+          </tr>
+          <tr>
+            <td>下次上门节点: </td>
+            <td>
+              <a-input style="width: 90%;" v-model:value="formState.visitNode"></a-input>
+            </td>
+          </tr>
+        </table>
         <div v-for="item in formState.dataList" :key="item">
           <writerTable :data="item" @change="getChange"></writerTable>
         </div>
-        <div>
-          今日工作总结: <a-input style="width: 90%;" :value="formState.workSummary"></a-input>
-        </div>
-        <div>
-          下次上门节点: <a-input style="width: 90%;" :value="formState.visitNode"></a-input>
-        </div>
+        
         <div class="buttonPos">
           <a-button type="primary" html-type="submit">提交</a-button>
           <a-button type="primary" @click="resPage()">返回</a-button>
         </div>
       </a-form>
     </a-card>
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
+      <p>该工单已核销完成！</p>
+    </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
 // 工单核销
-import { reactive, onMounted } from 'vue';
+import { reactive, onMounted, ref } from 'vue';
 import router from '@/router';
 import { httpGet } from '../../config/interFace'
 import { useRoute } from "vue-router";
 import writerTable from './tables/writerTable.vue'
 
+const open = ref<boolean>(false);
 const techIds = localStorage.getItem('techId')
 const route = useRoute()
 
@@ -64,17 +77,21 @@ const resPage = () => {
 }
 
 const getChange = (obj: any) => {
+  let status = false;
+
   if(formObj.length === 0 ) {
     formObj.push(obj)
   } else {
     for(let i=0; i < formObj.length; i++) {
-      const projectId = formObj[i].projectId;
-      if(projectId !== obj.projectId) {
-        formObj.push(obj)
-      } else {
-        formObj[i].install = obj.install
-        formObj[i].debug = obj.debug
+      const productId = formObj[i].productId + '';
+      if(productId === obj.productId + '') {
+        status = true
       }
+      formObj[i].install = obj.install
+      formObj[i].debug = obj.debug
+    }
+    if(status === false) {
+      formObj.push(obj)
     }
   }
 }
@@ -96,21 +113,29 @@ const formState = reactive<FormState>({
 });
 
 const onFinish = async () => {
-  console.log(formObj);
-  for(let i=0; i<formObj.length;i++){
+  for(let i=0; i < formObj.length; i++){
     await httpGet('/writer/insert', formObj[i]) // 核销新增
   }
-  const res = await httpGet('/workSheet/update', { //工单修改 -- 核销完成
+  await httpGet('/workSheet/update', { //工单修改 -- 核销完成
     id: route.query.id,
     workSummary: formState.workSummary,
     visitNode: formState.visitNode
   })
-  console.log(res);
+  showModal();
 };
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };
+
+const showModal = () => {
+  open.value = true;
+};
+
+const handleOk = async () => {
+  router.push({name: 'workSheet'})
+};
+
 </script>
 
 <style lang="less" scoped>

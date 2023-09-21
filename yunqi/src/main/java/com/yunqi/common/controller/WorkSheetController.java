@@ -31,6 +31,13 @@ public class WorkSheetController {
     }
 
     @CrossOrigin
+    @RequestMapping("/updateInfo") //核销完成
+    private String updateInfo(WorkSheet WorkSheet) {
+        WorkSheetService.updateInfo(WorkSheet);
+        return "修改完成";
+    }
+
+    @CrossOrigin
     @RequestMapping("/sign")
     private void sign(Integer id, String updateName) { WorkSheetService.sign(id, updateName); }
 

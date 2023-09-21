@@ -2,6 +2,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.ProjectMapper">
+
+    <select id="select" resultType="com.yunqi.common.entity.Project">
+        # 根据ID查询项目
+        select * from project p
+    </select>
+
     <select id="selectId" resultType="com.yunqi.common.entity.Project">
         # 根据ID查询项目
         select * from project p where id = #{id}
@@ -9,12 +15,12 @@
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
         # 新增项目
-        insert into project (saleId, techID, name, telephone,
+        insert into project (saleId, techId, name, telephone,
                 address, type, node, status,
                 houseState, situation, village, schedule, region,
                 createName, createTime)
             value (
-                   #{saleId}, #{techID}, #{name}, #{telephone},
+                   #{saleId}, #{techId}, #{name}, #{telephone},
                    #{address}, #{type}, #{node}, #{status},
                    #{houseState}, #{situation}, #{village}, #{schedule}, #{region},
                   #{createName}, now()

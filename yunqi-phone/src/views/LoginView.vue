@@ -79,6 +79,7 @@ const onFinish = async () => {
     localStorage.setItem('username', formState.username)
     localStorage.setItem('password', formState.password)
     localStorage.setItem('techId', res[0].techId)
+    localStorage.setItem('loginName', res[0].loginName)
     router.push({ name: "page"})
   }
 };

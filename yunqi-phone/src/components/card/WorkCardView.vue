@@ -21,8 +21,10 @@
         <tr>
           <td>装修进度</td>
           <td>{{ data.schedule }}</td>
+        </tr>
+        <tr>
           <td>上门日期</td>
-          <td>{{ dateFilter(data.dateOfVisit,'yyyy-mm-dd') }}</td>
+          <td colspan="3">{{ dateFilter(data.dateOfVisit,'yyyy-mm-dd hh:mm:ss') }}</td>
         </tr>
         <tr v-if="data.signTime !== null">
           <td>签到时间</td>
@@ -39,19 +41,26 @@
           @click="sign(data.workId)">签到</a-button>
         <a-button type="primary"
           v-show="data.departureTime === null && data.signTime !== null"
-          @click="depart(data.workId)">离开</a-button>
-        <a-button type="primary"
+          @click="depart()">离开</a-button>
+        <a-button type="primary" v-show="data.signTime !== null"
           @click="WriterInfo(data.workId)">核销</a-button>
         <a-button type="primary" @click="measureInfo(data.workId)">测量</a-button>
       </div>
     </a-card>
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.workId)">
+      <p>工单离开后，锁定核销数量！</p>
+    </a-modal>
   </div>
 </template>
 <script setup lang="ts">
 // 工单卡片
 import { dateFilter } from '../../util/time'
 import { httpGet } from '../../config/interFace'
+import { ref } from 'vue';
+
 const techIds = localStorage.getItem('techId')
+const emit = defineEmits(['toPage','pageReset'])
+const open = ref<boolean>(false);
 
 defineProps({
   data: {
@@ -61,20 +70,17 @@ defineProps({
 })
 
 const sign = async (id: number) => {
-  const res = await httpGet('/workSheet/sign',{
+  await httpGet('/workSheet/sign',{
     id: id,
     updateName: techIds
   })
+  emit('pageReset')
 }
 
-const depart = async (id: number) => {
-  const res = await httpGet('/workSheet/depart',{
-    id: id,
-    updateName: techIds
-  })
+const depart = async () => {
+  showModal();
 }
 
-const emit = defineEmits(['toPage'])
 const WriterInfo = (id: any) => {
   emit('toPage','subWriter', id)
 }
@@ -90,6 +96,19 @@ const workEdit = (id: any) => {
 const uploadImg = (id: any) => {
   emit('toPage','uploadImg', id)
 }
+
+const showModal = () => {
+  open.value = true;
+};
+
+const handleOk = async (id: number) => {
+  open.value = false;
+  await httpGet('/workSheet/depart',{
+    id: id,
+    updateName: techIds
+  })
+  emit('pageReset')
+};
 
 const style = {
   backgroundColor: '#0099DD',color: '#fff'

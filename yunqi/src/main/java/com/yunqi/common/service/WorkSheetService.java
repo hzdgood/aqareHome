@@ -22,6 +22,9 @@ public class WorkSheetService {
     public void update(WorkSheet WorkSheet) {
         WorkSheetMapper.update(WorkSheet);
     }
+    public void updateInfo(WorkSheet WorkSheet) {
+        WorkSheetMapper.updateInfo(WorkSheet);
+    }
     public void delete(Integer id, String updateName) {
         WorkSheetMapper.delete(id, updateName);
     }
