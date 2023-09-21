@@ -5,16 +5,26 @@
     <select id="select" resultType="com.yunqi.common.view.WorkView">
         # 工单查询
         select *
-        from workView w where 1 = 1
-        <if test="workId!=null and workId!=''">
-            and workId = #{workId}
-        </if>
-        <if test="type!=null and type!=''">
-            and type = #{type}
-        </if>
-        <if test="dateOfVisit!=null">
-            and dateOfVisit between #{dateOfVisit} and #{dateOfVisit}
-        </if>
+        from workView w where
+            <if test="techIds!=null">
+                techIds like  '%${techIds}%'
+            </if>
+            <if test="workId!=null">
+                and workId = #{workId}
+            </if>
+            <if test="type!=null">
+                and type = #{type}
+            </if>
+<!--            <if test="dateOfVisit!=null">-->
+<!--                and dateOfVisit between #{dateOfVisit} and #{dateOfVisit}-->
+<!--            </if>-->
+            <if test="dateOfVisit != null">
+                and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
+            </if>
+
+            <if test="headId!=null">
+                or headId = #{headId}
+            </if>
         order by status desc
     </select>
 </mapper>

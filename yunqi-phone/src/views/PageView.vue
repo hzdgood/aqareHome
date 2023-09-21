@@ -3,6 +3,11 @@
     <div class="headTop">
       技术服务系统
     </div>
+
+    <div class="logout">
+      {{ techId }} <span class="logout-span" @click="logout">登出</span>
+    </div>
+
     <div class="wrapper">
       <div class="selected"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div><RouterLink to="/project">我的项目</RouterLink></div>
@@ -19,8 +24,10 @@
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 
-onMounted (function () {
-  const router = useRouter()
+const router = useRouter()
+const techId = localStorage.getItem('techId')
+
+onMounted (function () {  
   const username = localStorage.getItem("username")
   const password = localStorage.getItem("password")
   const techId = localStorage.getItem('techId')
@@ -34,6 +41,15 @@ onMounted (function () {
     }
   }
 });
+
+const logout = () => {
+  console.log(1111);
+  localStorage.clear()
+  router.push({ name: "login"})
+}
+
 </script>
 
-<style src="../css/home.css" scoped></style>
+<style src="../css/home.css" scoped>
+
+</style>

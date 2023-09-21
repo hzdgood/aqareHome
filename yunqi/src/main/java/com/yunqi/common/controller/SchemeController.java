@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/file")
+@RequestMapping("/scheme")
 public class SchemeController {
     private SchemeService SchemeService;
 
@@ -23,18 +23,6 @@ public class SchemeController {
     @RequestMapping("/insert")
     public void insert(Scheme Scheme) {
         SchemeService.insert(Scheme);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/sysnc")
-    public void sysnc(Scheme Scheme) {
-
-    }
-
-    @CrossOrigin
-    @RequestMapping("/update")
-    public void update(Scheme Scheme) {
-        SchemeService.update(Scheme);
     }
 }
 

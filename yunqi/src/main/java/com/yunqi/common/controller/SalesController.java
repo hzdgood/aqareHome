@@ -19,7 +19,6 @@ public class SalesController {
         this.SalesService = SalesService;
     }
 
-
     @CrossOrigin
     @RequestMapping("/select")
     public List<Sales> select(Sales Sales) {

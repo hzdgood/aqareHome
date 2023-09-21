@@ -24,24 +24,25 @@ public class WorkSheetController {
     }
 
     @CrossOrigin
-    @RequestMapping("/update")
-    private void update(WorkSheet WorkSheet) {
+    @RequestMapping("/update") //核销完成
+    private String update(WorkSheet WorkSheet) {
         WorkSheetService.update(WorkSheet);
+        return "核销完成";
     }
 
     @CrossOrigin
     @RequestMapping("/sign")
-    private void sign(Integer id) { WorkSheetService.sign(id); }
+    private void sign(Integer id, String updateName) { WorkSheetService.sign(id, updateName); }
 
     @CrossOrigin
     @RequestMapping("/depart")
-    private void depart(Integer id) {
-        WorkSheetService.depart(id);
+    private void depart(Integer id, String updateName) {
+        WorkSheetService.depart(id, updateName);
     }
 
     @CrossOrigin
     @RequestMapping("/delete")
-    private void delete(Integer id) {
-        WorkSheetService.delete(id);
+    private void delete(Integer id, String updateName) {
+        WorkSheetService.delete(id, updateName);
     }
 }

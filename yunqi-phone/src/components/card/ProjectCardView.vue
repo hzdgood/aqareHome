@@ -28,17 +28,22 @@
           <td colspan="3">{{data.telephone}}</td>
         </tr>
       </table>
-      <div class="buttonPos">
-        <a-button @click="sendWork(data.projectId)" type="primary">发单</a-button>
+      <div class="buttonPos" v-show="data.schemeId !== null">
+        <a-button @click="sendWork(data.projectId)" type="primary" 
+          v-show="techId === '1' || data.techId === techId"
+        >发单</a-button>
         <a-button @click="schemeInfo(data.projectId)" type="primary">方案</a-button>
-        <a-button @click="measureInfo(data.projectId)" type="primary">测量</a-button>
+        <a-button @click="measureInfo(data.projectId)" type="primary"
+          v-show="techId === '1' || data.techId === techId"
+        >测量</a-button>
       </div>
     </a-card>
   </div>
 </template>
 <script setup lang="ts">
-
 // 项目卡片
+const techId = localStorage.getItem("techId");
+
 defineProps({
   data: {
     type: Object,

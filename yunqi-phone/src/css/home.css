@@ -54,3 +54,18 @@
   overflow: auto;
   padding-bottom: 10px;
 }
+
+.logout{
+  font-size: 16px;
+  color: #fff;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+
+.logout-span{
+  border: 1px solid #cece;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+}

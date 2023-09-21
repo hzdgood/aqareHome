@@ -31,21 +31,4 @@ public class ProductController {
         ProductService.insert(Product);
     }
 
-    @CrossOrigin
-    @RequestMapping("/sysnc")
-    public void sysnc(Product Product) {
-
-    }
-
-    @CrossOrigin
-    @RequestMapping("/update")
-    public void update(Product Product) {
-        ProductService.update(Product);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/delete")
-    public void delete(Integer id) {
-        ProductService.delete(id);
-    }
 }

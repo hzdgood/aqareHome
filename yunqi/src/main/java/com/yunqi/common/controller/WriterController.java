@@ -25,7 +25,7 @@ public class WriterController {
 
     @CrossOrigin
     @RequestMapping("/insert")
-    private void insert(Writer Writer) {
+    private void insert(Writer Writer) { //新增核销单
         Integer id = Writer.getSchemeId();
         Integer install = Integer.valueOf(Writer.getInstall()); //本次安装
         Integer debug = Integer.valueOf(Writer.getDebug()); //本次调试
@@ -49,8 +49,28 @@ public class WriterController {
         WriterService.insert(Writer); // 核销新增
     }
     @CrossOrigin
-    @RequestMapping("/update")
+    @RequestMapping("/update") //管理员的
     private void update(Writer Writer) {
-        WriterService.update(Writer);
+        Integer id = Writer.getSchemeId();
+        Integer install = Integer.valueOf(Writer.getInstall()); //本次安装
+        Integer debug = Integer.valueOf(Writer.getDebug()); //本次调试
+
+        List<Scheme> list = SchemeService.selectId(id);
+        Scheme s = list.get(0);
+
+        Integer installNumber = s.getInstallNumber();
+        Integer debugNumber = s.getDebugNumber();
+        Integer notInstalled = s.getNotInstalled();
+        Integer unregulated = s.getUnregulated();
+
+        Scheme Scheme = new Scheme();
+        Scheme.setId(id);
+        Scheme.setInstallNumber(installNumber + install);
+        Scheme.setDebugNumber(debugNumber + debug);
+        Scheme.setNotInstalled(notInstalled - install);
+        Scheme.setUnregulated(unregulated - debug);
+
+        SchemeService.update(Scheme); // 方案修改
+        WriterService.update(Writer); // 核销修改
     }
 }

@@ -17,15 +17,12 @@ public class WorkSheetService {
     public void insert(WorkSheet WorkSheet) {
         WorkSheetMapper.insert(WorkSheet);
     }
-    public void sign(Integer id) { WorkSheetMapper.sign(id); }
-    public void depart(Integer id) { WorkSheetMapper.depart(id); }
+    public void sign(Integer id, String updateName) { WorkSheetMapper.sign(id, updateName); }
+    public void depart(Integer id, String updateName) { WorkSheetMapper.depart(id, updateName); }
     public void update(WorkSheet WorkSheet) {
         WorkSheetMapper.update(WorkSheet);
     }
-    public void delete(Integer id) {
-        WorkSheetMapper.delete(id);
-    }
-    public void write(Integer id) {
-        WorkSheetMapper.write(id);
+    public void delete(Integer id, String updateName) {
+        WorkSheetMapper.delete(id, updateName);
     }
 }

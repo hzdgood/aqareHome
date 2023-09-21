@@ -15,12 +15,12 @@
 
     <insert id="update" parameterType="com.yunqi.common.entity.Writer">
         # 修改
-        update writer set install = #{install}, debug = #{debug}, updateTime = now()
+        update writer set install = #{install}, debug = #{debug}, updateName = #{updateName}, updateTime = now()
         where id= #{id}
     </insert>
 
     <insert id="delete" parameterType="com.yunqi.common.entity.Writer">
         # 无效
-        update writer set disabled = 'false', updateTime = now() where id = #{id}
+        update writer set disabled = 'false', updateName = #{updateName}, updateTime = now() where id = #{id}
     </insert>
 </mapper>

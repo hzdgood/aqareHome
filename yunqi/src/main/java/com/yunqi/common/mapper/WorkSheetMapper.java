@@ -9,8 +9,7 @@ import java.util.List;
 public interface WorkSheetMapper {
     void insert(WorkSheet WorkSheet);
     void update(WorkSheet WorkSheet);
-    void sign(Integer id);
-    void depart(Integer id);
-    void delete(Integer id);
-    void write(Integer id);
+    void sign(Integer id, String updateName);
+    void depart(Integer id, String updateName);
+    void delete(Integer id, String updateName);
 }

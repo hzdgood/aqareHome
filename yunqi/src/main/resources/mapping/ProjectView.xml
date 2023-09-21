@@ -13,8 +13,8 @@
         <if test="projectId!=null and projectId!=''">
             and projectId = #{projectId}
         </if>
-        <if test="techID!=null and techID!=''">
-            and techID = #{techID}
+        <if test="techId!=null and techId!=''">
+            and techId = #{techId}
         </if>
     </select>
 </mapper>

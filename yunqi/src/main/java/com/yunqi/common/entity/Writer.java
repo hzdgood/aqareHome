@@ -12,6 +12,7 @@ public class Writer {
     private String install;
     private String debug;
     private String disabled; //有效
+    private String techError; // 技术报错
     private String createName;
     private Date createTime;
     private String updateName;
@@ -87,6 +88,14 @@ public class Writer {
 
     public void setDisabled(String disabled) {
         this.disabled = disabled;
+    }
+
+    public String getTechError() {
+        return techError;
+    }
+
+    public void setTechError(String techError) {
+        this.techError = techError;
     }
 
     public String getCreateName() {

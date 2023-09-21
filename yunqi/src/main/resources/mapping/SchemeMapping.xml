@@ -20,6 +20,8 @@
     <insert id="update" parameterType="com.yunqi.common.entity.Scheme">
         # 方案修改
         update scheme set installNumber = #{installNumber}, debugNumber = #{debugNumber},
-            notInstalled = #{notInstalled}, unregulated = #{unregulated} where id = #{id}
+            notInstalled = #{notInstalled}, unregulated = #{unregulated},
+            updateName = #{updateName}, updateTime = now()
+        where id = #{id}
     </insert>
 </mapper>

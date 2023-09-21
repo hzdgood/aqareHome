@@ -70,7 +70,8 @@ import { useRoute } from "vue-router";
 import { httpGet } from '../../config/interFace'
 
 const value = ref<string[]>([]);
-const route = useRoute()  
+const route = useRoute()
+const techId = localStorage.getItem("techId");
 
 const resPage = () => {
   router.push({name: 'project'})
@@ -129,7 +130,8 @@ const onFinish = async () => {
     type: formState.workType,  // 必须
     remark: formState.remark,
     status: '待上门',
-    schedule: formState.schedule
+    schedule: formState.schedule,
+    createName: techId
   })
   console.log('Success:', res);
 };

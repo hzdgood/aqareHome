@@ -34,6 +34,7 @@ import { httpGet } from '../../config/interFace'
 import { useRoute } from "vue-router";
 import writerTable from './tables/writerTable.vue'
 
+const techIds = localStorage.getItem('techId')
 const route = useRoute()
 
 let formObj: any[] = []
@@ -51,7 +52,8 @@ onMounted (async function () {
   }
 
   const res1 = await httpGet('/view/work',{
-    workId: workId
+    workId: workId,
+    techIds: techIds,
   })
   formState.projectName = res1[0].projectName;
   formState.type = res1[0].type;
@@ -96,10 +98,9 @@ const formState = reactive<FormState>({
 const onFinish = async () => {
   console.log(formObj);
   for(let i=0; i<formObj.length;i++){
-    const res = await httpGet('/writer/insert', formObj[i]) // 核销新增
-    console.log(res);
+    await httpGet('/writer/insert', formObj[i]) // 核销新增
   }
-  const res = await httpGet('/workSheet/update', { //工单修改
+  const res = await httpGet('/workSheet/update', { //工单修改 -- 核销完成
     id: route.query.id,
     workSummary: formState.workSummary,
     visitNode: formState.visitNode

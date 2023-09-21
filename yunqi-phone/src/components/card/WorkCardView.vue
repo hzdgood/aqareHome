@@ -34,9 +34,14 @@
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button type="primary" @click="sign(data.workId)">签到</a-button>
-        <a-button type="primary" @click="depart(data.workId)" >离开</a-button>
-        <a-button type="primary" @click="WriterInfo(data.workId)">核销</a-button>
+        <a-button type="primary" 
+          v-show="data.signTime === null"
+          @click="sign(data.workId)">签到</a-button>
+        <a-button type="primary"
+          v-show="data.departureTime === null && data.signTime !== null"
+          @click="depart(data.workId)">离开</a-button>
+        <a-button type="primary"
+          @click="WriterInfo(data.workId)">核销</a-button>
         <a-button type="primary" @click="measureInfo(data.workId)">测量</a-button>
       </div>
     </a-card>
@@ -46,6 +51,7 @@
 // 工单卡片
 import { dateFilter } from '../../util/time'
 import { httpGet } from '../../config/interFace'
+const techIds = localStorage.getItem('techId')
 
 defineProps({
   data: {
@@ -56,13 +62,15 @@ defineProps({
 
 const sign = async (id: number) => {
   const res = await httpGet('/workSheet/sign',{
-    id: id
+    id: id,
+    updateName: techIds
   })
 }
 
 const depart = async (id: number) => {
   const res = await httpGet('/workSheet/depart',{
-    id: id
+    id: id,
+    updateName: techIds
   })
 }
 

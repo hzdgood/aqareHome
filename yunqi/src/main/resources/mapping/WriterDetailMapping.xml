@@ -1,0 +1,19 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.common.mapper.WriterDetailMapper">
+    <insert id="insert" parameterType="com.yunqi.common.entity.WriterDetail" useGeneratedKeys="true" keyProperty="id">
+        # 新增
+        insert into writerdetail (
+            workId, projectId, productId, type, number,
+            writeTime, contribution, createName, createTime
+        ) value (
+             #{workId}, #{projectId}, #{productId}, #{type}, #{number},
+             #{writeTime}, #{contribution}, #{createName}, NOW()
+        )
+    </insert>
+
+    <insert id="update" parameterType="com.yunqi.common.entity.WriterDetail">
+
+    </insert>
+</mapper>

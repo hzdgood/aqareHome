@@ -16,7 +16,7 @@
         <a-select-option value="售后">售后</a-select-option>
       </a-select>
       <span>&nbsp;&nbsp;上门日期: &nbsp;</span>
-      <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 20%;"/>
+      <a-date-picker format="YYYY-MM-DD" v-model:value="formState.dateOfVisit" style="width: 20%;"/>
       <span>
         &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
       </span>
@@ -29,15 +29,16 @@
 
 <script setup lang="ts">
 import WorkCardView from './card/WorkCardView.vue';
-import { reactive, onMounted } from 'vue';
-import { Dayjs } from 'dayjs'
+import { reactive, onMounted  } from 'vue';
 import router from '@/router';
 import { httpGet } from '../config/interFace'
+
 const techIds = localStorage.getItem('techId')
 
 onMounted (async function () {
   const res = await httpGet('/view/work',{
-    techIds: techIds
+    techIds: techIds,
+    headId: techIds
   })
   formState.dataList = res
 })
@@ -59,21 +60,28 @@ const formState = reactive<FormState>({
 });
 
 const onFinish = async () => {
-  const res = await httpGet('/view/work',{
-    type: formState.type,
-    dateOfVisit: formState.dateOfVisit,
-    techIds: techIds
-  })
-  formState.dataList = res
+  if(formState.dateOfVisit === '') {
+    const res = await httpGet('/view/work',{
+      type: formState.type,
+      techIds: techIds,
+      headId: techIds
+    })
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/view/work',{
+      type: formState.type,
+      dateOfVisit: formState.dateOfVisit,
+      techIds: techIds,
+      headId: techIds
+    })
+    formState.dataList = res
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
 };
 
-const onChange = (value: Dayjs, dateString: string) => {
-  formState.dateOfVisit = dateString
-};
 </script>
 
 <style lang="less" scoped>

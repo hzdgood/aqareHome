@@ -31,9 +31,4 @@ public class ProjectController {
         ProjectService.insert(Project);
     }
 
-    @CrossOrigin
-    @RequestMapping("/update")
-    public void update(Project Project) {
-        ProjectService.update(Project);
-    }
 }

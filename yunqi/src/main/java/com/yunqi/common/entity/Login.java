@@ -5,6 +5,7 @@ public class Login {
     private String username; //登入用户
     private String password; //密码
     private Integer techId; //绑定技术
+    private String loginName; //用户名
 
     public Integer getId() {
         return id;
@@ -36,5 +37,13 @@ public class Login {
 
     public void setTechId(Integer techId) {
         this.techId = techId;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 }

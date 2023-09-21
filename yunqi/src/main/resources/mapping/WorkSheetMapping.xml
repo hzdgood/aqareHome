@@ -12,31 +12,28 @@
 
     <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">
         # 详情
-        update worksheet set workSummary = #{workSummary}, visitNode = #{visitNode}
-        , updateTime = NOW() , updateName = #{updateName}
+        update worksheet set workSummary = #{workSummary}, visitNode = #{visitNode},
+        writeTime = NOW(), status = '已完成', updateName = #{updateName}, updateTime = NOW()
         where id = #{id}
     </insert>
 
     <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
         # 签到
-        update worksheet set signTime = NOW(), updateTime = NOW(), status = '待核销'
+        update worksheet set signTime = NOW(), updateName = #{updateName},
+            updateTime = NOW(), status = '待核销'
         where id = #{id}
     </insert>
 
     <insert id="depart" parameterType="com.yunqi.common.entity.WorkSheet">
         # 离开
-        update worksheet set departureTime = NOW(), updateTime = NOW(), status = '待核销'
-        where id = #{id}
-    </insert>
-
-    <insert id="write" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 核销
-        update worksheet set writeTime = NOW(), updateTime = NOW(), status = '已完成'
+        update worksheet set departureTime = NOW(), updateName = #{updateName},
+            updateTime = NOW(), status = '待核销'
         where id = #{id}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">
         # 无效
-        update worksheet set disabled = 'false', updateTime = NOW() where id = #{id}
+        update worksheet set disabled = 'false', updateName = #{updateName},
+            updateTime = NOW() where id = #{id}
     </delete>
 </mapper>

@@ -32,18 +32,13 @@
 </template>
 
 <script setup lang="ts">
-
-import { reactive, onMounted } from 'vue';
-
+import { reactive } from 'vue';
+const techId = localStorage.getItem("techId")
 const props = defineProps({
   data: {
     type: Object,
     default: null
   }
-})
-
-onMounted (async function () {
-  
 })
 
 const emit = defineEmits(['change'])
@@ -55,9 +50,10 @@ const formChange = () => {
     schemeId: props.data.schemeId,
     workId: props.data.workId,
     productId: props.data.productId,
-    techId: localStorage.getItem("techId"),
+    techId: techId,
     install: formState.install,
-    debug: formState.debug
+    debug: formState.debug,
+    updateName: techId
   }
   emit('change',obj)
 }
