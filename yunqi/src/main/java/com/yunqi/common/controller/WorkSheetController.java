@@ -42,7 +42,7 @@ public class WorkSheetController {
     private void sign(Integer id, String updateName) { WorkSheetService.sign(id, updateName); }
 
     @CrossOrigin
-    @RequestMapping("/depart")
+    @RequestMapping("/depart") // 离场
     private void depart(Integer id, String updateName) {
         WorkSheetService.depart(id, updateName);
     }

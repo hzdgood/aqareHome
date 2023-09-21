@@ -44,7 +44,7 @@
           @click="depart()">离开</a-button>
         <a-button type="primary" v-show="data.signTime !== null"
           @click="WriterInfo(data.workId)">核销</a-button>
-        <a-button type="primary" @click="measureInfo(data.workId)">测量</a-button>
+        <!-- <a-button type="primary" @click="measureInfo(data.workId)">测量</a-button> -->
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.workId)">

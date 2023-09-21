@@ -47,10 +47,10 @@ const formChange = () => {
   let install = formState.install;
   let debug = formState.debug;
   if(install === '') {
-    install = '0'
+    install = '0' //默认0
   }
   if(debug === '') {
-    debug = '0'
+    debug = '0' //默认0
   }
   // 判断数量
   const obj = {

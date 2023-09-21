@@ -1,8 +1,8 @@
 import axios from 'axios'
-const httpUrl = 'http://192.168.110.48:8081' // 测试url
-// const httpUrl = 'http://aqara.club:8081' // 生产环境
+// const httpUrl = 'http://192.168.110.48:8081' // 测试url
+const httpUrl = 'http://aqara.club:8082' // 生产环境
 
-// const httpUrl = 'http://localhost:8081'
+// const httpUrl = 'http://localhost:8082'
 
 const http = axios.create({
   baseURL:'http://localhost:8081/'

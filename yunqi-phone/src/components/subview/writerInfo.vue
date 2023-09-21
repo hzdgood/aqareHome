@@ -78,7 +78,6 @@ const resPage = () => {
 
 const getChange = (obj: any) => {
   let status = false;
-
   if(formObj.length === 0 ) {
     formObj.push(obj)
   } else {

@@ -63,7 +63,7 @@
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button type="primary" v-show="formState.dataList.writeTime === null" @click="submit">提交</a-button>
+        <a-button type="primary" v-show="formState.dataList.departureTime === null" @click="submit">提交</a-button>
         <a-button type="primary" @click="resPage()">返回</a-button>
         <!-- <a-button type="primary">无效</a-button> -->
       </div>
@@ -112,13 +112,14 @@ onMounted (async function () {
   }
   formState.options = techs
   
-  const techName = res[0].techName + ''
-  if(techName.includes(',')) {
-    const str = techName.split(',');
-    value = ref(str);
-  } else {
-    value = ref([res[0].techName]);
-  }
+  // const techName = res[0].techName + ''
+  // if(techName.includes(',')) {
+  //   const str = techName.split(',');
+  //   value = ref(str);
+  // } else {
+  //   value = ref([res[0].techName]);
+  // }
+  // formState.techName = res[0].techIds
 })
 
 const resPage = () => {
@@ -135,8 +136,8 @@ interface FormState {
   desc: string
 }
 
-const handleChange = (value: []) => {
-  console.log(`selected ${value}`);
+const handleChange = (value: [], Option: []) => {
+  // 有个BUG
   formState.techName = `${value}`
 };
 
@@ -151,7 +152,7 @@ const formState = reactive<FormState>({
 });
 
 const submit = async () =>  {
-  const res = await httpGet('/workSheet/updateInfo',{
+  await httpGet('/workSheet/updateInfo',{
     id: route.query.id,
     techIds: formState.techName,
     dateOfVisit: formState.time,
