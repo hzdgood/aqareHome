@@ -11,13 +11,15 @@ public class Writer {
     private Integer workId;
     private Integer install;
     private Integer debug;
-    private String disabled; //有效
-    private String techError; // 技术报错
+    private Integer sumWork;
+    private String type;
+    private Double contribution;
     private String createName;
     private Date createTime;
     private String updateName;
     private Date updateTime;
-
+    private String disabled; //有效
+    private String techError; // 技术报错
     public Integer getId() {
         return id;
     }
@@ -82,20 +84,28 @@ public class Writer {
         this.debug = debug;
     }
 
-    public String getDisabled() {
-        return disabled;
+    public Integer getSumWork() {
+        return sumWork;
     }
 
-    public void setDisabled(String disabled) {
-        this.disabled = disabled;
+    public void setSumWork(Integer sumWork) {
+        this.sumWork = sumWork;
     }
 
-    public String getTechError() {
-        return techError;
+    public String getType() {
+        return type;
     }
 
-    public void setTechError(String techError) {
-        this.techError = techError;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Double getContribution() {
+        return contribution;
+    }
+
+    public void setContribution(Double contribution) {
+        this.contribution = contribution;
     }
 
     public String getCreateName() {
@@ -126,5 +136,21 @@ public class Writer {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
+    }
+
+    public String getTechError() {
+        return techError;
+    }
+
+    public void setTechError(String techError) {
+        this.techError = techError;
     }
 }

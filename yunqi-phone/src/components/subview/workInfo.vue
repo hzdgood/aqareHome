@@ -35,6 +35,7 @@
                 <a-select-option value="安装">安装</a-select-option>
                 <a-select-option value="调试">调试</a-select-option>
                 <a-select-option value="交底">交底</a-select-option>
+                <a-select-option value="验收">验收</a-select-option>
                 <a-select-option value="检测">检测</a-select-option>
                 <a-select-option value="售后">售后</a-select-option>
               </a-select>

@@ -11,7 +11,7 @@ public class WriterView {
     private String productName;  //产品名称
     private String techName;  // 技术
     private String type; //类型
-    private Date writeTime;
+    private Date writerTime;
     private Integer number; // 数量
     private Integer installNumber; //已装
     private Integer debugNumber; //已调
@@ -83,11 +83,11 @@ public class WriterView {
     }
 
     public Date getWriteTime() {
-        return writeTime;
+        return writerTime;
     }
 
-    public void setWriteTime(Date writeTime) {
-        this.writeTime = writeTime;
+    public void setWriteTime(Date writerTime) {
+        this.writerTime = writerTime;
     }
 
     public Integer getNumber() {

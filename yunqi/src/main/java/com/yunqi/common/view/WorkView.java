@@ -19,7 +19,7 @@ public class WorkView {
     private String schedule; //进度
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
-    private Date writeTime; //核销时间
+    private Date writerTime; //核销时间
     private String disabled; //有效
 
     public Integer getWorkId() {
@@ -151,11 +151,11 @@ public class WorkView {
     }
 
     public Date getWriteTime() {
-        return writeTime;
+        return writerTime;
     }
 
-    public void setWriteTime(Date writeTime) {
-        this.writeTime = writeTime;
+    public void setWriteTime(Date writerTime) {
+        this.writerTime = writerTime;
     }
 
     public String getDisabled() {

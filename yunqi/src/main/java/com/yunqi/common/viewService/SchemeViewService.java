@@ -19,4 +19,8 @@ public class SchemeViewService {
     public List<SchemeView> select(SchemeView SchemeView) {
         return SchemeViewMapper.select(SchemeView);
     }
+
+    public List<SchemeView> selectSum(SchemeView schemeView) {
+        return SchemeViewMapper.selectSum(schemeView);
+    }
 }

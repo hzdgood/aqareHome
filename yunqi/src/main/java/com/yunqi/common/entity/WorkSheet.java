@@ -15,7 +15,7 @@ public class WorkSheet {
     private String signImg; //签字图片
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
-    private Date writeTime; //核销时间
+    private Date writerTime; //核销时间
     private String disabled; //有效
     private String workSummary; //今日工作总结
     private String visitNode; //下次上门节点
@@ -122,11 +122,11 @@ public class WorkSheet {
     }
 
     public Date getWriteTime() {
-        return writeTime;
+        return writerTime;
     }
 
-    public void setWriteTime(Date writeTime) {
-        this.writeTime = writeTime;
+    public void setWriteTime(Date writerTime) {
+        this.writerTime = writerTime;
     }
 
     public String getDisabled() {

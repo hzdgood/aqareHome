@@ -28,4 +28,10 @@ public class WriterService {
     public void update(Writer Writer) {
         WriterMapper.update(Writer);
     }
+
+    public List<Writer> select(Writer Writer) { return WriterMapper.select(Writer); }
+
+    public void simpleWriter(Writer writer) {
+        WriterMapper.simpleWriter(writer);
+    }
 }

@@ -1,9 +1,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.viewMapper.ProjectViewMapper">
+<mapper namespace="com.yunqi.common.viewMapper.DetailViewMapper">
     <select id="select" resultType="com.yunqi.common.view.DetailView">
         # 核销记录查询
-        select * from writerdetailview
+        select * from writerdetailview where 1 = 1
+        <if test="techIds!=null">
+            and techIds like  '%${techIds}%'
+        </if>
+        <if test="writerTime != null">
+            and date_format(`writerTime`,'%Y-%m-%d') = str_to_date(#{writerTime},'%Y-%m-%d')
+        </if>
+        <if test="headId!=null">
+            or headId = #{headId}
+        </if>
     </select>
 </mapper>

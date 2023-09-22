@@ -54,24 +54,12 @@ defineProps({
 
 const emit = defineEmits(['toPage'])
 
-const style = {
-  backgroundColor: '#0099DD',color: '#fff'
-}
-
 const sendWork = (id: any) => {
   emit('toPage','subWork', id)
 }
 
 const schemeInfo = (id: any) => {
   emit('toPage','subSchemem', id)
-}
-
-const measureInfo = (id: any) => {
-  emit('toPage','subMeasure', id)
-}
-
-const handoverInfo = (id: any) => {
-  emit('toPage','handoverInfo', id)
 }
 </script>
 <style scoped>

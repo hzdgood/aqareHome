@@ -28,4 +28,11 @@
 <script setup lang="ts">
 // 提成卡片
 
+defineProps({
+  data: {
+    type: Object,
+    default: null
+  }
+})
+
 </script>

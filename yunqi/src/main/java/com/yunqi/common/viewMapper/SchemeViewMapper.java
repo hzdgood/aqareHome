@@ -8,4 +8,5 @@ import java.util.List;
 public interface SchemeViewMapper {
     List<SchemeView> select(SchemeView SchemeView);
 
+    List<SchemeView> selectSum(SchemeView schemeView);
 }

@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class DetailView { //核销记录统计
     private Integer id;
+    private Integer headId;
+    private String techIds;
     private String projectName;
-    private String productName;
     private String type;
     private Integer number;
-    private Date writerTime;
     private String contribution;
 
     public Integer getId() {
@@ -19,20 +19,28 @@ public class DetailView { //核销记录统计
         this.id = id;
     }
 
+    public Integer getHeadId() {
+        return headId;
+    }
+
+    public void setHeadId(Integer headId) {
+        this.headId = headId;
+    }
+
+    public String getTechIds() {
+        return techIds;
+    }
+
+    public void setTechIds(String techIds) {
+        this.techIds = techIds;
+    }
+
     public String getProjectName() {
         return projectName;
     }
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
     }
 
     public String getType() {
@@ -49,14 +57,6 @@ public class DetailView { //核销记录统计
 
     public void setNumber(Integer number) {
         this.number = number;
-    }
-
-    public Date getWriterTime() {
-        return writerTime;
-    }
-
-    public void setWriterTime(Date writerTime) {
-        this.writerTime = writerTime;
     }
 
     public String getContribution() {

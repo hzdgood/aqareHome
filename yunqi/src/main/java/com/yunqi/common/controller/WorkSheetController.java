@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -16,11 +15,11 @@ import java.util.List;
 public class WorkSheetController {
     private WorkSheetService WorkSheetService;
 
-    private WriterViewService WriterViewService;
-
-    private WriterDetailService WriterDetailService;
+    private ProductViewService ProductViewService;
 
     private WriterService WriterService;
+
+    private SchemeViewService SchemeViewService;
 
     @Autowired
     public void setMapper(WorkSheetService WorkSheetService) {
@@ -28,18 +27,18 @@ public class WorkSheetController {
     }
 
     @Autowired
-    public void setMapper(WriterViewService WriterViewService) {
-        this.WriterViewService = WriterViewService;
-    }
-
-    @Autowired
-    public void setMapper(WriterDetailService WriterDetailService) {
-        this.WriterDetailService = WriterDetailService;
+    public void setMapper(ProductViewService ProductViewService) {
+        this.ProductViewService = ProductViewService;
     }
 
     @Autowired
     public void setMapper(WriterService WriterService) {
         this.WriterService = WriterService;
+    }
+
+    @Autowired
+    public void setMapper(SchemeViewService SchemeViewService) {
+        this.SchemeViewService = SchemeViewService;
     }
 
     @CrossOrigin
@@ -69,38 +68,47 @@ public class WorkSheetController {
     @CrossOrigin
     @RequestMapping("/depart") // 离场
     private String depart(Integer id, String updateName) {
-        Integer productId = null; //产品ID
-
-        // 1、 插入WriterDetail表 数据
-        WriterView w = new WriterView();
-        w.setWorkId(id);
-        List<WriterView> list = WriterViewService.select(w); // 查询
-        WriterDetail WriterDetail = new WriterDetail();
-        if(!list.isEmpty()) {
-            WriterView writerView = list.get(0);
-            productId = writerView.getProductId();
-            WriterDetail.setWorkId(writerView.getWorkId());
-            WriterDetail.setProjectId(writerView.getProjectId());
-            WriterDetail.setProductId(writerView.getProductId());
-            WriterDetail.setType(writerView.getType());
-            WriterDetail.setWriteTime(writerView.getWriteTime());
-        } else {
-            return "未查到到核销内容！";
+        ProductView ProductView = new ProductView(); //核销贡献度view
+        ProductView.setWorkId(id);
+        List<ProductView> ProductList = ProductViewService.selectByWork(ProductView);
+        // 当前人员的贡献度
+        for(ProductView productView: ProductList) {
+            Writer Writer = new Writer();
+            String type = productView.getType();
+            Integer install = productView.getCustomerInstall();
+            Integer debug = productView.getCustomerDebug();
+            switch (type) { //单人模式
+                case "安装", "调试" -> {
+                    double installContribute = productView.getInstallContribute();
+                    double debugContribute = productView.getDebugContribute();
+                    double installSum = install * installContribute; // 数量 * 安装贡献
+                    double debugSum = debug * debugContribute; // 数量 * 调试贡献
+                    Writer.setType(type);
+                    Writer.setSumWork(install + debug);
+                    Writer.setContribution(installSum + debugSum);
+                    WriterService.simpleWriter(Writer); //单人核销修改
+                }
+                case "交底", "验收" -> {
+                    SchemeView SchemeView = new SchemeView();
+                    SchemeView.setProjectId(productView.getProjectId());
+                    List<SchemeView> list = SchemeViewService.selectSum(SchemeView); // 实际总数
+                    if(list.get(0).getNumber() > 100){
+                        int num = list.get(0).getNumber() / 100;
+                        System.out.printf(""+num);
+                        Writer.setContribution(num * 150.0);
+                    } else {
+                        Writer.setContribution(150.0);
+                    }
+                    Writer.setType(type);
+                    WriterService.simpleWriter(Writer);
+                }
+                case "售后" -> {
+                    Writer.setType(type);
+                    Writer.setContribution(150.0);
+                    WriterService.simpleWriter(Writer); //单人核销修改
+                }
+            }
         }
-
-        //计算 number
-        Writer Writer = new Writer();
-        Writer.setWorkId(id);
-        List<Writer> list1 =  WriterService.selectNumber(Writer);
-        if(!list.isEmpty()) {
-            Writer writer = list1.get(0);
-            WriterDetail.setNumber(writer.getInstall() + writer.getDebug());
-        } else {
-            return "核销数量为空！";
-        }
-        // 2、计算贡献度
-
-        WriterDetailService.insert(WriterDetail);
         WorkSheetService.depart(id, updateName);
         return "离场成功，请查看核销记录";
     }

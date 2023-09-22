@@ -18,6 +18,7 @@ public class ViewController {
     private WorkViewService WorkViewService;
     private SchemeViewService SchemeViewService;
     private WriterViewService WriterViewService;
+
     @Autowired
     public void setMapper(ProjectViewService ProjectViewService) {
         this.ProjectViewService = ProjectViewService;
@@ -34,6 +35,7 @@ public class ViewController {
     public void setMapper(WriterViewService WriterViewService) {
         this.WriterViewService = WriterViewService;
     }
+
     @CrossOrigin
     @RequestMapping("/project")
     public List<ProjectView> select(ProjectView ProjectView) {
@@ -55,7 +57,7 @@ public class ViewController {
         return SchemeViewService.select(SchemeView);
     }
     @CrossOrigin
-    @RequestMapping("/writer")
+    @RequestMapping("/writer") // 可核销方案
     public List<WriterView> select(WriterView WriterView) {
         return WriterViewService.select(WriterView);
     }

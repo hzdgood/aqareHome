@@ -13,7 +13,7 @@
     <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">
         # 详情
         update worksheet set workSummary = #{workSummary}, visitNode = #{visitNode},
-        writeTime = NOW(), updateName = #{updateName}, updateTime = NOW()
+        writerTime = NOW(), updateName = #{updateName}, updateTime = NOW()
         where id = #{id}
     </insert>
 

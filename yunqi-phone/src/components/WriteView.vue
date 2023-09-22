@@ -8,36 +8,55 @@
       @finishFailed="onFinishFailed"
     >
       <span>&nbsp;&nbsp;结算日期: &nbsp;</span>
-      <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 40%;"/>
+      <a-date-picker format="YYYY-MM-DD" v-model:value="formState.time" style="width: 40%;"/>
       <span>
         &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
       </span>
     </a-form>
-    <WriteCardView></WriteCardView>
+
+    <div v-for="item in formState.dataList" :key="item">
+      <WriteCardView :data="item"></WriteCardView>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import WriteCardView from './card/WriteCardView.vue';
-import { reactive } from 'vue';
-import { Dayjs } from 'dayjs'
+import { reactive, onMounted} from 'vue';
+import { httpGet } from '../config/interFace'
+
+const techIds = localStorage.getItem('techId')
+
+onMounted (async function () {
+  const res = await httpGet('/view/detail',{
+    techIds: techIds,
+    headId: techIds
+  })
+  formState.dataList = res
+})
+
 interface FormState {
-  techName: string;
+  time: string,
+  dataList: object
 }
+
 const formState = reactive<FormState>({
-  techName: ''
+  time: '',
+  dataList: []
 });
-const onFinish = (values: any) => {
+
+const onFinish = async (values: any) => {
   console.log('Success:', values);
+  const res = await httpGet('/view/work',{
+    writerTime: formState.time,
+    techIds: techIds,
+    headId: techIds
+  })
+  formState.dataList = res
 };
 
 const onFinishFailed = (errorInfo: any) => {
   console.log('Failed:', errorInfo);
-};
-
-const onChange = (value: Dayjs, dateString: string) => {
-  console.log('Selected Time: ', value);
-  console.log('Formatted Selected Time: ', dateString);
 };
 </script>
 
