@@ -8,9 +8,9 @@ public class Writer {
     private Integer projectId;
     private Integer productId;
     private Integer schemeId;
-    private String workId;
-    private String install;
-    private String debug;
+    private Integer workId;
+    private Integer install;
+    private Integer debug;
     private String disabled; //有效
     private String techError; // 技术报错
     private String createName;
@@ -58,27 +58,27 @@ public class Writer {
         this.schemeId = schemeId;
     }
 
-    public String getWorkId() {
+    public Integer getWorkId() {
         return workId;
     }
 
-    public void setWorkId(String workId) {
+    public void setWorkId(Integer workId) {
         this.workId = workId;
     }
 
-    public String getInstall() {
+    public Integer getInstall() {
         return install;
     }
 
-    public void setInstall(String install) {
+    public void setInstall(Integer install) {
         this.install = install;
     }
 
-    public String getDebug() {
+    public Integer getDebug() {
         return debug;
     }
 
-    public void setDebug(String debug) {
+    public void setDebug(Integer debug) {
         this.debug = debug;
     }
 

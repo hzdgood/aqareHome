@@ -17,7 +17,7 @@ public class ProductBoot {
     @Autowired
     private ProductService ProductService;
 
-    @Scheduled(cron = "0 18 14 * * ?")
+    // @Scheduled(cron = "0 18 14 * * ?")
     private void uploadExcel() {
         File file = new File("D:\\download\\物料清单921.xlsx");
         try {

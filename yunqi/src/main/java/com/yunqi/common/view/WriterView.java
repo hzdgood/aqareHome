@@ -10,6 +10,8 @@ public class WriterView {
     private String projectName; //项目名称
     private String productName;  //产品名称
     private String techName;  // 技术
+    private String type; //类型
+    private Date writeTime;
     private Integer number; // 数量
     private Integer installNumber; //已装
     private Integer debugNumber; //已调
@@ -70,6 +72,22 @@ public class WriterView {
 
     public void setTechName(String techName) {
         this.techName = techName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Date getWriteTime() {
+        return writeTime;
+    }
+
+    public void setWriteTime(Date writeTime) {
+        this.writeTime = writeTime;
     }
 
     public Integer getNumber() {

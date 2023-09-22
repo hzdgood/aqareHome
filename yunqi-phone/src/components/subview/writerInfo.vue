@@ -55,7 +55,7 @@ let formObj: any[] = []
 onMounted (async function () {
   formObj = [];
   const workId = route.query.id
-  const res = await httpGet('/view/writer',{
+  const res = await httpGet('/view/writer',{ // 查询可核销数据
     workId: workId
   })
   if(res.length === 0) {
@@ -84,15 +84,16 @@ const getChange = (obj: any) => {
     for(let i=0; i < formObj.length; i++) {
       const productId = formObj[i].productId + '';
       if(productId === obj.productId + '') {
+        formObj[i].install = obj.install
+        formObj[i].debug = obj.debug
         status = true
       }
-      formObj[i].install = obj.install
-      formObj[i].debug = obj.debug
     }
     if(status === false) {
       formObj.push(obj)
     }
   }
+  console.log(formObj);
 }
 
 interface FormState {

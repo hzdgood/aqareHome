@@ -10,6 +10,7 @@ public class WriterDetail {
     private String type; //类型
     private Integer number; //核销数量
     private Date writeTime; // 核销时间
+    private String errorInfo; //报错
     private String contribution; //贡献度
     private String createName;
     private Date createTime;
@@ -70,6 +71,14 @@ public class WriterDetail {
 
     public void setWriteTime(Date writeTime) {
         this.writeTime = writeTime;
+    }
+
+    public String getErrorInfo() {
+        return errorInfo;
+    }
+
+    public void setErrorInfo(String errorInfo) {
+        this.errorInfo = errorInfo;
     }
 
     public String getContribution() {

@@ -5,6 +5,8 @@ import com.yunqi.common.mapper.WriterMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WriterService {
 
@@ -13,6 +15,10 @@ public class WriterService {
     @Autowired
     public void setMapper(WriterMapper WriterMapper) {
         this.WriterMapper = WriterMapper;
+    }
+
+    public List<Writer> selectNumber(Writer Writer) {
+        return WriterMapper.selectNumber(Writer);
     }
 
     public void insert(Writer Writer) {

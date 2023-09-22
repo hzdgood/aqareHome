@@ -2,6 +2,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.WriterMapper">
+
+    <select id="selectNumber" resultType="com.yunqi.common.entity.Writer">
+        # 技术
+        select sum(install) as install, sum(debug) as debug from writer where workId = #{workId}
+    </select>
+
     <insert id="insert" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into writer (

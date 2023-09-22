@@ -10,6 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 
 public class CommissionExcel {
     public static void commissionExcel(File file, CommissionService commissionService) {
@@ -25,32 +26,35 @@ public class CommissionExcel {
                 for (int j = 0; j < lastCellNum; j++) {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
-                        String value = ExcelUtil.getCellValue(cell);
                         if (j == 0) {
-                            Commission.setCategory(value);
+                            Commission.setCategory(cell.getStringCellValue());
                         } else if (j == 1) {
-                            Commission.setCost(value);
+                            Commission.setCost(cell.getNumericCellValue());
                         } else if (j == 2) {
-                            Commission.setInstallRatio(value);
+                            Commission.setInstallRatio(cell.getNumericCellValue());
                         } else if (j == 3) {
-                            Commission.setDebugRatio(value);
+                            Commission.setDebugRatio(cell.getNumericCellValue());
                         } else if (j == 4) {
-                            Commission.setInstall(value);
+                            Commission.setInstall(cell.getNumericCellValue());
                         } else if (j == 5) {
-                            Commission.setDebug(value);
+                            Commission.setDebug(cell.getNumericCellValue());
                         } else if (j == 6) {
-                            Commission.setDisclose(value);
+                            Commission.setDisclose(cell.getNumericCellValue());
                         } else if (j == 7) {
-                            Commission.setCheck(value);
+                            Commission.setCheck(cell.getNumericCellValue());
                         } else if (j == 8) {
-                            Commission.setHeadDoor(value);
+                            Commission.setHeadDoor(cell.getNumericCellValue());
                         } else if (j == 9) {
-                            Commission.setHeadDisclose(value);
+                            Commission.setHeadDisclose(cell.getNumericCellValue());
                         } else if (j == 10) {
-                            Commission.setHeadComplete(value);
+                            Commission.setInstallContribute(cell.getNumericCellValue());
+                        } else if (j == 11) {
+                            Commission.setDebugContribute(cell.getNumericCellValue());
                         }
                     }
                 }
+                Commission.setCreateName("aqara");
+                Commission.setCreateTime(new Date());
                 commissionService.insert(Commission);
             }
         } catch (Exception e) {

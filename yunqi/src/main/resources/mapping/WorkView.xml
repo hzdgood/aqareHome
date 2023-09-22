@@ -15,12 +15,18 @@
             <if test="type!=null and type!=''">
                 and type = #{type}
             </if>
+            <if test="status == 'true'">
+                and status != '已完成'
+            </if>
+            <if test="projectName!=null and projectName!=''">
+                and projectName = #{projectName}
+            </if>
             <if test="dateOfVisit != null">
                 and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
             </if>
             <if test="headId!=null">
                 or headId = #{headId}
             </if>
-        order by dateOfVisit desc
+        order by dateOfVisit asc
     </select>
 </mapper>

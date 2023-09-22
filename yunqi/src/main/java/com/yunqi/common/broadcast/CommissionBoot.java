@@ -16,9 +16,9 @@ public class CommissionBoot {
     @Autowired
     private CommissionService CommissionService;
 
-    //@Scheduled(cron = "0 45 17 * * ?")
+    // @Scheduled(cron = "0 58 20 * * ?")
     public void uploadExcel() {
-        File file = new File("D:\\download\\物料技术提成表.xlsx");
+        File file = new File("D:\\download\\物料技术提成表921.xlsx");
         CommissionExcel.commissionExcel(file, CommissionService);
     }
 }
