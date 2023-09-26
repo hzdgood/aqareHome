@@ -63,6 +63,10 @@ public class ProjectExcel {
                         } else if (j == 11) {
                             Project.setSchedule(value);
                         } else if (j == 12) {
+                            Project.setDepartName(value);
+                        } else if (j == 13) {
+                            Project.setSource(value);
+                        } else if (j == 14) {
                             Project.setItemId(value);
                         }
                     }

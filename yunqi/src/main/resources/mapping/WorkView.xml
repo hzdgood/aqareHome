@@ -27,6 +27,6 @@
         <if test="headId!=null">
             or headId = #{headId}
         </if>
-        order by dateOfVisit asc
+        order by status desc, dateOfVisit asc
     </select>
 </mapper>

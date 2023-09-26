@@ -17,7 +17,8 @@ public class Project {
     private String village; //小区
     private String schedule; //进度
     private String region; //区域
-    private String departName; //项目所属部门
+    private String departName; //所属部门
+    private String source; //来源
     private String itemId;
     private String createName;
     private Date createTime;
@@ -142,6 +143,14 @@ public class Project {
 
     public void setDepartName(String departName) {
         this.departName = departName;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getItemId() {

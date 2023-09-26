@@ -7,18 +7,8 @@
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <span>&nbsp;&nbsp;项目名称: &nbsp;</span>
+      <span>&nbsp;&nbsp;项目信息: &nbsp;</span>
       <a-input style="width: 30%;" v-model:value="formState.projectName" @change="projectChange"></a-input>
-      <!-- <span>&nbsp;&nbsp;类型: &nbsp;</span>
-      <a-select style="width: 16%;" v-model:value="formState.type">
-        <a-select-option value="安装">安装</a-select-option>
-        <a-select-option value="调试">调试</a-select-option>
-        <a-select-option value="交底">交底</a-select-option>
-        <a-select-option value="检测">检测</a-select-option>
-        <a-select-option value="售后">售后</a-select-option>
-      </a-select>
-      <span>&nbsp;&nbsp;日期: &nbsp;</span>
-      <a-date-picker format="YYYY-MM-DD" v-model:value="formState.dateOfVisit" style="width: 20%;"/> -->
       <span>
         &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
         &nbsp;<a-button type="primary" @click="allSeletct">全部查询</a-button>
@@ -53,6 +43,7 @@ const toPage = (str: any, id: any) => {
 
 const pageReset = async () => {
   const res = await httpGet('/view/work',{
+    status: 'true',
     techIds: techIds,
     headId: techIds
   })
@@ -81,7 +72,6 @@ const allSeletct = async () => {
 const projectChange = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
-    status: 'true',
     techIds: techIds,
     headId: techIds
   })

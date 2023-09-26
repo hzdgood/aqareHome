@@ -1,13 +1,7 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.view.ProjectView;
-import com.yunqi.common.view.SchemeView;
-import com.yunqi.common.view.WorkView;
-import com.yunqi.common.view.WriterView;
-import com.yunqi.common.viewService.ProjectViewService;
-import com.yunqi.common.viewService.SchemeViewService;
-import com.yunqi.common.viewService.WorkViewService;
-import com.yunqi.common.viewService.WriterViewService;
+import com.yunqi.common.view.*;
+import com.yunqi.common.viewService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +17,7 @@ public class ViewController {
     private WorkViewService WorkViewService;
     private SchemeViewService SchemeViewService;
     private WriterViewService WriterViewService;
+    private DetailViewService DetailViewService;
 
     @Autowired
     public void setMapper(ProjectViewService ProjectViewService) {
@@ -42,6 +37,11 @@ public class ViewController {
     @Autowired
     public void setMapper(WriterViewService WriterViewService) {
         this.WriterViewService = WriterViewService;
+    }
+
+    @Autowired
+    public void setMapper(DetailViewService DetailViewService) {
+        this.DetailViewService = DetailViewService;
     }
 
     @CrossOrigin
@@ -72,4 +72,11 @@ public class ViewController {
     public List<WriterView> select(WriterView WriterView) {
         return WriterViewService.select(WriterView);
     }
+
+    @CrossOrigin
+    @RequestMapping("/detail") // 核销记录
+    public List<DetailView> detail(DetailView DetailView) {
+        return DetailViewService.select(DetailView);
+    }
+
 }

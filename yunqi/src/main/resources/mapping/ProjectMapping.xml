@@ -20,12 +20,14 @@
         # 新增项目
         insert into project (saleId, techId, name, telephone,
                              address, type, node, status,
-                             houseState, situation, village, schedule, region,
+                             houseState, situation, village, schedule,
+                             region, departName, source,
                              createName, createTime, itemId)
             value (
                    #{saleId}, #{techId}, #{name}, #{telephone},
                    #{address}, #{type}, #{node}, #{status},
-                   #{houseState}, #{situation}, #{village}, #{schedule}, #{region},
+                   #{houseState}, #{situation}, #{village}, #{schedule},
+                   #{region}, #{departName}, #{source},
                    '初始化', now(), #{itemId}
             )
     </insert>

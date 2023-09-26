@@ -9,11 +9,11 @@
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Commission" useGeneratedKeys="true" keyProperty="id">
         insert into commission (category, cost, installRatio, debugRatio,
-                                install, debug, disclose, `check`,
+                                install, debug, disclose, `check`, head,
                                 headDoor, headDisclose, installContribute, debugContribute, itemId)
             value (
                    #{category}, #{cost}, #{installRatio}, #{debugRatio},
-                   #{install}, #{debug}, #{disclose}, #{check},
+                   #{install}, #{debug}, #{disclose}, #{check}, #{head},
                    #{headDoor}, #{headDisclose}, #{installContribute}, #{debugContribute}, #{itemId}
             )
     </insert>

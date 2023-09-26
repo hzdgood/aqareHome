@@ -96,10 +96,13 @@ public class WorkSheetController {
         String type = null; // 安装类型
         Integer writerId = null; // 核销ID
         double sumSm = 0; // 负责人安装-调试
+        int sumInstall = 0; // 总安装
+        int sumDebug = 0; // 总调试
 
         SchemeView SchemeView = new SchemeView();
         SchemeView.setProjectId(projectId);
         List<SchemeView> list = SchemeViewService.selectSum(SchemeView); // 实际总数
+
         // 当前人员的贡献度
         for (ProductView productView : ProductList) {
             Writer Writer = new Writer();
@@ -118,9 +121,18 @@ public class WorkSheetController {
                     double debugContribute = productView.getDebugContribute(); // 调试贡献
                     double installSum = install * installContribute; // 数量 * 安装贡献
                     double debugSum = debug * debugContribute; // 数量 * 调试贡献
+
+                    sumInstall = sumInstall + install;
+                    sumDebug = sumDebug + debug;
+
                     Writer.setType(type); //工单类型
-                    Writer.setSumWork(install + debug); // 总数 = 本次安装 + 本次调试
-                    Writer.setContribution(installSum + debugSum); // 贡献度
+                    if(type.equals("安装")) {
+                        Writer.setSumWork(install);  // 总数
+                        Writer.setContribution(installSum);  // 贡献度
+                    } else {
+                        Writer.setSumWork(install + debug);
+                        Writer.setContribution(installSum + debugSum);  // 贡献度
+                    }
                     WriterService.simpleWriter(Writer); //单人核销修改
                     // 计算负责人的单条记录的贡献
                     if (type.equals("安装")) {
@@ -147,7 +159,6 @@ public class WorkSheetController {
                     WriterService.simpleWriter(Writer); //单人核销修改
                 }
             }
-            System.out.printf(String.valueOf(sumSm));
         }
         // 开始计算负责人部分
         Writer Writer = new Writer();
@@ -162,6 +173,7 @@ public class WorkSheetController {
             Writer.setProjectId(projectId);
             Writer.setTechId(headId);
             Writer.setWorkId(workId);
+            Writer.setSumWork(sumInstall + sumDebug); // 总安装 + 总调试
             Writer.setContribution(sumSm);
             Writer.setType("负责人-上门");
         }

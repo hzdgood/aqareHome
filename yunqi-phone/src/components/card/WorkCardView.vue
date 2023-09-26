@@ -48,8 +48,7 @@
           @click="WriterInfo(data.workId)">核销</a-button>
 
         <a-button type="primary" v-show="data.status !== '已完成' 
-            && data.signTime !== null 
-            && data.departureTime !== null "
+            && data.signTime !== null"
           @click="CompleteInfo()">完成</a-button>
       </div>
     </a-card>
@@ -84,7 +83,7 @@ const sign = async (id: number) => {
 }
 
 const depart = async (id: any) => {
-  await httpGet('/workSheet/sign',{
+  await httpGet('/workSheet/depart',{
     id: id,
     updateName: techIds
   })

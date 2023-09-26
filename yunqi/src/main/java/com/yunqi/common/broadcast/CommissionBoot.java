@@ -5,6 +5,7 @@ import com.yunqi.common.service.CommissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.File;
 
@@ -15,9 +16,9 @@ public class CommissionBoot {
     @Autowired
     private CommissionService CommissionService;
 
-    // @Scheduled(cron = "0 58 20 * * ?")
+    // @Scheduled(cron = "0 27 15 * * ?")
     public void uploadExcel() {
-        File file = new File("D:\\download\\物料技术提成表921.xlsx");
+        File file = new File("D:\\download\\物料技术提成表.xlsx");
         CommissionExcel.commissionExcel(file, CommissionService);
     }
 }

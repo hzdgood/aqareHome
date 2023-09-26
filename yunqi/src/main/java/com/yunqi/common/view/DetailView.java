@@ -1,22 +1,18 @@
 package com.yunqi.common.view;
 
+import java.util.Date;
+
 public class DetailView { //核销记录统计
-    private Integer id;
     private Integer headId;
     private String techId;
-    private String techName;
     private String projectName;
+    private String productName;
+    private String sheetName;
+    private String techName;
     private String type;
     private Integer number;
     private String contribution;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private Date writerTime;
 
     public Integer getHeadId() {
         return headId;
@@ -34,20 +30,36 @@ public class DetailView { //核销记录统计
         this.techId = techId;
     }
 
-    public String getTechName() {
-        return techName;
-    }
-
-    public void setTechName(String techName) {
-        this.techName = techName;
-    }
-
     public String getProjectName() {
         return projectName;
     }
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public String getSheetName() {
+        return sheetName;
+    }
+
+    public void setSheetName(String sheetName) {
+        this.sheetName = sheetName;
+    }
+
+    public String getTechName() {
+        return techName;
+    }
+
+    public void setTechName(String techName) {
+        this.techName = techName;
     }
 
     public String getType() {
@@ -72,5 +84,13 @@ public class DetailView { //核销记录统计
 
     public void setContribution(String contribution) {
         this.contribution = contribution;
+    }
+
+    public Date getWriterTime() {
+        return writerTime;
+    }
+
+    public void setWriterTime(Date writerTime) {
+        this.writerTime = writerTime;
     }
 }

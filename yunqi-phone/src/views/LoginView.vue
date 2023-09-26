@@ -19,19 +19,19 @@
         </template>
       </a-input-password>
     </div>
-    <div>
+    <!-- <div>
       <a-form-item name="remember" no-style>
         <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
       </a-form-item>
       <a class="login-form-forgot" @click="forgotWord()">Forgot password</a>
-    </div>
+    </div> -->
     <div>
       <a-button :disabled="disabled" type="primary" html-type="submit" class="login-form-button">
         登入
       </a-button>
-      <a-button type="primary">
+      <!-- <a-button type="primary">
         注册
-      </a-button>
+      </a-button> -->
     </div>
   </a-form>
 </template>
@@ -56,18 +56,16 @@ onMounted (function () {
 interface FormState {
   username: string;
   password: string;
-  remember: boolean;
 }
 
 const formState = reactive<FormState>({
   username: '',
   password: '',
-  remember: true,
 });
 
-const forgotWord = () => {
-  router.push({ name: "forgot"})
-}
+// const forgotWord = () => {
+//   router.push({ name: "forgot"})
+// }
 
 const onFinish = async () => {
   const obj = {
