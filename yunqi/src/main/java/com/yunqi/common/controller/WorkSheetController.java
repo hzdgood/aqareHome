@@ -63,7 +63,9 @@ public class WorkSheetController {
 
     @CrossOrigin
     @RequestMapping("/sign")
-    private void sign(Integer id, String updateName) { WorkSheetService.sign(id, updateName); }
+    private void sign(Integer id, String updateName) {
+        WorkSheetService.sign(id, updateName);
+    }
 
     @CrossOrigin
     @RequestMapping("/depart") // 离场
@@ -72,7 +74,7 @@ public class WorkSheetController {
         ProductView.setWorkId(id);
         List<ProductView> ProductList = ProductViewService.selectByWork(ProductView);
         // 当前人员的贡献度
-        for(ProductView productView: ProductList) {
+        for (ProductView productView : ProductList) {
             Writer Writer = new Writer();
             String type = productView.getType();
             Integer install = productView.getCustomerInstall();
@@ -92,9 +94,9 @@ public class WorkSheetController {
                     SchemeView SchemeView = new SchemeView();
                     SchemeView.setProjectId(productView.getProjectId());
                     List<SchemeView> list = SchemeViewService.selectSum(SchemeView); // 实际总数
-                    if(list.get(0).getNumber() > 100){
+                    if (list.get(0).getNumber() > 100) {
                         int num = list.get(0).getNumber() / 100;
-                        System.out.printf(""+num);
+                        System.out.printf("" + num);
                         Writer.setContribution(num * 150.0);
                     } else {
                         Writer.setContribution(150.0);
@@ -111,6 +113,12 @@ public class WorkSheetController {
         }
         WorkSheetService.depart(id, updateName);
         return "离场成功，请查看核销记录";
+    }
+
+    @CrossOrigin
+    @RequestMapping("/complete")
+    private void complete(Integer id, String updateName) {
+
     }
 
     @CrossOrigin

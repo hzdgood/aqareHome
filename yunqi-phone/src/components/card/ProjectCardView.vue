@@ -1,9 +1,9 @@
 <template>
   <div class="cardDiv">
     <a-card :title="data.projectName +'&nbsp;&nbsp;'+  data.schedule" :bordered="false">
-      <!-- <div class="buttonPos">
-        <a-button :style="style" @click="handoverInfo(data.projectId)">项目详情</a-button>
-      </div> -->
+      <div class="buttonPos">
+        <a-button @click="handoverInfo(data.projectId)">详情</a-button>
+      </div>
       <table class="cardTale">
         <tr>
           <td>项目姓名</td>
@@ -33,10 +33,6 @@
           v-show="techId === '1' || data.techId + '' === '' + techId"
         >发单</a-button>
         <a-button @click="schemeInfo(data.projectId)" type="primary">方案</a-button>
-        
-        <!-- <a-button @click="measureInfo(data.projectId)" type="primary"
-          v-show="techId === '1' || data.techId + '' === '' + techId"
-        >测量</a-button> -->
       </div>
     </a-card>
   </div>
@@ -53,6 +49,10 @@ defineProps({
 })
 
 const emit = defineEmits(['toPage'])
+
+const handoverInfo = (id: any) => {
+  emit('toPage','subWork', id)
+}
 
 const sendWork = (id: any) => {
   emit('toPage','subWork', id)

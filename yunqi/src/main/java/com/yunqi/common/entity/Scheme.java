@@ -12,6 +12,7 @@ public class Scheme {
     private Integer debugNumber; //已调
     private Integer notInstalled; //未装
     private Integer unregulated; //未调
+    private Integer notSent; //未发
     private String itemId;
     private String createName;
     private Date createTime;
@@ -80,6 +81,14 @@ public class Scheme {
 
     public void setUnregulated(Integer unregulated) {
         this.unregulated = unregulated;
+    }
+
+    public Integer getNotSent() {
+        return notSent;
+    }
+
+    public void setNotSent(Integer notSent) {
+        this.notSent = notSent;
     }
 
     public String getItemId() {

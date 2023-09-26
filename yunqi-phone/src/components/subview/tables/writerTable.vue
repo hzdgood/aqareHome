@@ -20,11 +20,11 @@
       <tr>
         <td>本次安装:</td>
         <td>
-          <a-input :disabled="props.data.departureTime === null" style="width: 90%;" v-model:value="formState.install" @change="formChange()"></a-input>
+          <a-input :disabled="props.data.status !== '已完成'" style="width: 90%;" v-model:value="formState.install" @change="formChange()"></a-input>
         </td>
         <td>本次调试:</td>
         <td>
-          <a-input :disabled="props.data.departureTime === null" style="width: 90%;" v-model:value="formState.debug" @change="formChange()"></a-input>
+          <a-input :disabled="props.data.status !== '已完成'" style="width: 90%;" v-model:value="formState.debug" @change="formChange()"></a-input>
         </td>
       </tr>
     </table>

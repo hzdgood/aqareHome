@@ -5,7 +5,8 @@ import java.util.Date;
 public class DetailView { //核销记录统计
     private Integer id;
     private Integer headId;
-    private String techIds;
+    private String techId;
+    private String techName;
     private String projectName;
     private String type;
     private Integer number;
@@ -27,12 +28,20 @@ public class DetailView { //核销记录统计
         this.headId = headId;
     }
 
-    public String getTechIds() {
-        return techIds;
+    public String getTechId() {
+        return techId;
     }
 
-    public void setTechIds(String techIds) {
-        this.techIds = techIds;
+    public void setTechId(String techId) {
+        this.techId = techId;
+    }
+
+    public String getTechName() {
+        return techName;
+    }
+
+    public void setTechName(String techName) {
+        this.techName = techName;
     }
 
     public String getProjectName() {

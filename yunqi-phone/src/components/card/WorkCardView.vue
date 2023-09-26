@@ -3,7 +3,7 @@
     <a-card :title="data.techName + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
-        <a-button :style="style" @click="uploadImg(data.workId)">图片</a-button>
+        <a-button :style="style" @click="uploadImg(data.workId)">往期图片</a-button>
       </div>
       <table class="cardTale">
         <tr>
@@ -39,16 +39,23 @@
         <a-button type="primary" 
           v-show="data.signTime === null"
           @click="sign(data.workId)">签到</a-button>
+
         <a-button type="primary"
           v-show="data.departureTime === null && data.signTime !== null"
-          @click="depart()">离开</a-button>
+          @click="depart(data.workId)">离开</a-button>
+
         <a-button type="primary" v-show="data.signTime !== null"
           @click="WriterInfo(data.workId)">核销</a-button>
-        <!-- <a-button type="primary" @click="measureInfo(data.workId)">测量</a-button> -->
+
+        <a-button type="primary" v-show="data.status !== '已完成' 
+            && data.signTime !== null 
+            && data.departureTime !== null "
+          @click="CompleteInfo()">完成</a-button>
+          
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.workId)">
-      <p>工单离开后，锁定核销数量！</p>
+      <p>工单完成后，锁定核销数量！</p>
     </a-modal>
   </div>
 </template>
@@ -77,16 +84,20 @@ const sign = async (id: number) => {
   emit('pageReset')
 }
 
-const depart = async () => {
+const depart = async (id: any) => {
+  await httpGet('/workSheet/sign',{
+    id: id,
+    updateName: techIds
+  })
+  emit('pageReset')
+}
+
+const CompleteInfo = async () => {
   showModal();
 }
 
 const WriterInfo = (id: any) => {
   emit('toPage','subWriter', id)
-}
-
-const measureInfo = (id: any) => {
-  emit('toPage','subMeasure',id)
 }
 
 const workEdit = (id: any) => {
@@ -103,7 +114,7 @@ const showModal = () => {
 
 const handleOk = async (id: number) => {
   open.value = false;
-  await httpGet('/workSheet/depart',{
+  await httpGet('/workSheet/complete',{
     id: id,
     updateName: techIds
   })

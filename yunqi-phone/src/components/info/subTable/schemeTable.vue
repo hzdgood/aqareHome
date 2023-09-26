@@ -8,6 +8,7 @@
             <td>数量</td>
             <td>未装</td>
             <td>未调</td>
+            <td>未发</td>
           </tr>
         </thead>
         <tr v-for="item in data" :key="item.schemeId">
@@ -15,9 +16,11 @@
           <td>{{ item.number }}</td>
           <td>{{ item.notInstalled }}</td>
           <td>{{ item.unregulated }}</td>
+          <td>{{ item.notSent }}</td>
         </tr>
       </table>
       <div class="buttonPos">
+        <a-button type="primary">PDF下载</a-button>
         <a-button type="primary" @click="resPage()">返回</a-button>
       </div>
     </a-card>

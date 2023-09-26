@@ -27,14 +27,20 @@
     <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
         # 签到
         update worksheet set signTime = NOW(), updateName = #{updateName},
-            updateTime = NOW(), status = '待核销'
+            updateTime = NOW(), status = '上门中'
         where id = #{id}
     </insert>
 
     <insert id="depart" parameterType="com.yunqi.common.entity.WorkSheet">
         # 离开
         update worksheet set departureTime = NOW(), updateName = #{updateName},
-            updateTime = NOW(), status = '已完成'
+            updateTime = NOW() , status = '待核销'
+        where id = #{id}
+    </insert>
+
+    <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
+        # 离开
+        update worksheet set updateName = #{updateName}, updateTime = NOW(), status = '已完成'
         where id = #{id}
     </insert>
 

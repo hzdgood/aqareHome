@@ -8,6 +8,10 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
+        <div v-for="item in formState.dataList" :key="item">
+          <writerTable :data="item" @change="getChange"></writerTable>
+        </div>
+
         <table class="cardTale">
           <tr>
             <td>今日工作总结: </td>
@@ -22,9 +26,6 @@
             </td>
           </tr>
         </table>
-        <div v-for="item in formState.dataList" :key="item">
-          <writerTable :data="item" @change="getChange"></writerTable>
-        </div>
         
         <div class="buttonPos">
           <a-button type="primary" html-type="submit">提交</a-button>
