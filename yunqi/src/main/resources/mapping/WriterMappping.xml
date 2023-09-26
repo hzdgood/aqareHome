@@ -4,35 +4,45 @@
 <mapper namespace="com.yunqi.common.mapper.WriterMapper">
 
     <select id="selectNumber" resultType="com.yunqi.common.entity.Writer">
-        select sum(install) as install, sum(debug) as debug from writer where workId = #{workId}
+        select sum(install) as install, sum(debug) as debug
+        from writer
+        where workId = #{workId}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
         # 新增
-        insert into writer (
-            projectId, productId, schemeId, workId, techId,
-            install, debug, createName, createTime
-        ) value (
-            #{projectId}, #{productId}, #{schemeId}, #{workId}, #{techId},
-            #{install}, #{debug}, #{createName}, NOW()
-        )
+        insert into writer (projectId, productId, schemeId, workId, techId,
+                            install, debug, createName, createTime) value (
+                   #{projectId}, #{productId}, #{schemeId}, #{workId}, #{techId},
+                   #{install}, #{debug}, #{createName}, NOW()
+            )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Writer">
         # 修改
-        update writer set install = #{install}, debug = #{debug}
-        where id= #{id}
+        update writer
+        set install = #{install},
+            debug   = #{debug}
+        where id = #{id}
     </insert>
 
     <insert id="simpleWriter" parameterType="com.yunqi.common.entity.Writer">
         # 修改
-        update writer set type = #{type}, sumWork = #{sumWork}, contribution = #{contribution},
-            updateName = #{updateName}, updateTime = now()
-        where id= #{id}
+        update writer
+        set type         = #{type},
+            sumWork      = #{sumWork},
+            contribution = #{contribution},
+            updateName   = #{updateName},
+            updateTime   = now()
+        where id = #{id}
     </insert>
 
     <insert id="delete" parameterType="com.yunqi.common.entity.Writer">
         # 无效
-        update writer set disabled = 'false', updateName = #{updateName}, updateTime = now() where id = #{id}
+        update writer
+        set disabled   = 'false',
+            updateName = #{updateName},
+            updateTime = now()
+        where id = #{id}
     </insert>
 </mapper>

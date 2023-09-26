@@ -5,14 +5,17 @@
     <select id="select" resultType="com.yunqi.common.view.SchemeView">
         # 方案查询
         select *
-        from schemeView where projectId = #{projectId}
+        from schemeView
+        where projectId = #{projectId}
     </select>
 
     <select id="selectSum" resultType="com.yunqi.common.view.SchemeView">
         # 方案查询
-
-        select sum(number) as number, sum(s.head) as head, sum(s.headDoor) as headDoor,
+        select sum(number)         as number,
+               sum(s.head)         as head,
+               sum(s.headDoor)     as headDoor,
                sum(s.headDisclose) as headDisclose
-        from schemeView s where projectId = #{projectId}
+        from schemeView s
+        where projectId = #{projectId}
     </select>
 </mapper>

@@ -2,7 +2,6 @@ package com.yunqi.common.excel;
 
 import com.yunqi.common.entity.Commission;
 import com.yunqi.common.service.CommissionService;
-import com.yunqi.common.utils.ExcelUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -52,6 +51,8 @@ public class CommissionExcel {
                             Commission.setInstallContribute(cell.getNumericCellValue());
                         } else if (j == 12) {
                             Commission.setDebugContribute(cell.getNumericCellValue());
+                        } else if (j == 13) {
+                            Commission.setItemId(cell.getStringCellValue());
                         }
                     }
                 }

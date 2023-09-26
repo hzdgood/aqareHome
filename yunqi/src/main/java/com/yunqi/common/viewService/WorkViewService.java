@@ -1,7 +1,7 @@
 package com.yunqi.common.viewService;
 
-import com.yunqi.common.viewMapper.WorkViewMapper;
 import com.yunqi.common.view.WorkView;
+import com.yunqi.common.viewMapper.WorkViewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -16,7 +16,9 @@ public class ProjectService {
         this.projectMapper = projectMapper;
     }
 
-    public List<Project> select() { return projectMapper.select(); }
+    public List<Project> select() {
+        return projectMapper.select();
+    }
 
     public List<Project> selectId(Integer id) {
         return projectMapper.selectId(id);

@@ -1,11 +1,14 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.entity.*;
-import com.yunqi.common.service.*;
+import com.yunqi.common.entity.Scheme;
+import com.yunqi.common.entity.Writer;
+import com.yunqi.common.service.SchemeService;
+import com.yunqi.common.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -18,6 +21,7 @@ public class WriterController {
     public void setMapper(WriterService WriterService) {
         this.WriterService = WriterService;
     }
+
     @Autowired
     public void setMapper(SchemeService SchemeService) {
         this.SchemeService = SchemeService;
@@ -32,6 +36,7 @@ public class WriterController {
         getSchemeById(id, install, debug);
         WriterService.insert(Writer); // 核销新增
     }
+
     @CrossOrigin
     @RequestMapping("/update") //管理员的
     private void update(Writer Writer) {

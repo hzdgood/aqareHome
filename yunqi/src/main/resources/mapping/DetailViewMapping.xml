@@ -6,7 +6,7 @@
         # 核销记录查询
         select * from writerdetailview where 1 = 1
         <if test="techIds!=null">
-            and techIds like  '%${techIds}%'
+            and techIds like '%${techIds}%'
         </if>
         <if test="writerTime != null">
             and date_format(`writerTime`,'%Y-%m-%d') = str_to_date(#{writerTime},'%Y-%m-%d')

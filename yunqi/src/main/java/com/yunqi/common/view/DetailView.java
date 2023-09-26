@@ -1,7 +1,5 @@
 package com.yunqi.common.view;
 
-import java.util.Date;
-
 public class DetailView { //核销记录统计
     private Integer id;
     private Integer headId;

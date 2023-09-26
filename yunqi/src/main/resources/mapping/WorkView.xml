@@ -6,27 +6,27 @@
         # 工单查询
         select *
         from workView w where 1 = 1
-            <if test="techIds!=null">
-                and techIds like  '%${techIds}%'
-            </if>
-            <if test="workId!=null">
-                and workId = #{workId}
-            </if>
-            <if test="type!=null and type!=''">
-                and type = #{type}
-            </if>
-            <if test="status == 'true'">
-                and status != '已完成'
-            </if>
-            <if test="projectName!=null and projectName!=''">
-                and projectName like  '%${projectName}%'
-            </if>
-            <if test="dateOfVisit != null">
-                and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
-            </if>
-            <if test="headId!=null">
-                or headId = #{headId}
-            </if>
+        <if test="techIds!=null">
+            and techIds like '%${techIds}%'
+        </if>
+        <if test="workId!=null">
+            and workId = #{workId}
+        </if>
+        <if test="type!=null and type!=''">
+            and type = #{type}
+        </if>
+        <if test="status == 'true'">
+            and status != '已完成'
+        </if>
+        <if test="projectName!=null and projectName!=''">
+            and projectName like '%${projectName}%'
+        </if>
+        <if test="dateOfVisit != null">
+            and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
+        </if>
+        <if test="headId!=null">
+            or headId = #{headId}
+        </if>
         order by dateOfVisit asc
     </select>
 </mapper>

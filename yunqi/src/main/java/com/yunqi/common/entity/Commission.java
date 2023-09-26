@@ -17,6 +17,7 @@ public class Commission {
     private double headDisclose;//负责人-交底
     private double installContribute;//安装贡献
     private double debugContribute;//调试贡献
+    private String itemId;
     private String createName;
     private Date createTime;
     private String updateName;
@@ -132,6 +133,14 @@ public class Commission {
 
     public void setDebugContribute(double debugContribute) {
         this.debugContribute = debugContribute;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
     public String getCreateName() {

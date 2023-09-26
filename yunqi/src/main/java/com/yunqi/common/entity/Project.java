@@ -17,6 +17,7 @@ public class Project {
     private String village; //小区
     private String schedule; //进度
     private String region; //区域
+    private String departName; //项目所属部门
     private String itemId;
     private String createName;
     private Date createTime;
@@ -133,6 +134,14 @@ public class Project {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public String getDepartName() {
+        return departName;
+    }
+
+    public void setDepartName(String departName) {
+        this.departName = departName;
     }
 
     public String getItemId() {

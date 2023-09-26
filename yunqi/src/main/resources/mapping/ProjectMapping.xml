@@ -5,25 +5,28 @@
 
     <select id="select" resultType="com.yunqi.common.entity.Project">
         # 根据ID查询项目
-        select * from project p
+        select *
+        from project p
     </select>
 
     <select id="selectId" resultType="com.yunqi.common.entity.Project">
         # 根据ID查询项目
-        select * from project p where id = #{id}
+        select *
+        from project p
+        where id = #{id}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
         # 新增项目
         insert into project (saleId, techId, name, telephone,
-                address, type, node, status,
-                houseState, situation, village, schedule, region,
-                createName, createTime)
+                             address, type, node, status,
+                             houseState, situation, village, schedule, region,
+                             createName, createTime, itemId)
             value (
                    #{saleId}, #{techId}, #{name}, #{telephone},
                    #{address}, #{type}, #{node}, #{status},
                    #{houseState}, #{situation}, #{village}, #{schedule}, #{region},
-                  #{createName}, now()
+                   '初始化', now(), #{itemId}
             )
     </insert>
 

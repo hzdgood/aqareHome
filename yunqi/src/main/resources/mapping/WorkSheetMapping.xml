@@ -5,49 +5,69 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit,
-           type, status, schedule, remark, createName, createTime) value (
-           #{projectId}, #{techIds}, #{dateOfVisit},
-           #{type}, #{status}, #{schedule}, #{remark}, #{createName}, NOW()
-        )
+            type, status, schedule, remark, createName, createTime) value (
+                  #{projectId}, #{techIds}, #{dateOfVisit}, #{type}, #{status},
+                  #{schedule}, #{remark}, #{createName}, NOW()
+            )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">
         # 详情
-        update worksheet set workSummary = #{workSummary}, visitNode = #{visitNode},
-        writerTime = NOW(), updateName = #{updateName}, updateTime = NOW()
+        update worksheet
+        set workSummary = #{workSummary},
+            visitNode   = #{visitNode},
+            writerTime  = NOW(),
+            updateName  = #{updateName},
+            updateTime  = NOW()
         where id = #{id}
     </insert>
 
     <insert id="updateInfo" parameterType="com.yunqi.common.entity.WorkSheet">
         # 详情
-        update worksheet set dateOfVisit = #{dateOfVisit}, techIds = #{techIds}, remark = #{remark},
-        updateName = #{updateName}, updateTime = NOW()
+        update worksheet
+        set dateOfVisit = #{dateOfVisit},
+            techIds     = #{techIds},
+            remark      = #{remark},
+            updateName  = #{updateName},
+            updateTime  = NOW()
         where id = #{id}
     </insert>
 
     <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
         # 签到
-        update worksheet set signTime = NOW(), updateName = #{updateName},
-            updateTime = NOW(), status = '上门中'
+        update worksheet
+        set signTime   = NOW(),
+            updateName = #{updateName},
+            updateTime = NOW(),
+            status     = '上门中'
         where id = #{id}
     </insert>
 
     <insert id="depart" parameterType="com.yunqi.common.entity.WorkSheet">
         # 离开
-        update worksheet set departureTime = NOW(), updateName = #{updateName},
-            updateTime = NOW() , status = '待核销'
+        update worksheet
+        set departureTime = NOW(),
+            updateName    = #{updateName},
+            updateTime    = NOW(),
+            status        = '待核销'
         where id = #{id}
     </insert>
 
     <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
         # 完成
-        update worksheet set updateName = #{updateName}, updateTime = NOW(), status = '已完成'
+        update worksheet
+        set updateName = #{updateName},
+            updateTime = NOW(),
+            status     = '已完成'
         where id = #{id}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">
         # 无效
-        update worksheet set disabled = 'false', updateName = #{updateName},
-            updateTime = NOW() where id = #{id}
+        update worksheet
+        set disabled   = 'false',
+            updateName = #{updateName},
+            updateTime = NOW()
+        where id = #{id}
     </delete>
 </mapper>

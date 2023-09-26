@@ -51,6 +51,8 @@ public class SchemeExcel {
                             Scheme.setNotInstalled((int) cell.getNumericCellValue());
                         } else if (j == 7) {
                             Scheme.setUnregulated((int) cell.getNumericCellValue());
+                        } else if (j == 8) {
+                            Scheme.setItemId(cell.getStringCellValue());
                         }
                     }
                 }

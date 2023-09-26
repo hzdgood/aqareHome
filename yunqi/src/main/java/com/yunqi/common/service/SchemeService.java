@@ -10,13 +10,16 @@ import java.util.List;
 @Service
 public class SchemeService {
     private SchemeMapper schemeMapper;
+
     @Autowired
     public void setMapper(SchemeMapper schemeMapper) {
         this.schemeMapper = schemeMapper;
     }
+
     public List<Scheme> selectId(Integer id) {
         return schemeMapper.selectId(id);
     }
+
     public void insert(Scheme scheme) {
         schemeMapper.insert(scheme);
     }

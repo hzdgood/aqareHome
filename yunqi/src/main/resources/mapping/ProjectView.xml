@@ -5,7 +5,7 @@
     <select id="select" resultType="com.yunqi.common.view.ProjectView">
         # 项目查询
         SELECT * FROM projectview p where p.id in (
-            select id from projectview group by projectId having count(projectId)
+        select id from projectview group by projectId having count(projectId)
         )
         <if test="projectName!=null and projectName!=''">
             and projectName like '%${projectName}%'

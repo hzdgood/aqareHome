@@ -61,7 +61,7 @@ const formChange = () => {
     techId: techId,
     install: install,
     debug: debug,
-    createName: techId
+    createName: techId // 用于新增
   }
   emit('change',obj)
 }

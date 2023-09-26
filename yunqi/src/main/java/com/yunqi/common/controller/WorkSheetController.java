@@ -1,13 +1,18 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.entity.*;
-import com.yunqi.common.service.*;
-import com.yunqi.common.view.*;
-import com.yunqi.common.viewService.*;
+import com.yunqi.common.entity.WorkSheet;
+import com.yunqi.common.entity.Writer;
+import com.yunqi.common.service.WorkSheetService;
+import com.yunqi.common.service.WriterService;
+import com.yunqi.common.view.ProductView;
+import com.yunqi.common.view.SchemeView;
+import com.yunqi.common.viewService.ProductViewService;
+import com.yunqi.common.viewService.SchemeViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -80,7 +85,7 @@ public class WorkSheetController {
      * projectId ： 项目
      * headId： 负责人
      * updateName： 更新人
-     * **/
+     **/
     @CrossOrigin
     @RequestMapping("/complete")
     private String complete(Integer workId, Integer projectId, Integer headId, String updateName) {
@@ -118,11 +123,11 @@ public class WorkSheetController {
                     Writer.setContribution(installSum + debugSum); // 贡献度
                     WriterService.simpleWriter(Writer); //单人核销修改
                     // 计算负责人的单条记录的贡献
-                    if(type.equals("安装")) {
-                        sumSm = sumSm + (headDoor * installRatio * install) / 2 ; // 上门 * 安装比例 * 核销数 / 2
+                    if (type.equals("安装")) {
+                        sumSm = sumSm + (headDoor * installRatio * install) / 2; // 上门 * 安装比例 * 核销数 / 2
                     } else {
-                        sumSm = sumSm + (headDoor * installRatio * install) / 2 ;
-                        sumSm = sumSm + (headDoor * debugRatio * debug) / 2 ; // 上门 * 调试比例 * 核销数 / 2
+                        sumSm = sumSm + (headDoor * installRatio * install) / 2;
+                        sumSm = sumSm + (headDoor * debugRatio * debug) / 2; // 上门 * 调试比例 * 核销数 / 2
                     }
                 }
                 case "交底", "验收" -> {
@@ -146,14 +151,14 @@ public class WorkSheetController {
         }
         // 开始计算负责人部分
         Writer Writer = new Writer();
-        if(Objects.equals(type, "交底")) {
+        if (Objects.equals(type, "交底")) {
             Writer.setProjectId(projectId); // 项目
             Writer.setTechId(headId); // 负责人
             Writer.setWorkId(workId); // 工单
             Writer.setContribution(list.get(0).getHeadDisclose() * list.get(0).getNumber() / 2); // 总交 * 总实 / 2
             Writer.setType("负责人-交底");
         }
-        if(Objects.equals(type, "安装") || Objects.equals(type, "调试")) {
+        if (Objects.equals(type, "安装") || Objects.equals(type, "调试")) {
             Writer.setProjectId(projectId);
             Writer.setTechId(headId);
             Writer.setWorkId(workId);

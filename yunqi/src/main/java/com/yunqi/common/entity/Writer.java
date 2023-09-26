@@ -20,6 +20,7 @@ public class Writer {
     private Date updateTime;
     private String disabled; //有效
     private String techError; // 技术报错
+
     public Integer getId() {
         return id;
     }
@@ -120,7 +121,9 @@ public class Writer {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) { this.createTime = createTime; }
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public String getUpdateName() {
         return updateName;
