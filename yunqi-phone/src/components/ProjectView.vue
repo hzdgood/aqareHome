@@ -15,7 +15,7 @@
           <a-select-option value="327">汪克祥</a-select-option>
           <a-select-option value="332">严熠</a-select-option>
         </a-select>
-        <span>&nbsp;&nbsp;项目名称: &nbsp;</span>
+        <span>&nbsp;&nbsp;项目信息: &nbsp;</span>
         <a-input style="width: 20%;" v-model:value="formState.projectName"></a-input>
         <span>
           &nbsp;<a-button type="primary" html-type="submit">查询</a-button>

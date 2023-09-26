@@ -9,6 +9,8 @@
         )
         <if test="projectName!=null and projectName!=''">
             and projectName like '%${projectName}%'
+            and telephone like '%${projectName}%'
+            and address like '%${projectName}%'
         </if>
         <if test="projectId!=null and projectId!=''">
             and projectId = #{projectId}
