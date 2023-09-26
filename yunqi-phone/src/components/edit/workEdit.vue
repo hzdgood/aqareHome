@@ -49,18 +49,18 @@
             v-model:value="formState.time"/>
           </td>
         </tr>
-        <!-- <tr>
-          <td>无效说明</td>
-          <td colspan="3"><a-input></a-input></td>
-        </tr> -->
         <tr>
           <td>工单备注</td>
           <td colspan="3"><a-input v-model:value="formState.remark"></a-input></td>
         </tr>
-        <tr>
+        <!-- <tr>
+          <td>无效说明</td>
+          <td colspan="3"><a-input></a-input></td>
+        </tr> -->
+        <!-- <tr>
           <td>交接信息</td>
           <td colspan="3"><a-textarea :disabled="true" :rows="6" v-model:value="formState.desc" /></td>
-        </tr>
+        </tr> -->
       </table>
       <div class="buttonPos">
         <a-button type="primary" v-show="formState.dataList.departureTime === null" @click="submit">提交</a-button>
@@ -133,13 +133,8 @@ interface FormState {
   time: any;
   remark: String;
   headName: String
-  desc: string
+  // desc: string
 }
-
-const handleChange = (value: [], Option: []) => {
-  // 有个BUG
-  formState.techName = `${value}`
-};
 
 const formState = reactive<FormState>({
   dataList: [],
@@ -148,8 +143,15 @@ const formState = reactive<FormState>({
   time: null,
   remark: '',
   headName: '',
-  desc: ''
+  // desc: ''
 });
+
+const handleChange = (value: [], Option: []) => {
+  // 有个BUG
+  formState.techName = `${value}`
+};
+
+
 
 const submit = async () =>  {
   await httpGet('/workSheet/updateInfo',{

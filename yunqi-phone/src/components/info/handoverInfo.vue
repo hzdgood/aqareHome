@@ -4,43 +4,48 @@
       <table class="cardTale">
         <tr>
           <td width="70px">项目姓名</td>
-          <td>缪丹霞</td>
+          <td><a-input :disabled="true" :value="formState.dataList.projectName" style="width: 100%"></a-input></td>
           <td width="70px">负责人</td>
-          <td>娄德</td>
+          <td><a-input :disabled="true" :value="formState.dataList.headName" style="width: 100%"></a-input></td>
         </tr>
         <tr>
           <td>目前任务</td>
-          <td></td>
+          <td><a-input :disabled="true" :value="formState.dataList.node" style="width: 100%"></a-input></td>
           <td>装修进度</td>
-          <td></td>
+          <td><a-input :disabled="true" :value="formState.dataList.schedule" style="width: 100%"></a-input></td>
         </tr>
         <tr>
           <td>类型</td>
-          <td></td>
+          <td><a-input :disabled="true" :value="formState.dataList.type" style="width: 100%"></a-input></td>
           <td>房型</td>
-          <td></td>
+          <td><a-input :disabled="true" :value="formState.dataList.houseState" style="width: 100%"></a-input></td>
         </tr>
         <tr>
           <td>房屋情况</td>
-          <td></td>
-          <td>是否完结</td>
-          <td></td>
+          <td><a-input :disabled="true" :value="formState.dataList.situation" style="width: 100%"></a-input></td>
+          <td>来源</td>
+          <td><a-input :disabled="true" :value="formState.dataList.source" style="width: 100%"></a-input></td>
+        </tr>
+        <tr>
+          <td>区域</td>
+          <td><a-input :disabled="true" :value="formState.dataList.region" style="width: 100%"></a-input></td>
+          <td>小区</td>
+          <td><a-input :disabled="true" :value="formState.dataList.village" style="width: 100%"></a-input></td>
         </tr>
         <tr>
           <td>项目地址</td>
-          <td colspan="3">瑞虹路505弄5号1902</td>
-        </tr>
-        <tr>
-          <td>交接信息</td>
-          <td colspan="3"></td>
+          <td colspan="3"><a-input :disabled="true" :value="formState.dataList.address" style="width: 100%"></a-input></td>
         </tr>
         <tr>
           <td>备注</td>
-          <td colspan="3"></td>
+          <td colspan="3"><a-input :disabled="true" :value="formState.dataList.remark" style="width: 100%"></a-input></td>
+        </tr>
+        <tr>
+          <td>交接信息</td>
+          <td colspan="3"><a-input :disabled="true" :value="formState.dataList.info" style="width: 100%"></a-input></td>
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button>提交</a-button>
         <a-button @click="resPage()">返回</a-button>
       </div>
     </a-card>
@@ -48,11 +53,41 @@
 </template>
 
 <script setup lang="ts">
-/// 交接页面
+/// 项目详情页
 import router from '@/router';
+import { reactive, onMounted, ref } from 'vue';
+
 const resPage = () => {
   router.push({name: 'project'})
 }
+
+onMounted (async function () {
+
+
+})
+
+
+interface FormState {
+  dataList: any,
+  options: object
+  techName: string;
+  time: any;
+  remark: String;
+  headName: String
+  // desc: string
+}
+
+const formState = reactive<FormState>({
+  dataList: [],
+  options: ref<string[]>([]),
+  techName: '',
+  time: null,
+  remark: '',
+  headName: '',
+  // desc: ''
+});
+
+
 </script>
 
 <style scoped lang="less">

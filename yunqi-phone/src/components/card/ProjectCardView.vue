@@ -51,7 +51,7 @@ defineProps({
 const emit = defineEmits(['toPage'])
 
 const handoverInfo = (id: any) => {
-  emit('toPage','subWork', id)
+  emit('toPage','handoverInfo', id)
 }
 
 const sendWork = (id: any) => {
