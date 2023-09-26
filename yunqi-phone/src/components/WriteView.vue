@@ -25,12 +25,12 @@ import WriteCardView from './card/WriteCardView.vue';
 import { reactive, onMounted} from 'vue';
 import { httpGet } from '../config/interFace'
 
-const techIds = localStorage.getItem('techId')
+const techId = localStorage.getItem('techId')
 
 onMounted (async function () {
   const res = await httpGet('/view/detail',{
-    techIds: techIds,
-    headId: techIds
+    techId: techId,
+    headId: techId
   })
   formState.dataList = res
 })
@@ -49,8 +49,8 @@ const onFinish = async (values: any) => {
   console.log('Success:', values);
   const res = await httpGet('/view/work',{
     writerTime: formState.time,
-    techIds: techIds,
-    headId: techIds
+    techId: techId,
+    headId: techId
   })
   formState.dataList = res
 };
