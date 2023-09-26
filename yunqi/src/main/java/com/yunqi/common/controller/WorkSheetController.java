@@ -117,7 +117,6 @@ public class WorkSheetController {
                     Writer.setSumWork(install + debug); // 总数 = 本次安装 + 本次调试
                     Writer.setContribution(installSum + debugSum); // 贡献度
                     WriterService.simpleWriter(Writer); //单人核销修改
-
                     // 计算负责人的单条记录的贡献
                     if(type.equals("安装")) {
                         sumSm = sumSm + (headDoor * installRatio * install) / 2 ; // 上门 * 安装比例 * 核销数 / 2

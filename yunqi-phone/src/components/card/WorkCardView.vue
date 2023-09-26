@@ -51,10 +51,9 @@
             && data.signTime !== null 
             && data.departureTime !== null "
           @click="CompleteInfo()">完成</a-button>
-          
       </div>
     </a-card>
-    <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.workId)">
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.workId, data.projectId, data.headId)">
       <p>工单完成后，锁定核销数量！</p>
     </a-modal>
   </div>
@@ -93,7 +92,7 @@ const depart = async (id: any) => {
 }
 
 const CompleteInfo = async () => {
-  showModal();
+  showModal(); // 开启
 }
 
 const WriterInfo = (id: any) => {
@@ -112,10 +111,12 @@ const showModal = () => {
   open.value = true;
 };
 
-const handleOk = async (id: number) => {
+const handleOk = async (workId: number, projectId: number, headId: number ) => {
   open.value = false;
   await httpGet('/workSheet/complete',{
-    id: id,
+    workId: workId,
+    projectId: projectId,
+    headId: headId,
     updateName: techIds
   })
   emit('pageReset')

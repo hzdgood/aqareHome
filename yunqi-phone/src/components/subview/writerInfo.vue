@@ -117,10 +117,11 @@ const onFinish = async () => {
   for(let i=0; i < formObj.length; i++){
     await httpGet('/writer/insert', formObj[i]) // 核销新增
   }
-  await httpGet('/workSheet/update', { //工单修改 -- 核销完成
+  await httpGet('/workSheet/update', { //工单修改 -- 核销
     id: route.query.id,
-    workSummary: formState.workSummary,
-    visitNode: formState.visitNode
+    workSummary: formState.workSummary, //今日工作总结
+    visitNode: formState.visitNode, //下次上门节点
+    updateName: techIds // 核销人
   })
   showModal();
 };

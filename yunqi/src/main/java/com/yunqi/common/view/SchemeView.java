@@ -12,6 +12,7 @@ public class SchemeView {
     private Integer debugNumber; //已调试
     private Integer notInstalled; //未装
     private Integer unregulated; //未调
+    private Integer notSent; // 未发
     private Double head; //负责人
     private Double headDoor; // 负责人 - 上门
     private Double headDisclose; // 负责人-交底
@@ -102,6 +103,14 @@ public class SchemeView {
 
     public void setUnregulated(Integer unregulated) {
         this.unregulated = unregulated;
+    }
+
+    public Integer getNotSent() {
+        return notSent;
+    }
+
+    public void setNotSent(Integer notSent) {
+        this.notSent = notSent;
     }
 
     public Double getHead() {

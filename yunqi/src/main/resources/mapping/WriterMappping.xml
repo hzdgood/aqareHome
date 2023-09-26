@@ -4,7 +4,6 @@
 <mapper namespace="com.yunqi.common.mapper.WriterMapper">
 
     <select id="selectNumber" resultType="com.yunqi.common.entity.Writer">
-        # 技术
         select sum(install) as install, sum(debug) as debug from writer where workId = #{workId}
     </select>
 

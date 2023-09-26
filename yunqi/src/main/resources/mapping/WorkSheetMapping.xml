@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.WorkSheetMapper">
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
+        # 新增
         insert into worksheet (projectId, techIds, dateOfVisit,
            type, status, schedule, remark, createName, createTime) value (
            #{projectId}, #{techIds}, #{dateOfVisit},
@@ -39,7 +40,7 @@
     </insert>
 
     <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 离开
+        # 完成
         update worksheet set updateName = #{updateName}, updateTime = NOW(), status = '已完成'
         where id = #{id}
     </insert>

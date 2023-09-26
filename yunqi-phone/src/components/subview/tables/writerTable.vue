@@ -61,7 +61,7 @@ const formChange = () => {
     techId: techId,
     install: install,
     debug: debug,
-    updateName: techId
+    createName: techId
   }
   emit('change',obj)
 }
