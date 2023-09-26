@@ -28,4 +28,8 @@ public class WorkSheetService {
     public void delete(Integer id, String updateName) {
         WorkSheetMapper.delete(id, updateName);
     }
+
+    public void complete(Integer id, String updateName) {
+        WorkSheetMapper.complete(id, updateName);
+    }
 }

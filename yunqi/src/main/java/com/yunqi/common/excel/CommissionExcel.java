@@ -43,12 +43,14 @@ public class CommissionExcel {
                         } else if (j == 7) {
                             Commission.setCheck(cell.getNumericCellValue());
                         } else if (j == 8) {
-                            Commission.setHeadDoor(cell.getNumericCellValue());
+                            Commission.setHead(cell.getNumericCellValue());
                         } else if (j == 9) {
-                            Commission.setHeadDisclose(cell.getNumericCellValue());
+                            Commission.setHeadDoor(cell.getNumericCellValue());
                         } else if (j == 10) {
-                            Commission.setInstallContribute(cell.getNumericCellValue());
+                            Commission.setHeadDisclose(cell.getNumericCellValue());
                         } else if (j == 11) {
+                            Commission.setInstallContribute(cell.getNumericCellValue());
+                        } else if (j == 12) {
                             Commission.setDebugContribute(cell.getNumericCellValue());
                         }
                     }

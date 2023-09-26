@@ -1,6 +1,7 @@
 package com.yunqi.common.view;
 
 public class ProductView {
+    private Integer id;
     private Integer workId;
     private Integer projectId;
     private Integer productId;
@@ -21,6 +22,14 @@ public class ProductView {
     private double headDisclose;//负责人-交底
     private double installContribute;//安装贡献
     private double debugContribute;//调试贡献
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getWorkId() {
         return workId;

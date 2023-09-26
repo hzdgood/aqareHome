@@ -12,6 +12,7 @@ public class Commission {
     private double debug;//调试
     private double disclose;//交底
     private double check;//验收
+    private double head; //负责人
     private double headDoor;//负责人-上门
     private double headDisclose;//负责人-交底
     private double installContribute;//安装贡献
@@ -91,6 +92,14 @@ public class Commission {
 
     public void setCheck(double check) {
         this.check = check;
+    }
+
+    public double getHead() {
+        return head;
+    }
+
+    public void setHead(double head) {
+        this.head = head;
     }
 
     public double getHeadDoor() {

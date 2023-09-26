@@ -34,4 +34,8 @@ public class WriterService {
     public void simpleWriter(Writer writer) {
         WriterMapper.simpleWriter(writer);
     }
+
+    public void insertHead(Writer writer) {
+        WriterMapper.insertHead(writer);
+    }
 }

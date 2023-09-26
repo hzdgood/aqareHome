@@ -1,5 +1,6 @@
 package com.yunqi.common.viewService;
 
+import com.yunqi.common.entity.Scheme;
 import com.yunqi.common.view.SchemeView;
 import com.yunqi.common.viewMapper.SchemeViewMapper;
 import org.springframework.beans.factory.annotation.Autowired;

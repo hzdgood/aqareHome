@@ -12,6 +12,9 @@ public class SchemeView {
     private Integer debugNumber; //已调试
     private Integer notInstalled; //未装
     private Integer unregulated; //未调
+    private Double head; //负责人
+    private Double headDoor; // 负责人 - 上门
+    private Double headDisclose; // 负责人-交底
 
     public Integer getProjectId() {
         return projectId;
@@ -99,5 +102,29 @@ public class SchemeView {
 
     public void setUnregulated(Integer unregulated) {
         this.unregulated = unregulated;
+    }
+
+    public Double getHead() {
+        return head;
+    }
+
+    public void setHead(Double head) {
+        this.head = head;
+    }
+
+    public Double getHeadDoor() {
+        return headDoor;
+    }
+
+    public void setHeadDoor(Double headDoor) {
+        this.headDoor = headDoor;
+    }
+
+    public Double getHeadDisclose() {
+        return headDisclose;
+    }
+
+    public void setHeadDisclose(Double headDisclose) {
+        this.headDisclose = headDisclose;
     }
 }
