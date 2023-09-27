@@ -16,6 +16,12 @@
         where id = #{id}
     </select>
 
+    <select id="selectItem" resultType="com.yunqi.common.entity.Project">
+        # 根据ID查询项目
+        select *
+        from project p where itemId = #{itemId}
+    </select>
+
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
         # 新增项目
         insert into project (saleId, techId, name, telephone,

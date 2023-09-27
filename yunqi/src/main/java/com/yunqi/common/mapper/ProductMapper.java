@@ -14,4 +14,6 @@ public interface ProductMapper {
     void update(Product Product);
 
     void delete(Integer id);
+
+    List<Product> selectCode(String code);
 }

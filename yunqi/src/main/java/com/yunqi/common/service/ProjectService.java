@@ -31,4 +31,8 @@ public class ProjectService {
     public void update(Project project) {
         projectMapper.update(project);
     }
+
+    public List<Project> selectItem(String itemId) {
+        return projectMapper.selectItem(itemId);
+    }
 }

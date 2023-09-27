@@ -14,4 +14,6 @@ public interface ProjectMapper {
     void insert(Project project);
 
     void update(Project project);
+
+    List<Project> selectItem(String itemId);
 }

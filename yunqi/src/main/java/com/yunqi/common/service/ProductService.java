@@ -31,4 +31,8 @@ public class ProductService {
     public void delete(Integer id) {
         ProductMapper.delete(id);
     }
+
+    public List<Product> selectCode(String code) {
+        return ProductMapper.selectCode(code);
+    }
 }

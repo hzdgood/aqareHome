@@ -27,4 +27,8 @@ public class SchemeService {
     public void update(Scheme scheme) {
         schemeMapper.update(scheme);
     }
+
+    public List<Scheme> selectItem(String itemId) {
+        return schemeMapper.selectItem(itemId);
+    }
 }
