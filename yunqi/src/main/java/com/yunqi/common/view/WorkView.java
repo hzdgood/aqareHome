@@ -17,6 +17,8 @@ public class WorkView {
     private String status; //状态
     private String actualWork; // 工时
     private String schedule; //进度
+    private String workSummary; // 今日完成情况
+    private String visitNode; //下次工作安排
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
     private Date writerTime; //核销时间
@@ -132,6 +134,30 @@ public class WorkView {
 
     public void setSchedule(String schedule) {
         this.schedule = schedule;
+    }
+
+    public String getWorkSummary() {
+        return workSummary;
+    }
+
+    public void setWorkSummary(String workSummary) {
+        this.workSummary = workSummary;
+    }
+
+    public String getVisitNode() {
+        return visitNode;
+    }
+
+    public void setVisitNode(String visitNode) {
+        this.visitNode = visitNode;
+    }
+
+    public Date getWriterTime() {
+        return writerTime;
+    }
+
+    public void setWriterTime(Date writerTime) {
+        this.writerTime = writerTime;
     }
 
     public Date getSignTime() {

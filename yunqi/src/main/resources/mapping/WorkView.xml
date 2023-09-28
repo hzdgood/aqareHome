@@ -9,6 +9,9 @@
         <if test="techIds!=null">
             and techIds like '%${techIds}%'
         </if>
+        <if test="projectId!=null">
+            and projectId like '%${projectId}%'
+        </if>
         <if test="workId!=null">
             and workId = #{workId}
         </if>

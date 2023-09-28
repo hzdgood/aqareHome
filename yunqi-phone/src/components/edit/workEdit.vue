@@ -126,7 +126,6 @@ interface FormState {
   time: any;
   remark: String;
   headName: String
-  // desc: string
 }
 
 const formState = reactive<FormState>({
@@ -135,11 +134,10 @@ const formState = reactive<FormState>({
   techName: '',
   time: null,
   remark: '',
-  headName: '',
-  // desc: ''
+  headName: ''
 });
 
-const handleChange = (value: [], Option: []) => {
+const handleChange = (value: []) => {
   // 有个BUG  
   formState.techName = `${value}`
 };

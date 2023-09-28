@@ -43,7 +43,7 @@
         <tr>
           <td>交接信息</td>
           <td colspan="3">
-            <a-textarea v-model:value="formState.dataList.info" placeholder="Basic usage" :rows="4" />
+            <a-textarea v-model:value="formState.desc" placeholder="Basic usage" :rows="4" />
           </td>
         </tr>
       </table>
@@ -58,16 +58,26 @@
 /// 项目详情页
 import router from '@/router';
 import { reactive, onMounted, ref } from 'vue';
+import { httpGet } from '../../config/interFace'
+import { useRoute } from "vue-router";
 
 const resPage = () => {
   router.push({name: 'project'})
 }
 
 onMounted (async function () {
+  const route = useRoute()
+  const res = await httpGet('/view/project',{
+    projectId: route.query.id
+  })
+  formState.dataList = res
 
-
+  const desc = await httpGet('/view/work',{
+    projectId: route.query.id
+  })
+  console.log(desc);
+  // formState.dataList = res
 })
-
 
 interface FormState {
   dataList: any,
@@ -76,7 +86,7 @@ interface FormState {
   time: any;
   remark: String;
   headName: String
-  // desc: string
+  desc: string
 }
 
 const formState = reactive<FormState>({
@@ -86,9 +96,8 @@ const formState = reactive<FormState>({
   time: null,
   remark: '',
   headName: '',
-  // desc: ''
+  desc: ''
 });
-
 
 </script>
 
