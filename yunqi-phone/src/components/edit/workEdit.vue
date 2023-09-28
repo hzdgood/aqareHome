@@ -51,21 +51,14 @@
         </tr>
         <tr>
           <td>工单备注</td>
-          <td colspan="3"><a-input v-model:value="formState.remark"></a-input></td>
+          <td colspan="3">
+            <a-input v-model:value="formState.remark"></a-input>
+          </td>
         </tr>
-        <!-- <tr>
-          <td>无效说明</td>
-          <td colspan="3"><a-input></a-input></td>
-        </tr> -->
-        <!-- <tr>
-          <td>交接信息</td>
-          <td colspan="3"><a-textarea :disabled="true" :rows="6" v-model:value="formState.desc" /></td>
-        </tr> -->
       </table>
       <div class="buttonPos">
         <a-button type="primary" v-show="formState.dataList.departureTime === null" @click="submit">提交</a-button>
         <a-button type="primary" @click="resPage()">返回</a-button>
-        <!-- <a-button type="primary">无效</a-button> -->
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
@@ -112,14 +105,14 @@ onMounted (async function () {
   }
   formState.options = techs
   
-  // const techName = res[0].techName + ''
-  // if(techName.includes(',')) {
-  //   const str = techName.split(',');
-  //   value = ref(str);
-  // } else {
-  //   value = ref([res[0].techName]);
-  // }
-  // formState.techName = res[0].techIds
+  const techName = res[0].techName + ''
+  if(techName.includes(',')) {
+    const str = techName.split(',');
+    value = ref(str);
+  } else {
+    value = ref([res[0].techName]);
+  }
+  formState.techName = res[0].techIds
 })
 
 const resPage = () => {
@@ -147,11 +140,9 @@ const formState = reactive<FormState>({
 });
 
 const handleChange = (value: [], Option: []) => {
-  // 有个BUG
+  // 有个BUG  
   formState.techName = `${value}`
 };
-
-
 
 const submit = async () =>  {
   await httpGet('/workSheet/updateInfo',{

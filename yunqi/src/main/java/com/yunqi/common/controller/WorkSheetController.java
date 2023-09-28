@@ -63,6 +63,8 @@ public class WorkSheetController {
     @CrossOrigin
     @RequestMapping("/updateInfo") //核销完成
     private String updateInfo(WorkSheet WorkSheet) {
+
+        // techIds 有坑，处理
         WorkSheetService.updateInfo(WorkSheet);
         return "修改完成";
     }

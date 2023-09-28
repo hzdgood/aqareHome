@@ -2,7 +2,7 @@
   <div class="cardDiv">
     <a-card :title="data.projectName +'&nbsp;&nbsp;'+  data.schedule" :bordered="false">
       <div class="buttonPos">
-        <a-button @click="handoverInfo(data.projectId)">详情</a-button>
+        <a-button :style="style" @click="handoverInfo(data.projectId)">详情</a-button>
       </div>
       <table class="cardTale">
         <tr>
@@ -60,6 +60,10 @@ const sendWork = (id: any) => {
 
 const schemeInfo = (id: any) => {
   emit('toPage','subSchemem', id)
+}
+
+const style = {
+  backgroundColor: '#0099DD',color: '#fff'
 }
 </script>
 <style scoped>

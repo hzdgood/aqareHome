@@ -11,28 +11,29 @@
         <div v-for="item in formState.dataList" :key="item">
           <writerTable :data="item" @change="getChange"></writerTable>
         </div>
-
         <table class="cardTale">
           <tr>
             <td>今日工作总结: </td>
             <td>
-              <a-input style="width: 90%;" v-model:value="formState.workSummary"></a-input>
+              <a-textarea v-model:value="formState.workSummary" placeholder="Basic usage" :rows="4" />
             </td>
           </tr>
           <tr>
             <td>下次上门节点: </td>
             <td>
-              <a-input style="width: 90%;" v-model:value="formState.visitNode"></a-input>
+              <a-textarea v-model:value="formState.visitNode" placeholder="Basic usage" :rows="4" />
             </td>
           </tr>
         </table>
-        
         <div class="buttonPos">
           <a-button type="primary" html-type="submit">提交</a-button>
           <a-button type="primary" @click="resPage()">返回</a-button>
         </div>
       </a-form>
     </a-card>
+    <a-modal v-model:open="opens" title="系统提示" @ok="handleOks">
+      <p>请确认提交的数量！</p>
+    </a-modal>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
       <p>该工单已核销完成！</p>
     </a-modal>
@@ -48,6 +49,7 @@ import { useRoute } from "vue-router";
 import writerTable from './tables/writerTable.vue'
 
 const open = ref<boolean>(false);
+const opens = ref<boolean>(false);
 const techIds = localStorage.getItem('techId')
 const route = useRoute()
 
@@ -114,16 +116,7 @@ const formState = reactive<FormState>({
 });
 
 const onFinish = async () => {
-  for(let i=0; i < formObj.length; i++){
-    await httpGet('/writer/insert', formObj[i]) // 核销新增
-  }
-  await httpGet('/workSheet/update', { //工单修改 -- 核销
-    id: route.query.id,
-    workSummary: formState.workSummary, //今日工作总结
-    visitNode: formState.visitNode, //下次上门节点
-    updateName: techIds // 核销人
-  })
-  showModal();
+  showModals();
 };
 
 const onFinishFailed = (errorInfo: any) => {
@@ -134,9 +127,30 @@ const showModal = () => {
   open.value = true;
 };
 
+const showModals = () => {
+  opens.value = true;
+};
+
 const handleOk = async () => {
   router.push({name: 'workSheet'})
 };
+
+const handleOks = async () => {
+  sumbit()
+};
+
+const sumbit = async () => { 
+  for(let i=0; i < formObj.length; i++){
+    await httpGet('/writer/insert', formObj[i]) // 核销新增
+  }
+  await httpGet('/workSheet/update', { //工单修改 -- 核销
+    id: route.query.id,
+    workSummary: formState.workSummary, //今日工作总结
+    visitNode: formState.visitNode, //下次上门节点
+    updateName: techIds // 核销人
+  })
+  showModal();
+}
 
 </script>
 

@@ -42,7 +42,9 @@
         </tr>
         <tr>
           <td>交接信息</td>
-          <td colspan="3"><a-input :disabled="true" :value="formState.dataList.info" style="width: 100%"></a-input></td>
+          <td colspan="3">
+            <a-textarea v-model:value="formState.dataList.info" placeholder="Basic usage" :rows="4" />
+          </td>
         </tr>
       </table>
       <div class="buttonPos">
