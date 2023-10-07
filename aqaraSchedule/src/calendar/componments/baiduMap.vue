@@ -62,7 +62,8 @@ export default class Actions extends Vue {
                 { model: 'static', datetime: date }
               ]
             }
-          }
+          },
+          { field: 2200000146473059, query: { in: [1] } }
         ]
       },
       offset: 0,
