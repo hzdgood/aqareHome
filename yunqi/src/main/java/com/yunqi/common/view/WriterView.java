@@ -11,8 +11,6 @@ public class WriterView {
     private String productName;  //产品名称
     private String techName;  // 技术
     private String type; //类型
-    private String status; // 状态
-    private Date writerTime;
     private Integer number; // 数量
     private Integer installNumber; //已装
     private Integer debugNumber; //已调
@@ -81,22 +79,6 @@ public class WriterView {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Date getWriteTime() {
-        return writerTime;
-    }
-
-    public void setWriteTime(Date writerTime) {
-        this.writerTime = writerTime;
     }
 
     public Integer getNumber() {

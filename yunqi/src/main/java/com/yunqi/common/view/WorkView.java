@@ -14,14 +14,10 @@ public class WorkView {
     private String salesName; // 销售
     private Date dateOfVisit; // 上门日期
     private String type; //类型
-    private String status; //状态
     private String actualWork; // 工时
     private String schedule; //进度
     private String workSummary; // 今日完成情况
     private String visitNode; //下次工作安排
-    private Date signTime; //签到时间
-    private Date departureTime;//离开时间
-    private Date writerTime; //核销时间
     private String disabled; //有效
 
     public Integer getWorkId() {
@@ -112,14 +108,6 @@ public class WorkView {
         this.type = type;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getActualWork() {
         return actualWork;
     }
@@ -150,38 +138,6 @@ public class WorkView {
 
     public void setVisitNode(String visitNode) {
         this.visitNode = visitNode;
-    }
-
-    public Date getWriterTime() {
-        return writerTime;
-    }
-
-    public void setWriterTime(Date writerTime) {
-        this.writerTime = writerTime;
-    }
-
-    public Date getSignTime() {
-        return signTime;
-    }
-
-    public void setSignTime(Date signTime) {
-        this.signTime = signTime;
-    }
-
-    public Date getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public Date getWriteTime() {
-        return writerTime;
-    }
-
-    public void setWriteTime(Date writerTime) {
-        this.writerTime = writerTime;
     }
 
     public String getDisabled() {
