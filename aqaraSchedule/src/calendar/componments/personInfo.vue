@@ -1,30 +1,25 @@
 <template>
   <div>
-    <div class="AllButton">
-      <button class="myButton" @click="allClick">全部选择</button>
-      <button class="myButton" @click="allCancle">取消全选</button>
+    <div class='AllButton'>
+      <button class='myButton' @click='allClick'>全部选择</button>
+      <button class='myButton' @click='allCancle'>取消全选</button>
     </div>
-    <div class="persons">
-      <div
-        :id="item.id"
-        v-for="item in personList"
-        :key="item.id"
-        @click="click(item.id)"
-      >
+    <div class='persons'>
+      <div :id='item.id' v-for='item in personList' :key='item.id' @click='click(item.id)'>
         <div>
-          {{ item.name }} &nbsp;&nbsp;<span :class="item.workStatus"></span>&nbsp;&nbsp; 休息日：{{ item.wait }}
+          {{ item.name }} &nbsp;&nbsp;<span :class='item.workStatus'></span>&nbsp;&nbsp; 休息日：{{ item.wait }}
         </div>
-        <div style="margin-bottom: 5px">
-          <table class="point">
-            <tr style="height: 20px">
-              <td :class="item.s1"></td>
-              <td :class="item.s2"></td>
-              <td :class="item.s3"></td>
-              <td :class="item.s4"></td>
-              <td :class="item.s5"></td>
-              <td :class="item.s6"></td>
-              <td :class="item.s7"></td>
-              <td :class="item.s8"></td>
+        <div style='margin-bottom: 5px'>
+          <table class='point'>
+            <tr style='height: 20px'>
+              <td :class='item.s1'></td>
+              <td :class='item.s2'></td>
+              <td :class='item.s3'></td>
+              <td :class='item.s4'></td>
+              <td :class='item.s5'></td>
+              <td :class='item.s6'></td>
+              <td :class='item.s7'></td>
+              <td :class='item.s8'></td>
             </tr>
           </table>
         </div>
@@ -33,7 +28,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator'
 import { SearchInfo } from '@/config/interFace'
 @Component({})
@@ -83,6 +78,18 @@ export default class Actions extends Vue {
       }
       this.personList.push(data)
     }
+    const obj1 = {
+      where: {
+        and: [
+          { field: 2200000167076360, query: { eq: 'last_week' } },
+          { field: 2200000167076361, query: { in: [2] } },
+          { field: 2200000330530836, query: { in: [2] } }]
+      },
+      offset: 0,
+      limit: 20
+    }
+    const result1 = await SearchInfo('2100000017630966', obj1)
+    console.log(result1)
   }
 
   @Watch('$store.state.layerList')
