@@ -5,17 +5,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkSheetMapper {
-    void insert(WorkSheet WorkSheet);
+    WorkSheet insert(WorkSheet WorkSheet);
 
     void update(WorkSheet WorkSheet);
 
     void updateInfo(WorkSheet WorkSheet);
 
-    void sign(Integer id, String updateName);
-
-    void depart(Integer id, String updateName);
-
     void delete(Integer id, String updateName);
 
-    void complete(Integer id, String updateName);
+    void complete(Integer workId, String techIds);
 }

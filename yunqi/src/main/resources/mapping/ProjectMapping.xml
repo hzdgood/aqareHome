@@ -19,7 +19,8 @@
     <select id="selectItem" resultType="com.yunqi.common.entity.Project">
         # 根据ID查询项目
         select *
-        from project p where itemId = #{itemId}
+        from project p
+        where itemId = #{itemId}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">

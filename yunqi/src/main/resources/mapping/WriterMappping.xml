@@ -12,17 +12,24 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into writer (projectId, productId, schemeId, workId, techId,
-                install, debug, createName, createTime) value (
-                   #{projectId}, #{productId}, #{schemeId}, #{workId}, #{techId},
-                   #{install}, #{debug}, #{createName}, NOW()
+                            install, debug, createName, createTime) value (
+                                                                           #{projectId}, #{productId}, #{schemeId},
+                                                                           #{workId}, #{techId},
+                                                                           #{install}, #{debug}, #{createName}, NOW()
             )
     </insert>
 
     <insert id="insertHead" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into writer (projectId, workId, techId, type, contribution, createName, createTime) value (
-           #{projectId}, #{workId}, #{techId}, #{type}, #{contribution}, #{createName}, NOW()
-        )
+                                                                                                          #{projectId},
+                                                                                                          #{workId},
+                                                                                                          #{techId},
+                                                                                                          #{type},
+                                                                                                          #{contribution},
+                                                                                                          #{createName},
+                                                                                                          NOW()
+            )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Writer">

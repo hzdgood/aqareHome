@@ -14,16 +14,8 @@ public class WorkSheetService {
         this.WorkSheetMapper = WorkSheetMapper;
     }
 
-    public void insert(WorkSheet WorkSheet) {
-        WorkSheetMapper.insert(WorkSheet);
-    }
-
-    public void sign(Integer id, String updateName) {
-        WorkSheetMapper.sign(id, updateName);
-    }
-
-    public void depart(Integer id, String updateName) {
-        WorkSheetMapper.depart(id, updateName);
+    public WorkSheet insert(WorkSheet WorkSheet) {
+        return WorkSheetMapper.insert(WorkSheet);
     }
 
     public void update(WorkSheet WorkSheet) {
@@ -38,7 +30,7 @@ public class WorkSheetService {
         WorkSheetMapper.delete(id, updateName);
     }
 
-    public void complete(Integer id, String updateName) {
-        WorkSheetMapper.complete(id, updateName);
+    public void complete(Integer workId, String techIds) {
+        WorkSheetMapper.complete(workId, techIds);
     }
 }

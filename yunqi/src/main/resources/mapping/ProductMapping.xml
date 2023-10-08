@@ -9,14 +9,19 @@
 
     <select id="selectCode" resultType="com.yunqi.common.entity.Product">
         select *
-        from product where code = #{code}
+        from product
+        where code = #{code}
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
         insert into product (name, code, classification, shipType,
-            price, brand, category, createName, createTime, itemId) value (
-                    #{name}, #{code}, #{classification}, #{shipType},
-                    #{price}, #{brand}, #{category}, '初始化', NOW(), #{itemId}
+                             price, brand, category, createName, createTime, itemId) value (
+                                                                                            #{name}, #{code},
+                                                                                            #{classification},
+                                                                                            #{shipType},
+                                                                                            #{price}, #{brand},
+                                                                                            #{category}, '初始化',
+                                                                                            NOW(), #{itemId}
             )
     </insert>
 

@@ -8,14 +8,10 @@ public class WorkSheet {
     private String techIds;
     private Date dateOfVisit; // 上门日期
     private String type; //类型
-    private String status; //状态
     private String actualWork; // 工时
     private String schedule; //进度
     private String watermark; //水印图片
     private String signImg; //签字图片
-    private Date signTime; //签到时间
-    private Date departureTime;//离开时间
-    private Date writerTime; //核销时间
     private String disabled; //有效
     private String workSummary; //今日工作总结
     private String visitNode; //下次上门节点
@@ -65,14 +61,6 @@ public class WorkSheet {
         this.type = type;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getActualWork() {
         return actualWork;
     }
@@ -103,30 +91,6 @@ public class WorkSheet {
 
     public void setSignImg(String signImg) {
         this.signImg = signImg;
-    }
-
-    public Date getSignTime() {
-        return signTime;
-    }
-
-    public void setSignTime(Date signTime) {
-        this.signTime = signTime;
-    }
-
-    public Date getDepartureTime() {
-        return departureTime;
-    }
-
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
-    }
-
-    public Date getWriteTime() {
-        return writerTime;
-    }
-
-    public void setWriteTime(Date writerTime) {
-        this.writerTime = writerTime;
     }
 
     public String getDisabled() {

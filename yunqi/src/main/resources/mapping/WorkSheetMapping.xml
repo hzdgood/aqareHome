@@ -5,9 +5,11 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit,
-            type, status, schedule, remark, createName, createTime) value (
-                  #{projectId}, #{techIds}, #{dateOfVisit}, #{type}, #{status},
-                  #{schedule}, #{remark}, #{createName}, NOW()
+                               type, schedule, remark, createName, createTime) value (
+                  #{projectId}, #{techIds},
+                  #{dateOfVisit}, #{type},
+                  #{schedule}, #{remark},
+                  #{createName}, NOW()
             )
     </insert>
 
@@ -30,26 +32,6 @@
             remark      = #{remark},
             updateName  = #{updateName},
             updateTime  = NOW()
-        where id = #{id}
-    </insert>
-
-    <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 签到
-        update worksheet
-        set signTime   = NOW(),
-            updateName = #{updateName},
-            updateTime = NOW(),
-            status     = '上门中'
-        where id = #{id}
-    </insert>
-
-    <insert id="depart" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 离开
-        update worksheet
-        set departureTime = NOW(),
-            updateName    = #{updateName},
-            updateTime    = NOW(),
-            status        = '待核销'
         where id = #{id}
     </insert>
 

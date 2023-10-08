@@ -135,7 +135,7 @@ const onFinish = async () => {
     dateOfVisit: formState.time,
     type: formState.workType,  // 必须
     remark: formState.remark,
-    status: '待上门',
+    // status: '待上门',
     schedule: formState.schedule,
     createName: techId
   })

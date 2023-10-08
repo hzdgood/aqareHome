@@ -75,7 +75,7 @@ defineProps({
 })
 
 const sign = async (id: number) => {
-  await httpGet('/workSheet/sign',{
+  await httpGet('/workTime/sign',{
     id: id,
     updateName: techIds
   })
@@ -83,7 +83,7 @@ const sign = async (id: number) => {
 }
 
 const depart = async (id: any) => {
-  await httpGet('/workSheet/depart',{
+  await httpGet('/workTime/depart',{
     id: id,
     updateName: techIds
   })

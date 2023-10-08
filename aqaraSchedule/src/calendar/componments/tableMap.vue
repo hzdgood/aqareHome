@@ -165,7 +165,6 @@ export default class Actions extends Vue {
       this.layerList.push(obj)
       this.$store.state.layerList = this.layerList
     }
-    console.log(this.layerList)
   }
 }
 </script>

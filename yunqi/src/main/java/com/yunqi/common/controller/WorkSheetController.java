@@ -1,8 +1,10 @@
 package com.yunqi.common.controller;
 
 import com.yunqi.common.entity.WorkSheet;
+import com.yunqi.common.entity.WorkTime;
 import com.yunqi.common.entity.Writer;
 import com.yunqi.common.service.WorkSheetService;
+import com.yunqi.common.service.WorkTimeService;
 import com.yunqi.common.service.WriterService;
 import com.yunqi.common.view.ProductView;
 import com.yunqi.common.view.SchemeView;
@@ -27,6 +29,8 @@ public class WorkSheetController {
 
     private SchemeViewService SchemeViewService;
 
+    private WorkTimeService WorkTimeService;
+
     @Autowired
     public void setMapper(WorkSheetService WorkSheetService) {
         this.WorkSheetService = WorkSheetService;
@@ -47,10 +51,41 @@ public class WorkSheetController {
         this.SchemeViewService = SchemeViewService;
     }
 
+    @Autowired
+    public void setMapper(WorkTimeService WorkTimeService) {
+        this.WorkTimeService = WorkTimeService;
+    }
+
     @CrossOrigin
     @RequestMapping("/insert")
-    private void insert(WorkSheet WorkSheet) {
-        WorkSheetService.insert(WorkSheet);
+    private String insert(WorkSheet WorkSheet) {
+        // 新增工单
+        WorkSheet work = WorkSheetService.insert(WorkSheet);
+        System.out.println(work.getId() + "");
+        // 分别签到离开
+        WorkTime WorkTime = new WorkTime();
+        String techIds = WorkSheet.getTechIds();
+        String[] techs = techIds.split(",");
+        if (techs.length > 0) {
+            System.out.println("111");
+            for (String tech : techs) {
+                WorkTime.setProjectId(WorkSheet.getProjectId());
+                WorkTime.setStatus("待上门");
+                WorkTime.setTechId(tech);
+                WorkTime.setCreateName(WorkSheet.getCreateName());
+                WorkTime.setWorkId(work.getId());
+                WorkTimeService.insert(WorkTime);
+            }
+        } else {
+            System.out.println("222");
+            WorkTime.setProjectId(WorkSheet.getProjectId());
+            WorkTime.setStatus("待上门");
+            WorkTime.setTechId(WorkSheet.getTechIds());
+            WorkTime.setCreateName(WorkSheet.getCreateName());
+            WorkTime.setWorkId(work.getId());
+            WorkTimeService.insert(WorkTime);
+        }
+        return "发单完成";
     }
 
     @CrossOrigin
@@ -61,26 +96,12 @@ public class WorkSheetController {
     }
 
     @CrossOrigin
-    @RequestMapping("/updateInfo") //核销完成
+    @RequestMapping("/updateInfo") //工单修改
     private String updateInfo(WorkSheet WorkSheet) {
-
         // techIds 有坑，处理
         WorkSheetService.updateInfo(WorkSheet);
         return "修改完成";
     }
-
-    @CrossOrigin
-    @RequestMapping("/sign") // 签到
-    private void sign(Integer id, String updateName) {
-        WorkSheetService.sign(id, updateName);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/depart") // 离场
-    private void depart(Integer id, String updateName) {
-        WorkSheetService.depart(id, updateName);
-    }
-
 
     /**
      * workId ： 工单
@@ -93,6 +114,7 @@ public class WorkSheetController {
     private String complete(Integer workId, Integer projectId, Integer headId, String updateName) {
         ProductView ProductView = new ProductView(); //人员，产品，贡献度view
         ProductView.setWorkId(workId);
+        ProductView.setTechIds(updateName); // 分开完成
         List<ProductView> ProductList = ProductViewService.selectByWork(ProductView); // 查询该项目下的核销记录单
 
         String type = null; // 安装类型
@@ -128,7 +150,7 @@ public class WorkSheetController {
                     sumDebug = sumDebug + debug;
 
                     Writer.setType(type); //工单类型
-                    if(type.equals("安装")) {
+                    if (type.equals("安装")) {
                         Writer.setSumWork(install);  // 总数
                         Writer.setContribution(installSum);  // 贡献度
                     } else {
@@ -145,12 +167,12 @@ public class WorkSheetController {
                     }
                 }
                 case "交底", "验收" -> {
+                    int num = list.get(0).getNumber() / 100;
                     if (list.get(0).getNumber() > 100) {
-                        int num = list.get(0).getNumber() / 100;
-                        System.out.printf("" + num);
+                        // System.out.printf("" + num);
                         Writer.setContribution(num * 150.0);
                     } else {
-                        Writer.setContribution(150.0);
+                        Writer.setContribution(num * 150.0 + 50.0);
                     }
                     Writer.setType(type);
                     WriterService.simpleWriter(Writer);
@@ -180,7 +202,7 @@ public class WorkSheetController {
             Writer.setType("负责人-上门");
         }
         WriterService.insertHead(Writer); //负责人插入
-        WorkSheetService.complete(workId, updateName); // 设置工单已完成
+        WorkTimeService.complete(workId, updateName); // 设置工单已完成
         return "离场成功，请查看核销记录";
     }
 

@@ -143,7 +143,7 @@ const handleChange = (value: []) => {
 };
 
 const submit = async () =>  {
-  await httpGet('/workSheet/updateInfo',{
+  await httpGet('/workSheet/updateInfo',{ //工单修改 上门，技术
     id: route.query.id,
     techIds: formState.techName,
     dateOfVisit: formState.time,
