@@ -7,6 +7,8 @@
         select *
         from writerView w
         where workId = #{workId}
-          and (notInstalled > 0 or unregulated > 0);
+          and (notInstalled > 0 or unregulated > 0)
+          and techId = #{techId}
+        ;
     </select>
 </mapper>

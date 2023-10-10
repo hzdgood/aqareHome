@@ -2,14 +2,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.WorkSheetMapper">
-    <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit,
                                type, schedule, remark, createName, createTime) value (
-                  #{projectId}, #{techIds},
-                  #{dateOfVisit}, #{type},
-                  #{schedule}, #{remark},
-                  #{createName}, NOW()
+                                                                                      #{projectId}, #{techIds},
+                                                                                      #{dateOfVisit}, #{type},
+                                                                                      #{schedule}, #{remark},
+                                                                                      #{createName}, NOW()
             )
     </insert>
 
@@ -18,7 +18,6 @@
         update worksheet
         set workSummary = #{workSummary},
             visitNode   = #{visitNode},
-            writerTime  = NOW(),
             updateName  = #{updateName},
             updateTime  = NOW()
         where id = #{id}
@@ -40,8 +39,7 @@
         update worksheet
         set updateName = #{updateName},
             updateTime = NOW(),
-            status     = '已完成'
-        where id = #{id}
+            where id = #{id}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">

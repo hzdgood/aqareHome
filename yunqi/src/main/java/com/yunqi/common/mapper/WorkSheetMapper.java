@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface WorkSheetMapper {
-    WorkSheet insert(WorkSheet WorkSheet);
+    void insert(WorkSheet WorkSheet);
 
     void update(WorkSheet WorkSheet);
 

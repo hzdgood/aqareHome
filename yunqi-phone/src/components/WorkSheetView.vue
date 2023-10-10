@@ -37,8 +37,11 @@ onMounted (async function () {
   formState.dataList = res
 })
 
-const toPage = (str: any, id: any) => {
-  router.push({name: str, query: {id: id}})
+const toPage = (str: any, obj: any) => {
+  router.push({name: str, query: {
+    id: obj.id,
+    techId: obj.techId
+  }})
 }
 
 const pageReset = async () => {

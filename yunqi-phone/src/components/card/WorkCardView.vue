@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="data.techName + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
+    <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
         <a-button :style="style" @click="uploadImg(data.workId)">往期图片</a-button>
@@ -21,6 +21,8 @@
         <tr>
           <td>装修进度</td>
           <td>{{ data.schedule }}</td>
+          <td>技术人员</td>
+          <td>{{ data.techName }}</td>
         </tr>
         <tr>
           <td>上门日期</td>
@@ -38,21 +40,21 @@
       <div class="buttonPos">
         <a-button type="primary" 
           v-show="data.signTime === null"
-          @click="sign(data.workId)">签到</a-button>
+          @click="sign(data.timeId)">签到</a-button>
 
         <a-button type="primary"
           v-show="data.departureTime === null && data.signTime !== null"
-          @click="depart(data.workId)">离开</a-button>
+          @click="depart(data.timeId)">离开</a-button>
 
         <a-button type="primary" v-show="data.signTime !== null"
-          @click="WriterInfo(data.workId)">核销</a-button>
+          @click="WriterInfo(data.workId, data.techId)">核销</a-button>
 
         <a-button type="primary" v-show="data.status !== '已完成' 
             && data.signTime !== null"
           @click="CompleteInfo()">完成</a-button>
       </div>
     </a-card>
-    <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.workId, data.projectId, data.headId)">
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.timeId, data.workId, data.projectId, data.headId)">
       <p>工单完成后，锁定核销数量！</p>
     </a-modal>
   </div>
@@ -94,25 +96,28 @@ const CompleteInfo = async () => {
   showModal(); // 开启
 }
 
-const WriterInfo = (id: any) => {
-  emit('toPage','subWriter', id)
+const WriterInfo = (id: any, techId:any) => {
+  console.log(techId);
+  
+  emit('toPage','subWriter', { id: id, techId: techId })
 }
 
 const workEdit = (id: any) => {
-  emit('toPage','workEdit', id)
+  emit('toPage','workEdit', { id: id })
 }
 
 const uploadImg = (id: any) => {
-  emit('toPage','uploadImg', id)
+  emit('toPage','uploadImg', { id: id })
 }
 
 const showModal = () => {
   open.value = true;
 };
 
-const handleOk = async (workId: number, projectId: number, headId: number ) => {
+const handleOk = async (timeId: number, workId: number, projectId: number, headId: number ) => {
   open.value = false;
   await httpGet('/workSheet/complete',{
+    timeId: timeId,
     workId: workId,
     projectId: projectId,
     headId: headId,

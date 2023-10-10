@@ -57,18 +57,17 @@ let formObj: any[] = []
 
 onMounted (async function () {
   formObj = [];
-  const workId = route.query.id
   const res = await httpGet('/view/writer',{ // 查询可核销数据
-    workId: workId
+    workId: route.query.id,
+    techId: route.query.techId
   })
   if(res.length === 0) {
     router.push({name: 'workSheet'})
   } else {
     formState.dataList = res
   }
-
   const res1 = await httpGet('/view/work',{
-    workId: workId,
+    workId: route.query.id,
     techIds: techIds,
   })
   formState.projectName = res1[0].projectName;

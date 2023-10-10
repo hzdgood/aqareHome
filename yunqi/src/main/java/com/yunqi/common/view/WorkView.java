@@ -3,6 +3,7 @@ package com.yunqi.common.view;
 import java.util.Date;
 
 public class WorkView {
+    private Integer timeId;
     private Integer workId;
     private Integer projectId;
     private String techIds; //技术
@@ -10,15 +11,28 @@ public class WorkView {
     private String projectName;// 姓名
     private String telephone;// 电话
     private String address; // 地址
-    private String techName; // 技术
+    private String techNames; // 技术
     private String salesName; // 销售
     private Date dateOfVisit; // 上门日期
+    private String status;
+    private Date signTime; //签到时间
+    private Date departureTime;//离开时间
+    private String techId;
+    private String techName; // 技术
     private String type; //类型
     private String actualWork; // 工时
     private String schedule; //进度
     private String workSummary; // 今日完成情况
     private String visitNode; //下次工作安排
     private String disabled; //有效
+
+    public Integer getTimeId() {
+        return timeId;
+    }
+
+    public void setTimeId(Integer timeId) {
+        this.timeId = timeId;
+    }
 
     public Integer getWorkId() {
         return workId;
@@ -76,12 +90,12 @@ public class WorkView {
         this.address = address;
     }
 
-    public String getTechName() {
-        return techName;
+    public String getTechNames() {
+        return techNames;
     }
 
-    public void setTechName(String techName) {
-        this.techName = techName;
+    public void setTechNames(String techNames) {
+        this.techNames = techNames;
     }
 
     public String getSalesName() {
@@ -98,6 +112,46 @@ public class WorkView {
 
     public void setDateOfVisit(Date dateOfVisit) {
         this.dateOfVisit = dateOfVisit;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getSignTime() {
+        return signTime;
+    }
+
+    public void setSignTime(Date signTime) {
+        this.signTime = signTime;
+    }
+
+    public Date getDepartureTime() {
+        return departureTime;
+    }
+
+    public void setDepartureTime(Date departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public String getTechId() {
+        return techId;
+    }
+
+    public void setTechId(String techId) {
+        this.techId = techId;
+    }
+
+    public String getTechName() {
+        return techName;
+    }
+
+    public void setTechName(String techName) {
+        this.techName = techName;
     }
 
     public String getType() {

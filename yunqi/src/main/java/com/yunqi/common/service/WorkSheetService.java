@@ -14,8 +14,8 @@ public class WorkSheetService {
         this.WorkSheetMapper = WorkSheetMapper;
     }
 
-    public WorkSheet insert(WorkSheet WorkSheet) {
-        return WorkSheetMapper.insert(WorkSheet);
+    public void insert(WorkSheet WorkSheet) {
+        WorkSheetMapper.insert(WorkSheet);
     }
 
     public void update(WorkSheet WorkSheet) {

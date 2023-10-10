@@ -60,36 +60,38 @@ public class WorkSheetController {
     @RequestMapping("/insert")
     private String insert(WorkSheet WorkSheet) {
         // 新增工单
-        WorkSheet work = WorkSheetService.insert(WorkSheet);
-        System.out.println(work.getId() + "");
-        // 分别签到离开
+        WorkSheetService.insert(WorkSheet);
+        // System.out.println(WorkSheet.getId() + "");
+        // 分别签到离开 插入个人工单表
         WorkTime WorkTime = new WorkTime();
-        String techIds = WorkSheet.getTechIds();
-        String[] techs = techIds.split(",");
-        if (techs.length > 0) {
-            System.out.println("111");
-            for (String tech : techs) {
-                WorkTime.setProjectId(WorkSheet.getProjectId());
-                WorkTime.setStatus("待上门");
-                WorkTime.setTechId(tech);
-                WorkTime.setCreateName(WorkSheet.getCreateName());
-                WorkTime.setWorkId(work.getId());
-                WorkTimeService.insert(WorkTime);
-            }
-        } else {
-            System.out.println("222");
-            WorkTime.setProjectId(WorkSheet.getProjectId());
-            WorkTime.setStatus("待上门");
-            WorkTime.setTechId(WorkSheet.getTechIds());
-            WorkTime.setCreateName(WorkSheet.getCreateName());
-            WorkTime.setWorkId(work.getId());
-            WorkTimeService.insert(WorkTime);
-        }
+        insertSimpleWork(WorkSheet, WorkTime);
         return "发单完成";
     }
 
+    private void insertSimpleWork(WorkSheet WorkSheet, WorkTime workTime) {
+        String techIds = WorkSheet.getTechIds();
+        String[] techs = techIds.split(",");
+        if (techs.length > 0) {
+            for (String tech : techs) {
+                workTime.setProjectId(WorkSheet.getProjectId());
+                workTime.setStatus("待上门");
+                workTime.setTechId(tech);
+                workTime.setCreateName(WorkSheet.getCreateName());
+                workTime.setWorkId(WorkSheet.getId());
+                WorkTimeService.insert(workTime);
+            }
+        } else {
+            workTime.setProjectId(WorkSheet.getProjectId());
+            workTime.setStatus("待上门");
+            workTime.setTechId(WorkSheet.getTechIds());
+            workTime.setCreateName(WorkSheet.getCreateName());
+            workTime.setWorkId(WorkSheet.getId());
+            WorkTimeService.insert(workTime);
+        }
+    }
+
     @CrossOrigin
-    @RequestMapping("/update") //核销完成
+    @RequestMapping("/update") // 今日总结，下次上门
     private String update(WorkSheet WorkSheet) {
         WorkSheetService.update(WorkSheet);
         return "核销完成";
@@ -99,6 +101,11 @@ public class WorkSheetController {
     @RequestMapping("/updateInfo") //工单修改
     private String updateInfo(WorkSheet WorkSheet) {
         // techIds 有坑，处理
+        WorkTime WorkTime = new WorkTime();
+        // 删除个人工单数据
+        WorkTimeService.delete(WorkSheet.getId(), WorkSheet.getUpdateName());
+        // 插入新的工单数据
+        insertSimpleWork(WorkSheet, WorkTime);
         WorkSheetService.updateInfo(WorkSheet);
         return "修改完成";
     }
@@ -111,7 +118,9 @@ public class WorkSheetController {
      **/
     @CrossOrigin
     @RequestMapping("/complete")
-    private String complete(Integer workId, Integer projectId, Integer headId, String updateName) {
+    private String complete(
+            Integer timeId, Integer workId, Integer projectId,
+            Integer headId, String updateName) {
         ProductView ProductView = new ProductView(); //人员，产品，贡献度view
         ProductView.setWorkId(workId);
         ProductView.setTechIds(updateName); // 分开完成
@@ -145,10 +154,8 @@ public class WorkSheetController {
                     double debugContribute = productView.getDebugContribute(); // 调试贡献
                     double installSum = install * installContribute; // 数量 * 安装贡献
                     double debugSum = debug * debugContribute; // 数量 * 调试贡献
-
                     sumInstall = sumInstall + install;
                     sumDebug = sumDebug + debug;
-
                     Writer.setType(type); //工单类型
                     if (type.equals("安装")) {
                         Writer.setSumWork(install);  // 总数
@@ -187,22 +194,25 @@ public class WorkSheetController {
         // 开始计算负责人部分
         Writer Writer = new Writer();
         if (Objects.equals(type, "交底")) {
+            // 有个小坑
             Writer.setProjectId(projectId); // 项目
             Writer.setTechId(headId); // 负责人
             Writer.setWorkId(workId); // 工单
             Writer.setContribution(list.get(0).getHeadDisclose() * list.get(0).getNumber() / 2); // 总交 * 总实 / 2
+            Writer.setCreateName(updateName);
             Writer.setType("负责人-交底");
         }
         if (Objects.equals(type, "安装") || Objects.equals(type, "调试")) {
             Writer.setProjectId(projectId);
             Writer.setTechId(headId);
             Writer.setWorkId(workId);
+            Writer.setCreateName(updateName);
             Writer.setSumWork(sumInstall + sumDebug); // 总安装 + 总调试
             Writer.setContribution(sumSm);
             Writer.setType("负责人-上门");
         }
         WriterService.insertHead(Writer); //负责人插入
-        WorkTimeService.complete(workId, updateName); // 设置工单已完成
+        WorkTimeService.complete(timeId, updateName); // 设置工单已完成
         return "离场成功，请查看核销记录";
     }
 

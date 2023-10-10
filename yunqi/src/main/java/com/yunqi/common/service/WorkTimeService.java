@@ -34,7 +34,7 @@ public class WorkTimeService {
         WorkTimeMapper.delete(id, updateName);
     }
 
-    public void complete(Integer workId, String techIds) {
-        WorkTimeMapper.complete(workId, techIds);
+    public void complete(Integer timeId, String updateName) {
+        WorkTimeMapper.complete(timeId, updateName);
     }
 }

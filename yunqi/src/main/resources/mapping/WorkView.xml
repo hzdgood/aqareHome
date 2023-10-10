@@ -18,9 +18,6 @@
         <if test="type!=null and type!=''">
             and type = #{type}
         </if>
-        <if test="status == 'true'">
-            and status != '已完成'
-        </if>
         <if test="projectName!=null and projectName!=''">
             and projectName like '%${projectName}%'
             and telephone like '%${projectName}%'
@@ -32,6 +29,6 @@
         <if test="headId!=null">
             or headId = #{headId}
         </if>
-        order by status desc, dateOfVisit asc
+        order by dateOfVisit asc
     </select>
 </mapper>

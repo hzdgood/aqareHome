@@ -10,6 +10,7 @@ public class WorkTime {
     private String status;
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
+    private String disabled;
     private String createName;
     private Date createTime;
     private String updateName;
@@ -69,6 +70,14 @@ public class WorkTime {
 
     public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
     }
 
     public String getCreateName() {

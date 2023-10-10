@@ -1,7 +1,5 @@
 package com.yunqi.common.view;
 
-import java.util.Date;
-
 public class WriterView {
     private Integer projectId; //项目Id
     private Integer schemeId; // 方案Id
@@ -12,6 +10,8 @@ public class WriterView {
     private String techName;  // 技术
     private String type; //类型
     private Integer number; // 数量
+    private String status;
+    private String techId;
     private Integer installNumber; //已装
     private Integer debugNumber; //已调
     private Integer notInstalled; //未装
@@ -87,6 +87,22 @@ public class WriterView {
 
     public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getTechId() {
+        return techId;
+    }
+
+    public void setTechId(String techId) {
+        this.techId = techId;
     }
 
     public Integer getInstallNumber() {
