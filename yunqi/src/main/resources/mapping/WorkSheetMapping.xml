@@ -6,10 +6,8 @@
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit,
                                type, schedule, remark, createName, createTime) value (
-                                                                                      #{projectId}, #{techIds},
-                                                                                      #{dateOfVisit}, #{type},
-                                                                                      #{schedule}, #{remark},
-                                                                                      #{createName}, NOW()
+                  #{projectId}, #{techIds}, #{dateOfVisit}, #{type},
+                  #{schedule}, #{remark}, #{createName}, NOW()
             )
     </insert>
 
@@ -37,9 +35,9 @@
     <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
         # 完成
         update worksheet
-        set updateName = #{updateName},
-            updateTime = NOW(),
-            where id = #{id}
+        set updateName = '吴杰',
+            updateTime = NOW()
+            where id = #{workId}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">

@@ -19,12 +19,24 @@
             <td>技术人员:</td>
             <td>
               <a-select
+                v-model:value="headName"
+                style="width: 95%"
+                placeholder="Please select"
+                :options="formState.options"
+                @change="changeHead"
+              ></a-select>
+            </td>
+          </tr>
+          <tr>
+            <td>技术人员:</td>
+            <td>
+              <a-select
                 v-model:value="value"
                 mode="multiple"
                 style="width: 95%"
                 placeholder="Please select"
                 :options="formState.options"
-                @change="handleChange"
+                @change="changeTech"
               ></a-select>
             </td>
           </tr>
@@ -62,7 +74,7 @@
       </a-form>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
-      <p>发单成功！</p>
+      <p>{{ formState.modalInfo }}</p>
     </a-modal>
   </div>
 </template>
@@ -76,6 +88,7 @@ import { httpGet } from '../../config/interFace'
 
 const open = ref<boolean>(false);
 const value = ref<string[]>([]);
+const headName = ref<string[]>([]);
 const route = useRoute()
 const techId = localStorage.getItem("techId");
 
@@ -96,7 +109,7 @@ onMounted (async function () {
   for(let i=0; i< tech.length; i++){
     const obj: any = {
       label: tech[i].name,
-      value: tech[i].id
+      value: tech[i].name
     }
     techs.push(obj)
   }
@@ -111,21 +124,28 @@ interface FormState {
   workType: string;
   time: any;
   remark: String;
+  headName: String
+  modalInfo: String
 }
 
 const formState = reactive<FormState>({
   options: ref<string[]>([]),
+  schedule: '',
   techName: '',
   projectName: '',
   workType: '',
   time: null,
   remark: '',
-  schedule: ''
+  headName: '',
+  modalInfo: ''
 });
 
-const handleChange = (value: []) => {
-  console.log(`selected ${value}`);
+const changeTech = (value: []) => {
   formState.techName = `${value}`
+};
+
+const changeHead = (value: []) => {
+  formState.headName = `${value}`
 };
 
 const onFinish = async () => {
@@ -135,11 +155,11 @@ const onFinish = async () => {
     dateOfVisit: formState.time,
     type: formState.workType,  // 必须
     remark: formState.remark,
-    // status: '待上门',
+    headName: formState.headName,
     schedule: formState.schedule,
     createName: techId
   })
-  console.log('Success:', res);
+  formState.modalInfo = res
   showModal()
 };
 
@@ -147,14 +167,12 @@ const showModal = () => {
   open.value = true;
 };
 
-const handleOk = (e: MouseEvent) => {
-  console.log(e);
+const handleOk = () => {
   open.value = false;
   router.push({name: 'workSheet'})
 };
 
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
+const onFinishFailed = () => {
 };
 
 </script>

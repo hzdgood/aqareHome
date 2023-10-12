@@ -30,7 +30,5 @@ public class WorkSheetService {
         WorkSheetMapper.delete(id, updateName);
     }
 
-    public void complete(Integer workId, String techIds) {
-        WorkSheetMapper.complete(workId, techIds);
-    }
+    public void complete(Integer workId) { WorkSheetMapper.complete(workId); }
 }

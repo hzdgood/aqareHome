@@ -1,6 +1,7 @@
 package com.yunqi.common.view;
 
 public class WriterView {
+    private Integer writerId;
     private Integer projectId; //项目Id
     private Integer schemeId; // 方案Id
     private Integer workId; // 工单Id
@@ -10,12 +11,20 @@ public class WriterView {
     private String techName;  // 技术
     private String type; //类型
     private Integer number; // 数量
-    private String status;
-    private String techId;
+    private String status; // 状态
+    private String techId; // 技术ID
     private Integer installNumber; //已装
     private Integer debugNumber; //已调
     private Integer notInstalled; //未装
     private Integer unregulated; //未调
+
+    public Integer getWriterId() {
+        return writerId;
+    }
+
+    public void setWriterId(Integer writerId) {
+        this.writerId = writerId;
+    }
 
     public Integer getProjectId() {
         return projectId;

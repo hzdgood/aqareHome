@@ -24,6 +24,10 @@ public class SchemeService {
         schemeMapper.insert(scheme);
     }
 
+    public void history(Scheme scheme) {
+        schemeMapper.history(scheme);
+    }
+
     public void update(Scheme scheme) {
         schemeMapper.update(scheme);
     }

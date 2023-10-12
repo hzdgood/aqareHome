@@ -29,6 +29,18 @@
           </td>
         </tr>
         <tr>
+          <td>主负责人</td>
+          <td colspan="3">
+            <a-select
+                v-model:value="headName"
+                style="width: 100%"
+                placeholder="Please select"
+                :options="formState.options"
+                @change="handleChange"
+              ></a-select>
+          </td>
+        </tr>
+        <tr>
           <td>上门技术</td>
           <td colspan="3">
             <a-select
@@ -71,7 +83,8 @@
       <div class="buttonPos">
         <a-button type="primary" v-show="formState.dataList.departureTime === null" @click="submit">提交</a-button>
         <a-button type="primary" @click="resPage()">返回</a-button>
-        <a-button type="primary">无效</a-button>
+        <a-button type="primary" @click="disabled()">无效</a-button>
+        <a-button type="primary" @click="complete()">完结</a-button>
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
@@ -91,6 +104,7 @@ import { dateFilter } from '../../util/time'
 
 let value = ref<string[]>([]);
 let errorInfo = ref<string[]>([]);
+let headName = ref<string[]>([]);
 
 const route = useRoute()
 const open = ref<boolean>(false);
@@ -100,28 +114,23 @@ onMounted (async function () {
     workId: route.query.id,
     techIds: 1
   })
-  formState.dataList = res[0]
-  formState.projectId = res[0].projectId //项目ID
-  formState.headId = res[0].headId  // 负责人ID
-
   if(res[0].dateOfVisit !== null ) { // 上门时间
     const time = dateFilter(res[0].dateOfVisit,'yyyy-mm-dd hh:mm:ss')
-    formState.time = ref<Dayjs>(dayjs(time, 'YYYY-MM-DD hh:mm'));
+    formState.time = ref<Dayjs>(dayjs(time, 'YYYY-MM-DD hh:mm')); // 上门时间
   }
   const tech = await httpGet('/tech/select',{})  // 查询技术
   const techs: object[] = []
   for(let i=0; i< tech.length; i++){
     const obj: any = {
       label: tech[i].name,
-      value: tech[i].id
+      value: tech[i].name
     }
-    if(formState.headId + '' === tech[i].id + '') { // 负责人
-      formState.headName = tech[i].name
+    if(formState.headId + '' === tech[i].id + '') { 
+      formState.headName = tech[i].name // 负责人
     }
     techs.push(obj)
   }
-  formState.options = techs // 上门技术 select
-
+  
   const techName = res[0].techNames + ''
   if(techName.includes(',')) {
     const str = techName.split(',');
@@ -129,11 +138,31 @@ onMounted (async function () {
   } else {
     value = ref([res[0].techName]);
   }
-  // formState.techName = res[0].techIds // 上门技术 BUG
+  errorInfo = ref([res[0].headName]);
+
+  formState.dataList = res[0] // 工单List
+  formState.projectId = res[0].projectId //项目ID
+  formState.headId = res[0].headId  // 负责人ID
+  formState.options = techs // 上门技术 主负责人 select
+  formState.techName = res[0].techName // 上门技术 BUG
+  formState.headName = res[0].headName // 主负责人
 })
 
 const resPage = () => {
   router.push({name: 'workSheet'})
+}
+
+const complete = async () => {
+  await httpGet('/worksheet/disabled',{
+    workId: route.query.id
+  })
+}
+
+const disabled = async () => {
+  await httpGet('/worksheet/disabled',{
+    workId: route.query.id,
+    disInfo: formState.disInfo
+  })
 }
 
 interface FormState {

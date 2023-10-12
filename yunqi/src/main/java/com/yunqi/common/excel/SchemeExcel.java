@@ -58,6 +58,7 @@ public class SchemeExcel {
                 }
                 if (Scheme.getProjectId() != null && Scheme.getProductId() != null) {
                     schemeService.insert(Scheme);
+                    schemeService.history(Scheme); // 历史表
                 }
             }
         } catch (Exception e) {

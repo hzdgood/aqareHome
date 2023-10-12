@@ -118,8 +118,8 @@ public class WorkSheetController {
      * type : 类型
      **/
     @CrossOrigin
-    @RequestMapping("/complete")
-    private String complete(
+    @RequestMapping("/computer")
+    private String computer(
             Integer timeId, Integer workId, Integer projectId,
             Integer headId, String updateName, String type
     ) {
@@ -201,11 +201,21 @@ public class WorkSheetController {
                 Writer.setCreateName(updateName);
                 WriterService.insert(Writer); // 新增
             }
+            case "检测" -> { // 验收只能上门类型
+                for (ProductView productView : ProductList) {
+                    Writer Writer = new Writer();
+                    writerId = productView.getId();
+                    Writer.setContribution(productView.getCost() / 2);
+                    Writer.setUpdateName(updateName); // 设置修改人
+                    Writer.setId(writerId); // 设置修改ID
+                    WriterService.simpleWriter(Writer);
+                }
+            }
         }
         // 开始计算负责人部分
         Writer Writer = new Writer();
         if (Objects.equals(type, "交底")) {
-            // 有个小坑
+            // 有个小坑 交底单只能一次
             Writer.setProjectId(projectId); // 项目
             Writer.setTechId(headId); // 负责人
             Writer.setWorkId(workId); // 工单
@@ -224,7 +234,14 @@ public class WorkSheetController {
         }
         WriterService.insertHead(Writer); //负责人插入
         WorkTimeService.complete(timeId, updateName); // 设置工单已完成
-        return "离场成功，请查看核销记录";
+        return "核销计算完成";
+    }
+
+    @CrossOrigin
+    @RequestMapping("/complete")
+    private String complete(Integer workId) {
+        WorkSheetService.complete(workId);
+        return "工单完成";
     }
 
     @CrossOrigin

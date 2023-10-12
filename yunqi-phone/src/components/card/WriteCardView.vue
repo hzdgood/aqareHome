@@ -27,7 +27,7 @@
           </tr>
         </table>
         <div class="buttonPos">
-          <a-button type="primary">报错</a-button>
+          <a-button type="primary" @click="error(data.writerId)">报错</a-button>
         </div>
       </a-card>
     </div>
@@ -35,14 +35,21 @@
 </template>
 
 <script setup lang="ts">
-import { dateFilter } from '../../util/time'
 // 核销卡片
+import { dateFilter } from '../../util/time'
+
+const emit = defineEmits(['toPage','pageReset'])
+
 defineProps({
   data: {
     type: Object,
     default: null
   }
 })
+
+const error = async (writerId: any) => { //核销ID
+  emit('toPage','writerError', { id: writerId })
+}
 
 </script>
 

@@ -11,6 +11,8 @@ public interface SchemeMapper {
 
     void insert(Scheme scheme);
 
+    void history(Scheme scheme);
+
     void update(Scheme scheme);
 
     List<Scheme> selectItem(String itemId);

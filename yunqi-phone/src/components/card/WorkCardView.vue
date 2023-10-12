@@ -117,7 +117,7 @@ const showModal = () => {
 
 const handleOk = async (data: any ) => {
   open.value = false;
-  await httpGet('/workSheet/complete',{
+  await httpGet('/workSheet/computer',{ // 计算核销
     timeId: data.timeId,
     workId: data.workId,
     projectId: data.projectId,

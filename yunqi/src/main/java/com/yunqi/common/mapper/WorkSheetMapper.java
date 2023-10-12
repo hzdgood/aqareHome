@@ -13,5 +13,5 @@ public interface WorkSheetMapper {
 
     void delete(Integer id, String updateName);
 
-    void complete(Integer workId, String techIds);
+    void complete(Integer workId);
 }

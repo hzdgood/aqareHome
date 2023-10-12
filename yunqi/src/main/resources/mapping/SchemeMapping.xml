@@ -26,6 +26,15 @@
             )
     </insert>
 
+    <insert id="history" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        # 方案新增
+        insert into schemehistory (projectId, productId, number, installNumber,
+                debugNumber, notInstalled, unregulated, createName, createTime, itemId) value (
+               #{projectId}, #{productId}, #{number}, #{installNumber},
+               #{debugNumber}, #{notInstalled}, #{unregulated}, '初始化', NOW(), #{itemId}
+            )
+    </insert>
+
     <insert id="update" parameterType="com.yunqi.common.entity.Scheme">
         # 方案修改
         update scheme
