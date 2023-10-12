@@ -32,10 +32,10 @@
       </a-form>
     </a-card>
     <a-modal v-model:open="opens" title="系统提示" @ok="handleOks">
-      <p>请确认提交的数量！</p>
+      <p>请确认核销的数量！</p>
     </a-modal>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
-      <p>该工单已核销完成！</p>
+      <p>核销完成！</p>
     </a-modal>
   </div>
 </template>
@@ -57,21 +57,35 @@ let formObj: any[] = []
 
 onMounted (async function () {
   formObj = [];
-  const res = await httpGet('/view/writer',{ // 查询可核销数据
+
+  const res1 = await httpGet('/view/work',{ // 查询工单
     workId: route.query.id,
-    techId: route.query.techId
+    techIds: techIds,
   })
+
+  formState.projectName = res1[0].projectName;
+  formState.type = res1[0].type;
+  formState.workSummary = res1[0].workSummary
+  formState.visitNode = res1[0].visitNode
+
+  let res: any
+  if(formState.type === '检测') {
+      res = await httpGet('/view/writer',{ // 查询可核销数据
+      workId: route.query.id,
+      techId: route.query.techId,
+      type: '检测' // 只能核销上门类型
+    })
+  } else {
+      res = await httpGet('/view/writer',{ // 查询可核销数据
+      workId: route.query.id,
+      techId: route.query.techId
+    })
+  }
   if(res.length === 0) {
     router.push({name: 'workSheet'})
   } else {
     formState.dataList = res
   }
-  const res1 = await httpGet('/view/work',{
-    workId: route.query.id,
-    techIds: techIds,
-  })
-  formState.projectName = res1[0].projectName;
-  formState.type = res1[0].type;
 })
 
 const resPage = () => {

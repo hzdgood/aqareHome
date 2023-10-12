@@ -47,7 +47,7 @@
           @click="depart(data.timeId)">离开</a-button>
 
         <a-button type="primary" v-show="data.signTime !== null 
-            && ( data.type ==='安装' || data.type ==='调试' ) "
+            && ( data.type ==='安装' || data.type ==='调试' || data.type ==='检测' ) "
           @click="WriterInfo(data.workId, data.techId)">核销</a-button>
 
         <a-button type="primary" v-show="data.status !== '已完成' 

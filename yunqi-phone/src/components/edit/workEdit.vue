@@ -52,7 +52,13 @@
         <tr>
           <td>无效说明</td>
           <td colspan="3">
-            <a-input v-model:value="formState.disInfo"></a-input>
+            <a-select v-model:value="errorInfo" style="width: 100%">
+              <a-option value="客户意向变更">客户意向变更</a-option>
+              <a-option value="用户放弃服务">用户放弃服务</a-option>
+              <a-option value="不符合安装环境">不符合安装环境</a-option>
+              <a-option value="实物与工单不符">实物与工单不符</a-option>
+              <a-option value="用户信息错误">用户信息错误</a-option>
+            </a-select>
           </td>
         </tr>
         <tr>
@@ -84,6 +90,8 @@ import dayjs, { Dayjs } from 'dayjs';
 import { dateFilter } from '../../util/time'
 
 let value = ref<string[]>([]);
+let errorInfo = ref<string[]>([]);
+
 const route = useRoute()
 const open = ref<boolean>(false);
 
