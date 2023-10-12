@@ -6,7 +6,7 @@
           <td width="70px">项目姓名</td>
           <td><a-input :disabled="true" :value="formState.dataList.projectName" style="width: 100%"></a-input></td>
           <td width="70px">负责人</td>
-          <td><a-input :disabled="true" :value="formState.dataList.headName" style="width: 100%"></a-input></td>
+          <td><a-input :disabled="true" :value="formState.dataList.techName" style="width: 100%"></a-input></td>
         </tr>
         <tr>
           <td>目前任务</td>
@@ -20,12 +20,12 @@
           <td>房型</td>
           <td><a-input :disabled="true" :value="formState.dataList.houseState" style="width: 100%"></a-input></td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>房屋情况</td>
           <td><a-input :disabled="true" :value="formState.dataList.situation" style="width: 100%"></a-input></td>
           <td>来源</td>
           <td><a-input :disabled="true" :value="formState.dataList.source" style="width: 100%"></a-input></td>
-        </tr>
+        </tr> -->
         <tr>
           <td>区域</td>
           <td><a-input :disabled="true" :value="formState.dataList.region" style="width: 100%"></a-input></td>
@@ -70,12 +70,12 @@ onMounted (async function () {
   const res = await httpGet('/view/project',{
     projectId: route.query.id
   })
-  formState.dataList = res
+  formState.dataList = res[0]
 
-  const desc = await httpGet('/view/work',{
-    projectId: route.query.id
-  })
-  console.log(desc);
+  // const desc = await httpGet('/view/work',{
+  //   projectId: route.query.id
+  // })
+  // console.log(desc);
   // formState.dataList = res
 })
 

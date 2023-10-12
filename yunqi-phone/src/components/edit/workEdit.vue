@@ -50,6 +50,12 @@
           </td>
         </tr>
         <tr>
+          <td>无效说明</td>
+          <td colspan="3">
+            <a-input v-model:value="formState.disInfo"></a-input>
+          </td>
+        </tr>
+        <tr>
           <td>工单备注</td>
           <td colspan="3">
             <a-input v-model:value="formState.remark"></a-input>
@@ -59,6 +65,7 @@
       <div class="buttonPos">
         <a-button type="primary" v-show="formState.dataList.departureTime === null" @click="submit">提交</a-button>
         <a-button type="primary" @click="resPage()">返回</a-button>
+        <a-button type="primary">无效</a-button>
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
@@ -86,33 +93,35 @@ onMounted (async function () {
     techIds: 1
   })
   formState.dataList = res[0]
+  formState.projectId = res[0].projectId //项目ID
+  formState.headId = res[0].headId  // 负责人ID
 
-  const time = dateFilter(res[0].dateOfVisit,'yyyy-mm-dd hh:mm:ss')
-  const headId = res[0].headId
-  formState.time = ref<Dayjs>(dayjs(time, 'YYYY-MM-DD hh:mm'));
-
-  const tech = await httpGet('/tech/select',{})
+  if(res[0].dateOfVisit !== null ) { // 上门时间
+    const time = dateFilter(res[0].dateOfVisit,'yyyy-mm-dd hh:mm:ss')
+    formState.time = ref<Dayjs>(dayjs(time, 'YYYY-MM-DD hh:mm'));
+  }
+  const tech = await httpGet('/tech/select',{})  // 查询技术
   const techs: object[] = []
   for(let i=0; i< tech.length; i++){
     const obj: any = {
       label: tech[i].name,
       value: tech[i].id
     }
-    if(headId + '' === tech[i].id + '') {
+    if(formState.headId + '' === tech[i].id + '') { // 负责人
       formState.headName = tech[i].name
     }
     techs.push(obj)
   }
-  formState.options = techs
-  
-  const techName = res[0].techName + ''
+  formState.options = techs // 上门技术 select
+
+  const techName = res[0].techNames + ''
   if(techName.includes(',')) {
     const str = techName.split(',');
     value = ref(str);
   } else {
     value = ref([res[0].techName]);
   }
-  formState.techName = res[0].techIds
+  // formState.techName = res[0].techIds // 上门技术 BUG
 })
 
 const resPage = () => {
@@ -126,6 +135,9 @@ interface FormState {
   time: any;
   remark: String;
   headName: String
+  projectId: String
+  headId: String
+  disInfo: String
 }
 
 const formState = reactive<FormState>({
@@ -134,7 +146,10 @@ const formState = reactive<FormState>({
   techName: '',
   time: null,
   remark: '',
-  headName: ''
+  headName: '',
+  projectId: '',
+  headId: '',
+  disInfo: ''
 });
 
 const handleChange = (value: []) => {
@@ -145,6 +160,7 @@ const handleChange = (value: []) => {
 const submit = async () =>  {
   await httpGet('/workSheet/updateInfo',{ //工单修改 上门，技术
     id: route.query.id,
+    projectId: formState.projectId,
     techIds: formState.techName,
     dateOfVisit: formState.time,
     remark: formState.remark,

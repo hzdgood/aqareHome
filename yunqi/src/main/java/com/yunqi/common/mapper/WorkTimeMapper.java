@@ -13,7 +13,7 @@ public interface WorkTimeMapper {
 
     void depart(WorkTime WorkTime);
 
-    void delete(Integer id, String updateName);
+    void delete(Integer workId, String updateName);
 
     void complete(Integer timeId, String updateName);
 }

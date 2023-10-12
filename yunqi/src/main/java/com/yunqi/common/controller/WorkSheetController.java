@@ -115,18 +115,18 @@ public class WorkSheetController {
      * projectId ： 项目
      * headId： 负责人
      * updateName： 更新人
+     * type : 类型
      **/
     @CrossOrigin
     @RequestMapping("/complete")
     private String complete(
             Integer timeId, Integer workId, Integer projectId,
-            Integer headId, String updateName) {
+            Integer headId, String updateName, String type
+    ) {
         ProductView ProductView = new ProductView(); //人员，产品，贡献度view
         ProductView.setWorkId(workId);
         ProductView.setTechIds(updateName); // 分开完成
         List<ProductView> ProductList = ProductViewService.selectByWork(ProductView); // 查询该项目下的核销记录单
-
-        String type = null; // 安装类型
         Integer writerId = null; // 核销ID
         double sumSm = 0; // 负责人安装-调试
         int sumInstall = 0; // 总安装
@@ -136,10 +136,9 @@ public class WorkSheetController {
         SchemeView.setProjectId(projectId);
         List<SchemeView> list = SchemeViewService.selectSum(SchemeView); // 实际总数
 
-        // 当前人员的贡献度
+        // 当前人员的贡献度  经过核销的
         for (ProductView productView : ProductList) {
             Writer Writer = new Writer();
-            type = productView.getType(); // 核销类型
             writerId = productView.getId(); // 核销ID
             Integer install = productView.getCustomerInstall(); // 本次安装
             Integer debug = productView.getCustomerDebug(); // 本次调试
@@ -173,22 +172,34 @@ public class WorkSheetController {
                         sumSm = sumSm + (headDoor * debugRatio * debug) / 2; // 上门 * 调试比例 * 核销数 / 2
                     }
                 }
-                case "交底", "验收" -> {
-                    int num = list.get(0).getNumber() / 100;
-                    if (list.get(0).getNumber() > 100) {
-                        // System.out.printf("" + num);
-                        Writer.setContribution(num * 150.0);
-                    } else {
-                        Writer.setContribution(num * 150.0 + 50.0);
-                    }
-                    Writer.setType(type);
-                    WriterService.simpleWriter(Writer);
+            }
+        }
+        // 无需核销的
+        switch (type) {
+            case "交底", "验收" -> {
+                Writer Writer = new Writer();
+                int num = list.get(0).getNumber() / 100;
+                if (list.get(0).getNumber() > 100) {
+                    Writer.setContribution(num * 150.0);
+                } else {
+                    Writer.setContribution(num * 150.0 + 50.0);
                 }
-                case "售后" -> {
-                    Writer.setType(type);
-                    Writer.setContribution(150.0);
-                    WriterService.simpleWriter(Writer); //单人核销修改
-                }
+                Writer.setProjectId(projectId);
+                Writer.setWorkId(workId);
+                Writer.setTechId(headId);
+                Writer.setType(type);
+                Writer.setCreateName(updateName);
+                WriterService.insert(Writer); // 新增
+            }
+            case "售后" -> {
+                Writer Writer = new Writer();
+                Writer.setProjectId(projectId);
+                Writer.setWorkId(workId);
+                Writer.setTechId(headId);
+                Writer.setType(type);
+                Writer.setContribution(150.0);
+                Writer.setCreateName(updateName);
+                WriterService.insert(Writer); // 新增
             }
         }
         // 开始计算负责人部分

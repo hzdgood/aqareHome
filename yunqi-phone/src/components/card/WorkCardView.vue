@@ -39,22 +39,23 @@
       </table>
       <div class="buttonPos">
         <a-button type="primary" 
-          v-show="data.signTime === null"
+          v-show="data.signTime === null && data.dateOfVisit !== null"
           @click="sign(data.timeId)">签到</a-button>
 
         <a-button type="primary"
           v-show="data.departureTime === null && data.signTime !== null"
           @click="depart(data.timeId)">离开</a-button>
 
-        <a-button type="primary" v-show="data.signTime !== null"
+        <a-button type="primary" v-show="data.signTime !== null 
+            && ( data.type ==='安装' || data.type ==='调试' ) "
           @click="WriterInfo(data.workId, data.techId)">核销</a-button>
 
         <a-button type="primary" v-show="data.status !== '已完成' 
-            && data.signTime !== null"
+            && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
       </div>
     </a-card>
-    <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data.timeId, data.workId, data.projectId, data.headId)">
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data)">
       <p>工单完成后，锁定核销数量！</p>
     </a-modal>
   </div>
@@ -114,13 +115,14 @@ const showModal = () => {
   open.value = true;
 };
 
-const handleOk = async (timeId: number, workId: number, projectId: number, headId: number ) => {
+const handleOk = async (data: any ) => {
   open.value = false;
   await httpGet('/workSheet/complete',{
-    timeId: timeId,
-    workId: workId,
-    projectId: projectId,
-    headId: headId,
+    timeId: data.timeId,
+    workId: data.workId,
+    projectId: data.projectId,
+    headId: data.headId,
+    type: data.type,
     updateName: techIds
   })
   emit('pageReset')

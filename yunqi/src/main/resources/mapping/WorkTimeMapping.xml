@@ -51,6 +51,6 @@
         set disabled   = 'false',
             updateName = #{updateName},
             updateTime = NOW()
-        where id = #{id}
+        where workId = #{workId}
     </delete>
 </mapper>
