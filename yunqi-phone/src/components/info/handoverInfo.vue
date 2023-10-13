@@ -20,12 +20,6 @@
           <td>房型</td>
           <td><a-input :disabled="true" :value="formState.dataList.houseState" style="width: 100%"></a-input></td>
         </tr>
-        <!-- <tr>
-          <td>房屋情况</td>
-          <td><a-input :disabled="true" :value="formState.dataList.situation" style="width: 100%"></a-input></td>
-          <td>来源</td>
-          <td><a-input :disabled="true" :value="formState.dataList.source" style="width: 100%"></a-input></td>
-        </tr> -->
         <tr>
           <td>区域</td>
           <td><a-input :disabled="true" :value="formState.dataList.region" style="width: 100%"></a-input></td>
@@ -47,6 +41,8 @@
           </td>
         </tr>
       </table>
+      
+
       <div class="buttonPos">
         <a-button @click="resPage()">返回</a-button>
       </div>
@@ -72,15 +68,18 @@ onMounted (async function () {
   })
   formState.dataList = res[0]
 
-  // const desc = await httpGet('/view/work',{
-  //   projectId: route.query.id
-  // })
-  // console.log(desc);
-  // formState.dataList = res
+  const work = await httpGet('/view/work',{ // 项目工单查询
+    projectId: route.query.id,
+    techIds: 1,
+    headId: 1
+  })
+  console.log(work);
+  formState.workList = work
 })
 
 interface FormState {
   dataList: any,
+  workList: any,
   options: object
   techName: string;
   time: any;
@@ -91,6 +90,7 @@ interface FormState {
 
 const formState = reactive<FormState>({
   dataList: [],
+  workList: [],
   options: ref<string[]>([]),
   techName: '',
   time: null,

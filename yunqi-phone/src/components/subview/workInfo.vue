@@ -114,6 +114,14 @@ onMounted (async function () {
     techs.push(obj)
   }
   formState.options = techs
+
+  // 发单控制
+  const work = await httpGet('/view/work',{ // 项目工单查询
+    projectId: route.query.id,
+    techIds: 1,
+    headId: 1
+  })
+  console.log(work);
 })
 
 interface FormState {
@@ -149,17 +157,7 @@ const changeHead = (value: []) => {
 };
 
 const onFinish = async () => {
-  const res = await httpGet('/workSheet/insert',{
-    projectId: route.query.id,
-    techIds: formState.techName, // 必须
-    dateOfVisit: formState.time,
-    type: formState.workType,  // 必须
-    remark: formState.remark,
-    headName: formState.headName,
-    schedule: formState.schedule,
-    createName: techId
-  })
-  formState.modalInfo = res
+  formState.modalInfo = '请确认发单内容'
   showModal()
 };
 
@@ -167,9 +165,24 @@ const showModal = () => {
   open.value = true;
 };
 
-const handleOk = () => {
+const handleOk = async () => {
   open.value = false;
-  router.push({name: 'workSheet'})
+  if(formState.modalInfo === '发单完成') {
+    router.push({name: 'workSheet'})
+  } else {
+    const res = await httpGet('/workSheet/insert',{
+      projectId: route.query.id,
+      techIds: formState.techName, // 必须
+      dateOfVisit: formState.time,
+      type: formState.workType,  // 必须
+      remark: formState.remark,
+      headName: formState.headName,
+      schedule: formState.schedule,
+      createName: techId
+    })
+    formState.modalInfo = res
+    showModal()
+  }
 };
 
 const onFinishFailed = () => {

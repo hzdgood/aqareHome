@@ -31,9 +31,6 @@
         </div>
       </a-form>
     </a-card>
-    <a-modal v-model:open="opens" title="系统提示" @ok="handleOks">
-      <p>请确认核销的数量！</p>
-    </a-modal>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
       <p>核销完成！</p>
     </a-modal>
@@ -49,7 +46,6 @@ import { useRoute } from "vue-router";
 import writerTable from './tables/writerTable.vue'
 
 const open = ref<boolean>(false);
-const opens = ref<boolean>(false);
 const techIds = localStorage.getItem('techId')
 const route = useRoute()
 
@@ -118,6 +114,7 @@ interface FormState {
   workSummary: string
   visitNode: string
   dataList: object
+  modalInfo: String
 }
 
 const formState = reactive<FormState>({
@@ -125,11 +122,13 @@ const formState = reactive<FormState>({
   type: '',
   workSummary: '',
   visitNode: '',
-  dataList: []
+  dataList: [],
+  modalInfo: ''
 });
 
 const onFinish = async () => {
-  showModals();
+  formState.modalInfo = '请确认核销内容'
+  showModal();
 };
 
 const onFinishFailed = (errorInfo: any) => {
@@ -140,30 +139,24 @@ const showModal = () => {
   open.value = true;
 };
 
-const showModals = () => {
-  opens.value = true;
-};
-
 const handleOk = async () => {
-  router.push({name: 'workSheet'})
-};
-
-const handleOks = async () => {
-  sumbit()
-};
-
-const sumbit = async () => { 
-  for(let i=0; i < formObj.length; i++){
-    await httpGet('/writer/insert', formObj[i]) // 核销新增
+  open.value = false;
+  if(formState.modalInfo === '核销完成') {
+    router.push({name: 'workSheet'})
+  } else {
+    for(let i=0; i < formObj.length; i++){
+      await httpGet('/writer/insert', formObj[i]) // 核销新增
+    }
+    const res = await httpGet('/workSheet/update', { //工单修改
+      id: route.query.id,
+      workSummary: formState.workSummary, //今日工作总结
+      visitNode: formState.visitNode, //下次上门节点
+      updateName: techIds // 核销人
+    })
+    formState.modalInfo = res
+    showModal()
   }
-  await httpGet('/workSheet/update', { //工单修改
-    id: route.query.id,
-    workSummary: formState.workSummary, //今日工作总结
-    visitNode: formState.visitNode, //下次上门节点
-    updateName: techIds // 核销人
-  })
-  showModal();
-}
+};
 
 </script>
 

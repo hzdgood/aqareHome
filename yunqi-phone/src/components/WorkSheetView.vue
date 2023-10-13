@@ -26,13 +26,13 @@ import { reactive, onMounted  } from 'vue';
 import router from '@/router';
 import { httpGet } from '../config/interFace'
 
-const techIds = localStorage.getItem('techId')
+const techId = localStorage.getItem('techId')
 
 onMounted (async function () {
   const res = await httpGet('/view/work',{
     status: 'true',
-    techIds: techIds,
-    headId: techIds
+    techIds: techId,
+    headId: techId
   })
   formState.dataList = res
 })
@@ -47,8 +47,8 @@ const toPage = (str: any, obj: any) => {
 const pageReset = async () => {
   const res = await httpGet('/view/work',{
     status: 'true',
-    techIds: techIds,
-    headId: techIds
+    techIds: techId,
+    headId: techId
   })
   formState.dataList = res
 }
@@ -66,8 +66,8 @@ const formState = reactive<FormState>({
 const allSeletct = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
-    techIds: techIds,
-    headId: techIds
+    techIds: techId,
+    headId: techId
   })
   formState.dataList = res
 }
@@ -75,8 +75,8 @@ const allSeletct = async () => {
 const projectChange = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
-    techIds: techIds,
-    headId: techIds
+    techIds: techId,
+    headId: techId
   })
   formState.dataList = res
 }
@@ -85,8 +85,8 @@ const onFinish = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
     status: 'true',
-    techIds: techIds,
-    headId: techIds
+    techIds: techId,
+    headId: techId
   })
   formState.dataList = res
 };

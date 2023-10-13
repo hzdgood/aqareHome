@@ -15,7 +15,7 @@
     </a-form>
 
     <div v-for="item in formState.dataList" :key="item">
-      <WriteCardView :data="item"></WriteCardView>
+      <WriteCardView :data="item" @toPage="toPage"></WriteCardView>
     </div>
   </div>
 </template>
@@ -24,6 +24,7 @@
 import WriteCardView from './card/WriteCardView.vue';
 import { reactive, onMounted} from 'vue';
 import { httpGet } from '../config/interFace'
+import router from '@/router';
 
 const techId = localStorage.getItem('techId')
 
@@ -38,6 +39,13 @@ onMounted (async function () {
 interface FormState {
   time: string,
   dataList: object
+}
+
+const toPage = (str: any, obj: any) => {
+  router.push({name: str, query: {
+    id: obj.id,
+    techId: obj.techId
+  }})
 }
 
 const formState = reactive<FormState>({
