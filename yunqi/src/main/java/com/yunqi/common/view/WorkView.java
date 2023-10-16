@@ -7,7 +7,8 @@ public class WorkView {
     private Integer workId;
     private Integer projectId;
     private String techIds; //技术
-    private String headId; //负责人
+    private String headId; //项目负责人
+    private String headName; // 工单负责人
     private String projectName;// 姓名
     private String telephone;// 电话
     private String address; // 地址
@@ -64,6 +65,14 @@ public class WorkView {
 
     public void setHeadId(String headId) {
         this.headId = headId;
+    }
+
+    public String getHeadName() {
+        return headName;
+    }
+
+    public void setHeadName(String headName) {
+        this.headName = headName;
     }
 
     public String getProjectName() {

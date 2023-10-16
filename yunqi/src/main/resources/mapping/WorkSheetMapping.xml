@@ -4,9 +4,9 @@
 <mapper namespace="com.yunqi.common.mapper.WorkSheetMapper">
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         # 新增
-        insert into worksheet (projectId, techIds, dateOfVisit,
+        insert into worksheet (projectId, techIds, dateOfVisit, headName,
                                type, schedule, remark, createName, createTime) value (
-                  #{projectId}, #{techIds}, #{dateOfVisit}, #{type},
+                  #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type},
                   #{schedule}, #{remark}, #{createName}, NOW()
             )
     </insert>
@@ -25,6 +25,7 @@
         # 详情
         update worksheet
         set dateOfVisit = #{dateOfVisit},
+            headName = #{headName},
             techIds     = #{techIds},
             remark      = #{remark},
             updateName  = #{updateName},
@@ -35,7 +36,8 @@
     <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
         # 完成
         update worksheet
-        set updateName = '吴杰',
+        set disabled = 'false',
+            updateName = '吴杰',
             updateTime = NOW()
             where id = #{workId}
     </insert>

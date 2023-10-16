@@ -10,6 +10,7 @@ public class WorkTime {
     private String status;
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
+    private String errorInfo; //无效说明
     private String disabled;
     private String createName;
     private Date createTime;

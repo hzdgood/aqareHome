@@ -15,16 +15,29 @@
           <tr>
             <td>今日工作总结: </td>
             <td>
-              <a-textarea v-model:value="formState.workSummary" placeholder="Basic usage" :rows="4" />
+              <a-textarea v-model:value="formState.workSummary" :rows="4" />
             </td>
           </tr>
           <tr>
             <td>下次上门节点: </td>
             <td>
-              <a-textarea v-model:value="formState.visitNode" placeholder="Basic usage" :rows="4" />
+              <a-textarea v-model:value="formState.visitNode" :rows="4" />
+            </td>
+          </tr>
+          <tr>
+            <td>工作交接: </td>
+            <td>
+              <a-textarea v-model:value="formState.visitNode" :rows="4" />
             </td>
           </tr>
         </table>
+
+        <a-button type="primary">物料核对</a-button>
+        <a-button type="primary">汇报凭证</a-button>
+        <a-button type="primary">核销照片</a-button>
+        <a-button type="primary">签字单</a-button>
+        <a-button type="primary">其他照片</a-button>
+
         <div class="buttonPos">
           <a-button type="primary" html-type="submit">提交</a-button>
           <a-button type="primary" @click="resPage()">返回</a-button>
@@ -46,7 +59,7 @@ import { useRoute } from "vue-router";
 import writerTable from './tables/writerTable.vue'
 
 const open = ref<boolean>(false);
-const techIds = localStorage.getItem('techId')
+const techId = localStorage.getItem('techId')
 const route = useRoute()
 
 let formObj: any[] = []
@@ -56,7 +69,7 @@ onMounted (async function () {
 
   const res1 = await httpGet('/view/work',{ // 查询工单
     workId: route.query.id,
-    techIds: techIds,
+    techIds: route.query.techId,
   })
 
   formState.projectName = res1[0].projectName;
@@ -151,7 +164,7 @@ const handleOk = async () => {
       id: route.query.id,
       workSummary: formState.workSummary, //今日工作总结
       visitNode: formState.visitNode, //下次上门节点
-      updateName: techIds // 核销人
+      updateName: techId // 核销人
     })
     formState.modalInfo = res
     showModal()

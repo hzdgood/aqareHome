@@ -6,6 +6,7 @@ public class WorkSheet {
     private Integer id;
     private Integer projectId;
     private String techIds;
+    private String headName;
     private Date dateOfVisit; // 上门日期
     private String type; //类型
     private String actualWork; // 工时
@@ -43,6 +44,14 @@ public class WorkSheet {
 
     public void setTechIds(String techIds) {
         this.techIds = techIds;
+    }
+
+    public String getHeadName() {
+        return headName;
+    }
+
+    public void setHeadName(String headName) {
+        this.headName = headName;
     }
 
     public Date getDateOfVisit() {

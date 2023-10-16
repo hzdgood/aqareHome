@@ -32,11 +32,12 @@
           <td>主负责人</td>
           <td colspan="3">
             <a-select
+                :disabled="formState.dataList.signTime !== null"
                 v-model:value="headName"
                 style="width: 100%"
                 placeholder="Please select"
                 :options="formState.options"
-                @change="handleChange"
+                @change="changeName"
               ></a-select>
           </td>
         </tr>
@@ -44,12 +45,13 @@
           <td>上门技术</td>
           <td colspan="3">
             <a-select
+                :disabled="formState.dataList.signTime !== null"
                 v-model:value="value"
                 mode="multiple"
                 style="width: 100%"
                 placeholder="Please select"
                 :options="formState.options"
-                @change="handleChange"
+                @change="changeVisit"
               ></a-select>
           </td>
         </tr>
@@ -64,27 +66,27 @@
         <tr>
           <td>无效说明</td>
           <td colspan="3">
-            <a-select v-model:value="errorInfo" style="width: 100%">
-              <a-option value="客户意向变更">客户意向变更</a-option>
-              <a-option value="用户放弃服务">用户放弃服务</a-option>
-              <a-option value="不符合安装环境">不符合安装环境</a-option>
-              <a-option value="实物与工单不符">实物与工单不符</a-option>
-              <a-option value="用户信息错误">用户信息错误</a-option>
+            <a-select v-model:value="errorInfo" style="width: 100%"  @change="changeError"
+              :disabled="formState.dataList.signTime !== null" >
+              <a-select-option value="客户意向变更">客户意向变更</a-select-option>
+              <a-select-option value="用户放弃服务">用户放弃服务</a-select-option>
+              <a-select-option value="不符合安装环境">不符合安装环境</a-select-option>
+              <a-select-option value="实物与工单不符">实物与工单不符</a-select-option>
+              <a-select-option value="用户信息错误">用户信息错误</a-select-option>
             </a-select>
           </td>
         </tr>
         <tr>
-          <td>工单备注</td>
+          <td>工单说明</td>
           <td colspan="3">
-            <a-input v-model:value="formState.remark"></a-input>
+            <a-textarea :rows="4" v-model:value="formState.remark"></a-textarea>
           </td>
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button type="primary" v-show="formState.dataList.departureTime === null" @click="submit">提交</a-button>
+        <a-button type="primary" v-show="formState.dataList.signTime === null" @click="submit">提交</a-button>
         <a-button type="primary" @click="resPage()">返回</a-button>
-        <a-button type="primary" @click="disabled()">无效</a-button>
-        <a-button type="primary" @click="complete()">完结</a-button>
+        <a-button type="primary" v-show="formState.dataList.signTime === null" @click="disabled()">无效</a-button>
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
@@ -108,6 +110,7 @@ let headName = ref<string[]>([]);
 
 const route = useRoute()
 const open = ref<boolean>(false);
+const techId = localStorage.getItem('techId')
 
 onMounted (async function () {
   const res = await httpGet('/view/work',{
@@ -138,7 +141,7 @@ onMounted (async function () {
   } else {
     value = ref([res[0].techName]);
   }
-  errorInfo = ref([res[0].headName]);
+  headName = ref([res[0].headName]);
 
   formState.dataList = res[0] // 工单List
   formState.projectId = res[0].projectId //项目ID
@@ -146,22 +149,19 @@ onMounted (async function () {
   formState.options = techs // 上门技术 主负责人 select
   formState.techName = res[0].techName // 上门技术 BUG
   formState.headName = res[0].headName // 主负责人
+  formState.errorInfo = res[0].errorInfo // 无效说明
+  formState.remark = res[0].remark // 备注
 })
 
 const resPage = () => {
   router.push({name: 'workSheet'})
 }
 
-const complete = async () => {
-  await httpGet('/worksheet/disabled',{
-    workId: route.query.id
-  })
-}
-
 const disabled = async () => {
-  await httpGet('/worksheet/disabled',{
+  await httpGet('/workTime/disabled',{
     workId: route.query.id,
-    disInfo: formState.disInfo
+    errorInfo: formState.errorInfo,
+    updateName: techId
   })
 }
 
@@ -174,7 +174,7 @@ interface FormState {
   headName: String
   projectId: String
   headId: String
-  disInfo: String
+  errorInfo: String
 }
 
 const formState = reactive<FormState>({
@@ -186,21 +186,32 @@ const formState = reactive<FormState>({
   headName: '',
   projectId: '',
   headId: '',
-  disInfo: ''
+  errorInfo: ''
 });
 
-const handleChange = (value: []) => {
+const changeName = (value: []) => {
+  // 有个BUG  
+  formState.headName = `${value}`
+};
+
+const changeVisit = (value: []) => {
   // 有个BUG  
   formState.techName = `${value}`
+};
+
+const changeError = (value: []) => {
+  // 有个BUG  
+  formState.errorInfo = `${value}`
 };
 
 const submit = async () =>  {
   await httpGet('/workSheet/updateInfo',{ //工单修改 上门，技术
     id: route.query.id,
-    projectId: formState.projectId,
     techIds: formState.techName,
+    headName: formState.headName,
     dateOfVisit: formState.time,
     remark: formState.remark,
+    updateName: techId
   })
   showModal()
 }

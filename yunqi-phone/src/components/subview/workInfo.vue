@@ -16,7 +16,7 @@
             </td>
           </tr>
           <tr>
-            <td>技术人员:</td>
+            <td>主负责人:</td>
             <td>
               <a-select
                 v-model:value="headName"
@@ -28,7 +28,7 @@
             </td>
           </tr>
           <tr>
-            <td>技术人员:</td>
+            <td>上门技术:</td>
             <td>
               <a-select
                 v-model:value="value"
@@ -61,9 +61,9 @@
             </td>
           </tr>
           <tr>
-            <td>工单备注:</td>
+            <td>工单说明:</td>
             <td>
-              <a-input style="width: 95%;" v-model:value="formState.remark"></a-input>
+              <a-textarea :rows="4" style="width: 95%;" v-model:value="formState.remark"></a-textarea>
             </td>
           </tr>
         </table>
@@ -176,7 +176,7 @@ const handleOk = async () => {
       dateOfVisit: formState.time,
       type: formState.workType,  // 必须
       remark: formState.remark,
-      headName: formState.headName,
+      headName: formState.headName, // 必须
       schedule: formState.schedule,
       createName: techId
     })

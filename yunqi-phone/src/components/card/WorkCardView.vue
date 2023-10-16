@@ -3,6 +3,7 @@
     <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
+        <a-button :style="style">日志</a-button>
         <a-button :style="style" @click="uploadImg(data.workId)">往期图片</a-button>
       </div>
       <table class="cardTale">
@@ -21,8 +22,12 @@
         <tr>
           <td>装修进度</td>
           <td>{{ data.schedule }}</td>
-          <td>技术人员</td>
+          <td>项目负责</td>
           <td>{{ data.techName }}</td>
+        </tr>
+        <tr>
+          <td>客户地址</td>
+          <td colspan="3">{{ data.address }}</td>
         </tr>
         <tr>
           <td>上门日期</td>
@@ -53,6 +58,8 @@
         <a-button type="primary" v-show="data.status !== '已完成' 
             && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
+
+        <a-button type="primary" v-show="data.status === '已完成'" >完结</a-button>
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data)">
@@ -66,7 +73,7 @@ import { dateFilter } from '../../util/time'
 import { httpGet } from '../../config/interFace'
 import { ref } from 'vue';
 
-const techIds = localStorage.getItem('techId')
+const techId = localStorage.getItem('techId')
 const emit = defineEmits(['toPage','pageReset'])
 const open = ref<boolean>(false);
 
@@ -80,7 +87,7 @@ defineProps({
 const sign = async (id: number) => {
   await httpGet('/workTime/sign',{
     id: id,
-    updateName: techIds
+    updateName: techId
   })
   emit('pageReset')
 }
@@ -88,7 +95,7 @@ const sign = async (id: number) => {
 const depart = async (id: any) => {
   await httpGet('/workTime/depart',{
     id: id,
-    updateName: techIds
+    updateName: techId
   })
   emit('pageReset')
 }
@@ -123,7 +130,7 @@ const handleOk = async (data: any ) => {
     projectId: data.projectId,
     headId: data.headId,
     type: data.type,
-    updateName: techIds
+    updateName: techId
   })
   emit('pageReset')
 };

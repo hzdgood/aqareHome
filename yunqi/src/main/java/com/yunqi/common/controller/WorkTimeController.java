@@ -37,4 +37,11 @@ public class WorkTimeController {
         WorkTimeService.depart(WorkTime);
         return "离开成功";
     }
+
+    @CrossOrigin
+    @RequestMapping("/disabled") // 离开
+    private String disabled(WorkTime WorkTime) {
+        WorkTimeService.disabled(WorkTime);
+        return "离开成功";
+    }
 }

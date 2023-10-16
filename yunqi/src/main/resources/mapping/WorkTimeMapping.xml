@@ -5,10 +5,10 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkTime" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into worktime (workId, projectId, techId, status, createName, createTime) value (
-                                                                                                #{workId}, #{projectId},
-                                                                                                #{techId}, #{status},
-                                                                                                #{createName}, NOW()
-            )
+            #{workId}, #{projectId},
+            #{techId}, #{status},
+            #{createName}, NOW()
+        )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.WorkTime">
@@ -30,7 +30,7 @@
         # 离开
         update worktime
         set departureTime = NOW(),
-            status        = '已结束',
+            status        = '已离场',
             updateName    = #{updateName},
             updateTime    = NOW()
         where id = #{id}
@@ -40,6 +40,16 @@
         # 完成
         update worktime
         set status     = '已完成',
+            updateName = #{updateName},
+            updateTime = NOW()
+        where id = #{timeId}
+    </insert>
+
+    <insert id="disabled" parameterType="com.yunqi.common.entity.WorkSheet">
+        # 完成
+        update worktime
+        set disabled   = 'false',
+            errorInfo = #{errorInfo},
             updateName = #{updateName},
             updateTime = NOW()
         where id = #{timeId}
