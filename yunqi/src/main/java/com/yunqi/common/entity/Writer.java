@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class Writer {
     private Integer id;
-    private Integer techId;
-    private Integer projectId;
-    private Integer productId;
-    private Integer schemeId;
-    private Integer workId;
-    private Integer install;
-    private Integer debug;
-    private Integer sumWork;
-    private String type;
-    private Double contribution;
+    private Integer techId; // 技术
+    private Integer projectId; // 项目
+    private Integer productId; // 产品
+    private Integer schemeId; // 方案
+    private Integer workId; // 工单ID
+    private Integer install; // 调试
+    private Integer debug; // 安装
+    private Integer sumWork; // 总核销
+    private String type; // 类型
+    private Double contribution; // 贡献度
     private String createName;
     private Date createTime;
     private String updateName;

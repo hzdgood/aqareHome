@@ -3,15 +3,15 @@ package com.yunqi.common.view;
 import java.util.Date;
 
 public class DetailView { //核销记录统计
-    private Integer headId;
-    private String techId;
-    private String projectName;
-    private String productName;
-    private String sheetName;
-    private String techName;
-    private String type;
-    private Integer number;
-    private String contribution;
+    private Integer headId; // 负责人
+    private String techId; // 技术
+    private String projectName; // 项目
+    private String productName; // 产品
+    private String sheetName; // 工单名称
+    private String techName; // 技术
+    private String type; //  类型
+    private Integer number; // 数量
+    private String contribution; // 贡献度
     private Date writerTime;
 
     public Integer getHeadId() {

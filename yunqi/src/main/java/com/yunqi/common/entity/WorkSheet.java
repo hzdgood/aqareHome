@@ -12,8 +12,11 @@ public class WorkSheet {
     private String status;
     private String actualWork; // 工时
     private String schedule; //进度
-    private String watermark; //水印图片
-    private String signImg; //签字图片
+    private String writerImg; //核销图片
+    private String reportImg; // 汇报图片
+    private String materialImg; // 物料图片
+    private String otherImg; // 其他图片
+    private String signImg; //签字单图片
     private String disabled; //有效
     private String workSummary; //今日工作总结
     private String visitNode; //下次上门节点
@@ -95,12 +98,36 @@ public class WorkSheet {
         this.schedule = schedule;
     }
 
-    public String getWatermark() {
-        return watermark;
+    public String getWriterImg() {
+        return writerImg;
     }
 
-    public void setWatermark(String watermark) {
-        this.watermark = watermark;
+    public void setWriterImg(String writerImg) {
+        this.writerImg = writerImg;
+    }
+
+    public String getReportImg() {
+        return reportImg;
+    }
+
+    public void setReportImg(String reportImg) {
+        this.reportImg = reportImg;
+    }
+
+    public String getMaterialImg() {
+        return materialImg;
+    }
+
+    public void setMaterialImg(String materialImg) {
+        this.materialImg = materialImg;
+    }
+
+    public String getOtherImg() {
+        return otherImg;
+    }
+
+    public void setOtherImg(String otherImg) {
+        this.otherImg = otherImg;
     }
 
     public String getSignImg() {

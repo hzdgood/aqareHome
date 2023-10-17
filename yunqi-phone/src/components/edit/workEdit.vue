@@ -78,8 +78,10 @@
           </td>
         </tr>
       </table>
+      
       <div style="font-size: 16px; font-weight: bold;">工单明细</div>
       <schemeInfo :data="formState.schemeList"></schemeInfo>
+
       <div class="buttonPos">
         <a-button type="primary" @click="submit">提交</a-button>
         <a-button type="primary" @click="resPage()">返回</a-button>

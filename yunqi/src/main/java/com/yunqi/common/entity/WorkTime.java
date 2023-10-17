@@ -4,13 +4,12 @@ import java.util.Date;
 
 public class WorkTime {
     private Integer id;
-    private Integer workId;
-    private Integer projectId;
-    private String techId;
-    private String status;
+    private Integer workId; // 工单
+    private Integer projectId; // 项目
+    private String techId; // 技术
+    private String status; // 状态
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
-    private String errorInfo; //无效说明
     private String disabled;
     private String createName;
     private Date createTime;

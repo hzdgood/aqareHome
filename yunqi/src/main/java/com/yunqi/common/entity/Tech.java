@@ -6,7 +6,7 @@ public class Tech {
     private String telephone;
     private String status;
     private String position; //职位
-    private String disabled;
+    private String disabled; // 可见
 
     public Integer getId() {
         return id;

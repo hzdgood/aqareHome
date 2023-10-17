@@ -5,7 +5,7 @@ public class Sales {
     private Integer departId; //部门
     private String name;
     private String telephone;
-    private String status;
+    private String status; //状态
 
     public Integer getId() {
         return id;

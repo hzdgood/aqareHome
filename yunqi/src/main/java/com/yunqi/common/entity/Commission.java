@@ -17,7 +17,7 @@ public class Commission {
     private double headDisclose;//负责人-交底
     private double installContribute;//安装贡献
     private double debugContribute;//调试贡献
-    private String itemId;
+    private String itemId; // 伙伴云ID
     private String createName;
     private Date createTime;
     private String updateName;
