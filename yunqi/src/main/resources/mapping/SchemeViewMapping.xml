@@ -7,6 +7,12 @@
         select *
         from schemeView
         where projectId = #{projectId}
+        <if test="notInstalled!=null">
+            and notInstalled > 0
+        </if>
+        <if test="unregulated!=null">
+            and unregulated > 0 or notInstalled > 0
+        </if>
     </select>
 
     <select id="selectSum" resultType="com.yunqi.common.view.SchemeView">

@@ -69,9 +69,7 @@ onMounted (async function () {
   formState.dataList = res[0]
 
   const work = await httpGet('/view/work',{ // 项目工单查询
-    projectId: route.query.id,
-    techIds: 1,
-    headId: 1
+    projectId: route.query.id
   })
   console.log(work);
   formState.workList = work

@@ -68,8 +68,7 @@ onMounted (async function () {
   formObj = [];
 
   const res1 = await httpGet('/view/work',{ // 查询工单
-    workId: route.query.id,
-    techIds: route.query.techId,
+    workId: route.query.id
   })
 
   formState.projectName = res1[0].projectName;

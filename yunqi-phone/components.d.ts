@@ -29,6 +29,8 @@ declare module 'vue' {
     ProjectView: typeof import('./src/components/ProjectView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Scheme: typeof import('./src/components/edit/info/scheme.vue')['default']
+    SchemeInfo: typeof import('./src/components/edit/info/schemeInfo.vue')['default']
     SchememInfo: typeof import('./src/components/info/schememInfo.vue')['default']
     SchemeTable: typeof import('./src/components/info/subTable/schemeTable.vue')['default']
     UploadImg: typeof import('./src/components/edit/uploadImg.vue')['default']

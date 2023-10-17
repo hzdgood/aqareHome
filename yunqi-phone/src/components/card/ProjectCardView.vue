@@ -28,11 +28,14 @@
           <td colspan="3">{{data.telephone}}</td>
         </tr>
       </table>
-      <div class="buttonPos" v-show="data.schemeId !== null">
+      <div class="buttonPos" >
         <a-button @click="sendWork(data.projectId)" type="primary" 
           v-show="techId === '1' || data.techId + '' === '' + techId"
-        >发单</a-button>
-        <a-button @click="schemeInfo(data.projectId)" type="primary">方案</a-button>
+          >发单</a-button>
+        <a-button 
+          v-show="data.schemeId !== null" 
+          @click="schemeInfo(data.projectId)" 
+          type="primary">方案</a-button>
       </div>
     </a-card>
   </div>

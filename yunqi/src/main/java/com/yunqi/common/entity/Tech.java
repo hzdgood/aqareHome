@@ -6,6 +6,7 @@ public class Tech {
     private String telephone;
     private String status;
     private String position; //职位
+    private String disabled;
 
     public Integer getId() {
         return id;
@@ -45,5 +46,13 @@ public class Tech {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
     }
 }

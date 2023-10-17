@@ -57,7 +57,6 @@ const onFinish = async (values: any) => {
   console.log('Success:', values);
   const res = await httpGet('/view/work',{
     writerTime: formState.time,
-    techId: techId,
     headId: techId
   })
   formState.dataList = res

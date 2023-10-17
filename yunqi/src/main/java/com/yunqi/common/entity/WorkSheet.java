@@ -9,6 +9,7 @@ public class WorkSheet {
     private String headName;
     private Date dateOfVisit; // 上门日期
     private String type; //类型
+    private String status;
     private String actualWork; // 工时
     private String schedule; //进度
     private String watermark; //水印图片
@@ -68,6 +69,14 @@ public class WorkSheet {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getActualWork() {

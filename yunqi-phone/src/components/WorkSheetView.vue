@@ -27,14 +27,22 @@ import router from '@/router';
 import { httpGet } from '../config/interFace'
 
 const techId = localStorage.getItem('techId')
+const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {
-  const res = await httpGet('/view/work',{
-    status: 'true',
-    techIds: techId,
-    headId: techId
+  const res = await httpGet('/view/work',{ // 技术
+    techId: loginName,
+    status: 'true' // 去除 已完成工单
   })
   formState.dataList = res
+
+  const res1 = await httpGet('/view/work',{ // 负责人
+    headId: techId,
+    status: 'true' // 去除 已完成工单
+  })
+  if(res1.length > 0) {
+    formState.dataList.push(res1[0])
+  }
 })
 
 const toPage = (str: any, obj: any) => {
@@ -46,11 +54,18 @@ const toPage = (str: any, obj: any) => {
 
 const pageReset = async () => {
   const res = await httpGet('/view/work',{
-    status: 'true',
-    techIds: techId,
-    headId: techId
+    techId: loginName,
+    status: 'true'
   })
   formState.dataList = res
+
+  const res1 = await httpGet('/view/work',{
+    headId: techId,
+    status: 'true'
+  })
+  if(res1.length > 0) {
+    formState.dataList.push(res1[0])
+  }
 }
 
 interface FormState {
@@ -65,30 +80,50 @@ const formState = reactive<FormState>({
 
 const allSeletct = async () => {
   const res = await httpGet('/view/work',{
-    projectName: formState.projectName,
-    techIds: techId,
-    headId: techId
+    techId: loginName
   })
   formState.dataList = res
+
+  const res1 = await httpGet('/view/work',{
+    headId: techId,
+  })
+  if(res1.length > 0) {
+    formState.dataList.push(res1[0])
+  }
 }
 
 const projectChange = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
-    techIds: techId,
-    headId: techId
+    techId: loginName
   })
   formState.dataList = res
+
+  const res1 = await httpGet('/view/work',{
+    projectName: formState.projectName,
+    headId: techId,
+  })
+  if(res1.length > 0) {
+    formState.dataList.push(res1[0])
+  }
 }
 
 const onFinish = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
-    status: 'true',
-    techIds: techId,
-    headId: techId
+    techId: loginName,
+    status: 'true'
   })
   formState.dataList = res
+
+  const res1 = await httpGet('/view/work',{
+    projectName: formState.projectName,
+    headId: techId,
+    status: 'true'
+  })
+  if(res1.length > 0) {
+    formState.dataList.push(res1[0])
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {

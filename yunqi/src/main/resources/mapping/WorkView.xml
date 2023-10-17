@@ -6,8 +6,8 @@
         # 工单查询
         select *
         from workView w where 1 = 1 and disabled is null
-        <if test="techIds!=null">
-            and techId like '%${techIds}%'
+        <if test="techId!=null">
+            and techId = #{techId}
         </if>
         <if test="projectId!=null">
             and projectId like '%${projectId}%'
@@ -27,7 +27,7 @@
             and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
         </if>
         <if test="headId!=null">
-            or headId = #{headId}
+            and headId = #{headId}
         </if>
         order by dateOfVisit asc
     </select>

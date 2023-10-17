@@ -1,12 +1,16 @@
 <template>
-  <div class="cardDiv">
+  <div class="cardDiv"> <!--  -->
     <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
-        <a-button :style="style">日志</a-button>
+        <a-button :style="style" 
+          v-show="data.techName === loginName || data.headName === loginName"
+          @click="workEdit(data.workId)">详情</a-button>
+        <a-button :style="style"
+          v-show="data.techName === loginName"
+          >日志</a-button>
         <a-button :style="style" @click="uploadImg(data.workId)">往期图片</a-button>
       </div>
-      <table class="cardTale">
+      <table class="cardTale" >  
         <tr>
           <td>项目姓名</td>
           <td>{{ data.projectName }}</td>
@@ -16,14 +20,14 @@
         <tr>
           <td>项目电话</td>
           <td>{{ data.telephone }}</td>
-          <td>工单状态</td>
-          <td>{{ data.status }}</td>
+          <td>项目负责</td>
+          <td>{{ data.techName }}</td>
         </tr>
         <tr>
           <td>装修进度</td>
           <td>{{ data.schedule }}</td>
-          <td>项目负责</td>
-          <td>{{ data.techName }}</td>
+          <td v-show="loginName === data.techId">工单状态</td>
+          <td v-show="loginName === data.techId">{{ data.status }}</td>
         </tr>
         <tr>
           <td>客户地址</td>
@@ -42,7 +46,7 @@
           <td colspan="3">{{ dateFilter(data.departureTime,'yyyy-mm-dd hh:mm:ss') }}</td>
         </tr>
       </table>
-      <div class="buttonPos">
+      <div class="buttonPos" v-show="loginName === data.techId">
         <a-button type="primary" 
           v-show="data.signTime === null && data.dateOfVisit !== null"
           @click="sign(data.timeId)">签到</a-button>
@@ -55,8 +59,8 @@
             && ( data.type ==='安装' || data.type ==='调试' || data.type ==='检测' ) "
           @click="WriterInfo(data.workId, data.techId)">核销</a-button>
 
-        <a-button type="primary" v-show="data.status !== '已完成' 
-            && data.departureTime !== null" 
+        <a-button type="primary" 
+          v-show="data.status !== '已完成' && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
 
         <a-button type="primary" v-show="data.status === '已完成'" >完结</a-button>
@@ -74,6 +78,8 @@ import { httpGet } from '../../config/interFace'
 import { ref } from 'vue';
 
 const techId = localStorage.getItem('techId')
+const loginName = localStorage.getItem('loginName')
+
 const emit = defineEmits(['toPage','pageReset'])
 const open = ref<boolean>(false);
 

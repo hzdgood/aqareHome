@@ -117,9 +117,7 @@ onMounted (async function () {
 
   // 发单控制
   const work = await httpGet('/view/work',{ // 项目工单查询
-    projectId: route.query.id,
-    techIds: 1,
-    headId: 1
+    projectId: route.query.id
   })
   console.log(work);
 })

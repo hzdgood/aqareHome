@@ -5,7 +5,7 @@
     <select id="select" resultType="com.yunqi.common.entity.Tech">
         # 技术
         select *
-        from tech
+        from tech where disabled is null
     </select>
 
     <select id="selectName" resultType="com.yunqi.common.entity.Tech">

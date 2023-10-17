@@ -15,7 +15,8 @@ public class WorkView {
     private String techNames; // 技术
     private String salesName; // 销售
     private Date dateOfVisit; // 上门日期
-    private String status;
+    private String workStatus;
+    private String status; // 工单状态
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
     private String techId;
@@ -121,6 +122,14 @@ public class WorkView {
 
     public void setDateOfVisit(Date dateOfVisit) {
         this.dateOfVisit = dateOfVisit;
+    }
+
+    public String getWorkStatus() {
+        return workStatus;
+    }
+
+    public void setWorkStatus(String workStatus) {
+        this.workStatus = workStatus;
     }
 
     public String getStatus() {
