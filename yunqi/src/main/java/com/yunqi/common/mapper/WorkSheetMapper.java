@@ -11,6 +11,10 @@ public interface WorkSheetMapper {
 
     void updateInfo(WorkSheet WorkSheet);
 
+    void updatePerson(WorkSheet WorkSheet);
+
+    void updateHead(WorkSheet WorkSheet);
+
     void delete(Integer id, String updateName);
 
     void complete(Integer workId);

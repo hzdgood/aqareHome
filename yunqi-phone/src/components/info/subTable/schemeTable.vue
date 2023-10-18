@@ -20,7 +20,7 @@
         </tr>
       </table>
       <div class="buttonPos">
-        <a-button type="primary">PDF下载</a-button>
+        <!-- <a-button type="primary">PDF下载</a-button> -->
         <a-button type="primary" @click="resPage()">返回</a-button>
       </div>
     </a-card>

@@ -11,11 +11,6 @@
         )
     </insert>
 
-    <insert id="update" parameterType="com.yunqi.common.entity.WorkTime">
-        # 详情
-
-    </insert>
-
     <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
         # 签到
         update worktime
@@ -40,16 +35,7 @@
         # 完成
         update worktime
         set status     = '已完成',
-            updateName = #{updateName},
-            updateTime = NOW()
-        where id = #{timeId}
-    </insert>
-
-    <insert id="disabled" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 完成
-        update worktime
-        set disabled   = 'false',
-            errorInfo = #{errorInfo},
+            writerTime = NOW(),
             updateName = #{updateName},
             updateTime = NOW()
         where id = #{timeId}
@@ -61,6 +47,6 @@
         set disabled   = 'false',
             updateName = #{updateName},
             updateTime = NOW()
-        where workId = #{workId}
+        where id = #{id}
     </delete>
 </mapper>

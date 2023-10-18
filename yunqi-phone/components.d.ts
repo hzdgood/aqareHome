@@ -25,6 +25,7 @@ declare module 'vue' {
     MeasureCardView: typeof import('./src/components/card/MeasureCardView.vue')['default']
     MeasureInfo: typeof import('./src/components/subview/measureInfo.vue')['default']
     MeasureView: typeof import('./src/components/MeasureView.vue')['default']
+    PersonEdit: typeof import('./src/components/edit/personEdit.vue')['default']
     ProjectCardView: typeof import('./src/components/card/ProjectCardView.vue')['default']
     ProjectView: typeof import('./src/components/ProjectView.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -30,13 +30,11 @@ public class WorkTimeService {
         WorkTimeMapper.depart(WorkTime);
     }
 
-    public void disabled(WorkTime WorkTime) { WorkTimeMapper.disabled(WorkTime); }
-
     public void delete(Integer id, String updateName) {
         WorkTimeMapper.delete(id, updateName);
     }
 
-    public void complete(Integer workId, String updateName) {
-        WorkTimeMapper.complete(workId, updateName);
+    public void complete(Integer id, String updateName) {
+        WorkTimeMapper.complete(id, updateName);
     }
 }

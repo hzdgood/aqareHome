@@ -6,19 +6,20 @@ public class WorkView {
     private Integer timeId;
     private Integer workId;
     private Integer projectId;
-    private String techIds; //技术
+    private String techIds; //单个技术
     private String headId; //项目负责人
     private String headName; // 工单负责人
     private String projectName;// 姓名
     private String telephone;// 电话
     private String address; // 地址
-    private String techNames; // 技术
+    private String techNames; // 多个技术
     private String salesName; // 销售
     private Date dateOfVisit; // 上门日期
     private String workStatus; // 工单状态
     private String status; // 个人状态
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
+    private Date writerTime; //核销时间
     private String techId;
     private String techName; // 技术
     private String type; //类型
@@ -154,6 +155,14 @@ public class WorkView {
 
     public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public Date getWriterTime() {
+        return writerTime;
+    }
+
+    public void setWriterTime(Date writerTime) {
+        this.writerTime = writerTime;
     }
 
     public String getTechId() {

@@ -11,7 +11,7 @@
             <tr>
               <td width="70px">项目姓名</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :disabled="true" style="width: 95%;"></a-input>
               </td>
               <td width="80px">区域</td>
               <td>

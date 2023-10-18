@@ -10,6 +10,7 @@ public class WorkTime {
     private String status; // 状态
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
+    private Date writerTime; // 核销时间
     private String disabled;
     private String createName;
     private Date createTime;
@@ -70,6 +71,14 @@ public class WorkTime {
 
     public void setDepartureTime(Date departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public Date getWriterTime() {
+        return writerTime;
+    }
+
+    public void setWriterTime(Date writerTime) {
+        this.writerTime = writerTime;
     }
 
     public String getDisabled() {

@@ -61,7 +61,6 @@ public class WorkSheetController {
     private String insert(WorkSheet WorkSheet) {
         // 新增工单
         WorkSheetService.insert(WorkSheet);
-        // System.out.println(WorkSheet.getId() + "");
         // 分别签到离开 插入个人工单表
         WorkTime WorkTime = new WorkTime();
         insertSimpleWork(WorkSheet, WorkTime);
@@ -100,13 +99,20 @@ public class WorkSheetController {
     @CrossOrigin
     @RequestMapping("/updateInfo") //工单修改
     private String updateInfo(WorkSheet WorkSheet) {
-        // techIds 有坑，处理
-        WorkTime WorkTime = new WorkTime();
-        // 删除个人工单数据
-        WorkTimeService.delete(WorkSheet.getId(), WorkSheet.getUpdateName());
-        // 插入新的工单数据
-        insertSimpleWork(WorkSheet, WorkTime);
         WorkSheetService.updateInfo(WorkSheet);
+        return "修改完成";
+    }
+    @CrossOrigin
+    @RequestMapping("/updatePerson") //工单修改 上门技术
+    private String updatePerson(WorkSheet WorkSheet) {
+        WorkSheetService.updateInfo(WorkSheet);
+        return "修改完成";
+    }
+
+    @CrossOrigin
+    @RequestMapping("/updateHead") //工单修改 负责人
+    private String updateHead(WorkSheet WorkSheet) {
+        WorkSheetService.updateHead(WorkSheet);
         return "修改完成";
     }
 

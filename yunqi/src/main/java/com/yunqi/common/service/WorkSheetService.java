@@ -26,6 +26,14 @@ public class WorkSheetService {
         WorkSheetMapper.updateInfo(WorkSheet);
     }
 
+    public void updatePerson(WorkSheet WorkSheet) {
+        WorkSheetMapper.updatePerson(WorkSheet);
+    }
+
+    public void updateHead(WorkSheet WorkSheet) {
+        WorkSheetMapper.updateHead(WorkSheet);
+    }
+
     public void delete(Integer id, String updateName) {
         WorkSheetMapper.delete(id, updateName);
     }

@@ -18,10 +18,17 @@ public class WorkTimeController {
     }
 
     @CrossOrigin
+    @RequestMapping("/insert") //
+    private String insert(WorkTime WorkTime) {
+        WorkTimeService.insert(WorkTime);
+        return "新增成功";
+    }
+
+    @CrossOrigin
     @RequestMapping("/update") //
     private String update(WorkTime WorkTime) {
         WorkTimeService.update(WorkTime);
-        return "签到成功";
+        return "修改成功";
     }
 
     @CrossOrigin
@@ -39,9 +46,9 @@ public class WorkTimeController {
     }
 
     @CrossOrigin
-    @RequestMapping("/disabled") // 离开
-    private String disabled(WorkTime WorkTime) {
-        WorkTimeService.disabled(WorkTime);
-        return "离开成功";
+    @RequestMapping("/delete") // 删除
+    private String delete(WorkTime WorkTime) {
+        WorkTimeService.delete(WorkTime.getWorkId(), WorkTime.getUpdateName());
+        return "删除成功";
     }
 }

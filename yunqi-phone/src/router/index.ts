@@ -67,6 +67,10 @@ const router = createRouter({
           path: '/handoverInfo',
           name: 'handoverInfo',
           component: () => import('../components/info/handoverInfo.vue')
+        },{
+          path: '/personEdit',
+          name: 'personEdit',
+          component: () => import('../components/edit/personEdit.vue')
         }
       ]
     }

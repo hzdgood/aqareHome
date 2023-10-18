@@ -7,8 +7,8 @@
           @click="workEdit(data.workId)">详情</a-button>
         <a-button :style="style"
           v-show="data.techName === loginName"
-          >日志</a-button>
-        <a-button :style="style" @click="uploadImg(data.workId)">往期图片</a-button>
+          @click="personEdit(data.workId)">日志</a-button>
+        <!-- <a-button :style="style" @click="uploadImg(data.workId)">往期图片</a-button> -->
       </div>
       <table class="cardTale" >  
         <tr>
@@ -111,8 +111,6 @@ const CompleteInfo = async () => {
 }
 
 const WriterInfo = (id: any, techId:any) => {
-  console.log(techId);
-  
   emit('toPage','subWriter', { id: id, techId: techId })
 }
 
@@ -120,9 +118,13 @@ const workEdit = (id: any) => {
   emit('toPage','workEdit', { id: id })
 }
 
-const uploadImg = (id: any) => {
-  emit('toPage','uploadImg', { id: id })
+const personEdit = (id: any) => {
+  emit('toPage','personEdit', { id: id })
 }
+
+// const uploadImg = (id: any) => {
+//   emit('toPage','uploadImg', { id: id })
+// }
 
 const showModal = () => {
   open.value = true;
