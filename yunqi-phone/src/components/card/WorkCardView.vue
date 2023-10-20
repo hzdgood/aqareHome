@@ -62,7 +62,6 @@
         <a-button type="primary" 
           v-show="data.status !== '已完成' && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
-
         <a-button type="primary" v-show="data.status === '已完成'" >完结</a-button>
       </div>
     </a-card>

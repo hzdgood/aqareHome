@@ -6,8 +6,11 @@
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit, headName,
                                type, schedule, remark, createName, createTime) value (
-                  #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type},
-                  #{schedule}, #{remark}, #{createName}, NOW()
+                                                                                      #{projectId}, #{techIds},
+                                                                                      #{dateOfVisit}, #{headName},
+                                                                                      #{type},
+                                                                                      #{schedule}, #{remark},
+                                                                                      #{createName}, NOW()
             )
     </insert>
 
@@ -34,28 +37,28 @@
     <insert id="updatePerson" parameterType="com.yunqi.common.entity.WorkSheet">
         # 修改上门人员
         update worksheet
-        set techIds = #{techIds},
-            updateName  = #{updateName},
-            updateTime  = NOW()
+        set techIds    = #{techIds},
+            updateName = #{updateName},
+            updateTime = NOW()
         where id = #{id}
     </insert>
 
     <insert id="updateHead" parameterType="com.yunqi.common.entity.WorkSheet">
         # 修改工单负责人
         update worksheet
-        set headName = #{headName},
-            updateName  = #{updateName},
-            updateTime  = NOW()
+        set headName   = #{headName},
+            updateName = #{updateName},
+            updateTime = NOW()
         where id = #{id}
     </insert>
 
     <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
         # 完结
         update worksheet
-        set disabled = 'false',
+        set disabled   = 'false',
             updateName = '吴杰',
             updateTime = NOW()
-            where id = #{workId}
+        where id = #{workId}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">

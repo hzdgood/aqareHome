@@ -11,67 +11,67 @@
             <tr>
               <td width="70px">项目姓名</td>
               <td>
-                <a-input :disabled="true" style="width: 95%;"></a-input>
+                <a-input :disabled="true" :value="formState.projectName" style="width: 95%;"></a-input>
               </td>
               <td width="80px">区域</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>电机型号</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>轨道类型</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>安装方式</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>数量</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>开合方式</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>电源位置</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>窗帘盒宽</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>安装面材质</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>预留位置</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>扣减说明</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>备注</td>
               <td colspan="3">
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
@@ -80,14 +80,12 @@
             </tr>
           </table>
         </div>
-
-
         <div v-show="formState.formDiv2">
           <table class="cardTale">
             <tr>
               <td width="70px">项目姓名</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :disabled="true" :value="formState.projectName" style="width: 95%;"></a-input>
               </td>
               <td width="90px">区域</td>
               <td>
@@ -97,57 +95,57 @@
             <tr>
               <td>卷帘方案</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>长度</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>高度</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>安装面宽度</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>安装方式</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>扣减说明</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>数量</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>安装面材质</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>电源位置</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>需要罩壳</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>备注</td>
               <td colspan="3">
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
@@ -171,13 +169,19 @@ import router from '@/router';
 import { reactive } from 'vue';
 
 interface FormState {
-  formDiv1: boolean;
-  formDiv2: boolean;
+  formDiv1: boolean
+  formDiv2: boolean
+  projectName: string
+  area: string,
+  number: string
 }
 
 const formState = reactive<FormState>({
   formDiv1: true,
   formDiv2: false,
+  projectName: '',
+  area: '',
+  number: ''
 });
 
 const resPage = () => {

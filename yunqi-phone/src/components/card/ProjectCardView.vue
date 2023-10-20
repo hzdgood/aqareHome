@@ -3,6 +3,7 @@
     <a-card :title="data.projectName +'&nbsp;&nbsp;'+  data.schedule" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="handoverInfo(data.projectId)">详情</a-button>
+        <a-button :style="style" @click="measureInfo(data.projectId)">新增测量单</a-button>
       </div>
       <table class="cardTale">
         <tr>
@@ -55,6 +56,10 @@ const emit = defineEmits(['toPage'])
 
 const handoverInfo = (id: any) => {
   emit('toPage','handoverInfo', id)
+}
+
+const measureInfo = (id: any) => {
+  emit('toPage','measureInfo', id)
 }
 
 const sendWork = (id: any) => {
