@@ -1,0 +1,21 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.common.mapper.OpenMeasureMapper">
+    <select id="select" resultType="com.yunqi.common.entity.OpenMeasure">
+        select *
+        from openMeasure
+    </select>
+
+    <insert id="insert" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
+
+    </insert>
+
+    <insert id="update" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
+
+    </insert>
+
+    <delete id="delete" parameterType="com.yunqi.common.entity.OpenMeasure">
+
+    </delete>
+</mapper>

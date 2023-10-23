@@ -155,7 +155,7 @@
           </table>
         </div>
         <div class="buttonPos">
-          <a-button type="primary">提交</a-button>
+          <a-button type="primary" @click="submit">提交</a-button>
           <a-button type="primary" @click="resPage()">返回</a-button>
         </div>
       </a-card>
@@ -167,6 +167,10 @@
 //  测量
 import router from '@/router';
 import { reactive } from 'vue';
+import { httpGet } from '../../config/interFace'
+import { useRoute } from "vue-router";
+
+const route = useRoute()
 
 interface FormState {
   formDiv1: boolean
@@ -186,6 +190,20 @@ const formState = reactive<FormState>({
 
 const resPage = () => {
   router.push({name: 'project'})
+}
+
+const submit = async () => {
+  if(formState.formDiv1) {
+    const res = await httpGet('/measuer/add',{
+    id: route.query.id
+  })
+  console.log(res);
+  } else if (formState.formDiv2) {
+    const res = await httpGet('/measuer/add',{
+    id: route.query.id
+  })
+  console.log(res);
+  }
 }
 
 const check1 = () => {
