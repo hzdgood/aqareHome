@@ -21,17 +21,17 @@
             <tr>
               <td>电机型号</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.motorModel" style="width: 95%;"></a-input>
               </td>
               <td>轨道类型</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.trackType" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>安装方式</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.installMethod" style="width: 95%;"></a-input>
               </td>
               <td>数量</td>
               <td>
@@ -41,37 +41,37 @@
             <tr>
               <td>开合方式</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.openMethod" style="width: 95%;"></a-input>
               </td>
               <td>电源位置</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.powerPosition" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>窗帘盒宽</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.boxWidth" style="width: 95%;"></a-input>
               </td>
               <td>安装面材质</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.surfaceMaterial" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>预留位置</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.placeholder" style="width: 95%;"></a-input>
               </td>
               <td>扣减说明</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.deductionInfo" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>备注</td>
               <td colspan="3">
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.remark" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
@@ -89,37 +89,37 @@
               </td>
               <td width="90px">区域</td>
               <td>
-                <a-input style="width: 95%;"></a-input>
+                <a-input :value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>卷帘方案</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.rollingScheme" style="width: 95%;"></a-input>
               </td>
               <td>长度</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.length" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>高度</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.high" style="width: 95%;"></a-input>
               </td>
               <td>安装面宽度</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.surfaceWidth" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>安装方式</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.installMethod" style="width: 95%;"></a-input>
               </td>
               <td>扣减说明</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.deductionInfo" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
@@ -129,23 +129,23 @@
               </td>
               <td>安装面材质</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.surfaceMaterial" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>电源位置</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.powerPosition" style="width: 95%;"></a-input>
               </td>
               <td>需要罩壳</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.cover" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>备注</td>
               <td colspan="3">
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input :value="formState.remark" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
@@ -177,7 +177,22 @@ interface FormState {
   formDiv2: boolean
   projectName: string
   area: string,
-  number: string
+  motorModel: string,
+  trackType: string,
+  installMethod: string,
+  number: string,
+  openMethod: string,
+  powerPosition: string,
+  boxWidth: string,
+  surfaceMaterial: string,
+  placeholder: string,
+  deductionInfo: string 
+  remark: string,
+  rollingScheme: string,
+  length: string,
+  high: string,
+  surfaceWidth: string,
+  cover: string
 }
 
 const formState = reactive<FormState>({
@@ -185,7 +200,22 @@ const formState = reactive<FormState>({
   formDiv2: false,
   projectName: '',
   area: '',
-  number: ''
+  motorModel: '',
+  trackType: '',
+  installMethod: '',
+  number: '',
+  openMethod: '',
+  powerPosition: '',
+  boxWidth: '',
+  surfaceMaterial: '',
+  placeholder: '',
+  deductionInfo: '',
+  remark: '',
+  rollingScheme: '',
+  length: '',
+  high: '',
+  surfaceWidth: '',
+  cover: ''
 });
 
 const resPage = () => {
@@ -194,15 +224,39 @@ const resPage = () => {
 
 const submit = async () => {
   if(formState.formDiv1) {
-    const res = await httpGet('/measuer/add',{
-    id: route.query.id
-  })
-  console.log(res);
+    const res = await httpGet('/measuer/addOpen',{
+      projectId: route.query.id,
+      area: formState.area,
+      motorModel: formState.motorModel,
+      trackType: formState.trackType,
+      installMethod: formState.installMethod,
+      number: formState.number,
+      openMethod: formState.openMethod,
+      powerPosition: formState.powerPosition,
+      boxWidth: formState.boxWidth,
+      surfaceMaterial: formState.surfaceMaterial,
+      placeholder: formState.placeholder,
+      deductionInfo: formState.deductionInfo,
+      remark: formState.remark
+    })
+    console.log(res);
   } else if (formState.formDiv2) {
-    const res = await httpGet('/measuer/add',{
-    id: route.query.id
-  })
-  console.log(res);
+    const res = await httpGet('/measuer/addRoller',{
+      projectId: route.query.id,
+      area: formState.area,
+      rollingScheme: formState.rollingScheme,
+      length: formState.length,
+      high: formState.high,
+      surfaceWidth: formState.surfaceWidth,
+      installMethod: formState.installMethod,
+      deductionInfo: formState.deductionInfo,
+      number: formState.number,
+      surfaceMaterial: formState.surfaceMaterial,
+      powerPosition: formState.powerPosition,
+      cover: formState.cover,
+      remark: formState.remark
+    })
+    console.log(res);
   }
 }
 

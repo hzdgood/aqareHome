@@ -8,7 +8,13 @@
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
-
+        insert into openMeasure (
+            projectId, area, motorModel, trackType, installMethod, number,
+            openMethod, powerPosition, boxWidth, surfaceMaterial, placeholder, deductionInfo
+        ) value (
+            #{projectId}, #{area}, #{motorModel}, #{trackType}, #{installMethod}, #{number},
+            #{openMethod}, #{powerPosition}, #{boxWidth}, #{surfaceMaterial}, #{placeholder}, #{deductionInfo}
+        )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
@@ -16,6 +22,6 @@
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.OpenMeasure">
-
+        update openMeasure set disabled = false where id = #{id}
     </delete>
 </mapper>

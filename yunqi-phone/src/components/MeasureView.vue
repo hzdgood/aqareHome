@@ -25,8 +25,15 @@
 // 测量 开合 卷帘  内容
 import router from '@/router';
 import MeasureCardView from './card/MeasureCardView.vue'
-import { reactive } from 'vue';
+import { reactive, onMounted } from 'vue';
+import { httpGet } from '../config/interFace'
 import { Dayjs } from 'dayjs'
+
+onMounted (async function () {
+  const res = await httpGet('/measuer/selectOpen',{
+  })
+  formState.dataList = res
+})
 
 interface FormState {
   dataList: any
@@ -45,7 +52,13 @@ const toPage = (str: any, id: any) => {
 }
 
 const onFinish = async () => {
-  
+  if(formState.type === '开合帘') {
+    const res = await httpGet('/measuer/selectOpen',{})
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/measuer/selectRoller',{})
+    formState.dataList = res
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {

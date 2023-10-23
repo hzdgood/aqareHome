@@ -3,6 +3,7 @@ package com.yunqi.common.entity;
 public class RollerMeasure {
     private Integer id;
     private Integer projectId;
+    private String type;
     private String area; // 区域
     private String rollingScheme; // 卷帘方案
     private String length; // 长度
@@ -29,6 +30,14 @@ public class RollerMeasure {
 
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getArea() {
