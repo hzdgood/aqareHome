@@ -106,7 +106,7 @@ public class WorkSheetController {
     @CrossOrigin
     @RequestMapping("/updatePerson") //工单修改 上门技术
     private String updatePerson(WorkSheet WorkSheet) {
-        WorkSheetService.updateInfo(WorkSheet);
+        WorkSheetService.updatePerson(WorkSheet);
         return "修改完成";
     }
 

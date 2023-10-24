@@ -103,6 +103,7 @@ onMounted (async function () {
   if(res.length !== 0) {
     formState.projectName = res[0].name
     formState.schedule = res[0].schedule
+    formState.remark = res[0].remark
   }
   const tech = await httpGet('/tech/select',{})
   const techs: object[] = []

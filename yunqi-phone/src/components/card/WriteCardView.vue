@@ -26,9 +26,9 @@
             <td>{{ dateFilter(data.writerTime,'yyyy-mm-dd') }}</td>
           </tr>
         </table>
-        <div class="buttonPos">
+        <!-- <div class="buttonPos">
           <a-button type="primary" @click="error(data.writerId)">报错</a-button>
-        </div>
+        </div> -->
       </a-card>
     </div>
   </div>

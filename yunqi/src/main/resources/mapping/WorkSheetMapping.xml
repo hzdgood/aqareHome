@@ -6,11 +6,8 @@
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit, headName,
                                type, schedule, remark, createName, createTime) value (
-                                                                                      #{projectId}, #{techIds},
-                                                                                      #{dateOfVisit}, #{headName},
-                                                                                      #{type},
-                                                                                      #{schedule}, #{remark},
-                                                                                      #{createName}, NOW()
+                  #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type},
+                  #{schedule}, #{remark}, #{createName}, NOW()
             )
     </insert>
 
@@ -29,6 +26,15 @@
         update worksheet
         set dateOfVisit = #{dateOfVisit},
             remark      = #{remark},
+            updateName  = #{updateName},
+            updateTime  = NOW()
+        where id = #{id}
+    </insert>
+
+    <insert id="updateStatus" parameterType="com.yunqi.common.entity.WorkSheet">
+        # 详情
+        update worksheet
+        set status = '已结束',
             updateName  = #{updateName},
             updateTime  = NOW()
         where id = #{id}
@@ -56,6 +62,7 @@
         # 完结
         update worksheet
         set disabled   = 'false',
+            status = '已结束',
             updateName = '吴杰',
             updateTime = NOW()
         where id = #{workId}

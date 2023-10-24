@@ -28,6 +28,7 @@ public class WorkView {
     private String workSummary; // 今日完成情况
     private String visitNode; //下次工作安排
     private String disabled; //有效
+    private String remark; // 备注
 
     public Integer getTimeId() {
         return timeId;
@@ -227,5 +228,13 @@ public class WorkView {
 
     public void setDisabled(String disabled) {
         this.disabled = disabled;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

@@ -18,4 +18,6 @@ public interface WorkSheetMapper {
     void delete(Integer id, String updateName);
 
     void complete(Integer workId);
+
+    void updateStatus(Integer id, String updateName);
 }

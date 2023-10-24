@@ -38,7 +38,7 @@
             writerTime = NOW(),
             updateName = #{updateName},
             updateTime = NOW()
-        where id = #{timeId}
+        where id = #{id}
     </insert>
 
     <delete id="delete" parameterType="com.yunqi.common.entity.WorkTime">

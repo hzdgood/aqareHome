@@ -1,17 +1,18 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="formState.projectName + ' ' + formState.headName" :bordered="false">
+    <a-card :title="'人员配置'" :bordered="false">
       <div class="buttonPos">
-        <a-button type="primary" @click="addStatus = true">新增技术</a-button>
-        <a-button type="primary" @click="editStatus = true" >修改负责人</a-button>
+        <a-button type="primary" @click="formState.addStatus = true">新增技术</a-button>
+        <a-button type="primary" @click="formState.editStatus = true" >修改负责人</a-button>
+        <a-button type="primary" @click="resPage()">返回</a-button>
       </div>
 
-      <div v-show='addStatus'>
+      <div v-show='formState.addStatus'>
         <table class="cardTale">
           <tr>
-            <td>上门技术</td>
+            <td width="70px">上门技术</td>
             <td colspan="3">
-              <a-select :disabled="true"
+              <a-select
                   v-model:value="value"
                   style="width: 100%"
                   placeholder="Please select"
@@ -23,16 +24,16 @@
         </table>
         <div class="buttonPos">
           <a-button type="primary" @click="addPerson">提交</a-button>
-          <a-button @click="addStatus = false" type="primary">取消</a-button>
+          <a-button @click="formState.addStatus = false" type="primary">取消</a-button>
         </div>
       </div>
 
-      <div v-show='editStatus'>
+      <div v-show='formState.editStatus'>
         <table class="cardTale">
           <tr>
-            <td>主负责人</td>
+            <td width="70px">主负责人</td>
             <td colspan="3">
-              <a-select :disabled="true"
+              <a-select
                 v-model:value="value"
                 style="width: 100%"
                 placeholder="Please select"
@@ -44,48 +45,45 @@
         </table>
         <div class="buttonPos">
           <a-button type="primary" @click="editHead">提交</a-button>
-          <a-button @click="editStatus = false" type="primary">取消</a-button>
+          <a-button @click="formState.editStatus = false" type="primary">取消</a-button>
         </div>
       </div>
-
-      <div v-for="dataList in formState.dataList" :key="dataList" v-show="addStatus === false && editStatus === false">
-        <table class="cardTale">
-          <tr>
-            <td>上门技术</td>
-            <td>
-              <a-input :disabled="true" :value="dataList.techId" style="width: 100%"></a-input>
-            </td>
-            <td>工单状态</td>
-            <td>
-              <a-input :disabled="true" :value="dataList.status" style="width: 100%"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>签到时间</td>
-            <td colspan="3">
-              <a-input :disabled="true" :value="dataList.signTime" style="width: 100%"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>离开时间</td>
-            <td colspan="3">
-              <a-input :disabled="true" :value="dataList.departureTime" style="width: 100%"></a-input>
-            </td>
-          </tr>
-          <tr>
-            <td>核销时间</td>
-            <td colspan="3">
-              <a-input :disabled="true" :value="dataList.writerTime" style="width: 100%"></a-input>
-            </td>
-          </tr>
-        </table>
-        <div class="buttonPos">
-          <a-button type="primary" @click="deletePerson(dataList.timeId, dataList.techId)">取消上门</a-button>
+      <div v-show="formState.addStatus === false && formState.editStatus === false">
+        <div v-for="dataList in formState.dataList" :key="dataList">
+          <table class="cardTale">
+            <tr>
+              <td width="70px">上门技术</td>
+              <td>
+                <a-input :disabled="true" :value="dataList.techId" style="width: 100%"></a-input>
+              </td>
+              <td width="70px">工单状态</td>
+              <td>
+                <a-input :disabled="true" :value="dataList.status" style="width: 100%"></a-input>
+              </td>
+            </tr>
+            <tr>
+              <td>签到时间</td>
+              <td colspan="3">
+                <a-input :disabled="true" :value="dataList.signTime" style="width: 100%"></a-input>
+              </td>
+            </tr>
+            <tr>
+              <td>离开时间</td>
+              <td colspan="3">
+                <a-input :disabled="true" :value="dataList.departureTime" style="width: 100%"></a-input>
+              </td>
+            </tr>
+            <tr>
+              <td>核销时间</td>
+              <td colspan="3">
+                <a-input :disabled="true" :value="dataList.writerTime" style="width: 100%"></a-input>
+              </td>
+            </tr>
+          </table>
+          <div class="buttonPos">
+            <a-button type="primary" v-show="dataList.status === '待上门'" @click="deletePerson(dataList.timeId, dataList.techId)">取消上门</a-button>
+          </div>
         </div>
-      </div>
-
-      <div class="buttonPos">
-        <a-button type="primary" @click="resPage()">返回</a-button>
       </div>
     </a-card>
   </div>
@@ -100,8 +98,6 @@ import { reactive, onMounted, ref } from 'vue';
 const route = useRoute()
 const techId = localStorage.getItem('techId')
 let value = ref<string[]>([]);
-let editStatus = false
-let addStatus = false
 
 onMounted (async function () {
   const res = await httpGet('/view/work',{
@@ -111,6 +107,8 @@ onMounted (async function () {
   formState.techNames = res[0].techNames
   formState.workId = res[0].workId
   formState.projectId = res[0].projectId
+  formState.projectName = res[0].projectName
+  formState.techName = res[0].techName
 
   const tech = await httpGet('/tech/select',{})  // 查询技术
   const techs: object[] = []
@@ -135,6 +133,8 @@ interface FormState {
   type: string
   workId: string
   projectId: string
+  addStatus: boolean
+  editStatus: boolean
 }
 
 const formState = reactive<FormState>({
@@ -146,7 +146,9 @@ const formState = reactive<FormState>({
   techNames: '',
   type: '',
   workId: '',
-  projectId: ''
+  projectId: '',
+  addStatus: false,
+  editStatus: false
 });
 
 const addPerson = async () => {
@@ -175,7 +177,7 @@ const deletePerson = async (timeId: any, name: any) => { // 针对多个人
     const str = formState.techNames.split(",")
     for(let i=0; i< str.length; i++) {
       if(str[i] !== name) {
-        techIds = str[i] + ","
+        techIds =  techIds + str[i] + ","
       }
     }
     techIds = techIds.substring(0, techIds.length-1) // 去除，号
@@ -195,6 +197,8 @@ const deletePerson = async (timeId: any, name: any) => { // 针对多个人
     })
     console.log(res1);
   }
+  console.log(techIds);
+  
 };
 
 const editHead = async () => {

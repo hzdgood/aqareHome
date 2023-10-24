@@ -7,12 +7,13 @@
       @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
-      <span>&nbsp;&nbsp;测量日期：&nbsp;</span>
-      &nbsp;<a-select :value="formState.type">
+      <span>&nbsp;&nbsp;类型：&nbsp;</span>
+      <a-select :value="formState.type" style="width: 20%;">
         <a-select-option value="开合帘">开合帘</a-select-option>
         <a-select-option value="卷帘">卷帘</a-select-option>
       </a-select>
-      <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 20%;"/>
+      <span>&nbsp;&nbsp;测量日期：&nbsp;</span>
+      <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 25%;"/>
       &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
     </a-form>
     <div v-for="item in formState.dataList" :key="item">
@@ -30,7 +31,7 @@ import { httpGet } from '../config/interFace'
 import { Dayjs } from 'dayjs'
 
 onMounted (async function () {
-  const res = await httpGet('/measuer/selectOpen',{
+  const res = await httpGet('/measure/selectOpen',{
   })
   formState.dataList = res
 })
@@ -53,10 +54,10 @@ const toPage = (str: any, id: any) => {
 
 const onFinish = async () => {
   if(formState.type === '开合帘') {
-    const res = await httpGet('/measuer/selectOpen',{})
+    const res = await httpGet('/measure/selectOpen',{})
     formState.dataList = res
   } else {
-    const res = await httpGet('/measuer/selectRoller',{})
+    const res = await httpGet('/measure/selectRoller',{})
     formState.dataList = res
   }
 };

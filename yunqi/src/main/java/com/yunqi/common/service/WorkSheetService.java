@@ -41,4 +41,8 @@ public class WorkSheetService {
     public void complete(Integer workId) {
         WorkSheetMapper.complete(workId);
     }
+
+    public void updateStatus(Integer id, String updateName) {
+        WorkSheetMapper.updateStatus(id, updateName);
+    }
 }

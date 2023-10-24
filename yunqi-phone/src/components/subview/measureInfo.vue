@@ -166,11 +166,18 @@
 <script setup lang="ts">
 //  测量
 import router from '@/router';
-import { reactive } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { httpGet } from '../../config/interFace'
 import { useRoute } from "vue-router";
 
 const route = useRoute()
+
+onMounted (async function () {
+  const res = await httpGet('/view/project',{
+    projectId: route.query.id
+  })
+  formState.projectName = res[0].projectName
+});
 
 interface FormState {
   formDiv1: boolean
@@ -224,7 +231,7 @@ const resPage = () => {
 
 const submit = async () => {
   if(formState.formDiv1) {
-    const res = await httpGet('/measuer/addOpen',{
+    const res = await httpGet('/measure/addOpen',{
       projectId: route.query.id,
       area: formState.area,
       motorModel: formState.motorModel,
@@ -241,7 +248,7 @@ const submit = async () => {
     })
     console.log(res);
   } else if (formState.formDiv2) {
-    const res = await httpGet('/measuer/addRoller',{
+    const res = await httpGet('/measure/addRoller',{
       projectId: route.query.id,
       area: formState.area,
       rollingScheme: formState.rollingScheme,

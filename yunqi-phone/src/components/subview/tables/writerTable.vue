@@ -61,8 +61,11 @@ const formChange = () => {
     workId: props.data.workId,
     productId: props.data.productId,
     techId: techId,
+    type: props.data.type,
     install: install,
     debug: debug,
+    notInstalled: props.data.notInstalled, // 未安装
+    unregulated: props.data.unregulated, // 未调试
     createName: techId // 用于新增
   }
   emit('change',obj)

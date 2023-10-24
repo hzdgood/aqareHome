@@ -4,39 +4,39 @@
       <table class="cardTale">
         <tr>
           <td width="70px">项目姓名</td>
-          <td></td>
+          <td>{{data.projectName}}</td>
           <td width="70px">区域</td>
-          <td></td>
+          <td>{{data.area}}</td>
         </tr>
         <tr>
           <td>电机型号</td>
-          <td></td>
+          <td>{{data.motorModel}}</td>
           <td>轨道类型</td>
-          <td></td>
+          <td>{{data.trackType}}</td>
         </tr>
         <tr>
           <td>安装方式</td>
-          <td></td>
+          <td>{{data.installMethod}}</td>
           <td>数量</td>
-          <td></td>
+          <td>{{data.number}}</td>
         </tr>
         <tr>
           <td>开合方式</td>
-          <td></td>
+          <td>{{data.openMethod}}</td>
           <td>电源位置</td>
-          <td></td>
+          <td>{{data.powerPosition}}</td>
         </tr>
         <tr>
           <td>窗帘盒宽</td>
-          <td></td>
+          <td>{{data.boxWidth}}</td>
           <td>安装面材质</td>
-          <td></td>
+          <td>{{data.surfaceMaterial}}</td>
         </tr>
         <tr>
           <td>预留位置</td>
-          <td></td>
+          <td>{{data.placeholder}}</td>
           <td>扣减说明</td>
-          <td></td>
+          <td>{{data.deductionInfo}}</td>
         </tr>
       </table>
     </a-card>
@@ -45,39 +45,39 @@
       <table class="cardTale">
         <tr>
           <td width="70px">项目姓名</td>
-          <td></td>
+          <td>{{data.projectName}}</td>
           <td width="70px">区域</td>
-          <td></td>
+          <td>{{data.area}}</td>
         </tr>
         <tr>
           <td>卷帘方案</td>
-          <td></td>
+          <td>{{data.rollingScheme}}</td>
           <td>长度</td>
-          <td></td>
+          <td>{{data.length}}</td>
         </tr>
         <tr>
           <td>高度</td>
-          <td></td>
+          <td>{{data.high}}</td>
           <td>安装面宽度</td>
-          <td></td>
+          <td>{{data.surfaceWidth}}</td>
         </tr>
         <tr>
           <td>安装方式</td>
-          <td></td>
+          <td>{{data.installMethod}}</td>
           <td>扣减说明</td>
-          <td></td>
+          <td>{{data.deductionInfo}}</td>
         </tr>
         <tr>
           <td>数量</td>
-          <td></td>
+          <td>{{data.number}}</td>
           <td>安装面材质</td>
-          <td></td>
+          <td>{{data.surfaceMaterial}}</td>
         </tr>
         <tr>
           <td>电源位置</td>
-          <td></td>
+          <td>{{data.powerPosition}}</td>
           <td>需要罩壳</td>
-          <td></td>
+          <td>{{data.cover}}</td>
         </tr>
       </table>
     </a-card>

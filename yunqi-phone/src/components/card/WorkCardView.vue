@@ -8,7 +8,6 @@
         <a-button :style="style"
           v-show="data.techName === loginName"
           @click="personEdit(data.workId)">日志</a-button>
-        <!-- <a-button :style="style" @click="uploadImg(data.workId)">往期图片</a-button> -->
       </div>
       <table class="cardTale" >  
         <tr>
@@ -29,10 +28,10 @@
           <td v-show="loginName === data.techId">工单状态</td>
           <td v-show="loginName === data.techId">{{ data.status }}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>客户地址</td>
           <td colspan="3">{{ data.address }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td>上门日期</td>
           <td colspan="3">{{ dateFilter(data.dateOfVisit,'yyyy-mm-dd hh:mm:ss') }}</td>
@@ -49,11 +48,11 @@
       <div class="buttonPos" v-show="loginName === data.techId">
         <a-button type="primary" 
           v-show="data.signTime === null && data.dateOfVisit !== null"
-          @click="sign(data.timeId)">签到</a-button>
+          @click="sign(data.timeId, data.workId)">签到</a-button>
 
         <a-button type="primary"
           v-show="data.departureTime === null && data.signTime !== null"
-          @click="depart(data.timeId)">离开</a-button>
+          @click="depart(data.timeId, data.workId)">离开</a-button>
 
         <a-button type="primary" v-show="data.signTime !== null 
             && ( data.type ==='安装' || data.type ==='调试' || data.type ==='检测' ) "
@@ -62,7 +61,7 @@
         <a-button type="primary" 
           v-show="data.status !== '已完成' && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
-        <a-button type="primary" v-show="data.status === '已完成'" >完结</a-button>
+        <!-- <a-button type="primary" v-show="data.status === '已完成'" >完结</a-button> -->
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data)">
@@ -89,17 +88,19 @@ defineProps({
   }
 })
 
-const sign = async (id: number) => {
+const sign = async (id: number, workId: number) => {
   await httpGet('/workTime/sign',{
     id: id,
+    workId: workId,
     updateName: techId
   })
   emit('pageReset')
 }
 
-const depart = async (id: any) => {
+const depart = async (id: any, workId: number) => {
   await httpGet('/workTime/depart',{
     id: id,
+    workId: workId,
     updateName: techId
   })
   emit('pageReset')
@@ -120,10 +121,6 @@ const workEdit = (id: any) => {
 const personEdit = (id: any) => {
   emit('toPage','personEdit', { id: id })
 }
-
-// const uploadImg = (id: any) => {
-//   emit('toPage','uploadImg', { id: id })
-// }
 
 const showModal = () => {
   open.value = true;

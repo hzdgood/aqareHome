@@ -1,6 +1,7 @@
 package com.yunqi.common.controller;
 
 import com.yunqi.common.entity.WorkTime;
+import com.yunqi.common.service.WorkSheetService;
 import com.yunqi.common.service.WorkTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,9 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class WorkTimeController {
     private WorkTimeService WorkTimeService;
 
+    private WorkSheetService WorkSheetService;
+
     @Autowired
     public void setMapper(WorkTimeService WorkTimeService) {
         this.WorkTimeService = WorkTimeService;
+    }
+
+    @Autowired
+    public void setMapper(WorkSheetService WorkSheetService) {
+        this.WorkSheetService = WorkSheetService;
     }
 
     @CrossOrigin
@@ -35,6 +43,7 @@ public class WorkTimeController {
     @RequestMapping("/sign") // 签到
     private String sign(WorkTime WorkTime) {
         WorkTimeService.sign(WorkTime);
+        WorkSheetService.updateStatus(WorkTime.getWorkId(), WorkTime.getUpdateName());
         return "签到成功";
     }
 
@@ -48,7 +57,7 @@ public class WorkTimeController {
     @CrossOrigin
     @RequestMapping("/delete") // 删除
     private String delete(WorkTime WorkTime) {
-        WorkTimeService.delete(WorkTime.getWorkId(), WorkTime.getUpdateName());
+        WorkTimeService.delete(WorkTime.getId(), WorkTime.getUpdateName());
         return "删除成功";
     }
 }
