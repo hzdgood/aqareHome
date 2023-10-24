@@ -2,7 +2,8 @@ package com.yunqi.common.controller;
 
 import com.yunqi.common.entity.OpenMeasure;
 import com.yunqi.common.entity.RollerMeasure;
-import com.yunqi.common.service.*;
+import com.yunqi.common.service.OpenMeasureService;
+import com.yunqi.common.service.RollerMeasureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,7 @@ public class MeasureController {
     public List<RollerMeasure> selectRoller(RollerMeasure RollerMeasure) {
         return RollerMeasureService.select(RollerMeasure);
     }
+
     @CrossOrigin
     @RequestMapping("/addOpen")
     public void addOpen(OpenMeasure OpenMeasure) {

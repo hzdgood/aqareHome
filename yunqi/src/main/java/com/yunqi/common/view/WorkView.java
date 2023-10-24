@@ -27,6 +27,7 @@ public class WorkView {
     private String schedule; //进度
     private String workSummary; // 今日完成情况
     private String visitNode; //下次工作安排
+    private String handover; // 工作交接信息
     private String disabled; //有效
     private String remark; // 备注
 
@@ -220,6 +221,14 @@ public class WorkView {
 
     public void setVisitNode(String visitNode) {
         this.visitNode = visitNode;
+    }
+
+    public String getHandover() {
+        return handover;
+    }
+
+    public void setHandover(String handover) {
+        this.handover = handover;
     }
 
     public String getDisabled() {

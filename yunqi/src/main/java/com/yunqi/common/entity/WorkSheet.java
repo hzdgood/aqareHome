@@ -12,14 +12,10 @@ public class WorkSheet {
     private String status;
     private String actualWork; // 工时
     private String schedule; //进度
-    private String writerImg; //核销图片
-    private String reportImg; // 汇报图片
-    private String materialImg; // 物料图片
-    private String otherImg; // 其他图片
-    private String signImg; //签字单图片
     private String disabled; //有效
     private String workSummary; //今日工作总结
     private String visitNode; //下次上门节点
+    private String handover; // 工作交接信息
     private String remark;
     private String createName;
     private Date createTime;
@@ -98,46 +94,6 @@ public class WorkSheet {
         this.schedule = schedule;
     }
 
-    public String getWriterImg() {
-        return writerImg;
-    }
-
-    public void setWriterImg(String writerImg) {
-        this.writerImg = writerImg;
-    }
-
-    public String getReportImg() {
-        return reportImg;
-    }
-
-    public void setReportImg(String reportImg) {
-        this.reportImg = reportImg;
-    }
-
-    public String getMaterialImg() {
-        return materialImg;
-    }
-
-    public void setMaterialImg(String materialImg) {
-        this.materialImg = materialImg;
-    }
-
-    public String getOtherImg() {
-        return otherImg;
-    }
-
-    public void setOtherImg(String otherImg) {
-        this.otherImg = otherImg;
-    }
-
-    public String getSignImg() {
-        return signImg;
-    }
-
-    public void setSignImg(String signImg) {
-        this.signImg = signImg;
-    }
-
     public String getDisabled() {
         return disabled;
     }
@@ -160,6 +116,14 @@ public class WorkSheet {
 
     public void setVisitNode(String visitNode) {
         this.visitNode = visitNode;
+    }
+
+    public String getHandover() {
+        return handover;
+    }
+
+    public void setHandover(String handover) {
+        this.handover = handover;
     }
 
     public String getRemark() {

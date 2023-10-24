@@ -13,8 +13,7 @@
         # 新增
         insert into writer (projectId, productId, schemeId, type, workId, techId, contribution,
                             install, debug, createName, createTime) value (
-               #{projectId}, #{productId}, #{schemeId},
-               #{type},
+               #{projectId}, #{productId}, #{schemeId}, #{type},
                #{workId}, #{techId}, #{contribution},
                #{install}, #{debug}, #{createName}, NOW()
             )

@@ -44,32 +44,34 @@
         </div>
       </div>
       
-      <div v-show="formState.select3 === 'selected'">
-        <!-- <a-upload
-          action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-          list-type="picture"
-          v-model:file-list="fileList1"
-          class="upload-list-inline"
-        >
-          <a-button>
-            <upload-outlined></upload-outlined>
-            物料核对
-          </a-button>
-        </a-upload>-->
-        <a-button type="primary">物料核对</a-button>
-        <a-button type="primary">汇报凭证</a-button>
-        <a-button type="primary">核销照片</a-button>
-        <a-button type="primary">签字单</a-button>
-        <a-button type="primary">其他照片</a-button>
-
-
+      <div class="pictureDiv" v-show="formState.select3 === 'selected'">
+        <div>工单图片类型：
+          <a-select style="width: 180px;"
+            @change="handleChange"
+            v-model:value="value"
+          >
+            <a-select-option value="1">物料核对图片</a-select-option>
+            <a-select-option value="2">工单汇报凭证图片</a-select-option>
+            <a-select-option value="3">工单核销照片</a-select-option>
+            <a-select-option value="4">签字单图片</a-select-option>
+            <a-select-option value="5">工单其他照片</a-select-option>
+          </a-select>
+          <div class="buttonPos">
+            <a-upload
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              list-type="picture"         
+              class="upload-list-inline"
+              v-model:file-list="fileList"
+            >
+              <a-button>
+                <upload-outlined></upload-outlined>
+                点击上传
+              </a-button>
+            </a-upload> 
+          </div>
+        </div>
       </div>
-        
-
-
-
-       
-
+      <!-- v-model:file-list="fileList1" -->
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
       <p>{{ formState.modalInfo }}</p>
@@ -88,7 +90,7 @@ import writerTable from './tables/writerTable.vue'
 const open = ref<boolean>(false);
 const techId = localStorage.getItem('techId')
 const route = useRoute()
-
+const value = ref('1');
 let formObj: any[] = []
 
 onMounted (async function () {
@@ -179,6 +181,9 @@ const formState = reactive<FormState>({
 });
 
 const submitWriter = async () => {
+  if(formObj.length === 0) {
+    return
+  }
   formState.modalInfo = '请确认核销内容！'
   showModal();
 };
@@ -236,31 +241,35 @@ const changeSelect = (id: number) => {
   }
 }
 
-// interface FileItem {
-//   uid: string;
-//   name?: string;
-//   status?: string;
-//   response?: string;
-//   url?: string;
-//   thumbUrl?: string;
-// }
+const handleChange = (value: string) => {
+  console.log(`selected ${value}`);
+};
 
-// const fileList1 = ref<FileItem[]>([
-//   {
-//     uid: '-1',
-//     name: 'xxx.png',
-//     status: 'done',
-//     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-//     thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-//   },
-//   {
-//     uid: '-2',
-//     name: 'yyy.png',
-//     status: 'done',
-//     url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-//     thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-//   },
-// ]);
+interface FileItem {
+  uid: string;
+  name?: string;
+  status?: string;
+  response?: string;
+  url?: string;
+  thumbUrl?: string;
+}
+
+const fileList = ref<FileItem[]>([
+  {
+    uid: '-1',
+    name: 'xxx.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+  {
+    uid: '-2',
+    name: 'yyy.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+]);
 </script>
 
 <style lang="less" scoped>
@@ -279,6 +288,7 @@ const changeSelect = (id: number) => {
 .writerDiv {
   width: 100%;
   height: 40px;
+  border-radius: 5px;
   background-color: #2784ac;
 }
 
@@ -289,10 +299,12 @@ const changeSelect = (id: number) => {
   border-right: 1px solid #cecece;
   line-height: 40px;
 }
-
 .selected {
+  border-radius: 5px 0px 0px 5px;
   background-color: rgb(22, 119, 255);
 }
 
-
+.pictureDiv div{
+  padding: 5px 5px 0px 5px;
+}
 </style>

@@ -5,7 +5,7 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit, headName,
-                               type, schedule, remark, createName, createTime) value (
+                type, schedule, remark, createName, createTime) value (
                   #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type},
                   #{schedule}, #{remark}, #{createName}, NOW()
             )
@@ -16,6 +16,7 @@
         update worksheet
         set workSummary = #{workSummary},
             visitNode   = #{visitNode},
+            handover = #{handover},
             updateName  = #{updateName},
             updateTime  = NOW()
         where id = #{id}
