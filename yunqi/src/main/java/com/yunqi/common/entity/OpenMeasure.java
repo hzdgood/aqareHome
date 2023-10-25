@@ -3,6 +3,7 @@ package com.yunqi.common.entity;
 public class OpenMeasure {
     private Integer id;
     private Integer projectId;
+    private String projectName;
     private String type;
     private String area;// 区域
     private String motorModel;   // 电机型号
@@ -30,6 +31,14 @@ public class OpenMeasure {
 
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 
     public String getType() {

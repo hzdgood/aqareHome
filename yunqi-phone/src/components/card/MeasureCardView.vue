@@ -86,7 +86,7 @@
 
 <script setup lang="ts">
 // 测量 开合 卷帘
-defineProps({
+const props = defineProps({
   data: {
     type: Object,
     default: null
@@ -96,5 +96,8 @@ defineProps({
     default: null
   }
 })
+
+console.log(props.type);
+
 
 </script>

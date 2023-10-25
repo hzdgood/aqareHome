@@ -43,7 +43,7 @@ public class WorkTimeController {
     @RequestMapping("/sign") // 签到
     private String sign(WorkTime WorkTime) {
         WorkTimeService.sign(WorkTime);
-        WorkSheetService.updateStatus(WorkTime.getWorkId(), WorkTime.getUpdateName());
+        WorkSheetService.updateStatus(WorkTime.getWorkId(),"已上门", WorkTime.getUpdateName());
         return "签到成功";
     }
 

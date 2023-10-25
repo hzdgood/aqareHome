@@ -9,10 +9,10 @@
 
     <insert id="insert" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
         insert into openMeasure (
-            projectId, area, motorModel, trackType, installMethod, number,
+            projectId, projectName, area, motorModel, trackType, installMethod, number, type,
             openMethod, powerPosition, boxWidth, surfaceMaterial, placeholder, deductionInfo
         ) value (
-            #{projectId}, #{area}, #{motorModel}, #{trackType}, #{installMethod}, #{number},
+            #{projectId}, #{projectName}, #{area}, #{motorModel}, #{trackType}, #{installMethod}, #{number}, '开合帘',
             #{openMethod}, #{powerPosition}, #{boxWidth}, #{surfaceMaterial}, #{placeholder}, #{deductionInfo}
         )
     </insert>

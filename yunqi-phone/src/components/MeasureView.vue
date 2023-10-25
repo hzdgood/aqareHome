@@ -33,7 +33,10 @@ import { Dayjs } from 'dayjs'
 onMounted (async function () {
   const res = await httpGet('/measure/selectOpen',{
   })
-  formState.dataList = res
+  if(res.length > 0)  {
+    formState.type = res[0].type
+    formState.dataList = res
+  }
 })
 
 interface FormState {

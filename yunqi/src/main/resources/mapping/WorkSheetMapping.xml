@@ -35,7 +35,7 @@
     <insert id="updateStatus" parameterType="com.yunqi.common.entity.WorkSheet">
         # 详情
         update worksheet
-        set status = '已结束',
+        set status = #{status},
             updateName  = #{updateName},
             updateTime  = NOW()
         where id = #{id}

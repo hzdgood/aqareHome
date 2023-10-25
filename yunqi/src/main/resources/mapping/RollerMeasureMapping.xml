@@ -9,10 +9,10 @@
 
     <insert id="insert" parameterType="com.yunqi.common.entity.RollerMeasure" useGeneratedKeys="true" keyProperty="id">
         insert into rollerMeasure (
-            projectId, area, rollingScheme, length, high, surfaceWidth,
+            projectId, projectName, area, rollingScheme, length, high, surfaceWidth, type,
             installMethod, deductionInfo, number, surfaceMaterial, powerPosition, cover
         ) value (
-            #{projectId}, #{area}, #{rollingScheme}, #{length}, #{high}, #{surfaceWidth},
+            #{projectId}, #{projectName}, #{area}, #{rollingScheme}, #{length}, #{high}, #{surfaceWidth}, '卷帘',
             #{installMethod}, #{deductionInfo}, #{number}, #{surfaceMaterial}, #{powerPosition}, #{cover}
         )
     </insert>

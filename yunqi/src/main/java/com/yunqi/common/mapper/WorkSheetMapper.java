@@ -19,5 +19,5 @@ public interface WorkSheetMapper {
 
     void complete(Integer workId);
 
-    void updateStatus(Integer id, String updateName);
+    void updateStatus(Integer id, String status, String updateName);
 }

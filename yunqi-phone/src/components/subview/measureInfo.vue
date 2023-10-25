@@ -11,67 +11,67 @@
             <tr>
               <td width="70px">项目姓名</td>
               <td>
-                <a-input :disabled="true" :value="formState.projectName" style="width: 95%;"></a-input>
+                <a-input :disabled="true" v-model:value="formState.projectName" style="width: 95%;"></a-input>
               </td>
               <td width="80px">区域</td>
               <td>
-                <a-input :value="formState.area" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>电机型号</td>
               <td>
-                <a-input :value="formState.motorModel" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.motorModel" style="width: 95%;"></a-input>
               </td>
               <td>轨道类型</td>
               <td>
-                <a-input :value="formState.trackType" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.trackType" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>安装方式</td>
               <td>
-                <a-input :value="formState.installMethod" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.installMethod" style="width: 95%;"></a-input>
               </td>
               <td>数量</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>开合方式</td>
               <td>
-                <a-input :value="formState.openMethod" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.openMethod" style="width: 95%;"></a-input>
               </td>
               <td>电源位置</td>
               <td>
-                <a-input :value="formState.powerPosition" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.powerPosition" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>窗帘盒宽</td>
               <td>
-                <a-input :value="formState.boxWidth" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.boxWidth" style="width: 95%;"></a-input>
               </td>
               <td>安装面材质</td>
               <td>
-                <a-input :value="formState.surfaceMaterial" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.surfaceMaterial" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>预留位置</td>
               <td>
-                <a-input :value="formState.placeholder" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.placeholder" style="width: 95%;"></a-input>
               </td>
               <td>扣减说明</td>
               <td>
-                <a-input :value="formState.deductionInfo" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.deductionInfo" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>备注</td>
               <td colspan="3">
-                <a-input :value="formState.remark" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.remark" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
@@ -89,63 +89,63 @@
               </td>
               <td width="90px">区域</td>
               <td>
-                <a-input :value="formState.area" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>卷帘方案</td>
               <td>
-                <a-input :value="formState.rollingScheme" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.rollingScheme" style="width: 95%;"></a-input>
               </td>
               <td>长度</td>
               <td>
-                <a-input :value="formState.length" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.length" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>高度</td>
               <td>
-                <a-input :value="formState.high" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.high" style="width: 95%;"></a-input>
               </td>
               <td>安装面宽度</td>
               <td>
-                <a-input :value="formState.surfaceWidth" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.surfaceWidth" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>安装方式</td>
               <td>
-                <a-input :value="formState.installMethod" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.installMethod" style="width: 95%;"></a-input>
               </td>
               <td>扣减说明</td>
               <td>
-                <a-input :value="formState.deductionInfo" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.deductionInfo" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>数量</td>
               <td>
-                <a-input :value="formState.number" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.number" style="width: 95%;"></a-input>
               </td>
               <td>安装面材质</td>
               <td>
-                <a-input :value="formState.surfaceMaterial" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.surfaceMaterial" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>电源位置</td>
               <td>
-                <a-input :value="formState.powerPosition" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.powerPosition" style="width: 95%;"></a-input>
               </td>
               <td>需要罩壳</td>
               <td>
-                <a-input :value="formState.cover" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.cover" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
               <td>备注</td>
               <td colspan="3">
-                <a-input :value="formState.remark" style="width: 95%;"></a-input>
+                <a-input v-model:value="formState.remark" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
@@ -233,6 +233,7 @@ const submit = async () => {
   if(formState.formDiv1) {
     const res = await httpGet('/measure/addOpen',{
       projectId: route.query.id,
+      projectName: formState.projectName,
       area: formState.area,
       motorModel: formState.motorModel,
       trackType: formState.trackType,
@@ -250,6 +251,7 @@ const submit = async () => {
   } else if (formState.formDiv2) {
     const res = await httpGet('/measure/addRoller',{
       projectId: route.query.id,
+      projectName: formState.projectName,
       area: formState.area,
       rollingScheme: formState.rollingScheme,
       length: formState.length,

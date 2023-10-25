@@ -42,7 +42,7 @@ public class WorkSheetService {
         WorkSheetMapper.complete(workId);
     }
 
-    public void updateStatus(Integer id, String updateName) {
-        WorkSheetMapper.updateStatus(id, updateName);
+    public void updateStatus(Integer id, String status, String updateName) {
+        WorkSheetMapper.updateStatus(id, status, updateName);
     }
 }
