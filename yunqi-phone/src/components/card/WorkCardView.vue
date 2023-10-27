@@ -123,20 +123,15 @@ const sign = async (id: number, workId: number, address: string) => {
   const res = await httpGet('/position/getCoordinate',{
     address: address
   })
-  alert(res);
-
   const distance = await httpGet('/position/getDistance',{
     longitude1: formState.longitude,
     latitude1: formState.latitude,
     longitude2: res.lng,
     latitude2: res.lat
   })
-  alert(distance)
-
   if(distance >= 5000) {
     return
   }
-  
   await httpGet('/workTime/sign',{
     id: id,
     workId: workId,
@@ -149,20 +144,15 @@ const depart = async (id: any, workId: number, address: string) => {
   const res = await httpGet('/position/getCoordinate',{
     address: address
   })
-  alert(res);
-
   const distance = await httpGet('/position/getDistance',{
     longitude1: formState.longitude,
     latitude1: formState.latitude,
     longitude2: res.lng,
     latitude2: res.lat
   })
-  alert(distance)
-
   if(distance >= 3000) {
     return
   }
-
   await httpGet('/workTime/depart',{
     id: id,
     workId: workId,
