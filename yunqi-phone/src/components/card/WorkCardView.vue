@@ -65,7 +65,7 @@
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data)">
-      <p>工单完成后，锁定核销数量！</p>
+      <p>{{ formState.modalInfo }}</p>
     </a-modal>
   </div>
 </template>
@@ -104,7 +104,7 @@ const getPosition = () => {
   }
   function error(err: { code: number; }) {
     var errorType = ['您拒绝共享位置信息,请去app设置一下！', '获取不到位置信息', '获取位置信息超时']
-    alert(errorType[err.code - 1])
+    console.log(errorType[err.code - 1])
   }
   navigator.geolocation.getCurrentPosition(success, error, options)
 }
@@ -112,17 +112,26 @@ const getPosition = () => {
 interface FormState {
   latitude: string
   longitude: string
+  modalInfo: string
+  status: boolean
 }
 
 const formState = reactive<FormState>({
   latitude: '',
-  longitude: ''
+  longitude: '',
+  modalInfo: '',
+  status: false
 });
 
 const sign = async (id: number, workId: number, address: string) => {
+  formState.status = false
   const res = await httpGet('/position/getCoordinate',{
     address: address
   })
+  if(res === 'null')  {
+    formState.modalInfo = '客户地址的地理位置读取失败！'
+    return
+  }
   const distance = await httpGet('/position/getDistance',{
     longitude1: formState.longitude,
     latitude1: formState.latitude,
@@ -130,6 +139,7 @@ const sign = async (id: number, workId: number, address: string) => {
     latitude2: res.lat
   })
   if(distance >= 5000) {
+    formState.modalInfo = '请在指定区域内签到！'
     return
   }
   await httpGet('/workTime/sign',{
@@ -137,13 +147,21 @@ const sign = async (id: number, workId: number, address: string) => {
     workId: workId,
     updateName: techId
   })
+  formState.modalInfo = '签到成功'
+  showModal();
   emit('pageReset')
 }
 
 const depart = async (id: any, workId: number, address: string) => {
+  formState.status = false
   const res = await httpGet('/position/getCoordinate',{
     address: address
   })
+  if(res === 'null')  {
+    formState.modalInfo = '客户地址的地理位置读取失败！'
+    showModal();
+    return
+  }
   const distance = await httpGet('/position/getDistance',{
     longitude1: formState.longitude,
     latitude1: formState.latitude,
@@ -151,6 +169,8 @@ const depart = async (id: any, workId: number, address: string) => {
     latitude2: res.lat
   })
   if(distance >= 3000) {
+    formState.modalInfo = '请在指定区域内离开！'
+    showModal();
     return
   }
   await httpGet('/workTime/depart',{
@@ -158,10 +178,14 @@ const depart = async (id: any, workId: number, address: string) => {
     workId: workId,
     updateName: techId
   })
+  formState.modalInfo = '离开成功'
+  showModal();
   emit('pageReset')
 }
 
 const CompleteInfo = async () => {
+  formState.modalInfo = '工单完成后，锁定核销数量！'
+  formState.status = true
   showModal(); // 开启
 }
 
@@ -183,15 +207,20 @@ const showModal = () => {
 
 const handleOk = async (data: any ) => {
   open.value = false;
-  await httpGet('/workSheet/computer',{ // 计算核销
-    timeId: data.timeId,
-    workId: data.workId,
-    projectId: data.projectId,
-    headId: data.headId,
-    type: data.type,
-    updateName: techId
-  })
-  emit('pageReset')
+  if(formState.status) {
+    await httpGet('/workSheet/computer',{ // 计算核销
+      timeId: data.timeId,
+      workId: data.workId,
+      projectId: data.projectId,
+      headId: data.headId,
+      type: data.type,
+      updateName: techId
+    })
+    emit('pageReset')
+    formState.modalInfo = '离开成功'
+    formState.status = false
+    showModal();
+  }
 };
 
 const style = {

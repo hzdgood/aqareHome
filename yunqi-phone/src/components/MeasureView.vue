@@ -8,12 +8,10 @@
       @finishFailed="onFinishFailed"
     >
       <span>&nbsp;&nbsp;类型：&nbsp;</span>
-      <a-select :value="formState.type" style="width: 20%;">
+      <a-select :value="formState.type" style="width: 30%;">
         <a-select-option value="开合帘">开合帘</a-select-option>
         <a-select-option value="卷帘">卷帘</a-select-option>
       </a-select>
-      <span>&nbsp;&nbsp;测量日期：&nbsp;</span>
-      <a-date-picker format="YYYY-MM-DD" @change="onChange" style="width: 25%;"/>
       &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
     </a-form>
     <div v-for="item in formState.dataList" :key="item">

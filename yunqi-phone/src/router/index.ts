@@ -60,10 +60,6 @@ const router = createRouter({
           name: 'workEdit',
           component: () => import('../components/edit/workEdit.vue')
         },{
-          path: '/uploadImg',
-          name: 'uploadImg',
-          component: () => import('../components/edit/uploadImg.vue')
-        },{
           path: '/handoverInfo',
           name: 'handoverInfo',
           component: () => import('../components/info/handoverInfo.vue')
