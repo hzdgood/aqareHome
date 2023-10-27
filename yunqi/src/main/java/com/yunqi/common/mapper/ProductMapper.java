@@ -15,5 +15,5 @@ public interface ProductMapper {
 
     void delete(Integer id);
 
-    List<Product> selectCode(String code);
+    List<Product> selectItem(String itemId);
 }

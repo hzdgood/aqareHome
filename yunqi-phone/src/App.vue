@@ -2,6 +2,9 @@
   <a-config-provider :getPopupContainer="getPopupContainer" :locale="zhCN">
     <RouterView></RouterView>
   </a-config-provider>
+  <div class="filings">
+    <a href="https://beian.miit.gov.cn/">沪ICP备2022007443号</a>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -22,5 +25,13 @@ const getPopupContainer = (el:any, dialogContext:any) => {
 }
 .ant-card .ant-card-body {
   padding: 10px !important;
+}
+.filings {
+  font-size: 14px;
+  position: absolute;
+  bottom: 5px;
+  width: 170px;
+  padding-left: 10px;
+  background-color: beige;
 }
 </style>

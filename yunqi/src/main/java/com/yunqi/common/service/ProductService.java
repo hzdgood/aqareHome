@@ -32,7 +32,7 @@ public class ProductService {
         ProductMapper.delete(id);
     }
 
-    public List<Product> selectCode(String code) {
-        return ProductMapper.selectCode(code);
+    public List<Product> selectItem(String itemId) {
+        return ProductMapper.selectItem(itemId);
     }
 }

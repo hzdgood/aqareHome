@@ -22,8 +22,8 @@ public class ProductSync {
     @CrossOrigin
     @RequestMapping("/product")
     public void synchronize(Product Product) {
-        String code = Product.getCode();
-        List<Product> list = ProductService.selectCode(code);
+        String itemId = Product.getItemId();
+        List<Product> list = ProductService.selectItem(itemId);
         if (list.isEmpty()) {
             ProductService.insert(Product);
         } else {
