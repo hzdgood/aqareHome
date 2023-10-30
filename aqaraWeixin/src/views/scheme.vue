@@ -7,8 +7,6 @@
           <td>全款</td>
           <td>方案</td>
           <td>单价</td>
-          <td>折扣</td>
-          <td>费率</td>
           <td>未发</td>
           <td>未装</td>
           <td>未调</td>
@@ -19,8 +17,6 @@
         <td>{{ item.AllNumber }}</td>
         <td>{{ item.planNuber }}</td>
         <td>{{ item.price }}</td>
-        <td>{{ item.discount }}</td>
-        <td>{{ item.servieFee }}</td>
         <td>{{ item.notIssued }}</td>
         <td>{{ item.notInstalled }}</td>
         <td>{{ item.notAdjusted }}</td>

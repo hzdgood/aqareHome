@@ -1,22 +1,5 @@
 <template>
-  <div>
-    <custom v-if="bindStatus" @close="close" @loadPage="loadPage"></custom>
-    <div v-if="bindStatus == false">
-      <div class="bindHome">
-        <img src="../../img/home.png" width="100%" />
-        <div class="bindSite">
-          <button class="bindButton" @click="add()">
-            新增用户
-          </button>
-        </div>
-        <div class="bindSite">
-          <button class="bindButton1" @click="bind()">
-            绑定用户
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div></div>
 </template>
 
 <script lang="ts">
@@ -34,13 +17,7 @@ export default class Home extends Vue {
   userId = localStorage.getItem('userId');
   userName = localStorage.getItem('userName');
   localName = localStorage.getItem('localName');
-  bindStatus = false;
-
-  bind () {
-    this.bindStatus = true
-  }
-
-  async add () {
+  async mounted () {
     // 查询销售人员信息表
     const data = getLocalSale(this.localName)
     const result = await SearchInfo(table.saleManInfo, data)
@@ -63,15 +40,6 @@ export default class Home extends Vue {
       }
     }
     await addInfo(table.customerInfo, obj)
-    this.bindStatus = false
-    this.$emit('close')
-  }
-
-  loadPage () {
-    this.bindStatus = false
-  }
-
-  close () {
     this.$emit('close')
   }
 }

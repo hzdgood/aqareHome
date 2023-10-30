@@ -77,7 +77,6 @@ import { reactive, onMounted ,ref } from 'vue';
 
 const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
-
 const emit = defineEmits(['toPage','pageReset'])
 const open = ref<boolean>(false);
 
