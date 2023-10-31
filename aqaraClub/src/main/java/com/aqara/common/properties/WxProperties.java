@@ -9,8 +9,9 @@ public class WxProperties {
     private String corpId;
     private String corpSecret;
     private String corpHttp;
-    private String speedySecret;
-    private String speedyHttp;
+    private String corpId1;
+    private String corpSecret1;
+    private String corpHttp1;
     private String httpUrl;
     private String userIdUrl;
     private String jsapiUrl;
@@ -50,20 +51,28 @@ public class WxProperties {
         this.corpHttp = corpHttp;
     }
 
-    public String getSpeedySecret() {
-        return speedySecret;
+    public String getCorpId1() {
+        return corpId1;
     }
 
-    public void setSpeedySecret(String speedySecret) {
-        this.speedySecret = speedySecret;
+    public void setCorpId1(String corpId1) {
+        this.corpId1 = corpId1;
     }
 
-    public String getSpeedyHttp() {
-        return speedyHttp;
+    public String getCorpSecret1() {
+        return corpSecret1;
     }
 
-    public void setSpeedyHttp(String speedyHttp) {
-        this.speedyHttp = speedyHttp;
+    public void setCorpSecret1(String corpSecret1) {
+        this.corpSecret1 = corpSecret1;
+    }
+
+    public String getCorpHttp1() {
+        return corpHttp1;
+    }
+
+    public void setCorpHttp1(String corpHttp1) {
+        this.corpHttp1 = corpHttp1;
     }
 
     public String getHttpUrl() {

@@ -6,8 +6,9 @@ wx:
   corpSecret: nZv_TArU4E_PavzhhU22B6LJtT-BjaRmDCGjE64v0xQ
   corpHttp: http://aqara.club:8081
   # corpHttp: http://localhost:8081
-  speedySecret: A23WY8us3mjumRduXd7cZ3Em17oL49eFbxIeArqdiN8
-  speedyHttp: http://aqara.club:8082
+  corpId1: wwc01896e75e183e29
+  corpSecret1: CiaK3hql-CRIXYJxkaMlvGWll-gGReTrZs1DYa49GII
+  corpHttp1: http://aqara.club:8083
   # speedyHttp: http://localhost:8081
   sessionSecret: F7lF9dM986yTDpAKlhN-CndaBA1OxCAL4j9EKZVtjbA
   httpUrl: https://qyapi.weixin.qq.com/cgi-bin/gettoken

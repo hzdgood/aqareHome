@@ -6,13 +6,10 @@ public class WeChatUtil {
     public static String getWxToken(WxProperties wxProperties, String type) {
         String corpId = wxProperties.getCorpId();
         String corpSecret = wxProperties.getCorpSecret();
-        String speedySecret = wxProperties.getSpeedySecret();
         String url = wxProperties.getHttpUrl();
         String lastUrl = "";
         if (type.equals(wxProperties.getCorpHttp())) {
             lastUrl = url + "?corpid=" + corpId + "&corpsecret=" + corpSecret;
-        } else if (type.equals(wxProperties.getSpeedyHttp())) {
-            lastUrl = url + "?corpid=" + corpId + "&corpsecret=" + speedySecret;
         }
         String result = "";
         try {
