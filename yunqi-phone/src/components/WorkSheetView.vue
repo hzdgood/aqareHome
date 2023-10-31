@@ -26,6 +26,7 @@ import { reactive, onMounted  } from 'vue';
 import router from '@/router';
 import { httpGet } from '../config/interFace'
 
+const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {
@@ -52,12 +53,12 @@ const pageReset = async () => {
 }
 
 interface FormState {
-  projectName: string;
+  projectName: any;
   dataList: any
 }
 
 const formState = reactive<FormState>({
-  projectName: '',
+  projectName: null,
   dataList: []
 });
 
@@ -71,15 +72,16 @@ const allSeletct = async () => {
 const projectChange = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
-    techId: loginName
+    techId: loginName,
+    status: 'true'
   })
   formState.dataList = res
 }
 
 const onFinish = async () => {
   const res = await httpGet('/view/work',{
-    projectName: formState.projectName,
     techId: loginName,
+    status: 'true'
   })
   formState.dataList = res
 };

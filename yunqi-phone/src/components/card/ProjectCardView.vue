@@ -13,18 +13,14 @@
           <td>{{data.schedule}}</td>
         </tr>
         <tr>
-          <td>项目类型</td>
-          <td>{{data.type}}</td>
-          <td>目前任务</td>
-          <td>{{data.node}}</td>
-        </tr>
-        <tr>
           <td>销售</td>
           <td>{{data.salesName}}</td>
           <td>负责人</td>
           <td>{{data.techName}}</td>
         </tr>
         <tr>
+          <td>项目类型</td>
+          <td>{{data.type}}</td>
           <td>项目电话</td>
           <td colspan="3">{{data.telephone}}</td>
         </tr>

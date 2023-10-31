@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv"> <!--  -->
-    <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.workStatus" :bordered="false">
+    <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" 
           v-show="data.techName === loginName || data.headName === loginName"
@@ -25,8 +25,8 @@
         <tr>
           <td>装修进度</td>
           <td>{{ data.schedule }}</td>
-          <td v-show="loginName === data.techId">工单状态</td>
-          <td v-show="loginName === data.techId">{{ data.status }}</td>
+          <td>工单状态</td>
+          <td>{{ data.workStatus }}</td>
         </tr>
         <!-- <tr>
           <td>客户地址</td>

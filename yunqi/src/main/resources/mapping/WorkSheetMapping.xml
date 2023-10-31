@@ -63,7 +63,7 @@
         # 完结
         update worksheet
         set disabled   = 'false',
-            status = '已结束',
+            status = '已完成',
             updateName = '吴杰',
             updateTime = NOW()
         where id = #{workId}
