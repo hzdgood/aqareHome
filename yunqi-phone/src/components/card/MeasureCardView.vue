@@ -39,6 +39,12 @@
           <td>{{data.deductionInfo}}</td>
         </tr>
       </table>
+      <div class="buttonPos" >
+        <a-button 
+          v-show="data.schemeId !== null" 
+          @click="disabledOpen(data.id)" 
+          type="primary">无效</a-button>
+      </div>
     </a-card>
 
     <a-card title="卷帘" :bordered="false" v-show="type === '卷帘'">
@@ -80,13 +86,20 @@
           <td>{{data.cover}}</td>
         </tr>
       </table>
+      <div class="buttonPos" >
+        <a-button 
+          v-show="data.schemeId !== null" 
+          @click="disabledRoller(data.id)" 
+          type="primary">无效</a-button>
+      </div>
     </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
+import { httpGet } from '../../config/interFace'
 // 测量 开合 卷帘
-const props = defineProps({
+defineProps({
   data: {
     type: Object,
     default: null
@@ -97,7 +110,18 @@ const props = defineProps({
   }
 })
 
-console.log(props.type);
+const disabledOpen = async (id: any) => {
+  const res = await httpGet('/measure/disabledOpen',{
+    id: id,
+  })
+  console.log(res);
+}
 
+const disabledRoller = async (id: any) => {
+  const res = await httpGet('/measure/disabledRoller',{
+    id: id,
+  })
+  console.log(res);
+}
 
 </script>

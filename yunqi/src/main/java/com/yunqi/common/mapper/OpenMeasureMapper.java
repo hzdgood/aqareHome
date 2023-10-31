@@ -11,7 +11,5 @@ public interface OpenMeasureMapper {
 
     void insert(OpenMeasure OpenMeasure);
 
-    void update(OpenMeasure OpenMeasure);
-
     void delete(Integer id);
 }

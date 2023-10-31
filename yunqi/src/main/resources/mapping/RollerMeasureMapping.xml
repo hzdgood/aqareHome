@@ -5,23 +5,20 @@
     <select id="select" resultType="com.yunqi.common.entity.RollerMeasure">
         select *
         from rollerMeasure
+        where techId = #{techId} and disabled is null
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.RollerMeasure" useGeneratedKeys="true" keyProperty="id">
         insert into rollerMeasure (
-            projectId, projectName, area, rollingScheme, length, high, surfaceWidth, type,
-            installMethod, deductionInfo, number, surfaceMaterial, powerPosition, cover
+            projectId, techId, projectName, area, rollingScheme, length, high, surfaceWidth, type,
+            installMethod, deductionInfo, number, surfaceMaterial, powerPosition, cover, imgUrl
         ) value (
-            #{projectId}, #{projectName}, #{area}, #{rollingScheme}, #{length}, #{high}, #{surfaceWidth}, '卷帘',
-            #{installMethod}, #{deductionInfo}, #{number}, #{surfaceMaterial}, #{powerPosition}, #{cover}
+            #{projectId}, #{techId}, #{projectName}, #{area}, #{rollingScheme}, #{length}, #{high}, #{surfaceWidth}, '卷帘',
+            #{installMethod}, #{deductionInfo}, #{number}, #{surfaceMaterial}, #{powerPosition}, #{cover}, #{imgUrl}
         )
     </insert>
 
-    <insert id="update" parameterType="com.yunqi.common.entity.RollerMeasure" useGeneratedKeys="true" keyProperty="id">
-
-    </insert>
-
     <delete id="delete" parameterType="com.yunqi.common.entity.RollerMeasure">
-        update rollerMeasure set disabled = false where id = #{id}
+        update rollerMeasure set disabled = 'false' where id = #{id}
     </delete>
 </mapper>

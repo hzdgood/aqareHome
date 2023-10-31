@@ -5,23 +5,20 @@
     <select id="select" resultType="com.yunqi.common.entity.OpenMeasure">
         select *
         from openMeasure
+        where techId = #{techId} and disabled is null
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
         insert into openMeasure (
-            projectId, projectName, area, motorModel, trackType, installMethod, number, type,
-            openMethod, powerPosition, boxWidth, surfaceMaterial, placeholder, deductionInfo
+            projectId, techId, projectName, area, motorModel, trackType, installMethod, number, type,
+            openMethod, powerPosition, boxWidth, surfaceMaterial, placeholder, deductionInfo, imgUrl
         ) value (
-            #{projectId}, #{projectName}, #{area}, #{motorModel}, #{trackType}, #{installMethod}, #{number}, '开合帘',
-            #{openMethod}, #{powerPosition}, #{boxWidth}, #{surfaceMaterial}, #{placeholder}, #{deductionInfo}
+            #{projectId}, #{techId}, #{projectName}, #{area}, #{motorModel}, #{trackType}, #{installMethod}, #{number}, '开合帘',
+            #{openMethod}, #{powerPosition}, #{boxWidth}, #{surfaceMaterial}, #{placeholder}, #{deductionInfo}, #{imgUrl}
         )
     </insert>
 
-    <insert id="update" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
-
-    </insert>
-
     <delete id="delete" parameterType="com.yunqi.common.entity.OpenMeasure">
-        update openMeasure set disabled = false where id = #{id}
+        update openMeasure set disabled = 'false' where id = #{id}
     </delete>
 </mapper>

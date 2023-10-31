@@ -34,8 +34,12 @@ import ProjectCardView from './card/ProjectCardView.vue';
 import { reactive, onMounted } from 'vue';
 import { httpGet } from '../config/interFace'
 
+const techId = localStorage.getItem("techId");
+
 onMounted (async function () {
-  const res = await httpGet('/view/project',{})
+  const res = await httpGet('/view/project',{
+    techId: techId,
+  })
   formState.dataList = res
 })
 

@@ -11,8 +11,8 @@
     <div class="wrapper">
       <div :class="formState.select1" @click="changeSelect(1)"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div :class="formState.select2" @click="changeSelect(2)"><RouterLink to="/project">我的项目</RouterLink></div>
-      <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/write">核销记录</RouterLink></div>
-      <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/measure">测量单</RouterLink></div>
+      <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/write">我的核销</RouterLink></div>
+      <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/measure">我的测量单</RouterLink></div>
       <!-- <div><RouterLink to="/commission">提成</RouterLink></div> -->
     </div>
     <div class="bodyContent">

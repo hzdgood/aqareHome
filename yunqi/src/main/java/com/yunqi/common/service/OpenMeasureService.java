@@ -24,10 +24,6 @@ public class OpenMeasureService {
         OpenMeasureMapper.insert(OpenMeasure);
     }
 
-    public void update(OpenMeasure OpenMeasure) {
-        OpenMeasureMapper.update(OpenMeasure);
-    }
-
     public void delete(Integer id) {
         OpenMeasureMapper.delete(id);
     }

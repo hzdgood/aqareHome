@@ -6,8 +6,6 @@ import com.yunqi.common.utils.MultipartFileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 import java.util.List;
 
 @RestController
@@ -34,7 +32,14 @@ public class PictureController {
     @CrossOrigin
     @ResponseBody
     @PostMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile file) {
-        return MultipartFileUtils.saveMultipartFile(file, "D:/");
+    public String upload(@RequestParam("file") MultipartFile[] file) {
+        String str = "";
+        if(file.length > 0) {
+            for( MultipartFile f: file){
+                str = str + MultipartFileUtils.saveMultipartFile(f, "D:/") + "、";
+            }
+            str = str.substring(0,str.length() -1);
+        }
+        return str;
     }
 }

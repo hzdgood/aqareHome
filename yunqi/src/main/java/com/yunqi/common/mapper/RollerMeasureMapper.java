@@ -11,7 +11,5 @@ public interface RollerMeasureMapper {
 
     void insert(RollerMeasure RollerMeasure);
 
-    void update(RollerMeasure RollerMeasure);
-
     void delete(Integer id);
 }

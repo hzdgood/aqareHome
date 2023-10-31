@@ -51,4 +51,16 @@ public class MeasureController {
     public void addRoller(RollerMeasure RollerMeasure) {
         RollerMeasureService.insert(RollerMeasure);
     }
+
+    @CrossOrigin
+    @RequestMapping("/disabledOpen")
+    public void disabledOpen(Integer id) {
+        OpenMeasureService.delete(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/disabledRoller")
+    public void disabledRoller(Integer id) {
+        RollerMeasureService.delete(id);
+    }
 }

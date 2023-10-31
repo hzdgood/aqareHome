@@ -3,6 +3,7 @@ package com.yunqi.common.entity;
 public class OpenMeasure {
     private Integer id;
     private Integer projectId;
+    private Integer techId;
     private String projectName;
     private String type;
     private String area;// 区域
@@ -16,6 +17,8 @@ public class OpenMeasure {
     private String surfaceMaterial; // 安装面材质
     private String placeholder; // 预留位置
     private String deductionInfo; // 扣减说明
+    private String imgUrl;
+    private String disabled;
 
     public Integer getId() {
         return id;
@@ -31,6 +34,14 @@ public class OpenMeasure {
 
     public void setProjectId(Integer projectId) {
         this.projectId = projectId;
+    }
+
+    public Integer getTechId() {
+        return techId;
+    }
+
+    public void setTechId(Integer techId) {
+        this.techId = techId;
     }
 
     public String getProjectName() {
@@ -135,5 +146,21 @@ public class OpenMeasure {
 
     public void setDeductionInfo(String deductionInfo) {
         this.deductionInfo = deductionInfo;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
     }
 }

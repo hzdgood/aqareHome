@@ -104,11 +104,12 @@
               </td>
             </tr>
             <tr>
-              <td>现在照片</td>
+              <td>现场照片</td>
               <td>
                 <a-upload
                   v-model:file-list="fileList"
                   name="file"
+                  multiple="true"
                   :action="httpUrl + '/picture/upload'"
                   @change="handleChange"
                 >
@@ -206,10 +207,11 @@
               </td>
             </tr>
             <tr>
-              <td>现在照片</td>
+              <td>现场照片</td>
               <td>
                 <a-upload
                   v-model:file-list="fileList"
+                  multiple="true"
                   name="file"
                   :action="httpUrl + '/picture/upload'"
                   @change="handleChange"
@@ -244,6 +246,7 @@ import { UploadOutlined } from '@ant-design/icons-vue';
 import type { UploadChangeParam } from 'ant-design-vue';
 
 const route = useRoute()
+const techId = localStorage.getItem("techId");
 
 onMounted (async function () {
   const res = await httpGet('/view/project',{
@@ -308,6 +311,7 @@ const submit = async () => {
   if(formState.formDiv1) {
     const res = await httpGet('/measure/addOpen',{
       projectId: route.query.id,
+      techId: techId,
       projectName: formState.projectName,
       area: formState.area,
       motorModel: formState.motorModel,
@@ -326,6 +330,7 @@ const submit = async () => {
   } else if (formState.formDiv2) {
     const res = await httpGet('/measure/addRoller',{
       projectId: route.query.id,
+      techId: techId,
       projectName: formState.projectName,
       area: formState.area,
       rollingScheme: formState.rollingScheme,
@@ -347,14 +352,20 @@ const submit = async () => {
 const check1 = () => {
   formState.formDiv1 = true
   formState.formDiv2 = false
+  formState.imgUrl = '';
+  formState.area = ''
 }
 
 const check2 = () => {
   formState.formDiv1 = false
   formState.formDiv2 = true
+  formState.imgUrl = '';
+  formState.area = ''
 }
 
 const handleChange = (info: UploadChangeParam) => {
+  console.log(info.file.response);
+  formState.imgUrl = info.file.response
   if (info.file.status !== 'uploading') {
     console.log(info.file, info.fileList);
   }

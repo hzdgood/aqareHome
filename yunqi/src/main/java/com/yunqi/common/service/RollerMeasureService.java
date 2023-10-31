@@ -24,10 +24,6 @@ public class RollerMeasureService {
         RollerMeasureMapper.insert(RollerMeasure);
     }
 
-    public void update(RollerMeasure RollerMeasure) {
-        RollerMeasureMapper.update(RollerMeasure);
-    }
-
     public void delete(Integer id) {
         RollerMeasureMapper.delete(id);
     }
