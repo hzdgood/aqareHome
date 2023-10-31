@@ -19,7 +19,7 @@
           </td>
           <td>工单状态</td>
           <td>
-            <a-input :disabled="true" :value="formState.dataList.status" style="width: 100%"></a-input>
+            <a-input :disabled="true" :value="formState.dataList.workStatus" style="width: 100%"></a-input>
           </td>
         </tr>
         <tr>
@@ -146,36 +146,28 @@ onMounted (async function () {
   formState.options = techs // 上门技术 主负责人 select
   formState.techName = res[0].techNames // 上门技术 BUG
   formState.headName = res[0].headName // 主负责人
-  formState.remark = res[0].remark // 备注
+  formState.remark = '今日完成情况:' + res[0].workSummary + "\r\n" + "下次工作安排:" + res[0].visitNode // 备注
   formState.status = res[0].workStatus // 总状态
 
   let scheme
-
   if(res[0].type === '安装') {
     scheme = await httpGet('/view/scheme',{
       projectId: res[0].projectId,
       notInstalled: 0
     })
+    formState.schemeList = scheme
   } else if(res[0].type === '调试') {
     scheme = await httpGet('/view/scheme',{
       projectId: res[0].projectId,
       unregulated: 0
     })
+    formState.schemeList = scheme
   }
-  formState.schemeList = scheme
 })
 
 const resPage = () => {
   router.push({name: 'workSheet'})
 }
-
-// const disabled = async () => {
-//   await httpGet('/workTime/disabled',{
-//     workId: route.query.id,
-//     errorInfo: formState.errorInfo,
-//     updateName: techId
-//   })
-// }
 
 interface FormState {
   dataList: any

@@ -32,14 +32,7 @@ public class PictureController {
     @CrossOrigin
     @ResponseBody
     @PostMapping("/upload")
-    public String upload(@RequestParam("file") MultipartFile[] file) {
-        String str = "";
-        if(file.length > 0) {
-            for( MultipartFile f: file){
-                str = str + MultipartFileUtils.saveMultipartFile(f, "D:/") + "、";
-            }
-            str = str.substring(0,str.length() -1);
-        }
-        return str;
+    public String upload(MultipartFile file) {
+        return MultipartFileUtils.saveMultipartFile(file, "D:/");
     }
 }

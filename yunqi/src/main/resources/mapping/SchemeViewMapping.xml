@@ -11,7 +11,7 @@
             and notInstalled > 0
         </if>
         <if test="unregulated!=null">
-            and unregulated > 0 or notInstalled > 0
+            and ( unregulated > 0 or notInstalled > 0 )
         </if>
     </select>
 

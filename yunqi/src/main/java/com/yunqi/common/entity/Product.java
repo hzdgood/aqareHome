@@ -11,11 +11,8 @@ public class Product {
     private String price; //产品价格
     private String brand; //品牌
     private String category; //品类
+    private String disabled;
     private String itemId; // 伙伴云ID
-    private String createName;
-    private Date createTime;
-    private String updateName;
-    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -81,43 +78,19 @@ public class Product {
         this.category = category;
     }
 
+    public String getDisabled() {
+        return disabled;
+    }
+
+    public void setDisabled(String disabled) {
+        this.disabled = disabled;
+    }
+
     public String getItemId() {
         return itemId;
     }
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

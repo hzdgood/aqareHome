@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv"> <!--  -->
-    <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.status" :bordered="false">
+    <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type + '&nbsp;&nbsp;' + data.workStatus" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" 
           v-show="data.techName === loginName || data.headName === loginName"

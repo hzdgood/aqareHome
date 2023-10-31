@@ -31,6 +31,9 @@ const props = defineProps({
 })
 
 watch(props, (newValue, oldValue) => {
+  if(typeof(newValue.data) === 'undefined') {
+    return
+  }
   if(newValue.data.length > 0) {
     const str = newValue.data[0];
     formState.title = str.projectName + " " + str.salesName + " " + str.techName; 

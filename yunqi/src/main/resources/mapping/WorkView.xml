@@ -7,10 +7,10 @@
         select *
         from workView w where 1 = 1 and disabled is null
         <if test="techId!=null">
-            and techId = #{techId}
+            and techNames like #{techId,jdbcType=VARCHAR}
         </if>
         <if test="projectId!=null">
-            and projectId like '%${projectId}%'
+            and projectId like #{projectId,jdbcType=VARCHAR}
         </if>
         <if test="workId!=null">
             and workId = #{workId}
@@ -18,10 +18,13 @@
         <if test="type!=null and type!=''">
             and type = #{type}
         </if>
+        <if test="status!=null and status!=''">
+            and status is null
+        </if>
         <if test="projectName!=null and projectName!=''">
-            and projectName like '%${projectName}%'
-            and telephone like '%${projectName}%'
-            and address like '%${projectName}%'
+            and ( projectName like #{projectName,jdbcType=VARCHAR}
+            or telephone like #{projectName,jdbcType=VARCHAR}
+            or address like #{projectName,jdbcType=VARCHAR} )
         </if>
         <if test="dateOfVisit != null">
             and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
@@ -29,6 +32,6 @@
         <if test="headId!=null">
             and headId = #{headId}
         </if>
-        order by dateOfVisit asc
+        order by dateOfVisit desc
     </select>
 </mapper>

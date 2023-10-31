@@ -26,7 +26,6 @@ import { reactive, onMounted  } from 'vue';
 import router from '@/router';
 import { httpGet } from '../config/interFace'
 
-const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {
@@ -35,14 +34,6 @@ onMounted (async function () {
     status: 'true' // 去除 已完成工单
   })
   formState.dataList = res
-
-  const res1 = await httpGet('/view/work',{ // 负责人
-    headId: techId,
-    status: 'true' // 去除 已完成工单
-  })
-  if(res1.length > 0) {
-    formState.dataList.push(res1[0])
-  }
 })
 
 const toPage = (str: any, obj: any) => {
@@ -58,14 +49,6 @@ const pageReset = async () => {
     status: 'true'
   })
   formState.dataList = res
-
-  const res1 = await httpGet('/view/work',{
-    headId: techId,
-    status: 'true'
-  })
-  if(res1.length > 0) {
-    formState.dataList.push(res1[0])
-  }
 }
 
 interface FormState {
@@ -83,13 +66,6 @@ const allSeletct = async () => {
     techId: loginName
   })
   formState.dataList = res
-
-  const res1 = await httpGet('/view/work',{
-    headId: techId,
-  })
-  if(res1.length > 0) {
-    formState.dataList.push(res1[0])
-  }
 }
 
 const projectChange = async () => {
@@ -98,32 +74,14 @@ const projectChange = async () => {
     techId: loginName
   })
   formState.dataList = res
-
-  const res1 = await httpGet('/view/work',{
-    projectName: formState.projectName,
-    headId: techId,
-  })
-  if(res1.length > 0) {
-    formState.dataList.push(res1[0])
-  }
 }
 
 const onFinish = async () => {
   const res = await httpGet('/view/work',{
     projectName: formState.projectName,
     techId: loginName,
-    status: 'true'
   })
   formState.dataList = res
-
-  const res1 = await httpGet('/view/work',{
-    projectName: formState.projectName,
-    headId: techId,
-    status: 'true'
-  })
-  if(res1.length > 0) {
-    formState.dataList.push(res1[0])
-  }
 };
 
 const onFinishFailed = (errorInfo: any) => {

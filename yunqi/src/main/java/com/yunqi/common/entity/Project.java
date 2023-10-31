@@ -10,20 +10,12 @@ public class Project {
     private String telephone;// 电话
     private String address; // 地址
     private String type; //类型
-    private String node; //阶段
-    private String status; //状态
     private String houseState; //房型
     private String situation; //情况
-    private String village; //小区
     private String schedule; //进度
     private String region; //区域
     private String departName; //所属部门
-    private String source; //来源
     private String itemId;
-    private String createName;
-    private Date createTime;
-    private String updateName;
-    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -81,22 +73,6 @@ public class Project {
         this.type = type;
     }
 
-    public String getNode() {
-        return node;
-    }
-
-    public void setNode(String node) {
-        this.node = node;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getHouseState() {
         return houseState;
     }
@@ -111,14 +87,6 @@ public class Project {
 
     public void setSituation(String situation) {
         this.situation = situation;
-    }
-
-    public String getVillage() {
-        return village;
-    }
-
-    public void setVillage(String village) {
-        this.village = village;
     }
 
     public String getSchedule() {
@@ -145,51 +113,11 @@ public class Project {
         this.departName = departName;
     }
 
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public String getItemId() {
         return itemId;
     }
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
-    }
-
-    public String getCreateName() {
-        return createName;
-    }
-
-    public void setCreateName(String createName) {
-        this.createName = createName;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }

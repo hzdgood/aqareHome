@@ -10,11 +10,8 @@ public class ProjectView {
     private String telephone;// 电话
     private String address; // 地址
     private String type; //类型
-    private String node; //阶段
-    private String status; //状态
     private String houseState; //房型
     private String situation; //情况
-    private String village; //小区
     private String schedule; //进度
     private String region; //区域
 
@@ -90,22 +87,6 @@ public class ProjectView {
         this.type = type;
     }
 
-    public String getNode() {
-        return node;
-    }
-
-    public void setNode(String node) {
-        this.node = node;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getHouseState() {
         return houseState;
     }
@@ -120,14 +101,6 @@ public class ProjectView {
 
     public void setSituation(String situation) {
         this.situation = situation;
-    }
-
-    public String getVillage() {
-        return village;
-    }
-
-    public void setVillage(String village) {
-        this.village = village;
     }
 
     public String getSchedule() {

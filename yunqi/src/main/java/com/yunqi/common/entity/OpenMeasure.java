@@ -1,5 +1,7 @@
 package com.yunqi.common.entity;
 
+import java.util.Date;
+
 public class OpenMeasure {
     private Integer id;
     private Integer projectId;
@@ -19,6 +21,10 @@ public class OpenMeasure {
     private String deductionInfo; // 扣减说明
     private String imgUrl;
     private String disabled;
+    private String createName;
+    private Date createTime;
+    private String updateName;
+    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -162,5 +168,37 @@ public class OpenMeasure {
 
     public void setDisabled(String disabled) {
         this.disabled = disabled;
+    }
+
+    public String getCreateName() {
+        return createName;
+    }
+
+    public void setCreateName(String createName) {
+        this.createName = createName;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getUpdateName() {
+        return updateName;
+    }
+
+    public void setUpdateName(String updateName) {
+        this.updateName = updateName;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

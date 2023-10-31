@@ -20,18 +20,18 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         insert into scheme (projectId, productId, number, installNumber,
-                            debugNumber, notInstalled, unregulated, createName, createTime, itemId) value (
+                            debugNumber, notInstalled, unregulated, notSent, itemId) value (
                #{projectId}, #{productId}, #{number}, #{installNumber}, #{debugNumber},
-               #{notInstalled}, #{unregulated}, '初始化', NOW(), #{itemId}
+               #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}
             )
     </insert>
 
     <insert id="history" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         insert into schemehistory (projectId, productId, number, installNumber,
-                                   debugNumber, notInstalled, unregulated, createName, createTime, itemId) value (
+                                   debugNumber, notInstalled, unregulated, notSent, itemId) value (
               #{projectId}, #{productId}, #{number}, #{installNumber},  #{debugNumber},
-              #{notInstalled}, #{unregulated}, '初始化', NOW(), #{itemId}
+              #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}
             )
     </insert>
 
@@ -41,9 +41,8 @@
         set installNumber = #{installNumber},
             debugNumber   = #{debugNumber},
             notInstalled  = #{notInstalled},
-            unregulated   = #{unregulated},
-            updateName    = #{updateName},
-            updateTime    = now()
-        where id = #{id}
+            notSent  = #{notSent},
+            unregulated   = #{unregulated}
+        where itemId = #{itemId}
     </insert>
 </mapper>

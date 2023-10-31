@@ -15,17 +15,9 @@
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
         insert into product (name, code, classification, shipType,
-                             price, brand, category, createName, createTime, itemId) value (
+            price, brand, category, itemId) value (
             #{name}, #{code}, #{classification}, #{shipType},
-            #{price}, #{brand}, #{category}, '初始化', NOW(), #{itemId}
+            #{price}, #{brand}, #{category}, #{itemId}
         )
     </insert>
-
-    <insert id="update" parameterType="com.yunqi.common.entity.Product">
-
-    </insert>
-
-    <delete id="delete" parameterType="com.yunqi.common.entity.Product">
-
-    </delete>
 </mapper>

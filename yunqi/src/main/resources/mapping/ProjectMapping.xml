@@ -26,20 +26,29 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.Project" useGeneratedKeys="true" keyProperty="id">
         # 新增项目
         insert into project (saleId, techId, name, telephone,
-                             address, type, node, status,
-                             houseState, situation, village, schedule,
-                             region, departName, source,
-                             createName, createTime, itemId)
+                 address, type, houseState, situation, schedule,
+                 region, departName, itemId)
             value (
-                   #{saleId}, #{techId}, #{name}, #{telephone},
-                   #{address}, #{type}, #{node}, #{status},
-                   #{houseState}, #{situation}, #{village}, #{schedule},
-                   #{region}, #{departName}, #{source},
-                   '初始化', now(), #{itemId}
+               #{saleId}, #{techId}, #{name}, #{telephone},
+               #{address}, #{type}, #{houseState}, #{situation}, #{schedule},
+               #{region}, #{departName}, #{itemId}
             )
     </insert>
 
     <insert id="update" parameterType="com.yunqi.common.entity.Project">
         # 更新项目
+        update project
+        set saleId = #{saleId},
+            techId   = #{techId},
+            name  = #{name},
+            telephone  = #{telephone},
+            address   = #{address},
+            type  = #{type},
+            houseState = #{houseState},
+            situation = #{situation},
+            schedule = #{schedule},
+            region = #{region},
+            departName = #{departName}
+        where itemId = #{itemId}
     </insert>
 </mapper>

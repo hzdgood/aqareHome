@@ -29,15 +29,17 @@ public class SchemeExcel {
                     Cell cell = row.getCell(j);
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
-                        if (j == 1) {
+                        if (j == 0) {
+                            Scheme.setItemId(cell.getStringCellValue());
+                        } else if (j == 1) {
                             for (Project p : project) {
-                                if (p.getTelephone().equals(value)) {
+                                if (p.getItemId().equals(value)) {
                                     Scheme.setProjectId(p.getId());
                                 }
                             }
                         } else if (j == 2) {
                             for (Product p : product) {
-                                if (p.getCode().equals(value)) {
+                                if (p.getItemId().equals(value)) {
                                     Scheme.setProductId(p.getId());
                                 }
                             }
@@ -48,11 +50,11 @@ public class SchemeExcel {
                         } else if (j == 5) {
                             Scheme.setDebugNumber((int) cell.getNumericCellValue());
                         } else if (j == 6) {
-                            Scheme.setNotInstalled((int) cell.getNumericCellValue());
+                            Scheme.setNotSent((int) cell.getNumericCellValue());
                         } else if (j == 7) {
-                            Scheme.setUnregulated((int) cell.getNumericCellValue());
+                            Scheme.setNotInstalled((int) cell.getNumericCellValue());
                         } else if (j == 8) {
-                            Scheme.setItemId(cell.getStringCellValue());
+                            Scheme.setUnregulated((int) cell.getNumericCellValue());
                         }
                     }
                 }

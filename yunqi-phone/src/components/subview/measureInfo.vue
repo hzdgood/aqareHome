@@ -109,7 +109,6 @@
                 <a-upload
                   v-model:file-list="fileList"
                   name="file"
-                  multiple="true"
                   :action="httpUrl + '/picture/upload'"
                   @change="handleChange"
                 >
@@ -211,7 +210,6 @@
               <td>
                 <a-upload
                   v-model:file-list="fileList"
-                  multiple="true"
                   name="file"
                   :action="httpUrl + '/picture/upload'"
                   @change="handleChange"
@@ -231,6 +229,9 @@
         </div>
       </a-card>
     </div>
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
+      <p>{{ formState.modalInfo }}</p>
+    </a-modal>
   </div>
 </template>
 
@@ -241,10 +242,11 @@ import { reactive, onMounted, ref } from 'vue';
 import { httpGet, httpUrl } from '../../config/interFace'
 import { useRoute } from "vue-router";
 
-import { message } from 'ant-design-vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 import type { UploadChangeParam } from 'ant-design-vue';
 
+const open = ref<boolean>(false);
+const fileList = ref([]);
 const route = useRoute()
 const techId = localStorage.getItem("techId");
 
@@ -277,6 +279,7 @@ interface FormState {
   surfaceWidth: string,
   cover: string,
   imgUrl: string
+  modalInfo: string
 }
 
 const formState = reactive<FormState>({
@@ -300,7 +303,8 @@ const formState = reactive<FormState>({
   high: '',
   surfaceWidth: '',
   cover: '',
-  imgUrl: ''
+  imgUrl: '',
+  modalInfo: ''
 });
 
 const resPage = () => {
@@ -309,7 +313,7 @@ const resPage = () => {
 
 const submit = async () => {
   if(formState.formDiv1) {
-    const res = await httpGet('/measure/addOpen',{
+    await httpGet('/measure/addOpen',{
       projectId: route.query.id,
       techId: techId,
       projectName: formState.projectName,
@@ -324,11 +328,14 @@ const submit = async () => {
       surfaceMaterial: formState.surfaceMaterial,
       placeholder: formState.placeholder,
       deductionInfo: formState.deductionInfo,
-      remark: formState.remark
+      remark: formState.remark,
+      imgUrl: formState.imgUrl,
+      createName: techId
     })
-    console.log(res);
+    formState.modalInfo = '开合帘新增成功'
+    showModal()
   } else if (formState.formDiv2) {
-    const res = await httpGet('/measure/addRoller',{
+    await httpGet('/measure/addRoller',{
       projectId: route.query.id,
       techId: techId,
       projectName: formState.projectName,
@@ -343,10 +350,22 @@ const submit = async () => {
       surfaceMaterial: formState.surfaceMaterial,
       powerPosition: formState.powerPosition,
       cover: formState.cover,
-      remark: formState.remark
+      remark: formState.remark,
+      imgUrl: formState.imgUrl,
+      createName: techId
     })
-    console.log(res);
+    formState.modalInfo = '卷帘新增成功'
+    showModal()
   }
+}
+
+const showModal = () => {
+  open.value = true;
+};
+
+
+const handleOk = async () => {
+  open.value = false;
 }
 
 const check1 = () => {
@@ -364,19 +383,17 @@ const check2 = () => {
 }
 
 const handleChange = (info: UploadChangeParam) => {
-  console.log(info.file.response);
-  formState.imgUrl = info.file.response
-  if (info.file.status !== 'uploading') {
-    console.log(info.file, info.fileList);
-  }
   if (info.file.status === 'done') {
-    message.success(`${info.file.name} file uploaded successfully`);
+    formState.imgUrl = info.file.response
+    console.log(`${info.file.name} file uploaded successfully`);
+    formState.modalInfo = '上传成功！'
+    showModal()
   } else if (info.file.status === 'error') {
-    message.error(`${info.file.name} file upload failed.`);
+    console.log(`${info.file.name} file upload failed.`);
+    formState.modalInfo = '上传成功！'
+    showModal()
   }
 };
-
-const fileList = ref([]);
 
 </script>
 

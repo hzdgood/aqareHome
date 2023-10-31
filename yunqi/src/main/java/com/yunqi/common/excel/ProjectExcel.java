@@ -31,43 +31,37 @@ public class ProjectExcel {
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 0) {
-                            for (Sales sales : sale) {
-                                if (sales.getName().equals(value)) {
-                                    Project.setSaleId(sales.getId());
-                                }
-                            }
+                            Project.setItemId(value);
                         } else if (j == 1) {
-                            for (Tech techs : tech) {
-                                if (techs.getName().equals(value)) {
-                                    Project.setTechId(techs.getId());
-                                }
-                            }
+                            Project.setSchedule(value);
                         } else if (j == 2) {
                             Project.setName(value);
                         } else if (j == 3) {
                             Project.setTelephone(value);
                         } else if (j == 4) {
-                            Project.setAddress(value);
+                            Project.setDepartName(value);
                         } else if (j == 5) {
-                            Project.setType(value);
+                            for (Sales sales : sale) {
+                                if (sales.getName().equals(value)) {
+                                    Project.setSaleId(sales.getId());
+                                }
+                            }
                         } else if (j == 6) {
-                            Project.setNode(value);
+                            for (Tech techs : tech) {
+                                if (techs.getName().equals(value)) {
+                                    Project.setTechId(techs.getId());
+                                }
+                            }
                         } else if (j == 7) {
-                            Project.setStatus(value);
+                            Project.setType(value);
                         } else if (j == 8) {
                             Project.setHouseState(value);
                         } else if (j == 9) {
                             Project.setSituation(value);
                         } else if (j == 10) {
-                            Project.setRegion(value);
+                            Project.setAddress(value);
                         } else if (j == 11) {
-                            Project.setSchedule(value);
-                        } else if (j == 12) {
-                            Project.setDepartName(value);
-                        } else if (j == 13) {
-                            Project.setSource(value);
-                        } else if (j == 14) {
-                            Project.setItemId(value);
+                            Project.setRegion(value);
                         }
                     }
                 }

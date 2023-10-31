@@ -1,7 +1,8 @@
 package com.yunqi.common.excel;
 
-import com.yunqi.common.entity.Product;
-import com.yunqi.common.service.ProductService;
+import com.yunqi.common.entity.Project;
+import com.yunqi.common.entity.WorkSheet;
+import com.yunqi.common.service.WorkSheetService;
 import com.yunqi.common.utils.ExcelUtil;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -11,16 +12,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
-public class ProductExcel {
-    public static void productExcel(File file, ProductService ProductService) throws FileNotFoundException {
+public class WorkExcel {
+    public static void workExcel(File file, WorkSheetService workSheetService, List<Project> project) throws FileNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(file);
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
             Sheet sheet = workbook.getSheetAt(0);
             int lastRowNum = sheet.getLastRowNum();
             for (int i = 1; i <= lastRowNum; i++) {
-                Product Product = new Product();
+                WorkSheet WorkSheet = new WorkSheet();
                 Row row = sheet.getRow(i);
                 int lastCellNum = row.getLastCellNum();
                 for (int j = 0; j < lastCellNum; j++) {
@@ -28,30 +30,33 @@ public class ProductExcel {
                     if (cell != null) {
                         String value = ExcelUtil.getCellValue(cell);
                         if (j == 0) {
-                            Product.setItemId(value);
-                        } else if (j == 1) {
-                            Product.setName(value);
+                            WorkSheet.setDateOfVisit(cell.getDateCellValue());
                         } else if (j == 2) {
-                            Product.setCode(value);
+                            for (Project p : project) {
+                                if (p.getItemId().equals(value)) {
+                                    WorkSheet.setProjectId(p.getId());
+                                }
+                            }
                         } else if (j == 3) {
-                            Product.setClassification(value);
+                            WorkSheet.setType(value);
                         } else if (j == 4) {
-                            Product.setShipType(value);
+                            WorkSheet.setTechIds(value);
                         } else if (j == 5) {
-                            Product.setBrand(value);
+                            WorkSheet.setStatus(value);
                         } else if (j == 6) {
-                            Product.setDisabled(value);
+                            WorkSheet.setWorkSummary(value);
                         } else if (j == 7) {
-                            Product.setPrice(value);
-                        } else if (j == 8) {
-                            Product.setCategory(value);
+                            WorkSheet.setVisitNode(value);
                         }
+                        WorkSheet.setHeadName("管理员");
+                        WorkSheet.setCreateName("初始化");
                     }
                 }
-                ProductService.insert(Product);
+                workSheetService.insert(WorkSheet);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+

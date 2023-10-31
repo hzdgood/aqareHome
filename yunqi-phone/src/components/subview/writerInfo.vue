@@ -48,11 +48,12 @@
         <div>
           <div>物料核对图片</div>
           <div class="buttonPos">
-            <a-upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            <a-upload 
+              :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
               v-model:file-list="fileList"
+              @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '物料核对图片')"
             >
               <a-button>
                 <upload-outlined></upload-outlined>
@@ -64,10 +65,11 @@
           <div>工单汇报凭证图片</div>
           <div class="buttonPos">
             <a-upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
               v-model:file-list="fileList"
+              @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单汇报凭证图片')"
             >
               <a-button>
                 <upload-outlined></upload-outlined>
@@ -79,10 +81,11 @@
           <div>工单核销照片</div>
           <div class="buttonPos">
             <a-upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
               v-model:file-list="fileList"
+              @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单核销照片')"
             >
               <a-button>
                 <upload-outlined></upload-outlined>
@@ -94,10 +97,11 @@
           <div>签字单图片</div>
           <div class="buttonPos">
             <a-upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
               v-model:file-list="fileList"
+              @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '签字单图片')"
             >
               <a-button>
                 <upload-outlined></upload-outlined>
@@ -109,10 +113,11 @@
           <div>工单其他照片</div>
           <div class="buttonPos">
             <a-upload
-              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+              :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
               v-model:file-list="fileList"
+              @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单其他照片')"
             >
               <a-button>
                 <upload-outlined></upload-outlined>
@@ -120,7 +125,6 @@
               </a-button>
             </a-upload> 
           </div>
-
         </div>
       </div>
       <!-- v-model:file-list="fileList1" -->
@@ -135,14 +139,36 @@
 // 工单核销
 import { reactive, onMounted, ref } from 'vue';
 import router from '@/router';
-import { httpGet } from '../../config/interFace'
+import { httpGet, httpUrl } from '../../config/interFace'
 import { useRoute } from "vue-router";
 import writerTable from './tables/writerTable.vue'
+import type { UploadChangeParam, UploadFile } from 'ant-design-vue';
+import { UploadOutlined } from '@ant-design/icons-vue';
 
 const open = ref<boolean>(false);
 const techId = localStorage.getItem('techId')
 const route = useRoute()
 let formObj: any[] = []
+
+const handleChange = async (info: UploadChangeParam, type: string) => {
+  if (info.file.status === 'done') {
+    // formState.imgUrl = info.file.response
+    console.log(`${info.file.name} file uploaded successfully`);
+    await httpGet('/picture/insert',{
+      workId: route.query.id,
+      type: type,
+      imgUrl: info.file.response,
+      createName: techId
+    })
+    formState.modalInfo = '上传成功！'
+    showModal()
+  } else if (info.file.status === 'error') {
+    console.log(`${info.file.name} file upload failed.`);
+    formState.modalInfo = '上传成功！'
+    showModal()
+  }
+};
+
 
 onMounted (async function () {
   formObj = [];
@@ -292,9 +318,9 @@ const changeSelect = (id: number) => {
   }
 }
 
-const handleChange = (value: string) => {
-  console.log(`selected ${value}`);
-};
+// const handleChange = (value: string) => {
+//   console.log(`selected ${value}`);
+// };
 
 interface FileItem {
   uid: string;

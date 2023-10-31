@@ -9,6 +9,7 @@ import com.yunqi.common.service.SchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 
 import java.io.File;
 import java.util.List;
@@ -26,9 +27,9 @@ public class SchemeBoot {
     @Autowired
     private ProductService ProductService;
 
-    // @Scheduled(cron = "0 23 14 * * ?")
+    // @Scheduled(cron = "0 15 14 * * ?")
     private void uploadExcel() {
-        File file = new File("D:\\download\\客户方案921.xlsx");
+        File file = new File("D:\\download\\客户方案.xlsx");
         List<Project> Project = ProjectService.select();
         List<Product> Product = ProductService.select();
         SchemeExcel.schemeToExcel(file, SchemeService, Project, Product);
