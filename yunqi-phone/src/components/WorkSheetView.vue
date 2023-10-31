@@ -26,7 +26,6 @@ import { reactive, onMounted  } from 'vue';
 import router from '@/router';
 import { httpGet } from '../config/interFace'
 
-const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {

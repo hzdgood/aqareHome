@@ -36,6 +36,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
 const techId = localStorage.getItem("techId")
+const loginName = localStorage.getItem('loginName')
 const props = defineProps({
   data: {
     type: Object,
@@ -66,7 +67,7 @@ const formChange = () => {
     debug: debug,
     notInstalled: props.data.notInstalled, // 未安装
     unregulated: props.data.unregulated, // 未调试
-    createName: techId // 用于新增
+    createName: loginName // 用于新增
   }
   emit('change',obj)
 }

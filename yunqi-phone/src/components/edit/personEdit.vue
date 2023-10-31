@@ -96,7 +96,7 @@ import { useRoute } from "vue-router";
 import { reactive, onMounted, ref } from 'vue';
 
 const route = useRoute()
-const techId = localStorage.getItem('techId')
+const loginName = localStorage.getItem('loginName')
 let value = ref<string[]>([]);
 
 onMounted (async function () {
@@ -156,7 +156,7 @@ const addPerson = async () => {
   const res = await httpGet('/workSheet/updatePerson',{
     id: route.query.id,
     techIds: formState.techName + "," + formState.techNames,
-    updateName: techId
+    updateName: loginName
   })
   console.log(res);
 
@@ -166,7 +166,7 @@ const addPerson = async () => {
     projectId: formState.projectId,
     techId: formState.techName,
     status: '待上门',
-    createName: techId
+    createName: loginName
   })
   console.log(res1);
 };
@@ -186,14 +186,14 @@ const deletePerson = async (timeId: any, name: any) => { // 针对多个人
     const res = await httpGet('/workSheet/updatePerson',{
       id: route.query.id,
       techIds: techIds,
-      updateName: techId
+      updateName: loginName
     })
     console.log(res);
 
     // 取消一条单人数据
     const res1 = await httpGet('/workTime/delete',{
       id: timeId,
-      updateName: techId
+      updateName: loginName
     })
     console.log(res1);
   }
@@ -205,7 +205,7 @@ const editHead = async () => {
   const res = await httpGet('/workSheet/updateHead',{
     id: route.query.id,
     headName: formState.headName,
-    updateName: techId
+    updateName: loginName
   })
   console.log(res);
 };

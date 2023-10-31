@@ -75,7 +75,6 @@ import { dateFilter } from '../../util/time'
 import { httpGet } from '../../config/interFace'
 import { reactive, onMounted ,ref } from 'vue';
 
-const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
 const emit = defineEmits(['toPage','pageReset'])
 const open = ref<boolean>(false);
@@ -144,7 +143,7 @@ const sign = async (id: number, workId: number, address: string) => {
   await httpGet('/workTime/sign',{
     id: id,
     workId: workId,
-    updateName: techId
+    updateName: loginName
   })
   formState.modalInfo = '签到成功'
   showModal();
@@ -175,7 +174,7 @@ const depart = async (id: any, workId: number, address: string) => {
   await httpGet('/workTime/depart',{
     id: id,
     workId: workId,
-    updateName: techId
+    updateName: loginName
   })
   formState.modalInfo = '离开成功'
   showModal();
@@ -213,7 +212,7 @@ const handleOk = async (data: any ) => {
       projectId: data.projectId,
       headId: data.headId,
       type: data.type,
-      updateName: techId
+      updateName: loginName
     })
     emit('pageReset')
     formState.modalInfo = '离开成功'

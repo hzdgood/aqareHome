@@ -108,7 +108,7 @@ let headName = ref<string[]>([]);
 
 const route = useRoute()
 const open = ref<boolean>(false);
-const techId = localStorage.getItem('techId')
+const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {
   const res = await httpGet('/view/work',{
@@ -210,7 +210,7 @@ const submit = async () =>  {
     id: route.query.id,
     dateOfVisit: formState.time,
     remark: formState.remark,
-    updateName: techId
+    updateName: loginName
   })
   showModal()
 }

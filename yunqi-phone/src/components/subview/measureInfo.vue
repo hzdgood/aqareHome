@@ -249,6 +249,7 @@ const open = ref<boolean>(false);
 const fileList = ref([]);
 const route = useRoute()
 const techId = localStorage.getItem("techId");
+const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {
   const res = await httpGet('/view/project',{
@@ -330,7 +331,7 @@ const submit = async () => {
       deductionInfo: formState.deductionInfo,
       remark: formState.remark,
       imgUrl: formState.imgUrl,
-      createName: techId
+      createName: loginName
     })
     formState.modalInfo = '开合帘新增成功'
     showModal()
@@ -352,7 +353,7 @@ const submit = async () => {
       cover: formState.cover,
       remark: formState.remark,
       imgUrl: formState.imgUrl,
-      createName: techId
+      createName: loginName
     })
     formState.modalInfo = '卷帘新增成功'
     showModal()

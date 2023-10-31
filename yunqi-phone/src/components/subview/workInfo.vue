@@ -90,7 +90,7 @@ const open = ref<boolean>(false);
 const value = ref<string[]>([]);
 const headName = ref<string[]>([]);
 const route = useRoute()
-const techId = localStorage.getItem("techId");
+const loginName = localStorage.getItem('loginName')
 
 const resPage = () => {
   router.push({name: 'project'})
@@ -177,7 +177,7 @@ const handleOk = async () => {
       remark: formState.remark,
       headName: formState.headName, // 必须
       schedule: formState.schedule,
-      createName: techId
+      createName: loginName
     })
     formState.modalInfo = res
     showModal()

@@ -146,7 +146,7 @@ import type { UploadChangeParam, UploadFile } from 'ant-design-vue';
 import { UploadOutlined } from '@ant-design/icons-vue';
 
 const open = ref<boolean>(false);
-const techId = localStorage.getItem('techId')
+const loginName = localStorage.getItem('loginName')
 const route = useRoute()
 let formObj: any[] = []
 
@@ -158,7 +158,7 @@ const handleChange = async (info: UploadChangeParam, type: string) => {
       workId: route.query.id,
       type: type,
       imgUrl: info.file.response,
-      createName: techId
+      createName: loginName
     })
     formState.modalInfo = '上传成功！'
     showModal()
@@ -168,7 +168,6 @@ const handleChange = async (info: UploadChangeParam, type: string) => {
     showModal()
   }
 };
-
 
 onMounted (async function () {
   formObj = [];
@@ -295,7 +294,7 @@ const handleOk = async () => {
       workSummary: formState.workSummary, //今日工作总结
       visitNode: formState.visitNode, //下次上门节点
       handover: formState.handover,
-      updateName: techId // 核销人
+      updateName: loginName // 核销人
     })
     formState.modalInfo = res
     showModal()
@@ -317,10 +316,6 @@ const changeSelect = (id: number) => {
     formState.select3 = 'selected'
   }
 }
-
-// const handleChange = (value: string) => {
-//   console.log(`selected ${value}`);
-// };
 
 interface FileItem {
   uid: string;
