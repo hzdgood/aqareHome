@@ -4,8 +4,7 @@
 <mapper namespace="com.yunqi.common.viewMapper.WorkViewMapper">
     <select id="select" resultType="com.yunqi.common.view.WorkView">
         # 工单查询
-        select *
-        from workView w where disabled is null
+        select * from workView w where disabled is null
         <if test="projectId!=null">
             and projectId like #{projectId,jdbcType=VARCHAR}
         </if>
@@ -15,17 +14,16 @@
         <if test="techId!=null">
             and ( techId like #{techId,jdbcType=VARCHAR} or techNames like #{techId,jdbcType=VARCHAR} )
         </if>
-        <if test="status!=null and status!=''">
-            and w.workStatus is null
-        </if>
         <if test="projectName!=null and projectName!=''">
             and ( projectName like #{projectName,jdbcType=VARCHAR}
             or telephone like #{projectName,jdbcType=VARCHAR}
             or address like #{projectName,jdbcType=VARCHAR} )
         </if>
-        <if test="headId!=null">
-            and headId = #{headId}
+        <if test="status!=null and status!=''">
+            and w.workStatus is null
         </if>
-        order by dateOfVisit desc
+        <if test="headId!=null">
+            and headId = #{headId} group by projectId
+        </if>
     </select>
 </mapper>

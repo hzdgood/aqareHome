@@ -6,7 +6,7 @@
         # 核销记录查询
         select * from productview where 1 = 1
         <if test="productId!=null">
-            or productId = #{productId}
+            and productId = #{productId}
         </if>
     </select>
 
@@ -14,7 +14,7 @@
         # 核销记录查询
         select * from productview where 1 = 1
         <if test="workId!=null">
-            or workId = #{workId}
+            and workId = #{workId}
         </if>
     </select>
 </mapper>

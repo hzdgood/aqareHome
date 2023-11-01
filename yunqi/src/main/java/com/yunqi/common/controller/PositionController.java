@@ -34,7 +34,7 @@ public class PositionController {
         double s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(b / 2), 2)));
         // 弧长乘赤道半径, 返回单位: 米
         s = s * EQUATOR_RADIUS;
-        System.out.println(longitude1 + "--" + latitude1 + "-" + longitude2 + "--" + latitude2);
+        System.out.println(longitude1 + "--" + latitude1 + "-" + longitude2 + "--" + latitude2 + "---" + s);
         return s;
     }
 }

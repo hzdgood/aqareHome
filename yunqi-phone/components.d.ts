@@ -33,6 +33,8 @@ declare module 'vue' {
     SchemeInfo: typeof import('./src/components/edit/info/schemeInfo.vue')['default']
     SchememInfo: typeof import('./src/components/info/schememInfo.vue')['default']
     SchemeTable: typeof import('./src/components/info/subTable/schemeTable.vue')['default']
+    SendCardView: typeof import('./src/components/card/SendCardView.vue')['default']
+    SendSheetView: typeof import('./src/components/SendSheetView.vue')['default']
     WorkCardView: typeof import('./src/components/card/WorkCardView.vue')['default']
     WorkEdit: typeof import('./src/components/edit/workEdit.vue')['default']
     WorkInfo: typeof import('./src/components/subview/workInfo.vue')['default']

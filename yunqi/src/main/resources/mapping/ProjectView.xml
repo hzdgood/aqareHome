@@ -18,5 +18,6 @@
         <if test="techId!=null and techId!=''">
             and techId = #{techId}
         </if>
+        and schedule != '调试完结'
     </select>
 </mapper>
