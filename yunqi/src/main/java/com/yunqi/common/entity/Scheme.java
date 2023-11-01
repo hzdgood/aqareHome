@@ -8,10 +8,10 @@ public class Scheme {
     private Integer projectId;
     private Integer productId;
     private Integer number; // 实际数量
-    private Integer installNumber; //已装
-    private Integer debugNumber; //已调
-    private Integer notInstalled; //未装
-    private Integer unregulated; //未调
+    private double installNumber; //已装
+    private double debugNumber; //已调
+    private double notInstalled; //未装
+    private double unregulated; //未调
     private Integer notSent; //未发
     private String itemId;
     private String createName;
@@ -51,35 +51,35 @@ public class Scheme {
         this.number = number;
     }
 
-    public Integer getInstallNumber() {
+    public double getInstallNumber() {
         return installNumber;
     }
 
-    public void setInstallNumber(Integer installNumber) {
+    public void setInstallNumber(double installNumber) {
         this.installNumber = installNumber;
     }
 
-    public Integer getDebugNumber() {
+    public double getDebugNumber() {
         return debugNumber;
     }
 
-    public void setDebugNumber(Integer debugNumber) {
+    public void setDebugNumber(double debugNumber) {
         this.debugNumber = debugNumber;
     }
 
-    public Integer getNotInstalled() {
+    public double getNotInstalled() {
         return notInstalled;
     }
 
-    public void setNotInstalled(Integer notInstalled) {
+    public void setNotInstalled(double notInstalled) {
         this.notInstalled = notInstalled;
     }
 
-    public Integer getUnregulated() {
+    public double getUnregulated() {
         return unregulated;
     }
 
-    public void setUnregulated(Integer unregulated) {
+    public void setUnregulated(double unregulated) {
         this.unregulated = unregulated;
     }
 

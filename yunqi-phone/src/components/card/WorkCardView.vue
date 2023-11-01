@@ -2,9 +2,8 @@
   <div class="cardDiv"> <!--  -->
     <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" 
-          v-show="data.techName === loginName || data.headName === loginName"
-          @click="workEdit(data.workId)">详情</a-button>
+        <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
+        <a-button :style="style" >交通费</a-button>
       </div>
       <table class="cardTale" >  
         <tr>
@@ -148,7 +147,6 @@ const sign = async (id: number, workId: number, address: string) => {
   })
   formState.modalInfo = '签到成功'
   showModal();
-  // emit('pageReset')
 }
 
 const depart = async (id: any, workId: number, address: string) => {
@@ -179,7 +177,6 @@ const depart = async (id: any, workId: number, address: string) => {
   })
   formState.modalInfo = '离开成功'
   showModal();
-  // emit('pageReset')
 }
 
 const CompleteInfo = async () => {
@@ -202,6 +199,7 @@ const workEdit = (id: any) => {
 
 const handleOk = async (data: any ) => {
   open.value = false;
+  emit('pageReset')
   if(formState.status) {
     await httpGet('/workSheet/computer',{ // 计算核销
       timeId: data.timeId,

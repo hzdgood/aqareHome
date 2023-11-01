@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/picture")
@@ -33,6 +34,8 @@ public class PictureController {
     @ResponseBody
     @PostMapping("/upload")
     public String upload(MultipartFile file) {
-        return MultipartFileUtils.saveMultipartFile(file, "D:/");
+        Random random = new Random();
+        int randomInt = random.nextInt(1000);
+        return MultipartFileUtils.saveMultipartFile(file, "E:/picture/" + randomInt);
     }
 }

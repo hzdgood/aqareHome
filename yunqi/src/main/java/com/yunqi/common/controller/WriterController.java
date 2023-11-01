@@ -31,8 +31,8 @@ public class WriterController {
     @RequestMapping("/insert")
     private void insert(Writer Writer) { //新增核销单
         Integer id = Writer.getSchemeId();
-        Integer install = Writer.getInstall(); //本次安装
-        Integer debug = Writer.getDebug(); //本次调试
+        double install = Writer.getInstall(); //本次安装
+        double debug = Writer.getDebug(); //本次调试
         getSchemeById(id, install, debug);
         WriterService.insert(Writer); // 核销新增
     }
@@ -41,28 +41,25 @@ public class WriterController {
     @RequestMapping("/update") //管理员的
     private void update(Writer Writer) {
         Integer id = Writer.getSchemeId();
-        Integer install = Writer.getInstall(); //本次安装
-        Integer debug = Writer.getDebug(); //本次调试
+        double install = Writer.getInstall(); //本次安装
+        double debug = Writer.getDebug(); //本次调试
         getSchemeById(id, install, debug);
         WriterService.update(Writer); // 核销修改
     }
 
-    private void getSchemeById(Integer id, Integer install, Integer debug) {
+    private void getSchemeById(Integer id, double install, double debug) {
         List<Scheme> list = SchemeService.selectId(id);
         Scheme s = list.get(0);
-
-        Integer installNumber = s.getInstallNumber();
-        Integer debugNumber = s.getDebugNumber();
-        Integer notInstalled = s.getNotInstalled();
-        Integer unregulated = s.getUnregulated();
-
+        double installNumber = s.getInstallNumber();
+        double debugNumber = s.getDebugNumber();
+        double notInstalled = s.getNotInstalled();
+        double unregulated = s.getUnregulated();
         Scheme Scheme = new Scheme();
         Scheme.setId(id);
         Scheme.setInstallNumber(installNumber + install);
         Scheme.setDebugNumber(debugNumber + debug);
         Scheme.setNotInstalled(notInstalled - install);
         Scheme.setUnregulated(unregulated - debug);
-
         SchemeService.update(Scheme); // 方案修改
     }
 }

@@ -68,7 +68,6 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
-              v-model:file-list="fileList"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单汇报凭证图片')"
             >
               <a-button>
@@ -84,7 +83,6 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
-              v-model:file-list="fileList"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单核销照片')"
             >
               <a-button>
@@ -100,7 +98,6 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
-              v-model:file-list="fileList"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '签字单图片')"
             >
               <a-button>
@@ -116,7 +113,6 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
-              v-model:file-list="fileList"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单其他照片')"
             >
               <a-button>

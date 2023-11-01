@@ -8,9 +8,9 @@
         select id from projectview group by projectId having count(projectId)
         )
         <if test="projectName!=null and projectName!=''">
-            and ( projectName like #{projectName,jdbcType=VARCHAR}
-            or telephone like #{projectName,jdbcType=VARCHAR}
-            or address like #{projectName,jdbcType=VARCHAR} )
+            and ( projectName like '%${projectName}%'
+            or telephone like '%${projectName}%'
+            or address like '%${projectName}%' )
         </if>
         <if test="projectId!=null and projectId!=''">
             and projectId = #{projectId}
@@ -18,6 +18,8 @@
         <if test="techId!=null and techId!=''">
             and techId = #{techId}
         </if>
-        and schedule != '调试完结'
+        <if test="schedule!=null and schedule!=''">
+            and schedule != '调试完结'
+        </if>
     </select>
 </mapper>

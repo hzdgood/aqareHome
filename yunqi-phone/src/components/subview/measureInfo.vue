@@ -9,7 +9,7 @@
         <div v-show="formState.formDiv1">
           <table class="cardTale">
             <tr>
-              <td width="70px">项目姓名</td>
+              <td width="80px">项目姓名</td>
               <td>
                 <a-input :disabled="true" v-model:value="formState.projectName" style="width: 95%;"></a-input>
               </td>
@@ -98,6 +98,22 @@
               </td>
             </tr>
             <tr>
+              <td>l1</td>
+              <td>
+                <a-input v-model:value="formState.l1" style="width: 95%;"></a-input>
+              </td>
+              <td>l2</td>
+              <td>
+                <a-input v-model:value="formState.l2" style="width: 95%;"></a-input>
+              </td>
+            </tr>
+            <tr>
+              <td>l3</td>
+              <td>
+                <a-input v-model:value="formState.l3" style="width: 95%;"></a-input>
+              </td>
+            </tr>
+            <tr>
               <td>备注</td>
               <td colspan="3">
                 <a-input v-model:value="formState.remark" style="width: 95%;"></a-input>
@@ -124,11 +140,11 @@
         <div v-show="formState.formDiv2">
           <table class="cardTale">
             <tr>
-              <td width="70px">项目姓名</td>
+              <td width="80px">项目姓名</td>
               <td>
                 <a-input :disabled="true" :value="formState.projectName" style="width: 95%;"></a-input>
               </td>
-              <td width="90px">区域</td>
+              <td width="80px">区域</td>
               <td>
                 <a-input v-model:value="formState.area" style="width: 95%;"></a-input>
               </td>
@@ -281,6 +297,9 @@ interface FormState {
   cover: string,
   imgUrl: string
   modalInfo: string
+  l1: string,
+  l2: string,
+  l3: string
 }
 
 const formState = reactive<FormState>({
@@ -305,7 +324,10 @@ const formState = reactive<FormState>({
   surfaceWidth: '',
   cover: '',
   imgUrl: '',
-  modalInfo: ''
+  modalInfo: '',
+  l1: '',
+  l2: '',
+  l3: ''
 });
 
 const resPage = () => {
@@ -331,6 +353,9 @@ const submit = async () => {
       deductionInfo: formState.deductionInfo,
       remark: formState.remark,
       imgUrl: formState.imgUrl,
+      l1: formState.l1,
+      l2: formState.l2,
+      l3: formState.l3,
       createName: loginName
     })
     formState.modalInfo = '开合帘新增成功'

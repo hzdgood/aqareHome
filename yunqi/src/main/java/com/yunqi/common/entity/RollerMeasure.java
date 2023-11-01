@@ -20,6 +20,7 @@ public class RollerMeasure {
     private String powerPosition;   // 电源位置
     private String cover; // 需要罩壳
     private String imgUrl;
+    private String remark;
     private String disabled;
     private String createName;
     private Date createTime;
@@ -160,6 +161,14 @@ public class RollerMeasure {
 
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public String getDisabled() {

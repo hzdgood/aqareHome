@@ -8,17 +8,20 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
-        <span>&nbsp;&nbsp;负责人: &nbsp;</span>
+        <!-- <span>&nbsp;&nbsp;负责人: &nbsp;</span>
         <a-select style="width: 16%;" v-model:value="formState.techName">
           <a-select-option value="328">葛栋梁</a-select-option>
           <a-select-option value="329">娄德</a-select-option>
           <a-select-option value="327">汪克祥</a-select-option>
           <a-select-option value="332">严熠</a-select-option>
-        </a-select>
+        </a-select> -->
         <span>&nbsp;&nbsp;项目信息: &nbsp;</span>
         <a-input style="width: 20%;" v-model:value="formState.projectName"></a-input>
         <span>
           &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
+        </span>
+        <span>
+          &nbsp;<a-button type="primary" @click="allSeletct">全部查询</a-button>
         </span>
       </a-form>
     </div>
@@ -39,6 +42,7 @@ const techId = localStorage.getItem("techId");
 onMounted (async function () {
   const res = await httpGet('/view/project',{
     techId: techId,
+    schedule: 'all'
   })
   formState.dataList = res
 })
@@ -59,9 +63,15 @@ const formState = reactive<FormState>({
   dataList: []
 });
 
+const allSeletct = async () => {
+  const res = await httpGet('/view/project',{
+    projectName: formState.projectName
+  })
+  formState.dataList = res
+};
+
 const onFinish = async () => {
   const res = await httpGet('/view/project',{
-    techId: formState.techName,
     projectName: formState.projectName
   })
   formState.dataList = res

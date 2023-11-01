@@ -38,6 +38,20 @@
           <td>扣减说明</td>
           <td>{{data.deductionInfo}}</td>
         </tr>
+        <tr>
+          <td>l1</td>
+          <td>{{data.l1}}</td>
+          <td>l1</td>
+          <td>{{data.l2}}</td>
+        </tr>
+        <tr>
+          <td>l1</td>
+          <td>{{data.l3}}</td>
+        </tr>
+        <tr>
+          <td>备注</td>
+          <td colspan="3">{{data.remark}}</td>
+        </tr>
       </table>
       <div class="buttonPos" >
         <a-button 
@@ -84,6 +98,10 @@
           <td>{{data.powerPosition}}</td>
           <td>需要罩壳</td>
           <td>{{data.cover}}</td>
+        </tr>
+        <tr>
+          <td>备注</td>
+          <td colspan="3">{{data.remark}}</td>
         </tr>
       </table>
       <div class="buttonPos" >

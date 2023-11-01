@@ -187,9 +187,9 @@ public class WorkSheetController {
                 Writer Writer = new Writer();
                 int num = list.get(0).getNumber() / 100;
                 if (list.get(0).getNumber() > 100) {
-                    Writer.setContribution(num * 150.0);
+                    Writer.setContribution(300.0);
                 } else {
-                    Writer.setContribution(num * 150.0 + 50.0);
+                    Writer.setContribution(150.0);
                 }
                 Writer.setProjectId(projectId);
                 Writer.setWorkId(workId);

@@ -2,12 +2,9 @@
   <div class="cardDiv"> <!--  -->
     <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type" :bordered="false">
       <div class="buttonPos">
-        <a-button :style="style" 
-          v-show="data.techName === loginName || data.headName === loginName"
-          @click="workEdit(data.workId)">详情</a-button>
-        <a-button :style="style"
-          v-show="data.techName === loginName"
-          @click="personEdit(data.workId)">日志</a-button>
+        <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
+        <a-button :style="style" @click="personEdit(data.workId)">日志</a-button>
+        <a-button :style="style" @click="workDisabled(data.workId)">无效</a-button>
       </div>
       <table class="cardTale" >  
         <tr>
@@ -81,6 +78,13 @@ const formState = reactive<FormState>({
   modalInfo: '',
   status: false
 });
+
+const workDisabled = async (id: any) => {
+  await httpGet('/workSheet/delete',{
+    workId: id,
+    updateName: loginName
+  })
+}
 
 const workEdit = (id: any) => {
   emit('toPage','workEdit', { id: id })

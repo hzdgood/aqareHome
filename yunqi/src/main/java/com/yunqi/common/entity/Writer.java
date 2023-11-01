@@ -9,9 +9,9 @@ public class Writer {
     private Integer productId; // 产品
     private Integer schemeId; // 方案
     private Integer workId; // 工单ID
-    private Integer install; // 调试
-    private Integer debug; // 安装
-    private Integer sumWork; // 总核销
+    private double install; // 调试
+    private double debug; // 安装
+    private double sumWork; // 总核销
     private String type; // 类型
     private Double contribution; // 贡献度
     private String createName;
@@ -69,27 +69,27 @@ public class Writer {
         this.workId = workId;
     }
 
-    public Integer getInstall() {
+    public double getInstall() {
         return install;
     }
 
-    public void setInstall(Integer install) {
+    public void setInstall(double install) {
         this.install = install;
     }
 
-    public Integer getDebug() {
+    public double getDebug() {
         return debug;
     }
 
-    public void setDebug(Integer debug) {
+    public void setDebug(double debug) {
         this.debug = debug;
     }
 
-    public Integer getSumWork() {
+    public double getSumWork() {
         return sumWork;
     }
 
-    public void setSumWork(Integer sumWork) {
+    public void setSumWork(double sumWork) {
         this.sumWork = sumWork;
     }
 

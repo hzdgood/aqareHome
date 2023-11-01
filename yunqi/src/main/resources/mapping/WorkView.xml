@@ -15,9 +15,9 @@
             and ( techId like #{techId,jdbcType=VARCHAR} or techNames like #{techId,jdbcType=VARCHAR} )
         </if>
         <if test="projectName!=null and projectName!=''">
-            and ( projectName like #{projectName,jdbcType=VARCHAR}
-            or telephone like #{projectName,jdbcType=VARCHAR}
-            or address like #{projectName,jdbcType=VARCHAR} )
+            and ( projectName like '%${projectName}%'
+            or telephone like '%${projectName}%'
+            or address like '%${projectName}%' )
         </if>
         <if test="status!=null and status!=''">
             and w.workStatus is null
