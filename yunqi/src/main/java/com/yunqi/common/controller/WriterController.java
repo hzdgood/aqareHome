@@ -33,8 +33,9 @@ public class WriterController {
         Integer id = Writer.getSchemeId();
         double install = Writer.getInstall(); //本次安装
         double debug = Writer.getDebug(); //本次调试
-        getSchemeById(id, install, debug);
-        WriterService.insert(Writer); // 核销新增
+        if(getSchemeById(id, install, debug)) {
+            WriterService.insert(Writer);
+        }
     }
 
     @CrossOrigin
@@ -43,23 +44,30 @@ public class WriterController {
         Integer id = Writer.getSchemeId();
         double install = Writer.getInstall(); //本次安装
         double debug = Writer.getDebug(); //本次调试
-        getSchemeById(id, install, debug);
-        WriterService.update(Writer); // 核销修改
+        if(getSchemeById(id, install, debug)) {
+            WriterService.insert(Writer);
+        }
     }
 
-    private void getSchemeById(Integer id, double install, double debug) {
+    private boolean getSchemeById(Integer id, double install, double debug) {
         List<Scheme> list = SchemeService.selectId(id);
-        Scheme s = list.get(0);
-        double installNumber = s.getInstallNumber();
-        double debugNumber = s.getDebugNumber();
-        double notInstalled = s.getNotInstalled();
-        double unregulated = s.getUnregulated();
-        Scheme Scheme = new Scheme();
-        Scheme.setId(id);
-        Scheme.setInstallNumber(installNumber + install);
-        Scheme.setDebugNumber(debugNumber + debug);
-        Scheme.setNotInstalled(notInstalled - install);
-        Scheme.setUnregulated(unregulated - debug);
-        SchemeService.update(Scheme); // 方案修改
+        if(!list.isEmpty()) {
+            Scheme s = list.get(0);
+            double installNumber = s.getInstallNumber();
+            double debugNumber = s.getDebugNumber();
+            double notInstalled = s.getNotInstalled();
+            double unregulated = s.getUnregulated();
+            Scheme Scheme = new Scheme();
+            Scheme.setId(id);
+            Scheme.setInstallNumber(installNumber + install);
+            Scheme.setDebugNumber(debugNumber + debug);
+            Scheme.setNotInstalled(notInstalled - install);
+            Scheme.setUnregulated(unregulated - debug);
+            Scheme.setCreateName("核销");
+            SchemeService.update(Scheme); // 方案修改
+            return true;
+        } else {
+            return false;
+        }
     }
 }

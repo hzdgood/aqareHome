@@ -219,7 +219,7 @@ public class WorkSheetController {
                 }
             }
         }
-        // 开始计算负责人部分
+        // 开始计算负责人部分 BUG 会出现多个。。
         Writer Writer = new Writer();
         if (Objects.equals(type, "交底")) {
             // 有个小坑 交底单只能一次
@@ -229,6 +229,7 @@ public class WorkSheetController {
             Writer.setContribution(list.get(0).getHeadDisclose() * list.get(0).getNumber() / 2); // 总交 * 总实 / 2
             Writer.setCreateName(updateName);
             Writer.setType("负责人-交底");
+            WriterService.insertHead(Writer); //负责人插入
         }
         if (Objects.equals(type, "安装") || Objects.equals(type, "调试")) {
             Writer.setProjectId(projectId);
@@ -238,8 +239,8 @@ public class WorkSheetController {
             Writer.setSumWork(sumInstall + sumDebug); // 总安装 + 总调试
             Writer.setContribution(sumSm);
             Writer.setType("负责人-上门");
+            WriterService.insertHead(Writer); //负责人插入
         }
-        WriterService.insertHead(Writer); //负责人插入
         WorkTimeService.complete(timeId, updateName); // 设置工单已完成
         return "核销计算完成";
     }

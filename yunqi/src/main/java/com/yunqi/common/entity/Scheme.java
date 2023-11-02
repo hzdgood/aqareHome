@@ -15,9 +15,6 @@ public class Scheme {
     private Integer notSent; //未发
     private String itemId;
     private String createName;
-    private Date createTime;
-    private String updateName;
-    private Date updateTime;
 
     public Integer getId() {
         return id;
@@ -105,29 +102,5 @@ public class Scheme {
 
     public void setCreateName(String createName) {
         this.createName = createName;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getUpdateName() {
-        return updateName;
-    }
-
-    public void setUpdateName(String updateName) {
-        this.updateName = updateName;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
     }
 }
