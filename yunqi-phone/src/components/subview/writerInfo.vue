@@ -238,7 +238,7 @@ const getChange = (obj: any) => {
   }
 }
 
-const getPicture = async () => {
+const getPicture = async () => { // ------
   const res = await httpGet('/picture/select', { //工单修改
     workId: route.query.id,
   })

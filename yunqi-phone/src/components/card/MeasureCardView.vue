@@ -41,11 +41,11 @@
         <tr>
           <td>l1</td>
           <td>{{data.l1}}</td>
-          <td>l1</td>
+          <td>l2</td>
           <td>{{data.l2}}</td>
         </tr>
         <tr>
-          <td>l1</td>
+          <td>l3</td>
           <td>{{data.l3}}</td>
         </tr>
         <tr>
@@ -54,10 +54,8 @@
         </tr>
       </table>
       <div class="buttonPos" >
-        <a-button 
-          v-show="data.schemeId !== null" 
-          @click="disabledOpen(data.id)" 
-          type="primary">无效</a-button>
+        <a-button :disabled="true" type="primary">--同步伙伴云--</a-button>
+        <a-button @click="disabledOpen(data.id)" type="primary">无效</a-button>
       </div>
     </a-card>
 
@@ -105,10 +103,8 @@
         </tr>
       </table>
       <div class="buttonPos" >
-        <a-button 
-          v-show="data.schemeId !== null" 
-          @click="disabledRoller(data.id)" 
-          type="primary">无效</a-button>
+        <a-button :disabled="true" type="primary">--同步伙伴云--</a-button>
+        <a-button  @click="disabledRoller(data.id)" type="primary">无效</a-button>
       </div>
     </a-card>
   </div>

@@ -3,7 +3,7 @@
     <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
-        <a-button :style="style" >交通费</a-button>
+        <a-button :disabled="true" :style="style" >--交通费--</a-button>
       </div>
       <table class="cardTale" >  
         <tr>

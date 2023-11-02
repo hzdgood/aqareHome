@@ -14,21 +14,21 @@
             <td>{{ data.type }}</td>
           </tr>
           <tr>
-            <td>核销数量</td>
-            <td>{{ data.number }}</td>
-            <td>贡献度</td>
-            <td>{{ data.contribution }}</td>
-          </tr>
-          <tr>
             <td>技术姓名</td>
             <td>{{ data.techName }}</td>
             <td>结算日期</td>
             <td>{{ dateFilter(data.writerTime,'yyyy-mm-dd') }}</td>
           </tr>
+          <tr>
+            <td>核销数量</td>
+            <td>{{ data.number }}</td>
+            <td>贡献度</td>
+            <td>{{ data.contribution }}</td>
+          </tr>
         </table>
-        <!-- <div class="buttonPos">
-          <a-button type="primary" @click="error(data.writerId)">报错</a-button>
-        </div> -->
+        <div class="buttonPos">
+          <a-button :disabled="true" type="primary">--报错--</a-button>
+        </div>
       </a-card>
     </div>
   </div>
@@ -37,19 +37,16 @@
 <script setup lang="ts">
 // 核销卡片
 import { dateFilter } from '../../util/time'
-
-const emit = defineEmits(['toPage','pageReset'])
-
+// const emit = defineEmits(['toPage','pageReset'])
 defineProps({
   data: {
     type: Object,
     default: null
   }
 })
-
-const error = async (writerId: any) => { //核销ID
-  emit('toPage','writerError', { id: writerId })
-}
+// const error = async (writerId: any) => { //核销ID
+//   emit('toPage','writerError', { id: writerId })
+// }
 
 </script>
 

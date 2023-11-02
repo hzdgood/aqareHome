@@ -13,16 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class WorkTimeController {
     private WorkTimeService WorkTimeService;
 
-    private WorkSheetService WorkSheetService;
-
     @Autowired
     public void setMapper(WorkTimeService WorkTimeService) {
         this.WorkTimeService = WorkTimeService;
-    }
-
-    @Autowired
-    public void setMapper(WorkSheetService WorkSheetService) {
-        this.WorkSheetService = WorkSheetService;
     }
 
     @CrossOrigin
@@ -43,7 +36,6 @@ public class WorkTimeController {
     @RequestMapping("/sign") // 签到
     private String sign(WorkTime WorkTime) {
         WorkTimeService.sign(WorkTime);
-        // WorkSheetService.updateStatus(WorkTime.getWorkId(),"已上门", WorkTime.getUpdateName());
         return "签到成功";
     }
 

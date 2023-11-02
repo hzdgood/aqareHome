@@ -37,19 +37,17 @@ public class WriterController {
             WriterService.insert(Writer);
         }
     }
-
-    @CrossOrigin
-    @RequestMapping("/update") //管理员的
-    private void update(Writer Writer) {
-        Integer id = Writer.getSchemeId();
-        double install = Writer.getInstall(); //本次安装
-        double debug = Writer.getDebug(); //本次调试
-        if(getSchemeById(id, install, debug)) {
-            WriterService.insert(Writer);
-        }
-    }
-
-    private boolean getSchemeById(Integer id, double install, double debug) {
+//    @CrossOrigin
+//    @RequestMapping("/update") //管理员的
+//    private void update(Writer Writer) {
+//        Integer id = Writer.getSchemeId();
+//        double install = Writer.getInstall(); //本次安装
+//        double debug = Writer.getDebug(); //本次调试
+//        if(getSchemeById(id, install, debug)) {
+//            WriterService.insert(Writer);
+//        }
+//    }
+    synchronized private boolean getSchemeById(Integer id, double install, double debug) {
         List<Scheme> list = SchemeService.selectId(id);
         if(!list.isEmpty()) {
             Scheme s = list.get(0);
