@@ -20,9 +20,9 @@ public class PictureController {
     }
 
     @CrossOrigin
-    @RequestMapping("/selectId")
-    public List<Picture> selectId(Integer id) {
-        return PictureService.select();
+    @RequestMapping("/select")
+    public List<Picture> select(Integer workId) {
+        return PictureService.select(workId);
     }
 
     @CrossOrigin

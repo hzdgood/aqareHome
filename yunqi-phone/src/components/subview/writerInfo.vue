@@ -70,6 +70,7 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
+              v-model:file-list="fileList1"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单汇报凭证图片')"
             >
               <a-button>
@@ -85,6 +86,7 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
+              v-model:file-list="fileList2"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单核销照片')"
             >
               <a-button>
@@ -100,6 +102,7 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
+              v-model:file-list="fileList3"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '签字单图片')"
             >
               <a-button>
@@ -115,6 +118,7 @@
               :action="httpUrl + '/picture/upload'"
               list-type="picture"         
               class="upload-list-inline"
+              v-model:file-list="fileList4"
               @change="(value: UploadChangeParam<UploadFile<any>>) => handleChange(value, '工单其他照片')"
             >
               <a-button>
@@ -146,6 +150,12 @@ import { UploadOutlined } from '@ant-design/icons-vue';
 const open = ref<boolean>(false);
 const loginName = localStorage.getItem('loginName')
 const route = useRoute()
+const fileList = ref<FileItem[]>([]);
+const fileList1 = ref<FileItem[]>([]);
+const fileList2 = ref<FileItem[]>([]);
+const fileList3 = ref<FileItem[]>([]);
+const fileList4 = ref<FileItem[]>([]);
+
 let formObj: any[] = []
 
 const handleChange = async (info: UploadChangeParam, type: string) => {
@@ -225,6 +235,38 @@ const getChange = (obj: any) => {
         formObj.push(obj)
       }
     }
+  }
+}
+
+const getPicture = async () => {
+  const res = await httpGet('/picture/select', { //工单修改
+    workId: route.query.id,
+  })
+  let i = 0
+  for(let i=0; i<res.length; i++) {
+    const name = res[i].imgUrl
+    const imgUrl = res[i].imgUrl
+    const thumbUrl = res[i].imgUrl
+
+    const obj = {
+      uid: i + '',
+      name: name,
+      status: 'done',
+      url: imgUrl,
+      thumbUrl: thumbUrl,
+    }
+    if(res[i].type === '物料核对图片') {
+      fileList.value = [obj]
+    } else if(res[i].type === '工单汇报凭证图片') {
+      fileList1.value = [obj]
+    } else if(res[i].type === '工单核销照片') {
+      fileList2.value = [obj]
+    } else if(res[i].type === '签字单图片') {
+      fileList3.value = [obj]
+    } else if(res[i].type === '工单其他照片') {
+      fileList4.value = [obj]
+    }
+    i = i + 1
   }
 }
 
@@ -324,7 +366,7 @@ interface FileItem {
   thumbUrl?: string;
 }
 
-const fileList = ref<FileItem[]>([
+
   // {
   //   uid: '-1',
   //   name: 'xxx.png',
@@ -339,7 +381,7 @@ const fileList = ref<FileItem[]>([
   //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
   //   thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
   // },
-]);
+
 </script>
 
 <style lang="less" scoped>
