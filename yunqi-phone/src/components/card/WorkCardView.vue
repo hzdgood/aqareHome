@@ -50,8 +50,7 @@
           v-show="data.departureTime === null && data.signTime !== null"
           @click="depart(data.timeId, data.workId, data.address)">离开</a-button>
 
-        <a-button type="primary" v-show="data.signTime !== null 
-            && ( data.type ==='安装' || data.type ==='调试' || data.type ==='检测' ) "
+        <a-button type="primary" v-show="data.signTime !== null"
           @click="WriterInfo(data.workId, data.techId)">核销</a-button>
 
         <a-button type="primary" 
@@ -199,7 +198,6 @@ const workEdit = (id: any) => {
 
 const handleOk = async (data: any ) => {
   open.value = false;
-  emit('pageReset')
   if(formState.status) {
     await httpGet('/workSheet/computer',{ // 计算核销
       timeId: data.timeId,
@@ -214,6 +212,7 @@ const handleOk = async (data: any ) => {
     formState.status = false
     showModal();
   }
+  emit('pageReset')
 };
 </script>
 <style scoped>

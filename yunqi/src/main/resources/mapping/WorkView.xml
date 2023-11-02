@@ -6,13 +6,13 @@
         # 工单查询
         select * from workView w where disabled is null
         <if test="projectId!=null">
-            and projectId like #{projectId,jdbcType=VARCHAR}
+            and projectId like '%${projectId}%'
         </if>
         <if test="workId!=null">
             and workId = #{workId}
         </if>
         <if test="techId!=null">
-            and ( techId like #{techId,jdbcType=VARCHAR} or techNames like #{techId,jdbcType=VARCHAR} )
+            and techId like '%${techId}%'
         </if>
         <if test="projectName!=null and projectName!=''">
             and ( projectName like '%${projectName}%'
@@ -23,7 +23,7 @@
             and w.workStatus is null
         </if>
         <if test="headId!=null">
-            and headId = #{headId} group by projectId
+            and headId = #{headId} group by dateOfVisit
         </if>
     </select>
 </mapper>

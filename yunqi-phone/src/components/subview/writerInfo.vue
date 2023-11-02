@@ -2,7 +2,9 @@
   <div class="cardDiv">
     <a-card :title="formState.projectName + '-' + formState.type" :bordered="false">
       <div class="writerDiv">
-        <span :class="formState.select1" @click="changeSelect(1)" >工单核销</span>
+        <span :class="formState.select1" @click="changeSelect(1)" 
+          v-show="formState.type ==='安装' || formState.type ==='调试' || formState.type ==='检测'"
+        >工单核销</span>
         <span :class="formState.select2" @click="changeSelect(2)">工单总结</span>
         <span :class="formState.select3" @click="changeSelect(3)">上传图片</span>
       </div>
@@ -247,8 +249,8 @@ const formState = reactive<FormState>({
   dataList: [],
   modalInfo: '',
   handover: '',
-  select1: 'selected',
-  select2: '',
+  select1: '',
+  select2: 'selected',
   select3: ''
 });
 

@@ -72,9 +72,9 @@
           </td>
         </tr>
         <tr>
-          <td>工单说明</td>
+          <td>工单备注</td>
           <td colspan="3">
-            <a-textarea :rows="4" v-model:value="formState.remark"></a-textarea>
+            <a-textarea :disabled="true" :rows="4" v-model:value="formState.remark"></a-textarea>
           </td>
         </tr>
       </table>
@@ -146,7 +146,7 @@ onMounted (async function () {
   formState.options = techs // 上门技术 主负责人 select
   formState.techName = res[0].techNames // 上门技术 BUG
   formState.headName = res[0].headName // 主负责人
-  formState.remark = '今日完成情况:' + res[0].workSummary + "\r\n" + "下次工作安排:" + res[0].visitNode // 备注
+  formState.remark =  res[0].remark // 备注
   formState.status = res[0].workStatus // 总状态
 
   let scheme

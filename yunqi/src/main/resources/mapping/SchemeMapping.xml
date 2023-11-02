@@ -20,9 +20,10 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         insert into scheme (projectId, productId, number, installNumber,
-                            debugNumber, notInstalled, unregulated, notSent, itemId) value (
+                            debugNumber, notInstalled, unregulated, notSent, itemId, createName
+        ) value (
                #{projectId}, #{productId}, #{number}, #{installNumber}, #{debugNumber},
-               #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}
+               #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}, #{createName}
             )
     </insert>
 
@@ -38,11 +39,11 @@
     <insert id="update" parameterType="com.yunqi.common.entity.Scheme">
         # 方案修改
         update scheme
-        set installNumber = #{installNumber},
-            debugNumber   = #{debugNumber},
+        set number = #{number},
             notInstalled  = #{notInstalled},
             notSent  = #{notSent},
-            unregulated   = #{unregulated}
+            unregulated   = #{unregulated},
+            createName =  #{createName}
         where itemId = #{itemId}
     </insert>
 </mapper>
