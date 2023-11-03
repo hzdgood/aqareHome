@@ -8,13 +8,6 @@
         @finish="onFinish"
         @finishFailed="onFinishFailed"
       >
-        <!-- <span>&nbsp;&nbsp;负责人: &nbsp;</span>
-        <a-select style="width: 16%;" v-model:value="formState.techName">
-          <a-select-option value="328">葛栋梁</a-select-option>
-          <a-select-option value="329">娄德</a-select-option>
-          <a-select-option value="327">汪克祥</a-select-option>
-          <a-select-option value="332">严熠</a-select-option>
-        </a-select> -->
         <span>&nbsp;&nbsp;项目信息: &nbsp;</span>
         <a-input style="width: 20%;" v-model:value="formState.projectName"></a-input>
         <span>
@@ -40,11 +33,18 @@ import { httpGet } from '../config/interFace'
 const techId = localStorage.getItem("techId");
 
 onMounted (async function () {
-  const res = await httpGet('/view/project',{
-    techId: techId,
-    schedule: 'all'
-  })
-  formState.dataList = res
+  if(techId === '342') {
+    const res = await httpGet('/view/project',{
+      schedule: 'all'
+    })
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/view/project',{
+      techId: techId,
+      schedule: 'all'
+    })
+    formState.dataList = res
+  }
 })
 
 const toPage = (str: any, id: any) => {
@@ -64,17 +64,27 @@ const formState = reactive<FormState>({
 });
 
 const allSeletct = async () => {
-  const res = await httpGet('/view/project',{
-    projectName: formState.projectName
-  })
-  formState.dataList = res
+  if(formState.projectName === '') {
+    const res = await httpGet('/view/project',{})
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/view/project',{
+      projectName: formState.projectName
+    })
+    formState.dataList = res
+  }
 };
 
 const onFinish = async () => {
-  const res = await httpGet('/view/project',{
-    projectName: formState.projectName
-  })
-  formState.dataList = res
+  if(formState.projectName === '') {
+    const res = await httpGet('/view/project',{})
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/view/project',{
+      projectName: formState.projectName
+    })
+    formState.dataList = res
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {

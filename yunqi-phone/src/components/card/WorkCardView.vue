@@ -1,5 +1,5 @@
 <template>
-  <div class="cardDiv"> <!--  -->
+  <div class="cardDiv">
     <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
@@ -56,7 +56,7 @@
         <a-button type="primary" 
           v-show="data.status !== '已完成' && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
-        <!-- <a-button type="primary" v-show="data.status === '已完成'" >完结</a-button> -->
+        <a-button :disabled="true" type="primary" v-show="data.status === '已完成'" >--完结--</a-button>
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data)">

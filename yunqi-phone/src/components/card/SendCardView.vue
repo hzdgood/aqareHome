@@ -1,5 +1,5 @@
 <template>
-  <div class="cardDiv"> <!--  -->
+  <div class="cardDiv">
     <a-card :title="data.techNames + '&nbsp;&nbsp;' + data.type" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>

@@ -129,7 +129,6 @@
           </div>
         </div>
       </div>
-      <!-- v-model:file-list="fileList1" -->
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk">
       <p>{{ formState.modalInfo }}</p>

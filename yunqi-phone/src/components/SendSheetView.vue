@@ -71,20 +71,37 @@ const allSeletct = async () => {
 }
 
 const projectChange = async () => {
-  const res = await httpGet('/view/work',{
-    projectName: formState.projectName,
-    headId: techId,
-    status: 'true'
-  })
-  formState.dataList = res
+  if(formState.projectName === '') {
+    const res = await httpGet('/view/work',{
+      headId: techId,
+      status: 'true'
+    })
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/view/work',{
+      projectName: formState.projectName,
+      headId: techId,
+      status: 'true'
+    })
+    formState.dataList = res
+  }
 }
 
 const onFinish = async () => {
-  const res = await httpGet('/view/work',{
-    headId: techId,
-    status: 'true'
-  })
-  formState.dataList = res
+  if(formState.projectName === '') {
+    const res = await httpGet('/view/work',{
+      headId: techId,
+      status: 'true'
+    })
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/view/work',{
+      projectName: formState.projectName,
+      headId: techId,
+      status: 'true'
+    })
+    formState.dataList = res
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {
