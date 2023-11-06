@@ -86,6 +86,9 @@
         </div>
       </div>
     </a-card>
+    <a-modal v-model:open="open" title="系统提示" @ok="handleOk()">
+      <p>{{ formState.modalInfo }}</p>
+    </a-modal>
   </div>
 </template>
 
@@ -97,6 +100,7 @@ import { reactive, onMounted, ref } from 'vue';
 
 const route = useRoute()
 const loginName = localStorage.getItem('loginName')
+const open = ref<boolean>(false);
 let value = ref<string[]>([]);
 
 onMounted (async function () {
@@ -135,6 +139,7 @@ interface FormState {
   projectId: string
   addStatus: boolean
   editStatus: boolean
+  modalInfo: string
 }
 
 const formState = reactive<FormState>({
@@ -148,27 +153,27 @@ const formState = reactive<FormState>({
   workId: '',
   projectId: '',
   addStatus: false,
-  editStatus: false
+  editStatus: false,
+  modalInfo: ''
 });
 
 const addPerson = async () => {
   // 修改工单表
-  const res = await httpGet('/workSheet/updatePerson',{
+  await httpGet('/workSheet/updatePerson',{
     id: route.query.id,
     techIds: formState.techName + "," + formState.techNames,
     updateName: loginName
   })
-  console.log(res);
-
   // 单人新增一条数据
-  const res1 = await httpGet('/workTime/insert',{
+  await httpGet('/workTime/insert',{
     workId: formState.workId,
     projectId: formState.projectId,
     techId: formState.techName,
     status: '待上门',
     createName: loginName
   })
-  console.log(res1);
+  formState.modalInfo = '新增技术上门成功！'
+  showModal
 };
 
 const deletePerson = async (timeId: any, name: any) => { // 针对多个人
@@ -181,34 +186,41 @@ const deletePerson = async (timeId: any, name: any) => { // 针对多个人
       }
     }
     techIds = techIds.substring(0, techIds.length-1) // 去除，号
-
+    console.log(techIds);
     // 修改工单表
-    const res = await httpGet('/workSheet/updatePerson',{
+    await httpGet('/workSheet/updatePerson',{
       id: route.query.id,
       techIds: techIds,
       updateName: loginName
     })
-    console.log(res);
-
     // 取消一条单人数据
-    const res1 = await httpGet('/workTime/delete',{
+    await httpGet('/workTime/delete',{
       id: timeId,
       updateName: loginName
     })
-    console.log(res1);
+    formState.modalInfo = '取消技术上门成功！'
+    showModal
   }
-  console.log(techIds);
-  
 };
 
 const editHead = async () => {
-  const res = await httpGet('/workSheet/updateHead',{
+  await httpGet('/workSheet/updateHead',{
     id: route.query.id,
     headName: formState.headName,
     updateName: loginName
   })
-  console.log(res);
+  formState.modalInfo = '修改负责人成功！'
+  showModal
 };
+
+const handleOk = async () => {
+  open.value = false
+};
+
+const showModal = () => {
+  open.value = true;
+};
+
 
 const changeVisit = (value: []) => {
   formState.techName = `${value}`
