@@ -164,7 +164,7 @@ public class WorkSheetController {
                     double debugSum = debug * debugContribute; // 数量 * 调试贡献
                     sumInstall = sumInstall + install;
                     sumDebug = sumDebug + debug;
-                    // Writer.setType(type); //工单类型
+                    Writer.setType(type); //工单类型
                     if (type.equals("安装")) {
                         Writer.setSumWork(install);  // 总数
                         Writer.setContribution(installSum);  // 贡献度

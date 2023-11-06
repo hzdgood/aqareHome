@@ -37,7 +37,7 @@ onMounted (async function () {
     formState.dataList = res
   } else {
     const res = await httpGet('/view/work',{
-      dateOfVisit: formState.time
+      headId: techId,
     })
     formState.dataList = res
   }
@@ -100,7 +100,6 @@ const onRangeChange = async () => {
     formState.dataList = res
   } else {
     const res = await httpGet('/view/work',{
-      dateOfVisit: formState.time,
       headId: techId,
     })
     formState.dataList = res
