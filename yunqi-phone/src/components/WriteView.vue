@@ -4,16 +4,11 @@
       :model="formState"
       name="pageView"
       class="pageView"
-      @finish="onFinish"
       @finishFailed="onFinishFailed"
     >
       <span>&nbsp;&nbsp;结算日期: &nbsp;</span>
-      <a-date-picker format="YYYY-MM-DD" v-model:value="formState.time" style="width: 40%;"/>
-      <span>
-        &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
-      </span>
+      <a-date-picker format="YYYY-MM-DD" v-model:value="formState.time" style="width: 40%;" @change="onRangeChange" />
     </a-form>
-
     <div v-for="item in formState.dataList" :key="item">
       <WriteCardView :data="item" @toPage="toPage"></WriteCardView>
     </div>
@@ -53,8 +48,7 @@ const formState = reactive<FormState>({
   dataList: []
 });
 
-const onFinish = async (values: any) => {
-  console.log('Success:', values);
+const onRangeChange = async () => {
   const res = await httpGet('/view/work',{
     writerTime: formState.time,
     headId: techId

@@ -9,7 +9,7 @@
         @finishFailed="onFinishFailed"
       >
         <span>&nbsp;&nbsp;项目信息: &nbsp;</span>
-        <a-input style="width: 20%;" v-model:value="formState.projectName"></a-input>
+        <a-input style="width: 30%;" v-model:value="formState.projectName"></a-input>
         <span>
           &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
         </span>

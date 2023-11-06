@@ -167,7 +167,7 @@ const showModal = () => {
 const handleOk = async () => {
   open.value = false;
   if(formState.modalInfo === '发单完成') {
-    router.push({name: 'workSheet'})
+    router.push({name: 'sendSheet'})
   } else {
     const res = await httpGet('/workSheet/insert',{
       projectId: route.query.id,

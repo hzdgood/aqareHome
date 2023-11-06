@@ -3,7 +3,7 @@
     <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
-        <a-button :style="style" @click="personEdit(data.workId)">日志</a-button>
+        <a-button :style="style" @click="personEdit(data.workId)">派单</a-button>
         <a-button :style="style" @click="workDisabled()">无效</a-button>
       </div>
       <table class="cardTale" >  
@@ -77,7 +77,7 @@ const showModal = () => {
 const handleOk = async (data: any ) => {
   open.value = false
   await httpGet('/workSheet/delete',{
-    workId: data.workId,
+    id: data.workId,
     updateName: loginName
   })
   emit('pageReset')
