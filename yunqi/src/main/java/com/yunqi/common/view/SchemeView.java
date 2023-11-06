@@ -16,6 +16,7 @@ public class SchemeView {
     private Double head; //负责人
     private Double headDoor; // 负责人 - 上门
     private Double headDisclose; // 负责人-交底
+    private Double contribution; // 贡献度
 
     public Integer getProjectId() {
         return projectId;
@@ -135,5 +136,13 @@ public class SchemeView {
 
     public void setHeadDisclose(Double headDisclose) {
         this.headDisclose = headDisclose;
+    }
+
+    public Double getContribution() {
+        return contribution;
+    }
+
+    public void setContribution(Double contribution) {
+        this.contribution = contribution;
     }
 }

@@ -12,8 +12,6 @@ public interface WriterMapper {
 
     void insert(Writer Writer);
 
-    void update(Writer Writer);
-
     List<Writer> select(Writer writer);
 
     void simpleWriter(Writer writer);

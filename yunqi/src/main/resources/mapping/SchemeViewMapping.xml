@@ -20,8 +20,12 @@
         select sum(number)         as number,
                sum(s.head)         as head,
                sum(s.headDoor)     as headDoor,
-               sum(s.headDisclose) as headDisclose
-        from schemeView s
-        where projectId = #{projectId}
+               sum(s.headDisclose) as headDisclose,
+               sum(s.contribution) as contribution
+        from (  SELECT
+                number, s.head, s.headDoor, s.headDisclose,
+                number * headDisclose / 2 AS contribution  FROM yunqi.schemeview s
+            where projectId = #{projectId}
+         ) s;
     </select>
 </mapper>

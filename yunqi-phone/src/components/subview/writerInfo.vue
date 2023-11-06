@@ -154,7 +154,6 @@ const fileList1 = ref<FileItem[]>([]);
 const fileList2 = ref<FileItem[]>([]);
 const fileList3 = ref<FileItem[]>([]);
 const fileList4 = ref<FileItem[]>([]);
-
 let formObj: any[] = []
 
 const handleChange = async (info: UploadChangeParam, type: string) => {
@@ -203,7 +202,7 @@ onMounted (async function () {
     })
   }
   if(res.length === 0) {
-    router.push({name: 'workSheet'})
+    // router.push({name: 'workSheet'})
   } else {
     formState.dataList = res
   }
@@ -364,22 +363,6 @@ interface FileItem {
   url?: string;
   thumbUrl?: string;
 }
-
-
-  // {
-  //   uid: '-1',
-  //   name: 'xxx.png',
-  //   status: 'done',
-  //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  //   thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  // },
-  // {
-  //   uid: '-2',
-  //   name: 'yyy.png',
-  //   status: 'done',
-  //   url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  //   thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  // },
 
 </script>
 

@@ -26,19 +26,10 @@
             )
     </insert>
 
-    <insert id="update" parameterType="com.yunqi.common.entity.Writer">
-        # 修改
-        update writer
-        set install = #{install},
-            debug   = #{debug}
-        where id = #{id}
-    </insert>
-
     <insert id="simpleWriter" parameterType="com.yunqi.common.entity.Writer">
         # 修改
         update writer
-        set type         = #{type},
-            sumWork      = #{sumWork},
+        set sumWork      = #{sumWork},
             contribution = #{contribution},
             updateName   = #{updateName},
             updateTime   = now()
