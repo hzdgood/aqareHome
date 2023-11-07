@@ -22,21 +22,21 @@
       <div v-show="formState.select2 === 'selected'">
         <table class="cardTale">
           <tr>
-            <td>今日工作总结: </td>
+            <td>*今日工作总结: </td>
             <td>
-              <a-textarea v-model:value="formState.workSummary" :rows="4" />
+              <a-textarea v-model:value="formState.workSummary" :rows="5" />
             </td>
           </tr>
           <tr>
-            <td>下次上门节点: </td>
+            <td>*下次上门节点: </td>
             <td>
-              <a-textarea v-model:value="formState.visitNode" :rows="4" />
+              <a-textarea v-model:value="formState.visitNode" :rows="5" />
             </td>
           </tr>
           <tr>
-            <td>工作交接: </td>
+            <td>*下次上门注意事项: </td>
             <td>
-              <a-textarea v-model:value="formState.handover" :rows="4" />
+              <a-textarea v-model:value="formState.handover" :rows="5" />
             </td>
           </tr>
         </table>
@@ -329,9 +329,9 @@ const handleOk = async () => {
   if(formState.modalInfo === '请确认填写内容！') { // 核销总结
     const res = await httpGet('/workSheet/update', { //工单修改
       id: route.query.id,
-      workSummary: formState.workSummary, //今日工作总结
-      visitNode: formState.visitNode, //下次上门节点
-      handover: formState.handover,
+      workSummary: formState.workSummary, // 今日工作总结
+      visitNode: formState.visitNode, // 下次上门节点
+      handover: formState.handover, // 下次上门注意事项
       updateName: loginName // 核销人
     })
     formState.modalInfo = res

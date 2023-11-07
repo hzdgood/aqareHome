@@ -8,6 +8,12 @@
         from scheme w where id = #{id};
     </select>
 
+    <select id="selectItem" resultType="com.yunqi.common.entity.Scheme">
+        # 方案ID查询
+        select *
+        from scheme w where itemId = #{itemId};
+    </select>
+
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         insert into scheme (projectId, productId, number, installNumber,

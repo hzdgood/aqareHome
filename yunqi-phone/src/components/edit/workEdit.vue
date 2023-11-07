@@ -64,7 +64,7 @@
           </td>
         </tr>
         <tr>
-          <td>上门时间</td>
+          <td>预约时间</td>
           <td colspan="3">
             <a-date-picker format="YYYY-MM-DD HH:mm" :disabled="formState.status !== null"
             :show-time="{ format: 'HH:mm' }" style="width: 100%"
@@ -114,9 +114,9 @@ onMounted (async function () {
   const res = await httpGet('/view/work',{
     workId: route.query.id
   })
-  if(res[0].dateOfVisit !== null ) { // 上门时间
+  if(res[0].dateOfVisit !== null ) { // 预约时间
     const time = dateFilter(res[0].dateOfVisit,'yyyy-mm-dd hh:mm:ss')
-    formState.time = ref<Dayjs>(dayjs(time, 'YYYY-MM-DD hh:mm')); // 上门时间
+    formState.time = ref<Dayjs>(dayjs(time, 'YYYY-MM-DD hh:mm')); // 预约时间
   }
   const tech = await httpGet('/tech/select',{})  // 查询技术
   const techs: object[] = []

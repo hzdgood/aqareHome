@@ -9,12 +9,12 @@
         <div v-show="formState.formDiv1">
           <table class="cardTale">
             <tr>
-              <td width="80px">项目姓名</td>
-              <td>
+              <td width="15%">项目姓名</td>
+              <td width="35%">
                 <a-input :disabled="true" v-model:value="formState.projectName" style="width: 95%;"></a-input>
               </td>
-              <td width="80px">区域</td>
-              <td>
+              <td width="15%">区域</td>
+              <td width="35%">
                 <a-input v-model:value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>
@@ -140,12 +140,12 @@
         <div v-show="formState.formDiv2">
           <table class="cardTale">
             <tr>
-              <td width="80px">项目姓名</td>
-              <td>
+              <td width="15%">项目姓名</td>
+              <td width="35%">
                 <a-input :disabled="true" :value="formState.projectName" style="width: 95%;"></a-input>
               </td>
-              <td width="80px">区域</td>
-              <td>
+              <td width="15%">区域</td>
+              <td width="35%">
                 <a-input v-model:value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>

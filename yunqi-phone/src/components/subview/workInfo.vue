@@ -54,7 +54,7 @@
             </td>
           </tr>
           <tr>
-            <td>上门时间:</td>
+            <td>预约时间:</td>
             <td>
               <a-date-picker format="YYYY-MM-DD HH:mm" :show-time="{ format: 'HH:mm' }"
                  v-model:value="formState.time" style="width: 95%;"/>

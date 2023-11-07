@@ -26,7 +26,7 @@
 
     <insert id="insertHead" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
         # 新增
-        insert into writer (projectId, workId, techId, type, contribution, createName, createTime) value (
+        insert into writer (projectId, workId, techId, type, contribution, createName, createTime ) value (
               #{projectId}, #{workId}, #{techId}, #{type}, #{contribution}, #{createName}, NOW()
             )
     </insert>

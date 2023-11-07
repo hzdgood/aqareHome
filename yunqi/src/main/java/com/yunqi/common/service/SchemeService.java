@@ -20,6 +20,10 @@ public class SchemeService {
         return schemeMapper.selectId(id);
     }
 
+    public List<Scheme> selectItem(String itemId) {
+        return schemeMapper.selectItem(itemId);
+    }
+
     public void insert(Scheme scheme) {
         schemeMapper.insert(scheme);
     }
@@ -27,4 +31,6 @@ public class SchemeService {
     public void update(Scheme scheme) {
         schemeMapper.update(scheme);
     }
+
+
 }

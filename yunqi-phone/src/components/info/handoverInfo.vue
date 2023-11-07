@@ -9,35 +9,25 @@
           <td><a-input :disabled="true" :value="formState.dataList.techName" style="width: 100%"></a-input></td>
         </tr>
         <tr>
-          <td>目前任务</td>
-          <td><a-input :disabled="true" :value="formState.dataList.node" style="width: 100%"></a-input></td>
+          <td>类型</td>
+          <td><a-input :disabled="true" :value="formState.dataList.type" style="width: 100%"></a-input></td>
           <td>装修进度</td>
           <td><a-input :disabled="true" :value="formState.dataList.schedule" style="width: 100%"></a-input></td>
         </tr>
         <tr>
-          <td>类型</td>
-          <td><a-input :disabled="true" :value="formState.dataList.type" style="width: 100%"></a-input></td>
           <td>房型</td>
           <td><a-input :disabled="true" :value="formState.dataList.houseState" style="width: 100%"></a-input></td>
-        </tr>
-        <tr>
           <td>区域</td>
           <td><a-input :disabled="true" :value="formState.dataList.region" style="width: 100%"></a-input></td>
-          <td>小区</td>
-          <td><a-input :disabled="true" :value="formState.dataList.village" style="width: 100%"></a-input></td>
         </tr>
         <tr>
           <td>项目地址</td>
           <td colspan="3"><a-input :disabled="true" :value="formState.dataList.address" style="width: 100%"></a-input></td>
         </tr>
         <tr>
-          <td>备注</td>
-          <td colspan="3"><a-input :disabled="true" :value="formState.dataList.remark" style="width: 100%"></a-input></td>
-        </tr>
-        <tr>
-          <td>交接信息</td>
+          <td>注意事项</td>
           <td colspan="3">
-            <a-textarea v-model:value="formState.desc" placeholder="Basic usage" :rows="4" />
+            <a-textarea v-model:value="formState.desc" placeholder="Basic usage" :rows="7" />
           </td>
         </tr>
       </table>
@@ -45,8 +35,8 @@
       <table class="schemeTable">
         <thead>
           <tr>
+            <td>预约时间</td>
             <td>上门人员</td>
-            <td>上门时间</td>
             <td>类型</td>
             <td>状态</td>
           </tr>
