@@ -136,31 +136,20 @@ export default class Actions extends Vue {
           workStatus = fields[j].values[0].name
         }
       }
-      let worktimes
-      if (type !== '导流') {
-        worktimes = Number(workTime) / Number(tech)
-        if (coordinate.lon === '') {
+      const worktimes = workTime
+      if (coordinate.lon === '') {
+        if (dlAddress !== '') {
           const rs = await getCoordinate1({
-            address: address
+            address: dlAddress
           })
           coordinate.lon = rs.lng
           coordinate.lat = rs.lat
-        }
-      } else {
-        worktimes = workTime
-        if (coordinate.lon === '') {
-          if (dlAddress !== '') {
-            const rs = await getCoordinate1({
-              address: dlAddress
-            })
-            coordinate.lon = rs.lng
-            coordinate.lat = rs.lat
-          }
         }
       }
       if (address === '') {
         address = dlAddress
       }
+
       const obj = {
         id: itemId,
         lng: coordinate.lon,

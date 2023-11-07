@@ -20,6 +20,10 @@ const router = createRouter({
       component: () => import('../views/PageView.vue'),
       children: [
         {
+          path: '/workCom',
+          name: 'workCom',
+          component: import('../components/workComView.vue')
+        }, {
           path: '/sendSheet',
           name: 'sendSheet',
           component: import('../components/SendSheetView.vue')

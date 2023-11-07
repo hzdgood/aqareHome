@@ -78,44 +78,6 @@ export default class Actions extends Vue {
       }
       this.personList.push(data)
     }
-    const obj1 = {
-      where: {
-        and: [
-          { field: 2200000167076360, query: { eq: 'last_week' } },
-          { field: 2200000167076361, query: { in: [2] } },
-          { field: 2200000330530836, query: { in: [2] } }]
-      },
-      offset: 0,
-      limit: 20
-    }
-    const result1 = await SearchInfo('2100000017630966', obj1)
-    const qjList = []
-    for (let i = 0; i < result1.length; i++) {
-      const fields = result1[i].fields
-      let days = ''
-      let items = ''
-      let date = ''
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === 2200000167076359) {
-          items = fields[j].values[0].item_id
-        }
-        if (fields[j].field_id === 2200000167077825) {
-          days = fields[j].values[0].value
-        }
-        if (fields[j].field_id === 2200000167076360) {
-          date = fields[j].values[0].value
-        }
-      }
-      const obj = {
-        items: items,
-        days: days,
-        date: date
-      }
-      qjList.push(obj)
-    }
-
-    console.log(this.personList)
-    console.log(qjList)
   }
 
   @Watch('$store.state.layerList')

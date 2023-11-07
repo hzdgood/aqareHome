@@ -81,7 +81,7 @@ export default class Actions extends Vue {
       const itemId = result[i].item_id
       let custom = ''; let workTime = ''; let proStatus = ''
       let technology = ''; let address = ''; let tech = 0
-      let technologys = ''; let dlAddress = ''; let type = ''
+      let technologys = ''; let type = ''
       let workStatus = ''
       let coordinate: any = {
         lon: '',
@@ -125,10 +125,6 @@ export default class Actions extends Vue {
           // 订单类型
           type = fields[j].values[0].name
         }
-        if (fields[j].field_id === 2200000151806983) {
-          // 导流地址
-          dlAddress = fields[j].values[0].value
-        }
         if (fields[j].field_id === 1101001195000000) {
           // 当前进度
           proStatus = fields[j].values[0].name
@@ -139,9 +135,6 @@ export default class Actions extends Vue {
         }
       }
       const worktimes = workTime
-      if (address === '') {
-        address = dlAddress
-      }
       const obj = {
         id: itemId,
         lng: coordinate.lon,

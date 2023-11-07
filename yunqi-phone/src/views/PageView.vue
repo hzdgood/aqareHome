@@ -11,9 +11,10 @@
     <div class="wrapper">
       <div :class="formState.select0" @click="changeSelect(0)"><RouterLink to="/sendSheet">我的发单</RouterLink></div>
       <div :class="formState.select1" @click="changeSelect(1)"><RouterLink to="/workSheet">我的工单</RouterLink></div>
-      <div :class="formState.select2" @click="changeSelect(2)"><RouterLink to="/project">我的项目</RouterLink></div>
-      <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/write">我的核销</RouterLink></div>
-      <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/measure">测量单</RouterLink></div>
+      <div :class="formState.select2" @click="changeSelect(2)"><RouterLink to="/workCom">已完成单</RouterLink></div>
+      <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/project">我的项目</RouterLink></div>
+      <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/write">我的核销</RouterLink></div>
+      <div :class="formState.select5" @click="changeSelect(5)"><RouterLink to="/measure">测量单</RouterLink></div>
     </div>
     <div class="bodyContent">
       <RouterView></RouterView>
@@ -35,6 +36,7 @@ const changeSelect = (id: number) => {
     formState.select2 = ''
     formState.select3 = ''
     formState.select4 = ''
+    formState.select5 = ''
   }
   if(id === 1 ) {
     formState.select0 = ''
@@ -42,24 +44,35 @@ const changeSelect = (id: number) => {
     formState.select2 = ''
     formState.select3 = ''
     formState.select4 = ''
+    formState.select5 = ''
   } else if(id === 2 ) {
     formState.select0 = ''
     formState.select1 = ''
     formState.select2 = 'selected'
     formState.select3 = ''
     formState.select4 = ''
+    formState.select5 = ''
   } else if(id === 3 ) {
     formState.select0 = ''
     formState.select1 = ''
     formState.select2 = ''
     formState.select3 = 'selected'
     formState.select4 = ''
+    formState.select5 = ''
   } else if(id === 4 ) {
     formState.select0 = ''
     formState.select1 = ''
     formState.select2 = ''
     formState.select3 = ''
     formState.select4 = 'selected'
+    formState.select5 = ''
+  } else if(id === 5 ) {
+    formState.select0 = ''
+    formState.select1 = ''
+    formState.select2 = ''
+    formState.select3 = ''
+    formState.select4 = ''
+    formState.select5 = 'selected'
   }
 }
 
@@ -86,6 +99,7 @@ interface FormState {
   select2: string,
   select3: string,
   select4: string,
+  select5: string,
 }
 
 const formState = reactive<FormState>({
@@ -94,6 +108,7 @@ const formState = reactive<FormState>({
   select2: '',
   select3: '',
   select4: '',
+  select5: '',
 });
 
 onMounted (function () {  

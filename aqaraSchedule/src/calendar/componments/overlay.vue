@@ -6,7 +6,6 @@
     @draw="draw"
   >
     <div @click="showInfo">
-      <img class="placeImg" v-if="technology === '葛栋梁'" src="../img/ge.png" />
       <img class="placeImg" v-if="technology === '张恒'" src="../img/heng.png" />
       <img class="placeImg" v-if="technology === '吴杰'" src="../img/jie.png" />
       <img class="placeImg" v-if="technology === '张凯凯'" src="../img/kk.png" />

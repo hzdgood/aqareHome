@@ -7,6 +7,7 @@ public class Tech {
     private String status;
     private String position; //职位
     private String disabled; // 可见
+    private String waitDay; // 休息日
 
     public Integer getId() {
         return id;
@@ -54,5 +55,13 @@ public class Tech {
 
     public void setDisabled(String disabled) {
         this.disabled = disabled;
+    }
+
+    public String getWaitDay() {
+        return waitDay;
+    }
+
+    public void setWaitDay(String waitDay) {
+        this.waitDay = waitDay;
     }
 }
