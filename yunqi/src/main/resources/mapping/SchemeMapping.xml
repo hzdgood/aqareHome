@@ -2,37 +2,19 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.mapper.SchemeMapper">
-
     <select id="selectId" resultType="com.yunqi.common.entity.Scheme">
         # 方案ID查询
         select *
-        from scheme w
-        where id = #{id};
-    </select>
-
-    <select id="selectItem" resultType="com.yunqi.common.entity.Scheme">
-        # 方案ID查询
-        select *
-        from scheme w
-        where itemId = #{itemId};
+        from scheme w where id = #{id};
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         insert into scheme (projectId, productId, number, installNumber,
-                            debugNumber, notInstalled, unregulated, notSent, itemId, createName
+            debugNumber, notInstalled, unregulated, notSent, itemId, createName
         ) value (
                #{projectId}, #{productId}, #{number}, #{installNumber}, #{debugNumber},
                #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}, #{createName}
-            )
-    </insert>
-
-    <insert id="history" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
-        # 方案新增
-        insert into schemehistory (projectId, productId, number, installNumber,
-                                   debugNumber, notInstalled, unregulated, notSent, itemId) value (
-              #{projectId}, #{productId}, #{number}, #{installNumber},  #{debugNumber},
-              #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}
             )
     </insert>
 
@@ -44,6 +26,7 @@
             notSent  = #{notSent},
             unregulated   = #{unregulated},
             createName =  #{createName}
-        where itemId = #{itemId}
+        where
+            itemId = #{itemId}
     </insert>
 </mapper>

@@ -7,8 +7,9 @@
         # 方案ID查询
         select *
         from SyncScheme w
-        where disabled is null
+        where disabled is null and ( unregulated > 0 or notInstalled > 0 )
     </select>
+
     <insert id="insert" parameterType="com.yunqi.common.entity.SyncScheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         insert into SyncScheme (projectId, productId, number, notInstalled, unregulated, notSent, itemId) value (

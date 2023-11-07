@@ -12,9 +12,11 @@ public interface WriterMapper {
 
     void insert(Writer Writer);
 
-    List<Writer> select(Writer writer);
+    List<Writer> select();
 
     void simpleWriter(Writer writer);
+
+    void writerCom(Integer id);
 
     void insertHead(Writer writer);
 }

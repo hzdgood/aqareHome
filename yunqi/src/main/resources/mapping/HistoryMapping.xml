@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunqi.common.mapper.HistoryMapper">
+    <select id="selectId" resultType="com.yunqi.common.entity.Scheme">
+        # 方案ID查询
+        select *
+        from schemehistory where id = #{id};
+    </select>
+
+    <insert id="insert" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        # 方案新增
+        insert into schemehistory (projectId, productId, number, installNumber,
+                   debugNumber, notInstalled, unregulated, notSent, itemId) value (
+           #{projectId}, #{productId}, #{number}, #{installNumber}, #{debugNumber},
+           #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}
+        )
+    </insert>
+
+    <insert id="update" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        # 方案新增
+        update schemehistory
+        set number = #{number},
+            notInstalled  = #{notInstalled},
+            notSent  = #{notSent},
+            unregulated   = #{unregulated}
+        where itemId = #{itemId}
+    </insert>
+
+    <insert id="delete" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        # 方案新增
+        update schemehistory
+        set disabled = false
+        where id = #{id}
+    </insert>
+</mapper>

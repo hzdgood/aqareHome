@@ -9,14 +9,19 @@
         where workId = #{workId}
     </select>
 
+    <select id="select" resultType="com.yunqi.common.entity.Writer">
+        # 同步查询
+        select * from writer where disabled is null and ( type = '安装' or type = '调试' );
+    </select>
+
     <insert id="insert" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into writer (projectId, productId, schemeId, type, workId, techId, contribution,
-                            install, debug, createName, createTime) value (
-               #{projectId}, #{productId}, #{schemeId}, #{type},
-               #{workId}, #{techId}, #{contribution},
-               #{install}, #{debug}, #{createName}, NOW()
-            )
+            install, debug, createName, createTime) value (
+           #{projectId}, #{productId}, #{schemeId}, #{type},
+           #{workId}, #{techId}, #{contribution},
+           #{install}, #{debug}, #{createName}, NOW()
+        )
     </insert>
 
     <insert id="insertHead" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">
@@ -27,7 +32,7 @@
     </insert>
 
     <insert id="simpleWriter" parameterType="com.yunqi.common.entity.Writer">
-        # 修改
+        # 修改  核销数量，贡献度
         update writer
         set sumWork      = #{sumWork},
             contribution = #{contribution},
@@ -36,8 +41,15 @@
         where id = #{id}
     </insert>
 
+    <insert id="writerCom" parameterType="com.yunqi.common.entity.Writer">
+        #  同步  核销---方案
+        update writer
+        set disabled = false
+        where id = #{id}
+    </insert>
+
     <insert id="delete" parameterType="com.yunqi.common.entity.Writer">
-        # 无效
+        # 同步 设置无效
         update writer
         set disabled   = 'false',
             updateName = #{updateName},
