@@ -4,10 +4,31 @@
 <mapper namespace="com.yunqi.common.viewMapper.WorkViewMapper">
     <select id="select" resultType="com.yunqi.common.view.WorkView">
         # 工单查询
-        select * from workView w where disabled is null and status != '已完成'
+        select * from workView w where 1 = 1
         <if test="projectId!=null">
             and projectId like '%${projectId}%'
         </if>
+        <if test="workId!=null">
+            and workId = #{workId}
+        </if>
+        <if test="techId!=null">
+            and techId like '%${techId}%'
+        </if>
+        <if test="headId!=null">
+            and headId = #{headId}
+        </if>
+        <if test="dateOfVisit != null">
+            and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
+        </if>
+        <if test="projectName!=null and projectName!=''">
+            and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
+        </if>
+        group by workId
+    </select>
+
+    <select id="selectCom" resultType="com.yunqi.common.view.WorkView">
+        # 工单查询
+        select * from workCom w where 1 = 1
         <if test="workId!=null">
             and workId = #{workId}
         </if>

@@ -36,6 +36,8 @@ declare module 'vue' {
     SendCardView: typeof import('./src/components/card/SendCardView.vue')['default']
     SendSheetView: typeof import('./src/components/SendSheetView.vue')['default']
     WorkCardView: typeof import('./src/components/card/WorkCardView.vue')['default']
+    WorkComCardView: typeof import('./src/components/card/WorkComCardView.vue')['default']
+    WorkComView: typeof import('./src/components/workComView.vue')['default']
     WorkEdit: typeof import('./src/components/edit/workEdit.vue')['default']
     WorkInfo: typeof import('./src/components/subview/workInfo.vue')['default']
     WorkSheetView: typeof import('./src/components/WorkSheetView.vue')['default']

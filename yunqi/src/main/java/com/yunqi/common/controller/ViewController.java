@@ -57,6 +57,12 @@ public class ViewController {
     }
 
     @CrossOrigin
+    @RequestMapping("/workCom")
+    public List<WorkView> selectCom(WorkView WorkView) throws ParseException {
+        return WorkViewService.selectCom(WorkView);
+    }
+
+    @CrossOrigin
     @RequestMapping("/scheme")
     public List<SchemeView> select(SchemeView SchemeView) {
         return SchemeViewService.select(SchemeView);

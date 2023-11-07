@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface WorkViewMapper {
     List<WorkView> select(WorkView WorkView);
+
+    List<WorkView> selectCom(WorkView workView);
 }
