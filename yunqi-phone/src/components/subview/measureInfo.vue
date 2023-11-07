@@ -19,7 +19,7 @@
               </td>
             </tr>
             <tr>
-              <td>电机型号</td>
+              <td>*电机型号</td>
               <td>
                 <a-select v-model:value="formState.motorModel" style="width: 95%;">
                   <a-select-option value="C2电机">C2电机</a-select-option>
@@ -31,7 +31,7 @@
                   <a-select-option value="手动轨">手动轨</a-select-option>
                 </a-select>
               </td>
-              <td>轨道类型</td>
+              <td>*轨道类型</td>
               <td>
                 <a-select v-model:value="formState.trackType" style="width: 95%;">
                   <a-select-option value="直轨">直轨</a-select-option>
@@ -44,27 +44,27 @@
               </td>
             </tr>
             <tr>
-              <td>安装方式</td>
+              <td>*安装方式</td>
               <td>
                 <a-select v-model:value="formState.installMethod" style="width: 95%;">
                   <a-select-option value="顶装">顶装</a-select-option>
                   <a-select-option value="侧装">侧装</a-select-option>
                 </a-select>
               </td>
-              <td>数量</td>
+              <td>*数量</td>
               <td>
                 <a-input v-model:value="formState.number" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
-              <td>开合方式</td>
+              <td>*开合方式</td>
               <td>
                 <a-select v-model:value="formState.openMethod" style="width: 95%;">
                   <a-select-option value="单开">单开</a-select-option>
                   <a-select-option value="双开">双开</a-select-option>
                 </a-select>
               </td>
-              <td>电源位置</td>
+              <td>*电源位置</td>
               <td>
                 <a-select v-model:value="formState.powerPosition" style="width: 95%;">
                   <a-select-option value="左">左</a-select-option>
@@ -73,11 +73,11 @@
               </td>
             </tr>
             <tr>
-              <td>窗帘盒宽</td>
+              <td>*窗帘盒宽</td>
               <td>
                 <a-input v-model:value="formState.boxWidth" style="width: 95%;"></a-input>
               </td>
-              <td>安装面材质</td>
+              <td>*安装面材质</td>
               <td>
                 <a-select v-model:value="formState.surfaceMaterial" style="width: 95%;">
                   <a-select-option value="木工板">木工板</a-select-option>
@@ -94,11 +94,15 @@
               </td>
               <td>扣减说明</td>
               <td>
-                <a-input v-model:value="formState.deductionInfo" style="width: 95%;"></a-input>
+                <a-select v-model:value="formState.deductionInfo" style="width: 95%;">
+                  <a-select-option value="标准扣减">标准扣减</a-select-option>
+                  <a-select-option value="不扣减">不扣减</a-select-option>
+                </a-select>
+                <!-- <a-input v-model:value="formState.deductionInfo" style="width: 95%;"></a-input> -->
               </td>
             </tr>
             <tr>
-              <td>l1</td>
+              <td>*l1</td>
               <td>
                 <a-input v-model:value="formState.l1" style="width: 95%;"></a-input>
               </td>
@@ -150,27 +154,27 @@
               </td>
             </tr>
             <tr>
-              <td>卷帘方案</td>
+              <td>*卷帘方案</td>
               <td>
                 <a-input v-model:value="formState.rollingScheme" style="width: 95%;"></a-input>
               </td>
-              <td>长度</td>
+              <td>*长度</td>
               <td>
                 <a-input v-model:value="formState.length" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
-              <td>高度</td>
+              <td>*高度</td>
               <td>
                 <a-input v-model:value="formState.high" style="width: 95%;"></a-input>
               </td>
-              <td>安装面宽度</td>
+              <td>*安装面宽度</td>
               <td>
                 <a-input v-model:value="formState.surfaceWidth" style="width: 95%;"></a-input>
               </td>
             </tr>
             <tr>
-              <td>安装方式</td>
+              <td>*安装方式</td>
               <td>
                 <a-select v-model:value="formState.installMethod" style="width: 95%;">
                   <a-select-option value="外顶装">外顶装</a-select-option>
@@ -178,17 +182,20 @@
                   <a-select-option value="内顶装">内顶装</a-select-option>
                 </a-select>
               </td>
-              <td>扣减说明</td>
+              <td>*扣减说明</td>
               <td>
-                <a-input v-model:value="formState.deductionInfo" style="width: 95%;"></a-input>
+                <a-select v-model:value="formState.deductionInfo" style="width: 95%;">
+                  <a-select-option value="标准扣减">标准扣减</a-select-option>
+                  <a-select-option value="不扣减">不扣减</a-select-option>
+                </a-select>
               </td>
             </tr>
             <tr>
-              <td>数量</td>
+              <td>*数量</td>
               <td>
                 <a-input v-model:value="formState.number" style="width: 95%;"></a-input>
               </td>
-              <td>安装面材质</td>
+              <td>*安装面材质</td>
               <td>
                 <a-select v-model:value="formState.surfaceMaterial" style="width: 95%;">
                   <a-select-option value="木工板">木工板</a-select-option>
@@ -199,7 +206,7 @@
               </td>
             </tr>
             <tr>
-              <td>电源位置</td>
+              <td>*电源位置</td>
               <td>
                 <a-select v-model:value="formState.powerPosition" style="width: 95%;">
                   <a-select-option value="左">左</a-select-option>
@@ -207,7 +214,7 @@
                   <a-select-option value="无电源">无电源</a-select-option>
                 </a-select>
               </td>
-              <td>需要罩壳</td>
+              <td>*需要罩壳</td>
               <td>
                 <a-select v-model:value="formState.cover" style="width: 95%;">
                   <a-select-option value="是">是</a-select-option>
@@ -418,6 +425,9 @@ const handleChange = (info: UploadChangeParam) => {
     console.log(`${info.file.name} file upload failed.`);
     formState.modalInfo = '上传成功！'
     showModal()
+  }
+  if( formState.modalInfo === '上传成功！') {
+    router.push({name: 'project'})
   }
 };
 

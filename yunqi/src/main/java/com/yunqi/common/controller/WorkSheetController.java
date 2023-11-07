@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -142,6 +143,7 @@ public class WorkSheetController {
         SchemeView SchemeView = new SchemeView();
         SchemeView.setProjectId(projectId);
         List<SchemeView> list = SchemeViewService.selectSum(SchemeView); // 实际总数
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
         // 当前人员的贡献度  经过核销的
         for (ProductView productView : ProductList) {
@@ -170,7 +172,7 @@ public class WorkSheetController {
                         Writer.setContribution(installSum);  // 贡献度
                     } else {
                         Writer.setSumWork(install + debug);
-                        Writer.setContribution(installSum + debugSum);  // 贡献度
+                        Writer.setContribution( installSum + debugSum );  // 贡献度
                     }
                     WriterService.simpleWriter(Writer); //单人核销修改
                     // 计算负责人的单条记录的贡献

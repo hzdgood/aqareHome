@@ -1,5 +1,6 @@
 package com.yunqi.common.entity;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class Writer {
@@ -106,7 +107,8 @@ public class Writer {
     }
 
     public void setContribution(Double contribution) {
-        this.contribution = contribution;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        this.contribution = Double.valueOf(decimalFormat.format(contribution));
     }
 
     public String getCreateName() {

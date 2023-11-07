@@ -23,7 +23,7 @@ public class WorkBoot {
     @Autowired
     private ProjectService ProjectService;
 
-    @Scheduled(cron = "0 59 15 * * ?")
+    // @Scheduled(cron = "0 59 15 * * ?")
     private void uploadExcel() {
         File file = new File("D:\\download\\工单表.xlsx");
         try {
