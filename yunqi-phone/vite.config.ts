@@ -6,6 +6,8 @@ import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
 import path from 'path';
 
+const timeStamp = new Date().getTime()
+
 export default defineConfig({
   base: "./",
   plugins: [
@@ -27,14 +29,18 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
-    sourcemap: false,
-    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        // 入口文件名
+        entryFileNames: `assets/[name].${timeStamp}.js`,
+        // 块文件名
+        chunkFileNames: `assets/[name]-[hash].${timeStamp}.js`,
+        // 资源文件名 css 图片等等
+        assetFileNames: `assets/[name]-[hash].${timeStamp}.[ext]`,
+      }
+    }
   },
   resolve: {
-    // alias: {
-    //   '@': fileURLToPath(new URL('./src', import.meta.url))
-    // },
     alias: {
       '@': path.resolve(__dirname, './src'),
     },

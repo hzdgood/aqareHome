@@ -23,6 +23,6 @@
         <if test="projectName!=null and projectName!=''">
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>
-        group by dateOfVisit
+        group by workId
     </select>
 </mapper>
