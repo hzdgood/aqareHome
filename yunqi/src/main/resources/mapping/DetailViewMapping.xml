@@ -6,13 +6,10 @@
         # 核销记录查询
         select * from contributeview where 1 = 1
         <if test="techId!=null">
-            and techId like '%${techId}%'
+            and ( techId = #{techId} or headId = #{headId} )
         </if>
         <if test="writerTime != null">
             and date_format(`writerTime`,'%Y-%m-%d') = str_to_date(#{writerTime},'%Y-%m-%d')
-        </if>
-        <if test="headId!=null">
-            or headId = #{headId}
         </if>
     </select>
 </mapper>

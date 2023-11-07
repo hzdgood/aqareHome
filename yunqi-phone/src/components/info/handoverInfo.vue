@@ -27,7 +27,7 @@
         <tr>
           <td>注意事项</td>
           <td colspan="3">
-            <a-textarea v-model:value="formState.desc" placeholder="Basic usage" :rows="7" />
+            <a-textarea :disabled="true" v-model:value="formState.desc" placeholder="Basic usage" :rows="7" />
           </td>
         </tr>
       </table>
@@ -35,15 +35,15 @@
       <table class="schemeTable">
         <thead>
           <tr>
-            <td>预约时间</td>
+            <td>签到时间</td>
             <td>上门人员</td>
             <td>类型</td>
             <td>状态</td>
           </tr>
         </thead>
         <tr v-for="item in formState.workList" :key="item.workId">
+          <td>{{ dateFilter(item.signTime,'yyyy-mm-dd') }}</td>
           <td>{{ item.techNames }}</td>
-          <td>{{ dateFilter(item.dateOfVisit,'yyyy-mm-dd') }}</td>
           <td>{{ item.type }}</td>
           <td>{{ item.workStatus }}</td>
         </tr>

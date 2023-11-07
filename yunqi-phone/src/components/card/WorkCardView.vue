@@ -30,7 +30,7 @@
           <td colspan="3">{{ data.address }}</td>
         </tr>
         <tr>
-          <td>上门日期</td>
+          <td>预约时间</td>
           <td colspan="3">{{ dateFilter(data.dateOfVisit,'yyyy-mm-dd hh:mm:ss') }}</td>
         </tr>
         <tr v-if="data.signTime !== null">

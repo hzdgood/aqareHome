@@ -44,7 +44,7 @@
     <insert id="writerCom" parameterType="com.yunqi.common.entity.Writer">
         #  同步  核销---方案
         update writer
-        set disabled = false
+        set disabled = 'false'
         where id = #{id}
     </insert>
 

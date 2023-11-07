@@ -7,7 +7,7 @@
       class="pageView"
       @finishFailed="onFinishFailed"
     >
-      <span v-show="formState.type0">&nbsp;上门日期: &nbsp;</span>
+      <span v-show="formState.type0">&nbsp;预约时间: &nbsp;</span>
       <a-date-picker v-show="formState.type0" style="width: 35%;" v-model:value="formState.time" format="YYYY-MM-DD" @change="onRangeChange"  />
       <span v-show="formState.type1">&nbsp;项目信息: &nbsp;</span>
       <a-input v-show="formState.type1" style="width: 35%;" v-model:value="formState.projectName" @change="projectChange"></a-input>

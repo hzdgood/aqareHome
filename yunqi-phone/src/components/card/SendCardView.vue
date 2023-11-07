@@ -16,7 +16,7 @@
         <tr>
           <td>工单状态</td>
           <td>{{ data.workStatus }}</td>
-          <td>上门日期</td>
+          <td>预约时间</td>
           <td colspan="3">{{ dateFilter(data.dateOfVisit,'yyyy-mm-dd') }}</td>
         </tr>
       </table>
