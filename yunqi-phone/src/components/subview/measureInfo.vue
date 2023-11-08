@@ -90,15 +90,19 @@
             <tr>
               <td>预留位置</td>
               <td>
-                <a-input v-model:value="formState.placeholder" style="width: 95%;"></a-input>
+                <a-select v-model:value="formState.placeholder" style="width: 95%;">
+                  <a-select-option value="靠窗">靠窗</a-select-option>
+                  <a-select-option value="居中">居中</a-select-option>
+                  <a-select-option value="靠屋">靠屋</a-select-option>
+                </a-select>
               </td>
               <td>扣减说明</td>
               <td>
                 <a-select v-model:value="formState.deductionInfo" style="width: 95%;">
-                  <a-select-option value="标准扣减">标准扣减</a-select-option>
-                  <a-select-option value="不扣减">不扣减</a-select-option>
+                  <a-select-option value="标准扣减3-4cm">标准扣减3-4cm</a-select-option>
+                  <a-select-option value="自定义扣减">自定义扣减</a-select-option>
+                  <a-select-option value="不扣减(成品尺寸)">不扣减</a-select-option>
                 </a-select>
-                <!-- <a-input v-model:value="formState.deductionInfo" style="width: 95%;"></a-input> -->
               </td>
             </tr>
             <tr>
@@ -185,8 +189,8 @@
               <td>*扣减说明</td>
               <td>
                 <a-select v-model:value="formState.deductionInfo" style="width: 95%;">
-                  <a-select-option value="标准扣减">标准扣减</a-select-option>
-                  <a-select-option value="不扣减">不扣减</a-select-option>
+                  <a-select-option value="标准扣减1cm">标准扣减1cm</a-select-option>
+                  <a-select-option value="尺寸已减">尺寸已减</a-select-option>
                 </a-select>
               </td>
             </tr>
@@ -232,7 +236,7 @@
               <td>现场照片</td>
               <td>
                 <a-upload
-                  v-model:file-list="fileList"
+                  v-model:file-list="fileList1"
                   name="file"
                   :action="httpUrl + '/picture/upload'"
                   @change="handleChange"
@@ -270,18 +274,21 @@ import type { UploadChangeParam } from 'ant-design-vue';
 
 const open = ref<boolean>(false);
 const fileList = ref([]);
+const fileList1 = ref([]);
 const route = useRoute()
 const techId = localStorage.getItem("techId");
 const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {
-  const res = await httpGet('/view/project',{
-    projectId: route.query.id
+  const res = await httpGet('/project/selectId',{
+    id: route.query.id
   })
   formState.projectName = res[0].projectName
+  formState.itemId = res[0].itemId
 });
 
 interface FormState {
+  itemId: string
   formDiv1: boolean
   formDiv2: boolean
   projectName: string
@@ -302,7 +309,8 @@ interface FormState {
   high: string,
   surfaceWidth: string,
   cover: string,
-  imgUrl: string
+  imgUrl: string,
+  imgUrl1: string
   modalInfo: string
   l1: string,
   l2: string,
@@ -310,6 +318,7 @@ interface FormState {
 }
 
 const formState = reactive<FormState>({
+  itemId: '',
   formDiv1: true,
   formDiv2: false,
   projectName: '',
@@ -331,6 +340,7 @@ const formState = reactive<FormState>({
   surfaceWidth: '',
   cover: '',
   imgUrl: '',
+  imgUrl1: '',
   modalInfo: '',
   l1: '',
   l2: '',
@@ -346,6 +356,7 @@ const submit = async () => {
     await httpGet('/measure/addOpen',{
       projectId: route.query.id,
       techId: techId,
+      itemId: formState.itemId,
       projectName: formState.projectName,
       area: formState.area,
       motorModel: formState.motorModel,
@@ -359,7 +370,7 @@ const submit = async () => {
       placeholder: formState.placeholder,
       deductionInfo: formState.deductionInfo,
       remark: formState.remark,
-      imgUrl: formState.imgUrl,
+      imgUrl: formState.imgUrl1,
       l1: formState.l1,
       l2: formState.l2,
       l3: formState.l3,
@@ -370,6 +381,7 @@ const submit = async () => {
   } else if (formState.formDiv2) {
     await httpGet('/measure/addRoller',{
       projectId: route.query.id,
+      itemId: formState.itemId,
       techId: techId,
       projectName: formState.projectName,
       area: formState.area,
@@ -404,25 +416,25 @@ const handleOk = async () => {
 const check1 = () => {
   formState.formDiv1 = true
   formState.formDiv2 = false
-  formState.imgUrl = '';
   formState.area = ''
 }
 
 const check2 = () => {
   formState.formDiv1 = false
   formState.formDiv2 = true
-  formState.imgUrl = '';
   formState.area = ''
 }
 
 const handleChange = (info: UploadChangeParam) => {
   if (info.file.status === 'done') {
-    formState.imgUrl = info.file.response
-    console.log(`${info.file.name} file uploaded successfully`);
+    if(formState.formDiv1) {
+      formState.imgUrl =  formState.imgUrl + info.file.response + ","
+    } else {
+      formState.imgUrl1 =  formState.imgUrl + info.file.response + ","
+    }
     formState.modalInfo = '上传成功！'
     showModal()
   } else if (info.file.status === 'error') {
-    console.log(`${info.file.name} file upload failed.`);
     formState.modalInfo = '上传成功！'
     showModal()
   }

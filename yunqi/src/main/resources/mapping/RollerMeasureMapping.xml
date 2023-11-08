@@ -12,12 +12,12 @@
         insert into rollerMeasure (
             projectId, techId, projectName, area, rollingScheme, length, high, surfaceWidth, type,
             installMethod, deductionInfo, number, surfaceMaterial,
-            powerPosition, cover, imgUrl, remark, createName, createTime
+            powerPosition, cover, imgUrl, remark, createName, createTime, itemId
         ) value (
             #{projectId}, #{techId}, #{projectName}, #{area}, #{rollingScheme}, #{length},
             #{high}, #{surfaceWidth}, '卷帘',
             #{installMethod}, #{deductionInfo}, #{number}, #{surfaceMaterial},
-            #{powerPosition}, #{cover}, #{imgUrl}, #{remark}, #{createName}, NOW()
+            #{powerPosition}, #{cover}, #{imgUrl}, #{remark}, #{createName}, NOW(), #{itemId}
         )
     </insert>
 

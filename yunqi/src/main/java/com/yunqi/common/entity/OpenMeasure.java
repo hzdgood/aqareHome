@@ -12,7 +12,7 @@ public class OpenMeasure {
     private String motorModel;   // 电机型号
     private String trackType;  // 轨道类型
     private String installMethod;  // 安装方式
-    private String number;  // 数量
+    private Integer number;  // 数量
     private String openMethod; // 开合方式
     private String powerPosition;  // 电源位置
     private String boxWidth;  // 窗帘盒宽
@@ -21,9 +21,9 @@ public class OpenMeasure {
     private String deductionInfo; // 扣减说明
     private String imgUrl;
     private String remark;
-    private String l1;
-    private String l2;
-    private String l3;
+    private Double l1;
+    private Double l2;
+    private Double l3;
     private String disabled;
     private String createName;
     private Date createTime;
@@ -102,11 +102,11 @@ public class OpenMeasure {
         this.installMethod = installMethod;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 
@@ -162,6 +162,10 @@ public class OpenMeasure {
         return imgUrl;
     }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     public String getRemark() {
         return remark;
     }
@@ -170,32 +174,28 @@ public class OpenMeasure {
         this.remark = remark;
     }
 
-    public String getL1() {
+    public Double getL1() {
         return l1;
     }
 
-    public void setL1(String l1) {
+    public void setL1(Double l1) {
         this.l1 = l1;
     }
 
-    public String getL2() {
+    public Double getL2() {
         return l2;
     }
 
-    public void setL2(String l2) {
+    public void setL2(Double l2) {
         this.l2 = l2;
     }
 
-    public String getL3() {
+    public Double getL3() {
         return l3;
     }
 
-    public void setL3(String l3) {
+    public void setL3(Double l3) {
         this.l3 = l3;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     public String getDisabled() {

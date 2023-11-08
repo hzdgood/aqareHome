@@ -10,12 +10,12 @@ public class RollerMeasure {
     private String type;
     private String area; // 区域
     private String rollingScheme; // 卷帘方案
-    private String length; // 长度
-    private String high; // 高度
+    private Double length; // 长度
+    private Double high; // 高度
     private String surfaceWidth; // 安装面宽度
     private String installMethod;  // 安装方式
     private String deductionInfo;  // 扣减说明
-    private String number;// 数量
+    private Integer number;// 数量
     private String surfaceMaterial;  // 安装面材质
     private String powerPosition;   // 电源位置
     private String cover; // 需要罩壳
@@ -83,19 +83,19 @@ public class RollerMeasure {
         this.rollingScheme = rollingScheme;
     }
 
-    public String getLength() {
+    public Double getLength() {
         return length;
     }
 
-    public void setLength(String length) {
+    public void setLength(Double length) {
         this.length = length;
     }
 
-    public String getHigh() {
+    public Double getHigh() {
         return high;
     }
 
-    public void setHigh(String high) {
+    public void setHigh(Double high) {
         this.high = high;
     }
 
@@ -123,11 +123,11 @@ public class RollerMeasure {
         this.deductionInfo = deductionInfo;
     }
 
-    public String getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(Integer number) {
         this.number = number;
     }
 

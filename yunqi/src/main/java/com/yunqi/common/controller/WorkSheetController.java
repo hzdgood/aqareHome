@@ -26,7 +26,7 @@ public class WorkSheetController {
 
     private WorkTimeService WorkTimeService;
 
-    private StTimeService StTimeService;
+    private StTimeViewService StTimeViewService;
 
     @Autowired
     public void setMapper(WorkSheetService WorkSheetService) {
@@ -54,8 +54,8 @@ public class WorkSheetController {
     }
 
     @Autowired
-    public void setMapper(StTimeService StTimeService) {
-        this.StTimeService = StTimeService;
+    public void setMapper(StTimeViewService StTimeViewService) {
+        this.StTimeViewService = StTimeViewService;
     }
 
     @CrossOrigin
@@ -63,7 +63,7 @@ public class WorkSheetController {
     private String insert(WorkSheet WorkSheet) {
         // 新增工单
         Integer projectId = WorkSheet.getProjectId();
-        List<StTime> list = StTimeService.selectId(projectId);
+        List<StTimeView> list = StTimeViewService.selectId(projectId);
         if(Objects.equals(WorkSheet.getType(), "安装")) {
             WorkSheet.setStandardTime(list.get(0).getStInstall());
         } else if(Objects.equals(WorkSheet.getType(), "调试")) {

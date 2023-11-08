@@ -62,21 +62,13 @@
               </td>
             </tr>
             <tr>
+              <td>预约时间</td>
+              <td>
+                <a-input :disabled="true" :value="dateFilter(dataList.dateOfVisit,'yyyy-mm-dd')" style="width: 100%"></a-input>
+              </td>
               <td>签到时间</td>
-              <td colspan="3">
-                <a-input :disabled="true" :value="dataList.signTime" style="width: 100%"></a-input>
-              </td>
-            </tr>
-            <tr>
-              <td>离开时间</td>
-              <td colspan="3">
-                <a-input :disabled="true" :value="dataList.departureTime" style="width: 100%"></a-input>
-              </td>
-            </tr>
-            <tr>
-              <td>核销时间</td>
-              <td colspan="3">
-                <a-input :disabled="true" :value="dataList.writerTime" style="width: 100%"></a-input>
+              <td>
+                <a-input :disabled="true" :value="dateFilter(dataList.signTime,'yyyy-mm-dd')" style="width: 100%"></a-input>
               </td>
             </tr>
           </table>
@@ -94,6 +86,7 @@
 
 <script lang="ts" setup>
 import router from '@/router';
+import { dateFilter } from '../../util/time'
 import { httpGet } from '../../config/interFace'
 import { useRoute } from "vue-router";
 import { reactive, onMounted, ref } from 'vue';
@@ -173,7 +166,7 @@ const addPerson = async () => {
     createName: loginName
   })
   formState.modalInfo = '新增技术上门成功！'
-  showModal
+  showModal()
 };
 
 const deletePerson = async (timeId: any, name: any) => { // 针对多个人
@@ -199,7 +192,7 @@ const deletePerson = async (timeId: any, name: any) => { // 针对多个人
       updateName: loginName
     })
     formState.modalInfo = '取消技术上门成功！'
-    showModal
+    showModal()
   }
 };
 
@@ -210,17 +203,17 @@ const editHead = async () => {
     updateName: loginName
   })
   formState.modalInfo = '修改负责人成功！'
-  showModal
+  showModal()
 };
 
 const handleOk = async () => {
   open.value = false
+  router.push({name: 'SendSheetView'})
 };
 
 const showModal = () => {
   open.value = true;
 };
-
 
 const changeVisit = (value: []) => {
   formState.techName = `${value}`
@@ -231,7 +224,7 @@ const changeName = (value: []) => {
 };
 
 const resPage = () => {
-  router.push({name: 'workSheet'})
+  router.push({name: 'SendSheetView'})
 }
 
 </script>

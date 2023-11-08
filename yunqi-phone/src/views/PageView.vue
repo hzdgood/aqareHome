@@ -7,8 +7,8 @@
       {{ loginName }} <span class="logout-span" @click="logout">登出</span>
     </div>
     <div class="wrapper">
-      <div :class="formState.select0" @click="changeSelect(0)"><RouterLink to="/sendSheet">发单</RouterLink></div>
-      <div :class="formState.select1" @click="changeSelect(1)"><RouterLink to="/workSheet">工单</RouterLink></div>
+      <div :class="formState.select0" @click="changeSelect(0)"><RouterLink to="/workSheet">工单</RouterLink></div>
+      <div :class="formState.select1" @click="changeSelect(1)"><RouterLink to="/sendSheet">发单</RouterLink></div>
       <div :class="formState.select2" @click="changeSelect(2)"><RouterLink to="/workCom">完成单</RouterLink></div>
       <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/project">项目</RouterLink></div>
       <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/write">核销记录</RouterLink></div>
@@ -26,6 +26,10 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
+
+if(localStorage.getItem("version") !== '1.0') {
+  window.location.reload()
+}
 
 const changeSelect = (id: number) => {
   if(id === 0 ) {
@@ -101,8 +105,8 @@ interface FormState {
 }
 
 const formState = reactive<FormState>({
-  select0: '',
-  select1: 'selected',
+  select0: 'selected',
+  select1: '',
   select2: '',
   select3: '',
   select4: '',
@@ -128,7 +132,6 @@ const logout = () => {
   localStorage.clear()
   router.push({ name: "login"})
 }
-
 </script>
 
 <style src="../css/home.css" scoped>
