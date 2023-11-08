@@ -31,6 +31,9 @@ const techId = localStorage.getItem("techId");
 const loginName = localStorage.getItem('loginName')
 
 onMounted (async function () {
+  
+
+
   if(techId === '342') {
     const res = await httpGet('/view/work',{})
     formState.dataList = res

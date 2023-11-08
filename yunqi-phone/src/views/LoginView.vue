@@ -54,10 +54,6 @@ const formState = reactive<FormState>({
   password: '',
 });
 
-// const forgotWord = () => {
-//   router.push({ name: "forgot"})
-// }
-
 const onFinish = async () => {
   const obj = {
     username: formState.username,

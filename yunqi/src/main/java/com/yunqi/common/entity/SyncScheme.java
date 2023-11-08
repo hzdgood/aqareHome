@@ -12,6 +12,7 @@ public class SyncScheme {
     private String notSent; //未发
     private String itemId;
     private String disabled;
+    private Date  createTime;
 
     public Integer getId() {
         return id;
@@ -83,5 +84,13 @@ public class SyncScheme {
 
     public void setDisabled(String disabled) {
         this.disabled = disabled;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

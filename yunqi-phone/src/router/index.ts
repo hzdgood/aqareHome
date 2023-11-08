@@ -1,3 +1,4 @@
+import { log } from 'console'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
@@ -79,6 +80,11 @@ const router = createRouter({
       ]
     }
   ]
+})
+
+router.beforeEach(async (to, _from, next) => {
+  console.log(to  + "-" + _from + "-" +  next);
+  console.log(localStorage.getItem("version"));
 })
 
 export default router

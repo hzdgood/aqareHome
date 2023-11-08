@@ -12,8 +12,12 @@
 
     <insert id="insert" parameterType="com.yunqi.common.entity.SyncScheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
-        insert into SyncScheme (projectId, productId, number, notInstalled, unregulated, notSent, itemId) value (
-            #{projectId}, #{productId}, #{number}, #{notInstalled}, #{unregulated}, #{notSent}, #{itemId}
+        insert into SyncScheme (projectId, productId, number, notInstalled,
+            unregulated, notSent, itemId, createTime
+
+        ) value (
+            #{projectId}, #{productId}, #{number}, #{notInstalled},
+            #{unregulated}, #{notSent}, #{itemId}, NOW()
         )
     </insert>
 

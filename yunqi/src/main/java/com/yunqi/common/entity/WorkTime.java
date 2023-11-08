@@ -11,6 +11,7 @@ public class WorkTime {
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
     private Date writerTime; // 核销时间
+    private String standardTime; // 额定工时
     private String disabled;
     private String createName;
     private Date createTime;
@@ -79,6 +80,14 @@ public class WorkTime {
 
     public void setWriterTime(Date writerTime) {
         this.writerTime = writerTime;
+    }
+
+    public String getStandardTime() {
+        return standardTime;
+    }
+
+    public void setStandardTime(String standardTime) {
+        this.standardTime = standardTime;
     }
 
     public String getDisabled() {

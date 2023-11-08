@@ -17,6 +17,8 @@ const getPopupContainer = (el:any, dialogContext:any) => {
     return document.body;
   }
 }
+localStorage.setItem("version","1.0")
+
 </script>
 
 <style>
