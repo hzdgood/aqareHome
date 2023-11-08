@@ -3,8 +3,8 @@ package com.yunqi.common.entity;
 public class stTime {
     private Integer projectId;
     private String projectName;
-    private String stInstall;
-    private String stDebug;
+    private Double stInstall;
+    private Double stDebug;
 
     public Integer getProjectId() {
         return projectId;
@@ -22,19 +22,19 @@ public class stTime {
         this.projectName = projectName;
     }
 
-    public String getStInstall() {
+    public double getStInstall() {
         return stInstall;
     }
 
-    public void setStInstall(String stInstall) {
+    public void setStInstall(double stInstall) {
         this.stInstall = stInstall;
     }
 
-    public String getStDebug() {
+    public double getStDebug() {
         return stDebug;
     }
 
-    public void setStDebug(String stDebug) {
+    public void setStDebug(double stDebug) {
         this.stDebug = stDebug;
     }
 }

@@ -16,6 +16,7 @@ public class WorkSheet {
     private String workSummary; //今日工作总结
     private String visitNode; //下次上门节点
     private String handover; // 工作交接信息
+    private Double standardTime; // 额定工时
     private String remark;
     private String createName;
     private Date createTime;
@@ -124,6 +125,14 @@ public class WorkSheet {
 
     public void setHandover(String handover) {
         this.handover = handover;
+    }
+
+    public double getStandardTime() {
+        return standardTime;
+    }
+
+    public void setStandardTime(double standardTime) {
+        this.standardTime = standardTime;
     }
 
     public String getRemark() {

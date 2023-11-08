@@ -1,15 +1,9 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.entity.WorkSheet;
-import com.yunqi.common.entity.WorkTime;
-import com.yunqi.common.entity.Writer;
-import com.yunqi.common.service.WorkSheetService;
-import com.yunqi.common.service.WorkTimeService;
-import com.yunqi.common.service.WriterService;
-import com.yunqi.common.view.ProductView;
-import com.yunqi.common.view.SchemeView;
-import com.yunqi.common.viewService.ProductViewService;
-import com.yunqi.common.viewService.SchemeViewService;
+import com.yunqi.common.entity.*;
+import com.yunqi.common.service.*;
+import com.yunqi.common.view.*;
+import com.yunqi.common.viewService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +25,8 @@ public class WorkSheetController {
     private SchemeViewService SchemeViewService;
 
     private WorkTimeService WorkTimeService;
+
+    private stTimeService stTimeService;
 
     @Autowired
     public void setMapper(WorkSheetService WorkSheetService) {
@@ -57,36 +53,51 @@ public class WorkSheetController {
         this.WorkTimeService = WorkTimeService;
     }
 
+    @Autowired
+    public void setMapper(stTimeService stTimeService) {
+        this.stTimeService = stTimeService;
+    }
+
     @CrossOrigin
     @RequestMapping("/insert")
     private String insert(WorkSheet WorkSheet) {
         // 新增工单
-        WorkSheetService.insert(WorkSheet);
+        Integer projectId = WorkSheet.getProjectId();
+        List<stTime> list = stTimeService.selectId(projectId);
+        if(Objects.equals(WorkSheet.getType(), "安装")) {
+            WorkSheet.setStandardTime(list.get(0).getStInstall());
+        } else if(Objects.equals(WorkSheet.getType(), "调试")) {
+            double st = list.get(0).getStInstall() + list.get(0).getStDebug();
+            WorkSheet.setStandardTime(st);
+        } else {
+            WorkSheet.setStandardTime(2);
+        }
         // 分别签到离开 插入个人工单表
-        WorkTime WorkTime = new WorkTime();
-        insertSimpleWork(WorkSheet, WorkTime);
+        WorkSheetService.insert(WorkSheet);
+        insertSimpleWork(WorkSheet);
         return "发单完成";
     }
 
-    private void insertSimpleWork(WorkSheet WorkSheet, WorkTime workTime) {
+    private void insertSimpleWork(WorkSheet WorkSheet) {
+        WorkTime WorkTime = new WorkTime();
         String techIds = WorkSheet.getTechIds();
         String[] techs = techIds.split(",");
         if (techs.length > 0) {
             for (String tech : techs) {
-                workTime.setProjectId(WorkSheet.getProjectId());
-                workTime.setStatus("待上门");
-                workTime.setTechId(tech);
-                workTime.setCreateName(WorkSheet.getCreateName());
-                workTime.setWorkId(WorkSheet.getId());
-                WorkTimeService.insert(workTime);
+                WorkTime.setProjectId(WorkSheet.getProjectId());
+                WorkTime.setStatus("待上门");
+                WorkTime.setTechId(tech);
+                WorkTime.setCreateName(WorkSheet.getCreateName());
+                WorkTime.setWorkId(WorkSheet.getId());
+                WorkTimeService.insert(WorkTime);
             }
         } else {
-            workTime.setProjectId(WorkSheet.getProjectId());
-            workTime.setStatus("待上门");
-            workTime.setTechId(WorkSheet.getTechIds());
-            workTime.setCreateName(WorkSheet.getCreateName());
-            workTime.setWorkId(WorkSheet.getId());
-            WorkTimeService.insert(workTime);
+            WorkTime.setProjectId(WorkSheet.getProjectId());
+            WorkTime.setStatus("待上门");
+            WorkTime.setTechId(WorkSheet.getTechIds());
+            WorkTime.setCreateName(WorkSheet.getCreateName());
+            WorkTime.setWorkId(WorkSheet.getId());
+            WorkTimeService.insert(WorkTime);
         }
     }
 

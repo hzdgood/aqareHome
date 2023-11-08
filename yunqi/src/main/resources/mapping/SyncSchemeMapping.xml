@@ -14,7 +14,6 @@
         # 方案新增
         insert into SyncScheme (projectId, productId, number, notInstalled,
             unregulated, notSent, itemId, createTime
-
         ) value (
             #{projectId}, #{productId}, #{number}, #{notInstalled},
             #{unregulated}, #{notSent}, #{itemId}, NOW()

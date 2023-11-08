@@ -1,4 +1,3 @@
-import { log } from 'console'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
