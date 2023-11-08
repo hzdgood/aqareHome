@@ -1,11 +1,11 @@
 package com.yunqi.common.mapper;
 
-import com.yunqi.common.entity.stTime;
+import com.yunqi.common.entity.StTime;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface stTimeMapper {
-    List<stTime> selectId(Integer projectId);
+public interface StTimeMapper {
+    List<StTime> selectId(Integer projectId);
 }

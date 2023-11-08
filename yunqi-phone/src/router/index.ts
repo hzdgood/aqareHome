@@ -82,8 +82,12 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, _from, next) => {
-  console.log(to  + "-" + _from + "-" +  next);
   console.log(localStorage.getItem("version"));
+  const version = localStorage.getItem("version");
+  if(version !== '1.0') {
+    next({path: '/page'})
+  }
+  next()
 })
 
 export default router

@@ -426,7 +426,7 @@ const handleChange = (info: UploadChangeParam) => {
     formState.modalInfo = '上传成功！'
     showModal()
   }
-  if( formState.modalInfo === '上传成功！') {
+  if( formState.modalInfo === '开合帘新增成功' || formState.modalInfo === '卷帘新增成功') {
     router.push({name: 'project'})
   }
 };

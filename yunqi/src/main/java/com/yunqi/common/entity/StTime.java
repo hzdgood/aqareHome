@@ -1,6 +1,6 @@
 package com.yunqi.common.entity;
 
-public class stTime {
+public class StTime {
     private Integer projectId;
     private String projectName;
     private Double stInstall;
