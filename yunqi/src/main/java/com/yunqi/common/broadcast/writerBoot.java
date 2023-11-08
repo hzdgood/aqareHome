@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-
 import java.util.List;
 
 @Configuration // 标记配置类
@@ -23,7 +22,7 @@ public class writerBoot {
     @Autowired
     private SchemeService SchemeService;
 
-    // @Scheduled(cron = "0 08 18 * * ?")
+    // @Scheduled(cron = "0 59 19 * * ?")
     private void s(){
         List<Writer> w = WriterService.select();
         for(Writer Writer : w) {
@@ -45,7 +44,7 @@ public class writerBoot {
                 Scheme.setUnregulated(unregulated - debug);
                 Scheme.setCreateName("核销");
                 WriterService.writerCom(Writer.getId()); // 设置查询无效
-                SchemeService.update(Scheme);
+                // SchemeService.update(Scheme);
                 HistoryService.update(Scheme); // 方案修改
             } else {
                 System.out.println("方案ID:" + schemeID);

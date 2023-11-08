@@ -31,7 +31,7 @@ public class SchemeBoot {
     @Autowired
     private HistoryService HistoryService;
 
-    @Scheduled(cron = "0 00 03 * * ?")
+    // @Scheduled(cron = "0 43 19 * * ?")
     private void s(){
         List<SyncScheme> SyncScheme = SyncSchemeService.select();
         for(SyncScheme sync: SyncScheme) {

@@ -34,15 +34,14 @@
         <if test="techId!=null">
             and techId like '%${techId}%'
         </if>
-        <if test="headId!=null">
-            and headId = #{headId}
-        </if>
         <if test="dateOfVisit != null">
             and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
         </if>
         <if test="projectName!=null and projectName!=''">
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>
-        group by workId
+        <if test="headId!=null">
+            and headId = #{headId} group by workId
+        </if>
     </select>
 </mapper>

@@ -30,21 +30,11 @@ import ProjectCardView from './card/ProjectCardView.vue';
 import { reactive, onMounted } from 'vue';
 import { httpGet } from '../config/interFace'
 
-const techId = localStorage.getItem("techId");
-
 onMounted (async function () {
-  if(techId === '342') {
-    const res = await httpGet('/view/project',{
-      schedule: 'all'
-    })
-    formState.dataList = res
-  } else {
-    const res = await httpGet('/view/project',{
-      techId: techId,
-      schedule: 'all'
-    })
-    formState.dataList = res
-  }
+  const res = await httpGet('/view/project',{
+    schedule: 'all'
+  })
+  formState.dataList = res
 })
 
 const toPage = (str: any, id: any) => {
@@ -64,27 +54,18 @@ const formState = reactive<FormState>({
 });
 
 const allSeletct = async () => {
-  if(formState.projectName === '') {
-    const res = await httpGet('/view/project',{})
-    formState.dataList = res
-  } else {
-    const res = await httpGet('/view/project',{
-      projectName: formState.projectName
-    })
-    formState.dataList = res
-  }
+  const res = await httpGet('/view/project',{
+    projectName: formState.projectName,
+  })
+  formState.dataList = res
 };
 
 const onFinish = async () => {
-  if(formState.projectName === '') {
-    const res = await httpGet('/view/project',{})
-    formState.dataList = res
-  } else {
-    const res = await httpGet('/view/project',{
-      projectName: formState.projectName
-    })
-    formState.dataList = res
-  }
+  const res = await httpGet('/view/project',{
+    projectName: formState.projectName,
+    schedule: 'all'
+  })
+  formState.dataList = res
 };
 
 const onFinishFailed = (errorInfo: any) => {
