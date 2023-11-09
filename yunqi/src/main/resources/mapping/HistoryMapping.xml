@@ -21,9 +21,11 @@
         # 方案新增
         update schemehistory
         set number = #{number},
-            notSent  = #{notSent}
-#             notInstalled  = #{notInstalled},
-#             unregulated   = #{unregulated}
+            notSent  = #{notSent},
+            notInstalled  = #{notInstalled},
+            unregulated   = #{unregulated},
+            updateName = '伙伴云',
+            updateTime = now()
         where itemId = #{itemId}
     </insert>
 

@@ -41,12 +41,12 @@ spring:
   datasource:
     # jdbc 连接基础配置
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/yunqi
-#    username: root
-#    password: smartHome@123
-    url: jdbc:mysql://1.116.43.244:3306/yunqi
-    username: yunqi
+    url: jdbc:mysql://localhost:3306/yunqi
+    username: root
     password: smartHome@123
+#    url: jdbc:mysql://1.116.43.244:3306/yunqi
+#    username: yunqi
+#    password: smartHome@123
     generate-unique-name: false
   servlet:
     multipart:

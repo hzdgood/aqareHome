@@ -28,10 +28,11 @@
         # 方案修改
         update scheme
         set number = #{number},
+            notSent  = #{notSent},
             notInstalled  = #{notInstalled},
-            notSent  = #{notSent}
-#             notInstalled  = #{notInstalled},
-#             unregulated   = #{unregulated}
+            unregulated   = #{unregulated},
+            updateName = '伙伴云',
+            updateTime = now()
         where
             itemId = #{itemId}
     </insert>

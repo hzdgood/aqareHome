@@ -6,7 +6,6 @@ import com.yunqi.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import java.util.List;
 
 @Configuration // 标记配置类
@@ -22,7 +21,7 @@ public class writerBoot {
     @Autowired
     private SchemeService SchemeService;
 
-    // @Scheduled(cron = "0 56 16 * * ?")
+    // @Scheduled(cron = "0 00 03 * * ?")
     private void s(){
         List<Writer> w = WriterService.select();
         for(Writer Writer : w) {
