@@ -67,8 +67,8 @@ public class SchemeBoot {
                 Scheme.setNotSent(Integer.parseInt(sync.getNotSent()));
                 /// double s = Double.parseDouble(sync.getNotInstalled())  - Scheme.getInstallNumber();
                 /// double t = Double.parseDouble(sync.getUnregulated())  - Scheme.getDebugNumber();
-                Scheme.setNotInstalled(Double.parseDouble(sync.getNotInstalled()));
-                Scheme.setUnregulated(Double.parseDouble(sync.getUnregulated()));
+                //  Scheme.setNotInstalled(Double.parseDouble(sync.getNotInstalled()));
+                //  Scheme.setUnregulated(Double.parseDouble(sync.getUnregulated()));
                 Scheme.setCreateName("更新数据");
                 SyncSchemeService.delete(sync.getId());
                 SchemeService.update(Scheme); // 修改方案表

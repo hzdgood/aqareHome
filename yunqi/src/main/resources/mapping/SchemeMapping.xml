@@ -29,10 +29,23 @@
         update scheme
         set number = #{number},
             notInstalled  = #{notInstalled},
-            notSent  = #{notSent},
-            unregulated   = #{unregulated},
-            createName =  #{createName}
+            notSent  = #{notSent}
+#             notInstalled  = #{notInstalled},
+#             unregulated   = #{unregulated}
         where
             itemId = #{itemId}
+    </insert>
+
+    <insert id="updateId" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+        # 方案新增
+        update scheme
+        set
+            installNumber = #{installNumber},
+            debugNumber = #{debugNumber},
+            notInstalled  = #{notInstalled},
+            unregulated   = #{unregulated},
+            updateName = '核销',
+            updateTime = now()
+        where id = #{id}
     </insert>
 </mapper>

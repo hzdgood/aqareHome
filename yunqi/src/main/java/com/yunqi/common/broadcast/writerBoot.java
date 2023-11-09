@@ -22,7 +22,7 @@ public class writerBoot {
     @Autowired
     private SchemeService SchemeService;
 
-    // @Scheduled(cron = "0 01 15 * * ?")
+    // @Scheduled(cron = "0 56 16 * * ?")
     private void s(){
         List<Writer> w = WriterService.select();
         for(Writer Writer : w) {
@@ -44,8 +44,8 @@ public class writerBoot {
                 Scheme.setUnregulated(unregulated - debug);
                 Scheme.setCreateName("核销");
                 WriterService.writerCom(Writer.getId()); // 设置查询无效
-                // SchemeService.updateId(Scheme);
-                HistoryService.updateId(Scheme); // 方案修改
+                SchemeService.updateId(Scheme);
+                // HistoryService.updateId(Scheme); // 方案修改
             } else {
                 System.out.println("方案ID:" + schemeID);
             }

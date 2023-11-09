@@ -21,9 +21,9 @@
         # 方案新增
         update schemehistory
         set number = #{number},
-            notInstalled  = #{notInstalled},
-            notSent  = #{notSent},
-            unregulated   = #{unregulated}
+            notSent  = #{notSent}
+#             notInstalled  = #{notInstalled},
+#             unregulated   = #{unregulated}
         where itemId = #{itemId}
     </insert>
 
