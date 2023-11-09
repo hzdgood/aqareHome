@@ -27,10 +27,16 @@
         where itemId = #{itemId}
     </insert>
 
-    <insert id="delete" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
+    <insert id="updateId" parameterType="com.yunqi.common.entity.Scheme" useGeneratedKeys="true" keyProperty="id">
         # 方案新增
         update schemehistory
-        set disabled = false
+        set
+            installNumber = #{installNumber},
+            debugNumber = #{debugNumber},
+            notInstalled  = #{notInstalled},
+            unregulated   = #{unregulated},
+            updateName = '核销',
+            updateTime = now()
         where id = #{id}
     </insert>
 </mapper>

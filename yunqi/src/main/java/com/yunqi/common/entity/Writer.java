@@ -14,7 +14,7 @@ public class Writer {
     private double debug; // 安装
     private double sumWork; // 总核销
     private String type; // 类型
-    private Double contribution; // 贡献度
+    private double contribution; // 贡献度
     private String createName;
     private Date createTime;
     private String updateName;
@@ -102,13 +102,13 @@ public class Writer {
         this.type = type;
     }
 
-    public Double getContribution() {
+    public double getContribution() {
         return contribution;
     }
 
-    public void setContribution(Double contribution) {
+    public void setContribution(double contribution) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        this.contribution = Double.valueOf(decimalFormat.format(contribution));
+        this.contribution = Double.parseDouble(decimalFormat.format(contribution));
     }
 
     public String getCreateName() {

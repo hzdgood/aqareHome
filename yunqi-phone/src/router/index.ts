@@ -10,11 +10,6 @@ const router = createRouter({
       component:  () => import('../views/LoginView.vue'),
     },
     {
-      path: '/forget',
-      name: 'forgot',
-      component: () => import('../views/ForgotView.vue'),
-    },
-    {
       path: '/page',
       name: 'page',
       component: () => import('../views/PageView.vue'),

@@ -10,8 +10,8 @@ public class RollerMeasure {
     private String type;
     private String area; // 区域
     private String rollingScheme; // 卷帘方案
-    private Double length; // 长度
-    private Double high; // 高度
+    private double length; // 长度
+    private double high; // 高度
     private String surfaceWidth; // 安装面宽度
     private String installMethod;  // 安装方式
     private String deductionInfo;  // 扣减说明
@@ -26,6 +26,7 @@ public class RollerMeasure {
     private Date createTime;
     private String updateName;
     private Date updateTime;
+    private String itemId;
 
     public Integer getId() {
         return id;
@@ -83,19 +84,19 @@ public class RollerMeasure {
         this.rollingScheme = rollingScheme;
     }
 
-    public Double getLength() {
+    public double getLength() {
         return length;
     }
 
-    public void setLength(Double length) {
+    public void setLength(double length) {
         this.length = length;
     }
 
-    public Double getHigh() {
+    public double getHigh() {
         return high;
     }
 
-    public void setHigh(Double high) {
+    public void setHigh(double high) {
         this.high = high;
     }
 
@@ -209,5 +210,13 @@ public class RollerMeasure {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 }

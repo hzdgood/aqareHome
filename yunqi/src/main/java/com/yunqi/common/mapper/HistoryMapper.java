@@ -14,4 +14,6 @@ public interface HistoryMapper {
     void update(Scheme scheme);
 
     void delete(Integer id);
+
+    void updateId(Scheme scheme);
 }

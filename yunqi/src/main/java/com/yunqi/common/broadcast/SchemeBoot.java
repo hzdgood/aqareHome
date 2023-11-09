@@ -31,7 +31,7 @@ public class SchemeBoot {
     @Autowired
     private HistoryService HistoryService;
 
-    // @Scheduled(cron = "0 43 19 * * ?")
+    // @Scheduled(cron = "0 12 13 * * ?")
     private void s(){
         List<SyncScheme> SyncScheme = SyncSchemeService.select();
         for(SyncScheme sync: SyncScheme) {
@@ -65,10 +65,10 @@ public class SchemeBoot {
                 Scheme.setId(scheme.get(0).getId());
                 Scheme.setNumber(Integer.parseInt(sync.getNumber()));
                 Scheme.setNotSent(Integer.parseInt(sync.getNotSent()));
-                double s = Double.parseDouble(sync.getNotInstalled())  - Scheme.getInstallNumber();
-                double t = Double.parseDouble(sync.getUnregulated())  - Scheme.getDebugNumber();
-                Scheme.setNotInstalled(s);
-                Scheme.setUnregulated(t);
+                /// double s = Double.parseDouble(sync.getNotInstalled())  - Scheme.getInstallNumber();
+                /// double t = Double.parseDouble(sync.getUnregulated())  - Scheme.getDebugNumber();
+                Scheme.setNotInstalled(Double.parseDouble(sync.getNotInstalled()));
+                Scheme.setUnregulated(Double.parseDouble(sync.getUnregulated()));
                 Scheme.setCreateName("更新数据");
                 SyncSchemeService.delete(sync.getId());
                 SchemeService.update(Scheme); // 修改方案表

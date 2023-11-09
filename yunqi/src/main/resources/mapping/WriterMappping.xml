@@ -11,7 +11,8 @@
 
     <select id="select" resultType="com.yunqi.common.entity.Writer">
         # 同步查询
-        select * from writer where disabled is null and ( type = '安装' or type = '调试' );
+        select * from writer where disabled is null and errorInfo is null
+        and ( type = '安装' or type = '调试' );
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.Writer" useGeneratedKeys="true" keyProperty="id">

@@ -33,4 +33,7 @@ public class SchemeService {
     }
 
 
+    public void updateId(Scheme scheme) {
+        schemeMapper.updateId(scheme);
+    }
 }

@@ -313,11 +313,9 @@ const submitInfo = async () => {
 
 const handleOk = async () => {
   open.value = false;
-
   if(formState.modalInfo === '请确认核销数量！') { // 核销数量有问题
     return
   }
-
   if(formState.modalInfo === '请确认核销内容！') { // 核销新增 
     for(let i=0; i < formObj.length; i++){
       await httpGet('/writer/insert', formObj[i]) 
@@ -325,19 +323,21 @@ const handleOk = async () => {
     formState.modalInfo = '核销完成'
     showModal()
   }
-
   if(formState.modalInfo === '请确认填写内容！') { // 核销总结
-    const res = await httpGet('/workSheet/update', { //工单修改
+    await httpGet('/workSheet/update', { //工单修改
       id: route.query.id,
       workSummary: formState.workSummary, // 今日工作总结
       visitNode: formState.visitNode, // 下次上门节点
       handover: formState.handover, // 下次上门注意事项
       updateName: loginName // 核销人
     })
-    formState.modalInfo = res
+    formState.modalInfo = '核销总结提交完成'
     showModal()
   }
-};
+  if(formState.modalInfo === '核销完成' || formState.modalInfo === '核销总结提交完成') {
+    router.push({name: 'project'})
+  }
+}
 
 const changeSelect = (id: number) => {
   if(id === 1 ) {

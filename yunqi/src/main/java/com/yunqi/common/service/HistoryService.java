@@ -29,4 +29,8 @@ public class HistoryService {
     }
 
     void delete(Integer id) { HistoryMapper.delete(id); }
+
+    public void updateId(Scheme scheme) {
+        HistoryMapper.updateId(scheme);
+    }
 }

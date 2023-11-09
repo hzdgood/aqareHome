@@ -21,14 +21,15 @@ public class OpenMeasure {
     private String deductionInfo; // 扣减说明
     private String imgUrl;
     private String remark;
-    private Double l1;
-    private Double l2;
-    private Double l3;
+    private double l1;
+    private double l2;
+    private double l3;
     private String disabled;
     private String createName;
     private Date createTime;
     private String updateName;
     private Date updateTime;
+    private String itemId;
 
     public Integer getId() {
         return id;
@@ -174,27 +175,27 @@ public class OpenMeasure {
         this.remark = remark;
     }
 
-    public Double getL1() {
+    public double getL1() {
         return l1;
     }
 
-    public void setL1(Double l1) {
+    public void setL1(double l1) {
         this.l1 = l1;
     }
 
-    public Double getL2() {
+    public double getL2() {
         return l2;
     }
 
-    public void setL2(Double l2) {
+    public void setL2(double l2) {
         this.l2 = l2;
     }
 
-    public Double getL3() {
+    public double getL3() {
         return l3;
     }
 
-    public void setL3(Double l3) {
+    public void setL3(double l3) {
         this.l3 = l3;
     }
 
@@ -236,5 +237,13 @@ public class OpenMeasure {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 }
