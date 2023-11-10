@@ -149,6 +149,7 @@ const handleOk = async (data: any ) => {
       projectId: data.projectId,
       headId: data.headId,
       type: data.type,
+      techNames: data.techNames,
       updateName: loginName
     })
     emit('pageReset')

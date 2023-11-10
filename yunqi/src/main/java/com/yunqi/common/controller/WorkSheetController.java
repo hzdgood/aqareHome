@@ -64,12 +64,17 @@ public class WorkSheetController {
         // 新增工单
         Integer projectId = WorkSheet.getProjectId();
         List<StTimeView> list = StTimeViewService.selectId(projectId);
-        if(Objects.equals(WorkSheet.getType(), "安装")) {
-            WorkSheet.setStandardTime(list.get(0).getStInstall());
-        } else if(Objects.equals(WorkSheet.getType(), "调试")) {
-            double st = list.get(0).getStInstall() + list.get(0).getStDebug();
-            WorkSheet.setStandardTime(st);
+        if(!list.isEmpty()) {
+            if(Objects.equals(WorkSheet.getType(), "安装")) {
+                WorkSheet.setStandardTime(list.get(0).getStInstall());
+            } else if(Objects.equals(WorkSheet.getType(), "调试")) {
+                double st = list.get(0).getStInstall() + list.get(0).getStDebug();
+                WorkSheet.setStandardTime(st);
+            } else {
+                WorkSheet.setStandardTime(2);
+            }
         } else {
+            System.out.println("插入问题项目ID:" + projectId);
             WorkSheet.setStandardTime(2);
         }
         // 分别签到离开 插入个人工单表
@@ -158,7 +163,6 @@ public class WorkSheetController {
 
         // 当前人员的贡献度  经过核销的
         for (ProductView productView : ProductList) {
-
             writerId = productView.getId(); // 核销ID
             Integer install = productView.getCustomerInstall(); // 本次安装
             Integer debug = productView.getCustomerDebug(); // 本次调试
