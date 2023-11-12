@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface TimeStMapper {
-    List<TimeSt> selectId(TimeSt TimeSt);
+    List<TimeSt> select(TimeSt TimeSt);
 }

@@ -250,16 +250,16 @@ public class WorkSheetController {
             Writer.setType("负责人-交底");
             WriterService.insertHead(Writer); //负责人插入
         }
-        if (Objects.equals(type, "安装") || Objects.equals(type, "调试")) {
-            Writer.setProjectId(projectId);
-            Writer.setTechId(headId);
-            Writer.setWorkId(workId);
-            Writer.setCreateName(updateName);
-            Writer.setSumWork(sumInstall + sumDebug); // 总安装 + 总调试
-            Writer.setContribution(sumSm);
-            Writer.setType("负责人-上门");
-            WriterService.insertHead(Writer); //负责人插入
-        }
+//        if (Objects.equals(type, "安装") || Objects.equals(type, "调试")) {
+//            Writer.setProjectId(projectId);
+//            Writer.setTechId(headId);
+//            Writer.setWorkId(workId);
+//            Writer.setCreateName(updateName);
+//            Writer.setSumWork(sumInstall + sumDebug); // 总安装 + 总调试
+//            Writer.setContribution(sumSm);
+//            Writer.setType("负责人-上门");
+//            WriterService.insertHead(Writer); //负责人插入
+//        }
         WorkTimeService.complete(timeId, updateName); // 设置工单已完成
         return "核销计算完成";
     }

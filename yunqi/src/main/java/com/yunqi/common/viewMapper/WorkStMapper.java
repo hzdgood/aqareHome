@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface WorkStMapper {
-    List<WorkSt> selectId(WorkSt WorkSt);
+    List<WorkSt> select(WorkSt WorkSt);
 }

@@ -17,7 +17,7 @@ public class WorkStService {
         this.WorkStMapper = WorkStMapper;
     }
 
-    public List<WorkSt> selectId(WorkSt WorkSt) {
-        return WorkStMapper.selectId(WorkSt);
+    public List<WorkSt> select(WorkSt WorkSt) {
+        return WorkStMapper.select(WorkSt);
     }
 }

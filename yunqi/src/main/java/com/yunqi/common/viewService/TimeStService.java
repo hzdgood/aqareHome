@@ -17,8 +17,8 @@ public class TimeStService {
         this.TimeStMapper = TimeStMapper;
     }
 
-    public List<TimeSt> selectId(TimeSt TimeSt) {
-        return TimeStMapper.selectId(TimeSt);
+    public List<TimeSt> select(TimeSt TimeSt) {
+        return TimeStMapper.select(TimeSt);
     }
 }
 

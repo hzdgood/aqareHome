@@ -32,7 +32,7 @@ import { httpGet } from '../config/interFace'
 const techId = localStorage.getItem("techId");
 
 onMounted (async function () {
-  if(techId === '342') {
+  if(techId === '342' || techId === '339') {
     const res = await httpGet('/view/work',{})
     formState.dataList = res
   } else {
@@ -93,7 +93,7 @@ const changeType = (id: number) => {
 }
 
 const onRangeChange = async () => {
-  if(techId === '342') {
+  if(techId === '342' || techId === '339') {
     const res = await httpGet('/view/work',{
       dateOfVisit: formState.time
     })
@@ -107,7 +107,7 @@ const onRangeChange = async () => {
 };
 
 const projectChange = async () => {
-  if(techId === '342') {
+  if(techId === '342' || techId === '339') {
     const res = await httpGet('/view/work',{
       projectName: formState.projectName,
     })

@@ -296,7 +296,7 @@ interface FormState {
   motorModel: string,
   trackType: string,
   installMethod: string,
-  number: string,
+  number: Number,
   openMethod: string,
   powerPosition: string,
   boxWidth: string,
@@ -312,9 +312,9 @@ interface FormState {
   imgUrl: string,
   imgUrl1: string
   modalInfo: string
-  l1: string,
-  l2: string,
-  l3: string
+  l1: Number,
+  l2: Number,
+  l3: Number
 }
 
 const formState = reactive<FormState>({
@@ -326,7 +326,7 @@ const formState = reactive<FormState>({
   motorModel: '',
   trackType: '',
   installMethod: '',
-  number: '',
+  number: 0,
   openMethod: '',
   powerPosition: '',
   boxWidth: '',
@@ -342,9 +342,9 @@ const formState = reactive<FormState>({
   imgUrl: '',
   imgUrl1: '',
   modalInfo: '',
-  l1: '',
-  l2: '',
-  l3: ''
+  l1: 0,
+  l2: 0,
+  l3: 0
 });
 
 const resPage = () => {
