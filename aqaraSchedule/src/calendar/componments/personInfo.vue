@@ -30,7 +30,7 @@
 
 <script lang='ts'>
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { SearchInfo } from '@/config/interFace'
+import { httpGet } from '@/config/interFace'
 @Component({})
 export default class Actions extends Vue {
   personList: any[] = [];
@@ -41,31 +41,15 @@ export default class Actions extends Vue {
 
   async getDataList () {
     // 获取所有技术人员信息
-    this.personList = []
-    const obj = {
-      where: { and: [{ field: 2200000155616806, query: { in: [1] } }] },
-      offset: 0,
-      limit: 20
-    }
-    const result = await SearchInfo('2100000015050396', obj)
+    const result = await httpGet('/measure/selectOpen', {})
     this.resultList = result
     for (let i = 0; i < result.length; i++) {
-      const fields = result[i].fields
-      const item_id = result[i].item_id
-      let name = ''
-      let wait = ''
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === 2200000149382960) {
-          name = fields[j].values[0].value
-        }
-        if (fields[j].field_id === 2200000151780694) {
-          wait = fields[j].values[0].value
-        }
-      }
+      const waitday = result[i].waitday
+      const name = result[i].name
       const data = {
-        id: item_id,
+        id: i,
         name: name,
-        wait: wait,
+        wait: waitday,
         workStatus: '',
         s1: 'fee',
         s2: 'fee',
@@ -82,37 +66,6 @@ export default class Actions extends Vue {
 
   @Watch('$store.state.layerList')
   async updateStatus () {
-    this.personList = []
-    const result = this.resultList
-    for (let i = 0; i < result.length; i++) {
-      const fields = result[i].fields
-      const item_id = result[i].item_id
-      let name = ''
-      let wait = ''
-      for (let j = 0; j < fields.length; j++) {
-        if (fields[j].field_id === 2200000149382960) {
-          name = fields[j].values[0].value
-        }
-        if (fields[j].field_id === 2200000151780694) {
-          wait = fields[j].values[0].value
-        }
-      }
-      const data = {
-        id: item_id,
-        name: name,
-        wait: wait,
-        workStatus: '',
-        s1: 'fee',
-        s2: 'fee',
-        s3: 'fee',
-        s4: 'fee',
-        s5: 'fee',
-        s6: 'fee',
-        s7: 'fee',
-        s8: 'fee'
-      }
-      this.personList.push(data)
-    }
     const data1 = this.$store.state.layerList
     const data = this.personList
     for (let i = 0; i < data1.length; i++) {
