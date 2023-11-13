@@ -1,7 +1,7 @@
 package com.yunqi.common.utils;
 
-import com.yunqi.common.entity.Coordinate;
 import com.alibaba.fastjson.JSONObject;
+import com.yunqi.common.entity.Coordinate;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -26,8 +26,6 @@ public class CoordinateUtil {
                 double lat = obj.getJSONObject("result").getJSONObject("location").getDouble("lat"); // 纬度
                 Coordinate.setLng(lng);
                 Coordinate.setLat(lat);
-            } else {
-                return null;
             }
         }
         return Coordinate;
@@ -46,7 +44,6 @@ public class CoordinateUtil {
             in.close();
         } catch (Exception e) {
             System.out.printf(json + "--------" + "loadJSON");
-            e.printStackTrace();
         }
         return json.toString();
     }

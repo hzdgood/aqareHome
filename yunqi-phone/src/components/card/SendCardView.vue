@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type" :bordered="false">
+    <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type + '-' + data.techId" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
         <a-button :style="style" @click="personEdit(data.workId)">派单</a-button>

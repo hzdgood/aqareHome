@@ -64,7 +64,7 @@ server:
     key-store-type: JKS
     key-store-password: z57qlkz5cs04
     enabled: false
-  max-http-request-header-size: 8MB
+  max-http-request-header-size: 16MB
 
 logging:
   level:

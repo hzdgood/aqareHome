@@ -10,7 +10,7 @@
       >
         <table class="cardTale">
           <tr>
-            <td width="70px">项目姓名:</td>
+            <td width="80px">项目姓名:</td>
             <td>
               <a-input :disabled="true" style="width: 95%;" v-model:value="formState.projectName"></a-input>
             </td>
@@ -41,7 +41,7 @@
             </td>
           </tr>
           <tr>
-            <td>工单类型:</td>
+            <td>*工单类型:</td>
             <td>
               <a-select style="width: 95%;" v-model:value="formState.workType">
                 <a-select-option value="安装">安装</a-select-option>
@@ -115,12 +115,6 @@ onMounted (async function () {
     techs.push(obj)
   }
   formState.options = techs
-
-  // 发单控制
-  const work = await httpGet('/view/work',{ // 项目工单查询
-    projectId: route.query.id
-  })
-  console.log(work);
 })
 
 interface FormState {

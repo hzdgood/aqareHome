@@ -1,9 +1,6 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type" :bordered="false">
-      <!-- <div class="buttonPos">
-        <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
-      </div> -->
+    <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type + '-' + data.techId" :bordered="false">
       <table class="cardTale" >  
         <tr>
           <td>上门技术</td>
@@ -46,24 +43,12 @@
 <script setup lang="ts">
 // 工单卡片
 import { dateFilter } from '../../util/time'
-
-const emit = defineEmits(['toPage','pageReset'])
-
 defineProps({
   data: {
     type: Object,
     default: null
   }
 })
-
-const style = {
-  backgroundColor: '#0099DD',color: '#fff'
-}
-
-const workEdit = (id: any) => {
-  emit('toPage','workEdit', { id: id })
-}
-
 </script>
 <style scoped>
 
