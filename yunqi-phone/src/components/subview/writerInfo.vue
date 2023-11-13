@@ -177,35 +177,20 @@ const handleChange = async (info: UploadChangeParam, type: string) => {
 
 onMounted (async function () {
   formObj = [];
-
   const res1 = await httpGet('/view/work',{ // 查询工单
     workId: route.query.id
   })
-
   formState.projectName = res1[0].projectName;
   formState.type = res1[0].type;
   formState.workSummary = res1[0].workSummary
   formState.visitNode = res1[0].visitNode
   formState.handover = res1[0].handover
-
-  let res: any
-  if(formState.type === '检测') {
-      res = await httpGet('/view/writer',{ // 查询可核销数据
-      workId: route.query.id,
-      techId: route.query.techId,
-      type: '检测' // 只能核销上门类型
-    })
-  } else {
-      res = await httpGet('/view/writer',{ // 查询可核销数据
-      workId: route.query.id,
-      techId: route.query.techId
-    })
-  }
-  if(res.length === 0) {
-    // router.push({name: 'workSheet'})
-  } else {
-    formState.dataList = res
-  }
+  let res = await httpGet('/view/writer',{ // 查询可核销数据
+    workId: route.query.id,
+    techId: route.query.techId,
+    // type: '检测' // ---- 只能核销上门类型
+  })
+  formState.dataList = res
 })
 
 const resPage = () => {

@@ -5,7 +5,7 @@ import java.util.Date;
 public class TimeSt {
     private String name;
     private String waitday;
-    private Date dateOfVisit;
+    private String dateOfVisit;
     private String status;
 
     public String getName() {
@@ -24,11 +24,11 @@ public class TimeSt {
         this.waitday = waitday;
     }
 
-    public Date getDateOfVisit() {
+    public String getDateOfVisit() {
         return dateOfVisit;
     }
 
-    public void setDateOfVisit(Date dateOfVisit) {
+    public void setDateOfVisit(String dateOfVisit) {
         this.dateOfVisit = dateOfVisit;
     }
 

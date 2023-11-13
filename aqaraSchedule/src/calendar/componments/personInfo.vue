@@ -37,13 +37,13 @@ export default class Actions extends Vue {
   resultList: any[] = [];
   async mounted () {
     // 获取所有技术人员信息
-    const result = await httpGet('/measure/selectOpen', {})
+    const result = await httpGet('/tech/select', {})
     this.resultList = result
     for (let i = 0; i < result.length; i++) {
-      const waitday = result[i].waitday
+      const waitday = result[i].waitDay
       const name = result[i].name
       const data = {
-        id: i,
+        id: name,
         name: name,
         wait: waitday,
         workStatus: '',
@@ -69,36 +69,29 @@ export default class Actions extends Vue {
         const time = Number(data1[i].date[0].time.split(':')[0])
         let workTime = data1[i].date[0].workTime
         const technologys = data1[i].date[0].technologys
-        let workStatus = data1[i].date[0].workStatus
-        if (workStatus === '待核销') {
-          workStatus = 'workStatus'
-        }
         workTime = Math.ceil(workTime)
         if (technologys.indexOf(',') !== -1) {
           const d1 = technologys.split(',')
           for (let m = 0; m < d1.length; m++) {
             for (let n = 0; n < data.length; n++) {
               if (d1[m] === data[n].name) {
-                if (data[n].workStatus === '' && workStatus === 'workStatus') {
-                  data[n].workStatus = workStatus
-                }
                 for (let m = 0; m <= workTime; m++) {
                   const times = time + m
-                  if (times === 10) {
+                  if (times === 9) {
                     data[n].s1 = 'busy'
-                  } else if (times === 11) {
+                  } else if (times === 10) {
                     data[n].s2 = 'busy'
-                  } else if (times === 12) {
+                  } else if (times === 11) {
                     data[n].s3 = 'busy'
-                  } else if (times === 13) {
+                  } else if (times === 12) {
                     data[n].s4 = 'busy'
-                  } else if (times === 14) {
+                  } else if (times === 13) {
                     data[n].s5 = 'busy'
-                  } else if (times === 15) {
+                  } else if (times === 14) {
                     data[n].s6 = 'busy'
-                  } else if (times === 16) {
+                  } else if (times === 15) {
                     data[n].s7 = 'busy'
-                  } else if (times === 17) {
+                  } else if (times === 16) {
                     data[n].s8 = 'busy'
                   }
                 }
@@ -107,26 +100,23 @@ export default class Actions extends Vue {
           }
         } else {
           if (technologys === data[j].name) {
-            if (data[j].workStatus === '' && workStatus === 'workStatus') {
-              data[j].workStatus = workStatus
-            }
             for (let m = 0; m <= workTime; m++) {
               const times = time + m
-              if (times === 10) {
+              if (times === 9) {
                 data[j].s1 = 'busy'
-              } else if (times === 11) {
+              } else if (times === 10) {
                 data[j].s2 = 'busy'
-              } else if (times === 12) {
+              } else if (times === 11) {
                 data[j].s3 = 'busy'
-              } else if (times === 13) {
+              } else if (times === 12) {
                 data[j].s4 = 'busy'
-              } else if (times === 14) {
+              } else if (times === 13) {
                 data[j].s5 = 'busy'
-              } else if (times === 15) {
+              } else if (times === 14) {
                 data[j].s6 = 'busy'
-              } else if (times === 16) {
+              } else if (times === 15) {
                 data[j].s7 = 'busy'
-              } else if (times === 17) {
+              } else if (times === 16) {
                 data[j].s8 = 'busy'
               }
             }

@@ -47,8 +47,9 @@ export default class Actions extends Vue {
   @Watch('$store.state.searchStatus')
   async selectPage () {
     this.layerList = []
+    console.log(this.$store.state.selectData)
     const result = await httpGet('/schedule/work', {
-      person: this.$store.state.selectData,
+      // person: this.$store.state.selectData,
       dateOfVisit: this.$store.state.CalendarDate
     })
     for (let i = 0; i < result.length; i++) {

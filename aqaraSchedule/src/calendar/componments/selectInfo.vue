@@ -77,14 +77,12 @@ export default class Actions extends Vue {
     this.$emit('setModel', true)
     this.mapModel = true
     this.tabModel = false
-    console.log(111)
   }
 
   setTabModel () {
     this.$emit('setModel', false)
     this.mapModel = false
     this.tabModel = true
-    console.log(111)
   }
 }
 </script>

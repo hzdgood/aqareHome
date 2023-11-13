@@ -11,7 +11,8 @@ public class WorkSt {
     private double count_worker;
     private String allname;
     private String headName;
-    private Date dateOfVisit;
+    private String dateOfVisit;
+    private String dateOfLeave;
     private double st;
 
     public Integer getWorkId() {
@@ -78,11 +79,11 @@ public class WorkSt {
         this.headName = headName;
     }
 
-    public Date getDateOfVisit() {
+    public String getDateOfVisit() {
         return dateOfVisit;
     }
 
-    public void setDateOfVisit(Date dateOfVisit) {
+    public void setDateOfVisit(String dateOfVisit) {
         this.dateOfVisit = dateOfVisit;
     }
 
@@ -92,5 +93,13 @@ public class WorkSt {
 
     public void setSt(double st) {
         this.st = st;
+    }
+
+    public String getDateOfLeave() {
+        return dateOfLeave;
+    }
+
+    public void setDateOfLeave(String dateOfLeave) {
+        this.dateOfLeave = dateOfLeave;
     }
 }

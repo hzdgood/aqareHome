@@ -22,7 +22,7 @@ server:
     max-http-form-post-size: 8096
   max-http-request-header-size: 8MB
   ssl:
-    enabled: true
+    enabled: false
     key-store: classpath:aqara.club.jks
     # SSL证书密码 (自己在腾讯云申请证书时的密码，如果当时没填那么在压缩文件就会有一个txt文件存放密码)
     key-store-password: 89hr3k4t4ejemqc

@@ -3,7 +3,7 @@ import axios from 'axios'
 export const httpUrl = 'http://localhost:8082'
 
 const http = axios.create({
-  baseURL: 'http://localhost:8081/'
+  baseURL: 'http://localhost:8082/'
 })
 
 export const httpGet = async (url: string, data: object) => {

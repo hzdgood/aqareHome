@@ -47,7 +47,6 @@ export default class Actions extends Vue {
   tabStatus = false
 
   setModel (model: boolean) {
-    console.log(model)
     if (model) {
       this.mapStatus = true
       this.tabStatus = false
