@@ -1,9 +1,9 @@
 <template>
   <div class="cardDiv">
     <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type" :bordered="false">
-      <div class="buttonPos">
+      <!-- <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
-      </div>
+      </div> -->
       <table class="cardTale" >  
         <tr>
           <td>上门技术</td>

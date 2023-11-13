@@ -9,12 +9,12 @@
         <div v-show="formState.formDiv1">
           <table class="cardTale">
             <tr>
-              <td width="15%">项目姓名</td>
-              <td width="35%">
+              <td width="75px">项目姓名</td>
+              <td>
                 <a-input :disabled="true" v-model:value="formState.projectName" style="width: 95%;"></a-input>
               </td>
-              <td width="15%">区域</td>
-              <td width="35%">
+              <td width="75px">区域</td>
+              <td>
                 <a-input v-model:value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>
@@ -283,7 +283,7 @@ onMounted (async function () {
   const res = await httpGet('/project/selectId',{
     id: route.query.id
   })
-  formState.projectName = res[0].projectName
+  formState.projectName = res[0].name
   formState.itemId = res[0].itemId
 });
 

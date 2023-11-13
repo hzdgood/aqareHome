@@ -36,10 +36,6 @@ export default class Actions extends Vue {
   personList: any[] = [];
   resultList: any[] = [];
   async mounted () {
-    this.getDataList()
-  }
-
-  async getDataList () {
     // 获取所有技术人员信息
     const result = await httpGet('/measure/selectOpen', {})
     this.resultList = result

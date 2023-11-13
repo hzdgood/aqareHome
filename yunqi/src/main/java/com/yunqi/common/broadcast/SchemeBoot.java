@@ -31,7 +31,7 @@ public class SchemeBoot {
     @Autowired
     private HistoryService HistoryService;
 
-    @Scheduled(cron = "0 00 03 * * ?")
+    @Scheduled(cron = "0 58 12 * * ?")
     private void s(){
         List<SyncScheme> SyncScheme = SyncSchemeService.select();
         for(SyncScheme sync: SyncScheme) {
@@ -61,18 +61,18 @@ public class SchemeBoot {
                     System.out.println("项目ID:" + sync.getProjectId());
                 }
             } else { // 如果有itemId 修改
-                Scheme Scheme = new Scheme();
-                Scheme.setId(scheme.get(0).getId());
-                Scheme.setNumber(Integer.parseInt(sync.getNumber()));
-                Scheme.setNotSent(Integer.parseInt(sync.getNotSent()));
-                double s = Double.parseDouble(sync.getNotInstalled())  - Scheme.getInstallNumber();
-                double t = Double.parseDouble(sync.getUnregulated())  - Scheme.getDebugNumber();
-                Scheme.setNotInstalled(Double.parseDouble(sync.getNotInstalled()));
-                Scheme.setUnregulated(Double.parseDouble(sync.getUnregulated()));
-                Scheme.setCreateName("更新数据");
-                SyncSchemeService.delete(sync.getId());
-                SchemeService.update(Scheme); // 修改方案表
-                HistoryService.update(Scheme); // 修改历史表
+//                Scheme Scheme = new Scheme();
+//                Scheme.setId(scheme.get(0).getId());
+//                Scheme.setNumber(Integer.parseInt(sync.getNumber()));
+//                Scheme.setNotSent(Integer.parseInt(sync.getNotSent()));
+//                double s = Double.parseDouble(sync.getNotInstalled())  - Scheme.getInstallNumber();
+//                double t = Double.parseDouble(sync.getUnregulated())  - Scheme.getDebugNumber();
+//                Scheme.setNotInstalled(Double.parseDouble(sync.getNotInstalled()));
+//                Scheme.setUnregulated(Double.parseDouble(sync.getUnregulated()));
+//                Scheme.setCreateName("更新数据");
+//                SyncSchemeService.delete(sync.getId());
+//                SchemeService.update(Scheme); // 修改方案表
+//                HistoryService.update(Scheme); // 修改历史表
             }
         }
     }

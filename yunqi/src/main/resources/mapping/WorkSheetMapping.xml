@@ -62,9 +62,7 @@
     <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
         # 完结
         update worksheet
-        set disabled   = 'false',
-            status = '已完成',
-            updateName = '吴杰',
+        set status = '已完结',
             updateTime = NOW()
         where id = #{workId}
     </insert>

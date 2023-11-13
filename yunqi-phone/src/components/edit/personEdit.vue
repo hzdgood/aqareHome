@@ -208,7 +208,7 @@ const editHead = async () => {
 
 const handleOk = async () => {
   open.value = false
-  router.push({name: 'SendSheetView'})
+  router.push({name: 'sendSheet'})
 };
 
 const showModal = () => {
@@ -224,7 +224,7 @@ const changeName = (value: []) => {
 };
 
 const resPage = () => {
-  router.push({name: 'SendSheetView'})
+  router.push({name: 'sendSheet'})
 }
 
 </script>

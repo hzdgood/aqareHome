@@ -21,7 +21,7 @@
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>
         <if test="headId!=null">
-            and headId = #{headId} group by workId
+            and headId = #{headId}
         </if>
     </select>
 
@@ -41,7 +41,7 @@
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>
         <if test="headId!=null">
-            and headId = #{headId} group by workId
+            and headId = #{headId}
         </if>
     </select>
 </mapper>

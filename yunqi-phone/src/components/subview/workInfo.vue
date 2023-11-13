@@ -16,7 +16,7 @@
             </td>
           </tr>
           <tr>
-            <td>主负责人:</td>
+            <td>*主负责人:</td>
             <td>
               <a-select
                 v-model:value="headName"
@@ -28,7 +28,7 @@
             </td>
           </tr>
           <tr>
-            <td>上门技术:</td>
+            <td>*上门技术:</td>
             <td>
               <a-select
                 v-model:value="value"
@@ -68,7 +68,7 @@
           </tr>
         </table>
         <div class="buttonPos">
-          <a-button type="primary" html-type="submit">发单</a-button>
+          <a-button type="primary" html-type="submit">确定</a-button>
           <a-button type="primary" @click="resPage()">返回</a-button>
         </div>
       </a-form>
@@ -156,7 +156,7 @@ const changeHead = (value: []) => {
 };
 
 const onFinish = async () => {
-  formState.modalInfo = '请确认发单内容'
+  formState.modalInfo = '是否确认发单！'
   showModal()
 };
 

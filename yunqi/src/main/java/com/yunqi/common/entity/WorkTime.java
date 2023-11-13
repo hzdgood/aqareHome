@@ -7,6 +7,7 @@ public class WorkTime {
     private Integer workId; // 工单
     private Integer projectId; // 项目
     private String techId; // 技术
+    private String projectName; // 项目名称
     private String status; // 状态
     private Date signTime; //签到时间
     private Date departureTime;//离开时间

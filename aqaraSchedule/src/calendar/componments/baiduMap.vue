@@ -47,19 +47,19 @@ export default class Actions extends Vue {
   @Watch('$store.state.searchStatus')
   async selectPage () {
     this.layerList = []
-    const result = await httpGet('/measure/selectOpen', {
+    const result = await httpGet('/schedule/work', {
       person: this.$store.state.selectData,
-      time: this.$store.state.CalendarDate
+      dateOfVisit: this.$store.state.CalendarDate
     })
     for (let i = 0; i < result.length; i++) {
-      const custom = '' //  客户名称
-      const workTime = '' // 额定工时
-      const StartTime = '' // 上门时间
+      const custom = result[i].p_name //  客户名称
+      const workTime = result[i].count_worker // 额定工时
+      const StartTime = result[i].dateOfVisit // 上门时间
       const proStatus = '' // 当前进度
-      const address = '' // 客户地址
-      const tech = 0
-      const technologys = '' // 上门技术
-      const type = '' // 订单类型
+      const address = result[i].address // 客户地址
+      const tech = result[i].leader
+      const technologys = result[i].allname // 上门技术
+      const type = result[i].type // 订单类型
       const workStatus = '' // 工单状态
       const coordinate: any = {
         constlon: '',

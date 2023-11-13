@@ -1,6 +1,6 @@
 <template>
   <div class="cardDiv">
-    <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type" :bordered="false">
+    <a-card :title="data.projectName + '&nbsp;&nbsp;' + data.type + '-' + data.techId" :bordered="false">
       <div class="buttonPos">
         <a-button :style="style" @click="workEdit(data.workId)">详情</a-button>
         <a-button :disabled="true" :style="style" >--交通费--</a-button>
@@ -46,18 +46,17 @@
         <a-button type="primary" 
           v-show="data.signTime === null && data.dateOfVisit !== null"
           @click="sign(data.timeId, data.workId)">签到</a-button>
-
         <a-button type="primary"
           v-show="data.departureTime === null && data.signTime !== null"
           @click="depart(data.timeId, data.workId)">离开</a-button>
-
         <a-button type="primary" v-show="data.signTime !== null"
           @click="WriterInfo(data.workId, data.techId)">核销</a-button>
-
         <a-button type="primary" 
           v-show="data.status !== '已完成' && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
-        <a-button :disabled="true" type="primary" v-show="data.status === '已完成'" >--完结--</a-button>
+        <a-button type="primary" :disabled="formState.deleteStatus" 
+          v-show="loginName === data.headName"
+          @click="deleteInfo()">完结</a-button>
       </div>
     </a-card>
     <a-modal v-model:open="open" title="系统提示" @ok="handleOk(data)">
@@ -69,17 +68,25 @@
 // 工单卡片
 import { dateFilter } from '../../util/time'
 import { httpGet } from '../../config/interFace'
-import { reactive ,ref } from 'vue';
+import { onMounted, reactive ,ref } from 'vue';
 
 const loginName = localStorage.getItem('loginName')
 const emit = defineEmits(['toPage','pageReset'])
 const open = ref<boolean>(false);
 
-defineProps({
+const json = defineProps({
   data: {
     type: Object,
     default: null
   }
+})
+const data = json.data;
+
+onMounted (function () {
+  if(loginName === data.headName && data.workSummary != null 
+    && data.visitNode != null && data.handover != null ) {
+    formState.deleteStatus = false
+  } 
 })
 
 const style = {
@@ -90,14 +97,18 @@ interface FormState {
   latitude: string
   longitude: string
   modalInfo: string
-  status: boolean
+  status: boolean,
+  status1: boolean
+  deleteStatus: boolean
 }
 
 const formState = reactive<FormState>({
   latitude: '',
   longitude: '',
   modalInfo: '',
-  status: false
+  status: false,
+  status1: false,
+  deleteStatus: true
 });
 
 const sign = async (id: number, workId: number) => {
@@ -128,6 +139,12 @@ const CompleteInfo = async () => {
   showModal(); // 开启
 }
 
+const deleteInfo = async () => {
+  formState.modalInfo = '请确认是否完结该工单！'
+  formState.status1 = true
+  showModal(); // 开启
+}
+
 const WriterInfo = (id: any, techId:any) => {
   emit('toPage','subWriter', { id: id, techId: techId })
 }
@@ -152,35 +169,20 @@ const handleOk = async (data: any ) => {
       techNames: data.techNames,
       updateName: loginName
     })
-    emit('pageReset')
     formState.modalInfo = '离开成功'
     formState.status = false
     showModal();
   }
+  if(formState.status1) {
+    await httpGet('/workSheet/complete',{ // 工单完结
+      workId: data.workId
+    })
+    formState.modalInfo = '工单已完成'
+    formState.status1 = false
+    showModal();
+  }
   emit('pageReset')
 };
-
-// const res = await httpGet('/position/getCoordinate',{
-//   address: address
-// })
-// if(res === 'null')  {
-//   formState.modalInfo = '客户地址的地理位置读取失败！'
-//   showModal();
-//   return
-// }
-// const distance = await httpGet('/position/getDistance',{
-//   longitude1: formState.longitude,
-//   latitude1: formState.latitude,
-//   longitude2: res.lng,
-//   latitude2: res.lat
-// })
-// if(distance >= 3000) {
-//   formState.modalInfo = '请在指定区域内离开！'
-//   showModal();
-//   return
-// }
-
-
 </script>
 <style scoped>
 
