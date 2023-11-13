@@ -83,8 +83,6 @@ export default class Actions extends Vue {
     })
 
     for (let i = 0; i < result.length; i++) {
-      // const fields = result[i].fields
-      // const itemId = result[i].item_id
       const custom = '' //  客户名称
       const workTime = '' // 额定工时
       const StartTime = '' // 上门时间
@@ -98,53 +96,6 @@ export default class Actions extends Vue {
         lon: '',
         lat: ''
       }
-      // //for (let j = 0; j < fields.length; j++) {
-      //   if (result[i].field_id === 1101001291000000) {
-      //     // 客户名称
-      //     custom = fields[j].values[0].value
-      //   }
-      //   if (fields[j].field_id === 1101001159000000) {
-      //     // 客户地址
-      //     coordinate = fields[j].values[0].value.coordinate
-      //   }
-      //   if (fields[j].field_id === 2200000149226229) {
-      //     // 额定工时
-      //     workTime = fields[j].values[0].value
-      //   }
-      //   if (fields[j].field_id === 2200000145748100) {
-      //     // 上门技术
-      //     technology = fields[j].values[0].title
-      //     tech = fields[j].values.length
-      //     for (let m = 0; m < tech; m++) {
-      //       technologys = fields[j].values[m].title + ',' + technologys
-      //     }
-      //   }
-      //   if (fields[j].field_id === 2200000145748099) {
-      //     // 上门时间
-      //     StartTime = fields[j].values[0].value
-      //   }
-      //   if (fields[j].field_id === 1101001102000000) {
-      //     // 地址 |
-      //     address = fields[j].values[0].value
-      //   }
-      //   if (fields[j].field_id === 1101001291000000) {
-      //     // 订单类型
-      //     type = fields[j].values[0].value
-      //   }
-      //   if (fields[j].field_id === 2200000146398516) {
-      //     // 订单类型
-      //     type = fields[j].values[0].name
-      //   }
-      //   if (fields[j].field_id === 1101001195000000) {
-      //     // 当前进度
-      //     proStatus = fields[j].values[0].name
-      //   }
-      //   if (fields[j].field_id === 2200000148897469) {
-      //     // 工单状态
-      //     workStatus = fields[j].values[0].name
-      //   }
-      // }
-      // const worktimes = workTime
       const obj = {
         id: i,
         lng: coordinate.lon,
@@ -158,7 +109,7 @@ export default class Actions extends Vue {
             time: StartTime.split(' ')[1],
             type: type,
             workStatus: workStatus,
-            technologys: technologys.substring(0, technologys.length - 1),
+            technologys: technologys,
             workTime: workTime,
             address: address,
             proStatus: proStatus
