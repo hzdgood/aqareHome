@@ -18,9 +18,6 @@ public class CoordinateUtil {
             return null;
         }
         address = address.replaceAll(" ", "");
-        if(!address.contains("上海")) {
-            address = "上海市" + address;
-        }
         String url = "http://api.map.baidu.com/geocoder/v2/?address=" + address + "&output=json&ak=" + AK;
         String json = loadJSON(url);
         if (!json.isEmpty()) {
