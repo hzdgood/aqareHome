@@ -55,7 +55,7 @@
           v-show="data.status !== '已完成' && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
         <a-button type="primary" :disabled="formState.deleteStatus" 
-          v-show="loginName === data.headName || admins"
+          v-show="status"
           @click="deleteInfo()">完结</a-button>
       </div>
     </a-card>
@@ -75,7 +75,7 @@ const admins = localStorage.getItem("admins");
 const emit = defineEmits(['toPage','pageReset'])
 const open = ref<boolean>(false);
 
-const json = defineProps({
+const json: any = defineProps({
   data: {
     type: Object,
     default: null
@@ -83,11 +83,13 @@ const json = defineProps({
 })
 const data = json.data;
 
+const status = loginName === data.headName || admins === 'true'
+
 onMounted (function () {
   if(loginName === data.headName && data.workSummary != null && data.visitNode != null && data.handover != null ) {
     formState.deleteStatus = false
   } 
-  if(admins) {
+  if(admins === 'true') {
     formState.deleteStatus = false
   }
 })

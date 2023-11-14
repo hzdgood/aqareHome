@@ -59,7 +59,7 @@
       </table>
       <div class="buttonPos" >
         <a-button :disabled="true" type="primary">--同步伙伴云--</a-button>
-        <a-button @click="disabledOpen(data.id)" type="primary">无效</a-button>
+        <a-button @click="disabledOpen(data.id)" type="primary" v-show="status">无效</a-button>
       </div>
     </a-card>
 
@@ -112,7 +112,7 @@
       </table>
       <div class="buttonPos" >
         <a-button :disabled="true" type="primary">--同步伙伴云--</a-button>
-        <a-button  @click="disabledRoller(data.id)" type="primary">无效</a-button>
+        <a-button  @click="disabledRoller(data.id)" type="primary" v-show="status">无效</a-button>
       </div>
     </a-card>
   </div>
@@ -120,8 +120,11 @@
 
 <script setup lang="ts">
 import { httpGet } from '../../config/interFace'
-// 测量 开合 卷帘
-defineProps({
+
+const admins = localStorage.getItem("admins");
+const techId = localStorage.getItem("techId");
+
+const json: any = defineProps({
   data: {
     type: Object,
     default: null
@@ -132,6 +135,12 @@ defineProps({
   }
 })
 
+const type = json.type
+const data = json.data
+
+const status = data.techId + '' === '' + techId || admins === 'true'
+
+// 测量 开合 卷帘
 const disabledOpen = async (id: any) => {
   await httpGet('/measure/disabledOpen',{
     id: id,

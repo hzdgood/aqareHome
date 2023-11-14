@@ -30,7 +30,7 @@ const loginName = localStorage.getItem('loginName')
 const admins = localStorage.getItem("admins");
 
 onMounted (async function () {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{})
     formState.dataList = res
   } else {
@@ -49,7 +49,7 @@ const toPage = (str: any, obj: any) => {
 }
 
 const pageReset = async () => {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{ // 技术
     })
     formState.dataList = res
@@ -96,7 +96,7 @@ const formState = reactive<FormState>({
 });
 
 const projectChange = async () => {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{
       projectName: formState.projectName,
     })
@@ -111,7 +111,7 @@ const projectChange = async () => {
 }
 
 const onRangeChange = async () => {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{
       dateOfVisit: formState.time,
     })

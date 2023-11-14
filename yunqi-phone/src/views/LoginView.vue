@@ -50,10 +50,11 @@ const onFinish = async () => {
   }
   const res = await httpGet('/login/select',obj)
   if(res.length !== 0){
+    const admins = res[0].admins + '';
     localStorage.setItem('techId', res[0].techId)
     localStorage.setItem('loginName', res[0].loginName)
     localStorage.setItem('heads', res[0].heads)
-    localStorage.setItem('admins', res[0].admins)
+    localStorage.setItem('admins', admins)
     localStorage.setItem("version","1.1")
     router.push({ name: "page"})
   }

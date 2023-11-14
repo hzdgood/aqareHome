@@ -129,7 +129,7 @@
             </tr>
             <tr>
               <td>现场照片</td>
-              <td>
+              <td colspan="3">
                 <a-upload
                   v-model:file-list="fileList"
                   name="file"
@@ -234,7 +234,7 @@
             </tr>
             <tr>
               <td>现场照片</td>
-              <td>
+              <td colspan="3">
                 <a-upload
                   v-model:file-list="fileList1"
                   name="file"

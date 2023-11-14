@@ -40,7 +40,7 @@ const formState = reactive<FormState>({
 });
 
 const onRangeChange = async () => {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{
       writerTime: formState.time
     })

@@ -32,7 +32,7 @@ const techId = localStorage.getItem("techId");
 const admins = localStorage.getItem("admins");
 
 onMounted (async function () {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{})
     formState.dataList = res
   } else {
@@ -93,7 +93,7 @@ const changeType = (id: number) => {
 }
 
 const onRangeChange = async () => {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{
       dateOfVisit: formState.time
     })
@@ -108,7 +108,7 @@ const onRangeChange = async () => {
 };
 
 const projectChange = async () => {
-  if(admins) {
+  if(admins === 'true') {
     const res = await httpGet('/view/work',{
       projectName: formState.projectName,
     })

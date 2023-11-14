@@ -27,7 +27,7 @@
       </table>
       <div class="buttonPos" >
         <a-button @click="sendWork(data.projectId)" type="primary" 
-          v-show="data.techId + '' === '' + techId || admins"
+          v-show="status"
           >发单</a-button>
         <a-button 
           v-show="data.schemeId !== null" 
@@ -42,12 +42,16 @@
 const techId = localStorage.getItem("techId");
 const admins = localStorage.getItem("admins");
 
-defineProps({
+const json: any = defineProps({
   data: {
     type: Object,
     default: null
   }
 })
+
+const data = json.data
+
+const status = data.techId + '' === '' + techId || admins === 'true'
 
 const emit = defineEmits(['toPage'])
 
