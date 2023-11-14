@@ -159,7 +159,6 @@ let formObj: any[] = []
 const handleChange = async (info: UploadChangeParam, type: string) => {
   if (info.file.status === 'done') {
     // formState.imgUrl = info.file.response
-    console.log(`${info.file.name} file uploaded successfully`);
     await httpGet('/picture/insert',{
       workId: route.query.id,
       type: type,
@@ -169,7 +168,6 @@ const handleChange = async (info: UploadChangeParam, type: string) => {
     formState.modalInfo = '上传成功！'
     showModal()
   } else if (info.file.status === 'error') {
-    console.log(`${info.file.name} file upload failed.`);
     formState.modalInfo = '上传成功！'
     showModal()
   }

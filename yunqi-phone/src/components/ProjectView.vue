@@ -6,7 +6,6 @@
         name="pageView"
         class="pageView"
         @finish="onFinish"
-        @finishFailed="onFinishFailed"
       >
         <span>&nbsp;&nbsp;项目信息: &nbsp;</span>
         <a-input style="width: 30%;" v-model:value="formState.projectName"></a-input>
@@ -30,8 +29,12 @@ import ProjectCardView from './card/ProjectCardView.vue';
 import { reactive, onMounted } from 'vue';
 import { httpGet } from '../config/interFace'
 
+const techId = localStorage.getItem("techId");
+
 onMounted (async function () {
-  const res = await httpGet('/view/project',{})
+  const res = await httpGet('/view/project',{
+    techId: techId
+  })
   formState.dataList = res
 })
 
@@ -64,11 +67,6 @@ const onFinish = async () => {
   })
   formState.dataList = res
 };
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-
 </script>
 
 <style lang="less" scoped>

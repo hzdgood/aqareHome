@@ -26,11 +26,11 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
-
 const heads = localStorage.getItem("heads");
 
 if(localStorage.getItem("version") !== '1.1') {
-  window.location.reload()
+  localStorage.clear()
+  router.push({ name: "login"})
 }
 
 const changeSelect = (id: number) => {

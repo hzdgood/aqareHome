@@ -50,7 +50,7 @@
         </tr>
         <tr>
           <td>图片路径</td>
-          <td>{{data.imgUrl}}</td>
+          <td colspan="3">{{data.imgUrl}}</td>
         </tr>
         <tr>
           <td>备注</td>
@@ -103,7 +103,7 @@
         </tr>
         <tr>
           <td>图片路径</td>
-          <td>{{data.imgUrl}}</td>
+          <td colspan="3">{{data.imgUrl}}</td>
         </tr>
         <tr>
           <td>备注</td>
@@ -133,17 +133,15 @@ defineProps({
 })
 
 const disabledOpen = async (id: any) => {
-  const res = await httpGet('/measure/disabledOpen',{
+  await httpGet('/measure/disabledOpen',{
     id: id,
   })
-  console.log(res);
 }
 
 const disabledRoller = async (id: any) => {
-  const res = await httpGet('/measure/disabledRoller',{
+  await httpGet('/measure/disabledRoller',{
     id: id,
   })
-  console.log(res);
 }
 
 </script>

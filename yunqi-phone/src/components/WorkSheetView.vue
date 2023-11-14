@@ -4,7 +4,6 @@
       :model="formState"
       name="pageView"
       class="pageView"
-      @finishFailed="onFinishFailed"
     >
       <span v-show="formState.type0">&nbsp;预约时间: &nbsp;</span>
       <a-date-picker v-show="formState.type0" style="width: 35%;" v-model:value="formState.time" format="YYYY-MM-DD" @change="onRangeChange"  />
@@ -125,11 +124,6 @@ const onRangeChange = async () => {
     formState.dataList = res
   }
 };
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-
 </script>
 
 <style lang="less" scoped>

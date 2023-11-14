@@ -5,7 +5,6 @@
       name="pageView"
       class="pageView"
       @finish="onFinish"
-      @finishFailed="onFinishFailed"
     >
       <span>&nbsp;&nbsp;测量类型：&nbsp;</span>
       <a-select :value="formState.type" style="width: 30%;">
@@ -27,12 +26,8 @@ import MeasureCardView from './card/MeasureCardView.vue'
 import { reactive, onMounted } from 'vue';
 import { httpGet } from '../config/interFace'
 
-const techId = localStorage.getItem("techId");
-
 onMounted (async function () {
-  const res = await httpGet('/measure/selectOpen',{
-    techId: techId
-  })
+  const res = await httpGet('/measure/selectOpen',{})
   if(res.length > 0)  {
     formState.type = res[0].type
     formState.dataList = res
@@ -64,9 +59,4 @@ const onFinish = async () => {
     formState.dataList = res
   }
 };
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
-
 </script>

@@ -74,7 +74,6 @@ const router = createRouter({
 
 // router.beforeEach(async (to, _from, next) => {
 //   const version = localStorage.getItem("version");
-//   console.log(to.path);
 //   if(version !== '1.0') {
 //     next({path: '/'})
 //   } else {

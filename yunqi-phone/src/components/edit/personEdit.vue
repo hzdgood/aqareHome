@@ -179,7 +179,6 @@ const deletePerson = async (timeId: any, name: any) => { // 针对多个人
       }
     }
     techIds = techIds.substring(0, techIds.length-1) // 去除，号
-    console.log(techIds);
     // 修改工单表
     await httpGet('/workSheet/updatePerson',{
       id: route.query.id,

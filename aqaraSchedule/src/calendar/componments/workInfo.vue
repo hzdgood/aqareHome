@@ -26,10 +26,6 @@
         <td>开始时间</td>
         <td>{{ item.time }}</td>
       </tr>
-      <tr>
-        <td>预计离开</td>
-        <td>{{ item.Leave }}</td>
-      </tr>
     </table>
   </div>
 </template>

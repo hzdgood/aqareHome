@@ -26,10 +26,6 @@
           <td>预约时间</td>
           <td>{{ item.date[0].time }}</td>
         </tr>
-        <tr>
-          <td>预计离开</td>
-          <td>{{ item.date[0].Leave }}</td>
-        </tr>
       </table>
     </div>
   </div>
@@ -59,7 +55,6 @@ export default class Actions extends Vue {
       const technologys = result[i].allname // 上门技术
       const type = result[i].type // 订单类型
       const workStatus = '' // 工单状态
-      const dateOfLeave = result[i].dateOfLeave
       const coordinate: any = {
         lon: '',
         lat: ''
@@ -75,7 +70,6 @@ export default class Actions extends Vue {
             id: i,
             name: custom,
             time: StartTime.split(' ')[1],
-            Leave: dateOfLeave.split(' ')[1],
             type: type,
             workStatus: workStatus,
             technologys: technologys,

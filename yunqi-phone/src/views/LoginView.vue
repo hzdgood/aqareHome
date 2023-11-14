@@ -54,6 +54,7 @@ const onFinish = async () => {
     localStorage.setItem('loginName', res[0].loginName)
     localStorage.setItem('heads', res[0].heads)
     localStorage.setItem('admins', res[0].admins)
+    localStorage.setItem("version","1.1")
     router.push({ name: "page"})
   }
 };
