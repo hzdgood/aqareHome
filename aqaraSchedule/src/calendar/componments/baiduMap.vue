@@ -8,7 +8,6 @@
       :scroll-wheel-zoom="wheelZoom"
       @ready="handler"
     >
-      <!-- <bm-navigation anchor="BMAP_ANCHOR_TOP_RIGHT"></bm-navigation> -->
       <happy-layer
         v-for="item in layerList"
         :key="item.id"

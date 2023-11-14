@@ -44,4 +44,12 @@
             and headId = #{headId}
         </if>
     </select>
+
+    <select id="selectAll" resultType="com.yunqi.common.view.WorkView">
+        # 工单查询
+        select * from worksheet_all w where 1 = 1
+        <if test="projectId!=null">
+            and projectId = #{projectId}
+        </if>
+    </select>
 </mapper>

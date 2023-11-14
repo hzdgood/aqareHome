@@ -1,9 +1,5 @@
 <template>
   <div>
-    <!-- <div class='AllButton'>
-      <button class='myButton' @click='allClick'>全部选择</button>
-      <button class='myButton' @click='allCancle'>取消全选</button>
-    </div> -->
     <div class='persons'>
       <div :id='item.id' v-for='item in personList' :key='item.id' @click='click(item.id)'>
         <div>

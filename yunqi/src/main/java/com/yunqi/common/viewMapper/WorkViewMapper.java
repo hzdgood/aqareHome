@@ -10,4 +10,6 @@ public interface WorkViewMapper {
     List<WorkView> select(WorkView WorkView);
 
     List<WorkView> selectCom(WorkView workView);
+
+    List<WorkView> selectAll(WorkView workView);
 }

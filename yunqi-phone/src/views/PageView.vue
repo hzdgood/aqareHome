@@ -9,7 +9,7 @@
     <div class="wrapper">
       <div :class="formState.select0" @click="changeSelect(0)"><RouterLink to="/workSheet">我的工单</RouterLink></div>
       <div :class="formState.select1" @click="changeSelect(1)" v-show="heads"><RouterLink to="/sendSheet">已发工单</RouterLink></div>
-      <div :class="formState.select2" @click="changeSelect(2)"><RouterLink to="/workCom">完结单</RouterLink></div>
+      <!-- <div :class="formState.select2" @click="changeSelect(2)"><RouterLink to="/workCom">完结单</RouterLink></div> -->
       <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/project">我的项目</RouterLink></div>
       <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/write">核销记录</RouterLink></div>
       <div :class="formState.select5" @click="changeSelect(5)"><RouterLink to="/measure">测量单</RouterLink></div>

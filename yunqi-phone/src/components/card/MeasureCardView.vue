@@ -1,11 +1,14 @@
 <template>
   <div class="cardDiv">
-    <a-card title="开合帘" :bordered="false" v-show="type === '开合帘'">
+    <a-card :title="'开合帘-' +  data.createName" :bordered="false" v-show="type === '开合帘'">
+      <div class="buttonPos">
+        <a-button>详情</a-button>
+      </div>
       <table class="cardTale">
         <tr>
           <td width="70px">项目姓名</td>
           <td>{{data.projectName}}</td>
-          <td width="70px">区域</td>
+          <td width="80px">区域</td>
           <td>{{data.area}}</td>
         </tr>
         <tr>
@@ -21,40 +24,14 @@
           <td>{{data.number}}</td>
         </tr>
         <tr>
-          <td>开合方式</td>
-          <td>{{data.openMethod}}</td>
-          <td>电源位置</td>
-          <td>{{data.powerPosition}}</td>
-        </tr>
-        <tr>
           <td>窗帘盒宽</td>
           <td>{{data.boxWidth}}</td>
           <td>安装面材质</td>
           <td>{{data.surfaceMaterial}}</td>
         </tr>
         <tr>
-          <td>预留位置</td>
-          <td>{{data.placeholder}}</td>
-          <td>扣减说明</td>
-          <td>{{data.deductionInfo}}</td>
-        </tr>
-        <tr>
-          <td>l1</td>
-          <td>{{data.l1}}</td>
-          <td>l2</td>
-          <td>{{data.l2}}</td>
-        </tr>
-        <tr>
-          <td>l3</td>
-          <td>{{data.l3}}</td>
-        </tr>
-        <tr>
           <td>图片路径</td>
           <td colspan="3">{{data.imgUrl}}</td>
-        </tr>
-        <tr>
-          <td>备注</td>
-          <td colspan="3">{{data.remark}}</td>
         </tr>
       </table>
       <div class="buttonPos" >
@@ -63,12 +40,15 @@
       </div>
     </a-card>
 
-    <a-card title="卷帘" :bordered="false" v-show="type === '卷帘'">
+    <a-card :title="'卷帘' + data.createName" :bordered="false" v-show="type === '卷帘'">
+      <div class="buttonPos">
+        <a-button>详情</a-button>
+      </div>
       <table class="cardTale">
         <tr>
           <td width="70px">项目姓名</td>
           <td>{{data.projectName}}</td>
-          <td width="70px">区域</td>
+          <td width="80px">区域</td>
           <td>{{data.area}}</td>
         </tr>
         <tr>
@@ -84,30 +64,14 @@
           <td>{{data.surfaceWidth}}</td>
         </tr>
         <tr>
-          <td>安装方式</td>
-          <td>{{data.installMethod}}</td>
-          <td>扣减说明</td>
-          <td>{{data.deductionInfo}}</td>
-        </tr>
-        <tr>
           <td>数量</td>
           <td>{{data.number}}</td>
           <td>安装面材质</td>
           <td>{{data.surfaceMaterial}}</td>
         </tr>
         <tr>
-          <td>电源位置</td>
-          <td>{{data.powerPosition}}</td>
-          <td>需要罩壳</td>
-          <td>{{data.cover}}</td>
-        </tr>
-        <tr>
           <td>图片路径</td>
           <td colspan="3">{{data.imgUrl}}</td>
-        </tr>
-        <tr>
-          <td>备注</td>
-          <td colspan="3">{{data.remark}}</td>
         </tr>
       </table>
       <div class="buttonPos" >

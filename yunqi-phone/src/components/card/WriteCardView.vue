@@ -4,13 +4,13 @@
       <a-card title="" :bordered="false">
         <table class="cardTale">
           <tr v-show="data.productName !== null">
-            <td>产品名称</td>
+            <td width="70px">产品名称</td>
             <td colspan="3">{{ data.productName }}</td>
           </tr>
           <tr>
             <td>工单名称</td>
             <td>{{ data.projectName + "-" + data.sheetName }}</td>
-            <td>工单类型</td>
+            <td width="70px">工单类型</td>
             <td>{{ data.type }}</td>
           </tr>
           <tr>

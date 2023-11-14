@@ -8,9 +8,9 @@
       </div>
       <table class="cardTale" >  
         <tr>
-          <td>上门技术</td>
+          <td width="70px">上门技术</td>
           <td>{{ data.techNames }}</td>
-          <td>工单类型</td>
+          <td width="70px">工单类型</td>
           <td>{{ data.type }}</td>
         </tr>
         <tr>

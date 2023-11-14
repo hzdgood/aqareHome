@@ -7,9 +7,9 @@
       </div>
       <table class="cardTale">
         <tr>
-          <td>项目姓名</td>
+          <td width="70px">项目姓名</td>
           <td>{{data.projectName}}</td>
-          <td>装修进度</td>
+          <td width="70px">装修进度</td>
           <td>{{data.schedule}}</td>
         </tr>
         <tr>

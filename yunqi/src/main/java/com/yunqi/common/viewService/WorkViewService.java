@@ -23,4 +23,8 @@ public class WorkViewService {
     public List<WorkView> selectCom(WorkView workView) {
         return WorkViewMapper.selectCom(workView);
     }
+
+    public List<WorkView> selectAll(WorkView workView) {
+        return WorkViewMapper.selectAll(workView);
+    }
 }

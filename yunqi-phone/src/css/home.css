@@ -17,6 +17,8 @@
   display: inline-block;
   background-color: #1a3b5a;
   border: 1px solid #cecece;
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .wrapper div{
