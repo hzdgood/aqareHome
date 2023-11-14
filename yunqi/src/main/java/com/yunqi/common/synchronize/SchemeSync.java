@@ -53,10 +53,10 @@ public class SchemeSync {
                     SchemeService.insert(Scheme); // 插入方案表
                     HistoryService.insert(Scheme); // 插入历史表
                 } else {
-                    System.out.println("产品ID:" + SyncScheme.getProductId());
+                    System.out.println("未发现的产品ID:" + SyncScheme.getProductId());
                 }
             } else {
-                System.out.println("项目ID:" + SyncScheme.getProjectId());
+                System.out.println("未发现的项目ID:" + SyncScheme.getProjectId() + "-" + SyncScheme.getItemId());
             }
         } else { // 如果有itemId 修改
             Scheme Scheme = new Scheme();

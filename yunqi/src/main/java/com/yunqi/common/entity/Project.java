@@ -1,11 +1,11 @@
 package com.yunqi.common.entity;
 
-import java.util.Date;
-
 public class Project {
     private Integer id;
     private Integer saleId; //销售
     private Integer techId; //技术
+    private String tech;
+    private String sale;
     private String name;// 姓名
     private String telephone;// 电话
     private String address; // 地址
@@ -39,6 +39,22 @@ public class Project {
 
     public void setTechId(Integer techId) {
         this.techId = techId;
+    }
+
+    public String getTech() {
+        return tech;
+    }
+
+    public void setTech(String tech) {
+        this.tech = tech;
+    }
+
+    public String getSale() {
+        return sale;
+    }
+
+    public void setSale(String sale) {
+        this.sale = sale;
     }
 
     public String getName() {
