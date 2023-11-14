@@ -5,9 +5,9 @@
     <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
         # 新增
         insert into worksheet (projectId, techIds, dateOfVisit, headName, type, status, standardTime,
-            workSummary, visitNode, createName, createTime) value (
+            workSummary, visitNode, createName, createTime, remark ) value (
                   #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type}, #{status}, #{standardTime},
-                  #{workSummary}, #{visitNode}, #{createName}, NOW()
+                  #{workSummary}, #{visitNode}, #{createName}, NOW(), #{remark}
             )
     </insert>
 

@@ -57,14 +57,10 @@ const toPage = (str: any, id: any) => {
 
 const onFinish = async () => {
   if(formState.type === '开合帘') {
-    const res = await httpGet('/measure/selectOpen',{
-      techId: techId
-    })
+    const res = await httpGet('/measure/selectOpen',{})
     formState.dataList = res
   } else {
-    const res = await httpGet('/measure/selectRoller',{
-      techId: techId
-    })
+    const res = await httpGet('/measure/selectRoller',{})
     formState.dataList = res
   }
 };

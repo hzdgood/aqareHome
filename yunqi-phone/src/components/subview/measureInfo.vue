@@ -37,7 +37,7 @@
                   <a-select-option value="直轨">直轨</a-select-option>
                   <a-select-option value="L型左直角">L型左直角</a-select-option>
                   <a-select-option value="L型右直角">L型右直角</a-select-option>
-                  <a-select-option value="异形轨">异形轨</a-select-option>
+                  <a-select-option value="异型轨">异形轨</a-select-option>
                   <a-select-option value="超静音">超静音</a-select-option>
                   <a-select-option value="嵌入式">嵌入式</a-select-option>
                 </a-select>
@@ -148,12 +148,12 @@
         <div v-show="formState.formDiv2">
           <table class="cardTale">
             <tr>
-              <td width="15%">项目姓名</td>
-              <td width="35%">
+              <td width="75px">项目姓名</td>
+              <td>
                 <a-input :disabled="true" :value="formState.projectName" style="width: 95%;"></a-input>
               </td>
-              <td width="15%">区域</td>
-              <td width="35%">
+              <td width="75px">区域</td>
+              <td>
                 <a-input v-model:value="formState.area" style="width: 95%;"></a-input>
               </td>
             </tr>
@@ -429,13 +429,27 @@ const handleChange = (info: UploadChangeParam) => {
     if(formState.formDiv1) {
       formState.imgUrl =  formState.imgUrl + info.file.response + ","
     } else {
-      formState.imgUrl1 =  formState.imgUrl + info.file.response + ","
+      formState.imgUrl1 =  formState.imgUrl1 + info.file.response + ","
     }
     formState.modalInfo = '上传成功！'
     showModal()
   } else if (info.file.status === 'error') {
-    formState.modalInfo = '上传成功！'
+    formState.modalInfo = '上传失败！'
     showModal()
+  }
+  
+  if(formState.formDiv1) {
+    if(formState.imgUrl1 === '') {
+      formState.modalInfo = '请上传图片！'
+      showModal()
+      return
+    }
+  } else {
+    if(formState.imgUrl === '') {
+      formState.modalInfo = '请上传图片！'
+      showModal()
+      return
+    } 
   }
   if( formState.modalInfo === '开合帘新增成功' || formState.modalInfo === '卷帘新增成功') {
     router.push({name: 'project'})

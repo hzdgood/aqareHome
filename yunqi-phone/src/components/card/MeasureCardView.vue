@@ -49,6 +49,10 @@
           <td>{{data.l3}}</td>
         </tr>
         <tr>
+          <td>图片路径</td>
+          <td>{{data.imgUrl}}</td>
+        </tr>
+        <tr>
           <td>备注</td>
           <td colspan="3">{{data.remark}}</td>
         </tr>
@@ -96,6 +100,10 @@
           <td>{{data.powerPosition}}</td>
           <td>需要罩壳</td>
           <td>{{data.cover}}</td>
+        </tr>
+        <tr>
+          <td>图片路径</td>
+          <td>{{data.imgUrl}}</td>
         </tr>
         <tr>
           <td>备注</td>
