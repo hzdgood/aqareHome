@@ -162,6 +162,24 @@
     border-radius: 5px
 }
 
+.workStatus1{
+    width: 10px;
+    background-color: yellow;
+    position: absolute;
+    height: 10px;
+    margin-top: 6px;
+    border-radius: 5px
+}
+
+.workStatus2{
+    width: 10px;
+    background-color: green;
+    position: absolute;
+    height: 10px;
+    margin-top: 6px;
+    border-radius: 5px
+}
+
 .tableMap {
     background-color: #a3c5e5;
     margin: 10px 0px 0px 10px;

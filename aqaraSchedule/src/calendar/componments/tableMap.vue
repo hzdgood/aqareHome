@@ -49,7 +49,6 @@ export default class Actions extends Vue {
       // person: this.$store.state.selectData,
       dateOfVisit: this.$store.state.CalendarDate
     })
-
     for (let i = 0; i < result.length; i++) {
       const custom = result[i].p_name //  客户名称
       const workTime = result[i].count_worker // 额定工时

@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class='AllButton'>
+    <!-- <div class='AllButton'>
       <button class='myButton' @click='allClick'>全部选择</button>
       <button class='myButton' @click='allCancle'>取消全选</button>
-    </div>
+    </div> -->
     <div class='persons'>
       <div :id='item.id' v-for='item in personList' :key='item.id' @click='click(item.id)'>
         <div>
@@ -36,17 +36,34 @@ export default class Actions extends Vue {
   personList: any[] = [];
   resultList: any[] = [];
   async mounted () {
-    // 获取所有技术人员信息
+    this.getTech()
+  }
+
+  async getTech () {
     const result = await httpGet('/tech/select', {})
     this.resultList = result
     for (let i = 0; i < result.length; i++) {
       const waitday = result[i].waitDay
       const name = result[i].name
+      const status = result[i].status
+      let workStatus = ''
+      let count = 0
+      if (status === '上门中') {
+        workStatus = 'workStatus'
+        count = count + 1
+      } else if (status === '待上门') {
+        workStatus = 'workStatus1'
+        count = count + 1
+      } else {
+        if (count === 0) {
+          workStatus = 'workStatus2'
+        }
+      }
       const data = {
         id: name,
         name: name,
         wait: waitday,
-        workStatus: '',
+        workStatus: workStatus,
         s1: 'fee',
         s2: 'fee',
         s3: 'fee',
@@ -62,6 +79,7 @@ export default class Actions extends Vue {
 
   @Watch('$store.state.layerList')
   async updateStatus () {
+    this.getTech()
     const data1 = this.$store.state.layerList
     const data = this.personList
     for (let i = 0; i < data1.length; i++) {

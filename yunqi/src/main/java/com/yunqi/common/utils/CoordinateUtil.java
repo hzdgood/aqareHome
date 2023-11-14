@@ -17,9 +17,7 @@ public class CoordinateUtil {
         if (address.isEmpty()) {
             return null;
         }
-        System.out.println(address);
         address = address.replaceAll(" ", "");
-
         String url = "http://api.map.baidu.com/geocoder/v2/?address=" + address + "&output=json&ak=" + AK;
         String json = loadJSON(url);
         if (!json.isEmpty()) {

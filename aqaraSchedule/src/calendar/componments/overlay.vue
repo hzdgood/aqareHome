@@ -9,15 +9,14 @@
       <img class="placeImg" v-if="technology === '张恒'" src="../img/heng.png" />
       <img class="placeImg" v-if="technology === '吴杰'" src="../img/jie.png" />
       <img class="placeImg" v-if="technology === '张凯凯'" src="../img/kk.png" />
-      <img class="placeImg" v-if="technology === '李晓龙'" src="../img/long.png" />
       <img class="placeImg" v-if="technology === '娄德'" src="../img/lou.png" />
-      <img class="placeImg" v-if="technology === '张鹏'" src="../img/peng.png" />
-      <img class="placeImg" v-if="technology === '田世博'" src="../img/tian.png" />
       <img class="placeImg" v-if="technology === '汪克祥'" src="../img/wang.png" />
       <img class="placeImg" v-if="technology === '严熠'" src="../img/yan.png" />
       <img class="placeImg" v-if="technology === '岳笑笑'" src="../img/yue.png" />
-      <img class="placeImg" v-if="technology === '陶行'" src="../img/tao.png" />
-      <img class="placeImg" v-if="technology === '王占勇'" src="../img/zhan.png" />
+      <img class="placeImg" v-if="technology === '郑一盖'" src="../img/gai.png" />
+      <img class="placeImg" v-if="technology === '郭佳伟'" src="../img/guo.png" />
+      <img class="placeImg" v-if="technology === '徐雷'" src="../img/xu.png" />
+      <img class="placeImg" v-if="technology === '程关超'" src="../img/chen.png" />
     </div>
     <div v-show="infoStatus">
       <div v-for="item in date" :key="item.id" @click="handleClick">
