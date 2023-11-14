@@ -10,5 +10,6 @@
           and (notInstalled > 0 or unregulated > 0)
           and techId = #{techId}
           and status != '已完成'
+        limit 100
     </select>
 </mapper>

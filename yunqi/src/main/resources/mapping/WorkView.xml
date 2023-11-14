@@ -23,6 +23,7 @@
         <if test="headId!=null">
             and headId = #{headId}
         </if>
+        limit 100
     </select>
 
     <select id="selectCom" resultType="com.yunqi.common.view.WorkView">
@@ -43,6 +44,7 @@
         <if test="headId!=null">
             and headId = #{headId}
         </if>
+        limit 100
     </select>
 
     <select id="selectAll" resultType="com.yunqi.common.view.WorkView">
@@ -51,5 +53,6 @@
         <if test="projectId!=null">
             and projectId = #{projectId}
         </if>
+        limit 100
     </select>
 </mapper>

@@ -16,6 +16,7 @@
         <if test="techId!=null and techId!=''">
             and techId = #{techId}
         </if>
+        limit 100
     </select>
 
     <select id="selectCom" resultType="com.yunqi.common.view.ProjectView">
@@ -32,5 +33,6 @@
         <if test="techId!=null and techId!=''">
             and techId = #{techId}
         </if>
+        limit 100
     </select>
 </mapper>
