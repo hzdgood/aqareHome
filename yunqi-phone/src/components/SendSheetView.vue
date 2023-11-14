@@ -1,11 +1,10 @@
 <template>
 <div>
-    <main>
+  <main>
     <a-form
       :model="formState"
       name="pageView"
       class="pageView"
-      @finishFailed="onFinishFailed"
     >
       <span v-show="formState.type0">&nbsp;预约时间: &nbsp;</span>
       <a-date-picker v-show="formState.type0" style="width: 35%;" v-model:value="formState.time" format="YYYY-MM-DD" @change="onRangeChange"  />
@@ -30,9 +29,10 @@ import router from '@/router';
 import { httpGet } from '../config/interFace'
 
 const techId = localStorage.getItem("techId");
+const admins = localStorage.getItem("admins");
 
 onMounted (async function () {
-  if(techId === '342' || techId === '339') {
+  if(admins) {
     const res = await httpGet('/view/work',{})
     formState.dataList = res
   } else {
@@ -93,13 +93,14 @@ const changeType = (id: number) => {
 }
 
 const onRangeChange = async () => {
-  if(techId === '342' || techId === '339') {
+  if(admins) {
     const res = await httpGet('/view/work',{
       dateOfVisit: formState.time
     })
     formState.dataList = res
   } else {
     const res = await httpGet('/view/work',{
+      dateOfVisit: formState.time,
       headId: techId,
     })
     formState.dataList = res
@@ -107,7 +108,7 @@ const onRangeChange = async () => {
 };
 
 const projectChange = async () => {
-  if(techId === '342' || techId === '339') {
+  if(admins) {
     const res = await httpGet('/view/work',{
       projectName: formState.projectName,
     })
@@ -120,10 +121,6 @@ const projectChange = async () => {
     formState.dataList = res
   }
 }
-
-const onFinishFailed = (errorInfo: any) => {
-  console.log('Failed:', errorInfo);
-};
 </script>
 
 <style lang="less" scoped>

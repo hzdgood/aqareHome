@@ -19,4 +19,6 @@ public class ProjectViewService {
     public List<ProjectView> select(ProjectView ProjectView) {
         return ProjectViewMapper.select(ProjectView);
     }
+
+    public List<ProjectView> selectCom(ProjectView ProjectView) { return ProjectViewMapper.selectCom(ProjectView); }
 }

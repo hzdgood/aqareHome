@@ -27,14 +27,11 @@ import { reactive, onMounted  } from 'vue';
 import router from '@/router';
 import { httpGet } from '../config/interFace'
 
-const techId = localStorage.getItem("techId");
 const loginName = localStorage.getItem('loginName')
+const admins = localStorage.getItem("admins");
 
 onMounted (async function () {
-  
-
-
-  if(techId === '342') {
+  if(admins) {
     const res = await httpGet('/view/work',{})
     formState.dataList = res
   } else {
@@ -53,7 +50,7 @@ const toPage = (str: any, obj: any) => {
 }
 
 const pageReset = async () => {
-  if(techId === '342') {
+  if(admins) {
     const res = await httpGet('/view/work',{ // 技术
     })
     formState.dataList = res
@@ -100,7 +97,7 @@ const formState = reactive<FormState>({
 });
 
 const projectChange = async () => {
-  if(techId === '342') {
+  if(admins) {
     const res = await httpGet('/view/work',{
       projectName: formState.projectName,
     })
@@ -115,7 +112,7 @@ const projectChange = async () => {
 }
 
 const onRangeChange = async () => {
-  if(techId === '342') {
+  if(admins) {
     const res = await httpGet('/view/work',{
       dateOfVisit: formState.time,
     })

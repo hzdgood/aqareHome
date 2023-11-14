@@ -6,6 +6,7 @@ public class SyncScheme {
     private Integer id;
     private String projectId;
     private String productId;
+    private String name; // 项目名称
     private String number; // 实际数量
     private String notInstalled; //未装
     private String unregulated; //未调
@@ -37,6 +38,10 @@ public class SyncScheme {
     public void setProductId(String productId) {
         this.productId = productId;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
 
     public String getNumber() {
         return number;

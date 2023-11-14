@@ -27,19 +27,9 @@
   import router from '@/router';
   import { httpGet } from '../config/interFace'
   
-  const techId = localStorage.getItem("techId");
-  const loginName = localStorage.getItem('loginName')
-  
   onMounted (async function () {
-    if(techId === '342') {
-      const res = await httpGet('/view/workCom',{})
-      formState.dataList = res
-    } else {
-      const res = await httpGet('/view/workCom',{ // 技术
-        techId: loginName
-      })
-      formState.dataList = res
-    }
+    const res = await httpGet('/view/workCom',{})
+    formState.dataList = res
   })
   
   const toPage = (str: any, obj: any) => {
@@ -50,16 +40,9 @@
   }
   
   const pageReset = async () => {
-    if(techId === '342') {
-      const res = await httpGet('/view/workCom',{ // 技术
-      })
-      formState.dataList = res
-    } else {
-      const res = await httpGet('/view/workCom',{ // 技术
-        techId: loginName,
-      })
-      formState.dataList = res
-    }
+    const res = await httpGet('/view/workCom',{ // 技术
+    })
+    formState.dataList = res
   }
   
   const changeType = (id: number) => {
@@ -97,33 +80,17 @@
   });
   
   const projectChange = async () => {
-    if(techId === '342') {
-      const res = await httpGet('/view/workCom',{
-        projectName: formState.projectName,
-      })
-      formState.dataList = res
-    } else {
-      const res = await httpGet('/view/workCom',{ // 技术
-        projectName: formState.projectName,
-        techId: loginName,
-      })
-      formState.dataList = res
-    }
+    const res = await httpGet('/view/workCom',{
+      projectName: formState.projectName,
+    })
+    formState.dataList = res
   }
   
   const onRangeChange = async () => {
-    if(techId === '342') {
-      const res = await httpGet('/view/workCom',{
-        dateOfVisit: formState.time,
-      })
-      formState.dataList = res
-    } else {
-      const res = await httpGet('/view/workCom',{ // 技术
-        dateOfVisit: formState.time,
-        techId: loginName,
-      })
-      formState.dataList = res
-    }
+    const res = await httpGet('/view/workCom',{
+      dateOfVisit: formState.time,
+    })
+    formState.dataList = res
   };
   
   const onFinishFailed = (errorInfo: any) => {

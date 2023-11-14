@@ -20,6 +20,7 @@ import WriteCardView from './card/WriteCardView.vue';
 import { reactive, onMounted} from 'vue';
 import { httpGet } from '../config/interFace'
 
+const admins = localStorage.getItem("admins");
 const techId = localStorage.getItem('techId')
 
 onMounted (async function () {
@@ -40,11 +41,18 @@ const formState = reactive<FormState>({
 });
 
 const onRangeChange = async () => {
-  const res = await httpGet('/view/work',{
-    writerTime: formState.time,
-    techId: techId,
-  })
-  formState.dataList = res
+  if(admins) {
+    const res = await httpGet('/view/work',{
+      writerTime: formState.time
+    })
+    formState.dataList = res
+  } else {
+    const res = await httpGet('/view/work',{
+      writerTime: formState.time,
+      techId: techId,
+    })
+    formState.dataList = res
+  }
 };
 
 const onFinishFailed = (errorInfo: any) => {

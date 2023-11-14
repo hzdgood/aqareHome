@@ -19,8 +19,6 @@ declare module 'vue' {
     ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
     AUpload: typeof import('ant-design-vue/es')['Upload']
-    CommissionCardView: typeof import('./src/components/card/CommissionCardView.vue')['default']
-    CommissionView: typeof import('./src/components/CommissionView.vue')['default']
     HandoverInfo: typeof import('./src/components/info/handoverInfo.vue')['default']
     MeasureCardView: typeof import('./src/components/card/MeasureCardView.vue')['default']
     MeasureInfo: typeof import('./src/components/subview/measureInfo.vue')['default']

@@ -55,7 +55,7 @@
           v-show="data.status !== '已完成' && data.departureTime !== null" 
           @click="CompleteInfo()">完成</a-button>
         <a-button type="primary" :disabled="formState.deleteStatus" 
-          v-show="loginName === data.headName"
+          v-show="loginName === data.headName || admins"
           @click="deleteInfo()">完结</a-button>
       </div>
     </a-card>
@@ -71,6 +71,7 @@ import { httpGet } from '../../config/interFace'
 import { onMounted, reactive ,ref } from 'vue';
 
 const loginName = localStorage.getItem('loginName')
+const admins = localStorage.getItem("admins");
 const emit = defineEmits(['toPage','pageReset'])
 const open = ref<boolean>(false);
 
@@ -83,10 +84,12 @@ const json = defineProps({
 const data = json.data;
 
 onMounted (function () {
-  if(loginName === data.headName && data.workSummary != null 
-    && data.visitNode != null && data.handover != null ) {
+  if(loginName === data.headName && data.workSummary != null && data.visitNode != null && data.handover != null ) {
     formState.deleteStatus = false
   } 
+  if(admins) {
+    formState.deleteStatus = false
+  }
 })
 
 const style = {

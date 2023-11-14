@@ -11,10 +11,10 @@
         <span>&nbsp;&nbsp;项目信息: &nbsp;</span>
         <a-input style="width: 30%;" v-model:value="formState.projectName"></a-input>
         <span>
-          &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
+          &nbsp;<a-button type="primary" html-type="submit">未完结</a-button>
         </span>
         <span>
-          &nbsp;<a-button type="primary" @click="allSeletct">全部查询</a-button>
+          &nbsp;<a-button type="primary" @click="allSeletct">已完结</a-button>
         </span>
       </a-form>
     </div>
@@ -31,9 +31,7 @@ import { reactive, onMounted } from 'vue';
 import { httpGet } from '../config/interFace'
 
 onMounted (async function () {
-  const res = await httpGet('/view/project',{
-    schedule: 'all'
-  })
+  const res = await httpGet('/view/project',{})
   formState.dataList = res
 })
 
@@ -54,7 +52,7 @@ const formState = reactive<FormState>({
 });
 
 const allSeletct = async () => {
-  const res = await httpGet('/view/project',{
+  const res = await httpGet('/view/projectCom',{
     projectName: formState.projectName,
   })
   formState.dataList = res
@@ -62,8 +60,7 @@ const allSeletct = async () => {
 
 const onFinish = async () => {
   const res = await httpGet('/view/project',{
-    projectName: formState.projectName,
-    schedule: 'all'
+    projectName: formState.projectName
   })
   formState.dataList = res
 };

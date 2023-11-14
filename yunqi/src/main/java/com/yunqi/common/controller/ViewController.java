@@ -51,16 +51,16 @@ public class ViewController {
     }
 
     @CrossOrigin
+    @RequestMapping("/projectCom")
+    public List<ProjectView> selectCom(ProjectView ProjectView) { return ProjectViewService.selectCom(ProjectView); }
+
+    @CrossOrigin
     @RequestMapping("/work")
-    public List<WorkView> select(WorkView WorkView) throws ParseException {
-        return WorkViewService.select(WorkView);
-    }
+    public List<WorkView> select(WorkView WorkView) throws ParseException { return WorkViewService.select(WorkView); }
 
     @CrossOrigin
     @RequestMapping("/workCom")
-    public List<WorkView> selectCom(WorkView WorkView) throws ParseException {
-        return WorkViewService.selectCom(WorkView);
-    }
+    public List<WorkView> selectCom(WorkView WorkView) throws ParseException { return WorkViewService.selectCom(WorkView); }
 
     @CrossOrigin
     @RequestMapping("/scheme")

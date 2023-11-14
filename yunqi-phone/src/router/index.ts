@@ -34,11 +34,7 @@ const router = createRouter({
           path: '/measure',
           name: 'measure',
           component: () => import('../components/MeasureView.vue')
-        },{
-          path: '/commission',
-          name: 'commission',
-          component: () => import('../components/CommissionView.vue')
-        },{
+        }, {
           path: '/write',
           name: 'write',
           component: () => import('../components/WriteView.vue')

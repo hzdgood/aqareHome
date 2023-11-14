@@ -54,7 +54,7 @@ public class SchemeSync {
                     System.out.println("未发现的产品ID:" + SyncScheme.getProductId());
                 }
             } else {
-                System.out.println("未发现的项目ID:" + SyncScheme.getProjectId() + "-" + SyncScheme.getItemId());
+                System.out.println("未发现的项目ID:" + SyncScheme.getProjectId() + "-" + SyncScheme.getName());
             }
         } else { // 如果有itemId 修改
             Scheme Scheme = new Scheme();

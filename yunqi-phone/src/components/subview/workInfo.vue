@@ -49,7 +49,7 @@
                 <a-select-option value="交底">交底</a-select-option>
                 <a-select-option value="验收">验收</a-select-option>
                 <a-select-option value="检测">检测</a-select-option>
-                <a-select-option value="售后">售后</a-select-option>
+                <a-select-option v-show="admins" value="售后">售后</a-select-option>
               </a-select>
             </td>
           </tr>
@@ -91,6 +91,7 @@ const value = ref<string[]>([]);
 const headName = ref<string[]>([]);
 const route = useRoute()
 const loginName = localStorage.getItem('loginName')
+const admins = localStorage.getItem("admins");
 
 const resPage = () => {
   router.push({name: 'project'})

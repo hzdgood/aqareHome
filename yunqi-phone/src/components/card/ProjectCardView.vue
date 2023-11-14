@@ -27,7 +27,7 @@
       </table>
       <div class="buttonPos" >
         <a-button @click="sendWork(data.projectId)" type="primary" 
-          v-show="techId === '1' || data.techId + '' === '' + techId"
+          v-show="data.techId + '' === '' + techId || admins"
           >发单</a-button>
         <a-button 
           v-show="data.schemeId !== null" 
@@ -40,6 +40,7 @@
 <script setup lang="ts">
 // 项目卡片
 const techId = localStorage.getItem("techId");
+const admins = localStorage.getItem("admins");
 
 defineProps({
   data: {
