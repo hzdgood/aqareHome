@@ -49,9 +49,7 @@ public class SchemeSync {
                     Scheme.setNotInstalled(Double.parseDouble(SyncScheme.getNotInstalled()));
                     Scheme.setUnregulated(Double.parseDouble(SyncScheme.getUnregulated()));
                     Scheme.setCreateName("导入数据");
-                    SyncSchemeService.delete(SyncScheme.getId());
                     SchemeService.insert(Scheme); // 插入方案表
-                    HistoryService.insert(Scheme); // 插入历史表
                 } else {
                     System.out.println("未发现的产品ID:" + SyncScheme.getProductId());
                 }
@@ -68,10 +66,7 @@ public class SchemeSync {
             Scheme.setNotInstalled(Double.parseDouble(SyncScheme.getNotInstalled()));
             Scheme.setUnregulated(Double.parseDouble(SyncScheme.getUnregulated()));
             Scheme.setCreateName("更新数据");
-            SyncSchemeService.delete(SyncScheme.getId());
             SchemeService.update(Scheme); // 修改方案表
-            HistoryService.update(Scheme); // 修改历史表
         }
-        SyncSchemeService.insert(SyncScheme);
     }
 }

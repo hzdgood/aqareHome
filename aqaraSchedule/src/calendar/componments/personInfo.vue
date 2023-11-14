@@ -38,6 +38,7 @@ export default class Actions extends Vue {
 
   @Watch('$store.state.CalendarDate')
   async getTechStatus () {
+    this.resultList = []
     const result = await httpGet('/schedule/time', {
       dateOfVisit: this.$store.state.CalendarDate
     })
@@ -54,8 +55,10 @@ export default class Actions extends Vue {
             workStatus = 'workStatus'
             count = count + 1
           } else if (status === '待上门') {
-            workStatus = 'workStatus1'
-            count = count + 1
+            if (workStatus === '') {
+              workStatus = 'workStatus1'
+              count = count + 1
+            }
           }
         }
       }

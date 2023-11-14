@@ -46,7 +46,6 @@ public class ProjectSync {
             ProjectService.insert(Project);
         } else {
             ProjectService.update(Project);
-            ProjectService.insert(Project);
         }
     }
 }
