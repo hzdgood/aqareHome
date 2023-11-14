@@ -8,6 +8,7 @@
 </template>
 
 <script setup lang="ts">
+import { userInfo } from './config/interFace'
 import 'dayjs/locale/zh-cn';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 const getPopupContainer = (el:any, dialogContext:any) => {
@@ -17,6 +18,10 @@ const getPopupContainer = (el:any, dialogContext:any) => {
     return document.body;
   }
 }
+
+await userInfo().then(function (response) {
+  localStorage.setItem('ticket', response.data.ticket)
+})
 </script>
 
 <style>

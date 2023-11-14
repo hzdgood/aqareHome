@@ -19,6 +19,17 @@
               </td>
             </tr>
             <tr>
+              <td>*用户方案-----</td>
+              <td>
+                <a-select v-model:value="formState.motorModel" style="width: 95%;"> 
+                </a-select>
+              </td>
+              <td>*数量</td>
+              <td>
+                <a-input v-model:value="formState.number" style="width: 95%;"></a-input>
+              </td>
+            </tr>
+            <tr>
               <td>*电机型号</td>
               <td>
                 <a-select v-model:value="formState.motorModel" style="width: 95%;">
@@ -51,18 +62,18 @@
                   <a-select-option value="侧装">侧装</a-select-option>
                 </a-select>
               </td>
-              <td>*数量</td>
-              <td>
-                <a-input v-model:value="formState.number" style="width: 95%;"></a-input>
-              </td>
-            </tr>
-            <tr>
               <td>*开合方式</td>
               <td>
                 <a-select v-model:value="formState.openMethod" style="width: 95%;">
                   <a-select-option value="单开">单开</a-select-option>
                   <a-select-option value="双开">双开</a-select-option>
                 </a-select>
+              </td>
+            </tr>
+            <tr>
+              <td>*窗帘盒宽</td>
+              <td>
+                <a-input v-model:value="formState.boxWidth" style="width: 95%;"></a-input>
               </td>
               <td>*电源位置</td>
               <td>
@@ -73,10 +84,6 @@
               </td>
             </tr>
             <tr>
-              <td>*窗帘盒宽</td>
-              <td>
-                <a-input v-model:value="formState.boxWidth" style="width: 95%;"></a-input>
-              </td>
               <td>*安装面材质</td>
               <td>
                 <a-select v-model:value="formState.surfaceMaterial" style="width: 95%;">
@@ -86,8 +93,6 @@
                   <a-select-option value="石膏板">石膏板</a-select-option>
                 </a-select>
               </td>
-            </tr>
-            <tr>
               <td>预留位置</td>
               <td>
                 <a-select v-model:value="formState.placeholder" style="width: 95%;">
@@ -96,6 +101,8 @@
                   <a-select-option value="靠屋">靠屋</a-select-option>
                 </a-select>
               </td>
+            </tr>
+            <tr>
               <td>扣减说明</td>
               <td>
                 <a-select v-model:value="formState.deductionInfo" style="width: 95%;">
@@ -104,18 +111,16 @@
                   <a-select-option value="不扣减(成品尺寸)">不扣减</a-select-option>
                 </a-select>
               </td>
-            </tr>
-            <tr>
               <td>*l1</td>
               <td>
                 <a-input v-model:value="formState.l1" style="width: 95%;"></a-input>
               </td>
+            </tr>
+            <tr>
               <td>l2</td>
               <td>
                 <a-input v-model:value="formState.l2" style="width: 95%;"></a-input>
               </td>
-            </tr>
-            <tr>
               <td>l3</td>
               <td>
                 <a-input v-model:value="formState.l3" style="width: 95%;"></a-input>

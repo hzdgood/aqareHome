@@ -35,7 +35,7 @@
         </tr>
       </table>
       <div class="buttonPos" >
-        <a-button :disabled="true" type="primary">--同步伙伴云--</a-button>
+        <a-button @click="uploadHuoban(data)" type="primary" v-show="status">同步伙伴云</a-button>
         <a-button @click="disabledOpen(data.id)" type="primary" v-show="status">无效</a-button>
       </div>
     </a-card>
@@ -75,15 +75,15 @@
         </tr>
       </table>
       <div class="buttonPos" >
-        <a-button :disabled="true" type="primary">--同步伙伴云--</a-button>
-        <a-button  @click="disabledRoller(data.id)" type="primary" v-show="status">无效</a-button>
+        <a-button @click="uploadHuoban(data)" type="primary" v-show="status">同步伙伴云</a-button>
+        <a-button @click="disabledRoller(data.id)" type="primary" v-show="status">无效</a-button>
       </div>
     </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { httpGet } from '../../config/interFace'
+import { httpGet, userInfo, addInfo, uploadFile } from '../../config/interFace'
 
 const admins = localStorage.getItem("admins");
 const techId = localStorage.getItem("techId");
@@ -101,7 +101,6 @@ const json: any = defineProps({
 
 const type = json.type
 const data = json.data
-
 const status = data.techId + '' === '' + techId || admins === 'true'
 
 // 测量 开合 卷帘
@@ -117,4 +116,30 @@ const disabledRoller = async (id: any) => {
   })
 }
 
+const uploadHuoban = async (data: any) => { // ----
+  const obj = {
+    fields: {
+      '11': 11,
+      '22': 22,
+      '33': 22,
+      '44' : 33,
+      '55' : 44
+    }
+  }
+  await addInfo('2100000015445679', obj)
+}
+
+const UploadFile = async (file: any) => { // 读取文件--上传
+  if (typeof file.files[0] === 'undefined') {
+    return
+  }
+  file = file.files[0]
+  const formData = new FormData()
+  formData.append('source', file)
+  formData.append('name', file.name)
+  formData.append('domain', 'app.huoban.com')
+  formData.append('type', 'attachment')
+  const res = await uploadFile(formData)
+  return res
+}
 </script>
