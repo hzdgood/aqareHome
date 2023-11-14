@@ -15,16 +15,20 @@
         <td>{{ item.address }}</td>
       </tr>
       <tr>
-        <td>开始时间</td>
-        <td>{{ item.time }}</td>
-      </tr>
-      <tr>
         <td>额定工时</td>
         <td>{{ item.workTime }}</td>
       </tr>
       <tr>
         <td>上门技术</td>
         <td>{{ item.technologys }}</td>
+      </tr>
+      <tr>
+        <td>开始时间</td>
+        <td>{{ item.time }}</td>
+      </tr>
+      <tr>
+        <td>预计离开</td>
+        <td>{{ item.Leave }}</td>
       </tr>
     </table>
   </div>

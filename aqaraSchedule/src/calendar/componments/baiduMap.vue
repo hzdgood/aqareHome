@@ -54,7 +54,7 @@ export default class Actions extends Vue {
     })
     for (let i = 0; i < result.length; i++) {
       const custom = result[i].p_name //  客户名称
-      const workTime = result[i].count_worker // 额定工时
+      const workTime = result[i].st // 额定工时
       const StartTime = result[i].dateOfVisit // 上门时间
       const proStatus = '' // 当前进度
       const address = result[i].address // 客户地址

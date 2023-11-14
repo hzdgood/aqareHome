@@ -35,29 +35,32 @@ import { httpGet } from '@/config/interFace'
 export default class Actions extends Vue {
   personList: any[] = [];
   resultList: any[] = [];
-  async mounted () {
-    this.getTech()
-  }
 
-  async getTech () {
-    const result = await httpGet('/tech/select', {})
-    this.resultList = result
-    for (let i = 0; i < result.length; i++) {
-      const waitday = result[i].waitDay
-      const name = result[i].name
-      const status = result[i].status
+  @Watch('$store.state.CalendarDate')
+  async getTechStatus () {
+    const result = await httpGet('/schedule/time', {
+      dateOfVisit: this.$store.state.CalendarDate
+    })
+    const tech = await httpGet('/tech/select', {})
+    for (let i = 0; i < tech.length; i++) {
+      const waitday = tech[i].waitDay
+      const name = tech[i].name
       let workStatus = ''
       let count = 0
-      if (status === '上门中') {
-        workStatus = 'workStatus'
-        count = count + 1
-      } else if (status === '待上门') {
-        workStatus = 'workStatus1'
-        count = count + 1
-      } else {
-        if (count === 0) {
-          workStatus = 'workStatus2'
+      for (let j = 0; j < result.length; j++) {
+        const status = result[j].status
+        if (result[j].name === tech[i].name) {
+          if (status === '上门中') {
+            workStatus = 'workStatus'
+            count = count + 1
+          } else if (status === '待上门') {
+            workStatus = 'workStatus1'
+            count = count + 1
+          }
         }
+      }
+      if (count === 0) {
+        workStatus = 'workStatus2'
       }
       const data = {
         id: name,
@@ -73,13 +76,13 @@ export default class Actions extends Vue {
         s7: 'fee',
         s8: 'fee'
       }
-      this.personList.push(data)
+      this.resultList.push(data)
     }
   }
 
   @Watch('$store.state.layerList')
   async updateStatus () {
-    this.getTech()
+    this.personList = this.resultList
     const data1 = this.$store.state.layerList
     const data = this.personList
     for (let i = 0; i < data1.length; i++) {
