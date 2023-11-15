@@ -71,19 +71,19 @@
             v-model:value="formState.time"/>
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td>工单备注</td>
           <td colspan="3">
             <a-textarea :disabled="true" :rows="4" v-model:value="formState.remark"></a-textarea>
           </td>
-        </tr>
+        </tr> -->
       </table>
       
       <div style="font-size: 16px; font-weight: bold;">工单明细</div>
       <schemeInfo :data="formState.schemeList"></schemeInfo>
 
       <div class="buttonPos">
-        <a-button type="primary" @click="submit">提交</a-button>
+        <!-- <a-button type="primary" @click="submit">提交</a-button> -->
         <a-button type="primary" @click="resPage()">返回</a-button>
       </div>
     </a-card>
