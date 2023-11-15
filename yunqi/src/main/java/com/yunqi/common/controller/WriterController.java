@@ -14,7 +14,6 @@ import java.util.*;
 public class WriterController {
     private WriterService WriterService;
     private SchemeService SchemeService;
-    private HistoryService HistoryService;
 
     @Autowired
     public void setMapper(WriterService WriterService) {
@@ -24,11 +23,6 @@ public class WriterController {
     @Autowired
     public void setMapper(SchemeService SchemeService) {
         this.SchemeService = SchemeService;
-    }
-
-    @Autowired
-    public void setMapper(HistoryService HistoryService) {
-        this.HistoryService = HistoryService;
     }
 
     @CrossOrigin

@@ -15,8 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/sync")
 public class SchemeSync {
-    @Autowired
-    private SyncSchemeService SyncSchemeService;
 
     @Autowired
     private SchemeService SchemeService;
@@ -26,9 +24,6 @@ public class SchemeSync {
 
     @Autowired
     private ProductService ProductService;
-
-    @Autowired
-    private HistoryService HistoryService;
 
     @CrossOrigin
     @RequestMapping("/Scheme")
