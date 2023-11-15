@@ -22,7 +22,7 @@ server:
     max-http-form-post-size: 8096
   max-http-request-header-size: 16MB
   ssl:
-    enabled: true
+    enabled: false
     key-store: classpath:aqara.club.jks
     # SSL证书密码 (自己在腾讯云申请证书时的密码，如果当时没填那么在压缩文件就会有一个txt文件存放密码)
     key-store-password: 89hr3k4t4ejemqc
@@ -41,12 +41,12 @@ spring:
   datasource:
     # jdbc 连接基础配置
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/yunqi
-    username: root
-    password: smartHome@123
-#    url: jdbc:mysql://1.116.43.244:3306/yunqi
-#    username: yunqi
+#    url: jdbc:mysql://localhost:3306/yunqi
+#    username: root
 #    password: smartHome@123
+    url: jdbc:mysql://1.116.43.244:3306/yunqi
+    username: yunqi
+    password: smartHome@123
     generate-unique-name: false
   servlet:
     multipart:

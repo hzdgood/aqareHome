@@ -19,9 +19,9 @@
               </td>
             </tr>
             <tr>
-              <td>*用户方案-----</td>
+              <td>用户方案</td>
               <td>
-                <a-select v-model:value="formState.motorModel" style="width: 95%;"> 
+                <a-select v-model:value="formState.custerScheme" style="width: 95%;"> 
                 </a-select>
               </td>
               <td>*数量</td>
@@ -290,6 +290,16 @@ onMounted (async function () {
   })
   formState.projectName = res[0].name
   formState.itemId = res[0].itemId
+
+  const open = await httpGet('/measure/openScheme',{
+    projectId: route.query.id
+  })
+  const roller = await httpGet('/measure/rollerScheme',{
+    projectId: route.query.id
+  })
+
+
+
 });
 
 interface FormState {
@@ -320,6 +330,7 @@ interface FormState {
   l1: Number,
   l2: Number,
   l3: Number
+  custerScheme: string
 }
 
 const formState = reactive<FormState>({
@@ -349,7 +360,8 @@ const formState = reactive<FormState>({
   modalInfo: '',
   l1: 0,
   l2: 0,
-  l3: 0
+  l3: 0,
+  custerScheme: ''
 });
 
 const resPage = () => {

@@ -13,11 +13,9 @@ public class OpenViewService {
     private OpenViewMapper OpenViewMapper;
 
     @Autowired
-    public void setMapper(OpenViewMapper OpenViewMapper) {
-        this.OpenViewMapper = OpenViewMapper;
-    }
+    public void setMapper(OpenViewMapper OpenViewMapper) { this.OpenViewMapper = OpenViewMapper; }
 
-    public List<OpenView> select(String projectId) {
-        return OpenViewMapper.select(projectId);
+    public List<OpenView> select(OpenView OpenView) {
+        return OpenViewMapper.select(OpenView);
     }
 }

@@ -4,7 +4,7 @@
 <mapper namespace="com.yunqi.common.viewMapper.ProjectViewMapper">
     <select id="select" resultType="com.yunqi.common.view.ProjectView">
         SELECT * FROM projectview p where 1 = 1 and WCTag = 'Y'
-        <if test="projectName!=null and projectName!=''">-->
+        <if test="projectName!=null and projectName!=''">
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>
         <if test="projectId!=null and projectId!=''">
@@ -18,7 +18,7 @@
 
     <select id="selectCom" resultType="com.yunqi.common.view.ProjectView">
         SELECT * FROM projectview p where 1 = 1 and WCTag = 'N'
-        <if test="projectName!=null and projectName!=''">-->
+        <if test="projectName!=null and projectName!=''">
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>
         <if test="projectId!=null and projectId!=''">

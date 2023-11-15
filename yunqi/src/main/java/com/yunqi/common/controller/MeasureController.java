@@ -4,6 +4,10 @@ import com.yunqi.common.entity.OpenMeasure;
 import com.yunqi.common.entity.RollerMeasure;
 import com.yunqi.common.service.OpenMeasureService;
 import com.yunqi.common.service.RollerMeasureService;
+import com.yunqi.common.view.OpenView;
+import com.yunqi.common.view.RollerView;
+import com.yunqi.common.viewService.OpenViewService;
+import com.yunqi.common.viewService.RollerViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +22,10 @@ public class MeasureController {
 
     private RollerMeasureService RollerMeasureService;
 
+    private OpenViewService OpenViewService;
+
+    private  RollerViewService RollerViewService;
+
     @Autowired
     public void setMapper(OpenMeasureService OpenMeasureService) {
         this.OpenMeasureService = OpenMeasureService;
@@ -26,6 +34,14 @@ public class MeasureController {
     @Autowired
     public void setMapper(RollerMeasureService RollerMeasureService) {
         this.RollerMeasureService = RollerMeasureService;
+    }
+    @Autowired
+    public void setMapper(OpenViewService OpenViewService) {
+        this.OpenViewService = OpenViewService;
+    }
+    @Autowired
+    public void setMapper(RollerViewService RollerViewService) {
+        this.RollerViewService = RollerViewService;
     }
 
     @CrossOrigin
@@ -50,6 +66,18 @@ public class MeasureController {
     @RequestMapping("/addRoller")
     public void addRoller(RollerMeasure RollerMeasure) {
         RollerMeasureService.insert(RollerMeasure);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/openScheme")
+    public List<OpenView> select(OpenView OpenView) {
+       return OpenViewService.select(OpenView);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/rollerScheme")
+    public List<RollerView> select(RollerView RollerView) {
+        return RollerViewService.select(RollerView);
     }
 
     @CrossOrigin

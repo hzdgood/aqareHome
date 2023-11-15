@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface OpenViewMapper {
-    List<OpenView> select(String projectId);
+    List<OpenView> select(OpenView OpenView);
 }

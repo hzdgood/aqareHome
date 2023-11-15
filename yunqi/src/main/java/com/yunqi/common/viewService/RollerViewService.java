@@ -16,7 +16,7 @@ public class RollerViewService {
         this.RollerViewMapper = RollerViewMapper;
     }
 
-    public List<RollerView> select(String projectId) {
-        return RollerViewMapper.select(projectId);
+    public List<RollerView> select(RollerView RollerView) {
+        return RollerViewMapper.select(RollerView);
     }
 }
