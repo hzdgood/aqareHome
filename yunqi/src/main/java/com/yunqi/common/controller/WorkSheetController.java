@@ -160,7 +160,6 @@ public class WorkSheetController {
         SchemeView.setProjectId(projectId);
         List<SchemeView> list = SchemeViewService.selectSum(SchemeView); // 实际总数
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
         // 当前人员的贡献度  经过核销的
         for (ProductView productView : ProductList) {
             writerId = productView.getId(); // 核销ID
