@@ -4,7 +4,7 @@
       <tr>
         <td width="75px">项目姓名</td>
         <td>
-          <a-input :disabled="true" :value="data.projectName" style="width: 95%"></a-input>
+          <a-input :disabled="true" :value="data.name" style="width: 95%"></a-input>
         </td>
         <td width="75px">区域</td>
         <td>
@@ -14,7 +14,8 @@
       <tr>
         <td>*卷帘方案</td>
         <td>
-          <a-input v-model:value="formState.rollingScheme" style="width: 95%"></a-input>
+          <a-select @change="selectChange" :options="options" style="width: 95%;"> 
+          </a-select>
         </td>
         <td>*长度</td>
         <td>
@@ -115,14 +116,15 @@
 
 <script setup lang="ts">
 import { httpGet, httpUrl } from '../../../config/interFace'
-import type { UploadChangeParam } from 'ant-design-vue';
-import { reactive, onMounted, ref } from 'vue';
+import type { UploadChangeParam, SelectProps } from 'ant-design-vue';
+import { reactive, onMounted, ref, watch } from 'vue';
 
 const loginName = localStorage.getItem('loginName')
 const techId = localStorage.getItem("techId");
 const open = ref<boolean>(false);
 const fileList = ref([]);
 const emit = defineEmits(['resPage'])
+const options = ref<SelectProps['options']>([]);
 
 const props = defineProps({
   data: {
@@ -134,27 +136,40 @@ const props = defineProps({
     default: null
   }
 })
-const data = props.data
+
+let data = props.data
+watch(props, (newValue) => {
+  data = newValue.data[0]
+})
+
+const selectChange = (value: string, options: any) => {
+  formState.rollingScheme = options.lable
+};
 
 onMounted (async function () {
   const roller = await httpGet('/measure/rollerScheme',{
     projectId: props.id.id
   })
   console.log(roller);
+  for(let i=0; i<roller.length; i++) {
+    var obj = {
+      value: roller[i].productName,
+      lable: roller[i].sId
+    }
+    options.value?.push(obj)
+  }
 })
 
 interface FormState {
   itemId: string
-  projectName: string
-  custerScheme: string
   area: string
   rollingScheme: string
-  length: string
-  high: string
-  surfaceWidth: string
+  length: number
+  high: number
+  surfaceWidth: number
   installMethod: string
   deductionInfo: string
-  number: string
+  number: number
   surfaceMaterial: string
   powerPosition: string
   cover:  string
@@ -166,16 +181,14 @@ interface FormState {
 
 const formState = reactive<FormState>({
   itemId: '',
-  projectName: '',
-  custerScheme: '',
   area: '',
   rollingScheme: '',
-  length: '',
-  high: '',
-  surfaceWidth: '',
+  length: 0,
+  high: 0,
+  surfaceWidth: 0,
   installMethod: '',
   deductionInfo: '',
-  number: '',
+  number: 0,
   surfaceMaterial: '',
   modalInfo: '',
   powerPosition: '',
@@ -206,10 +219,10 @@ const handleOk = async () => {
   }
   if(formState.imgUrl !== '' && formState.status)  {
     await httpGet('/measure/addRoller',{
-      projectId: props.id.id,
-      itemId: formState.itemId,
+      projectId: data.id,
       techId: techId,
-      projectName: formState.projectName,
+      itemId: data.itemId,
+      projectName: data.name,
       area: formState.area,
       rollingScheme: formState.rollingScheme,
       length: formState.length,

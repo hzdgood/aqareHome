@@ -14,14 +14,13 @@
       &nbsp;<a-button type="primary" html-type="submit">查询</a-button>
     </a-form>
     <div v-for="item in formState.dataList" :key="item">
-      <MeasureCardView :data="item" :type="formState.type" @toPage="toPage"></MeasureCardView>
+      <MeasureCardView :data="item" :type="formState.type" @pageReset="pageReset"></MeasureCardView>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 // 测量 开合 卷帘  内容
-import router from '@/router';
 import MeasureCardView from './card/MeasureCardView.vue'
 import { reactive, onMounted } from 'vue';
 import { httpGet } from '../config/interFace'
@@ -46,8 +45,12 @@ const formState = reactive<FormState>({
   type: ''
 });
 
-const toPage = (str: any, id: any) => {
-  router.push({name: str, query: {id: id}})
+const pageReset = async () => {
+  const res = await httpGet('/measure/selectOpen',{})
+  if(res.length > 0)  {
+    formState.type = res[0].type
+    formState.dataList = res
+  }
 }
 
 const onFinish = async () => {

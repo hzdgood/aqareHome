@@ -32,6 +32,7 @@ onMounted (async function () {
     id: route.query.id
   })
   formState.datalist = res
+  console.log(res);
 });
 
 const formState = reactive<FormState>({

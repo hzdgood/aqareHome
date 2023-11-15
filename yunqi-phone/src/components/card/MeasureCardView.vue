@@ -83,11 +83,11 @@
 </template>
 
 <script setup lang="ts">
-import { httpGet, userInfo, addInfo, uploadFile } from '../../config/interFace'
+import { httpGet, addInfo, uploadFile } from '../../config/interFace'
 
 const admins = localStorage.getItem("admins");
 const techId = localStorage.getItem("techId");
-
+const emit = defineEmits(['pageReset'])
 const json: any = defineProps({
   data: {
     type: Object,
@@ -108,12 +108,14 @@ const disabledOpen = async (id: any) => {
   await httpGet('/measure/disabledOpen',{
     id: id,
   })
+  emit('pageReset')
 }
 
 const disabledRoller = async (id: any) => {
   await httpGet('/measure/disabledRoller',{
     id: id,
   })
+  emit('pageReset')
 }
 
 const uploadHuoban = async (data: any) => { // ----
@@ -127,6 +129,7 @@ const uploadHuoban = async (data: any) => { // ----
     }
   }
   await addInfo('2100000015445679', obj)
+  emit('pageReset')
 }
 
 const UploadFile = async (file: any) => { // 读取文件--上传

@@ -8,6 +8,7 @@ public class OpenMeasure {
     private Integer techId;
     private String projectName;
     private String type;
+    private String custerScheme;
     private String area;// 区域
     private String motorModel;   // 电机型号
     private String trackType;  // 轨道类型
@@ -69,6 +70,14 @@ public class OpenMeasure {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getCusterScheme() {
+        return custerScheme;
+    }
+
+    public void setCusterScheme(String custerScheme) {
+        this.custerScheme = custerScheme;
     }
 
     public String getArea() {

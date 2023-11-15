@@ -4,7 +4,7 @@
       <tr>
         <td width="75px">项目姓名</td>
         <td>
-          <a-input :disabled="true" v-model:value="data.projectName" style="width: 95%;"></a-input>
+          <a-input :disabled="true" v-model:value="data.name" style="width: 95%;"></a-input>
         </td>
         <td width="75px">区域</td>
         <td>
@@ -14,7 +14,7 @@
       <tr>
         <td>用户方案</td>
         <td>
-          <a-select v-model:value="formState.custerScheme" style="width: 95%;"> 
+          <a-select @change="selectChange" :options="options" style="width: 95%;"> 
           </a-select>
         </td>
         <td>*数量</td>
@@ -154,20 +154,28 @@
 
 <script setup lang="ts">
 import { httpGet, httpUrl } from '../../../config/interFace'
-import type { UploadChangeParam } from 'ant-design-vue';
-import { reactive, onMounted, ref } from 'vue';
+import type { UploadChangeParam, SelectProps } from 'ant-design-vue';
+import { reactive, onMounted, ref, watch } from 'vue';
 
 const loginName = localStorage.getItem('loginName')
 const techId = localStorage.getItem("techId");
 const open = ref<boolean>(false);
 const fileList = ref([]);
 const emit = defineEmits(['resPage'])
+const options = ref<SelectProps['options']>([]);
 
 onMounted (async function () {
   const open = await httpGet('/measure/openScheme',{
     projectId: props.id.id
   })
   console.log(open);
+  for(let i=0; i<open.length; i++) {
+    var obj = {
+      value: open[i].productName,
+      lable: open[i].sId
+    }
+    options.value?.push(obj)
+  }
 })
 
 const props = defineProps({
@@ -181,52 +189,57 @@ const props = defineProps({
   }
 })
 
-const data = props.data
+let data = props.data
+watch(props, (newValue) => {
+  data = newValue.data[0]
+})
 
 interface FormState {
   itemId: string
-  projectName: string
   custerScheme: string
   area: string
   motorModel: string
   trackType: string
   installMethod: string
-  number: string
+  number: number
   openMethod: string
   surfaceMaterial: string
-  boxWidth: string
+  boxWidth: number
   powerPosition: string
   placeholder: string
   deductionInfo: string
   remark: string
   imgUrl: string
-  l1: string
-  l2: string
-  l3: string
+  l1: number
+  l2: number
+  l3: number
   modalInfo: string
   status: boolean
 }
 
+const selectChange = (value: string, options: any) => {
+  formState.custerScheme = options.lable
+};
+
 const formState = reactive<FormState>({
   itemId: '',
-  projectName: '',
   custerScheme: '',
   area: '',
   motorModel: '',
   trackType: '',
   installMethod: '',
-  number: '',
+  number: 0,
   openMethod: '',
   surfaceMaterial: '',
-  boxWidth: '',
+  boxWidth: 0,
   powerPosition: '',
   placeholder: '',
   deductionInfo: '',
   remark: '',
   imgUrl: '',
-  l1: '',
-  l2: '',
-  l3: '',
+  l1: 0,
+  l2: 0,
+  l3: 0,
   modalInfo: '',
   status: false
 });
@@ -252,10 +265,11 @@ const handleOk = async () => {
   }
   if(formState.imgUrl !== '' && formState.status)  {
     await httpGet('/measure/addOpen',{
-      projectId: props.id.id,
+      projectId: data.id,
       techId: techId,
-      itemId: formState.itemId,
-      projectName: formState.projectName,
+      itemId: data.itemId,
+      projectName: data.name,
+      custerScheme: formState.custerScheme,
       area: formState.area,
       motorModel: formState.motorModel,
       trackType: formState.trackType,
