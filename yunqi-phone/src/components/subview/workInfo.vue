@@ -48,7 +48,7 @@
                 <a-select-option value="调试">调试</a-select-option>
                 <a-select-option value="交底">交底</a-select-option>
                 <a-select-option value="验收">验收</a-select-option>
-                <a-select-option value="检测">检测</a-select-option>
+                <a-select-option  value="检测">检测</a-select-option>
                 <a-select-option :disabled="status" value="售后">售后</a-select-option>
               </a-select>
             </td>
@@ -93,7 +93,34 @@ const route = useRoute()
 const loginName = localStorage.getItem('loginName')
 const admins = localStorage.getItem("admins");
 
-const status = admins !== 'true'
+interface FormState {
+  options: object
+  schedule: string
+  techName: string;
+  projectName: string;
+  workType: string;
+  time: any;
+  remark: String;
+  headName: String
+  modalInfo: String
+}
+
+const formState = reactive<FormState>({
+  options: ref<string[]>([]),
+  schedule: '',
+  techName: '',
+  projectName: '',
+  workType: '',
+  time: null,
+  remark: '',
+  headName: '',
+  modalInfo: ''
+});
+
+
+const status = admins !== 'true' 
+
+const status1 = formState.schedule === '调试完结'
 
 const resPage = () => {
   router.push({name: 'project'})
@@ -119,30 +146,6 @@ onMounted (async function () {
   }
   formState.options = techs
 })
-
-interface FormState {
-  options: object
-  schedule: string
-  techName: string;
-  projectName: string;
-  workType: string;
-  time: any;
-  remark: String;
-  headName: String
-  modalInfo: String
-}
-
-const formState = reactive<FormState>({
-  options: ref<string[]>([]),
-  schedule: '',
-  techName: '',
-  projectName: '',
-  workType: '',
-  time: null,
-  remark: '',
-  headName: '',
-  modalInfo: ''
-});
 
 const changeTech = (value: []) => {
   formState.techName = `${value}`

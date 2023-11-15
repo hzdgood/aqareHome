@@ -3,7 +3,7 @@ package com.yunqi.common.view;
 public class ProjectView {
     private Integer projectId;
     private Integer techId;
-    private Integer schemeId;
+    private Integer schemeId; // 方案状态
     private String salesName; //销售
     private String techName; //技术
     private String projectName;// 姓名

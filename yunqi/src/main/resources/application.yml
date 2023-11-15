@@ -58,4 +58,4 @@ spring:
       encoding: UTF-8
 
 mybatis:
-  mapper-locations: classpath*:mapping/*.xml
+  mapper-locations: classpath*:mapping/*.xml, classpath*:view/*.xml
