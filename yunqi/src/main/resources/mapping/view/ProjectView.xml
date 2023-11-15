@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yunqi.common.viewMapper.ProjectViewMapper">
     <select id="select" resultType="com.yunqi.common.view.ProjectView">
-        SELECT * FROM projectview p where 1 = 1 and
+        SELECT * FROM projectview p where 1 = 1 and WCTag = 'Y'
         <if test="projectName!=null and projectName!=''">-->
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>
@@ -17,7 +17,7 @@
     </select>
 
     <select id="selectCom" resultType="com.yunqi.common.view.ProjectView">
-        SELECT * FROM projectview p where 1 = 1 and
+        SELECT * FROM projectview p where 1 = 1 and WCTag = 'N'
         <if test="projectName!=null and projectName!=''">-->
             and ( projectName like '%${projectName}%' or telephone like '%${projectName}%' or address like '%${projectName}%' )
         </if>

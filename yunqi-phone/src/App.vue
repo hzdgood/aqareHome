@@ -8,9 +8,11 @@
 </template>
 
 <script setup lang="ts">
-import { userInfo } from './config/interFace'
 import 'dayjs/locale/zh-cn';
+import { onMounted} from 'vue';
+import { userInfo } from './config/interFace'
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
+
 const getPopupContainer = (el:any, dialogContext:any) => {
   if (dialogContext) {
     return dialogContext.getDialogWrap();
@@ -18,10 +20,14 @@ const getPopupContainer = (el:any, dialogContext:any) => {
     return document.body;
   }
 }
+localStorage.setItem("version","1.1")
 
-await userInfo().then(function (response) {
-  localStorage.setItem('ticket', response.data.ticket)
+onMounted (async function () {
+  await userInfo().then(function (response) {
+    localStorage.setItem('ticket', response.data.ticket)
+  })
 })
+
 </script>
 
 <style>

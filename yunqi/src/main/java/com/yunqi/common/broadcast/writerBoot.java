@@ -12,11 +12,11 @@ import java.util.List;
 @EnableScheduling // 开启定时任务
 public class writerBoot {
 
-    @Autowired
-    private WriterService WriterService;
-
-    @Autowired
-    private SchemeService SchemeService;
+//    @Autowired
+//    private WriterService WriterService;
+//
+//    @Autowired
+//    private SchemeService SchemeService;
 
     // @Scheduled(cron = "0 00 03 * * ?")
 //    private void s(){

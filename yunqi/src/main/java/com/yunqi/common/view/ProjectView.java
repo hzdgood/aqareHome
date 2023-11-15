@@ -3,7 +3,7 @@ package com.yunqi.common.view;
 public class ProjectView {
     private Integer projectId;
     private Integer techId;
-    private Integer schemeId; // 方案状态
+    private String schemeId; // 方案状态
     private String salesName; //销售
     private String techName; //技术
     private String projectName;// 姓名
@@ -14,7 +14,12 @@ public class ProjectView {
     private String situation; //情况
     private String schedule; //进度
     private String region; //区域
-
+    private String WCTag; // 完成
+    private String JDTag;
+    private String YSTag;
+    private String AZTag;
+    private String TSTag;
+    private String JCTag;
     public Integer getProjectId() {
         return projectId;
     }
@@ -31,11 +36,11 @@ public class ProjectView {
         this.techId = techId;
     }
 
-    public Integer getSchemeId() {
+    public String getSchemeId() {
         return schemeId;
     }
 
-    public void setSchemeId(Integer schemeId) {
+    public void setSchemeId(String schemeId) {
         this.schemeId = schemeId;
     }
 
@@ -117,5 +122,53 @@ public class ProjectView {
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public String getWCTag() {
+        return WCTag;
+    }
+
+    public void setWCTag(String WCTag) {
+        this.WCTag = WCTag;
+    }
+
+    public String getJDTag() {
+        return JDTag;
+    }
+
+    public void setJDTag(String JDTag) {
+        this.JDTag = JDTag;
+    }
+
+    public String getYSTag() {
+        return YSTag;
+    }
+
+    public void setYSTag(String YSTag) {
+        this.YSTag = YSTag;
+    }
+
+    public String getAZTag() {
+        return AZTag;
+    }
+
+    public void setAZTag(String AZTag) {
+        this.AZTag = AZTag;
+    }
+
+    public String getTSTag() {
+        return TSTag;
+    }
+
+    public void setTSTag(String TSTag) {
+        this.TSTag = TSTag;
+    }
+
+    public String getJCTag() {
+        return JCTag;
+    }
+
+    public void setJCTag(String JCTag) {
+        this.JCTag = JCTag;
     }
 }
