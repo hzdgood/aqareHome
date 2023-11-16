@@ -15,6 +15,10 @@ baidu:
   key: agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi
   url: http://api.map.baidu.com/geocoder/v2/
 
+picture:
+  workUrl: D:/picture/
+  measureUrl: D:/measure/
+
 server:
   port: 8082
   tomcat:

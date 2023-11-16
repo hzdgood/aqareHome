@@ -29,7 +29,7 @@
             <a-select-option value="C2电机">C2电机</a-select-option>
             <a-select-option value="C3电机">C3电机</a-select-option>
             <a-select-option value="B1电机">B1电机</a-select-option>
-            <a-select-option value="B2电机">B2电机</a-select-option>
+            <a-select-option value="L2电机">L2电机</a-select-option>
             <a-select-option value="Zigbee电机">Zigbee电机</a-select-option>
             <a-select-option value="梦幻帘">梦幻帘</a-select-option>
             <a-select-option value="手动轨">手动轨</a-select-option>
@@ -101,7 +101,7 @@
           <a-select v-model:value="formState.deductionInfo" style="width: 95%;">
             <a-select-option value="标准扣减3-4cm">标准扣减3-4cm</a-select-option>
             <a-select-option value="自定义扣减">自定义扣减</a-select-option>
-            <a-select-option value="不扣减(成品尺寸)">不扣减</a-select-option>
+            <a-select-option value="不扣减(成品尺寸)">不扣减(成品尺寸)</a-select-option>
           </a-select>
         </td>
         <td>*l1</td>
@@ -131,7 +131,8 @@
           <a-upload
             v-model:file-list="fileList"
             name="file"
-            :action="httpUrl + '/picture/upload'"
+            :multiple="true"
+            :action="httpUrl + '/picture/uploadImg'"
             @change="handleChange"
           >
             <a-button>

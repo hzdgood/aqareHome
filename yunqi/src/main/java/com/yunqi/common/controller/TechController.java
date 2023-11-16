@@ -26,8 +26,8 @@ public class TechController {
     }
 
     @CrossOrigin
-    @RequestMapping("/insert")
-    public void insert(Tech Tech) {
-        TechService.insert(Tech);
+    @RequestMapping("/selectId")
+    public List<Tech> selectId(Integer id) {
+        return TechService.selectId(id);
     }
 }

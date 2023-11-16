@@ -1,53 +1,31 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.entity.OpenMeasure;
 import com.yunqi.common.entity.RollerMeasure;
-import com.yunqi.common.service.OpenMeasureService;
 import com.yunqi.common.service.RollerMeasureService;
-import com.yunqi.common.view.OpenView;
 import com.yunqi.common.view.RollerView;
-import com.yunqi.common.viewService.OpenViewService;
 import com.yunqi.common.viewService.RollerViewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/measure")
-public class MeasureController {
-    private OpenMeasureService OpenMeasureService;
+public class RollerMeasureController {
 
     private RollerMeasureService RollerMeasureService;
 
-    private OpenViewService OpenViewService;
-
     private  RollerViewService RollerViewService;
-
-    @Autowired
-    public void setMapper(OpenMeasureService OpenMeasureService) {
-        this.OpenMeasureService = OpenMeasureService;
-    }
 
     @Autowired
     public void setMapper(RollerMeasureService RollerMeasureService) {
         this.RollerMeasureService = RollerMeasureService;
     }
-    @Autowired
-    public void setMapper(OpenViewService OpenViewService) {
-        this.OpenViewService = OpenViewService;
-    }
+
     @Autowired
     public void setMapper(RollerViewService RollerViewService) {
         this.RollerViewService = RollerViewService;
-    }
-
-    @CrossOrigin
-    @RequestMapping("/selectOpen")
-    public List<OpenMeasure> selectOpen(OpenMeasure OpenMeasure) {
-        return OpenMeasureService.select(OpenMeasure);
     }
 
     @CrossOrigin
@@ -57,21 +35,9 @@ public class MeasureController {
     }
 
     @CrossOrigin
-    @RequestMapping("/addOpen")
-    public void addOpen(OpenMeasure OpenMeasure) {
-        OpenMeasureService.insert(OpenMeasure);
-    }
-
-    @CrossOrigin
     @RequestMapping("/addRoller")
     public void addRoller(RollerMeasure RollerMeasure) {
         RollerMeasureService.insert(RollerMeasure);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/openScheme")
-    public List<OpenView> select(OpenView OpenView) {
-       return OpenViewService.select(OpenView);
     }
 
     @CrossOrigin
@@ -81,14 +47,24 @@ public class MeasureController {
     }
 
     @CrossOrigin
-    @RequestMapping("/disabledOpen")
-    public void disabledOpen(Integer id) {
-        OpenMeasureService.delete(id);
-    }
-
-    @CrossOrigin
     @RequestMapping("/disabledRoller")
     public void disabledRoller(Integer id) {
         RollerMeasureService.delete(id);
+    }
+
+
+    @CrossOrigin
+    @RequestMapping("/uploadRoller")
+    public List<String> uploadImg(RollerMeasure RollerMeasure) {
+        List<RollerMeasure> list = RollerMeasureService.select(RollerMeasure);
+        String url = list.get(0).getImgUrl();
+        String[] str = url.split(",");
+        List<String> data = new ArrayList<>();
+        for (String s: str) {
+            if (!Objects.equals(s, "") && s != null) {
+                data.add(s);
+            }
+        }
+        return data;
     }
 }

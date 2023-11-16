@@ -5,34 +5,36 @@ import java.io.*;
 import java.util.Random;
 import java.util.UUID;
 public class MultipartFileUtils {
-    public static String saveMultipartFile(MultipartFile file, String targetDirPath) {
+    public static String saveMultipartFile(MultipartFile[] files, String targetDirPath) {
         File toFile = null;
-        if (file.equals("") || file.getSize() <= 0) {
-            return null;
-        } else {
-            /*获取文件原名称*/
-            String originalFilename = file.getOriginalFilename();
-            /*获取文件格式*/
-            String fileFormat = originalFilename.substring(originalFilename.lastIndexOf("."));
-            String uuid = UUID.randomUUID().toString().trim().replaceAll("-", "");
-            toFile = new File(targetDirPath + File.separator + originalFilename);
-            String absolutePath = null;
-            try {
-                absolutePath = toFile.getCanonicalPath();
-                /*判断路径中的文件夹是否存在，如果不存在，先创建文件夹*/
-                String dirPath = absolutePath.substring(0, absolutePath.lastIndexOf(File.separator));
-                File dir = new File(dirPath);
-                if (!dir.exists()) {
-                    dir.mkdirs();
+        String absolutePath = null;
+        for(MultipartFile file: files) {
+            if (file.equals("") || file.getSize() <= 0) {
+                return null;
+            } else {
+                /*获取文件原名称*/
+                String originalFilename = file.getOriginalFilename();
+                /*获取文件格式*/
+                String fileFormat = originalFilename.substring(originalFilename.lastIndexOf("."));
+                String uuid = UUID.randomUUID().toString().trim().replaceAll("-", "");
+                toFile = new File(targetDirPath + File.separator + originalFilename);
+                try {
+                    absolutePath = toFile.getCanonicalPath();
+                    /*判断路径中的文件夹是否存在，如果不存在，先创建文件夹*/
+                    String dirPath = absolutePath.substring(0, absolutePath.lastIndexOf(File.separator));
+                    File dir = new File(dirPath);
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    InputStream ins = file.getInputStream();
+                    inputStreamToFile(ins, toFile);
+                    ins.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                InputStream ins = file.getInputStream();
-                inputStreamToFile(ins, toFile);
-                ins.close();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
-            return absolutePath;
         }
+        return absolutePath;
     }
 
     //获取流文件

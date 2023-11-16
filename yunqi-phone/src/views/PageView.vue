@@ -1,7 +1,7 @@
 <template>
   <div class="pageConter">
     <div class="headTop">
-      技术服务系统-1.1
+      技术服务系统-1.10
     </div>
     <div class="logout">
       {{ loginName }} <span class="logout-span" @click="logout">登出</span>

@@ -9,22 +9,10 @@
         where disabled is null
     </select>
 
-    <select id="selectName" resultType="com.yunqi.common.entity.Tech">
-        # 根据name查询技术
+    <select id="selectId" resultType="com.yunqi.common.entity.Tech">
+        # 技术
         select *
         from tech
-        where name = #{name}
+        where disabled is null and id = #{id}
     </select>
-
-    <insert id="insert" parameterType="com.yunqi.common.entity.Tech" useGeneratedKeys="true" keyProperty="id">
-        # 新增
-        insert into tech (name, status) value (#{name}, #{status})
-    </insert>
-
-    <delete id="delete" parameterType="com.yunqi.common.entity.Tech">
-        # 删除
-        delete
-        from tech
-        where id = #{id}
-    </delete>
 </mapper>

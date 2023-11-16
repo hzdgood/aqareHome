@@ -8,6 +8,7 @@ public class Tech {
     private String position; //职位
     private String disabled; // 可见
     private String waitDay; // 休息日
+    private String itemId;
 
     public Integer getId() {
         return id;
@@ -63,5 +64,13 @@ public class Tech {
 
     public void setWaitDay(String waitDay) {
         this.waitDay = waitDay;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 }

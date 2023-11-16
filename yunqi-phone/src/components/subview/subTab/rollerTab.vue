@@ -93,7 +93,8 @@
           <a-upload
             v-model:file-list="fileList"
             name="file"
-            :action="httpUrl + '/picture/upload'"
+            :multiple="true"
+            :action="httpUrl + '/picture/uploadImg'"
             @change="handleChange"
           >
             <a-button>

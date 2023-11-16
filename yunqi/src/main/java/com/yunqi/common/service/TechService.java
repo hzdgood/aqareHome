@@ -20,19 +20,7 @@ public class TechService {
         return TechMapper.select();
     }
 
-    public List<Tech> selectName(String name) {
-        return TechMapper.selectName(name);
-    }
-
-    public void insert(Tech Tech) {
-        TechMapper.insert(Tech);
-    }
-
-    public void update(Tech Tech) {
-        TechMapper.update(Tech);
-    }
-
-    public void delete(Integer id) {
-        TechMapper.delete(id);
+    public List<Tech> selectId(Integer id) {
+        return TechMapper.selectId(id);
     }
 }

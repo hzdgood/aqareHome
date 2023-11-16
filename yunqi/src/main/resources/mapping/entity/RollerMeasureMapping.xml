@@ -5,7 +5,13 @@
     <select id="select" resultType="com.yunqi.common.entity.RollerMeasure">
         select *
         from rollerMeasure
-        where techId = #{techId} and disabled is null
+        where disabled is null
+        <if test="id!=null and id!=''">
+            and id = #{id}
+        </if>
+        <if test="techId!=null and techId!=''">
+            and techId = #{techId}
+        </if>
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.RollerMeasure" useGeneratedKeys="true" keyProperty="id">

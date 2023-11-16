@@ -6,6 +6,12 @@
         select *
         from openMeasure
         where disabled is null
+        <if test="id!=null and id!=''">
+            and id = #{id}
+        </if>
+        <if test="techId!=null and techId!=''">
+            and techId = #{techId}
+        </if>
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
