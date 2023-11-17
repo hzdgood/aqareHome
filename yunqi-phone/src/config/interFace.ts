@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-// export const httpUrl = 'https://aqara.club:8082' // 生产环境
-export const httpUrl = 'http://localhost:8082'
+export const httpUrl = 'https://aqara.club:8082' // 生产环境
+// export const httpUrl = 'http://localhost:8082'
 
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
