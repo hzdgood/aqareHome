@@ -40,7 +40,7 @@
 </template>
 <script setup lang="ts">
 import { httpGet, addInfo, uploadFile } from '../../../config/interFace'
-import { getValue } from '../../../util/time'
+import { getRoller } from '../../../util/time'
 
 const admins = localStorage.getItem("admins");
 const techId = localStorage.getItem("techId");
@@ -102,7 +102,25 @@ const chooseStaticImg = async (imageUrl: any, index: number, length: number) => 
     if(length - 1 === index){
       const obj = {
         fields: {
-          
+          2200000159475364: time,
+          2200000147636558: [Number.parseInt(data.itemId)], // 客户
+          2200000159453028: [Number.parseInt(tech[0].itemId)], // 技术
+          2200000147636560: [5], // 电机型号  T1S电机
+          2200000147636559: data.area, // 房间区域
+          2200000298835023: [Number.parseInt(data.rollingScheme)], // 卷帘方案
+          2200000148927883: list, // 图片
+          2200000147636564: data.length, // 长度
+          2200000147636565: data.high, // 高度
+          2200000149873850: data.surfaceWidth, // 安装面宽度
+          2200000152262935: getRoller(data.installMethod), // 安装方式
+          2200000147636566: getRoller(data.deductionInfo), // 尺寸备注
+          2200000149873851: getRoller(data.surfaceMaterial), // 安装面材质
+          2200000147636568: data.number, // 数量
+          2200000147636569: getRoller(data.powerPosition), // 电源位置
+          2200000147636570: getRoller(data.cover), // 罩壳
+          2200000147636571: data.remark, // 备注
+          // 2200000151790382: [3748782], // 技术
+          // 2200000151790383: [3347777] // 销售
         }
       }
       const res = await addInfo('2100000015445679', obj)

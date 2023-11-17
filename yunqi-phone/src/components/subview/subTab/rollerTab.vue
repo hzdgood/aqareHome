@@ -57,10 +57,11 @@
         <td>*安装面材质</td>
         <td>
           <a-select v-model:value="formState.surfaceMaterial" style="width: 95%">
-            <a-select-option value="木工板">木工板</a-select-option>
+            <a-select-option value="木板">木板</a-select-option>
             <a-select-option value="混凝土">混凝土</a-select-option>
             <a-select-option value="金属板">金属板</a-select-option>
             <a-select-option value="石膏板">石膏板</a-select-option>
+            <a-select-option value="其他">其他</a-select-option>
           </a-select>
         </td>
       </tr>
@@ -76,8 +77,8 @@
         <td>*需要罩壳</td>
         <td>
           <a-select v-model:value="formState.cover" style="width: 95%">
-            <a-select-option value="是">是</a-select-option>
-            <a-select-option value="否">否</a-select-option>
+            <a-select-option value="需要">需要</a-select-option>
+            <a-select-option value="不需要">不需要</a-select-option>
           </a-select>
         </td>
       </tr>

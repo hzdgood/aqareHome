@@ -23,7 +23,7 @@ export const dateFilter = (data: any, format: string) => {
     }
 }
 
-const objs: any = {
+const objOpen: any = {
     'C2电机': [3],
     'C3电机': [12],
     'B1电机': [2],
@@ -55,10 +55,37 @@ const objs: any = {
     '侧装': [2],
 }
 
-export const getValue = (name: string) => {
-    for(const key in objs){
+const objRoller: any = {
+    '外顶装': [1],
+    '侧装': [2],
+    '内顶装': [3],
+    '左': [1],
+    '右': [2],
+    '无电源': [3],
+    '标准扣减1cm': [2],
+    '尺寸已减': [1],
+    '木板': [1],
+    '混凝土': [2],
+    '金属板': [3],
+    '石膏板': [4],
+    '其他': [5],
+    '需要': [1],
+    '不需要': [2]
+}
+
+export const getRoller = (name: string) => {
+    for(const key in objRoller){
         if(key === name) {
-            return objs[key]
+            return objRoller[key]
+        }
+    }
+}
+
+
+export const getValue = (name: string) => {
+    for(const key in objOpen){
+        if(key === name) {
+            return objOpen[key]
         }
     }
 }
