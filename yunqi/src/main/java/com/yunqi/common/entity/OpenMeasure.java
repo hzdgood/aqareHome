@@ -20,6 +20,7 @@ public class OpenMeasure {
     private String surfaceMaterial; // 安装面材质
     private String placeholder; // 预留位置
     private String deductionInfo; // 扣减说明
+    private String extendedTrack; //延长轨数
     private String imgUrl;
     private String remark;
     private double l1;
@@ -166,6 +167,14 @@ public class OpenMeasure {
 
     public void setDeductionInfo(String deductionInfo) {
         this.deductionInfo = deductionInfo;
+    }
+
+    public String getExtendedTrack() {
+        return extendedTrack;
+    }
+
+    public void setExtendedTrack(String extendedTrack) {
+        this.extendedTrack = extendedTrack;
     }
 
     public String getImgUrl() {

@@ -42,7 +42,6 @@ declare module 'vue' {
     WorkInfo: typeof import('./src/components/subview/workInfo.vue')['default']
     WorkSheetView: typeof import('./src/components/WorkSheetView.vue')['default']
     WriteCardView: typeof import('./src/components/card/WriteCardView.vue')['default']
-    WriterError: typeof import('./src/components/info/writerError.vue')['default']
     WriterInfo: typeof import('./src/components/subview/writerInfo.vue')['default']
     WriterTable: typeof import('./src/components/subview/tables/writerTable.vue')['default']
     WriteView: typeof import('./src/components/WriteView.vue')['default']

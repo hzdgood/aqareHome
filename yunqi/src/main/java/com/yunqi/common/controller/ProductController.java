@@ -24,11 +24,4 @@ public class ProductController {
     public List<Product> select(Product Product) {
         return ProductService.select();
     }
-
-    @CrossOrigin
-    @RequestMapping("/insert")
-    public void insert(Product Product) {
-        ProductService.insert(Product);
-    }
-
 }

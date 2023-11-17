@@ -5,6 +5,7 @@ import java.util.Date;
 public class Logging {
     private Integer id;
     private String name;
+    private String custom;
     private String info;
     private Date date;
 
@@ -22,6 +23,14 @@ public class Logging {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getCustom() {
+        return custom;
+    }
+
+    public void setCustom(String custom) {
+        this.custom = custom;
     }
 
     public String getInfo() {

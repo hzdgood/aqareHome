@@ -23,11 +23,4 @@ public class ProjectController {
     public List<Project> selectId(Integer id) {
         return ProjectService.selectId(id);
     }
-
-    @CrossOrigin
-    @RequestMapping("/insert")
-    public void insert(Project Project) {
-        ProjectService.insert(Project);
-    }
-
 }

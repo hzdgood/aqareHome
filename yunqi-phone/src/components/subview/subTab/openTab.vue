@@ -120,6 +120,12 @@
         </td>
       </tr>
       <tr>
+        <td>延长轨数</td>
+        <td>
+          <a-input v-model:value="formState.extendedTrack" style="width: 95%;"></a-input>
+        </td>
+      </tr>
+      <tr>
         <td>备注</td>
         <td colspan="3">
           <a-input v-model:value="formState.remark" style="width: 95%;"></a-input>
@@ -211,6 +217,7 @@ interface FormState {
   deductionInfo: string
   remark: string
   imgUrl: string
+  extendedTrack: number
   l1: number
   l2: number
   l3: number
@@ -238,6 +245,7 @@ const formState = reactive<FormState>({
   deductionInfo: '',
   remark: '',
   imgUrl: '',
+  extendedTrack: 0,
   l1: 0,
   l2: 0,
   l3: 0,

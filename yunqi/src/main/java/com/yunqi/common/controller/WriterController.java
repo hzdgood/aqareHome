@@ -45,7 +45,6 @@ public class WriterController {
             Scheme.setNotInstalled(notInstalled - install);
             Scheme.setUnregulated(unregulated - debug);
             Scheme.setCreateName("核销");
-            // HistoryService.updateId(Scheme);
             SchemeService.updateId(Scheme); // 方案修改
             WriterService.insert(Writer);
         }

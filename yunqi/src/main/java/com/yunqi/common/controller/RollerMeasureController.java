@@ -1,6 +1,8 @@
 package com.yunqi.common.controller;
 
+import com.yunqi.common.entity.Logging;
 import com.yunqi.common.entity.RollerMeasure;
+import com.yunqi.common.service.LoggingService;
 import com.yunqi.common.service.RollerMeasureService;
 import com.yunqi.common.view.RollerView;
 import com.yunqi.common.viewService.RollerViewService;
@@ -15,8 +17,8 @@ import java.util.Objects;
 public class RollerMeasureController {
 
     private RollerMeasureService RollerMeasureService;
-
     private  RollerViewService RollerViewService;
+    private LoggingService LoggingService;
 
     @Autowired
     public void setMapper(RollerMeasureService RollerMeasureService) {
@@ -28,6 +30,11 @@ public class RollerMeasureController {
         this.RollerViewService = RollerViewService;
     }
 
+    @Autowired
+    public void setMapper(LoggingService LoggingService) {
+        this.LoggingService = LoggingService;
+    }
+
     @CrossOrigin
     @RequestMapping("/selectRoller")
     public List<RollerMeasure> selectRoller(RollerMeasure RollerMeasure) {
@@ -37,6 +44,11 @@ public class RollerMeasureController {
     @CrossOrigin
     @RequestMapping("/addRoller")
     public void addRoller(RollerMeasure RollerMeasure) {
+        Logging Logging = new Logging();
+        Logging.setName(RollerMeasure.getTechId() + "");
+        Logging.setCustom(RollerMeasure.getProjectName());
+        Logging.setInfo("上传卷帘导轨！");
+        LoggingService.insert(Logging);
         RollerMeasureService.insert(RollerMeasure);
     }
 

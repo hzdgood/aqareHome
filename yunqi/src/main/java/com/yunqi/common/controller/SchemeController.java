@@ -16,11 +16,5 @@ public class SchemeController {
     public void setMapper(SchemeService SchemeService) {
         this.SchemeService = SchemeService;
     }
-
-    @CrossOrigin
-    @RequestMapping("/insert")
-    public void insert(Scheme Scheme) {
-        SchemeService.insert(Scheme);
-    }
 }
 

@@ -35,7 +35,7 @@
         </tr>
       </table>
       <div class="buttonPos" >
-        <a-button @click="uploadHuoban(data)" type="primary" v-show="status">同步伙伴云</a-button>
+        <a-button @click="uploadHuoban(data)" type="primary" :disabled="disabled" v-show="status">同步伙伴云</a-button>
         <a-button @click="disabledOpen(data.id)" type="primary" v-show="status">无效</a-button>
       </div>
     </a-card>
@@ -75,7 +75,7 @@
         </tr>
       </table>
       <div class="buttonPos" >
-        <a-button @click="uploadHuoban(data)" type="primary" v-show="status">同步伙伴云</a-button>
+        <a-button @click="uploadHuoban(data)" type="primary" :disabled="disabled" v-show="status">同步伙伴云</a-button>
         <a-button @click="disabledRoller(data.id)" type="primary" v-show="status">无效</a-button>
       </div>
       <input type="file">
@@ -105,6 +105,7 @@ const type = json.type
 const data = json.data
 const status = admins === 'true'
 let list: any[] = []
+let disabled = false
 
 // 测量 开合 卷帘
 const disabledOpen = async (id: any) => {
@@ -130,6 +131,7 @@ const uploadHuoban = async (data: any) => { // ----
 
 const UploadFile = async (file: any) => { // 读取文件--上传
   list = []
+  disabled = true
   for (let i = 0; i < file.length; i++) {
     const str: any[] = file[i].split("\\")
     if(str.length > 5) {
@@ -174,14 +176,15 @@ const chooseStaticImg = async (imageUrl: any, index: number, length: number) => 
           "2200000148927636": data.boxWidth + "", //窗帘盒宽度 -- 
           "2200000148927638": getValue(data.surfaceMaterial),// 墙体材质 ---木 1 混 2 金 3 石 4
           "2200000148927640": data.l1 + "", //L1(cm)  ---
-          "2200000170067122": "2", //延长轨个数  ---
+          "2200000170067122": data.extendedTrack + "", //延长轨个数  ---
           "2200000148927642": getValue(data.deductionInfo), //扣减要求 --- 不扣 1 扣3-4 2 自定义 3
           "2200000148927644": list, //图片 ---
           "2200000159767484": "",
           "2200000293523812": "",
         }
       }
-      await addInfo('2100000015445679', obj)
+      const res = await addInfo('2100000015445679', obj)
+      alert(res);
     }
   });
 }

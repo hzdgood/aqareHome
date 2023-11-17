@@ -26,7 +26,6 @@
         # 详情
         update worksheet
         set dateOfVisit = #{dateOfVisit},
-            remark      = #{remark},
             updateName  = #{updateName},
             updateTime  = NOW()
         where id = #{id}

@@ -1,6 +1,8 @@
 package com.yunqi.common.controller;
 
+import com.yunqi.common.entity.Logging;
 import com.yunqi.common.entity.OpenMeasure;
+import com.yunqi.common.service.LoggingService;
 import com.yunqi.common.service.OpenMeasureService;
 import com.yunqi.common.view.OpenView;
 import com.yunqi.common.viewService.OpenViewService;
@@ -19,9 +21,21 @@ public class OpenMeasureController {
 
     private OpenViewService OpenViewService;
 
+    private LoggingService LoggingService;
+
     @Autowired
     public void setMapper(OpenMeasureService OpenMeasureService) {
         this.OpenMeasureService = OpenMeasureService;
+    }
+
+    @Autowired
+    public void setMapper(OpenViewService OpenViewService) {
+        this.OpenViewService = OpenViewService;
+    }
+
+    @Autowired
+    public void setMapper(LoggingService LoggingService) {
+        this.LoggingService = LoggingService;
     }
 
     @CrossOrigin
@@ -33,6 +47,11 @@ public class OpenMeasureController {
     @CrossOrigin
     @RequestMapping("/addOpen")
     public void addOpen(OpenMeasure OpenMeasure) {
+        Logging Logging = new Logging();
+        Logging.setName(OpenMeasure.getTechId() + "");
+        Logging.setCustom(OpenMeasure.getProjectName());
+        Logging.setInfo("-上传开合帘导轨！");
+        LoggingService.insert(Logging);
         OpenMeasureService.insert(OpenMeasure);
     }
 

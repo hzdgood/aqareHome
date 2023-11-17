@@ -24,11 +24,4 @@ public class SalesController {
     public List<Sales> select(Sales Sales) {
         return SalesService.select();
     }
-
-    @CrossOrigin
-    @RequestMapping("/insert")
-    public void insert(Sales Sales) {
-        SalesService.insert(Sales);
-    }
-
 }
