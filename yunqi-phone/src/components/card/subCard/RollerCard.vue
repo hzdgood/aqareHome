@@ -123,7 +123,7 @@ const chooseStaticImg = async (imageUrl: any, index: number, length: number) => 
           // 2200000151790383: [3347777] // 销售
         }
       }
-      const res = await addInfo('2100000015445679', obj)
+      const res = await addInfo('2100000014956211', obj)
       if(typeof(res.message) !== "undefined") {
         alert(res.message)
       }
