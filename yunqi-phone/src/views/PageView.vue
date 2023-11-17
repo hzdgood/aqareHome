@@ -8,7 +8,7 @@
     </div>
     <div class="wrapper">
       <div :class="formState.select0" @click="changeSelect(0)"><RouterLink to="/workSheet">我的工单</RouterLink></div>
-      <div :class="formState.select1" @click="changeSelect(1)" v-show="heads"><RouterLink to="/sendSheet">已发工单</RouterLink></div>
+      <div :class="formState.select1" @click="changeSelect(1)"><RouterLink to="/sendSheet">已发工单</RouterLink></div>
       <!-- <div :class="formState.select2" @click="changeSelect(2)"><RouterLink to="/workCom">完结单</RouterLink></div> -->
       <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/project">我的项目</RouterLink></div>
       <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/write">核销记录</RouterLink></div>
@@ -26,7 +26,6 @@ import { useRouter } from "vue-router";
 const router = useRouter()
 const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
-const heads = localStorage.getItem("heads");
 
 if(localStorage.getItem("version") !== '1.1') {
   localStorage.clear()

@@ -32,7 +32,7 @@
         </tr>
       </table>
       <div>项目工单信息</div>
-      <table class="schemeTable">
+      <table class="personTale">
         <thead>
           <tr>
             <td>预约时间</td>
@@ -41,7 +41,7 @@
             <td>状态</td>
           </tr>
         </thead>
-        <tr v-for="item in formState.workList" :key="item.workId">
+        <tr v-for="item in formState.workList" :key="item.id" @click="detailWork(item.id)">
           <td>{{ dateFilter(item.dateOfVisit,'yyyy-mm-dd') }}</td>
           <td>{{ item.techIds }}</td>
           <td>{{ item.type }}</td>
@@ -63,12 +63,12 @@ import { httpGet } from '../../config/interFace'
 import { useRoute } from "vue-router";
 import { dateFilter } from '../../util/time'
 
+const route = useRoute()
 const resPage = () => {
   router.push({name: 'project'})
 }
 
 onMounted (async function () {
-  const route = useRoute()
   const res = await httpGet('/view/project',{
     projectId: route.query.id
   })
@@ -102,6 +102,14 @@ const formState = reactive<FormState>({
   desc: ''
 });
 
+const detailWork = (id: number) => {
+  router.push({name: 'workInfo', query: {
+    id: id,
+    name: formState.dataList.projectName,
+    address: formState.dataList.address
+  }})
+}
+
 </script>
 
 <style scoped lang="less">
@@ -111,5 +119,7 @@ const formState = reactive<FormState>({
 .personTale tr td{
   border: 1px solid #cecece;
 }
-
+.personTale tr {
+  cursor: pointer;
+}
 </style>

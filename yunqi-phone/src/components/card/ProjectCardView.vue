@@ -53,7 +53,7 @@ const data = json.data
 
 const status = data.techId + '' === '' + techId || admins === 'true'
 
-const emit = defineEmits(['toPage'])
+const emit = defineEmits(['pageReset', 'toPage'])
 
 const handoverInfo = (id: any) => {
   emit('toPage','handoverInfo', id)
@@ -64,7 +64,7 @@ const measureInfo = (id: any) => {
 }
 
 const sendWork = (id: any) => {
-  emit('toPage','subWork', id)
+  emit('toPage','workSend', id)
 }
 
 const schemeInfo = (id: any) => {

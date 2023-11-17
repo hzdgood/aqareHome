@@ -30,7 +30,7 @@ const router = createRouter({
           path: '/project',
           name: 'project',
           component: () => import('../components/ProjectView.vue')
-        },{
+        }, {
           path: '/measure',
           name: 'measure',
           component: () => import('../components/MeasureView.vue')
@@ -38,34 +38,38 @@ const router = createRouter({
           path: '/write',
           name: 'write',
           component: () => import('../components/WriteView.vue')
-        },{
+        }, {
           path: '/subWriter',
           name: 'subWriter',
           component: () => import('../components/subview/writerInfo.vue')
-        },{
-          path: '/subWork',
-          name: 'subWork',
-          component: () => import('../components/subview/workInfo.vue')
-        },{
+        }, {
+          path: '/workSend',
+          name: 'workSend',
+          component: () => import('../components/subview/workSend.vue')
+        }, {
           path: '/subSchemem',
           name: 'subSchemem',
           component: () => import('../components/info/schememInfo.vue')
-        },{
+        }, {
           path: '/measureInfo',
           name: 'measureInfo',
           component: () => import('../components/subview/measureInfo.vue')
-        },{
+        }, {
           path: '/workEdit',
           name: 'workEdit',
           component: () => import('../components/edit/workEdit.vue')
-        },{
+        }, {
           path: '/handoverInfo',
           name: 'handoverInfo',
           component: () => import('../components/info/handoverInfo.vue')
-        },{
+        }, {
           path: '/personEdit',
           name: 'personEdit',
           component: () => import('../components/edit/personEdit.vue')
+        }, {
+          path: 'workInfo',
+          name: 'workInfo',
+          component: () => import('../components/info/workInfo.vue')
         }
       ]
     }

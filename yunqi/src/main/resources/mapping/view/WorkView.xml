@@ -50,8 +50,11 @@
     <select id="selectAll" resultType="com.yunqi.common.view.WorkView">
         # 工单查询
         select * from worksheet_all w where 1 = 1
-        <if test="projectId!=null">
+        <if test="projectId!=null and projectId!=''">
             and projectId = #{projectId}
+        </if>
+        <if test="workId!=null and workId!=''">
+            and id = #{workId}
         </if>
         limit 100
     </select>

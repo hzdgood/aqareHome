@@ -120,8 +120,6 @@ const formState = reactive<FormState>({
 
 const status = admins !== 'true' 
 
-const status1 = formState.schedule === '调试完结'
-
 const resPage = () => {
   router.push({name: 'project'})
 }

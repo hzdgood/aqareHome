@@ -39,11 +39,12 @@ declare module 'vue' {
     WorkComCardView: typeof import('./src/components/card/WorkComCardView.vue')['default']
     WorkComView: typeof import('./src/components/workComView.vue')['default']
     WorkEdit: typeof import('./src/components/edit/workEdit.vue')['default']
-    WorkInfo: typeof import('./src/components/subview/workInfo.vue')['default']
+    workSend: typeof import('./src/components/subview/workSend.vue')['default']
     WorkSheetView: typeof import('./src/components/WorkSheetView.vue')['default']
     WriteCardView: typeof import('./src/components/card/WriteCardView.vue')['default']
     WriterInfo: typeof import('./src/components/subview/writerInfo.vue')['default']
     WriterTable: typeof import('./src/components/subview/tables/writerTable.vue')['default']
     WriteView: typeof import('./src/components/WriteView.vue')['default']
+    workInfo: typeof import('./src/components/info/workInfo.vue')['default']
   }
 }
