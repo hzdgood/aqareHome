@@ -185,7 +185,7 @@ onMounted (async function () {
   formState.handover = res1[0].handover
   let res = await httpGet('/view/writer',{ // 查询可核销数据
     workId: route.query.id,
-    techId: route.query.techId,
+    // techId: route.query.techId,
     // type: '检测' // ---- 只能核销上门类型
   })
   formState.dataList = res

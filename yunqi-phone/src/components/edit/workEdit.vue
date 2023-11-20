@@ -159,6 +159,10 @@ onMounted (async function () {
       projectId: res[0].projectId,
       unregulated: 0
     })
+  } else {
+    scheme = await httpGet('/view/scheme',{
+      projectId: res[0].projectId
+    })
     formState.schemeList = scheme
   }
 })
