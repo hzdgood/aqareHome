@@ -42,7 +42,7 @@
           <td colspan="3">{{ dateFilter(data.departureTime,'yyyy-mm-dd hh:mm:ss') }}</td>
         </tr>
       </table>
-      <div class="buttonPos" v-show="loginName === data.techId">
+      <div class="buttonPos" v-show="loginName === data.techId || status">
         <a-button type="primary" 
           v-show="data.signTime === null && data.dateOfVisit !== null"
           @click="sign(data.timeId, data.workId)">签到</a-button>
@@ -86,7 +86,7 @@ const data = json.data;
 const status = loginName === data.headName || admins === 'true'
 
 onMounted (function () {
-  if(loginName === data.headName && data.workSummary != null && data.visitNode != null && data.handover != null ) {
+  if(loginName === data.headName && data.workSummary != null && data.visitNode != null ) {
     formState.deleteStatus = false
   } 
   if(admins === 'true') {

@@ -52,15 +52,14 @@ public class SchemeSync {
                 System.out.println("未发现的项目ID:" + SyncScheme.getProjectId() + "-" + SyncScheme.getName());
             }
         } else { // 如果有itemId 修改
-            Scheme Scheme = new Scheme();
-            Scheme.setId(scheme.get(0).getId());
+            Scheme Scheme = scheme.get(0);
             Scheme.setNumber(Integer.parseInt(SyncScheme.getNumber()));
             Scheme.setNotSent(Integer.parseInt(SyncScheme.getNotSent()));
-            double s = Double.parseDouble(SyncScheme.getNotInstalled())  - Scheme.getInstallNumber();
-            double t = Double.parseDouble(SyncScheme.getUnregulated())  - Scheme.getDebugNumber();
-            Scheme.setNotInstalled(Double.parseDouble(SyncScheme.getNotInstalled()));
-            Scheme.setUnregulated(Double.parseDouble(SyncScheme.getUnregulated()));
-            Scheme.setCreateName("更新数据");
+            double s = Double.parseDouble(SyncScheme.getNotInstalled()) - Scheme.getInstallNumber();
+            double t = Double.parseDouble(SyncScheme.getUnregulated()) - Scheme.getDebugNumber();
+            Scheme.setNotInstalled(s);
+            Scheme.setUnregulated(t);
+            Scheme.setItemId(itemId);
             SchemeService.update(Scheme); // 修改方案表
         }
     }

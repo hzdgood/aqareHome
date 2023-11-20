@@ -98,8 +98,9 @@ const chooseStaticImg = async (imageUrl: any, index: number, length: number) => 
     formData.append('type', 'attachment')
     const res = await uploadFile(formData)
     list.push(res.file_id)
-    if(length - 1 === index){
-      const obj = {
+    let obj = {}
+    if(list.length === length){
+      obj = {
         fields: {
           2200000159703324: time, // 下单日期
           2200000148927095: [Number.parseInt(data.itemId)], // 客户
@@ -120,9 +121,62 @@ const chooseStaticImg = async (imageUrl: any, index: number, length: number) => 
           2200000170067122: data.extendedTrack + "", //延长轨个数
           2200000148927642: getValue(data.deductionInfo), //扣减要求 不扣 1 扣3-4 2 自定义 3
           2200000148927644: list, //图片
-          2200000148927641: data.l2 + "", // L2
-          2200000200111372: data.l3 + "", // L3
           2200000148927643: data.remark // 测量备注
+        }
+      }
+      if(data.trackType === 'L型左直角' || data.trackType === 'L型右直角') {
+        obj = {
+          fields: {
+            2200000159703324: time, // 下单日期
+            2200000148927095: [Number.parseInt(data.itemId)], // 客户
+            2200000159452329: [Number.parseInt(tech[0].itemId)], // 程    // 技术
+            2200000148927645: [1], // 客户确认
+            2200000148927631: data.area + "", // 房间区域
+            2200000159840961: getValue(data.motorModel), // 电机
+            2200000148927639: getValue(data.trackType), // 轨道类型
+            2200000198760074: [Number.parseInt(data.custerScheme)], // 方案
+            2200000148927632: data.number + "", //数量
+            2200000326533031: getValue(data.placeholder), //预留位置 // 靠窗 1 居中 2 靠屋 3
+            2200000148927633: getValue(data.installMethod), //安装方式  1，2
+            2200000152018959: getValue(data.openMethod), //开合方式  1，2
+            2200000148927635: getValue(data.powerPosition), //电机位置 1，2
+            2200000148927636: data.boxWidth + "", //窗帘盒宽度
+            2200000148927638: getValue(data.surfaceMaterial),// 墙体材质-木 1 混 2 金 3 石 4
+            2200000148927640: data.l1 + "", //L1(cm)
+            2200000170067122: data.extendedTrack + "", //延长轨个数
+            2200000148927642: getValue(data.deductionInfo), //扣减要求 不扣 1 扣3-4 2 自定义 3
+            2200000148927644: list, //图片
+            2200000148927641: data.l2 + "", // L2
+            2200000148927643: data.remark // 测量备注
+          }
+        }
+      }
+      if(data.trackType === '异型轨') {
+        obj = {
+          fields: {
+            2200000159703324: time, // 下单日期
+            2200000148927095: [Number.parseInt(data.itemId)], // 客户
+            2200000159452329: [Number.parseInt(tech[0].itemId)], // 程    // 技术
+            2200000148927645: [1], // 客户确认
+            2200000148927631: data.area + "", // 房间区域
+            2200000159840961: getValue(data.motorModel), // 电机
+            2200000148927639: getValue(data.trackType), // 轨道类型
+            2200000198760074: [Number.parseInt(data.custerScheme)], // 方案
+            2200000148927632: data.number + "", //数量
+            2200000326533031: getValue(data.placeholder), //预留位置 // 靠窗 1 居中 2 靠屋 3
+            2200000148927633: getValue(data.installMethod), //安装方式  1，2
+            2200000152018959: getValue(data.openMethod), //开合方式  1，2
+            2200000148927635: getValue(data.powerPosition), //电机位置 1，2
+            2200000148927636: data.boxWidth + "", //窗帘盒宽度
+            2200000148927638: getValue(data.surfaceMaterial),// 墙体材质-木 1 混 2 金 3 石 4
+            2200000148927640: data.l1 + "", //L1(cm)
+            2200000170067122: data.extendedTrack + "", //延长轨个数
+            2200000148927642: getValue(data.deductionInfo), //扣减要求 不扣 1 扣3-4 2 自定义 3
+            2200000148927644: list, //图片
+            2200000148927641: data.l2 + "", // L2
+            2200000200111372: data.l3 + "", // L3
+            2200000148927643: data.remark // 测量备注
+          }
         }
       }
       const res = await addInfo('2100000015445679', obj)

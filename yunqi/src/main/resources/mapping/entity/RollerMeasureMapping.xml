@@ -12,6 +12,7 @@
         <if test="techId!=null and techId!=''">
             and techId = #{techId}
         </if>
+        order by createTime desc
     </select>
 
     <insert id="insert" parameterType="com.yunqi.common.entity.RollerMeasure" useGeneratedKeys="true" keyProperty="id">

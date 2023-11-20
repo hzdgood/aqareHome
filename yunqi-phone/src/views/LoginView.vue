@@ -26,7 +26,7 @@
   </a-form>
 </template>
 <script lang="ts" setup>
-import { reactive, computed } from 'vue';
+import { reactive, computed, onMounted } from 'vue';
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue';
 import { useRouter } from "vue-router";
 import { httpGet } from '../config/interFace'
@@ -41,6 +41,15 @@ interface FormState {
 const formState = reactive<FormState>({
   username: '',
   password: '',
+});
+
+onMounted (function () {
+  const username = localStorage.getItem("username")
+  const password = localStorage.getItem("password")
+  const techId = localStorage.getItem("techId")
+  if(username !== null && password !== null && techId !== null) {
+    router.push({ name: "page"})
+  }
 });
 
 const onFinish = async () => {
