@@ -1,77 +1,88 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.WorkSheetMapper">
-    <insert id="insert" parameterType="com.yunqi.common.entity.WorkSheet" useGeneratedKeys="true" keyProperty="id">
-        # 新增
-        insert into worksheet (projectId, techIds, dateOfVisit, headName, type, status, standardTime,
-            workSummary, visitNode, createName, createTime, remark ) value (
-                  #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type}, #{status}, #{standardTime},
-                  #{workSummary}, #{visitNode}, #{createName}, NOW(), #{remark}
-            )
-    </insert>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.WorkSheetMapper">
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkSheet"
+			useGeneratedKeys = "true" keyProperty = "id">
+		# 新增
+		insert into worksheet (projectId, techIds, dateOfVisit, headName, type, status, standardTime,
+		                       workSummary, visitNode, createName, createTime, remark) value (
+		                                                                                      #{projectId},
+		                                                                                      #{techIds},
+		                                                                                      #{dateOfVisit},
+		                                                                                      #{headName},
+		                                                                                      #{type},
+		                                                                                      #{status},
+		                                                                                      #{standardTime},
+		                                                                                      #{workSummary},
+		                                                                                      #{visitNode},
+		                                                                                      #{createName},
+		                                                                                      NOW(),
+		                                                                                      #{remark}
+			)
+	</insert>
 
-    <insert id="update" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 详情
-        update worksheet
-        set workSummary = #{workSummary},
-            visitNode   = #{visitNode},
-            handover = #{handover},
-            updateName  = #{updateName},
-            updateTime  = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "update" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 详情
+		update worksheet
+		set workSummary = #{workSummary},
+		    visitNode   = #{visitNode},
+		    handover    = #{handover},
+		    updateName  = #{updateName},
+		    updateTime  = NOW()
+		where id = #{id}
+	</insert>
 
-    <insert id="updateInfo" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 详情
-        update worksheet
-        set dateOfVisit = #{dateOfVisit},
-            updateName  = #{updateName},
-            updateTime  = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "updateInfo" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 详情
+		update worksheet
+		set dateOfVisit = #{dateOfVisit},
+		    updateName  = #{updateName},
+		    updateTime  = NOW()
+		where id = #{id}
+	</insert>
 
-    <insert id="updateStatus" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 详情
-        update worksheet
-        set status = #{status},
-            updateName  = #{updateName},
-            updateTime  = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "updateStatus" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 详情
+		update worksheet
+		set status     = #{status},
+		    updateName = #{updateName},
+		    updateTime = NOW()
+		where id = #{id}
+	</insert>
 
-    <insert id="updatePerson" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 修改上门人员
-        update worksheet
-        set techIds    = #{techIds},
-            updateName = #{updateName},
-            updateTime = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "updatePerson" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 修改上门人员
+		update worksheet
+		set techIds    = #{techIds},
+		    updateName = #{updateName},
+		    updateTime = NOW()
+		where id = #{id}
+	</insert>
 
-    <insert id="updateHead" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 修改工单负责人
-        update worksheet
-        set headName   = #{headName},
-            updateName = #{updateName},
-            updateTime = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "updateHead" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 修改工单负责人
+		update worksheet
+		set headName   = #{headName},
+		    updateName = #{updateName},
+		    updateTime = NOW()
+		where id = #{id}
+	</insert>
 
-    <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 完结
-        update worksheet
-        set status = '已完结',
-            updateTime = NOW()
-        where id = #{workId}
-    </insert>
+	<insert id = "complete" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 完结
+		update worksheet
+		set status     = '已完结',
+		    updateTime = NOW()
+		where id = #{workId}
+	</insert>
 
-    <delete id="delete" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 无效
-        update worksheet
-        set disabled   = 'false',
-            updateName = #{updateName},
-            updateTime = NOW()
-        where id = #{id}
-    </delete>
+	<delete id = "delete" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 无效
+		update worksheet
+		set disabled   = 'false',
+		    updateName = #{updateName},
+		    updateTime = NOW()
+		where id = #{id}
+	</delete>
 </mapper>

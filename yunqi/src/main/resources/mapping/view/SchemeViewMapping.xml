@@ -1,31 +1,33 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.viewMapper.SchemeViewMapper">
-    <select id="select" resultType="com.yunqi.common.view.SchemeView">
-        # 日程-方案查询
-        select *
-        from schemeView
-        where projectId = #{projectId}
-        <if test="notInstalled!=null">
-            and notInstalled > 0
-        </if>
-        <if test="unregulated!=null">
-            and ( unregulated > 0 or notInstalled > 0 )
-        </if>
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.viewMapper.SchemeViewMapper">
+	<select id = "select" resultType = "com.yunqi.common.view.SchemeView">
+		# 日程-方案查询
+		select *
+		from schemeView
+		where projectId = #{projectId}
+		<if test = "notInstalled!=null">
+			and notInstalled > 0
+		</if>
+		<if test = "unregulated!=null">
+			and ( unregulated > 0 or notInstalled > 0 )
+		</if>
+	</select>
 
-    <select id="selectSum" resultType="com.yunqi.common.view.SchemeView">
-        # 方案查询
-        select sum(number)         as number,
-               sum(s.head)         as head,
-               sum(s.headDoor)     as headDoor,
-               sum(s.headDisclose) as headDisclose,
-               sum(s.contribution) as contribution
-        from (  SELECT
-                number, s.head, s.headDoor, s.headDisclose,
-                number * headDisclose / 2 AS contribution  FROM yunqi.schemeview s
-            where projectId = #{projectId}
-         ) s;
-    </select>
+	<select id = "selectSum" resultType = "com.yunqi.common.view.SchemeView">
+		# 方案查询
+		select sum(number)         as number,
+		       sum(s.head)         as head,
+		       sum(s.headDoor)     as headDoor,
+		       sum(s.headDisclose) as headDisclose,
+		       sum(s.contribution) as contribution
+		from (SELECT number,
+		             s.head,
+		             s.headDoor,
+		             s.headDisclose,
+		             number * headDisclose / 2 AS contribution
+		      FROM yunqi.schemeview s
+		      where projectId = #{projectId}) s;
+	</select>
 </mapper>

@@ -1,18 +1,16 @@
 package com.yunqi.common.controller;
 
 import com.yunqi.common.entity.Picture;
+import com.yunqi.common.properties.PictureProperties;
 import com.yunqi.common.service.PictureService;
 import com.yunqi.common.utils.MultipartFileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import com.yunqi.common.properties.PictureProperties;
 
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 @RestController
 @RequestMapping("/picture")
@@ -42,6 +40,7 @@ public class PictureController {
     public void insert(Picture Picture) {
         PictureService.insert(Picture);
     }
+
     @CrossOrigin
     @ResponseBody
     @PostMapping("/upload")

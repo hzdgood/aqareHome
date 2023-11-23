@@ -8,5 +8,6 @@ import java.util.List;
 @Repository
 public interface PictureMapper {
     List<Picture> select(Integer workId);
+
     void insert(Picture picture);
 }

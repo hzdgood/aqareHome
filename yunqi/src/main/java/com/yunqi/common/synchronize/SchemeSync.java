@@ -4,7 +4,9 @@ import com.yunqi.common.entity.Product;
 import com.yunqi.common.entity.Project;
 import com.yunqi.common.entity.Scheme;
 import com.yunqi.common.entity.SyncScheme;
-import com.yunqi.common.service.*;
+import com.yunqi.common.service.ProductService;
+import com.yunqi.common.service.ProjectService;
+import com.yunqi.common.service.SchemeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +32,13 @@ public class SchemeSync {
     public void synchronize(SyncScheme SyncScheme) {
         String itemId = SyncScheme.getItemId();
         List<Scheme> scheme = SchemeService.selectItem(itemId);
-        if(scheme.isEmpty()) { // 如果找不到itemId 新增
+        if (scheme.isEmpty()) { // 如果找不到itemId 新增
             List<Project> Project = ProjectService.selectItem(SyncScheme.getProjectId());
             List<Product> Product = ProductService.selectItem(SyncScheme.getProductId());
             Scheme Scheme = new Scheme();
-            if(!Project.isEmpty()){ // 查询产品 查询项目
+            if (!Project.isEmpty()) { // 查询产品 查询项目
                 Scheme.setProjectId(Project.get(0).getId());
-                if(!Product.isEmpty()){ // 查询产品
+                if (!Product.isEmpty()) { // 查询产品
                     Scheme.setProductId(Product.get(0).getId());
                     Scheme.setItemId(itemId);
                     Scheme.setNumber(Integer.parseInt(SyncScheme.getNumber()));

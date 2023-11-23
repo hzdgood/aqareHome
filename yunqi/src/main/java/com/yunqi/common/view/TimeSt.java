@@ -1,7 +1,5 @@
 package com.yunqi.common.view;
 
-import java.util.Date;
-
 public class TimeSt {
     private String name;
     private String waitday;

@@ -1,23 +1,26 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.ProductMapper">
-    <select id="select" resultType="com.yunqi.common.entity.Product">
-        select *
-        from product
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.ProductMapper">
+	<select id = "select" resultType = "com.yunqi.common.entity.Product">
+		select *
+		from product
+	</select>
 
-    <select id="selectItem" resultType="com.yunqi.common.entity.Product">
-        select *
-        from product
-        where itemId = #{itemId}
-    </select>
+	<select id = "selectItem" resultType = "com.yunqi.common.entity.Product">
+		select *
+		from product
+		where itemId = #{itemId}
+	</select>
 
-    <insert id="insert" parameterType="com.yunqi.common.entity.Product" useGeneratedKeys="true" keyProperty="id">
-        insert into product (name, code, classification, shipType,
-            price, brand, category, itemId) value (
-            #{name}, #{code}, #{classification}, #{shipType},
-            #{price}, #{brand}, #{category}, #{itemId}
-        )
-    </insert>
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.Product" useGeneratedKeys = "true"
+			keyProperty = "id">
+		insert into product (name, code, classification, shipType,
+		                     price, brand, category, itemId) value (
+		                                                            #{name}, #{code}, #{classification},
+		                                                            #{shipType},
+		                                                            #{price}, #{brand}, #{category},
+		                                                            #{itemId}
+			)
+	</insert>
 </mapper>

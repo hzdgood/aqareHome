@@ -1,20 +1,20 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.viewMapper.ProductViewMapper">
-    <select id="select" resultType="com.yunqi.common.view.ProductView">
-        # 核销记录查询
-        select * from productview where 1 = 1
-        <if test="productId!=null">
-            and productId = #{productId}
-        </if>
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.viewMapper.ProductViewMapper">
+	<select id = "select" resultType = "com.yunqi.common.view.ProductView">
+		# 核销记录查询
+		select * from productview where 1 = 1
+		<if test = "productId!=null">
+			and productId = #{productId}
+		</if>
+	</select>
 
-    <select id="selectByWork" resultType="com.yunqi.common.view.ProductView">
-        # 核销记录查询
-        select * from productview where 1 = 1
-        <if test="workId!=null">
-            and workId = #{workId}
-        </if>
-    </select>
+	<select id = "selectByWork" resultType = "com.yunqi.common.view.ProductView">
+		# 核销记录查询
+		select * from productview where 1 = 1
+		<if test = "workId!=null">
+			and workId = #{workId}
+		</if>
+	</select>
 </mapper>

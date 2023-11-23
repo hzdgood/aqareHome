@@ -1,7 +1,7 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.utils.CoordinateUtil;
 import com.yunqi.common.entity.Coordinate;
+import com.yunqi.common.utils.CoordinateUtil;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,17 +1,5 @@
 package com.yunqi.common.excel;
 
-import com.yunqi.common.entity.Tech;
-import com.yunqi.common.service.TechService;
-import com.yunqi.common.utils.ExcelUtil;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class TechExcel {
 
 //    public static void TechExcel(File file, TechService TechService) throws FileNotFoundException {

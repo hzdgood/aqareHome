@@ -25,9 +25,13 @@ public class WriterService {
         WriterMapper.insert(Writer);
     }
 
-    public List<Writer> select() { return WriterMapper.select(); }
+    public List<Writer> select() {
+        return WriterMapper.select();
+    }
 
-    public void writerCom(Integer id) { WriterMapper.writerCom(id); }
+    public void writerCom(Integer id) {
+        WriterMapper.writerCom(id);
+    }
 
     public void simpleWriter(Writer writer) {
         WriterMapper.simpleWriter(writer);

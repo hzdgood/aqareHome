@@ -1,7 +1,5 @@
 package com.yunqi.common.entity;
 
-import java.util.Date;
-
 //用户方案
 public class Scheme {
     private Integer id;

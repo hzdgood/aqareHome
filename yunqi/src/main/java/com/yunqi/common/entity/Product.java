@@ -1,7 +1,5 @@
 package com.yunqi.common.entity;
 
-import java.util.Date;
-
 public class Product {
     private Integer id;
     private String name; // 产品名称

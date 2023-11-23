@@ -1,28 +1,29 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.CommissionMapper">
-    <select id="select" resultType="com.yunqi.common.entity.Commission">
-        select *
-        from commission
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.CommissionMapper">
+	<select id = "select" resultType = "com.yunqi.common.entity.Commission">
+		select *
+		from commission
+	</select>
 
-    <insert id="insert" parameterType="com.yunqi.common.entity.Commission" useGeneratedKeys="true" keyProperty="id">
-        insert into commission (category, cost, installRatio, debugRatio,
-                                install, debug, disclose, `check`, head,
-                                headDoor, headDisclose, installContribute, debugContribute, itemId)
-            value (
-                   #{category}, #{cost}, #{installRatio}, #{debugRatio},
-                   #{install}, #{debug}, #{disclose}, #{check}, #{head},
-                   #{headDoor}, #{headDisclose}, #{installContribute}, #{debugContribute}, #{itemId}
-            )
-    </insert>
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.Commission"
+			useGeneratedKeys = "true" keyProperty = "id">
+		insert into commission (category, cost, installRatio, debugRatio,
+		                        install, debug, disclose, `check`, head,
+		                        headDoor, headDisclose, installContribute, debugContribute, itemId)
+			value (
+			       #{category}, #{cost}, #{installRatio}, #{debugRatio},
+			       #{install}, #{debug}, #{disclose}, #{check}, #{head},
+			       #{headDoor}, #{headDisclose}, #{installContribute}, #{debugContribute}, #{itemId}
+			)
+	</insert>
 
-    <insert id="update" parameterType="com.yunqi.common.entity.Commission">
+	<insert id = "update" parameterType = "com.yunqi.common.entity.Commission">
 
-    </insert>
+	</insert>
 
-    <delete id="delete" parameterType="com.yunqi.common.entity.Commission">
+	<delete id = "delete" parameterType = "com.yunqi.common.entity.Commission">
 
-    </delete>
+	</delete>
 </mapper>

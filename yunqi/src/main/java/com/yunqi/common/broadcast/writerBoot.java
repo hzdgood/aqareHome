@@ -2,11 +2,11 @@ package com.yunqi.common.broadcast;
 
 import com.yunqi.common.entity.Scheme;
 import com.yunqi.common.entity.Writer;
-import com.yunqi.common.service.*;
+import com.yunqi.common.service.SchemeService;
+import com.yunqi.common.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 
 import java.util.List;
 
@@ -20,13 +20,13 @@ public class writerBoot {
     @Autowired
     private SchemeService SchemeService;
 
-     @Scheduled(cron = "0 00 03 * * ?")
-    private void s(){
+    // @Scheduled(cron = "0 00 03 * * ?")
+    private void s() {
         List<Writer> w = WriterService.select();
-        for(Writer Writer : w) {
+        for (Writer Writer : w) {
             Integer schemeID = Writer.getSchemeId();
             List<Scheme> list = SchemeService.selectId(schemeID);
-            if(!list.isEmpty()) {
+            if (!list.isEmpty()) {
                 Scheme Scheme = new Scheme();
                 Scheme s = list.get(0);
                 double install = Writer.getInstall();

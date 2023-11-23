@@ -15,9 +15,11 @@ public class PictureService {
     public void setMapper(PictureMapper PictureMapper) {
         this.PictureMapper = PictureMapper;
     }
+
     public List<Picture> select(Integer workId) {
         return PictureMapper.select(workId);
     }
+
     public void insert(Picture picture) {
         PictureMapper.insert(picture);
     }

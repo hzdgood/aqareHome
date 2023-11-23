@@ -1,34 +1,40 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.RollerMeasureMapper">
-    <select id="select" resultType="com.yunqi.common.entity.RollerMeasure">
-        select *
-        from rollerMeasure
-        where disabled is null
-        <if test="id!=null and id!=''">
-            and id = #{id}
-        </if>
-        <if test="techId!=null and techId!=''">
-            and techId = #{techId}
-        </if>
-        order by createTime desc
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.RollerMeasureMapper">
+	<select id = "select" resultType = "com.yunqi.common.entity.RollerMeasure">
+		select *
+		from rollerMeasure
+		where disabled is null
+		<if test = "id!=null and id!=''">
+			and id = #{id}
+		</if>
+		<if test = "techId!=null and techId!=''">
+			and techId = #{techId}
+		</if>
+		order by createTime desc
+	</select>
 
-    <insert id="insert" parameterType="com.yunqi.common.entity.RollerMeasure" useGeneratedKeys="true" keyProperty="id">
-        insert into rollerMeasure (
-            projectId, techId, projectName, area, rollingScheme, length, high, surfaceWidth, type,
-            installMethod, deductionInfo, number, surfaceMaterial,
-            powerPosition, cover, imgUrl, remark, createName, createTime, itemId
-        ) value (
-            #{projectId}, #{techId}, #{projectName}, #{area}, #{rollingScheme}, #{length},
-            #{high}, #{surfaceWidth}, '卷帘',
-            #{installMethod}, #{deductionInfo}, #{number}, #{surfaceMaterial},
-            #{powerPosition}, #{cover}, #{imgUrl}, #{remark}, #{createName}, NOW(), #{itemId}
-        )
-    </insert>
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.RollerMeasure"
+			useGeneratedKeys = "true" keyProperty = "id">
+		insert into rollerMeasure (projectId, techId, projectName, area, rollingScheme, length, high,
+		                           surfaceWidth, type,
+		                           installMethod, deductionInfo, number, surfaceMaterial,
+		                           powerPosition, cover, imgUrl, remark, createName, createTime,
+		                           itemId) value (
+		                                          #{projectId}, #{techId}, #{projectName}, #{area},
+		                                          #{rollingScheme}, #{length},
+		                                          #{high}, #{surfaceWidth}, '卷帘',
+		                                          #{installMethod}, #{deductionInfo}, #{number},
+		                                          #{surfaceMaterial},
+		                                          #{powerPosition}, #{cover}, #{imgUrl}, #{remark},
+		                                          #{createName}, NOW(), #{itemId}
+			)
+	</insert>
 
-    <delete id="delete" parameterType="com.yunqi.common.entity.RollerMeasure">
-        update rollerMeasure set disabled = 'false' where id = #{id}
-    </delete>
+	<delete id = "delete" parameterType = "com.yunqi.common.entity.RollerMeasure">
+		update rollerMeasure
+		set disabled = 'false'
+		where id = #{id}
+	</delete>
 </mapper>

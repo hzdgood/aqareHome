@@ -20,6 +20,7 @@ public class ProjectView {
     private String AZTag;
     private String TSTag;
     private String JCTag;
+
     public Integer getProjectId() {
         return projectId;
     }

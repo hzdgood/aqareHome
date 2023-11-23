@@ -1,14 +1,15 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.LoggingMapper">
-    <select id="select" resultType="com.yunqi.common.entity.Logging">
-        select *
-        from log
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.LoggingMapper">
+	<select id = "select" resultType = "com.yunqi.common.entity.Logging">
+		select *
+		from log
+	</select>
 
-    <insert id="insert" parameterType="com.yunqi.common.entity.Logging" useGeneratedKeys="true" keyProperty="id">
-        insert into log (name, custom, info, date)
-        values (#{name}, #{custom}, #{info}, NOW())
-    </insert>
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.Logging" useGeneratedKeys = "true"
+			keyProperty = "id">
+		insert into log (name, custom, info, date)
+		values (#{name}, #{custom}, #{info}, NOW())
+	</insert>
 </mapper>

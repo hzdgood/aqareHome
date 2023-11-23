@@ -1,8 +1,9 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.service.TechService;
-import com.yunqi.common.view.*;
-import com.yunqi.common.viewService.*;
+import com.yunqi.common.view.TimeSt;
+import com.yunqi.common.view.WorkSt;
+import com.yunqi.common.viewService.TimeStService;
+import com.yunqi.common.viewService.WorkStService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

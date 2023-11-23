@@ -2,12 +2,14 @@ package com.yunqi.common.controller;
 
 import com.yunqi.common.entity.Scheme;
 import com.yunqi.common.entity.Writer;
-import com.yunqi.common.service.*;
+import com.yunqi.common.service.SchemeService;
+import com.yunqi.common.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/writer")
@@ -32,7 +34,7 @@ public class WriterController {
         double install = Writer.getInstall(); //本次安装
         double debug = Writer.getDebug(); //本次调试
         List<Scheme> list = SchemeService.selectId(id);
-        if(!list.isEmpty()) {
+        if (!list.isEmpty()) {
             Scheme s = list.get(0);
             double installNumber = s.getInstallNumber();
             double debugNumber = s.getDebugNumber();

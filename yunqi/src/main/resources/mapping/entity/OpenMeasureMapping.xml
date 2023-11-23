@@ -1,35 +1,44 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.OpenMeasureMapper">
-    <select id="select" resultType="com.yunqi.common.entity.OpenMeasure">
-        select *
-        from openMeasure
-        where disabled is null
-        <if test="id!=null and id!=''">
-            and id = #{id}
-        </if>
-        <if test="techId!=null and techId!=''">
-            and techId = #{techId}
-        </if>
-        order by createTime desc
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.OpenMeasureMapper">
+	<select id = "select" resultType = "com.yunqi.common.entity.OpenMeasure">
+		select *
+		from openMeasure
+		where disabled is null
+		<if test = "id!=null and id!=''">
+			and id = #{id}
+		</if>
+		<if test = "techId!=null and techId!=''">
+			and techId = #{techId}
+		</if>
+		order by createTime desc
+	</select>
 
-    <insert id="insert" parameterType="com.yunqi.common.entity.OpenMeasure" useGeneratedKeys="true" keyProperty="id">
-        insert into openMeasure (
-            projectId, techId, projectName, area, motorModel, trackType, installMethod, number, type,
-            openMethod, powerPosition, boxWidth, surfaceMaterial, placeholder, deductionInfo, imgUrl, extendedTrack,
-            remark, l1, l2, l3, createName, createTime, itemId, custerScheme
-        ) value (
-             #{projectId}, #{techId}, #{projectName}, #{area}, #{motorModel},
-            #{trackType}, #{installMethod}, #{number}, '开合帘',
-            #{openMethod}, #{powerPosition}, #{boxWidth}, #{surfaceMaterial},
-            #{placeholder}, #{deductionInfo}, #{imgUrl}, #{extendedTrack},
-            #{remark}, #{l1}, #{l2}, #{l3}, #{createName}, NOW(), #{itemId}, #{custerScheme}
-        )
-    </insert>
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.OpenMeasure"
+			useGeneratedKeys = "true" keyProperty = "id">
+		insert into openMeasure (projectId, techId, projectName, area, motorModel, trackType,
+		                         installMethod, number, type,
+		                         openMethod, powerPosition, boxWidth, surfaceMaterial, placeholder,
+		                         deductionInfo, imgUrl, extendedTrack,
+		                         remark, l1, l2, l3, createName, createTime, itemId,
+		                         custerScheme) value (
+		                                              #{projectId}, #{techId}, #{projectName}, #{area},
+		                                              #{motorModel},
+		                                              #{trackType}, #{installMethod}, #{number},
+		                                              '开合帘',
+		                                              #{openMethod}, #{powerPosition}, #{boxWidth},
+		                                              #{surfaceMaterial},
+		                                              #{placeholder}, #{deductionInfo}, #{imgUrl},
+		                                              #{extendedTrack},
+		                                              #{remark}, #{l1}, #{l2}, #{l3}, #{createName},
+		                                              NOW(), #{itemId}, #{custerScheme}
+			)
+	</insert>
 
-    <delete id="delete" parameterType="com.yunqi.common.entity.OpenMeasure">
-        update openMeasure set disabled = 'false' where id = #{id}
-    </delete>
+	<delete id = "delete" parameterType = "com.yunqi.common.entity.OpenMeasure">
+		update openMeasure
+		set disabled = 'false'
+		where id = #{id}
+	</delete>
 </mapper>

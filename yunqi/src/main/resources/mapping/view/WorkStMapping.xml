@@ -1,12 +1,12 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.viewMapper.WorkStMapper">
-    <select id="select" resultType="com.yunqi.common.view.WorkSt">
-        # 工单查询
-        select * from worksheet_st w where 1 = 1
-        <if test="dateOfVisit != null">
-            and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
-        </if>
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.viewMapper.WorkStMapper">
+	<select id = "select" resultType = "com.yunqi.common.view.WorkSt">
+		# 工单查询
+		select * from worksheet_st w where 1 = 1
+		<if test = "dateOfVisit != null">
+			and date_format(`dateOfVisit`,'%Y-%m-%d') = str_to_date(#{dateOfVisit},'%Y-%m-%d')
+		</if>
+	</select>
 </mapper>

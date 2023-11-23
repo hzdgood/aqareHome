@@ -1,50 +1,56 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yunqi.common.mapper.WorkTimeMapper">
-    <insert id="insert" parameterType="com.yunqi.common.entity.WorkTime" useGeneratedKeys="true" keyProperty="id">
-        # 新增
-        insert into worktime (workId, projectId, techId, status, createName, createTime) value (
-            #{workId}, #{projectId}, #{techId}, #{status}, #{createName}, NOW()
-            )
-    </insert>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.WorkTimeMapper">
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkTime" useGeneratedKeys = "true"
+			keyProperty = "id">
+		# 新增
+		insert into worktime (workId, projectId, techId, status, createName, createTime) value (
+		                                                                                        #{workId},
+		                                                                                        #{projectId},
+		                                                                                        #{techId},
+		                                                                                        #{status},
+		                                                                                        #{createName},
+		                                                                                        NOW()
+			)
+	</insert>
 
-    <insert id="sign" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 签到
-        update worktime
-        set signTime   = NOW(),
-            status     = '上门中',
-            updateName = #{updateName},
-            updateTime = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "sign" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 签到
+		update worktime
+		set signTime   = NOW(),
+		    status     = '上门中',
+		    updateName = #{updateName},
+		    updateTime = NOW()
+		where id = #{id}
+	</insert>
 
-    <insert id="depart" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 离开
-        update worktime
-        set departureTime = NOW(),
-            status        = '已离场',
-            updateName    = #{updateName},
-            updateTime    = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "depart" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 离开
+		update worktime
+		set departureTime = NOW(),
+		    status        = '已离场',
+		    updateName    = #{updateName},
+		    updateTime    = NOW()
+		where id = #{id}
+	</insert>
 
-    <insert id="complete" parameterType="com.yunqi.common.entity.WorkSheet">
-        # 完成
-        update worktime
-        set status     = '已完成',
-            writerTime = NOW(),
-            updateName = #{updateName},
-            updateTime = NOW()
-        where id = #{id}
-    </insert>
+	<insert id = "complete" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 完成
+		update worktime
+		set status     = '已完成',
+		    writerTime = NOW(),
+		    updateName = #{updateName},
+		    updateTime = NOW()
+		where id = #{id}
+	</insert>
 
-    <delete id="delete" parameterType="com.yunqi.common.entity.WorkTime">
-        # 无效
-        update worktime
-        set disabled   = 'false',
-            updateName = #{updateName},
-            updateTime = NOW()
-        where id = #{id}
-    </delete>
+	<delete id = "delete" parameterType = "com.yunqi.common.entity.WorkTime">
+		# 无效
+		update worktime
+		set disabled   = 'false',
+		    updateName = #{updateName},
+		    updateTime = NOW()
+		where id = #{id}
+	</delete>
 </mapper>

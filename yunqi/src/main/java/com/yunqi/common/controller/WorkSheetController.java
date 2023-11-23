@@ -1,9 +1,18 @@
 package com.yunqi.common.controller;
 
-import com.yunqi.common.entity.*;
-import com.yunqi.common.service.*;
-import com.yunqi.common.view.*;
-import com.yunqi.common.viewService.*;
+import com.yunqi.common.entity.WorkSheet;
+import com.yunqi.common.entity.WorkTime;
+import com.yunqi.common.entity.Writer;
+import com.yunqi.common.service.LoggingService;
+import com.yunqi.common.service.WorkSheetService;
+import com.yunqi.common.service.WorkTimeService;
+import com.yunqi.common.service.WriterService;
+import com.yunqi.common.view.ProductView;
+import com.yunqi.common.view.SchemeView;
+import com.yunqi.common.view.StTimeView;
+import com.yunqi.common.viewService.ProductViewService;
+import com.yunqi.common.viewService.SchemeViewService;
+import com.yunqi.common.viewService.StTimeViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,10 +80,10 @@ public class WorkSheetController {
         // 新增工单
         Integer projectId = WorkSheet.getProjectId();
         List<StTimeView> list = StTimeViewService.selectId(projectId);
-        if(!list.isEmpty()) {
-            if(Objects.equals(WorkSheet.getType(), "安装")) {
+        if (!list.isEmpty()) {
+            if (Objects.equals(WorkSheet.getType(), "安装")) {
                 WorkSheet.setStandardTime(list.get(0).getStInstall());
-            } else if(Objects.equals(WorkSheet.getType(), "调试")) {
+            } else if (Objects.equals(WorkSheet.getType(), "调试")) {
                 double st = list.get(0).getStInstall() + list.get(0).getStDebug();
                 WorkSheet.setStandardTime(st);
             } else {
@@ -193,7 +202,7 @@ public class WorkSheetController {
                         Writer.setContribution(installSum);  // 贡献度
                     } else {
                         Writer.setSumWork(install + debug);
-                        Writer.setContribution( installSum + debugSum );  // 贡献度
+                        Writer.setContribution(installSum + debugSum);  // 贡献度
                     }
                     WriterService.simpleWriter(Writer); //单人核销修改
                     // 计算负责人的单条记录的贡献

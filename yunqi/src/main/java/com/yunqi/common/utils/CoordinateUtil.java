@@ -2,6 +2,7 @@ package com.yunqi.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.yunqi.common.entity.Coordinate;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;

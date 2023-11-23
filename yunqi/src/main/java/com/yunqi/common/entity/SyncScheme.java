@@ -13,7 +13,7 @@ public class SyncScheme {
     private String notSent; //未发
     private String itemId;
     private String disabled;
-    private Date  createTime;
+    private Date createTime;
 
     public Integer getId() {
         return id;
@@ -39,9 +39,13 @@ public class SyncScheme {
         this.productId = productId;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getNumber() {
         return number;

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -74,7 +75,7 @@ public class OpenMeasureController {
         String url = list.get(0).getImgUrl();
         String[] str = url.split(",");
         List<String> data = new ArrayList<>();
-        for (String s: str) {
+        for (String s : str) {
             if (!Objects.equals(s, "") && s != null) {
                 data.add(s);
             }

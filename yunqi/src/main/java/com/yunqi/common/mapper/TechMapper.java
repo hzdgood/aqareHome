@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface TechMapper {
     List<Tech> select();
+
     List<Tech> selectId(Integer id);
 }

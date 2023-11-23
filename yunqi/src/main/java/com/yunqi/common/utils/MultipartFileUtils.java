@@ -1,14 +1,15 @@
 package com.yunqi.common.utils;
 
 import org.springframework.web.multipart.MultipartFile;
+
 import java.io.*;
-import java.util.Random;
 import java.util.UUID;
+
 public class MultipartFileUtils {
     public static String saveMultipartFile(MultipartFile[] files, String targetDirPath) {
         File toFile = null;
         String absolutePath = null;
-        for(MultipartFile file: files) {
+        for (MultipartFile file : files) {
             if (file.equals("") || file.getSize() <= 0) {
                 return null;
             } else {

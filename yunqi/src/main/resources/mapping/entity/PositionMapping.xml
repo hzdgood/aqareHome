@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.yunqi.common.mapper.PositionMapper">
+	<select id = "select" resultType = "com.yunqi.common.entity.Position">
+		select *
+		from Position
+		where projectId = #{projectId}
+	</select>
+
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.Position" useGeneratedKeys = "true"
+			keyProperty = "id">
+		insert into Position (projectId, name, latitude, longitude) value (
+		                                                                   #{projectId}, #{name},
+		                                                                   #{latitude}, #{longitude}
+			)
+	</insert>
+</mapper>
