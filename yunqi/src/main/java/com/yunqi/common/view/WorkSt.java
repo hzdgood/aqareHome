@@ -10,7 +10,7 @@ public class WorkSt {
     private String allname;
     private String headName;
     private String dateOfVisit;
-    private String dateOfLeave;
+    private String itemId;
     private double st;
 
     public Integer getWorkId() {
@@ -93,11 +93,11 @@ public class WorkSt {
         this.st = st;
     }
 
-    public String getDateOfLeave() {
-        return dateOfLeave;
+    public String getItemId() {
+        return itemId;
     }
 
-    public void setDateOfLeave(String dateOfLeave) {
-        this.dateOfLeave = dateOfLeave;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 }

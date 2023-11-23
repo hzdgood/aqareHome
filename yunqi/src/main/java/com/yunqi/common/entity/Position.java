@@ -2,8 +2,7 @@ package com.yunqi.common.entity;
 
 public class Position {
     private Integer id;
-    private Integer projectId;
-    private String name;
+    private String projectId;
     private String latitude;
     private String longitude;
 
@@ -15,20 +14,12 @@ public class Position {
         this.id = id;
     }
 
-    public Integer getProjectId() {
+    public String getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Integer projectId) {
+    public void setProjectId(String projectId) {
         this.projectId = projectId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getLatitude() {

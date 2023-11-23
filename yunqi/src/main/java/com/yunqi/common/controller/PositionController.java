@@ -52,7 +52,7 @@ public class PositionController {
     }
 
     @CrossOrigin
-    @RequestMapping("/add")
+    @RequestMapping("/insert")
     public void insert(Position Position) {
         PositionService.insert(Position);
     }

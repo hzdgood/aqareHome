@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const httpUrl = 'https://aqara.club:8082' // 生产环境
-// export const httpUrl = 'http://localhost:8082'
+// export const httpUrl = 'https://aqara.club:8082' // 生产环境
+export const httpUrl = 'http://localhost:8082'
 
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
@@ -28,6 +28,12 @@ export const addInfo = async (tableId: string, data: object) => {
   const url = huobanUrl + '/v2/item/table/' + tableId
   const info = await post(url, data)
   return info.data
+}
+
+export const SearchInfo = async (tableId: string, data: object) => {
+  const url = huobanUrl + '/v2/item/table/' + tableId + '/find'
+  const info = await post(url, data)
+  return info.data.items
 }
 
 export const uploadFile = async (formData: object) => {

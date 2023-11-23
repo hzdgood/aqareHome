@@ -1,17 +1,23 @@
 <template>
   <div class="pageConter">
-    <div class="headTop">
-      技术服务系统 版本:1.15
-    </div>
-    <div class="logout">
-      {{ loginName }} <span class="logout-span" @click="logout">登出</span>
-    </div>
+    <div class="headTop">技术服务系统 版本:1.15</div>
+    <div class="logout">{{ loginName }} <span class="logout-span" @click="logout">登出</span></div>
     <div class="wrapper">
-      <div :class="formState.select0" @click="changeSelect(0)"><RouterLink to="/workSheet">我的工单</RouterLink></div>
-      <div :class="formState.select1" @click="changeSelect(1)"><RouterLink to="/sendSheet">已发工单</RouterLink></div>
-      <div :class="formState.select3" @click="changeSelect(3)"><RouterLink to="/project">我的项目</RouterLink></div>
-      <div :class="formState.select4" @click="changeSelect(4)"><RouterLink to="/write">核销记录</RouterLink></div>
-      <div :class="formState.select5" @click="changeSelect(5)"><RouterLink to="/measure">测量单</RouterLink></div>
+      <div :class="formState.select0" @click="changeSelect(0)">
+        <RouterLink to="/workSheet">我的工单</RouterLink>
+      </div>
+      <div :class="formState.select1" @click="changeSelect(1)">
+        <RouterLink to="/sendSheet">已发工单</RouterLink>
+      </div>
+      <div :class="formState.select3" @click="changeSelect(3)">
+        <RouterLink to="/project">我的项目</RouterLink>
+      </div>
+      <div :class="formState.select4" @click="changeSelect(4)">
+        <RouterLink to="/write">核销记录</RouterLink>
+      </div>
+      <div :class="formState.select5" @click="changeSelect(5)">
+        <RouterLink to="/measure">测量单</RouterLink>
+      </div>
     </div>
     <div class="bodyContent">
       <RouterView></RouterView>
@@ -19,20 +25,21 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { reactive, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { SearchInfo, httpGet } from '../config/interFace'
 
 const router = useRouter()
 const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
 
-if(localStorage.getItem("version") !== '1.1') {
+if (localStorage.getItem('version') !== '1.1') {
   localStorage.clear()
-  router.push({ name: "login"})
+  router.push({ name: 'login' })
 }
 
 const changeSelect = (id: number) => {
-  if(id === 0 ) {
+  if (id === 0) {
     formState.select0 = 'selected'
     formState.select1 = ''
     formState.select2 = ''
@@ -40,35 +47,35 @@ const changeSelect = (id: number) => {
     formState.select4 = ''
     formState.select5 = ''
   }
-  if(id === 1 ) {
+  if (id === 1) {
     formState.select0 = ''
     formState.select1 = 'selected'
     formState.select2 = ''
     formState.select3 = ''
     formState.select4 = ''
     formState.select5 = ''
-  } else if(id === 2 ) {
+  } else if (id === 2) {
     formState.select0 = ''
     formState.select1 = ''
     formState.select2 = 'selected'
     formState.select3 = ''
     formState.select4 = ''
     formState.select5 = ''
-  } else if(id === 3 ) {
+  } else if (id === 3) {
     formState.select0 = ''
     formState.select1 = ''
     formState.select2 = ''
     formState.select3 = 'selected'
     formState.select4 = ''
     formState.select5 = ''
-  } else if(id === 4 ) {
+  } else if (id === 4) {
     formState.select0 = ''
     formState.select1 = ''
     formState.select2 = ''
     formState.select3 = ''
     formState.select4 = 'selected'
     formState.select5 = ''
-  } else if(id === 5 ) {
+  } else if (id === 5) {
     formState.select0 = ''
     formState.select1 = ''
     formState.select2 = ''
@@ -93,7 +100,7 @@ const getPosition = () => {
     obj.longitude = position.coords.longitude //当前位置经度
     return obj
   }
-  function error(err: { code: number; }) {
+  function error(err: { code: number }) {
     var errorType = ['您拒绝共享位置信息,请去app设置一下！', '获取不到位置信息', '获取位置信息超时']
     console.log(errorType[err.code - 1])
     return obj
@@ -103,11 +110,11 @@ const getPosition = () => {
 
 interface FormState {
   select0: string
-  select1: string,
-  select2: string,
-  select3: string,
-  select4: string,
-  select5: string,
+  select1: string
+  select2: string
+  select3: string
+  select4: string
+  select5: string
 }
 
 const formState = reactive<FormState>({
@@ -116,28 +123,78 @@ const formState = reactive<FormState>({
   select2: '',
   select3: '',
   select4: '',
-  select5: '',
-});
+  select5: ''
+})
 
-onMounted (function () {
-  const heads = localStorage.getItem("heads")
-  if(typeof(techId) === 'undefined' ){
-    router.push({ name: "login"})
+onMounted(async function () {
+  const heads = localStorage.getItem('heads')
+  if (typeof techId === 'undefined') {
+    router.push({ name: 'login' })
   } else {
-    if(heads === null ) {
-      router.push({ name: "login"})
+    if (heads === null) {
+      router.push({ name: 'login' })
     } else {
-      router.push({ name: "workSheet"})
+      router.push({ name: 'workSheet' })
     }
   }
-});
+  // const obj = {
+  //   where: {
+  //     and: [
+  //       {
+  //         field: 2200000145724621,
+  //         query: {
+  //           em: false
+  //         }
+  //       },
+  //       {
+  //         field: 2200000147885693,
+  //         query: {
+  //           em: false
+  //         }
+  //       },
+  //       {
+  //         field: 2200000147975001,
+  //         query: {
+  //           em: true,
+  //           in: [2]
+  //         }
+  //       }
+  //     ]
+  //   },
+  //   offset: 1000,
+  //   limit: 1500,
+  //   order_by: [
+  //     {
+  //       field: 'created_on',
+  //       sort: 'desc'
+  //     }
+  //   ]
+  // }
+  // const res = await SearchInfo('2100000014956047', obj)
+  // let value: any = undefined
+  // for (let i = 0; i < res.length; i++) {
+  //   var field = res[i].fields
+  //   const itemId = res[i].item_id
+  //   for (let j = 0; j < field.length; j++) {
+  //     if (field[j].field_id === 2200000147885693) {
+  //       value = field[j].values[0].value
+  //     }
+  //   }
+  //   if (typeof value !== 'undefined') {
+  //     const result = {
+  //       projectId: itemId + '',
+  //       latitude: value.coordinate.lat + '',
+  //       longitude: value.coordinate.lon + ''
+  //     }
+  //     await httpGet('/position/insert', result)
+  //   }
+  // }
+})
 
 const logout = () => {
   localStorage.clear()
-  router.push({ name: "login"})
+  router.push({ name: 'login' })
 }
 </script>
 
-<style src="../css/home.css" scoped>
-
-</style>
+<style src="../css/home.css" scoped></style>

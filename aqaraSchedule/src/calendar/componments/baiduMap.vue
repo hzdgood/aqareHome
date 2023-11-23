@@ -26,7 +26,7 @@
 import BaiduMap from 'vue-baidu-map/components/map/Map.vue'
 import overlay from './overlay.vue'
 import { Component, Vue, Watch } from 'vue-property-decorator'
-import { httpGet, getCoordinate } from '@/config/interFace'
+import { httpGet } from '@/config/interFace'
 @Component({
   name: 'Bmap',
   components: {
@@ -67,11 +67,13 @@ export default class Actions extends Vue {
         lat: ''
       }
       const worktimes = workTime
-      const rs = await getCoordinate({
-        address: address
+      const result1 = await httpGet('/position/select', {
+        projectId: result[i].itemId
       })
-      coordinate.lon = rs.lng
-      coordinate.lat = rs.lat
+      if (result1.length > 0) {
+        coordinate.lon = result1[0].longitude
+        coordinate.lat = result1[0].latitude
+      }
       const obj = {
         id: i,
         lng: coordinate.lon,

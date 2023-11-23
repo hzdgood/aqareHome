@@ -10,9 +10,8 @@
 
 	<insert id = "insert" parameterType = "com.yunqi.common.entity.Position" useGeneratedKeys = "true"
 			keyProperty = "id">
-		insert into Position (projectId, name, latitude, longitude) value (
-		                                                                   #{projectId}, #{name},
-		                                                                   #{latitude}, #{longitude}
-			)
+		insert into Position (projectId, latitude, longitude) value (
+		    #{projectId}, #{latitude}, #{longitude}
+		)
 	</insert>
 </mapper>
