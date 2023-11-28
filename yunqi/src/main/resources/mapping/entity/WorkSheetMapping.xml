@@ -9,22 +9,21 @@
 	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkSheet"
 			useGeneratedKeys = "true" keyProperty = "id">
 		# 新增
-		insert into worksheet (projectId, techIds, dateOfVisit, headName, type, status,
-		                       standardTime,createName, createTime) value (
-		            #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type}, #{status},
-		            #{standardTime}, #{createName}, NOW()
+		insert into worksheet (techIds, dateOfVisit, type, status, standardTime, projectItem, itemId ) value (
+		    #{techIds}, #{dateOfVisit}, #{type}, #{status}, #{standardTime}, #{projectItem}, #{itemId}
 			)
 	</insert>
 
 	<insert id = "update" parameterType = "com.yunqi.common.entity.WorkSheet">
 		# 详情
 		update worksheet
-		set workSummary = #{workSummary},
-		    visitNode   = #{visitNode},
-		    handover    = #{handover},
-		    updateName  = #{updateName},
-		    updateTime  = NOW()
-		where id = #{id}
+		set techIds = #{techIds},
+		    dateOfVisit = #{dateOfVisit},
+		    type = #{type},
+		    status = #{status},
+		    standardTime = #{standardTime},
+		    projectItem = #{projectItem}
+		where itemId = #{itemId}
 	</insert>
 
 	<insert id = "updateInfo" parameterType = "com.yunqi.common.entity.WorkSheet">

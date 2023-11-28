@@ -1,5 +1,7 @@
 package com.yunqi.common.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class WorkTime {
@@ -7,16 +9,18 @@ public class WorkTime {
     private Integer workId; // 工单
     private Integer projectId; // 项目
     private String techId; // 技术
-    private String projectName; // 项目名称
     private String status; // 状态
     private Date signTime; //签到时间
     private Date departureTime;//离开时间
     private Date writerTime; // 核销时间
+    private String standardTime;
     private String disabled;
     private String createName;
     private Date createTime;
     private String updateName;
     private Date updateTime;
+    private String worksheetItem;
+    private String itemId;
 
     public Integer getId() {
         return id;
@@ -62,16 +66,18 @@ public class WorkTime {
         return signTime;
     }
 
-    public void setSignTime(Date signTime) {
-        this.signTime = signTime;
+    public void setSignTime(String signTime) throws ParseException {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        this.signTime = sf.parse(signTime);
     }
 
     public Date getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
-        this.departureTime = departureTime;
+    public void setDepartureTime(String departureTime) throws ParseException {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        this.departureTime = sf.parse(departureTime);
     }
 
     public Date getWriterTime() {
@@ -81,6 +87,10 @@ public class WorkTime {
     public void setWriterTime(Date writerTime) {
         this.writerTime = writerTime;
     }
+
+    public String getStandardTime() { return standardTime; }
+
+    public void setStandardTime(String standardTime) { this.standardTime = standardTime; }
 
     public String getDisabled() {
         return disabled;
@@ -120,5 +130,21 @@ public class WorkTime {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getWorksheetItem() {
+        return worksheetItem;
+    }
+
+    public void setWorksheetItem(String worksheetItem) {
+        this.worksheetItem = worksheetItem;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 }

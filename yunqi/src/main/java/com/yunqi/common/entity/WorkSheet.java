@@ -1,5 +1,7 @@
 package com.yunqi.common.entity;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class WorkSheet {
@@ -16,7 +18,7 @@ public class WorkSheet {
     private String workSummary; //今日工作总结
     private String visitNode; //下次上门节点
     private String handover; // 工作交接信息
-    private double standardTime; // 额定工时
+    private String standardTime; // 额定工时
     private String remark;
     private String createName;
     private Date createTime;
@@ -61,8 +63,9 @@ public class WorkSheet {
         return dateOfVisit;
     }
 
-    public void setDateOfVisit(Date dateOfVisit) {
-        this.dateOfVisit = dateOfVisit;
+    public void setDateOfVisit(String dateOfVisit) throws ParseException {
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        this.dateOfVisit = sf.parse(dateOfVisit);
     }
 
     public String getType() {
@@ -129,11 +132,11 @@ public class WorkSheet {
         this.handover = handover;
     }
 
-    public double getStandardTime() {
+    public String getStandardTime() {
         return standardTime;
     }
 
-    public void setStandardTime(double standardTime) {
+    public void setStandardTime(String standardTime) {
         this.standardTime = standardTime;
     }
 
@@ -185,11 +188,7 @@ public class WorkSheet {
         this.projectItem = projectItem;
     }
 
-    public String getItemId() {
-        return itemId;
-    }
+    public String getItemId() { return itemId; }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
+    public void setItemId(String itemId) { this.itemId = itemId; }
 }

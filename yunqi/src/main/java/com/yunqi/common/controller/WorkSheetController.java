@@ -82,16 +82,16 @@ public class WorkSheetController {
         List<StTimeView> list = StTimeViewService.selectId(projectId);
         if (!list.isEmpty()) {
             if (Objects.equals(WorkSheet.getType(), "安装")) {
-                WorkSheet.setStandardTime(list.get(0).getStInstall());
+                WorkSheet.setStandardTime(String.valueOf(list.get(0).getStInstall()));
             } else if (Objects.equals(WorkSheet.getType(), "调试")) {
                 double st = list.get(0).getStInstall() + list.get(0).getStDebug();
-                WorkSheet.setStandardTime(st);
+                WorkSheet.setStandardTime(String.valueOf(st));
             } else {
-                WorkSheet.setStandardTime(2);
+                WorkSheet.setStandardTime("2");
             }
         } else {
             System.out.println("插入问题项目ID:" + projectId);
-            WorkSheet.setStandardTime(2);
+            WorkSheet.setStandardTime("2");
         }
         // 分别签到离开 插入个人工单表
         WorkSheetService.insert(WorkSheet);

@@ -5,6 +5,8 @@ import com.yunqi.common.mapper.WorkTimeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WorkTimeService {
     private WorkTimeMapper WorkTimeMapper;
@@ -12,6 +14,10 @@ public class WorkTimeService {
     @Autowired
     public void setMapper(WorkTimeMapper WorkTimeMapper) {
         this.WorkTimeMapper = WorkTimeMapper;
+    }
+
+    public List<WorkTime> select(WorkTime WorkTime) {
+        return WorkTimeMapper.select(WorkTime);
     }
 
     public void insert(WorkTime WorkTime) {

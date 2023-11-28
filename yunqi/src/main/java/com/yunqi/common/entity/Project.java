@@ -10,11 +10,6 @@ public class Project {
     private String telephone;// 电话
     private String address; // 地址
     private String type; //类型
-    private String houseState; //房型
-    private String situation; //情况
-    private String schedule; //进度
-    private String region; //区域
-    private String departName; //所属部门
     private String itemId;
 
     public Integer getId() {
@@ -87,46 +82,6 @@ public class Project {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    public String getHouseState() {
-        return houseState;
-    }
-
-    public void setHouseState(String houseState) {
-        this.houseState = houseState;
-    }
-
-    public String getSituation() {
-        return situation;
-    }
-
-    public void setSituation(String situation) {
-        this.situation = situation;
-    }
-
-    public String getSchedule() {
-        return schedule;
-    }
-
-    public void setSchedule(String schedule) {
-        this.schedule = schedule;
-    }
-
-    public String getRegion() {
-        return region;
-    }
-
-    public void setRegion(String region) {
-        this.region = region;
-    }
-
-    public String getDepartName() {
-        return departName;
-    }
-
-    public void setDepartName(String departName) {
-        this.departName = departName;
     }
 
     public String getItemId() {

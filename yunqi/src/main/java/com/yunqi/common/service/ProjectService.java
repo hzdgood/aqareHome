@@ -24,9 +24,7 @@ public class ProjectService {
         return projectMapper.selectId(id);
     }
 
-    public void insert(Project project) {
-        projectMapper.insert(project);
-    }
+    public void insert(Project project) { projectMapper.insert(project); }
 
     public void update(Project project) {
         projectMapper.update(project);

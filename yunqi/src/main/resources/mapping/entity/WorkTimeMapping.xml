@@ -2,13 +2,38 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.yunqi.common.mapper.WorkTimeMapper">
-	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkTime" useGeneratedKeys = "true"
-			keyProperty = "id">
+
+	<select id = "select" resultType = "com.yunqi.common.entity.WorkTime">
+		select * from worktime where itemId = #{itemId}
+	</select>
+
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkTime" useGeneratedKeys = "true" keyProperty = "id">
 		# 新增
-		insert into worktime (workId, projectId, techId, status, createName, createTime) value (
-		     #{workId}, #{projectId}, #{techId}, #{status}, #{createName}, NOW()
+		insert into worktime (techId, status, signTime, departureTime, disabled, standardTime, itemId, worksheetItem) value (
+		     #{techId}, #{status}, #{signTime}, #{departureTime}, #{disabled}, #{standardTime}, #{itemId}, #{worksheetItem}
 			)
 	</insert>
+
+	<insert id = "update" parameterType = "com.yunqi.common.entity.WorkSheet">
+		# 详情
+		update worktime
+		set techId = #{techId},
+		    status = #{status},
+		    signTime = #{signTime},
+		    departureTime = #{departureTime},
+		    disabled = #{disabled},
+		    standardTime = #{standardTime},
+		    worksheetItem = #{worksheetItem}
+		where itemId = #{itemId}
+	</insert>
+
+<!--	<insert id = "update" parameterType = "com.yunqi.common.entity.WorkTime" useGeneratedKeys = "true"-->
+<!--			keyProperty = "id">-->
+<!--		# 新增-->
+<!--		insert into worktime (techId, status, signTime, departureTime, disabled, standardTime, itemId, worksheetItem) value (-->
+<!--		    #{techId}, #{status}, #{signTime}, #{departureTime}, #{disabled}, #{standardTime}, #{itemId}, #{worksheetItem}-->
+<!--			)-->
+<!--	</insert>-->
 
 	<insert id = "sign" parameterType = "com.yunqi.common.entity.WorkSheet">
 		# 签到
