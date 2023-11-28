@@ -2,23 +2,17 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.yunqi.common.mapper.WorkSheetMapper">
+	<select id = "select" resultType = "com.yunqi.common.entity.WorkSheet">
+		select * from worksheet where itemId = #{itemId}
+	</select>
+
 	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkSheet"
 			useGeneratedKeys = "true" keyProperty = "id">
 		# 新增
-		insert into worksheet (projectId, techIds, dateOfVisit, headName, type, status, standardTime,
-		                       workSummary, visitNode, createName, createTime, remark) value (
-		                                                                                      #{projectId},
-		                                                                                      #{techIds},
-		                                                                                      #{dateOfVisit},
-		                                                                                      #{headName},
-		                                                                                      #{type},
-		                                                                                      #{status},
-		                                                                                      #{standardTime},
-		                                                                                      #{workSummary},
-		                                                                                      #{visitNode},
-		                                                                                      #{createName},
-		                                                                                      NOW(),
-		                                                                                      #{remark}
+		insert into worksheet (projectId, techIds, dateOfVisit, headName, type, status,
+		                       standardTime,createName, createTime) value (
+		            #{projectId}, #{techIds}, #{dateOfVisit}, #{headName}, #{type}, #{status},
+		            #{standardTime}, #{createName}, NOW()
 			)
 	</insert>
 

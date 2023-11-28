@@ -22,6 +22,8 @@ public class WorkSheet {
     private Date createTime;
     private String updateName;
     private Date updateTime;
+    private String projectItem;
+    private String itemId;
 
     public Integer getId() {
         return id;
@@ -173,5 +175,21 @@ public class WorkSheet {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getProjectItem() {
+        return projectItem;
+    }
+
+    public void setProjectItem(String projectItem) {
+        this.projectItem = projectItem;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 }

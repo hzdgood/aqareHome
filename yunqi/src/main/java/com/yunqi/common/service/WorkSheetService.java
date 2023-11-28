@@ -5,6 +5,8 @@ import com.yunqi.common.mapper.WorkSheetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WorkSheetService {
     private WorkSheetMapper WorkSheetMapper;
@@ -12,6 +14,10 @@ public class WorkSheetService {
     @Autowired
     public void setMapper(WorkSheetMapper WorkSheetMapper) {
         this.WorkSheetMapper = WorkSheetMapper;
+    }
+
+    public List<WorkSheet> select(WorkSheet WorkSheet) {
+        return WorkSheetMapper.select(WorkSheet);
     }
 
     public void insert(WorkSheet WorkSheet) {

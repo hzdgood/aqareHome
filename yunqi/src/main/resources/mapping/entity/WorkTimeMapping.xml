@@ -6,12 +6,7 @@
 			keyProperty = "id">
 		# 新增
 		insert into worktime (workId, projectId, techId, status, createName, createTime) value (
-		                                                                                        #{workId},
-		                                                                                        #{projectId},
-		                                                                                        #{techId},
-		                                                                                        #{status},
-		                                                                                        #{createName},
-		                                                                                        NOW()
+		     #{workId}, #{projectId}, #{techId}, #{status}, #{createName}, NOW()
 			)
 	</insert>
 
