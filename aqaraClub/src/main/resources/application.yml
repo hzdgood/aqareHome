@@ -5,11 +5,6 @@ wx:
   corpId: ww9a717b03b06063e3
   corpSecret: nZv_TArU4E_PavzhhU22B6LJtT-BjaRmDCGjE64v0xQ
   corpHttp: http://aqara.club:8081
-  # corpHttp: http://localhost:8081
-  corpId1: wwc01896e75e183e29
-  corpSecret1: CiaK3hql-CRIXYJxkaMlvGWll-gGReTrZs1DYa49GII
-  corpHttp1: http://aqara.club:8083
-  # speedyHttp: http://localhost:8081
   sessionSecret: F7lF9dM986yTDpAKlhN-CndaBA1OxCAL4j9EKZVtjbA
   httpUrl: https://qyapi.weixin.qq.com/cgi-bin/gettoken
   userIdUrl: https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo
@@ -59,11 +54,6 @@ server:
   tomcat:
     uri-encoding: UTF-8
     max-http-form-post-size: 8096
-  ssl:
-    key-store: classpath:aqara.club.jks
-    key-store-type: JKS
-    key-store-password: z57qlkz5cs04
-    enabled: false
   max-http-request-header-size: 16MB
 
 logging:
@@ -81,7 +71,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: smartHome@123
-    # password: 123456
     generate-unique-name: false
   servlet:
     multipart:

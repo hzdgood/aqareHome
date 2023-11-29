@@ -79,17 +79,4 @@ public class CustomerBoot {
         resStr += url;
         HttpService.workRequset(resStr, WX_TOKEN);
     }
-
-    // @Scheduled(cron = "0 30 17 * * ?")
-    private void CustomerData() {
-        File file = new File("D:\\客户信息表_20230413160334.xlsx");
-        if (file.exists()) {
-            System.out.print("OK");
-            try {
-                CustomerExcel.customerExcel(file, CustomerService);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
 }
