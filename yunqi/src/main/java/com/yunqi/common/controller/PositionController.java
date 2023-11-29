@@ -54,7 +54,12 @@ public class PositionController {
     @CrossOrigin
     @RequestMapping("/insert")
     public void insert(Position Position) {
-        PositionService.insert(Position);
+        List<Position> list = PositionService.select(Position);
+        if(list.isEmpty()) {
+            PositionService.insert(Position);
+        } else {
+            PositionService.update(Position);
+        }
     }
 
     @CrossOrigin

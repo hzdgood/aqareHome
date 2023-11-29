@@ -11,4 +11,6 @@ public interface PositionMapper {
     List<Position> select(Position Position);
 
     void insert(Position Position);
+
+    void update(Position position);
 }

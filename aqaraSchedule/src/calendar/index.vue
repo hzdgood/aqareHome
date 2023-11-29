@@ -32,6 +32,8 @@ import baiduMap from './componments/baiduMap.vue'
 import tableMaps from './componments/tableMap.vue'
 import workInfo from './componments/workInfo.vue'
 import '@/calendar/css/index.css'
+import { SearchInfo, httpGet, userInfo } from '../config/interFace'
+
 @Component({
   name: 'App',
   components: {
@@ -54,6 +56,52 @@ export default class Actions extends Vue {
       this.mapStatus = false
       this.tabStatus = true
     }
+  }
+
+  async mounted () {
+    await userInfo().then(function (response) {
+      localStorage.setItem('ticket', response.data.ticket)
+    })
+  //   const obj = {
+  //     offset: 2500,
+  //     limit: 3000,
+  //     order_by: [
+  //       {
+  //         field: 'created_on',
+  //         sort: 'desc'
+  //       }
+  //     ]
+  //   }
+  //   const res = await SearchInfo('2100000054696521', obj)
+  //   for (let i = 0; i < res.length; i++) {
+  //     var field = res[i].fields
+  //     const itemId = res[i].item_id
+  //     let value: any
+  //     let type: any
+  //     for (let j = 0; j < field.length; j++) {
+  //       if (field[j].field_id === 2200000450555011) {
+  //         type = field[j].values[0].name
+  //       }
+  //       if (type === '云起') {
+  //         if (field[j].field_id === 1106001118000000) {
+  //           value = field[j].values[0].value
+  //         }
+  //       } else if (type === '绿米' || type === '创米') {
+  //         if (field[j].field_id === 1105001159000000) {
+  //           value = field[j].values[0].value
+  //         }
+  //       }
+  //     }
+  //     if (typeof value !== 'undefined') {
+  //       const result = {
+  //         projectId: itemId + '',
+  //         latitude: value.coordinate.lat + '',
+  //         longitude: value.coordinate.lon + '',
+  //         type: type
+  //       }
+  //       await httpGet('/position/insert', result)
+  //     }
+  //   }
   }
 }
 </script>

@@ -3,8 +3,9 @@ package com.yunqi.common.entity;
 public class Position {
     private Integer id;
     private String projectId;
-    private String latitude;
-    private String longitude;
+    private Double latitude;
+    private Double longitude;
+    private String type;
 
     public Integer getId() {
         return id;
@@ -22,19 +23,27 @@ public class Position {
         this.projectId = projectId;
     }
 
-    public String getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

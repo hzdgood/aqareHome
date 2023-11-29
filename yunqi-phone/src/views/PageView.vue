@@ -27,8 +27,6 @@
 <script setup lang="ts">
 import { reactive, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
-import { SearchInfo, httpGet } from '../config/interFace'
-
 const router = useRouter()
 const techId = localStorage.getItem('techId')
 const loginName = localStorage.getItem('loginName')
@@ -135,35 +133,6 @@ onMounted(async function () {
       router.push({ name: 'login' })
     } else {
       router.push({ name: 'workSheet' })
-    }
-  }
-  const obj = {
-    offset: 2000,
-    limit: 2500,
-    order_by: [
-      {
-        field: 'created_on',
-        sort: 'desc'
-      }
-    ]
-  }
-  const res = await SearchInfo('2100000054696521', obj)
-  let value: any = undefined
-  for (let i = 0; i < res.length; i++) {
-    var field = res[i].fields
-    const itemId = res[i].item_id
-    for (let j = 0; j < field.length; j++) {
-      if (field[j].field_id === 1105001159000000) {
-        value = field[j].values[0].value
-      }
-    }
-    if (typeof value !== 'undefined') {
-      const result = {
-        projectId: itemId + '',
-        latitude: value.coordinate.lat + '',
-        longitude: value.coordinate.lon + ''
-      }
-      await httpGet('/position/insert', result)
     }
   }
 })

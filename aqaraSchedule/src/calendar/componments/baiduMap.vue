@@ -67,6 +67,9 @@ export default class Actions extends Vue {
       const result1 = await httpGet('/position/select', {
         projectId: result[i].itemId
       })
+      if (result1.length === 0) {
+        console.log(result[i].itemId + '-' + address + '-' + custom)
+      }
       if (result1.length > 0) {
         coordinate.lon = result1[0].longitude
         coordinate.lat = result1[0].latitude
