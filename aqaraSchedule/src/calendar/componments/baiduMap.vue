@@ -54,14 +54,11 @@ export default class Actions extends Vue {
       const workTime = result[i].st // 额定工时
       const StartTime = result[i].dateOfVisit // 上门时间
       const proStatus = '' // 当前进度
-      let address = result[i].address // 客户地址
+      const address = result[i].address // 客户地址
       const tech = result[i].leader
       const technologys = result[i].allname // 上门技术
       const type = result[i].type // 订单类型
       const workStatus = '' // 工单状态
-      if (address.indexOf('上海') !== -1) {
-        address = '上海市' + address
-      }
       const coordinate: any = {
         constlon: '',
         lat: ''

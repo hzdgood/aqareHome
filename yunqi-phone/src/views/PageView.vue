@@ -137,58 +137,35 @@ onMounted(async function () {
       router.push({ name: 'workSheet' })
     }
   }
-  // const obj = {
-  //   where: {
-  //     and: [
-  //       {
-  //         field: 2200000145724621,
-  //         query: {
-  //           em: false
-  //         }
-  //       },
-  //       {
-  //         field: 2200000147885693,
-  //         query: {
-  //           em: false
-  //         }
-  //       },
-  //       {
-  //         field: 2200000147975001,
-  //         query: {
-  //           em: true,
-  //           in: [2]
-  //         }
-  //       }
-  //     ]
-  //   },
-  //   offset: 1000,
-  //   limit: 1500,
-  //   order_by: [
-  //     {
-  //       field: 'created_on',
-  //       sort: 'desc'
-  //     }
-  //   ]
-  // }
-  // const res = await SearchInfo('2100000014956047', obj)
-  // let value: any = undefined
-  // for (let i = 0; i < res.length; i++) {
-  //   var field = res[i].fields
-  //   const itemId = res[i].item_id
-  //   for (let j = 0; j < field.length; j++) {
-  //     if (field[j].field_id === 2200000147885693) {
-  //       value = field[j].values[0].value
-  //     }
-  //   }
-  //   if (typeof value !== 'undefined') {
-  //     const result = {
-  //       projectId: itemId + '',
-  //       latitude: value.coordinate.lat + '',
-  //       longitude: value.coordinate.lon + ''
-  //     }
-  //     await httpGet('/position/insert', result)
-  //   }
-  // }
+  const obj = {
+    offset: 2000,
+    limit: 2500,
+    order_by: [
+      {
+        field: 'created_on',
+        sort: 'desc'
+      }
+    ]
+  }
+  const res = await SearchInfo('2100000054696521', obj)
+  let value: any = undefined
+  for (let i = 0; i < res.length; i++) {
+    var field = res[i].fields
+    const itemId = res[i].item_id
+    for (let j = 0; j < field.length; j++) {
+      if (field[j].field_id === 1105001159000000) {
+        value = field[j].values[0].value
+      }
+    }
+    if (typeof value !== 'undefined') {
+      const result = {
+        projectId: itemId + '',
+        latitude: value.coordinate.lat + '',
+        longitude: value.coordinate.lon + ''
+      }
+      await httpGet('/position/insert', result)
+    }
+  }
 })
 
 const logout = () => {

@@ -90,8 +90,8 @@ export default class Actions extends Vue {
         let workTime = data1[i].date[0].workTime
         const technologys = data1[i].date[0].technologys
         workTime = Math.ceil(workTime)
-        if (technologys.indexOf(',') !== -1) {
-          const d1 = technologys.split(',')
+        if (technologys.indexOf('、') !== -1) {
+          const d1 = technologys.split('、')
           for (let m = 0; m < d1.length; m++) {
             for (let n = 0; n < data.length; n++) {
               if (d1[m] === data[n].name) {
