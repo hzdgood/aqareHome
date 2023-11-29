@@ -18,17 +18,4 @@ public class CollentController {
     public void setMapper(CollentService CollentService) {
         this.CollentService = CollentService;
     }
-
-    @CrossOrigin
-    @RequestMapping("/synchronize")
-    public void synchronize(Collent Collent) {
-        String itemId = Collent.getItemId();
-        List<Collent> list = CollentService.selectId(itemId);
-        if (list.size() == 0) {
-            CollentService.insert(Collent);
-        } else {
-            CollentService.update(Collent);
-            CollentService.insert(Collent);
-        }
-    }
 }

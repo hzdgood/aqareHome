@@ -36,23 +36,6 @@ public class UserController {
     }
 
     @CrossOrigin
-    @RequestMapping("/selectAll")
-    public Map<String, Object> selectAll(@RequestBody PageReq PageReq) {
-        Map<String, Object> map = new HashMap<String, Object>();
-        List<User> list = userService.selectAll(PageReq);
-        if (PageReq.getPageNo() != null || PageReq.getPageSize() != null) {
-            Integer pageSize = Integer.parseInt(PageReq.getPageSize());
-            Integer pageNo = Integer.parseInt(PageReq.getPageNo());
-            map.put("pageNo", pageNo);
-            map.put("pageSize", pageSize);
-            map.put("totalCount", list.size());
-            map.put("totalPage", list.size() / pageSize);
-        }
-        map.put("data", list);
-        return map;
-    }
-
-    @CrossOrigin
     @RequestMapping("/insert")
     public void insert(User user) {
         userService.insert(user);
@@ -62,30 +45,5 @@ public class UserController {
     @RequestMapping("/update")
     public void update(User user) {
         userService.update(user);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/delete")
-    public void delete(String ids) {
-        List<Integer> list = new ArrayList<>();
-        if (ids.contains(",")) {
-            String[] a = ids.split(",");
-            for (int i = 0; i < a.length; i++) {
-                list.add(Integer.parseInt(a[i]));
-            }
-        } else {
-            list.add(Integer.parseInt(ids));
-        }
-        userService.deleteId(list);
-    }
-
-    @CrossOrigin
-    @RequestMapping("/synchronize")
-    public void synchronize() {
-        List<Huoban> list = huobanService.select();
-        Huoban Huoban = list.get(list.size() - 1);
-        String ticket = Huoban.getTicket();
-        userService.delete();
-        userService.synchronize(ticket);
     }
 }

@@ -4,8 +4,6 @@
     <div class="footContent" v-show="optionStatus">
       <div @click="clickInfo()" v-show="singleStatus">信息</div>
       <div @click="clickChat()" v-show="chatStatus">信息</div>
-      <div @click="clickFollow()" v-show="singleStatus">跟进</div>
-      <div @click="clickSurvey()" v-show="singleStatus">工勘</div>
       <div @click="clickScheme()" v-show="singleStatus">方案</div>
       <div @click="clickCollect()" v-show="singleStatus">收款</div>
     </div>
@@ -14,12 +12,6 @@
     </div>
     <div v-if="chatShow">
       <chat-edit @reload="reload()"></chat-edit>
-    </div>
-    <div v-if="followStatus">
-      <follow-edit @close="clickFollow()"></follow-edit>
-    </div>
-    <div v-if="surveyStatus">
-      <survey-edit @close="clickSurvey()"></survey-edit>
     </div>
     <div v-if="schemeShow">
       <scheme-edit @close="clickScheme()"></scheme-edit>

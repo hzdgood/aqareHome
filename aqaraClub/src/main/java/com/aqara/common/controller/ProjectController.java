@@ -18,17 +18,4 @@ public class ProjectController {
     public void setMapper(ProjectService ProjectService) {
         this.ProjectService = ProjectService;
     }
-
-    @CrossOrigin
-    @RequestMapping("/synchronize")
-    public void synchronize(Project Project) {
-        String code = Project.getCode();
-        List<Project> list = ProjectService.select(code);
-        if (list.size() == 0) {
-            ProjectService.insert(Project);
-        } else {
-            ProjectService.update(Project);
-            ProjectService.insert(Project);
-        }
-    }
 }

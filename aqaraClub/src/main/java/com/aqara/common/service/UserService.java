@@ -32,10 +32,6 @@ public class UserService {
         return userMapper.selectTech();
     }
 
-    public List<User> selectAll(PageReq PageReq) {
-        return userMapper.select(PageReq.getUsername(), PageReq.getEngName());
-    }
-
     public void insert(User user) {
         userMapper.insert(user);
     }
