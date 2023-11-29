@@ -88,13 +88,4 @@ public class UserController {
         userService.delete();
         userService.synchronize(ticket);
     }
-
-    /**
-     * 根据地址获取坐标
-     */
-//    @CrossOrigin
-//    @RequestMapping("/getCoordinate")
-//    public Coordinate getCoordinate(@RequestBody String address) {
-//        return CoordinateUtil.getCoordinate(address);
-//    }
 }

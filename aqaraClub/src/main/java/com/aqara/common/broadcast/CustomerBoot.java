@@ -20,9 +20,6 @@ public class CustomerBoot {
     HuobanService HuobanService;
 
     @Autowired
-    SurveyService SurveyService;
-
-    @Autowired
     CollentService CollentService;
 
     @Autowired
@@ -42,7 +39,6 @@ public class CustomerBoot {
         Huoban Huoban = list.get(list.size() - 1);
         String ticket = Huoban.getTicket();
         try {
-            SurveyService.getSurveyList(ticket);
             CustomerService.getCustomList(ticket);
             CollentService.getCollentList(ticket);
             WeixinService.getWeixinData(ticket);
@@ -60,7 +56,6 @@ public class CustomerBoot {
         String CensusData = CensusService.getCensusData();
         String customer = CustomerService.getCurrentData();
         String collent = CollentService.getCollentData();
-        String survey = SurveyService.getSurveyData();
         String resStr = "";
         if (!CensusData.equals("")) {
             resStr += CensusData + "\n";
@@ -70,9 +65,6 @@ public class CustomerBoot {
         }
         if (!collent.equals("")) {
             resStr += collent + "\n";
-        }
-        if (!survey.equals("")) {
-            resStr += survey + "\n";
         }
         resStr += url;
         HttpService.workRequset(resStr, WX_TOKEN);

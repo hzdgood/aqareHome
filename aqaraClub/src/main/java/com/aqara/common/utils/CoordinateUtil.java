@@ -5,7 +5,6 @@ import com.aqara.common.entity.Coordinate;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
