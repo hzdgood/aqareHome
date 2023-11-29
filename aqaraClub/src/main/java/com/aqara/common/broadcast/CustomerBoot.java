@@ -1,14 +1,12 @@
 package com.aqara.common.broadcast;
 
 import com.aqara.common.entity.Huoban;
-import com.aqara.common.excel.CustomerExcel;
 import com.aqara.common.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.io.File;
 import java.util.List;
 
 @Configuration // 标记配置类

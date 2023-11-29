@@ -2,7 +2,6 @@ package com.aqara.common.broadcast;
 
 import com.aqara.common.entity.Huoban;
 import com.aqara.common.entity.Project;
-import com.aqara.common.excel.ProjectExcel;
 import com.aqara.common.service.HttpService;
 import com.aqara.common.service.HuobanService;
 import com.aqara.common.service.ProjectService;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.io.File;
 import java.util.List;
 
 @Configuration // 标记配置类
@@ -91,18 +89,5 @@ public class ProjectBoot {
         HttpService.workRequset(str0 + str2, WX_TOKEN2);
         HttpService.workRequset(str0 + str3, WX_TOKEN3);
         ProjectService.deleteData();
-    }
-
-    // @Scheduled(cron = "0 08 18 * * ?")
-    private void ProjectData() {
-        File file = new File("D:\\项目汇总表_20230425173542.xlsx");
-        if (file.exists()) {
-            System.out.print("OK");
-            try {
-                ProjectExcel.projectExcel(file, ProjectService);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 }

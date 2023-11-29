@@ -70,46 +70,4 @@ public class SchemeExcel {
             return null;
         }
     }
-
-    public static void schemeToExcel(File file, SchemeService schemeService) {
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
-            Sheet sheet = workbook.getSheetAt(0);
-            int lastRowNum = sheet.getLastRowNum();
-            for (int i = 1; i <= lastRowNum; i++) {
-                Scheme Scheme = new Scheme();
-                Row row = sheet.getRow(i);
-                int lastCellNum = row.getLastCellNum();
-                for (int j = 0; j < lastCellNum; j++) {
-                    Cell cell = row.getCell(j);
-                    if (cell != null) {
-                        String value = ExcelUtil.getCellValue(cell);
-                        if (j == 0) {
-                            Scheme.setItemId(value);
-                        } else if (j == 1) {
-                            Scheme.setProjectId(value); //项目
-                        } else if (j == 2) {
-                            Scheme.setProductId(value);//产品
-                        } else if (j == 3) {
-                            Scheme.setSchemeId(value);//方案
-                        } else if (j == 4) {
-                            Scheme.setContractQuantity(value); //合同数量
-                        } else if (j == 5) {
-                            Scheme.setNumber(value);
-                        } else if (j == 6) {
-                            Scheme.setMoney(value);
-                        } else if (j == 7) {
-                            Scheme.setYesNoFee(value);
-                        } else if (j == 8) {
-                            Scheme.setServiceFee(value);
-                        }
-                    }
-                }
-                schemeService.insertToExcel(Scheme);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
