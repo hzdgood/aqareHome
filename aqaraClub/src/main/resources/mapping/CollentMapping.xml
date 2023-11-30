@@ -1,68 +1,69 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aqara.common.mapper.CollentMapper">
-    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Collent">
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="itemId" jdbcType="VARCHAR" property="itemId"/>
-        <result column="projectId" jdbcType="VARCHAR" property="projectId"/>
-        <result column="sales" jdbcType="VARCHAR" property="sales"/>
-        <result column="department" jdbcType="VARCHAR" property="department"/>
-        <result column="collectionStatus" jdbcType="VARCHAR" property="collectionStatus"/>
-        <result column="refundType" jdbcType="VARCHAR" property="refundType"/>
-        <result column="paymentMethod" jdbcType="VARCHAR" property="paymentMethod"/>
-        <result column="collection" jdbcType="VARCHAR" property="collection"/>
-        <result column="quotationID" jdbcType="VARCHAR" property="quotationID"/>
-        <result column="payee" jdbcType="VARCHAR" property="payee"/>
-        <result column="crossCheck" jdbcType="VARCHAR" property="crossCheck"/>
-        <result column="createName" jdbcType="VARCHAR" property="createName"/>
-        <result column="createTime" jdbcType="TIMESTAMP" property="createTime"/>
-        <result column="updateName" jdbcType="VARCHAR" property="updateName"/>
-        <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime"/>
-    </resultMap>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.aqara.common.mapper.CollentMapper">
+	<resultMap id = "BaseResultMap" type = "com.aqara.common.entity.Collent">
+		<result column = "id" jdbcType = "INTEGER" property = "id"/>
+		<result column = "itemId" jdbcType = "VARCHAR" property = "itemId"/>
+		<result column = "projectId" jdbcType = "VARCHAR" property = "projectId"/>
+		<result column = "sales" jdbcType = "VARCHAR" property = "sales"/>
+		<result column = "department" jdbcType = "VARCHAR" property = "department"/>
+		<result column = "collectionStatus" jdbcType = "VARCHAR" property = "collectionStatus"/>
+		<result column = "refundType" jdbcType = "VARCHAR" property = "refundType"/>
+		<result column = "paymentMethod" jdbcType = "VARCHAR" property = "paymentMethod"/>
+		<result column = "collection" jdbcType = "VARCHAR" property = "collection"/>
+		<result column = "quotationID" jdbcType = "VARCHAR" property = "quotationID"/>
+		<result column = "payee" jdbcType = "VARCHAR" property = "payee"/>
+		<result column = "crossCheck" jdbcType = "VARCHAR" property = "crossCheck"/>
+		<result column = "createName" jdbcType = "VARCHAR" property = "createName"/>
+		<result column = "createTime" jdbcType = "TIMESTAMP" property = "createTime"/>
+		<result column = "updateName" jdbcType = "VARCHAR" property = "updateName"/>
+		<result column = "updateTime" jdbcType = "TIMESTAMP" property = "updateTime"/>
+	</resultMap>
 
-    <select id="select" resultType="com.aqara.common.entity.Collent">
-        select *
-        from collent
-        where 1 = 1
-    </select>
+	<select id = "select" resultType = "com.aqara.common.entity.Collent">
+		select *
+		from collent
+		where 1 = 1
+	</select>
 
-    <select id="currentData" resultType="com.aqara.common.entity.Collent">
-        select *
-        from collent
-        where to_days(createTime) = to_days(now())
-          and collectionStatus = '合同款'
-    </select>
+	<select id = "currentData" resultType = "com.aqara.common.entity.Collent">
+		select *
+		from collent
+		where to_days(createTime) = to_days(now())
+			and collectionStatus = '合同款'
+	</select>
 
-    <insert id="insert" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true" keyProperty="id">
-        insert into collent (itemId, projectId, sales, department, collectionStatus, refundType,
-                             paymentMethod, collection, quotationID, payee, crossCheck,
-                             createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{projectId}, #{sales}, #{department}, #{collectionStatus}, #{refundType},
-                #{paymentMethod}, #{collection}, #{quotationID}, #{payee}, #{crossCheck},
-                #{createName}, NOW(), #{updateName}, NOW())
-    </insert>
+	<insert id = "insert" parameterType = "com.aqara.common.entity.Collent" useGeneratedKeys = "true"
+			keyProperty = "id">
+		insert into collent (itemId, projectId, sales, department, collectionStatus, refundType,
+		                     paymentMethod, collection, quotationID, payee, crossCheck,
+		                     createName, createTime, updateName, updateTime)
+		values (#{itemId}, #{projectId}, #{sales}, #{department}, #{collectionStatus}, #{refundType},
+		        #{paymentMethod}, #{collection}, #{quotationID}, #{payee}, #{crossCheck},
+		        #{createName}, NOW(), #{updateName}, NOW())
+	</insert>
 
-    <insert id="update" parameterType="com.aqara.common.entity.Collent">
+	<insert id = "update" parameterType = "com.aqara.common.entity.Collent">
 
-    </insert>
+	</insert>
 
-    <delete id="delete" parameterType="com.aqara.common.entity.Collent">
-        delete
-        from collent
-        where id = #{id}
-    </delete>
+	<delete id = "delete" parameterType = "com.aqara.common.entity.Collent">
+		delete
+		from collent
+		where id = #{id}
+	</delete>
 
-    <delete id="deleteAll" parameterType="com.aqara.common.entity.Collent">
-        delete from collent where id in
-        <foreach collection="ids" item="id" separator="," open="(" close=")">
-            #{id}
-        </foreach>
-    </delete>
+	<delete id = "deleteAll" parameterType = "com.aqara.common.entity.Collent">
+		delete from collent where id in
+		<foreach collection = "ids" item = "id" separator = "," open = "(" close = ")">
+			#{id}
+		</foreach>
+	</delete>
 
-    <delete id="deleteData" parameterType="com.aqara.common.entity.Collent">
-        delete
-        from collent
-        where 1 = 1
-    </delete>
+	<delete id = "deleteData" parameterType = "com.aqara.common.entity.Collent">
+		delete
+		from collent
+		where 1 = 1
+	</delete>
 </mapper>

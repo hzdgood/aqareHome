@@ -1,22 +1,23 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aqara.common.mapper.WechatMapper">
-    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Wechat">
-        <result column="id" jdbcType="INTEGER" property="id"/>
-        <result column="ticket" jdbcType="VARCHAR" property="ticket"/>
-        <result column="type" jdbcType="VARCHAR" property="type"/>
-        <result column="expired" jdbcType="VARCHAR" property="expired"/>
-        <result column="date" jdbcType="TIMESTAMP" property="date"/>
-    </resultMap>
-    <select id="select" resultType="com.aqara.common.entity.Wechat">
-        select *
-        from wechat
-        where type = #{type}
-        order by date asc
-    </select>
-    <insert id="insert" parameterType="com.aqara.common.entity.Wechat" useGeneratedKeys="true" keyProperty="id">
-        insert into wechat (ticket, type, expired, date)
-        values (#{ticket}, #{type}, #{expired}, NOW())
-    </insert>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.aqara.common.mapper.WechatMapper">
+	<resultMap id = "BaseResultMap" type = "com.aqara.common.entity.Wechat">
+		<result column = "id" jdbcType = "INTEGER" property = "id"/>
+		<result column = "ticket" jdbcType = "VARCHAR" property = "ticket"/>
+		<result column = "type" jdbcType = "VARCHAR" property = "type"/>
+		<result column = "expired" jdbcType = "VARCHAR" property = "expired"/>
+		<result column = "date" jdbcType = "TIMESTAMP" property = "date"/>
+	</resultMap>
+	<select id = "select" resultType = "com.aqara.common.entity.Wechat">
+		select *
+		from wechat
+		where type = #{type}
+		order by date asc
+	</select>
+	<insert id = "insert" parameterType = "com.aqara.common.entity.Wechat" useGeneratedKeys = "true"
+			keyProperty = "id">
+		insert into wechat (ticket, type, expired, date)
+		values (#{ticket}, #{type}, #{expired}, NOW())
+	</insert>
 </mapper>

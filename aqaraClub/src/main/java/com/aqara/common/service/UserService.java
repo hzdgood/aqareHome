@@ -2,7 +2,6 @@ package com.aqara.common.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.aqara.common.entity.PageReq;
 import com.aqara.common.entity.User;
 import com.aqara.common.mapper.UserMapper;
 import com.aqara.common.properties.HuobanProperties;

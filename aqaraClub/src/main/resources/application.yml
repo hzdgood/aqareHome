@@ -21,6 +21,19 @@ wx:
   mediaUpload: https://qyapi.weixin.qq.com/cgi-bin/media/upload
   compUser: https://qyapi.weixin.qq.com/cgi-bin/user/get
 
+qy:
+  SuiteID: ww07fc28e86a4cb184
+  CorpID: ww7f2a6c3afad0ece1
+  ProviderSecret: ywaXs_QMCi35qF299CBgQMuo_tZe1f3Y9xJZr6dygQFSuWwpOZwGDgsNQVxoFFxq
+  Secret: m0h01kZ9x72ON_fuFjG9-kLPc6zLe6lTynEgJ4pMYP0
+  provider_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_provider_token
+  suite_token: https://qyapi:weixin:qq:com/cgi-bin/service/get_suite_token
+  suite_access_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_pre_auth_code
+  session_info: https://qyapi.weixin.qq.com/cgi-bin/service/set_session_info
+  permanent_code: https://qyapi.weixin.qq.com/cgi-bin/service/get_permanent_code
+  corp_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_corp_token
+  get_permissions: https://qyapi.weixin.qq.com/cgi-bin/agent/get_permissions
+
 program:
   code2Session: https://api.weixin.qq.com/sns/jscode2session
   phoneNumber: https://api:weixin:qq:com/wxa/business/getuserphonenumber

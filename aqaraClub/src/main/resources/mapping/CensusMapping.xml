@@ -1,18 +1,18 @@
 <!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aqara.common.mapper.CensusMapper">
-    <resultMap id="BaseResultMap" type="com.aqara.common.entity.Census">
-        <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="type" jdbcType="VARCHAR" property="type"/>
-        <result column="sales" jdbcType="VARCHAR" property="sales"/>
-        <result column="department" jdbcType="VARCHAR" property="department"/>
-    </resultMap>
-    <select id="select" resultType="com.aqara.common.entity.Census">
-        SELECT w.name, w.type, u.userName, u.department
-        FROM aqara.weixin w,
-             aqara.user u
-        where w.sales = u.engName
-          and to_days(w.createTime) = to_days(now())
-    </select>
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.aqara.common.mapper.CensusMapper">
+	<resultMap id = "BaseResultMap" type = "com.aqara.common.entity.Census">
+		<result column = "name" jdbcType = "VARCHAR" property = "name"/>
+		<result column = "type" jdbcType = "VARCHAR" property = "type"/>
+		<result column = "sales" jdbcType = "VARCHAR" property = "sales"/>
+		<result column = "department" jdbcType = "VARCHAR" property = "department"/>
+	</resultMap>
+	<select id = "select" resultType = "com.aqara.common.entity.Census">
+		SELECT w.name, w.type, u.userName, u.department
+		FROM aqara.weixin w,
+		     aqara.user u
+		where w.sales = u.engName
+			and to_days(w.createTime) = to_days(now())
+	</select>
 </mapper>
