@@ -3,26 +3,34 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "com.yunqi.common.mapper.WorkSheetMapper">
 	<select id = "select" resultType = "com.yunqi.common.entity.WorkSheet">
-		select * from worksheet where itemId = #{itemId}
+		select *
+		from worksheet
+		where itemId = #{itemId}
 	</select>
 
 	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkSheet"
 			useGeneratedKeys = "true" keyProperty = "id">
 		# 新增
-		insert into worksheet (techIds, dateOfVisit, type, status, standardTime, projectItem, itemId ) value (
-		    #{techIds}, #{dateOfVisit}, #{type}, #{status}, #{standardTime}, #{projectItem}, #{itemId}
+		insert into worksheet (techIds, dateOfVisit, type, status, standardTime, projectItem, itemId) value (
+		                                                                                                     #{techIds},
+		                                                                                                     #{dateOfVisit},
+		                                                                                                     #{type},
+		                                                                                                     #{status},
+		                                                                                                     #{standardTime},
+		                                                                                                     #{projectItem},
+		                                                                                                     #{itemId}
 			)
 	</insert>
 
 	<insert id = "update" parameterType = "com.yunqi.common.entity.WorkSheet">
 		# 详情
 		update worksheet
-		set techIds = #{techIds},
-		    dateOfVisit = #{dateOfVisit},
-		    type = #{type},
-		    status = #{status},
+		set techIds      = #{techIds},
+		    dateOfVisit  = #{dateOfVisit},
+		    type         = #{type},
+		    status       = #{status},
 		    standardTime = #{standardTime},
-		    projectItem = #{projectItem}
+		    projectItem  = #{projectItem}
 		where itemId = #{itemId}
 	</insert>
 

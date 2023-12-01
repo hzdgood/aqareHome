@@ -55,7 +55,7 @@ public class PositionController {
     @RequestMapping("/insert")
     public void insert(Position Position) {
         List<Position> list = PositionService.select(Position);
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             PositionService.insert(Position);
         } else {
             PositionService.update(Position);

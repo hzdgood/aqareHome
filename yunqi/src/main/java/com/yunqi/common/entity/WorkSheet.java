@@ -188,7 +188,11 @@ public class WorkSheet {
         this.projectItem = projectItem;
     }
 
-    public String getItemId() { return itemId; }
+    public String getItemId() {
+        return itemId;
+    }
 
-    public void setItemId(String itemId) { this.itemId = itemId; }
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
 }

@@ -1,9 +1,11 @@
 package com.yunqi.common.synchronize;
 
-import com.yunqi.common.entity.*;
-import com.yunqi.common.service.*;
+import com.yunqi.common.entity.WorkSheet;
+import com.yunqi.common.service.WorkSheetService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class WorkSync {
     @RequestMapping("/workSheet")
     public void synchronize(WorkSheet WorkSheet) {
         List<WorkSheet> list = WorkSheetService.select(WorkSheet);
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             WorkSheetService.insert(WorkSheet);
         } else {
             WorkSheetService.update(WorkSheet);

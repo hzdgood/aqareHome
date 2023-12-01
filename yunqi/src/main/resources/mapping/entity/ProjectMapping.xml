@@ -23,23 +23,24 @@
 		where itemId = #{itemId}
 	</select>
 
-	<insert id = "insert" parameterType = "com.yunqi.common.entity.Project" useGeneratedKeys = "true" keyProperty = "id">
+	<insert id = "insert" parameterType = "com.yunqi.common.entity.Project" useGeneratedKeys = "true"
+			keyProperty = "id">
 		# 新增项目
 		insert into project (saleId, techId, name, telephone, address, type, itemId)
 			value (
-			  #{saleId}, #{techId}, #{name}, #{telephone}, #{address}, #{type}, #{itemId}
+			       #{saleId}, #{techId}, #{name}, #{telephone}, #{address}, #{type}, #{itemId}
 			)
 	</insert>
 
 	<insert id = "update" parameterType = "com.yunqi.common.entity.Project">
 		# 更新项目
 		update project
-		set saleId     = #{saleId},
-		    techId     = #{techId},
-		    name       = #{name},
-		    telephone  = #{telephone},
-		    address    = #{address},
-		    type       = #{type}
+		set saleId    = #{saleId},
+		    techId    = #{techId},
+		    name      = #{name},
+		    telephone = #{telephone},
+		    address   = #{address},
+		    type      = #{type}
 		where itemId = #{itemId}
 	</insert>
 </mapper>

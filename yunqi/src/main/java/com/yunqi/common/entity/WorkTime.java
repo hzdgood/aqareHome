@@ -88,9 +88,13 @@ public class WorkTime {
         this.writerTime = writerTime;
     }
 
-    public String getStandardTime() { return standardTime; }
+    public String getStandardTime() {
+        return standardTime;
+    }
 
-    public void setStandardTime(String standardTime) { this.standardTime = standardTime; }
+    public void setStandardTime(String standardTime) {
+        this.standardTime = standardTime;
+    }
 
     public String getDisabled() {
         return disabled;

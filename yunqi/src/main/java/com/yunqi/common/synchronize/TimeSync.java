@@ -19,7 +19,7 @@ public class TimeSync {
     @RequestMapping("/workTime")
     public void synchronize(WorkTime WorkTime) {
         List<WorkTime> list = WorkTimeService.select(WorkTime);
-        if(list.isEmpty()) {
+        if (list.isEmpty()) {
             WorkTimeService.insert(WorkTime);
         } else {
             WorkTimeService.update(WorkTime);

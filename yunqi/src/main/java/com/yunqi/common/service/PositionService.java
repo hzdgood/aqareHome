@@ -24,5 +24,7 @@ public class PositionService {
         return PositionMapper.select(position);
     }
 
-    public void update(Position position) { PositionMapper.update(position); }
+    public void update(Position position) {
+        PositionMapper.update(position);
+    }
 }
