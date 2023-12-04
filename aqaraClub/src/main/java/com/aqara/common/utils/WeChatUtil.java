@@ -15,8 +15,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.post(lastUrl);
         } catch (Exception e) {
-            System.out.print("获取token over");
-            e.printStackTrace();
+            System.out.print("获取token getWxToken");
         }
         return result;
     }
@@ -31,7 +30,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.post(lastUrl);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.print("获取token getUserId");
         }
         return result;
     }
@@ -46,7 +45,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.post(lastUrl);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.print("获取token getJsApiTicket");
         }
         return result;
     }
@@ -61,7 +60,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.post(lastUrl);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.print("获取token getAppTicket");
         }
         return result;
     }
@@ -76,7 +75,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.get(lastUrl);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.print("获取token getExternalContact");
         }
         return result;
     }
@@ -91,7 +90,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.get(lastUrl);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.print("获取token externalList");
         }
         return result;
     }
@@ -106,7 +105,7 @@ public class WeChatUtil {
         try {
             result = HttpUtil.get(lastUrl);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.print("获取token compUser");
         }
         return result;
     }
