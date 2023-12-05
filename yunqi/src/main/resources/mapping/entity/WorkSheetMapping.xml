@@ -11,14 +11,9 @@
 	<insert id = "insert" parameterType = "com.yunqi.common.entity.WorkSheet"
 			useGeneratedKeys = "true" keyProperty = "id">
 		# 新增
-		insert into worksheet (techIds, dateOfVisit, type, status, standardTime, projectItem, itemId) value (
-		                                                                                                     #{techIds},
-		                                                                                                     #{dateOfVisit},
-		                                                                                                     #{type},
-		                                                                                                     #{status},
-		                                                                                                     #{standardTime},
-		                                                                                                     #{projectItem},
-		                                                                                                     #{itemId}
+		insert into worksheet (techIds, dateOfVisit, type, status, standardTime, projectItem, itemId, disabled) value (
+         #{techIds}, #{dateOfVisit}, #{type}, #{status},
+         #{standardTime}, #{projectItem}, #{itemId}, #{disabled}
 			)
 	</insert>
 
@@ -26,6 +21,7 @@
 		# 详情
 		update worksheet
 		set techIds      = #{techIds},
+		    disabled     = #{disabled},
 		    dateOfVisit  = #{dateOfVisit},
 		    type         = #{type},
 		    status       = #{status},

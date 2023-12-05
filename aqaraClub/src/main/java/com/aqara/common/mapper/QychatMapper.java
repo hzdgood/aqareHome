@@ -8,5 +8,6 @@ import java.util.List;
 @Repository
 public interface QychatMapper {
     List<Qychat> select(Qychat Qychat);
+
     void insert(Qychat Qychat);
 }

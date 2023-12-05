@@ -2,7 +2,6 @@ package com.aqara.common.service;
 
 import com.aqara.common.entity.Qychat;
 import com.aqara.common.mapper.QychatMapper;
-import com.aqara.common.properties.HuobanProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,5 +17,9 @@ public class QychatService {
 
     public List<Qychat> select(Qychat Qychat) {
         return QychatMapper.select(Qychat);
+    }
+
+    public void insert(Qychat qychat) {
+        QychatMapper.insert(qychat);
     }
 }
