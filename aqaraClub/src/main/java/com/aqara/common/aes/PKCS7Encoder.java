@@ -1,3 +1,11 @@
+/**
+ * 对企业微信发送给企业后台的消息加解密示例代码.
+ *
+ * @copyright Copyright (c) 1998-2014 Tencent Inc.
+ */
+
+// ------------------------------------------------------------------------
+
 package com.aqara.common.aes;
 
 import java.nio.charset.Charset;
@@ -55,4 +63,5 @@ class PKCS7Encoder {
         byte target = (byte) (a & 0xFF);
         return (char) target;
     }
+
 }

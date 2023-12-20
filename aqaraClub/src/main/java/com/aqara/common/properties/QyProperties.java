@@ -10,6 +10,8 @@ public class QyProperties {
     private String CorpID;
     private String ProviderSecret;
     private String Secret;
+    private String token;
+    private String encodingAESKey;
     private String provider_token;
     private String suite_token;
     private String suite_access_token;
@@ -48,6 +50,22 @@ public class QyProperties {
 
     public void setSecret(String secret) {
         Secret = secret;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getEncodingAESKey() {
+        return encodingAESKey;
+    }
+
+    public void setEncodingAESKey(String encodingAESKey) {
+        this.encodingAESKey = encodingAESKey;
     }
 
     public String getProvider_token() {

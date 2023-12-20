@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.QychatMapper">
+    <select id="select" resultType="com.aqara.common.entity.Qychat">
+        select *
+        from Qychat
+        where 1 = 1
+        order by date asc
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.Qychat" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into Qychat (type ,ticket, expires_in, date)
+        values (#{type}, #{ticket}, #{expires_in}, NOW())
+    </insert>
+</mapper>

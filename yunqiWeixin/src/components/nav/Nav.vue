@@ -10,19 +10,9 @@
         跟进
       </router-link>
     </a-menu-item>
-    <a-menu-item key="发货">
-      <router-link to="/sendOut">
-        发货
-      </router-link>
-    </a-menu-item>
     <a-menu-item key="方案">
       <router-link to="/scheme">
         方案
-      </router-link>
-    </a-menu-item>
-    <a-menu-item key="工单">
-      <router-link to="/workSheet">
-        工单
       </router-link>
     </a-menu-item>
   </a-menu>

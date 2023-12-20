@@ -1,71 +1,51 @@
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "com.aqara.common.mapper.ProductMapper">
-	<resultMap id = "BaseResultMap" type = "com.aqara.common.entity.Product">
-		<result column = "id" jdbcType = "INTEGER" property = "id"/>
-		<result column = "name" jdbcType = "VARCHAR" property = "name"/>
-		<result column = "realName" jdbcType = "VARCHAR" property = "realName"/>
-		<result column = "code" jdbcType = "VARCHAR" property = "code"/>
-		<result column = "bomType" jdbcType = "VARCHAR" property = "bomType"/>
-		<result column = "classification" jdbcType = "VARCHAR" property = "classification"/>
-		<result column = "scanCode" jdbcType = "VARCHAR" property = "scanCode"/>
-		<result column = "shipType" jdbcType = "VARCHAR" property = "shipType"/>
-		<result column = "repairPrice" jdbcType = "VARCHAR" property = "repairPrice"/>
-		<result column = "purchasePrice" jdbcType = "VARCHAR" property = "purchasePrice"/>
-		<result column = "price" jdbcType = "VARCHAR" property = "price"/>
-		<result column = "brand" jdbcType = "VARCHAR" property = "brand"/>
-		<result column = "disabled" jdbcType = "VARCHAR" property = "disabled"/>
-		<result column = "createName" jdbcType = "VARCHAR" property = "createName"/>
-		<result column = "createTime" jdbcType = "TIMESTAMP" property = "createTime"/>
-		<result column = "updateName" jdbcType = "VARCHAR" property = "updateName"/>
-		<result column = "updateTime" jdbcType = "TIMESTAMP" property = "updateTime"/>
-	</resultMap>
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.ProductMapper">
+    <select id="select" resultType="com.aqara.common.entity.Product">
+        select *
+        from product where 1 = 1
+        and disabled is null
+        and disabled = ''
+        <if test="code!=null and code!=''">
+            and code = #{code}
+        </if>
+    </select>
 
-	<select id = "select" resultType = "com.aqara.common.entity.Product">
-		select *
-		from product where 1 = 1
-		and disabled is null
-		and disabled = ''
-		<if test = "code!=null and code!=''">
-			and code = #{code}
-		</if>
-	</select>
+    <insert id="insert" parameterType="com.aqara.common.entity.Product" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into product (name, realName, code, bomType, classification, scanCode,
+                             shipType, repairPrice, purchasePrice, price, brand, disabled,
+                             createName, createTime, updateName, updateTime)
+        values (#{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
+                #{shipType}, #{repairPrice}, #{purchasePrice}, #{price}, #{brand}, #{disabled},
+                #{createName}, NOW(), #{updateName}, NOW())
+    </insert>
 
-	<insert id = "insert" parameterType = "com.aqara.common.entity.Product" useGeneratedKeys = "true"
-			keyProperty = "id">
-		insert into product (name, realName, code, bomType, classification, scanCode,
-		                     shipType, repairPrice, purchasePrice, price, brand, disabled,
-		                     createName, createTime, updateName, updateTime)
-		values (#{name}, #{realName}, #{code}, #{bomType}, #{classification}, #{scanCode},
-		        #{shipType}, #{repairPrice}, #{purchasePrice}, #{price}, #{brand}, #{disabled},
-		        #{createName}, NOW(), #{updateName}, NOW())
-	</insert>
+    <insert id="update" parameterType="com.aqara.common.entity.Product">
+        update product
+        set disabled   = 'false',
+            updateName = #{updateName},
+            updateTime = NOW()
+        where code = #{code}
+    </insert>
 
-	<insert id = "update" parameterType = "com.aqara.common.entity.Product">
-		update product
-		set disabled   = 'false',
-		    updateName = #{updateName},
-		    updateTime = NOW()
-		where code = #{code}
-	</insert>
+    <delete id="delete" parameterType="com.aqara.common.entity.Product">
+        delete
+        from product
+        where id = #{id}
+    </delete>
 
-	<delete id = "delete" parameterType = "com.aqara.common.entity.Product">
-		delete
-		from product
-		where id = #{id}
-	</delete>
+    <delete id="deleteAll" parameterType="com.aqara.common.entity.Product">
+        delete from product where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 
-	<delete id = "deleteAll" parameterType = "com.aqara.common.entity.Product">
-		delete from product where id in
-		<foreach collection = "ids" item = "id" separator = "," open = "(" close = ")">
-			#{id}
-		</foreach>
-	</delete>
-
-	<delete id = "deleteData" parameterType = "com.aqara.common.entity.Product">
-		delete
-		from product
-		where 1 = 1
-	</delete>
+    <delete id="deleteData" parameterType="com.aqara.common.entity.Product">
+        delete
+        from product
+        where 1 = 1
+    </delete>
 </mapper>

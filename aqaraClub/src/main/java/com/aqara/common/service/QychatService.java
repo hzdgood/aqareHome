@@ -2,6 +2,7 @@ package com.aqara.common.service;
 
 import com.aqara.common.entity.Qychat;
 import com.aqara.common.mapper.QychatMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.List;
 public class QychatService {
     private QychatMapper QychatMapper;
 
+    @Autowired
     public void setMapper(QychatMapper QychatMapper) {
         this.QychatMapper = QychatMapper;
     }
-
 
     public List<Qychat> select(Qychat Qychat) {
         return QychatMapper.select(Qychat);

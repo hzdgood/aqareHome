@@ -1,31 +1,23 @@
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "com.aqara.common.mapper.LoggingMapper">
-	<resultMap id = "BaseResultMap" type = "com.aqara.common.entity.Logging">
-		<result column = "id" jdbcType = "INTEGER" property = "id"/>
-		<result column = "name" jdbcType = "VARCHAR" property = "name"/>
-		<result column = "custom" jdbcType = "VARCHAR" property = "custom"/>
-		<result column = "info" jdbcType = "VARCHAR" property = "info"/>
-		<result column = "date" jdbcType = "TIMESTAMP" property = "date"/>
-	</resultMap>
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.LoggingMapper">
+    <select id="select" resultType="com.aqara.common.entity.Logging">
+        select *
+        from log
+        where name = #{name}
+          and custom = #{custom}
+    </select>
 
-	<select id = "select" resultType = "com.aqara.common.entity.Logging">
-		select *
-		from log
-		where name = #{name}
-			and custom = #{custom}
-	</select>
+    <insert id="insert" parameterType="com.aqara.common.entity.Logging" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into log (name, custom, info, date)
+        values (#{name}, #{custom}, #{info}, NOW())
+    </insert>
 
-	<insert id = "insert" parameterType = "com.aqara.common.entity.Logging" useGeneratedKeys = "true"
-			keyProperty = "id">
-		insert into log (name, custom, info, date)
-		values (#{name}, #{custom}, #{info}, NOW())
-	</insert>
-
-	<delete id = "delete" parameterType = "com.aqara.common.entity.Logging">
-		delete
-		from log
-		where id = #{id}
-	</delete>
+    <delete id="delete" parameterType="com.aqara.common.entity.Logging">
+        delete
+        from log
+        where id = #{id}
+    </delete>
 </mapper>

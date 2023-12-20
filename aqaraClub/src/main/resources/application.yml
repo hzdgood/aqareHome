@@ -23,9 +23,11 @@ wx:
 
 qy:
   SuiteID: ww07fc28e86a4cb184
-  CorpID: ww7f2a6c3afad0ece1
+  CorpID: ww9a717b03b06063e3
   ProviderSecret: ywaXs_QMCi35qF299CBgQMuo_tZe1f3Y9xJZr6dygQFSuWwpOZwGDgsNQVxoFFxq
   Secret: m0h01kZ9x72ON_fuFjG9-kLPc6zLe6lTynEgJ4pMYP0
+  token: JDEtHxs7kCqHkh3HK69vFV7bQL1tz
+  encodingAESKey: b6eMvfd06o4jcrTLdrUmfuzf70Fl2Die1q1eeBBRcwO
   provider_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_provider_token
   suite_token: https://qyapi:weixin:qq:com/cgi-bin/service/get_suite_token
   suite_access_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_pre_auth_code

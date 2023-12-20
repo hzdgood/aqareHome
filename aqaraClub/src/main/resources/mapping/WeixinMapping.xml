@@ -1,41 +1,29 @@
 <!DOCTYPE mapper
-		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace = "com.aqara.common.mapper.WeixinMapper">
-	<resultMap id = "BaseResultMap" type = "com.aqara.common.entity.Weixin">
-		<result column = "id" jdbcType = "INTEGER" property = "id"/>
-		<result column = "name" jdbcType = "VARCHAR" property = "name"/>
-		<result column = "type" jdbcType = "VARCHAR" property = "type"/>
-		<result column = "sales" jdbcType = "VARCHAR" property = "sales"/>
-		<result column = "uuid" jdbcType = "VARCHAR" property = "uuid"/>
-		<result column = "createName" jdbcType = "VARCHAR" property = "createName"/>
-		<result column = "createTime" jdbcType = "TIMESTAMP" property = "createTime"/>
-		<result column = "updateName" jdbcType = "VARCHAR" property = "updateName"/>
-		<result column = "updateTime" jdbcType = "TIMESTAMP" property = "updateTime"/>
-	</resultMap>
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.WeixinMapper">
+    <select id="select" resultType="com.aqara.common.entity.Weixin">
+        select *
+        from weixin
+        where 1 = 1
+          and to_days(createTime) = to_days(now())
+    </select>
 
-	<select id = "select" resultType = "com.aqara.common.entity.Weixin">
-		select *
-		from weixin
-		where 1 = 1
-			and to_days(createTime) = to_days(now())
-	</select>
+    <select id="selectAll" resultType="com.aqara.common.entity.Weixin">
+        select *
+        from weixin
+        where 1 = 1
+    </select>
 
-	<select id = "selectAll" resultType = "com.aqara.common.entity.Weixin">
-		select *
-		from weixin
-		where 1 = 1
-	</select>
+    <insert id="insert" parameterType="com.aqara.common.entity.Weixin" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into weixin (name, type, sales, uuid, createName, createTime, updateName, updateTime)
+        values (#{name}, #{type}, #{sales}, #{uuid}, #{createName}, NOW(), #{updateName}, NOW())
+    </insert>
 
-	<insert id = "insert" parameterType = "com.aqara.common.entity.Weixin" useGeneratedKeys = "true"
-			keyProperty = "id">
-		insert into weixin (name, type, sales, uuid, createName, createTime, updateName, updateTime)
-		values (#{name}, #{type}, #{sales}, #{uuid}, #{createName}, NOW(), #{updateName}, NOW())
-	</insert>
-
-	<delete id = "delete" parameterType = "com.aqara.common.entity.Weixin">
-		delete
-		from weixin
-		where id = #{id}
-	</delete>
+    <delete id="delete" parameterType="com.aqara.common.entity.Weixin">
+        delete
+        from weixin
+        where id = #{id}
+    </delete>
 </mapper>

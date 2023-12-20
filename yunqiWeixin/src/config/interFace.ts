@@ -6,7 +6,7 @@ const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
 export const config = {
   corpId: 'wwc01896e75e183e29', // 企业ID
-  agentId: '1000009' // 应用ID
+  agentId: 'ww07fc28e86a4cb184' // 应用ID
 }
 
 const post = async (url: string, data: object) => {
