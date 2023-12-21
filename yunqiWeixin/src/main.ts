@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Chat from './Chat.vue'
 import router from './router'
 import store from './store'
 import { userInfo, fetchUserId, fetchSignatures, externalContact, config } from '@/config/interFace'
@@ -27,18 +26,6 @@ async function getTicket () {
   })
 }
 
-// 进入群页面
-async function getChat () {
-  await userInfo().then(function (response) {
-    localStorage.setItem('ticket', response.data.ticket)
-    new Vue({
-      router,
-      store,
-      render: (h) => h(Chat)
-    }).$mount('#app')
-  })
-}
-
 const doInfo = async () => {
   const result = await invoke('getContext') // 获取类型
   localStorage.setItem('contactType', result.entry) // 联系类型
@@ -56,13 +43,6 @@ const doInfo = async () => {
     localStorage.setItem('localName', localName)
     localStorage.setItem('follow_user', JSON.stringify(res1.follow_user))
     getTicket()
-  } else if (result.entry === 'group_chat_tools') {
-    const localName: any = Cookies.get('userId')
-    const result = await invoke('getCurExternalChat')
-    localStorage.setItem('userName', '')
-    localStorage.setItem('localName', localName)
-    localStorage.setItem('chatID', result.chatId) // 群ID
-    getChat()
   }
 }
 

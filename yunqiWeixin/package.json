@@ -13,6 +13,7 @@
     "compare-versions": "^4.1.1",
     "core-js": "^3.28.0",
     "element-ui": "^2.15.6",
+    "express": "^4.18.2",
     "js-cookie": "^3.0.1",
     "moment": "^2.29.4",
     "tslib": "^2.5.0",

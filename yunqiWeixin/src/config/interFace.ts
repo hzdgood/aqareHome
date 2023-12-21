@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { SignRes } from 'wecom-sidebar-jssdk'
 
-const httpUrl = 'http://aqara.club:8081' // 生产环境
+const httpUrl = 'https://aqara.club' // 生产环境
 const huobanUrl = 'https://api.huoban.com' // 伙伴云
 
 export const config = {

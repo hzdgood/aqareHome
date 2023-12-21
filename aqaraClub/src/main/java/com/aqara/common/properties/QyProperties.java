@@ -11,6 +11,7 @@ public class QyProperties {
     private String ProviderSecret;
     private String Secret;
     private String token;
+    private String authorize;
     private String encodingAESKey;
     private String provider_token;
     private String suite_token;
@@ -58,6 +59,14 @@ public class QyProperties {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getAuthorize() {
+        return authorize;
+    }
+
+    public void setAuthorize(String authorize) {
+        this.authorize = authorize;
     }
 
     public String getEncodingAESKey() {
