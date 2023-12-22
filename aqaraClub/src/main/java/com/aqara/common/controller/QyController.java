@@ -1,15 +1,18 @@
 package com.aqara.common.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.aes.WXBizMsgCrypt;
 import com.aqara.common.entity.Qychat;
 import com.aqara.common.properties.QyProperties;
 import com.aqara.common.service.QychatService;
-import com.aqara.common.service.UserService;
+import com.aqara.common.utils.CommonUtil;
 import com.aqara.common.utils.QyUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 @RestController
@@ -17,21 +20,19 @@ import java.util.List;
 public class QyController {
     private QyProperties QyProperties;
 
-    private UserService UserService;
-
     private QychatService QychatService;
 
     @Autowired
-    public void setMapper(QyProperties QyProperties, UserService UserService) {
+    public void setMapper(QyProperties QyProperties, QychatService QychatService) {
         this.QyProperties = QyProperties;
-        this.UserService = UserService;
+        this.QychatService = QychatService;
     }
 
     @RequestMapping("/getToken")
     public String getToken(Qychat qychat) {
         String token = "";
         List<Qychat> list = QychatService.select(qychat);
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             return insert(qychat.getType());
         }
         Qychat Qychat = list.get(list.size() - 1);

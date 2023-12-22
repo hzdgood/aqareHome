@@ -21,19 +21,19 @@ public class AesException extends Exception {
 	private static String getMessage(int code) {
 		switch (code) {
 		case ValidateSignatureError:
-			return "签名验证错误";
+			return "sign error";
 		case ParseJsonError:
 			return "json解析失败";
 		case ComputeSignatureError:
-			return "sha加密生成签名失败";
+			return "sha error";
 		case IllegalAesKey:
-			return "SymmetricKey非法";
+			return "SymmetricKey error";
 		case ValidateCorpidError:
-			return "corpid校验失败";
+			return "corpId xxxm1";
 		case EncryptAESError:
-			return "aes加密失败";
+			return "aes error";
 		case DecryptAESError:
-			return "aes解密失败";
+			return "aes error - 1";
 		case IllegalBuffer:
 			return "解密后得到的buffer非法";
 		case EncodeBase64Error:
@@ -41,7 +41,7 @@ public class AesException extends Exception {
 		case DecodeBase64Error:
 			return "base64解密错误";
 		case GenReturnJsonError:
-			return "josn生成失败";
+			return "json生成失败";
 		default:
 			return null; // cannot be
 		}

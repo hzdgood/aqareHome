@@ -98,7 +98,7 @@ public class HttpUtil {
 
     public static String dataPost(String requestUrl, JSONObject obj) {
         try {
-            if (requestUrl == null || requestUrl.equals("")) {
+            if (requestUrl.isEmpty()) {
                 return null;
             }
             URL url = new URL(requestUrl);

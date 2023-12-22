@@ -45,7 +45,7 @@ public class WechatController {
     public String getToken(@RequestBody String type) {
         String token = "";
         List<Wechat> list = WechatService.select(type);
-        if (list.size() == 0) {
+        if (list.isEmpty()) {
             return insert(type);
         }
         Wechat Wechat = list.get(list.size() - 1);
@@ -81,25 +81,26 @@ public class WechatController {
     @RequestMapping("/getUserId")
     public String getUserId(String code, String type) {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
         String res = WeChatUtil.getUserId(WxProperties, token, code);
         JSONObject jsonObject = JSONObject.parseObject(res);
-        String UserId = jsonObject.getString("UserId");
-        return UserId;
+        if (jsonObject != null) {
+            return jsonObject.getString("UserId");
+        }
+        return null;
     }
 
     @CrossOrigin
     @RequestMapping("/compUser")
     public JSONObject compUser(String userId, String type) {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
         String res = WeChatUtil.compUser(WxProperties, token, userId);
-        JSONObject jsonObject = JSONObject.parseObject(res);
-        return jsonObject;
+        return JSONObject.parseObject(res);
     }
 
     /**
@@ -109,11 +110,10 @@ public class WechatController {
     @RequestMapping("/signatures")
     public JSONObject signatures(String url, String type) {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
-        JSONObject jsonObject = CommonUtil.signatures(url, token, WxProperties);
-        return jsonObject;
+        return CommonUtil.signatures(url, token, WxProperties);
     }
 
     /**
@@ -123,11 +123,10 @@ public class WechatController {
     @RequestMapping("/externalContact")
     public String externalContact(String userId, String type) {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
-        String res = WeChatUtil.getExternalContact(userId, token, WxProperties);
-        return res;
+        return WeChatUtil.getExternalContact(userId, token, WxProperties);
     }
 
     /**
@@ -137,11 +136,10 @@ public class WechatController {
     @RequestMapping("/externalList")
     public String externalList(String userId, String type) {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
-        String res = WeChatUtil.externalList(userId, token, WxProperties);
-        return res;
+        return WeChatUtil.externalList(userId, token, WxProperties);
     }
 
     /**
@@ -151,14 +149,13 @@ public class WechatController {
     @RequestMapping("/groupChat")
     public String groupChat(String chatId, String type) {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
         String userInfo = WxProperties.getGroupChat() + "?access_token=" + token;
         JSONObject obj = new JSONObject();
         obj.put("chat_id", chatId);
-        String res = HttpUtil.dataPost(userInfo, obj);
-        return res;
+        return HttpUtil.dataPost(userInfo, obj);
     }
 
     /**
@@ -168,14 +165,13 @@ public class WechatController {
     @RequestMapping("/groupList")
     public String groupList(String chatId, String type) {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
         String userInfo = WxProperties.getGroupList() + "?access_token=" + token;
         JSONObject obj = new JSONObject();
         obj.put("chat_id", chatId);
-        String res = HttpUtil.dataPost(userInfo, obj);
-        return res;
+        return HttpUtil.dataPost(userInfo, obj);
     }
 
     /**
@@ -185,7 +181,7 @@ public class WechatController {
     @RequestMapping("/mediaUpload")
     public String mediaUpload(String fileName, String type) throws IOException {
         String token = getToken(type);
-        if (token == null || token.equals("")) {
+        if (token.isEmpty()) {
             return null;
         }
         String mediaUrl = WxProperties.getMediaUpload() + "?access_token=" + token + "&type=file";
@@ -210,16 +206,16 @@ public class WechatController {
         userId = userId.replaceAll(" ", "");
         if (userId.contains("、")) {
             String[] users = userId.split("、");
-            for (int i = 0; i < users.length; i++) {
-                List<User> userlist = UserService.select(users[i], "");
-                if (userlist.size() > 0) {
+            for (String user : users) {
+                List<User> userlist = UserService.select(user, "");
+                if (!userlist.isEmpty()) {
                     User User = userlist.get(0);
                     attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
                 }
             }
         } else {
             List<User> userlist = UserService.select(userId, "");
-            if (userlist.size() > 0) {
+            if (!userlist.isEmpty()) {
                 User User = userlist.get(0);
                 attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
             }
@@ -227,9 +223,9 @@ public class WechatController {
         attendees = attendees.substring(0, attendees.length() - 1);
         try {
             Date date = sdf.parse(Schedule.getStartTime());
-            Long StartTime = date.getTime() / 1000;
+            long StartTime = date.getTime() / 1000;
             int adds = Integer.parseInt(Schedule.getDuration()) * 3600;
-            Long endTime = date.getTime() / 1000 + adds;
+            long endTime = date.getTime() / 1000 + adds;
             String token = getToken(CommonProperties.getServiceUrl());
             String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
             String str = "{\"schedule\": {"

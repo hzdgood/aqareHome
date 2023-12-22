@@ -8,8 +8,10 @@ import org.springframework.stereotype.Component;
 public class QyProperties {
     private String SuiteID;
     private String CorpID;
+    private String authCorpID;
     private String ProviderSecret;
     private String Secret;
+    private String preAuthCode;
     private String token;
     private String authorize;
     private String encodingAESKey;
@@ -37,6 +39,14 @@ public class QyProperties {
         CorpID = corpID;
     }
 
+    public String getAuthCorpID() {
+        return authCorpID;
+    }
+
+    public void setAuthCorpID(String authCorpID) {
+        this.authCorpID = authCorpID;
+    }
+
     public String getProviderSecret() {
         return ProviderSecret;
     }
@@ -51,6 +61,14 @@ public class QyProperties {
 
     public void setSecret(String secret) {
         Secret = secret;
+    }
+
+    public String getPreAuthCode() {
+        return preAuthCode;
+    }
+
+    public void setPreAuthCode(String preAuthCode) {
+        this.preAuthCode = preAuthCode;
     }
 
     public String getToken() {

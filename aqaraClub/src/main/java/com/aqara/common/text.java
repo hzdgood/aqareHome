@@ -8,12 +8,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 
 public class text {
-    static String suiteXml = "<xml>\n" +
-            "<SuiteId><![CDATA[ww07fc28e86a4cb184]]></SuiteId>\n" +
-            "<InfoType><![CDATA[suite_ticket]]></InfoType>\n" +
-            "<TimeStamp>1702539927</TimeStamp>\n" +
-            "<SuiteTicket><![CDATA[4a6Kp0AfbUTmulPpBGA7sm3TU2_06SYdyBBS6PfbB7CIhXPpAnktfKDozvz0q-P8]]></SuiteTicket>\n" +
-            "</xml>";
+    static String suiteXml = "<xml><SuiteId><![CDATA[ww07fc28e86a4cb184]]></SuiteId><AuthCode><![CDATA[UYsZnScGqcxH1nxMUmdvgkgY5F-ULGbEh8CoWdnNovh3boDLLKmfNxsT6kcD2a3iRzhYYlPuCxy6auvlzlyrKzE00TmjIjumRy8ygV1_2Xw]]></AuthCode><InfoType><![CDATA[create_auth]]></InfoType><TimeStamp>1703245346</TimeStamp></xml>";
 
     public static void main(String[] args) {
         XmlMapper xml = new XmlMapper();

@@ -1,6 +1,7 @@
 package com.aqara.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.properties.QyProperties;
 import com.aqara.common.properties.WxProperties;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -139,5 +140,9 @@ public class CommonUtil {
         resObj.put("corp", signature);
         resObj.put("app", appTicket);
         return resObj;
+    }
+
+    public static JSONObject qySignatures(String url, String token, QyProperties qyProperties) {
+        return null;
     }
 }

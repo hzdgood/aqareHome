@@ -1,51 +1,31 @@
-import Vue from 'vue'
+import { createApp } from 'vue'
+import { createPinia } from 'pinia'
+import Antd, { ConfigProvider } from 'ant-design-vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
-import { userInfo, fetchUserId, fetchSignatures, externalContact, config } from '@/config/interFace'
-import { checkRedirect, initSdk, invoke } from 'wecom-sidebar-jssdk'
-import Cookies from 'js-cookie'
-import BaiduMap from 'vue-baidu-map'
-import 'ant-design-vue/dist/antd.css'
+import 'ant-design-vue/dist/reset.css'
+import './css/main.css'
+import * as ww from '@wecom/jssdk'
 
-Vue.use(BaiduMap, {
-  ak: 'agKsVR6GPw5eCCzGF5dhnkMoOF9sZGdi'
+ww.register({
+  corpId: 'ww7f2a6c3afad0ece1',       // 必填，当前用户企业所属企业ID
+  suiteId: 'ww07fc28e86a4cb184',               // 必填，当前授权的SuiteID
+  jsApiList: ['shareAppMessage'], 	 // 必填，需要使用的JSAPI列表
+  getSuiteConfigSignature,			 // 必填，生成应用登录授权的签名
 })
-Vue.config.productionTip = false
-localStorage.clear()
+  
+async function getSuiteConfigSignature(url: any) {
+  let timestamp = "";
+  let nonceStr = "";
+  let signature = "";
 
-// 获取伙伴云ticket
-async function getTicket () {
-  await userInfo().then(function (response) {
-    localStorage.setItem('ticket', response.data.ticket)
-    new Vue({
-      router,
-      store,
-      render: (h) => h(App)
-    }).$mount('#app')
-  })
+  // 根据 url 生成应用签名，生成方法同上，但需要使用应用登录授权的 jsapi_ticket
+  return { timestamp, nonceStr, signature }
 }
 
-const doInfo = async () => {
-  const result = await invoke('getContext') // 获取类型
-  localStorage.setItem('contactType', result.entry) // 联系类型
-  if (result.entry === 'single_chat_tools') {
-    // 单个客户
-    const res = await invoke('getCurExternalContact')
-    const userId = res.userId
-    localStorage.setItem('userId', userId) // 外部客户userID
-    const res1: any = await externalContact(userId)
-    const userName = res1.external_contact.name
-    const avatar = res1.external_contact.avatar
-    const localName: any = Cookies.get('userId')
-    localStorage.setItem('userName', userName)
-    localStorage.setItem('avatar', avatar)
-    localStorage.setItem('localName', localName)
-    localStorage.setItem('follow_user', JSON.stringify(res1.follow_user))
-    getTicket()
-  }
-}
-
-checkRedirect(config, fetchUserId) // 重定向获取 code（用户身份）
-  .then(() => initSdk(config, fetchSignatures)) // 初始化 JsSdk
-  .then(() => doInfo())
+const app = createApp(App)
+app.use(ConfigProvider);
+app.use(createPinia())
+app.use(router)
+app.use(Antd)
+app.mount('#app')
