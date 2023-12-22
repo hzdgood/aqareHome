@@ -21,14 +21,13 @@ wx:
   compUser: https://qyapi.weixin.qq.com/cgi-bin/user/get
 
 qy:
-  SuiteID: ww07fc28e86a4cb184
-  Secret: m0h01kZ9x72ON_fuFjG9-kLPc6zLe6lTynEgJ4pMYP0
-  authCorpID: wpo56YDQAApivG7Tjc2NrwtUmf08iEnA
-  CorpID: ww7f2a6c3afad0ece1
-  ProviderSecret: ywaXs_QMCi35qF299CBgQMuo_tZe1f3Y9xJZr6dygQFSuWwpOZwGDgsNQVxoFFxq
-  token: JDEtHxs7kCqHkh3HK69vFV7bQL1tz
+  SuiteID: ww2fd0def5ad11e2cf
+  Secret: aVnpGsZAPvWpRsZvyliB8qiXbZhkeGzvJdSv4OP14H0
+  CorpID: ww9a717b03b06063e3
+  ProviderSecret: hC2cKE9D2d_D4gXwpNMcSxp49T95UQz7YVSUaV4xC0DUoqwBoJ5jKhvtv8SCFEdX
+  token: 9IoF
+  encodingAESKey: cg5DROA8wox9A5F8cFrM4GTVOuTaH45K5IXT4v31D7v
   authorize: https://open.weixin.qq.com/connect/oauth2/authorize
-  encodingAESKey: b6eMvfd06o4jcrTLdrUmfuzf70Fl2Die1q1eeBBRcwO
   preAuthCode: https://qyapi.weixin.qq.com/cgi-bin/service/get_pre_auth_code
   provider_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_provider_token
   suite_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_suite_token

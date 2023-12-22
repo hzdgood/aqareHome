@@ -36,32 +36,7 @@ public class SuiteController {
         this.QychatService = QychatService;
         this.QyProperties = QyProperties;
     }
-
-    @CrossOrigin // 开发
-    @RequestMapping(value = "login", method = RequestMethod.GET) // 测试成功
-    public void getlogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String msg_signature = request.getParameter("msg_signature");
-        String timestamp = request.getParameter("timestamp");
-        String nonce = request.getParameter("nonce");
-        String echostr = request.getParameter("echostr");
-        WXBizMsgCrypt wxcpt = new WXBizMsgCrypt(
-                QyProperties.getToken(),
-                QyProperties.getEncodingAESKey(),
-                QyProperties.getCorpID());
-        String sEchoStr = wxcpt.VerifyURL(msg_signature, timestamp, nonce, echostr);
-        PrintWriter out = response.getWriter();
-        out.print(sEchoStr);
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "login", method = RequestMethod.POST) // 企业微信回调
-    public void postLogin(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String type = request.getParameter("type");
-        System.out.println("type:" + type);
-        PrintWriter out = response.getWriter();
-        out.print("success");
-    }
-
+    
     @CrossOrigin
     @RequestMapping(value = "receive", method = RequestMethod.GET) // 测试成功
     public void doGetValid(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -102,12 +77,7 @@ public class SuiteController {
                 Qychat.setExpires_in(TimeStamp);
                 getSuiteToken(SuiteTicket);
             } else if(InfoType.equals("create_auth")) {
-                String AuthCode = (String) JsonUtil.findValueByKey(json, "create_auth");
-                String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
-                Qychat.setTicket(AuthCode);
-                Qychat.setExpires_in(TimeStamp);
-             } else if(InfoType.equals("change_auth")) {
-                String AuthCode = (String) JsonUtil.findValueByKey(json, "change_auth");
+                String AuthCode = (String) JsonUtil.findValueByKey(json, "AuthCode");
                 String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
                 Qychat.setTicket(AuthCode);
                 Qychat.setExpires_in(TimeStamp);
