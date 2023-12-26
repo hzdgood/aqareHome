@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/suite")
@@ -58,18 +60,41 @@ public class SuiteController {
     @RequestMapping(value = "receive", method = RequestMethod.POST) // 企业微信回调 OK
     public void doPostValid(HttpServletRequest request, HttpServletResponse response) {
         String corpId = request.getParameter("CORPID");
+        String tempStr = "";
         String id = "";
+        JSONObject json = null;
+        StringBuilder postData = new StringBuilder();
+        try {
+            ServletInputStream in = request.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            while (null != (tempStr = reader.readLine())) {
+                postData.append(tempStr);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         if(corpId != null && !corpId.isEmpty()){
-            id = corpId; // 测试企业CorpId
             if(corpId.equals("$CORPID$")){
-                id = QyProperties.getCorpID();
+                Qychat Qychat = new Qychat();
+                Qychat.setType("corpId");
+                List<Qychat> list = QychatService.select(Qychat);
+                id = list.get(0).getTicket();
+            } else {
+                id = corpId; // 测试企业CorpId
+                Qychat Qychat = new Qychat();
+                Qychat.setType("corpId");
+                Qychat.setTicket(corpId);
+                Qychat.setExpires_in("0000");
+                QychatService.update(Qychat);
             }
         } else {
             id = QyProperties.getSuiteID();
         }
-        JSONObject json = null;
         try {
-            json = getJson(request, id);
+            if(!Objects.equals(id, "")) {
+                json = getJson(request, id, postData.toString());
+                System.out.println("json:" + json);
+            }
             PrintWriter out = response.getWriter();
             out.print("success");
         } catch (Exception e) {
@@ -80,6 +105,7 @@ public class SuiteController {
             System.out.println("timestamp:" + timestamp);
             System.out.println("nonce:" + nonce);
             System.out.println("corpId:" + corpId);
+            System.out.println("postData" + postData);
             System.out.println("corp xml");
         }
         String InfoType = null;
@@ -105,20 +131,12 @@ public class SuiteController {
         }
     }
 
-    public JSONObject getJson(HttpServletRequest request, String id) throws Exception{ // OK
+    public JSONObject getJson(HttpServletRequest request, String id, String postData) throws Exception{ // OK
         WXBizMsgCrypt wxcpt = new WXBizMsgCrypt(QyProperties.getToken(), QyProperties.getEncodingAESKey(), id);
-        StringBuilder postData = new StringBuilder();   // 密文，对应POST请求的数据
-        ServletInputStream in = request.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        String tempStr = "";   //作为输出字符串的临时串，用于判断是否读取完毕
         String msg_signature = request.getParameter("msg_signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
-        while (null != (tempStr = reader.readLine())) {
-            postData.append(tempStr);
-        }
-        System.out.println("postData" + postData);
-        String xml = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, postData.toString());
+        String xml = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, postData);
         XmlMapper xmlMapper = new XmlMapper();
         JsonNode jsonNode = xmlMapper.readTree(xml);
         return JSONObject.parseObject(jsonNode.toString());

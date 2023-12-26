@@ -4,7 +4,7 @@
 <mapper namespace="com.aqara.common.mapper.QychatMapper">
     <select id="select" resultType="com.aqara.common.entity.Qychat">
         select *
-        from Qychat
+        from Qychat where type = #{type}
         order by date asc
     </select>
 

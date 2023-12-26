@@ -15,19 +15,15 @@ import java.io.InputStreamReader;
 public class text {
     public static void main(String[] args) throws Exception {
         WXBizMsgCrypt wxcpt = new WXBizMsgCrypt("9IoF",
-                "hC2cKE9D2d_D4gXwpNMcSxp49T95UQz7YVSUaV4xC0DUoqwBoJ5jKhvtv8SCFEdX",
+                "cg5DROA8wox9A5F8cFrM4GTVOuTaH45K5IXT4v31D7v",
                 "ww9a717b03b06063e3");
-        String msg_signature = "a5f71a8e13b9d809af392e21d170b528be1ab8a6";
-        String timestamp = "1703572938";
-        String nonce = "1703810911";
-        String postData = "<xml><ToUserName><![CDATA[ww2fd0def5ad11e2cf]]></ToUserName>" +
-                "<Encrypt><![CDATA[lVTdDsSWCFcUBYSa+ggGyo/77+P1/xw3CL5DJoOcsuID1leef3GUJnmVvGLt6vEUR5n80d1wvWfk+xSmgjcvJ9OR/q4oLN4mQHbitHVWo2BGCoWFE1ikCMQGi0mkglpbjJF4IVVpd6ptoN7Tc7A8l80cbSmRbdcSn9g3riMLzTyRccQ9tnRVBfsIDCphoBV64d+r6pbi4PfrM/xoagbPHoatwHe8l2JIGIDghIWBRVGgyKLr2+991YQ9mD17l4/sGU8QjXsu7YNUqnGX9asbIh6Kf/1t8W4JLl0/iIC+t2EgMKouJMomkYc6POwwheSaUagChM2pzf+BbfZxQPCiWnpmO7AtUmErjEFlPW49Vt58flhJYu9Ht0BP6I+K2DZ1]]></Encrypt>" +
+        String msg_signature = "30865067e034ddac83fbe08fe0346c355d288909";
+        String timestamp = "1703580143";
+        String nonce = "1703184633";
+        String postData = "<xml>" +
+                "<ToUserName><![CDATA[ww2fd0def5ad11e2cf]]></ToUserName>" +
+                "<Encrypt><![CDATA[T0fKCxyCyLJhPCD9PdSqyHTZ8uUN2Btm1MX4FFmsKkM7cjiyEgsearzKq2nNB5xEuXkb4uMBqKDV5kDiYSmSfnKVNrQIPcYK+gqN9cBoHNZSyQ/1wQE3Fg38kcz/tvvzEJmLkQlzPNyBG7w9VvGpeaW9dA6HDeMKEqRyWebPmE0DNhDCDCJnwQt8MtQ62ztlzUhJJmWGCcdGId4jVvDAqcLHDAtqSBHqZx2FCjU5gp+pIkEDfEHwQequPc/NghIMspwkgSxahj6G9Erf8NrfDuKaCvCh+MFkOiZXgYqzd5d2NVIhPqhSkD8jrWwL7JLq13icnI7V4fGzCuPiijJHeCMMEsbDVriUZY7ed++4mEn4k1msKTgrqZbd82NEac0b]]></Encrypt>" +
                 "<AgentID><![CDATA[]]></AgentID></xml>";
-//        ServletInputStream in = request.getInputStream();
-//        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-//        while (null != (tempStr = reader.readLine())) {
-//            postData.append(tempStr);
-//        }
         String xml = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, postData);
         System.out.printf("xml:" + xml);
     }
