@@ -10,4 +10,6 @@ public interface QychatMapper {
     List<Qychat> select(Qychat Qychat);
 
     void insert(Qychat Qychat);
+
+    void update(Qychat qychat);
 }

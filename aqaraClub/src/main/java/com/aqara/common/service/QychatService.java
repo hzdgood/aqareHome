@@ -23,4 +23,6 @@ public class QychatService {
     public void insert(Qychat qychat) {
         QychatMapper.insert(qychat);
     }
+
+    public void update(Qychat qychat) { QychatMapper.update(qychat); }
 }

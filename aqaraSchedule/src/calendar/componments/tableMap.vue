@@ -42,7 +42,6 @@ export default class Actions extends Vue {
   async selectPage () {
     this.layerList = []
     const result = await httpGet('/schedule/work', {
-      // person: this.$store.state.selectData,
       dateOfVisit: this.$store.state.CalendarDate
     })
     for (let i = 0; i < result.length; i++) {
@@ -80,8 +79,8 @@ export default class Actions extends Vue {
         ]
       }
       this.layerList.push(obj)
-      this.$store.state.layerList = this.layerList
     }
+    this.$store.state.layerList = this.layerList
   }
 }
 </script>

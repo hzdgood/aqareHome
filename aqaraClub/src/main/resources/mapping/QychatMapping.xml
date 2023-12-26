@@ -5,7 +5,6 @@
     <select id="select" resultType="com.aqara.common.entity.Qychat">
         select *
         from Qychat
-        where 1 = 1
         order by date asc
     </select>
 
@@ -13,5 +12,14 @@
             keyProperty="id">
         insert into Qychat (type ,ticket, expires_in, date)
         values (#{type}, #{ticket}, #{expires_in}, NOW())
+    </insert>
+
+    <insert id="update" parameterType="com.aqara.common.entity.Qychat" useGeneratedKeys="true"
+            keyProperty="id">
+        update Qychat set
+            ticket = #{ticket},
+            expires_in = #{expires_in},
+            date = NOW()
+        where type = #{type}
     </insert>
 </mapper>

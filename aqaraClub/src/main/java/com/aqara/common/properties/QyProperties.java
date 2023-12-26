@@ -17,7 +17,6 @@ public class QyProperties {
     private String encodingAESKey;
     private String provider_token;
     private String suite_token;
-    private String suite_access_token;
     private String session_info;
     private String permanent_code;
     private String corp_token;
@@ -111,13 +110,6 @@ public class QyProperties {
         this.suite_token = suite_token;
     }
 
-    public String getSuite_access_token() {
-        return suite_access_token;
-    }
-
-    public void setSuite_access_token(String suite_access_token) {
-        this.suite_access_token = suite_access_token;
-    }
 
     public String getSession_info() {
         return session_info;

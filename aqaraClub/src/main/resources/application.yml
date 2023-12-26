@@ -31,7 +31,6 @@ qy:
   preAuthCode: https://qyapi.weixin.qq.com/cgi-bin/service/get_pre_auth_code
   provider_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_provider_token
   suite_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_suite_token
-  suite_access_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_pre_auth_code
   session_info: https://qyapi.weixin.qq.com/cgi-bin/service/set_session_info
   permanent_code: https://qyapi.weixin.qq.com/cgi-bin/service/get_permanent_code
   corp_token: https://qyapi.weixin.qq.com/cgi-bin/service/get_corp_token
@@ -42,7 +41,7 @@ program:
   phoneNumber: https://api:weixin:qq:com/wxa/business/getuserphonenumber
   accessToken: https://api.weixin.qq.com/cgi-bin/token
   appid: wxa364df767870a7d5
-  secret: 21b5fef5e9259d320826fde8e0375b92
+  secret: 21b5fef5e9259d320826fde8e0375b92aaa
 
 common:
   localFiles: E:\\AqaraUpload\\

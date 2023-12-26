@@ -95,8 +95,8 @@ export default class Actions extends Vue {
         ]
       }
       this.layerList.push(obj)
-      this.$store.state.layerList = this.layerList
     }
+    this.$store.state.layerList = this.layerList
   }
 
   handler ({ BMap, map }: any) {
