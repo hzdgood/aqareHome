@@ -9,6 +9,7 @@ import com.aqara.common.aes.WXBizMsgCrypt;
 import com.aqara.common.properties.QyProperties;
 import com.aqara.common.utils.HttpUtil;
 import com.aqara.common.utils.JsonUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import jakarta.servlet.ServletInputStream;
@@ -21,11 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 @RequestMapping("/suite")
@@ -61,7 +60,6 @@ public class SuiteController {
     public void doPostValid(HttpServletRequest request, HttpServletResponse response) {
         String corpId = request.getParameter("CORPID");
         String tempStr = "";
-        String id = "";
         JSONObject json = null;
         StringBuilder postData = new StringBuilder();
         try {
@@ -70,43 +68,19 @@ public class SuiteController {
             while (null != (tempStr = reader.readLine())) {
                 postData.append(tempStr);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        if(corpId != null && !corpId.isEmpty()){
-            if(corpId.equals("$CORPID$")){
-                Qychat Qychat = new Qychat();
-                Qychat.setType("corpId");
-                List<Qychat> list = QychatService.select(Qychat);
-                id = list.get(0).getTicket();
+            if(corpId != null && !corpId.isEmpty()) {
+                if(corpId.equals("$CORPID$")){
+                    json = getCrypt(request, postData.toString());
+                } else {
+                    json = getCryptCorp(request, postData.toString());
+                }
             } else {
-                id = corpId; // 测试企业CorpId
-                Qychat Qychat = new Qychat();
-                Qychat.setType("corpId");
-                Qychat.setTicket(corpId);
-                Qychat.setExpires_in("0000");
-                QychatService.update(Qychat);
-            }
-        } else {
-            id = QyProperties.getSuiteID();
-        }
-        try {
-            if(!Objects.equals(id, "")) {
-                json = getJson(request, id, postData.toString());
-                System.out.println("json:" + json);
+                json = getCrypt(request, postData.toString());
             }
             PrintWriter out = response.getWriter();
             out.print("success");
         } catch (Exception e) {
-            String msg_signature = request.getParameter("msg_signature");
-            String timestamp = request.getParameter("timestamp");
-            String nonce = request.getParameter("nonce");
-            System.out.println("msg_signature:" + msg_signature);
-            System.out.println("timestamp:" + timestamp);
-            System.out.println("nonce:" + nonce);
-            System.out.println("corpId:" + corpId);
-            System.out.println("postData" + postData);
-            System.out.println("corp xml");
+            System.out.println("suit 85");
         }
         String InfoType = null;
         if (json != null) {
@@ -120,19 +94,50 @@ public class SuiteController {
                 String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
                 Qychat.setTicket(SuiteTicket);
                 Qychat.setExpires_in(TimeStamp);
+                getSuiteToken(SuiteTicket); // suite_access_token
                 QychatService.update(Qychat);
             } else if(InfoType.equals("create_auth")) {
                 String AuthCode = (String) JsonUtil.findValueByKey(json, "AuthCode");
                 String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
                 Qychat.setTicket(AuthCode);
                 Qychat.setExpires_in(TimeStamp);
+                getCorpToken(AuthCode);
                 QychatService.update(Qychat);
             }
         }
     }
 
-    public JSONObject getJson(HttpServletRequest request, String id, String postData) throws Exception{ // OK
-        WXBizMsgCrypt wxcpt = new WXBizMsgCrypt(QyProperties.getToken(), QyProperties.getEncodingAESKey(), id);
+    public JSONObject getCrypt(HttpServletRequest request, String postData){
+        JSONObject json = null;
+        try {
+            json = getJson(request, postData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return json;
+    }
+
+    private JSONObject getCryptCorp(HttpServletRequest request, String postData) {
+        JSONObject json = null;
+        try {
+            json = getJsonCorp(request, postData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return json;
+    }
+
+    public JSONObject getJson(HttpServletRequest request, String postData) throws Exception{ // OK
+        WXBizMsgCrypt wrap = new WXBizMsgCrypt(QyProperties.getToken(), QyProperties.getEncodingAESKey(), QyProperties.getSuiteID());
+        return getJsonObject(request, postData, wrap);
+    }
+
+    public JSONObject getJsonCorp(HttpServletRequest request, String postData) throws Exception{ // OK
+        WXBizMsgCrypt wrap = new WXBizMsgCrypt(QyProperties.getToken(), QyProperties.getEncodingAESKey(), QyProperties.getCorpID());
+        return getJsonObject(request, postData, wrap);
+    }
+
+    private JSONObject getJsonObject(HttpServletRequest request, String postData, WXBizMsgCrypt wxcpt) throws AesException, JsonProcessingException {
         String msg_signature = request.getParameter("msg_signature");
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
@@ -142,19 +147,26 @@ public class SuiteController {
         return JSONObject.parseObject(jsonNode.toString());
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "suiteToken") // 获取第三方应用凭证 OK
-    private void getSuiteToken(String SuiteTicket) { // 获取第三方应用凭证
+    public void getCorpToken(String auth_code) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("suite_access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String suite_access_token = list.get(0).getTicket();
+        getPermanentCode(suite_access_token, auth_code);
+    }
+
+    private void getSuiteToken(String suite_ticket) { // 获取第三方应用凭证
+        Qychat Qychat = new Qychat();
         JSONObject JSONObject = new JSONObject();
         JSONObject.put("suite_id", QyProperties.getSuiteID());
         JSONObject.put("suite_secret", QyProperties.getSecret());
-        JSONObject.put("suite_ticket", SuiteTicket);
+        JSONObject.put("suite_ticket", suite_ticket);
         String str = HttpUtil.dataPost(QyProperties.getSuite_token(), JSONObject);
         JSONObject json = JSON.parseObject(str);
+        String suite_access_token = "";
         if (json != null) {
-            String suite_access_token = (String) JsonUtil.findValueByKey(json, "suite_access_token");
+            suite_access_token = (String) JsonUtil.findValueByKey(json, "suite_access_token");
             Integer expires_in = (Integer) JsonUtil.findValueByKey(json, "expires_in");
-            Qychat Qychat = new Qychat();
             Qychat.setType("suite_access_token");
             Qychat.setTicket(suite_access_token);
             if (expires_in != null) {
@@ -164,86 +176,26 @@ public class SuiteController {
         }
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "preAuthCode") // 获取预授权码
-    private void getPreAuthCode(String SUITE_ACCESS_TOKEN) { // 获取企业永久授权码
-        JSONObject JSONObject = new JSONObject();
-        String url = QyProperties.getPreAuthCode() + "?suite_access_token=" + SUITE_ACCESS_TOKEN;
-        String str = HttpUtil.dataPost(url, JSONObject);
-        JSONObject json = JSON.parseObject(str);
-        if (json != null) {
-            String pre_auth_code = (String) JsonUtil.findValueByKey(json, "pre_auth_code");
-            Integer expires_in = (Integer) JsonUtil.findValueByKey(json, "expires_in");
-            Qychat Qychat = new Qychat();
-            Qychat.setType("pre_auth_code");
-            Qychat.setTicket(pre_auth_code);
-            if (expires_in != null) {
-                Qychat.setExpires_in(expires_in.toString());
-            }
-            QychatService.update(Qychat);
-        }
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "PermanentCode") // 获取企业永久授权码
-    private void getPermanentCode(String SUITE_ACCESS_TOKEN, String auth_code) { // 获取企业永久授权
+    private void getPermanentCode(String suite_access_token, String auth_code) { // 获取企业永久授权
         JSONObject JSONObject = new JSONObject();
         JSONObject.put("auth_code", auth_code);
-        String url = QyProperties.getPermanent_code() + "?suite_access_token=" + SUITE_ACCESS_TOKEN;
+        String url = QyProperties.getPermanent_code() + "?suite_access_token=" + suite_access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
-        System.out.println("Permanent str:" + str);
         JSONObject json = JSON.parseObject(str);
+        System.out.println(json);
         if (json != null) {
-            String res_code = (String) JsonUtil.findValueByKey(json, "permanent_code");
-            Qychat Qychat = new Qychat();
-            Qychat.setType("permanent_code");
-            Qychat.setTicket(res_code);
-            Qychat.setExpires_in("0000");
-            QychatService.update(Qychat);
+            String permanent_code = json.getString("permanent_code");
+            String access_token = json.getString("access_token");
+            updateTable("permanent_code", permanent_code, "0000");
+            updateTable("access_token", access_token, "7200");
         }
     }
 
-    @CrossOrigin
-    @RequestMapping(value = "corpToken") // 获取企业凭证
-    private void getCorpToken(String SUITE_ACCESS_TOKEN, String auth_code) {
-        JSONObject JSONObject = new JSONObject();
-        JSONObject.put("auth_corpid", QyProperties.getCorpID());
-        JSONObject.put("permanent_code", auth_code);
-        String url = QyProperties.getCorp_token() + "?suite_access_token=" + SUITE_ACCESS_TOKEN;
-        String str = HttpUtil.dataPost(url, JSONObject);
-        JSONObject json = JSON.parseObject(str);
-        if (json != null) {
-            String res_code = (String) JsonUtil.findValueByKey(json, "access_token");
-            Integer expires_in = (Integer) JsonUtil.findValueByKey(json, "expires_in");
-            Qychat Qychat = new Qychat();
-            Qychat.setType("access_token");
-            Qychat.setTicket(res_code);
-            if (expires_in != null) {
-                Qychat.setExpires_in(expires_in.toString());
-            }
-            QychatService.update(Qychat);
-        }
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "providerToken") // 获取企业凭证 OK
-    private void getProviderToken() {
-        JSONObject JSONObject = new JSONObject();
-        JSONObject.put("corpid", QyProperties.getCorpID());
-        JSONObject.put("provider_secret", QyProperties.getProviderSecret());
-        String url = QyProperties.getProvider_token();
-        String str = HttpUtil.dataPost(url, JSONObject);
-        JSONObject json = JSON.parseObject(str);
-        if (json != null) {
-            String res_code = (String) JsonUtil.findValueByKey(json, "provider_access_token");
-            Integer expires_in = (Integer) JsonUtil.findValueByKey(json, "expires_in");
-            Qychat Qychat = new Qychat();
-            Qychat.setType("provider_access_token");
-            Qychat.setTicket(res_code);
-            if (expires_in != null) {
-                Qychat.setExpires_in(expires_in.toString());
-            }
-            QychatService.update(Qychat);
-        }
+    public void updateTable(String type, String ticket, String expires_in) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType(type);
+        Qychat.setTicket(ticket);
+        Qychat.setExpires_in(expires_in);
+        QychatService.update(Qychat);
     }
 }

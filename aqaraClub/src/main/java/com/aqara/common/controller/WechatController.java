@@ -197,47 +197,47 @@ public class WechatController {
     /*
      * 工勘链接企业微信日程接口 *****
      * */
-    @CrossOrigin
-    @RequestMapping("/schedule/add")
-    public void schedule(Schedule Schedule) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String userId = Schedule.getUserid();
-        String attendees = "";
-        userId = userId.replaceAll(" ", "");
-        if (userId.contains("、")) {
-            String[] users = userId.split("、");
-            for (String user : users) {
-                List<User> userlist = UserService.select(user, "");
-                if (!userlist.isEmpty()) {
-                    User User = userlist.get(0);
-                    attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
-                }
-            }
-        } else {
-            List<User> userlist = UserService.select(userId, "");
-            if (!userlist.isEmpty()) {
-                User User = userlist.get(0);
-                attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
-            }
-        }
-        attendees = attendees.substring(0, attendees.length() - 1);
-        try {
-            Date date = sdf.parse(Schedule.getStartTime());
-            long StartTime = date.getTime() / 1000;
-            int adds = Integer.parseInt(Schedule.getDuration()) * 3600;
-            long endTime = date.getTime() / 1000 + adds;
-            String token = getToken(CommonProperties.getServiceUrl());
-            String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
-            String str = "{\"schedule\": {"
-                    + "\"start_time\": " + StartTime + ","
-                    + "\"end_time\": " + endTime + ","
-                    + "\"summary\": \"" + Schedule.getSummary() + "\","
-                    + "\"description\": \"" + Schedule.getDescription() + "\","
-                    + "\"location\": \"" + Schedule.getLocation() + "\","
-                    + "\"attendees\": [" + attendees + "]}}";
-            HttpUtil.scheduleReq(userInfo, str);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @CrossOrigin
+//    @RequestMapping("/schedule/add")
+//    public void schedule(Schedule Schedule) {
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        String userId = Schedule.getUserid();
+//        String attendees = "";
+//        userId = userId.replaceAll(" ", "");
+//        if (userId.contains("、")) {
+//            String[] users = userId.split("、");
+//            for (String user : users) {
+//                List<User> userlist = UserService.select(user, "");
+//                if (!userlist.isEmpty()) {
+//                    User User = userlist.get(0);
+//                    attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
+//                }
+//            }
+//        } else {
+//            List<User> userlist = UserService.select(userId, "");
+//            if (!userlist.isEmpty()) {
+//                User User = userlist.get(0);
+//                attendees += "{\"userid\": \"" + User.getEngName() + "\"},";
+//            }
+//        }
+//        attendees = attendees.substring(0, attendees.length() - 1);
+//        try {
+//            Date date = sdf.parse(Schedule.getStartTime());
+//            long StartTime = date.getTime() / 1000;
+//            int adds = Integer.parseInt(Schedule.getDuration()) * 3600;
+//            long endTime = date.getTime() / 1000 + adds;
+//            String token = getToken(CommonProperties.getServiceUrl());
+//            String userInfo = WxProperties.getScheduleAdd() + "?access_token=" + token;
+//            String str = "{\"schedule\": {"
+//                    + "\"start_time\": " + StartTime + ","
+//                    + "\"end_time\": " + endTime + ","
+//                    + "\"summary\": \"" + Schedule.getSummary() + "\","
+//                    + "\"description\": \"" + Schedule.getDescription() + "\","
+//                    + "\"location\": \"" + Schedule.getLocation() + "\","
+//                    + "\"attendees\": [" + attendees + "]}}";
+//            HttpUtil.scheduleReq(userInfo, str);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

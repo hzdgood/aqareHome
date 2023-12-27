@@ -90,7 +90,6 @@ public class HttpUtil {
             connection.disconnect();
             return sb.toString();
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.printf("post:" + requestUrl);
             return "";
         }
@@ -125,7 +124,6 @@ public class HttpUtil {
             connection.disconnect();
             return sb.toString();
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.printf("dataPost" + requestUrl);
             return "";
         }
@@ -167,8 +165,7 @@ public class HttpUtil {
         MultiValueMap<String, Object> params = new LinkedMultiValueMap<>();
         params.add("media", fileSystemResource);
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(params, headers);
-        String s = restTemplate.postForObject(uri, requestEntity, String.class);
-        return s;
+        return restTemplate.postForObject(uri, requestEntity, String.class);
     }
 
     public static void workRequest(String temp, String WX_TOKEN) {
@@ -189,24 +186,18 @@ public class HttpUtil {
                 EntityUtils.toString(response.getEntity(), "UTF-8");
             }
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.printf("workRequest" + WX_TOKEN);
         }
     }
 
-    public static void scheduleReq(String requestUrl, String obj) {
-        try {
-//            HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(requestUrl);
-            httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
-            StringEntity entity = new StringEntity(obj, "utf-8");
-            httpPost.setEntity(entity);
-//            HttpResponse response = httpClient.execute(httpPost);
-//            if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-//                String res =  EntityUtils.toString(response.getEntity(), "UTF-8");
-//            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void scheduleReq(String requestUrl, String obj) {
+//        try {
+//            HttpPost httpPost = new HttpPost(requestUrl);
+//            httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
+//            StringEntity entity = new StringEntity(obj, "utf-8");
+//            httpPost.setEntity(entity);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

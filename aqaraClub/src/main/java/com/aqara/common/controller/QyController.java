@@ -1,18 +1,14 @@
 package com.aqara.common.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.aqara.common.aes.WXBizMsgCrypt;
 import com.aqara.common.entity.Qychat;
 import com.aqara.common.properties.QyProperties;
 import com.aqara.common.service.QychatService;
-import com.aqara.common.utils.CommonUtil;
+import com.aqara.common.utils.HttpUtil;
 import com.aqara.common.utils.QyUtil;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.PrintWriter;
 import java.util.List;
 
 @RestController
@@ -28,36 +24,98 @@ public class QyController {
         this.QychatService = QychatService;
     }
 
-    @RequestMapping("/getToken")
-    public String getToken(Qychat qychat) {
-        String token = "";
-        List<Qychat> list = QychatService.select(qychat);
-        if (list.isEmpty()) {
-            return insert(qychat.getType());
-        }
-        Qychat Qychat = list.get(list.size() - 1);
-        long expired = Long.parseLong(Qychat.getExpires_in()) * 800; // 有效时间
-        long date = Qychat.getDate().getTime(); // 凭证开始时间
-        long sys = System.currentTimeMillis(); // 当前
-        if (expired + date <= sys) { //是否过期
-            return insert(qychat.getType());
-        } else {
-            token = Qychat.getTicket();
-        }
-        return token;
+    @CrossOrigin
+    @RequestMapping("/corpToken") //获取企业凭证
+    private String getAccessToken() {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("permanent_code");
+        List<Qychat> list = QychatService.select(Qychat);
+        Qychat qychat = new Qychat();
+        qychat.setType("suite_access_token");
+        List<Qychat> list1 = QychatService.select(qychat);
+        String permanent_code = list.get(0).getTicket();
+        String suite_access_token = list1.get(0).getTicket();
+        return getCorpToken(suite_access_token, permanent_code);
     }
 
-    synchronized private String insert(String type) {
-        String res = QyUtil.getProviderToken(QyProperties, type);
-        JSONObject jsonObject = JSONObject.parseObject(res);
-        if (jsonObject == null) {
-            return null;
+    private String checkToken(Qychat Qychat) { // 检查token
+        long expired = Long.parseLong(Qychat.getExpires_in()) * 800;
+        long date = Qychat.getDate().getTime();
+        long sys = System.currentTimeMillis();
+        if (expired + date <= sys) { //是否过期
+            return getAccessToken();
+        } else {
+            return Qychat.getTicket();
         }
+    }
+
+    @CrossOrigin
+    @RequestMapping("/jsapiTicket") // JSAPI 获取应用 jsapi_ticket
+    private String getJsapiTicket(String access_token) {
+        JSONObject JSONObject = new JSONObject();
+        String url = QyProperties.getJsapiTicket() + "?access_token=" + access_token + "&type=agent_config";
+        String str = HttpUtil.dataPost(url, JSONObject);
+        JSONObject json = JSON.parseObject(str);
+        if (json != null) {
+            String ticket = json.getString("ticket");
+            updateTable("jsapiTicket", ticket, "7200");
+        }
+        return str;
+    }
+
+    @CrossOrigin
+    @RequestMapping("/AppTicket") // JSAPI
+    private String getAppTicket(String access_token) {
+        JSONObject JSONObject = new JSONObject();
+        String url = QyProperties.getAppTicket() + "?access_token=" + access_token;
+        String str = HttpUtil.dataPost(url, JSONObject);
+        JSONObject json = JSON.parseObject(str);
+        if (json != null) {
+            String ticket = json.getString("ticket");
+            updateTable("appTicket", ticket, "7200");
+        }
+        return str;
+    }
+
+    @CrossOrigin
+    @RequestMapping("/getJsSign")
+    public String getJsSign(String url) {
         Qychat Qychat = new Qychat();
-        Qychat.setTicket(jsonObject.getString("access_token"));
+        Qychat.setType("access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String access_token = checkToken(list.get(0));
+        return QyUtil.JsSignatures(url, access_token, QyProperties);
+    }
+    @CrossOrigin
+    @RequestMapping("/getAppSign")
+    public String getAppSign(String url) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String access_token = checkToken(list.get(0));
+        return QyUtil.AppSignatures(url, access_token, QyProperties);
+    }
+
+    private String getCorpToken(String suite_access_token, String permanent_code) {
+        JSONObject JSONObject = new JSONObject();
+        JSONObject.put("auth_corpid", QyProperties.getCorpID());
+        JSONObject.put("permanent_code", permanent_code);
+        String url = QyProperties.getCorp_token() + "?suite_access_token=" + suite_access_token;
+        String str = HttpUtil.dataPost(url, JSONObject);
+        JSONObject json = JSON.parseObject(str);
+        String access_token = "";
+        if (json != null) {
+            access_token = json.getString("access_token");
+            updateTable("access_token", access_token, "7200");
+        }
+        return access_token;
+    }
+
+    public void updateTable(String type, String ticket, String expires_in) {
+        Qychat Qychat = new Qychat();
         Qychat.setType(type);
-        Qychat.setExpires_in(jsonObject.getString("expires_in"));
-        QychatService.insert(Qychat);
-        return jsonObject.getString("provider_access_token");
+        Qychat.setTicket(ticket);
+        Qychat.setExpires_in(expires_in);
+        QychatService.update(Qychat);
     }
 }

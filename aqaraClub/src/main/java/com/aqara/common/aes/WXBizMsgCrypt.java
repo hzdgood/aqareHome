@@ -1,20 +1,3 @@
-/**
- * 对企业微信发送给企业后台的消息加解密示例代码.
- *
- * @copyright Copyright (c) 1998-2014 Tencent Inc.
- * <p>
- * 针对org.apache.commons.codec.binary.Base64，
- * 需要导入架包commons-codec-1.9（或commons-codec-1.8等其他版本）
- * 官方下载地址：http://commons.apache.org/proper/commons-codec/download_codec.cgi
- */
-
-// ------------------------------------------------------------------------
-
-/**
- * 针对org.apache.commons.codec.binary.Base64，
- * 需要导入架包commons-codec-1.9（或commons-codec-1.8等其他版本）
- * 官方下载地址：http://commons.apache.org/proper/commons-codec/download_codec.cgi
- */
 package com.aqara.common.aes;
 
 import org.apache.commons.codec.binary.Base64;
@@ -60,7 +43,6 @@ public class WXBizMsgCrypt {
         if (encodingAesKey.length() != 43) {
             throw new AesException(AesException.IllegalAesKey);
         }
-
         this.token = token;
         this.receiveid = receiveid;
         aesKey = Base64.decodeBase64(encodingAesKey + "=");
@@ -111,33 +93,26 @@ public class WXBizMsgCrypt {
         byte[] textBytes = text.getBytes(CHARSET);
         byte[] networkBytesOrder = getNetworkBytesOrder(textBytes.length);
         byte[] receiveidBytes = receiveid.getBytes(CHARSET);
-
         // randomStr + networkBytesOrder + text + receiveid
         byteCollector.addBytes(randomStrBytes);
         byteCollector.addBytes(networkBytesOrder);
         byteCollector.addBytes(textBytes);
         byteCollector.addBytes(receiveidBytes);
-
         // ... + pad: 使用自定义的填充方式对明文进行补位填充
         byte[] padBytes = PKCS7Encoder.encode(byteCollector.size());
         byteCollector.addBytes(padBytes);
-
         // 获得最终的字节流, 未加密
         byte[] unencrypted = byteCollector.toBytes();
-
         try {
             // 设置加密模式为AES的CBC模式
             Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
             SecretKeySpec keySpec = new SecretKeySpec(aesKey, "AES");
             IvParameterSpec iv = new IvParameterSpec(aesKey, 0, 16);
             cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv);
-
             // 加密
             byte[] encrypted = cipher.doFinal(unencrypted);
-
             // 使用BASE64对加密后的字符串进行编码
             String base64Encrypted = base64.encodeToString(encrypted);
-
             return base64Encrypted;
         } catch (Exception e) {
             e.printStackTrace();
@@ -160,41 +135,31 @@ public class WXBizMsgCrypt {
             SecretKeySpec key_spec = new SecretKeySpec(aesKey, "AES");
             IvParameterSpec iv = new IvParameterSpec(Arrays.copyOfRange(aesKey, 0, 16));
             cipher.init(Cipher.DECRYPT_MODE, key_spec, iv);
-
             // 使用BASE64对密文进行解码
             byte[] encrypted = Base64.decodeBase64(text);
-
             // 解密
             original = cipher.doFinal(encrypted);
         } catch (Exception e) {
             e.printStackTrace();
             throw new AesException(AesException.DecryptAESError);
         }
-
         String xmlContent, from_receiveid;
         try {
             // 去除补位字符
             byte[] bytes = PKCS7Encoder.decode(original);
-
             // 分离16位随机字符串,网络字节序和receiveid
             byte[] networkOrder = Arrays.copyOfRange(bytes, 16, 20);
-
             int xmlLength = recoverNetworkBytesOrder(networkOrder);
-
             xmlContent = new String(Arrays.copyOfRange(bytes, 20, 20 + xmlLength), CHARSET);
-            from_receiveid = new String(Arrays.copyOfRange(bytes, 20 + xmlLength, bytes.length),
-                    CHARSET);
+            from_receiveid = new String(Arrays.copyOfRange(bytes, 20 + xmlLength, bytes.length), CHARSET);
         } catch (Exception e) {
             e.printStackTrace();
             throw new AesException(AesException.IllegalBuffer);
         }
-
-        // receiveid不相同的情况
         if (!from_receiveid.equals(receiveid)) {
             throw new AesException(AesException.ValidateCorpidError);
         }
         return xmlContent;
-
     }
 
     /**
@@ -204,7 +169,6 @@ public class WXBizMsgCrypt {
      * 	<li>生成安全签名</li>
      * 	<li>将消息密文和安全签名打包成xml格式</li>
      * </ol>
-     *
      * @param replyMsg 企业微信待回复用户的消息，xml格式的字符串
      * @param timeStamp 时间戳，可以自己生成，也可以用URL参数的timestamp
      * @param nonce 随机串，可以自己生成，也可以用URL参数的nonce
@@ -215,20 +179,16 @@ public class WXBizMsgCrypt {
     public String EncryptMsg(String replyMsg, String timeStamp, String nonce) throws AesException {
         // 加密
         String encrypt = encrypt(getRandomStr(), replyMsg);
-
         // 生成安全签名
         if (timeStamp == "") {
             timeStamp = Long.toString(System.currentTimeMillis());
         }
-
         String signature = SHA1.getSHA1(token, timeStamp, nonce, encrypt);
-
         // System.out.println("发送给平台的签名是: " + signature[1].toString());
         // 生成发送的xml
         String result = XMLParse.generate(encrypt, signature, timeStamp, nonce);
         return result;
     }
-
     /**
      * 检验消息的真实性，并且获取解密后的明文.
      * <ol>
@@ -236,7 +196,6 @@ public class WXBizMsgCrypt {
      * 	<li>若验证通过，则提取xml中的加密消息</li>
      * 	<li>对消息进行解密</li>
      * </ol>
-     *
      * @param msgSignature 签名串，对应URL参数的msg_signature
      * @param timeStamp 时间戳，对应URL参数的timestamp
      * @param nonce 随机串，对应URL参数的nonce
@@ -247,21 +206,16 @@ public class WXBizMsgCrypt {
      */
     public String DecryptMsg(String msgSignature, String timeStamp, String nonce, String postData)
             throws AesException {
-
         // 密钥，公众账号的app secret
         // 提取密文
         Object[] encrypt = XMLParse.extract(postData);
-
         // 验证安全签名
         String signature = SHA1.getSHA1(token, timeStamp, nonce, encrypt[1].toString());
-
         // 和URL中的签名比较是否相等
         // System.out.println("第三方收到URL中的签名：" + msg_sign);
-        System.out.println("第三方校验签名：" + signature);
         if (!signature.equals(msgSignature)) {
             throw new AesException(AesException.ValidateSignatureError);
         }
-
         // 解密
         String result = decrypt(encrypt[1].toString());
         return result;
@@ -273,20 +227,16 @@ public class WXBizMsgCrypt {
      * @param timeStamp 时间戳，对应URL参数的timestamp
      * @param nonce 随机串，对应URL参数的nonce
      * @param echoStr 随机串，对应URL参数的echostr
-     *
      * @return 解密之后的echostr
      * @throws AesException 执行失败，请查看该异常的错误码和具体的错误信息
      */
     public String VerifyURL(String msgSignature, String timeStamp, String nonce, String echoStr)
             throws AesException {
         String signature = SHA1.getSHA1(token, timeStamp, nonce, echoStr);
-
         if (!signature.equals(msgSignature)) {
             throw new AesException(AesException.ValidateSignatureError);
         }
-
         String result = decrypt(echoStr);
         return result;
     }
-
 }

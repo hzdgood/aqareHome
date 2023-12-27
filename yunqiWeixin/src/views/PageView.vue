@@ -1,10 +1,14 @@
 <template>
-  <div class="pageConter">
-    
-  </div>
+  <div>222</div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 
 </script>
-
-<style src="../css/home.css" scoped></style>
+<style lang="less" scoped>
+div{
+  margin: 15px;
+}
+button {
+  margin: 0px 10px;
+}
+</style>

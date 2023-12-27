@@ -21,6 +21,8 @@ public class QyProperties {
     private String permanent_code;
     private String corp_token;
     private String get_permissions;
+    private String jsapiTicket;
+    private String AppTicket;
 
     public String getSuiteID() {
         return SuiteID;
@@ -141,5 +143,17 @@ public class QyProperties {
 
     public void setGet_permissions(String get_permissions) {
         this.get_permissions = get_permissions;
+    }
+
+    public String getJsapiTicket() { return jsapiTicket; }
+
+    public void setJsapiTicket(String jsapiTicket) { this.jsapiTicket = jsapiTicket; }
+
+    public String getAppTicket() {
+        return AppTicket;
+    }
+
+    public void setAppTicket(String appTicket) {
+        AppTicket = appTicket;
     }
 }

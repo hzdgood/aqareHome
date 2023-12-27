@@ -16,7 +16,7 @@ public class text {
     public static void main(String[] args) throws Exception {
         WXBizMsgCrypt wxcpt = new WXBizMsgCrypt("9IoF",
                 "cg5DROA8wox9A5F8cFrM4GTVOuTaH45K5IXT4v31D7v",
-                "ww9a717b03b06063e3");
+                "ww2fd0def5ad11e2cf");
         String msg_signature = "30865067e034ddac83fbe08fe0346c355d288909";
         String timestamp = "1703580143";
         String nonce = "1703184633";
