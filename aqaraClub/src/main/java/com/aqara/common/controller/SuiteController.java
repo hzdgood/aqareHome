@@ -234,7 +234,7 @@ public class SuiteController {
             String permanent_code = json.getString("permanent_code");
             String access_token = json.getString("access_token");
             updateTable("permanent_code", permanent_code, "0000");
-            updateTable("access_token", access_token, "7200");
+            updateTable("app_access_token", access_token, "7200");
         }
     }
 

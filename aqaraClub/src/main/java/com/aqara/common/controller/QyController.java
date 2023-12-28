@@ -46,10 +46,11 @@ public class QyController {
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
         List<Qychat> list = QychatService.select(Qychat);
-        String access_token = checkToken(list.get(0));
+        String access_token = list.get(0).getTicket();
         JSONObject JSONObject = new JSONObject();
-        String url = QyProperties.getJsapiTicket() + "?access_token=" + access_token + "&type=agent_config";
+        String url = QyProperties.getJsapiTicket() + "?access_token=" + access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
+        System.out.println(str);
         JSONObject json = JSON.parseObject(str);
         String ticket = "";
         if (json != null) {
@@ -65,10 +66,11 @@ public class QyController {
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
         List<Qychat> list = QychatService.select(Qychat);
-        String access_token = checkToken(list.get(0));
+        String access_token = list.get(0).getTicket();
         JSONObject JSONObject = new JSONObject();
-        String url = QyProperties.getAppTicket() + "?access_token=" + access_token;
+        String url = QyProperties.getAppTicket() + "?access_token=" + access_token + "&type=agent_config";
         String str = HttpUtil.dataPost(url, JSONObject);
+        System.out.println(str);
         JSONObject json = JSON.parseObject(str);
         String ticket = "";
         if (json != null) {

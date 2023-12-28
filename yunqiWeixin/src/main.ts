@@ -10,27 +10,31 @@ import { httpGet } from './config/interFace'
 
 ww.register({
   corpId: 'ww9a717b03b06063e3', // 必填，当前用户企业所属企业ID
-  agentId: 1000089,
-  jsApiList: ['getContext','getExternalContact', 'selectExternalContact', 'shareAppMessage', 'getCurExternalContact','getCurExternalChat'], 	 // 必填，需要使用的JSAPI列表
-  async getConfigSignature() { // 必填，根据url生成企业签名的回调函数
-    const jsToken = await httpGet("/qy/jsapiTicket", {
+  suiteId: 'ww2fd0def5ad11e2cf',
+  agentId: '1000089',
+  jsApiList: ['getContext', 'selectExternalContact', 'shareAppMessage', 'getCurExternalContact','getCurExternalChat'], 	 // 必填，需要使用的JSAPI列表
+  async getAgentConfigSignature() { // 必填，根据url生成应用签名的回调函数
+    const jsToken = await httpGet("/qy/AppTicket", {
       type: 'API'
     });
     return ww.getSignature(jsToken)
-  },
-  // async getSuiteConfigSignature() { // 必填，根据url生成应用签名的回调函数
-  //   const jsToken = await httpGet("/qy/AppTicket", {
-  //     type: 'App'
-  //   });
-  //   return ww.getSignature(jsToken)
-  // },
-  onAgentConfigSuccess({checkResult}) {
-    console.log(checkResult);
-  }		 
+  }
 })
 
 ww.checkJsApi({
-  jsApiList: ['getContext', 'getExternalContact', 'getCurExternalContact', 'getCurExternalChat'],
+  jsApiList: ['getContext', 'getCurExternalContact', 'getCurExternalChat'],
+  success(result) {
+    console.log(result)
+  }
+})
+
+ww.getContext({
+  success(result) {
+    console.log(result)
+  }
+})
+
+ww.getCurExternalContact({
   success(result) {
     console.log(result)
   }
