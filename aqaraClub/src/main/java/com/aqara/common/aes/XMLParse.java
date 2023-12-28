@@ -19,13 +19,14 @@ import java.io.StringReader;
 
 /**
  * XMLParse class
- *
+ * <p>
  * 提供提取消息格式中的密文及生成回复消息格式的接口.
  */
 class XMLParse {
 
     /**
      * 提取出xml数据包中的加密消息
+     *
      * @param xmltext 待提取的xml字符串
      * @return 提取出的加密消息字符串
      * @throws AesException
@@ -86,10 +87,11 @@ class XMLParse {
 
     /**
      * 生成xml消息
-     * @param encrypt 加密后的消息密文
+     *
+     * @param encrypt   加密后的消息密文
      * @param signature 安全签名
      * @param timestamp 时间戳
-     * @param nonce 随机字符串
+     * @param nonce     随机字符串
      * @return 生成的xml字符串
      */
     public static String generate(String encrypt, String signature, String timestamp, String nonce) {

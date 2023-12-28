@@ -23,6 +23,9 @@ public class QyProperties {
     private String get_permissions;
     private String jsapiTicket;
     private String AppTicket;
+    private String listOrder;
+    private String orderAccount;
+    private String activeAccount;
 
     public String getSuiteID() {
         return SuiteID;
@@ -145,9 +148,13 @@ public class QyProperties {
         this.get_permissions = get_permissions;
     }
 
-    public String getJsapiTicket() { return jsapiTicket; }
+    public String getJsapiTicket() {
+        return jsapiTicket;
+    }
 
-    public void setJsapiTicket(String jsapiTicket) { this.jsapiTicket = jsapiTicket; }
+    public void setJsapiTicket(String jsapiTicket) {
+        this.jsapiTicket = jsapiTicket;
+    }
 
     public String getAppTicket() {
         return AppTicket;
@@ -155,5 +162,29 @@ public class QyProperties {
 
     public void setAppTicket(String appTicket) {
         AppTicket = appTicket;
+    }
+
+    public String getListOrder() {
+        return listOrder;
+    }
+
+    public void setListOrder(String listOrder) {
+        this.listOrder = listOrder;
+    }
+
+    public String getOrderAccount() {
+        return orderAccount;
+    }
+
+    public void setOrderAccount(String orderAccount) {
+        this.orderAccount = orderAccount;
+    }
+
+    public String getActiveAccount() {
+        return activeAccount;
+    }
+
+    public void setActiveAccount(String activeAccount) {
+        this.activeAccount = activeAccount;
     }
 }

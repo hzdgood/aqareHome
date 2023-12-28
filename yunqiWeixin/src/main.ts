@@ -9,15 +9,31 @@ import * as ww from '@wecom/jssdk'
 import { httpGet } from './config/interFace'
 
 ww.register({
-  corpId: 'ww9a717b03b06063e3',       // 必填，当前用户企业所属企业ID
-  suiteId: 'ww2fd0def5ad11e2cf',               // 必填，当前授权的SuiteID
-  jsApiList: ['getExternalContact', 'selectExternalContact'], 	 // 必填，需要使用的JSAPI列表
-  async getConfigSignature(url: any) { // 必填，根据url生成企业签名的回调函数
-    return await httpGet("/qy/getAppSign", url)
+  corpId: 'ww9a717b03b06063e3', // 必填，当前用户企业所属企业ID
+  agentId: 1000089,
+  jsApiList: ['getContext','getExternalContact', 'selectExternalContact', 'shareAppMessage', 'getCurExternalContact','getCurExternalChat'], 	 // 必填，需要使用的JSAPI列表
+  async getConfigSignature() { // 必填，根据url生成企业签名的回调函数
+    const jsToken = await httpGet("/qy/jsapiTicket", {
+      type: 'API'
+    });
+    return ww.getSignature(jsToken)
   },
-  async getSuiteConfigSignature(url: any) { // 必填，根据url生成应用签名的回调函数
-    return await httpGet("/qy/getJsSign", url)
-  },			 
+  // async getSuiteConfigSignature() { // 必填，根据url生成应用签名的回调函数
+  //   const jsToken = await httpGet("/qy/AppTicket", {
+  //     type: 'App'
+  //   });
+  //   return ww.getSignature(jsToken)
+  // },
+  onAgentConfigSuccess({checkResult}) {
+    console.log(checkResult);
+  }		 
+})
+
+ww.checkJsApi({
+  jsApiList: ['getContext', 'getExternalContact', 'getCurExternalContact', 'getCurExternalChat'],
+  success(result) {
+    console.log(result)
+  }
 })
 
 const app = createApp(App)

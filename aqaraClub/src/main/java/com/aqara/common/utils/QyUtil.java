@@ -1,8 +1,8 @@
 package com.aqara.common.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import org.apache.commons.codec.digest.DigestUtils;
 import com.aqara.common.properties.QyProperties;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class QyUtil {
     public static String JsSignatures(String url, String token, QyProperties QyProperties) {

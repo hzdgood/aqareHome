@@ -1,12 +1,8 @@
 package com.aqara.common.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.aqara.common.entity.Schedule;
-import com.aqara.common.entity.User;
 import com.aqara.common.entity.Wechat;
-import com.aqara.common.properties.CommonProperties;
 import com.aqara.common.properties.WxProperties;
-import com.aqara.common.service.UserService;
 import com.aqara.common.service.WechatService;
 import com.aqara.common.utils.CommonUtil;
 import com.aqara.common.utils.HttpUtil;
@@ -18,22 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RestController
 @RequestMapping("/wechat")
 public class WechatController {
-    private CommonProperties CommonProperties;
     private WxProperties WxProperties;
     private WechatService WechatService;
-    private UserService UserService;
 
     @Autowired
-    public void setMapper(CommonProperties CommonProperties, WxProperties WxProperties, WechatService WechatService, UserService UserService) {
-        this.CommonProperties = CommonProperties;
-        this.UserService = UserService;
+    public void setMapper(WxProperties WxProperties, WechatService WechatService) {
         this.WechatService = WechatService;
         this.WxProperties = WxProperties;
     }

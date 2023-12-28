@@ -33,10 +33,10 @@ public class WXBizMsgCrypt {
 
     /**
      * 构造函数
-     * @param token 企业微信后台，开发者设置的token
-     * @param encodingAesKey 企业微信后台，开发者设置的EncodingAESKey
-     * @param receiveid, 不同场景含义不同，详见文档
      *
+     * @param token          企业微信后台，开发者设置的token
+     * @param encodingAesKey 企业微信后台，开发者设置的EncodingAESKey
+     * @param receiveid,     不同场景含义不同，详见文档
      * @throws AesException 执行失败，请查看该异常的错误码和具体的错误信息
      */
     public WXBizMsgCrypt(String token, String encodingAesKey, String receiveid) throws AesException {
@@ -169,10 +169,10 @@ public class WXBizMsgCrypt {
      * 	<li>生成安全签名</li>
      * 	<li>将消息密文和安全签名打包成xml格式</li>
      * </ol>
-     * @param replyMsg 企业微信待回复用户的消息，xml格式的字符串
-     * @param timeStamp 时间戳，可以自己生成，也可以用URL参数的timestamp
-     * @param nonce 随机串，可以自己生成，也可以用URL参数的nonce
      *
+     * @param replyMsg  企业微信待回复用户的消息，xml格式的字符串
+     * @param timeStamp 时间戳，可以自己生成，也可以用URL参数的timestamp
+     * @param nonce     随机串，可以自己生成，也可以用URL参数的nonce
      * @return 加密后的可以直接回复用户的密文，包括msg_signature, timestamp, nonce, encrypt的xml格式的字符串
      * @throws AesException 执行失败，请查看该异常的错误码和具体的错误信息
      */
@@ -189,6 +189,7 @@ public class WXBizMsgCrypt {
         String result = XMLParse.generate(encrypt, signature, timeStamp, nonce);
         return result;
     }
+
     /**
      * 检验消息的真实性，并且获取解密后的明文.
      * <ol>
@@ -196,11 +197,11 @@ public class WXBizMsgCrypt {
      * 	<li>若验证通过，则提取xml中的加密消息</li>
      * 	<li>对消息进行解密</li>
      * </ol>
-     * @param msgSignature 签名串，对应URL参数的msg_signature
-     * @param timeStamp 时间戳，对应URL参数的timestamp
-     * @param nonce 随机串，对应URL参数的nonce
-     * @param postData 密文，对应POST请求的数据
      *
+     * @param msgSignature 签名串，对应URL参数的msg_signature
+     * @param timeStamp    时间戳，对应URL参数的timestamp
+     * @param nonce        随机串，对应URL参数的nonce
+     * @param postData     密文，对应POST请求的数据
      * @return 解密后的原文
      * @throws AesException 执行失败，请查看该异常的错误码和具体的错误信息
      */
@@ -223,10 +224,11 @@ public class WXBizMsgCrypt {
 
     /**
      * 验证URL
+     *
      * @param msgSignature 签名串，对应URL参数的msg_signature
-     * @param timeStamp 时间戳，对应URL参数的timestamp
-     * @param nonce 随机串，对应URL参数的nonce
-     * @param echoStr 随机串，对应URL参数的echostr
+     * @param timeStamp    时间戳，对应URL参数的timestamp
+     * @param nonce        随机串，对应URL参数的nonce
+     * @param echoStr      随机串，对应URL参数的echostr
      * @return 解密之后的echostr
      * @throws AesException 执行失败，请查看该异常的错误码和具体的错误信息
      */

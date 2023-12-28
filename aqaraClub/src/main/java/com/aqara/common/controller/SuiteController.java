@@ -1,12 +1,12 @@
 package com.aqara.common.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.aqara.common.aes.AesException;
-import com.aqara.common.service.QychatService;
-import com.aqara.common.entity.Qychat;
 import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.aes.AesException;
 import com.aqara.common.aes.WXBizMsgCrypt;
+import com.aqara.common.entity.Qychat;
 import com.aqara.common.properties.QyProperties;
+import com.aqara.common.service.QychatService;
 import com.aqara.common.utils.HttpUtil;
 import com.aqara.common.utils.JsonUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -68,8 +68,8 @@ public class SuiteController {
             while (null != (tempStr = reader.readLine())) {
                 postData.append(tempStr);
             }
-            if(corpId != null && !corpId.isEmpty()) {
-                if(corpId.equals("$CORPID$")){
+            if (corpId != null && !corpId.isEmpty()) {
+                if (corpId.equals("$CORPID$")) {
                     json = getCrypt(request, postData.toString());
                 } else {
                     json = getCryptCorp(request, postData.toString());
@@ -88,15 +88,15 @@ public class SuiteController {
         }
         Qychat Qychat = new Qychat();
         Qychat.setType(InfoType);
-        if(InfoType != null) {
-            if(InfoType.equals("suite_ticket")) {
+        if (InfoType != null) {
+            if (InfoType.equals("suite_ticket")) {
                 String SuiteTicket = (String) JsonUtil.findValueByKey(json, "SuiteTicket");
                 String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
                 Qychat.setTicket(SuiteTicket);
                 Qychat.setExpires_in(TimeStamp);
                 getSuiteToken(SuiteTicket); // suite_access_token
                 QychatService.update(Qychat);
-            } else if(InfoType.equals("create_auth")) {
+            } else if (InfoType.equals("create_auth")) {
                 String AuthCode = (String) JsonUtil.findValueByKey(json, "AuthCode");
                 String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
                 Qychat.setTicket(AuthCode);
@@ -107,7 +107,53 @@ public class SuiteController {
         }
     }
 
-    public JSONObject getCrypt(HttpServletRequest request, String postData){
+    @CrossOrigin
+    @RequestMapping("/providerToken") // providerToken
+    public String provider_token() {
+        JSONObject JSONObject = new JSONObject();
+        JSONObject.put("corpid", QyProperties.getCorpID());
+        JSONObject.put("provider_secret", QyProperties.getProviderSecret());
+        String str = HttpUtil.dataPost(QyProperties.getProvider_token(), JSONObject);
+        JSONObject json = JSON.parseObject(str);
+        String provider_secret = "";
+        if (json != null) {
+            provider_secret = json.getString("provider_secret");
+            updateTable("provider_secret", provider_secret, "7200");
+        }
+        list_order(provider_secret);
+        order_account("", provider_secret);
+
+        return provider_secret;
+    }
+
+
+    public String list_order(String provider_access_token) {
+        JSONObject JSONObject = new JSONObject();
+        JSONObject.put("limit", "100");
+        String url = QyProperties.getProvider_token() + "?provider_access_token=" + provider_access_token;
+
+
+        return HttpUtil.dataPost(url, JSONObject);
+    }
+
+    public String order_account(String order_id, String provider_access_token) {
+        JSONObject JSONObject = new JSONObject();
+        JSONObject.put("order_id", "OI00000BBF8428658A8A6655248BCT");
+        String url = QyProperties.getOrderAccount() + "?provider_access_token=" + provider_access_token;
+        return HttpUtil.dataPost(url, JSONObject);
+    }
+
+    public String active_account(String active_code, String corpid, String userid, String provider_access_token) {
+        JSONObject JSONObject = new JSONObject();
+        JSONObject.put("active_code", active_code);
+        JSONObject.put("corpid", corpid);
+        JSONObject.put("userid", userid);
+        String url = QyProperties.getActiveAccount() + "?provider_access_token=" + provider_access_token;
+        return HttpUtil.dataPost(url, JSONObject);
+    }
+
+
+    public JSONObject getCrypt(HttpServletRequest request, String postData) {
         JSONObject json = null;
         try {
             json = getJson(request, postData);
@@ -127,12 +173,12 @@ public class SuiteController {
         return json;
     }
 
-    public JSONObject getJson(HttpServletRequest request, String postData) throws Exception{ // OK
+    public JSONObject getJson(HttpServletRequest request, String postData) throws Exception { // OK
         WXBizMsgCrypt wrap = new WXBizMsgCrypt(QyProperties.getToken(), QyProperties.getEncodingAESKey(), QyProperties.getSuiteID());
         return getJsonObject(request, postData, wrap);
     }
 
-    public JSONObject getJsonCorp(HttpServletRequest request, String postData) throws Exception{ // OK
+    public JSONObject getJsonCorp(HttpServletRequest request, String postData) throws Exception { // OK
         WXBizMsgCrypt wrap = new WXBizMsgCrypt(QyProperties.getToken(), QyProperties.getEncodingAESKey(), QyProperties.getCorpID());
         return getJsonObject(request, postData, wrap);
     }
@@ -142,6 +188,7 @@ public class SuiteController {
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
         String xml = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, postData);
+        System.out.println("xml:" + xml);
         XmlMapper xmlMapper = new XmlMapper();
         JsonNode jsonNode = xmlMapper.readTree(xml);
         return JSONObject.parseObject(jsonNode.toString());

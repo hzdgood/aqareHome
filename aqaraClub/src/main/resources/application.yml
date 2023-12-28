@@ -1,6 +1,3 @@
-# 开发者应该设置成自己的wx相关信息
-# corpId: ww728dd07f7641e567
-# corpSecret: gI7rD-tDe6i47qzxuNc7xG7M4gUURgKOPWYY6QOAro4
 wx:
   corpId: ww9a717b03b06063e3
   corpSecret: nZv_TArU4E_PavzhhU22B6LJtT-BjaRmDCGjE64v0xQ
@@ -37,6 +34,9 @@ qy:
   get_permissions: https://qyapi.weixin.qq.com/cgi-bin/agent/get_permissions
   jsapiTicket: https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket
   AppTicket: https://qyapi.weixin.qq.com/cgi-bin/ticket/get
+  listOrder: https://qyapi.weixin.qq.com/cgi-bin/license/list_order
+  orderAccount: https://qyapi.weixin.qq.com/cgi-bin/license/list_order_account
+  activeAccount: https://qyapi.weixin.qq.com/cgi-bin/license/active_account
 
 program:
   code2Session: https://api.weixin.qq.com/sns/jscode2session

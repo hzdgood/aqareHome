@@ -16,13 +16,13 @@ public class JsonUtil {
                 int size = ((JSONArray) v).size();
                 for (int i = 0; i <= size - 1; i++) {
                     Object result = findValueByKey((JSONObject) ((JSONArray) v).get(i), key);
-                    if (result != null){
+                    if (result != null) {
                         return result;
                     }
                 }
-            } else if (v instanceof JSONObject){
+            } else if (v instanceof JSONObject) {
                 Object result = findValueByKey((JSONObject) v, key);
-                if (result != null){
+                if (result != null) {
                     return result;
                 }
             }

@@ -6,9 +6,11 @@ import com.aqara.common.entity.Qychat;
 import com.aqara.common.properties.QyProperties;
 import com.aqara.common.service.QychatService;
 import com.aqara.common.utils.HttpUtil;
-import com.aqara.common.utils.QyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
@@ -38,62 +40,42 @@ public class QyController {
         return getCorpToken(suite_access_token, permanent_code);
     }
 
-    private String checkToken(Qychat Qychat) { // 检查token
-        long expired = Long.parseLong(Qychat.getExpires_in()) * 800;
-        long date = Qychat.getDate().getTime();
-        long sys = System.currentTimeMillis();
-        if (expired + date <= sys) { //是否过期
-            return getAccessToken();
-        } else {
-            return Qychat.getTicket();
-        }
-    }
-
     @CrossOrigin
     @RequestMapping("/jsapiTicket") // JSAPI 获取应用 jsapi_ticket
-    private String getJsapiTicket(String access_token) {
+    private String getJsapiTicket(String type) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String access_token = checkToken(list.get(0));
         JSONObject JSONObject = new JSONObject();
         String url = QyProperties.getJsapiTicket() + "?access_token=" + access_token + "&type=agent_config";
         String str = HttpUtil.dataPost(url, JSONObject);
         JSONObject json = JSON.parseObject(str);
+        String ticket = "";
         if (json != null) {
-            String ticket = json.getString("ticket");
+            ticket = json.getString("ticket");
             updateTable("jsapiTicket", ticket, "7200");
         }
-        return str;
+        return ticket;
     }
 
     @CrossOrigin
     @RequestMapping("/AppTicket") // JSAPI
-    private String getAppTicket(String access_token) {
+    private String getAppTicket(String type) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String access_token = checkToken(list.get(0));
         JSONObject JSONObject = new JSONObject();
         String url = QyProperties.getAppTicket() + "?access_token=" + access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
         JSONObject json = JSON.parseObject(str);
+        String ticket = "";
         if (json != null) {
-            String ticket = json.getString("ticket");
+            ticket = json.getString("ticket");
             updateTable("appTicket", ticket, "7200");
         }
-        return str;
-    }
-
-    @CrossOrigin
-    @RequestMapping("/getJsSign")
-    public String getJsSign(String url) {
-        Qychat Qychat = new Qychat();
-        Qychat.setType("access_token");
-        List<Qychat> list = QychatService.select(Qychat);
-        String access_token = checkToken(list.get(0));
-        return QyUtil.JsSignatures(url, access_token, QyProperties);
-    }
-    @CrossOrigin
-    @RequestMapping("/getAppSign")
-    public String getAppSign(String url) {
-        Qychat Qychat = new Qychat();
-        Qychat.setType("access_token");
-        List<Qychat> list = QychatService.select(Qychat);
-        String access_token = checkToken(list.get(0));
-        return QyUtil.AppSignatures(url, access_token, QyProperties);
+        return ticket;
     }
 
     private String getCorpToken(String suite_access_token, String permanent_code) {
@@ -111,6 +93,17 @@ public class QyController {
         return access_token;
     }
 
+    private String checkToken(Qychat Qychat) { // 检查token
+        long expired = Long.parseLong(Qychat.getExpires_in()) * 800;
+        long date = Qychat.getDate().getTime();
+        long sys = System.currentTimeMillis();
+        if (expired + date <= sys) { //是否过期
+            return getAccessToken();
+        } else {
+            return Qychat.getTicket();
+        }
+    }
+
     public void updateTable(String type, String ticket, String expires_in) {
         Qychat Qychat = new Qychat();
         Qychat.setType(type);
@@ -118,4 +111,23 @@ public class QyController {
         Qychat.setExpires_in(expires_in);
         QychatService.update(Qychat);
     }
+
+//    @CrossOrigin
+//    @RequestMapping("/getJsSign")
+//    public String getJsSign(String url) {
+//        Qychat Qychat = new Qychat();
+//        Qychat.setType("access_token");
+//        List<Qychat> list = QychatService.select(Qychat);
+//        String access_token = checkToken(list.get(0));
+//        return QyUtil.JsSignatures(url, access_token, QyProperties);
+//    }
+//    @CrossOrigin
+//    @RequestMapping("/getAppSign")
+//    public String getAppSign(String url) {
+//        Qychat Qychat = new Qychat();
+//        Qychat.setType("access_token");
+//        List<Qychat> list = QychatService.select(Qychat);
+//        String access_token = checkToken(list.get(0));
+//        return QyUtil.AppSignatures(url, access_token, QyProperties);
+//    }
 }

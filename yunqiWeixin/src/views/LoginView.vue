@@ -1,14 +1,16 @@
 <template>
-  <div>1111</div>
+  <div id="login">userId: {{ formState.userId }}</div>
 </template>
 <script lang="ts" setup>
+import * as ww from '@wecom/jssdk'
+import { onMounted, reactive } from 'vue';
+const userId: any = [];
 
+interface FormState {
+  userId: any[]
+}
+
+const formState = reactive<FormState>({
+  userId: []
+})
 </script>
-<style lang="less" scoped>
-div{
-  margin: 15px;
-}
-button {
-  margin: 0px 10px;
-}
-</style>
