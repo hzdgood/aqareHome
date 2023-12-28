@@ -34,9 +34,7 @@ qy:
   get_permissions: https://qyapi.weixin.qq.com/cgi-bin/agent/get_permissions
   jsapiTicket: https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket
   AppTicket: https://qyapi.weixin.qq.com/cgi-bin/ticket/get
-  listOrder: https://qyapi.weixin.qq.com/cgi-bin/license/list_order
-  orderAccount: https://qyapi.weixin.qq.com/cgi-bin/license/list_order_account
-  activeAccount: https://qyapi.weixin.qq.com/cgi-bin/license/active_account
+  externalContact: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get
 
 program:
   code2Session: https://api.weixin.qq.com/sns/jscode2session

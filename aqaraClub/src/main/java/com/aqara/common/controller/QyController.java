@@ -80,6 +80,18 @@ public class QyController {
         return ticket;
     }
 
+    @CrossOrigin
+    @RequestMapping("/externalContact") // 外部人员
+    private String getExternalContact(String userId) {
+        String url = QyProperties.getExternalContact();
+        Qychat Qychat = new Qychat();
+        Qychat.setType("access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String access_token = list.get(0).getTicket();
+        String lastUrl = url + "?access_token=" + access_token + "&external_userid=" + userId;
+        return HttpUtil.get(lastUrl);
+    }
+
     private String getCorpToken(String suite_access_token, String permanent_code) {
         JSONObject JSONObject = new JSONObject();
         JSONObject.put("auth_corpid", QyProperties.getCorpID());
@@ -113,23 +125,4 @@ public class QyController {
         Qychat.setExpires_in(expires_in);
         QychatService.update(Qychat);
     }
-
-//    @CrossOrigin
-//    @RequestMapping("/getJsSign")
-//    public String getJsSign(String url) {
-//        Qychat Qychat = new Qychat();
-//        Qychat.setType("access_token");
-//        List<Qychat> list = QychatService.select(Qychat);
-//        String access_token = checkToken(list.get(0));
-//        return QyUtil.JsSignatures(url, access_token, QyProperties);
-//    }
-//    @CrossOrigin
-//    @RequestMapping("/getAppSign")
-//    public String getAppSign(String url) {
-//        Qychat Qychat = new Qychat();
-//        Qychat.setType("access_token");
-//        List<Qychat> list = QychatService.select(Qychat);
-//        String access_token = checkToken(list.get(0));
-//        return QyUtil.AppSignatures(url, access_token, QyProperties);
-//    }
 }
