@@ -8,7 +8,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
+    Customer: typeof import('./src/components/customer/customer.vue')['default']
+    Foot: typeof import('./src/components/foot/foot.vue')['default']
+    Project: typeof import('./src/components/project/project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Sidebar: typeof import('./src/components/sidebar/sidebar.vue')['default']
+    Stage: typeof import('./src/components/stage/stage.vue')['default']
+    User: typeof import('./src/components/user/user.vue')['default']
   }
 }

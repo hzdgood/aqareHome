@@ -13,7 +13,6 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
-    "@wecom/jssdk": "^1.4.5",
     "ant-design-vue": "^4.0.2",
     "axios": "^1.5.0",
     "dayjs": "^1.11.9",
@@ -26,6 +25,8 @@
     "vuex": "^4.1.0"
   },
   "devDependencies": {
+    "@wecom/jssdk": "^1.4.5",
+    "@types/js-cookie": "^3.0.6",
     "@ant-design/icons-vue": "^6.1.0",
     "@rushstack/eslint-patch": "^1.3.2",
     "@tsconfig/node18": "^18.2.0",
