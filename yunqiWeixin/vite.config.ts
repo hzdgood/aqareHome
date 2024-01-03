@@ -28,7 +28,7 @@ export default defineConfig({
     https: false
   },
   build: {
-    outDir: 'dist',
+    outDir: 'app',
     rollupOptions: {
       output: {
         // 入口文件名

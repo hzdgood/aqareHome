@@ -16,3 +16,13 @@ export const httpPost = async (url: string, data: object) => {
   const res = await http.post(httpUrl + url, data )
   return res.data
 }
+
+export const getUrl = async (url: string, data: object) => {
+  const res = await http.get( url,{ params: data })
+  return res.data
+}
+
+export const httpCode = async (url: string, data: object) => {
+  const res = await http.get( httpUrl + url,{ params: data })
+  return res.data
+}

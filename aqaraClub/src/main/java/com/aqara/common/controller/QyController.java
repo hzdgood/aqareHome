@@ -27,8 +27,20 @@ public class QyController {
     }
 
     @CrossOrigin
+    @RequestMapping("/userinfo3rd") //获取企业凭证
+    private String userinfo3rd(String code) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("suite_access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String suite_access_token = list.get(0).getTicket();
+        String url = QyProperties.getUserinfo3rd() + "?suite_access_token=" + suite_access_token + "&code=" + code;
+        JSONObject JSONObject = new JSONObject();
+        return HttpUtil.dataPost(url, JSONObject);
+    }
+
+    @CrossOrigin
     @RequestMapping("/corpToken") //获取企业凭证
-    private String getAccessToken() {
+    private void getCorpToken() {
         Qychat Qychat = new Qychat();
         Qychat.setType("permanent_code");
         List<Qychat> list = QychatService.select(Qychat);
@@ -37,7 +49,7 @@ public class QyController {
         List<Qychat> list1 = QychatService.select(qychat);
         String permanent_code = list.get(0).getTicket();
         String suite_access_token = list1.get(0).getTicket();
-        return getCorpToken(suite_access_token, permanent_code);
+        getCorpToken(suite_access_token, permanent_code);
     }
 
     @CrossOrigin
@@ -81,7 +93,7 @@ public class QyController {
     }
 
     @CrossOrigin
-    @RequestMapping("/externalContact") // 外部人员
+    @RequestMapping("/externalContact") // 外部人员 获取客户详情
     private String getExternalContact(String userId) {
         String url = QyProperties.getExternalContact();
         Qychat Qychat = new Qychat();
@@ -89,6 +101,30 @@ public class QyController {
         List<Qychat> list = QychatService.select(Qychat);
         String access_token = list.get(0).getTicket();
         String lastUrl = url + "?access_token=" + access_token + "&external_userid=" + userId;
+        return HttpUtil.get(lastUrl);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/followUserList") // 获取配置了客户联系功能的成员列表
+    private String getFollowUserList() {
+        String url = QyProperties.getFollowUserList();
+        Qychat Qychat = new Qychat();
+        Qychat.setType("access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String access_token = list.get(0).getTicket();
+        String lastUrl = url + "?access_token=" + access_token;
+        return HttpUtil.get(lastUrl);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/externalContactList") // 内部人员 获取客户列表
+    private String getExternalContactList(String userId) {
+        String url = QyProperties.getExternalContactList();
+        Qychat Qychat = new Qychat();
+        Qychat.setType("access_token");
+        List<Qychat> list = QychatService.select(Qychat);
+        String access_token = list.get(0).getTicket();
+        String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
         return HttpUtil.get(lastUrl);
     }
 
@@ -124,5 +160,17 @@ public class QyController {
         Qychat.setTicket(ticket);
         Qychat.setExpires_in(expires_in);
         QychatService.update(Qychat);
+    }
+
+    private String getAccessToken() {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("permanent_code");
+        List<Qychat> list = QychatService.select(Qychat);
+        Qychat qychat = new Qychat();
+        qychat.setType("suite_access_token");
+        List<Qychat> list1 = QychatService.select(qychat);
+        String permanent_code = list.get(0).getTicket();
+        String suite_access_token = list1.get(0).getTicket();
+        return getCorpToken(suite_access_token, permanent_code);
     }
 }

@@ -6,6 +6,7 @@ public class Qychat {
     private Integer id;
     private String type;
     private String ticket;
+    private String agentId;
     private String expires_in;
     private Date date;
 
@@ -31,6 +32,14 @@ public class Qychat {
 
     public void setTicket(String ticket) {
         this.ticket = ticket;
+    }
+
+    public String getAgentId() {
+        return agentId;
+    }
+
+    public void setAgentId(String agentId) {
+        this.agentId = agentId;
     }
 
     public String getExpires_in() {

@@ -1,6 +1,7 @@
 package com.aqara.common.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.aes.AesException;
 import com.aqara.common.aes.WXBizMsgCrypt;
@@ -120,38 +121,8 @@ public class SuiteController {
             provider_secret = json.getString("provider_secret");
             updateTable("provider_secret", provider_secret, "7200");
         }
-        list_order(provider_secret);
-        order_account("", provider_secret);
-
         return provider_secret;
     }
-
-
-    public String list_order(String provider_access_token) {
-        JSONObject JSONObject = new JSONObject();
-        JSONObject.put("limit", "100");
-        String url = QyProperties.getProvider_token() + "?provider_access_token=" + provider_access_token;
-
-
-        return HttpUtil.dataPost(url, JSONObject);
-    }
-
-    public String order_account(String order_id, String provider_access_token) {
-        JSONObject JSONObject = new JSONObject();
-        JSONObject.put("order_id", "OI00000BBF8428658A8A6655248BCT");
-        String url = QyProperties.getOrderAccount() + "?provider_access_token=" + provider_access_token;
-        return HttpUtil.dataPost(url, JSONObject);
-    }
-
-    public String active_account(String active_code, String corpid, String userid, String provider_access_token) {
-        JSONObject JSONObject = new JSONObject();
-        JSONObject.put("active_code", active_code);
-        JSONObject.put("corpid", corpid);
-        JSONObject.put("userid", userid);
-        String url = QyProperties.getActiveAccount() + "?provider_access_token=" + provider_access_token;
-        return HttpUtil.dataPost(url, JSONObject);
-    }
-
 
     public JSONObject getCrypt(HttpServletRequest request, String postData) {
         JSONObject json = null;
@@ -232,10 +203,20 @@ public class SuiteController {
         System.out.println(json);
         if (json != null) {
             String permanent_code = json.getString("permanent_code");
-            String access_token = json.getString("access_token");
-            updateTable("permanent_code", permanent_code, "0000");
-            updateTable("app_access_token", access_token, "7200");
+            JSONObject edition_info = json.getJSONObject("edition_info");
+            JSONArray agent = edition_info.getJSONArray("agent");
+            String agentId = agent.getJSONObject(0).getString("agentid");
+            insert("permanent_code", permanent_code, agentId);
         }
+    }
+
+    public void insert(String type, String ticket, String agentId) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType(type);
+        Qychat.setTicket(ticket);
+        Qychat.setAgentId(agentId);
+        Qychat.setExpires_in("00000");
+        QychatService.insert(Qychat);
     }
 
     public void updateTable(String type, String ticket, String expires_in) {

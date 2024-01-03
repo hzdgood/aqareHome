@@ -4,7 +4,7 @@
       <table>
         <tr>
           <td>
-            <img width="40px" height="40px;" v-bind:src="avatar" />
+            <img width="40px" height="40px;" />
           </td>
           <td>
             <span class="username">{{ userId }}</span>
@@ -20,17 +20,16 @@
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue';
 const userId: any = localStorage.getItem('userId');
-const avatar: any = localStorage.getItem('avatar');
 
 onMounted(function(){
 
 })
 
 interface FormState {
-  userId: any[]
+  userId: String
 }
 
 const formState = reactive<FormState>({
-  userId: []
+  userId: ''
 })
 </script>

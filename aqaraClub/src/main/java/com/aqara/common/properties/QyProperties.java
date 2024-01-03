@@ -24,6 +24,9 @@ public class QyProperties {
     private String jsapiTicket;
     private String AppTicket;
     private String externalContact;
+    private String followUserList;
+    private String externalContactList;
+    private String userinfo3rd;
 
     public String getSuiteID() {
         return SuiteID;
@@ -168,5 +171,29 @@ public class QyProperties {
 
     public void setExternalContact(String externalContact) {
         this.externalContact = externalContact;
+    }
+
+    public String getFollowUserList() {
+        return followUserList;
+    }
+
+    public void setFollowUserList(String followUserList) {
+        this.followUserList = followUserList;
+    }
+
+    public String getExternalContactList() {
+        return externalContactList;
+    }
+
+    public void setExternalContactList(String externalContactList) {
+        this.externalContactList = externalContactList;
+    }
+
+    public String getUserinfo3rd() {
+        return userinfo3rd;
+    }
+
+    public void setUserinfo3rd(String userinfo3rd) {
+        this.userinfo3rd = userinfo3rd;
     }
 }

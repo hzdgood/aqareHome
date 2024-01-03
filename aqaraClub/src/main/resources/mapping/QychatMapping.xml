@@ -10,8 +10,8 @@
 
     <insert id="insert" parameterType="com.aqara.common.entity.Qychat" useGeneratedKeys="true"
             keyProperty="id">
-        insert into Qychat (type ,ticket, expires_in, date)
-        values (#{type}, #{ticket}, #{expires_in}, NOW())
+        insert into Qychat (type ,ticket, agentId ,expires_in, date)
+        values (#{type}, #{ticket}, #{agentId}, #{expires_in}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.Qychat" useGeneratedKeys="true"
