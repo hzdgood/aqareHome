@@ -1,6 +1,7 @@
 package com.aqara.common.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Qychat;
 import com.aqara.common.properties.QyProperties;
@@ -112,8 +113,13 @@ public class QyController {
         Qychat.setType("access_token");
         List<Qychat> list = QychatService.select(Qychat);
         String access_token = list.get(0).getTicket();
-        String lastUrl = url + "?access_token=" + access_token;
-        return HttpUtil.get(lastUrl);
+        String str = url + "?access_token=" + access_token;
+        JSONObject json = JSON.parseObject(str);
+        JSONArray array = json.getJSONArray("follow_user");
+        for (Object o : array) {
+            String userId = o.toString();
+        }
+        return HttpUtil.get(str);
     }
 
     @CrossOrigin

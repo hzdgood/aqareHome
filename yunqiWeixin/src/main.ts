@@ -23,19 +23,18 @@ ww.register({
 })
 
 ww.getContext({
-  success(result) {
+  async success(result) {
+    const userinfo3rd = await httpGet("/qy/userinfo3rd",{
+      code: getQueryString("code")
+    })
+    console.log(userinfo3rd);
     if (result.entry === 'single_chat_tools') {
       ww.getCurExternalContact({
         async success(result) {
           const res = await httpGet("/qy/externalContact",{
             userId: result.userId
           })
-          const code = getQueryString("code");
-          console.log(code);
-          const res1 = await httpGet("/qy/userinfo3rd",{
-            code: code
-          })
-          localStorage.setItem("localName", res1.userId)
+          localStorage.setItem("localName", userinfo3rd.userId)
           localStorage.setItem('userName', res.external_contact.name)
           localStorage.setItem("userId", result.userId)
           localStorage.setItem('follow_user', JSON.stringify(res.follow_user))
@@ -45,7 +44,7 @@ ww.getContext({
     } else if(result.entry === 'group_chat_tools') {
       ww.getCurExternalChat({
         async success(result) {
-          console.log(result)
+          console.log(result.chatId)
         }
       })
       toGroupPage()
