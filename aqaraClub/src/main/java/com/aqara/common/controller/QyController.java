@@ -28,6 +28,22 @@ public class QyController {
     }
 
     @CrossOrigin
+    @RequestMapping("/corpToken") //获取企业凭证
+    private void getCorpToken(String agentId) {
+        Qychat Qychat = new Qychat();
+        Qychat.setType("permanent_code");
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
+        Qychat qychat = new Qychat();
+        qychat.setType("suite_access_token");
+        List<Qychat> list1 = QychatService.select(qychat);
+        String permanent_code = list.get(0).getTicket();
+        String suite_access_token = list1.get(0).getTicket();
+        getCorpToken(suite_access_token, permanent_code, agentId);
+    }
+
+
+    @CrossOrigin
     @RequestMapping("/userinfo3rd") //获取企业凭证
     private String userinfo3rd(String code) {
         Qychat Qychat = new Qychat();
@@ -40,25 +56,12 @@ public class QyController {
     }
 
     @CrossOrigin
-    @RequestMapping("/corpToken") //获取企业凭证
-    private void getCorpToken() {
-        Qychat Qychat = new Qychat();
-        Qychat.setType("permanent_code");
-        List<Qychat> list = QychatService.select(Qychat);
-        Qychat qychat = new Qychat();
-        qychat.setType("suite_access_token");
-        List<Qychat> list1 = QychatService.select(qychat);
-        String permanent_code = list.get(0).getTicket();
-        String suite_access_token = list1.get(0).getTicket();
-        getCorpToken(suite_access_token, permanent_code);
-    }
-
-    @CrossOrigin
     @RequestMapping("/jsapiTicket") // JSAPI 获取应用 jsapi_ticket
-    private String getJsapiTicket(String type) {
+    private String getJsapiTicket(String agentId) {
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
-        List<Qychat> list = QychatService.select(Qychat);
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
         String access_token = list.get(0).getTicket();
         JSONObject JSONObject = new JSONObject();
         String url = QyProperties.getJsapiTicket() + "?access_token=" + access_token;
@@ -68,17 +71,18 @@ public class QyController {
         String ticket = "";
         if (json != null) {
             ticket = json.getString("ticket");
-            updateTable("jsapiTicket", ticket, "7200");
+            updateTable("jsapiTicket", ticket, "7200", agentId);
         }
         return ticket;
     }
 
     @CrossOrigin
     @RequestMapping("/AppTicket") // JSAPI
-    private String getAppTicket(String type) {
+    private String getAppTicket(String agentId) {
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
-        List<Qychat> list = QychatService.select(Qychat);
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
         String access_token = list.get(0).getTicket();
         JSONObject JSONObject = new JSONObject();
         String url = QyProperties.getAppTicket() + "?access_token=" + access_token + "&type=agent_config";
@@ -88,18 +92,19 @@ public class QyController {
         String ticket = "";
         if (json != null) {
             ticket = json.getString("ticket");
-            updateTable("appTicket", ticket, "7200");
+            updateTable("appTicket", ticket, "7200", agentId);
         }
         return ticket;
     }
 
     @CrossOrigin
     @RequestMapping("/externalContact") // 外部人员 获取客户详情
-    private String getExternalContact(String userId) {
+    private String getExternalContact(String userId, String agentId) {
         String url = QyProperties.getExternalContact();
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
-        List<Qychat> list = QychatService.select(Qychat);
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
         String access_token = list.get(0).getTicket();
         String lastUrl = url + "?access_token=" + access_token + "&external_userid=" + userId;
         return HttpUtil.get(lastUrl);
@@ -107,34 +112,40 @@ public class QyController {
 
     @CrossOrigin
     @RequestMapping("/followUserList") // 获取配置了客户联系功能的成员列表
-    private String getFollowUserList() {
+    private String getFollowUserList(String agentId) {
         String url = QyProperties.getFollowUserList();
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
-        List<Qychat> list = QychatService.select(Qychat);
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
         String access_token = list.get(0).getTicket();
         String str = url + "?access_token=" + access_token;
-        JSONObject json = JSON.parseObject(str);
-        JSONArray array = json.getJSONArray("follow_user");
-        for (Object o : array) {
-            String userId = o.toString();
+        String res = HttpUtil.get(str);
+        JSONObject json = JSON.parseObject(res);
+        JSONArray array = null;
+        if (json != null) {
+            array = json.getJSONArray("follow_user");
+            for (Object o : array) {
+                String userId = o.toString();
+            }
         }
-        return HttpUtil.get(str);
+        return res;
     }
 
     @CrossOrigin
     @RequestMapping("/externalContactList") // 内部人员 获取客户列表
-    private String getExternalContactList(String userId) {
+    private String getExternalContactList(String userId, String agentId) {
         String url = QyProperties.getExternalContactList();
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
-        List<Qychat> list = QychatService.select(Qychat);
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
         String access_token = list.get(0).getTicket();
         String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
         return HttpUtil.get(lastUrl);
     }
 
-    private String getCorpToken(String suite_access_token, String permanent_code) {
+    private String getCorpToken(String suite_access_token, String permanent_code, String agentId) {
         JSONObject JSONObject = new JSONObject();
         JSONObject.put("auth_corpid", QyProperties.getCorpID());
         JSONObject.put("permanent_code", permanent_code);
@@ -144,7 +155,7 @@ public class QyController {
         String access_token = "";
         if (json != null) {
             access_token = json.getString("access_token");
-            updateTable("access_token", access_token, "7200");
+            updateTable("access_token", access_token, "7200", agentId);
         }
         return access_token;
     }
@@ -154,29 +165,31 @@ public class QyController {
         long date = Qychat.getDate().getTime();
         long sys = System.currentTimeMillis();
         if (expired + date <= sys) { //是否过期
-            return getAccessToken();
+            return getAccessToken(Qychat.getAgentId());
         } else {
             return Qychat.getTicket();
         }
     }
 
-    public void updateTable(String type, String ticket, String expires_in) {
+    public void updateTable(String type, String ticket, String expires_in, String agentId) {
         Qychat Qychat = new Qychat();
         Qychat.setType(type);
         Qychat.setTicket(ticket);
         Qychat.setExpires_in(expires_in);
-        QychatService.update(Qychat);
+        Qychat.setAgentId(agentId);
+        QychatService.updateByAgentId(Qychat);
     }
 
-    private String getAccessToken() {
+    private String getAccessToken(String agentId) {
         Qychat Qychat = new Qychat();
         Qychat.setType("permanent_code");
-        List<Qychat> list = QychatService.select(Qychat);
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
         Qychat qychat = new Qychat();
         qychat.setType("suite_access_token");
         List<Qychat> list1 = QychatService.select(qychat);
         String permanent_code = list.get(0).getTicket();
         String suite_access_token = list1.get(0).getTicket();
-        return getCorpToken(suite_access_token, permanent_code);
+        return getCorpToken(suite_access_token, permanent_code, agentId);
     }
 }

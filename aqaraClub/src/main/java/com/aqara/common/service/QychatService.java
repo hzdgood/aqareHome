@@ -20,11 +20,19 @@ public class QychatService {
         return QychatMapper.select(Qychat);
     }
 
+    public List<Qychat> selectByAgentId(Qychat Qychat) {
+        return QychatMapper.selectByAgentId(Qychat);
+    }
+
     public void insert(Qychat qychat) {
         QychatMapper.insert(qychat);
     }
 
     public void update(Qychat qychat) {
         QychatMapper.update(qychat);
+    }
+
+    public void updateByAgentId(Qychat qychat) {
+        QychatMapper.updateByAgentId(qychat);
     }
 }

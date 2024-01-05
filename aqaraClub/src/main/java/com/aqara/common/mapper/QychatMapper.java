@@ -12,4 +12,8 @@ public interface QychatMapper {
     void insert(Qychat Qychat);
 
     void update(Qychat qychat);
+
+    List<Qychat> selectByAgentId(Qychat qychat);
+
+    void updateByAgentId(Qychat qychat);
 }

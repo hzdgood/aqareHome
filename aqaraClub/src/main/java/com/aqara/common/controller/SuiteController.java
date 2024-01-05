@@ -205,8 +205,14 @@ public class SuiteController {
             String permanent_code = json.getString("permanent_code");
             JSONObject edition_info = json.getJSONObject("edition_info");
             JSONArray agent = edition_info.getJSONArray("agent");
+            JSONObject auth_corp_info = json.getJSONObject("auth_corp_info");
+            String corpId = auth_corp_info.getString("corpid");
             String agentId = agent.getJSONObject(0).getString("agentid");
             insert("permanent_code", permanent_code, agentId);
+            insert("corpId", corpId, agentId);
+            insert("access_token", "", agentId);
+            insert("appTicket", "", agentId);
+            insert("jsapiTicket", "", agentId);
         }
     }
 
