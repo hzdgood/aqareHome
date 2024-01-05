@@ -1,7 +1,6 @@
 package com.aqara.common.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Qychat;
 import com.aqara.common.properties.QyProperties;
@@ -32,9 +31,14 @@ public class OtherController {
     private String getCorpToken(String agentId, String permanent_code) {
         Qychat qychat = new Qychat();
         qychat.setType("suite_access_token");
-        List<Qychat> list1 = QychatService.select(qychat);
-        String suite_access_token = list1.get(0).getTicket();
-        return getCorpToken(suite_access_token, permanent_code, agentId);
+        List<Qychat> list = QychatService.select(qychat);
+        String suite_access_token = list.get(0).getTicket();
+        Qychat qychat1 = new Qychat();
+        qychat.setType("corpId");
+        qychat.setAgentId(agentId);
+        List<Qychat> list1 = QychatService.selectByAgentId(qychat1);
+        String corpId = list1.get(0).getTicket();
+        return getCorpToken(suite_access_token, permanent_code, agentId, corpId);
     }
 
     @CrossOrigin
@@ -76,9 +80,9 @@ public class OtherController {
         return HttpUtil.get(lastUrl);
     }
 
-    public String getCorpToken(String suite_access_token, String permanent_code, String agentId) {
+    public String getCorpToken(String suite_access_token, String permanent_code, String agentId, String corpId) {
         JSONObject JSONObject = new JSONObject();
-        JSONObject.put("auth_corpid", QyProperties.getCorpID());
+        JSONObject.put("auth_corpid", corpId);
         JSONObject.put("permanent_code", permanent_code);
         String url = QyProperties.getCorp_token() + "?suite_access_token=" + suite_access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
