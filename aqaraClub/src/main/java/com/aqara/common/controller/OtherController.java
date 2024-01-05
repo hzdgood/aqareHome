@@ -27,7 +27,7 @@ public class OtherController {
     }
 
     @CrossOrigin
-    @RequestMapping("/corpToken") //获取企业凭证
+    @RequestMapping("/corpToken") //获取企业凭证 OK
     private String getCorpToken(String agentId, String permanent_code) {
         Qychat qychat = new Qychat();
         qychat.setType("suite_access_token");
@@ -42,7 +42,7 @@ public class OtherController {
     }
 
     @CrossOrigin
-    @RequestMapping("/followUserList") // 获取配置了客户联系功能的成员列表
+    @RequestMapping("/followUserList") // 获取配置了客户联系功能的成员列表 OK
     private String getFollowUserList(String agentId) {
         String url = QyProperties.getFollowUserList();
         Qychat Qychat = new Qychat();
@@ -55,7 +55,7 @@ public class OtherController {
     }
 
     @CrossOrigin
-    @RequestMapping("/externalContactList") // 内部人员 获取客户列表
+    @RequestMapping("/externalContactList") // 内部人员 获取客户列表 OK
     private String getExternalContactList(String userId, String agentId) {
         String url = QyProperties.getExternalContactList();
         Qychat Qychat = new Qychat();
@@ -68,7 +68,20 @@ public class OtherController {
     }
 
     @CrossOrigin
-    @RequestMapping("/externalContact") // 外部人员 获取客户详情
+    @RequestMapping("/getUser") // 内部人员 获取客户详情 OK
+    private String getUser(String userId, String agentId) {
+        String url = QyProperties.getUser3get();
+        Qychat Qychat = new Qychat();
+        Qychat.setType("access_token");
+        Qychat.setAgentId(agentId);
+        List<Qychat> list = QychatService.selectByAgentId(Qychat);
+        String access_token = list.get(0).getTicket();
+        String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
+        return HttpUtil.get(lastUrl);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/externalContact") // 外部人员 获取客户详情 OK
     private String getExternalContact(String userId, String agentId) {
         String url = QyProperties.getExternalContact();
         Qychat Qychat = new Qychat();

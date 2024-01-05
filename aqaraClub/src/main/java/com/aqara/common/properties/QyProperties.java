@@ -27,6 +27,8 @@ public class QyProperties {
     private String followUserList;
     private String externalContactList;
     private String userinfo3rd;
+    private String userdetail3rd;
+    private String user3get;
 
     public String getSuiteID() {
         return SuiteID;
@@ -195,5 +197,21 @@ public class QyProperties {
 
     public void setUserinfo3rd(String userinfo3rd) {
         this.userinfo3rd = userinfo3rd;
+    }
+
+    public String getUserdetail3rd() {
+        return userdetail3rd;
+    }
+
+    public void setUserdetail3rd(String userdetail3rd) {
+        this.userdetail3rd = userdetail3rd;
+    }
+
+    public String getUser3get() {
+        return user3get;
+    }
+
+    public void setUser3get(String user3get) {
+        this.user3get = user3get;
     }
 }
