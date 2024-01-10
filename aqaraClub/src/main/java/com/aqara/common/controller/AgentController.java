@@ -1,0 +1,147 @@
+package com.aqara.common.controller;
+
+import com.alibaba.fastjson.JSONObject;
+import com.aqara.common.aes.AesException;
+import com.aqara.common.aes.WXBizMsgCrypt;
+import com.aqara.common.entity.Agent;
+import com.aqara.common.properties.AgentProperties;
+import com.aqara.common.service.AgentService;
+import com.aqara.common.utils.JsonUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import jakarta.servlet.ServletInputStream;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+
+@Controller
+@RequestMapping("/agent")
+public class AgentController {
+    private AgentProperties AgentProperties;
+
+    private AgentService AgentService;
+
+    @Autowired
+    public void setMapper(AgentProperties AgentProperties, AgentService AgentService) {
+        this.AgentService = AgentService;
+        this.AgentProperties = AgentProperties;
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "receive", method = RequestMethod.GET) // 测试成功
+    public void doGetValid(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        String msg_signature = request.getParameter("msg_signature");
+        String timestamp = request.getParameter("timestamp");
+        String nonce = request.getParameter("nonce");
+        String echostr = request.getParameter("echostr");
+        WXBizMsgCrypt wxcpt = new WXBizMsgCrypt(
+                AgentProperties.getToken(),
+                AgentProperties.getEncodingAESKey(),
+                AgentProperties.getCorpID());
+        String sEchoStr = wxcpt.VerifyURL(msg_signature, timestamp, nonce, echostr);
+        PrintWriter out = response.getWriter();
+        out.print(sEchoStr);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "receive", method = RequestMethod.POST) // 企业微信回调 OK
+    public void doPostValid(HttpServletRequest request, HttpServletResponse response) {
+        String corpId = request.getParameter("CORPID");
+        String tempStr = "";
+        JSONObject json = null;
+        StringBuilder postData = new StringBuilder();
+        try {
+            ServletInputStream in = request.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            while (null != (tempStr = reader.readLine())) {
+                postData.append(tempStr);
+            }
+            if (corpId != null && !corpId.isEmpty()) {
+                if (corpId.equals("$CORPID$")) {
+                    json = getCrypt(request, postData.toString());
+                } else {
+                    json = getCryptCorp(request, postData.toString());
+                }
+            } else {
+                json = getCrypt(request, postData.toString());
+            }
+            PrintWriter out = response.getWriter();
+            out.print("success");
+        } catch (Exception e) {
+            // System.out.println("suit 85");
+        }
+        String InfoType = null;
+        if (json != null) {
+            InfoType = (String) JsonUtil.findValueByKey(json, "InfoType");
+        }
+        Agent Agent = new Agent();
+        Agent.setType(InfoType);
+        if (InfoType != null) {
+            if (InfoType.equals("suite_ticket")) {
+                String SuiteTicket = (String) JsonUtil.findValueByKey(json, "SuiteTicket");
+                String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
+                Agent.setTicket(SuiteTicket);
+                Agent.setExpires_in(TimeStamp);
+                // getSuiteToken(SuiteTicket); // suite_access_token
+                AgentService.update(Agent);
+            } else if (InfoType.equals("create_auth")) {
+                String AuthCode = (String) JsonUtil.findValueByKey(json, "AuthCode");
+                String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
+                Agent.setTicket(AuthCode);
+                Agent.setExpires_in(TimeStamp);
+                // getCorpToken(AuthCode);
+                AgentService.update(Agent);
+            }
+        }
+    }
+
+    public JSONObject getCrypt(HttpServletRequest request, String postData) {
+        JSONObject json = null;
+        try {
+            json = getJson(request, postData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return json;
+    }
+
+    private JSONObject getCryptCorp(HttpServletRequest request, String postData) {
+        JSONObject json = null;
+        try {
+            json = getJsonCorp(request, postData);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return json;
+    }
+
+    public JSONObject getJson(HttpServletRequest request, String postData) throws Exception { // OK
+        WXBizMsgCrypt wrap = new WXBizMsgCrypt(AgentProperties.getToken(), AgentProperties.getEncodingAESKey(), AgentProperties.getSuiteID());
+        return getJsonObject(request, postData, wrap);
+    }
+
+    public JSONObject getJsonCorp(HttpServletRequest request, String postData) throws Exception { // OK
+        WXBizMsgCrypt wrap = new WXBizMsgCrypt(AgentProperties.getToken(), AgentProperties.getEncodingAESKey(), AgentProperties.getCorpID());
+        return getJsonObject(request, postData, wrap);
+    }
+
+    private JSONObject getJsonObject(HttpServletRequest request, String postData, WXBizMsgCrypt wxcpt) throws AesException, JsonProcessingException {
+        String msg_signature = request.getParameter("msg_signature");
+        String timestamp = request.getParameter("timestamp");
+        String nonce = request.getParameter("nonce");
+        String xml = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, postData);
+        System.out.println("xml:" + xml); // ---------
+        XmlMapper xmlMapper = new XmlMapper();
+        JsonNode jsonNode = xmlMapper.readTree(xml);
+        return JSONObject.parseObject(jsonNode.toString());
+    }
+}

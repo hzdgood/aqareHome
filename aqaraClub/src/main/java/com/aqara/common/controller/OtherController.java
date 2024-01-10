@@ -34,9 +34,10 @@ public class OtherController {
         List<Qychat> list = QychatService.select(qychat);
         String suite_access_token = list.get(0).getTicket();
         Qychat qychat1 = new Qychat();
-        qychat.setType("corpId");
-        qychat.setAgentId(agentId);
+        qychat1.setType("corpId");
+        qychat1.setAgentId(agentId);
         List<Qychat> list1 = QychatService.selectByAgentId(qychat1);
+
         String corpId = list1.get(0).getTicket();
         return getCorpToken(suite_access_token, permanent_code, agentId, corpId);
     }
@@ -49,6 +50,9 @@ public class OtherController {
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
+        if(list.isEmpty()){
+            return null;
+        }
         String access_token = list.get(0).getTicket();
         String str = url + "?access_token=" + access_token;
         return HttpUtil.get(str);
@@ -62,32 +66,41 @@ public class OtherController {
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
+        if(list.isEmpty()){
+            return null;
+        }
         String access_token = list.get(0).getTicket();
         String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
         return HttpUtil.get(lastUrl);
     }
 
     @CrossOrigin
-    @RequestMapping("/getUser") // 内部人员 获取客户详情 OK
+    @RequestMapping("/getUser") // 内部人员 获取客户详情
     private String getUser(String userId, String agentId) {
         String url = QyProperties.getUser3get();
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
+        if(list.isEmpty()){
+            return null;
+        }
         String access_token = list.get(0).getTicket();
         String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
         return HttpUtil.get(lastUrl);
     }
 
     @CrossOrigin
-    @RequestMapping("/externalContact") // 外部人员 获取客户详情 OK
+    @RequestMapping("/externalContact") // 外部人员 获取客户详情
     private String getExternalContact(String userId, String agentId) {
         String url = QyProperties.getExternalContact();
         Qychat Qychat = new Qychat();
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
+        if(list.isEmpty()){
+            return null;
+        }
         String access_token = list.get(0).getTicket();
         String lastUrl = url + "?access_token=" + access_token + "&external_userid=" + userId;
         return HttpUtil.get(lastUrl);

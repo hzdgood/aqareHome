@@ -81,7 +81,7 @@ public class SuiteController {
             PrintWriter out = response.getWriter();
             out.print("success");
         } catch (Exception e) {
-            System.out.println("suit 85");
+            // System.out.println("suit 85");
         }
         String InfoType = null;
         if (json != null) {
@@ -144,7 +144,7 @@ public class SuiteController {
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
         String xml = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, postData);
-        System.out.println("xml:" + xml);
+        // System.out.println("xml:" + xml);
         XmlMapper xmlMapper = new XmlMapper();
         JsonNode jsonNode = xmlMapper.readTree(xml);
         return JSONObject.parseObject(jsonNode.toString());
@@ -185,7 +185,7 @@ public class SuiteController {
         String url = QyProperties.getPermanent_code() + "?suite_access_token=" + suite_access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
         JSONObject json = JSON.parseObject(str);
-        System.out.println(json);
+        // System.out.println(json);
         if (json != null) {
             String permanent_code = json.getString("permanent_code");
             JSONObject edition_info = json.getJSONObject("edition_info");
