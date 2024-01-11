@@ -42,7 +42,6 @@ public class QyController {
         getCorpToken(suite_access_token, permanent_code, agentId);
     }
 
-
     @CrossOrigin
     @RequestMapping("/userinfo3rd") //获取企业凭证
     private String userinfo3rd(String code) {

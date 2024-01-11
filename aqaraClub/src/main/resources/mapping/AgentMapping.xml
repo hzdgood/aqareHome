@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aqara.common.mapper.AgentMapper">
+    <select id="select" resultType="com.aqara.common.entity.Agent">
+        select *
+        from Agent where type = #{type}
+        order by date asc
+    </select>
+
+    <select id="selectByAgentId" resultType="com.aqara.common.entity.Agent">
+        select *
+        from Agent where type = #{type} and agentId = #{agentId}
+        order by date asc
+    </select>
+
+    <insert id="insert" parameterType="com.aqara.common.entity.Agent" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into Agent (type ,ticket, agentId ,expires_in, date)
+        values (#{type}, #{ticket}, #{agentId}, #{expires_in}, NOW())
+    </insert>
+
+    <insert id="update" parameterType="com.aqara.common.entity.Agent" useGeneratedKeys="true"
+            keyProperty="id">
+        update Agent set
+                          ticket = #{ticket},
+                          expires_in = #{expires_in},
+                          date = NOW()
+        where type = #{type}
+    </insert>
+
+    <insert id="updateByAgentId" parameterType="com.aqara.common.entity.Agent" useGeneratedKeys="true"
+            keyProperty="id">
+        update Agent set
+                          ticket = #{ticket},
+                          expires_in = #{expires_in},
+                          date = NOW()
+        where type = #{type} and agentId = #{agentId}
+    </insert>
+</mapper>

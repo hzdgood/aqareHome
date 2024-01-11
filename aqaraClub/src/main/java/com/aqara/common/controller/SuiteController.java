@@ -209,27 +209,4 @@ public class SuiteController {
         Qychat.setExpires_in("00000");
         QychatService.insert(Qychat);
     }
-
-//    public void updateTable(String type, String ticket, String expires_in) {
-//        Qychat Qychat = new Qychat();
-//        Qychat.setType(type);
-//        Qychat.setTicket(ticket);
-//        Qychat.setExpires_in(expires_in);
-//        QychatService.update(Qychat);
-//    }
-//    @CrossOrigin
-//    @RequestMapping("/providerToken") // providerToken
-//    public String provider_token() {
-//        JSONObject JSONObject = new JSONObject();
-//        JSONObject.put("corpid", QyProperties.getCorpID());
-//        JSONObject.put("provider_secret", QyProperties.getProviderSecret());
-//        String str = HttpUtil.dataPost(QyProperties.getProvider_token(), JSONObject);
-//        JSONObject json = JSON.parseObject(str);
-//        String provider_secret = "";
-//        if (json != null) {
-//            provider_secret = json.getString("provider_secret");
-//            updateTable("provider_secret", provider_secret, "7200");
-//        }
-//        return provider_secret;
-//    }
 }

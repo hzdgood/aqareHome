@@ -42,8 +42,8 @@ qy:
   user3get: https://qyapi.weixin.qq.com/cgi-bin/user/get
 
 agent:
-  SuiteID:
-  Secret:
+  SuiteID: dk8a8eade3348f24a3
+  Secret: Zez-3UwAAginPjvA42tXHnKy_PrC_AXVr4F2auQIQw0
   CorpID: ww9a717b03b06063e3
   ProviderSecret: hC2cKE9D2d_D4gXwpNMcSxp49T95UQz7YVSUaV4xC0DUoqwBoJ5jKhvtv8SCFEdX
   token: NS8hr3CDVolhehz0N1oqkK
