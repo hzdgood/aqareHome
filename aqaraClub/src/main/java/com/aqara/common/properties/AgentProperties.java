@@ -26,6 +26,7 @@ public class AgentProperties {
     private String externalContact;
     private String followUserList;
     private String externalContactList;
+    private String getToken;
 
     public String getSuiteID() {
         return SuiteID;
@@ -185,5 +186,13 @@ public class AgentProperties {
 
     public void setExternalContactList(String externalContactList) {
         this.externalContactList = externalContactList;
+    }
+
+    public String getGetToken() {
+        return getToken;
+    }
+
+    public void setGetToken(String getToken) {
+        this.getToken = getToken;
     }
 }

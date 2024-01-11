@@ -44,7 +44,7 @@ qy:
 agent:
   SuiteID: dk8a8eade3348f24a3
   Secret: Zez-3UwAAginPjvA42tXHnKy_PrC_AXVr4F2auQIQw0
-  CorpID: ww9a717b03b06063e3
+  CorpID: wpKIS_CwAAYvc3SPVEv1X2RV1AP1BcnQ
   ProviderSecret: hC2cKE9D2d_D4gXwpNMcSxp49T95UQz7YVSUaV4xC0DUoqwBoJ5jKhvtv8SCFEdX
   token: NS8hr3CDVolhehz0N1oqkK
   encodingAESKey: fLZVjJYWz4SQBpxDXWz9qc5LXlwlO5lTNUwmvqWybkl
@@ -59,8 +59,9 @@ agent:
   jsapiTicket: https://qyapi.weixin.qq.com/cgi-bin/get_jsapi_ticket
   AppTicket: https://qyapi.weixin.qq.com/cgi-bin/ticket/get
   externalContact: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get
-  followUserList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_follow_user_list
   externalContactList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/list
+  getToken: https://qyapi.weixin.qq.com/cgi-bin/gettoken
+  followUserList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_follow_user_list
 
 program:
   code2Session: https://api.weixin.qq.com/sns/jscode2session

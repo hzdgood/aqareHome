@@ -40,7 +40,7 @@ public class AgentController {
     }
 
     @CrossOrigin
-    @RequestMapping(value = "receive", method = RequestMethod.GET) // 测试成功
+    @RequestMapping(value = "receive", method = RequestMethod.GET) // 测试成功 OK
     public void doGetValid(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String msg_signature = request.getParameter("msg_signature");
         String timestamp = request.getParameter("timestamp");
@@ -59,6 +59,7 @@ public class AgentController {
     @RequestMapping(value = "receive", method = RequestMethod.POST) // 企业微信回调 OK
     public void doPostValid(HttpServletRequest request, HttpServletResponse response) {
         String tempStr = "";
+        String type = request.getParameter("type");
         JSONObject json = null;
         StringBuilder postData = new StringBuilder();
         try {
@@ -67,7 +68,11 @@ public class AgentController {
             while (null != (tempStr = reader.readLine())) {
                 postData.append(tempStr);
             }
-            json = getCrypt(request, postData.toString());
+            if (type != null && !type.isEmpty()) {
+                json = getCryptCorp(request, postData.toString());
+            } else {
+                json = getCrypt(request, postData.toString());
+            }
             PrintWriter out = response.getWriter();
             out.print("success");
         } catch (Exception e) {
@@ -87,36 +92,7 @@ public class AgentController {
                 Agent.setExpires_in(TimeStamp);
                 getSuiteToken(SuiteTicket); // suite_access_token
                 AgentService.update(Agent);
-            }
-        }
-    }
-
-    @CrossOrigin
-    @RequestMapping(value = "corpReceive", method = RequestMethod.POST) // 企业微信回调 OK
-    public void doPost(HttpServletRequest request, HttpServletResponse response) {
-        String tempStr = "";
-        JSONObject json = null;
-        StringBuilder postData = new StringBuilder();
-        try {
-            ServletInputStream in = request.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            while (null != (tempStr = reader.readLine())) {
-                postData.append(tempStr);
-            }
-            json = getCryptCorp(request, postData.toString());
-            PrintWriter out = response.getWriter();
-            out.print("success");
-        } catch (Exception e) {
-            System.out.println("suit 106");
-        }
-        String InfoType = null;
-        if (json != null) {
-            InfoType = (String) JsonUtil.findValueByKey(json, "InfoType");
-        }
-        Agent Agent = new Agent();
-        Agent.setType(InfoType);
-        if (InfoType != null) {
-            if (InfoType.equals("create_auth")) {
+            } else if (InfoType.equals("create_auth")) {
                 String AuthCode = (String) JsonUtil.findValueByKey(json, "AuthCode");
                 String TimeStamp = (String) JsonUtil.findValueByKey(json, "TimeStamp");
                 Agent.setTicket(AuthCode);
@@ -127,7 +103,7 @@ public class AgentController {
         }
     }
 
-    private void getSuiteToken(String suite_ticket) { // 获取第三方应用凭证
+    private void getSuiteToken(String suite_ticket) { // 获取第三方应用凭证 OK
         Agent Agent = new Agent();
         JSONObject JSONObject = new JSONObject();
         JSONObject.put("suite_id", AgentProperties.getSuiteID());
@@ -148,6 +124,8 @@ public class AgentController {
         }
     }
 
+    @CrossOrigin
+    @RequestMapping(value = "permanentCode")
     private void getPermanentCode(String auth_code) { // 获取企业永久授权
         Agent Agent = new Agent();
         Agent.setType("suite_access_token");
@@ -160,10 +138,10 @@ public class AgentController {
         JSONObject json = JSON.parseObject(str);
         System.out.println(json);
         if (json != null) {
-            String permanent_code = json.getString("permanent_code");
-            JSONObject edition_info = json.getJSONObject("edition_info");
-            JSONArray agent = edition_info.getJSONArray("agent");
+            JSONObject auth_info = json.getJSONObject("auth_info");
+            JSONArray agent = auth_info.getJSONArray("agent");
             JSONObject auth_corp_info = json.getJSONObject("auth_corp_info");
+            String permanent_code = json.getString("permanent_code");
             String corpId = auth_corp_info.getString("corpid");
             String agentId = agent.getJSONObject(0).getString("agentid");
             insert("permanent_code", permanent_code, agentId);
@@ -218,17 +196,8 @@ public class AgentController {
         String timestamp = request.getParameter("timestamp");
         String nonce = request.getParameter("nonce");
         String xml = wxcpt.DecryptMsg(msg_signature, timestamp, nonce, postData);
-        System.out.println("xml:" + xml); // ---------
         XmlMapper xmlMapper = new XmlMapper();
         JsonNode jsonNode = xmlMapper.readTree(xml);
         return JSONObject.parseObject(jsonNode.toString());
     }
-
-    //    public void getCorpToken(String auth_code) {
-//        Agent Agent = new Agent();
-//        Agent.setType("suite_access_token");
-//        List<Agent> list = AgentService.select(Agent);
-//        String suite_access_token = list.get(0).getTicket();
-//        getPermanentCode(suite_access_token, auth_code);
-//    }
 }
