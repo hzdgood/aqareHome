@@ -11,11 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
-@RequestMapping("/AgentAgent")
+@RequestMapping("/QyAgent")
 public class QyAgentController {
     private AgentProperties AgentProperties;
 
@@ -132,11 +131,9 @@ public class QyAgentController {
         return HttpUtil.get(lastUrl);
     }
 
-    @CrossOrigin
-    @RequestMapping("/accessToken") // 内部人员 获取客户列表
     private String getCorpToken(String corpId, String corpSecret, String agentId) {
         JSONObject JSONObject = new JSONObject();
-        String url = AgentProperties.getToken() + "?corpid=" + corpId + "&corpsecret=" + corpSecret;
+        String url = AgentProperties.getGetToken() + "?corpid=" + corpId + "&corpsecret=" + corpSecret;
         String str = HttpUtil.dataPost(url, JSONObject);
         JSONObject json = JSON.parseObject(str);
         String access_token = "";
@@ -147,30 +144,6 @@ public class QyAgentController {
         return access_token;
     }
 
-    private String checkToken(Agent Agent) { // 检查token
-        long expired = Long.parseLong(Agent.getExpires_in()) * 800;
-        long date = Agent.getDate().getTime();
-        long sys = System.currentTimeMillis();
-        if (expired + date <= sys) { //是否过期
-            return getAccessToken(Agent.getAgentId());
-        } else {
-            return Agent.getTicket();
-        }
-    }
-
-    private String getAccessToken(String agentId) {
-        Agent Agent = new Agent();
-        Agent.setType("permanent_code");
-        Agent.setAgentId(agentId);
-        List<Agent> list = AgentService.selectByAgentId(Agent);
-        Agent Agent1 = new Agent();
-        Agent1.setType("corpId");
-        List<Agent> list1 = AgentService.select(Agent1);
-        String corpSecret = list.get(0).getTicket();
-        String corpId = list1.get(0).getTicket();
-        return getCorpToken(corpId, corpSecret, agentId);
-    }
-
     public void updateTable(String type, String ticket, String expires_in, String agentId) {
         Agent Agent = new Agent();
         Agent.setType(type);
@@ -179,4 +152,27 @@ public class QyAgentController {
         Agent.setAgentId(agentId);
         AgentService.updateByAgentId(Agent);
     }
+
+//    private String checkToken(Agent Agent) { // 检查token
+//        long expired = Long.parseLong(Agent.getExpires_in()) * 800;
+//        long date = Agent.getDate().getTime();
+//        long sys = System.currentTimeMillis();
+//        if (expired + date <= sys) { //是否过期
+//            return getAccessToken(Agent.getAgentId());
+//        } else {
+//            return Agent.getTicket();
+//        }
+//    }
+//    private String getAccessToken(String agentId) {
+//        Agent Agent = new Agent();
+//        Agent.setType("permanent_code");
+//        Agent.setAgentId(agentId);
+//        List<Agent> list = AgentService.selectByAgentId(Agent);
+//        Agent Agent1 = new Agent();
+//        Agent1.setType("corpId");
+//        List<Agent> list1 = AgentService.select(Agent1);
+//        String corpSecret = list.get(0).getTicket();
+//        String corpId = list1.get(0).getTicket();
+//        return getCorpToken(corpId, corpSecret, agentId);
+//    }
 }

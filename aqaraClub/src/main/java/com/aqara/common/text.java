@@ -5,6 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.aes.WXBizMsgCrypt;
 import com.aqara.common.utils.HttpUtil;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class text {
     public static void main(String[] args) throws Exception {
@@ -22,13 +25,17 @@ public class text {
 //        System.out.printf("xml:" + xml);
 
 
-        JSONObject JSONObject = new JSONObject();
-        JSONObject.put("auth_corpid", "wwc01896e75e183e29");
-        JSONObject.put("permanent_code", "SnF_8aDhblcznZoD5y3VQwLFcitNSLIJIl2g3s3ORBI");
-        String url = "https://qyapi.weixin.qq.com/cgi-bin/service/get_corp_token"
-                + "?suite_access_token=" + "mSzQDs8rLqhKZIXLqw7AL57VaGS-bSRdz5F-tfIPv7mC11KNiXd0peAVPO8BmBDHkjIQCtdNGeJvB2vEJcGIvyaeWl8FpoWfJG0NDsCbvEbRtqYBWrYxl4KcL9fPq_GW";
-        String str = HttpUtil.dataPost(url, JSONObject);
-        System.out.println(str);
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = sf.parse("2024-01-11 12:00:00");
+        System.out.printf("data:" + date.toString());
+
+//        JSONObject JSONObject = new JSONObject();
+//        JSONObject.put("auth_corpid", "wwc01896e75e183e29");
+//        JSONObject.put("permanent_code", "SnF_8aDhblcznZoD5y3VQwLFcitNSLIJIl2g3s3ORBI");
+//        String url = "https://qyapi.weixin.qq.com/cgi-bin/service/get_corp_token"
+//                + "?suite_access_token=" + "mSzQDs8rLqhKZIXLqw7AL57VaGS-bSRdz5F-tfIPv7mC11KNiXd0peAVPO8BmBDHkjIQCtdNGeJvB2vEJcGIvyaeWl8FpoWfJG0NDsCbvEbRtqYBWrYxl4KcL9fPq_GW";
+//        String str = HttpUtil.dataPost(url, JSONObject);
+//        System.out.println(str);
 
 
     }

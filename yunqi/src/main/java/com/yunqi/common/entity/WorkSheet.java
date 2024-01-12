@@ -64,7 +64,7 @@ public class WorkSheet {
     }
 
     public void setDateOfVisit(String dateOfVisit) throws ParseException {
-        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.dateOfVisit = sf.parse(dateOfVisit);
     }
 
