@@ -17,10 +17,10 @@
 
     <insert id="insert" parameterType="com.aqara.common.entity.Collent" useGeneratedKeys="true"
             keyProperty="id">
-        insert into collent (itemId, projectId, sales, department, collectionStatus, refundType,
+        insert into collent (projectId, sales, department, collectionStatus, refundType,
                              paymentMethod, collection, quotationID, payee, crossCheck,
                              createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{projectId}, #{sales}, #{department}, #{collectionStatus}, #{refundType},
+        values (#{projectId}, #{sales}, #{department}, #{collectionStatus}, #{refundType},
                 #{paymentMethod}, #{collection}, #{quotationID}, #{payee}, #{crossCheck},
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>

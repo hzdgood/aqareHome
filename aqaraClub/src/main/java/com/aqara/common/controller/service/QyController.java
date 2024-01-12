@@ -1,4 +1,4 @@
-package com.aqara.common.controller;
+package com.aqara.common.controller.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;

@@ -26,14 +26,8 @@
 
     <insert id="insert" parameterType="com.aqara.common.entity.Customer" useGeneratedKeys="true"
             keyProperty="id">
-        insert into customer (itemId, name, telephone, sales, sex,
-                              source, houseType, houseState, personnelAttr, customerAttr,
-                              customerStage, SPcustomer, houseDemand, lossStatus, weiXin,
-                              UserID, releWeixin, createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{name}, #{telephone}, #{sales}, #{sex},
-                #{source}, #{houseType}, #{houseState}, #{personnelAttr}, #{customerAttr},
-                #{customerStage}, #{SPcustomer}, #{houseDemand}, #{lossStatus}, #{weiXin},
-                #{UserID}, #{releWeixin}, #{createName}, NOW(), #{updateName}, NOW())
+        insert into customer (name, sales, createName, createTime, updateName, updateTime)
+        values (#{name}, #{sales}, #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 
     <insert id="update" parameterType="com.aqara.common.entity.Customer">

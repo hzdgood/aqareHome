@@ -14,11 +14,9 @@
 
     <insert id="insertToExcel" parameterType="com.aqara.common.entity.Scheme"
             useGeneratedKeys="true" keyProperty="id">
-        insert into scheme (itemId, projectId, productId, contractQuantity,
-                            number, money, yesNoFee, serviceFee,
+        insert into scheme (number, money, yesNoFee, serviceFee,
                             createName, createTime, updateName, updateTime)
-        values (#{itemId}, #{projectId}, #{productId}, #{contractQuantity},
-                #{number}, #{money}, #{yesNoFee}, #{serviceFee},
+        values (#{number}, #{money}, #{yesNoFee}, #{serviceFee},
                 #{createName}, NOW(), #{updateName}, NOW())
     </insert>
 

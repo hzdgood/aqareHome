@@ -1,4 +1,4 @@
-package com.aqara.common.controller;
+package com.aqara.common.controller.service;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -50,7 +50,7 @@ public class OtherController {
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return null;
         }
         String access_token = list.get(0).getTicket();
@@ -66,7 +66,7 @@ public class OtherController {
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return null;
         }
         String access_token = list.get(0).getTicket();
@@ -82,7 +82,7 @@ public class OtherController {
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return null;
         }
         String access_token = list.get(0).getTicket();
@@ -98,7 +98,7 @@ public class OtherController {
         Qychat.setType("access_token");
         Qychat.setAgentId(agentId);
         List<Qychat> list = QychatService.selectByAgentId(Qychat);
-        if(list.isEmpty()){
+        if (list.isEmpty()) {
             return null;
         }
         String access_token = list.get(0).getTicket();
