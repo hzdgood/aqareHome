@@ -11,8 +11,15 @@
   </body>
 <script>
 let redirect_uri = encodeURI("aqara.club/app")
+let agentid = '1000032'
+let appid = 'wpKIS_CwAAYvc3SPVEv1X2RV1AP1BcnQ'
 let authorUrl = 'https://open.weixin.qq.com/connect/oauth2/authorize?'
-  +'appid=ww2fd0def5ad11e2cf&redirect_uri='+redirect_uri+'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+  +'appid=' + appid
+  +'&redirect_uri=' + redirect_uri
+  +'&response_type=code'
+  +'&scope=snsapi_userinfo'
+  +'&agentid=' + agentid
+  +'&state=STATE#wechat_redirect'
 window.location.href = authorUrl
 </script>
 </html>

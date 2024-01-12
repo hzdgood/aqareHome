@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import Antd, { ConfigProvider } from 'ant-design-vue'
-import App from './App.vue'
+import App from './App.vue'  // 个人
+import group from './group.vue' // 群
+import index from './index.vue' // 工作台
 import router from './router'
 import 'ant-design-vue/dist/reset.css'
 import './css/yunqi.css'
@@ -9,14 +11,38 @@ import * as ww from '@wecom/jssdk'
 import { httpGet } from './config/interFace'
 import { getQueryString } from './config/util'
 
+const agentId = '1000032'
+const code = getQueryString("code")
+const corpId = 'wpKIS_CwAAYvc3SPVEv1X2RV1AP1BcnQ'
+const suiteId = 'dk8a8eade3348f24a3'
+
+const getUserInfo = async () => {
+  const res = await httpGet("/QyAgent/userinfo",{ // 获取登入人员详细信息
+    agentId: agentId,
+    code: code
+  })
+  console.log(res)
+  if(res.errcode) {
+    window.location.href = 'https://aqara.club'
+  } else {
+    localStorage.setItem("localUser", res.userid) // 获取登入用户userID
+  }
+}
+
 ww.register({
-  corpId: 'ww9a717b03b06063e3', // 必填，当前用户企业所属企业ID
-  suiteId: 'ww2fd0def5ad11e2cf',
-  agentId: '1000089',
+  corpId: corpId, // 必填，当前用户企业所属企业ID
+  suiteId: suiteId, // 第三方应用
+  agentId: agentId,
   jsApiList: ['getContext', 'getCurExternalContact','getCurExternalChat'], 	 // 必填，需要使用的JSAPI列表
-  async getAgentConfigSignature() { // 必填，根据url生成应用签名的回调函数
-    const jsToken = await httpGet("/qy/AppTicket", {
-      type: 'API'
+  async getAgentConfigSignature() {                                          // 必填，根据url生成应用签名的回调函数
+    const jsToken = await httpGet("/QyAgent/AppTicket", {
+      agentId: agentId
+    });
+    return ww.getSignature(jsToken)
+  },
+  async getConfigSignature() {
+    const jsToken = await httpGet("/QyAgent/jsapiTicket", {
+      agentId: agentId
     });
     return ww.getSignature(jsToken)
   }
@@ -24,31 +50,32 @@ ww.register({
 
 ww.getContext({
   async success(result) {
-    const userinfo3rd = await httpGet("/qy/userinfo3rd",{
-      code: getQueryString("code")
-    })
-    console.log(userinfo3rd);
-    if (result.entry === 'single_chat_tools') {
+    if(localStorage.getItem("localUser") === null || localStorage.getItem("localUser") === "undefined"){
+      await getUserInfo();
+    }
+    if (result.entry === 'chain_single_chat_tools') {
       ww.getCurExternalContact({
         async success(result) {
-          const res = await httpGet("/qy/externalContact",{
+          const res = await httpGet("/QyAgent/externalContact",{
+            agentId: agentId,
             userId: result.userId
           })
-          localStorage.setItem("localName", userinfo3rd.userId)
+          console.log(res);
+          localStorage.setItem('avatar', res.external_contact.avatar)
           localStorage.setItem('userName', res.external_contact.name)
-          localStorage.setItem("userId", result.userId)
+          localStorage.setItem("userId", result.userId) // 客户userID
           localStorage.setItem('follow_user', JSON.stringify(res.follow_user))
           toSinglePage()
         }
       })
-    } else if(result.entry === 'group_chat_tools') {
+    } else if(result.entry === 'chain_group_chat_tools') {
       ww.getCurExternalChat({
         async success(result) {
           console.log(result.chatId)
         }
       })
       toGroupPage()
-    } else if(result.entry === 'normal') {
+    } else {
       toNormalPage()
     }
   }
@@ -64,7 +91,7 @@ const toSinglePage = () => {
 }
 
 const toGroupPage = () => {
-  const app = createApp(App)
+  const app = createApp(group)
   app.use(ConfigProvider);
   app.use(createPinia())
   app.use(router)
@@ -73,7 +100,7 @@ const toGroupPage = () => {
 }
 
 const toNormalPage = () => {
-  const app = createApp(App)
+  const app = createApp(index)
   app.use(ConfigProvider);
   app.use(createPinia())
   app.use(router)

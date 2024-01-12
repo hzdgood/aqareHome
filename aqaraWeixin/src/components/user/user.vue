@@ -41,7 +41,7 @@ export default class Home extends Vue {
   userId = localStorage.getItem('userId');
   chatId = localStorage.getItem('chatID');
   contactType = localStorage.getItem('contactType');
-  avatar = localStorage.getItem('avatar');
+  avatar: any = localStorage.getItem('avatar');
   name = '';
   editShow = false;
   chatShow = false;

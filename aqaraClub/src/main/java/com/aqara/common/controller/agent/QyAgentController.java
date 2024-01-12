@@ -44,6 +44,18 @@ public class QyAgentController {
     }
 
     @CrossOrigin
+    @RequestMapping("/userinfo") // 企业成员信息 userId
+    private String getUserinfo(String agentId, String code) {
+        Agent Agent = new Agent();
+        Agent.setType("access_token");
+        Agent.setAgentId(agentId);
+        List<Agent> list = AgentService.selectByAgentId(Agent);
+        String access_token = list.get(0).getTicket();
+        String url = AgentProperties.getUserinfo() + "?access_token=" + access_token + "&code=" + code;
+        return HttpUtil.get(url);
+    }
+
+    @CrossOrigin
     @RequestMapping("/jsapiTicket") // JSAPI 获取应用 jsapi_ticket
     private String getJsapiTicket(String agentId) {
         Agent Agent = new Agent();
@@ -98,40 +110,6 @@ public class QyAgentController {
         return HttpUtil.get(lastUrl);
     }
 
-    @CrossOrigin
-    @RequestMapping("/followUserList") // 获取配置了客户联系功能的成员列表
-    private String getFollowUserList(String agentId) {
-        Agent Agent = new Agent();
-        Agent.setType("access_token");
-        Agent.setAgentId(agentId);
-        List<Agent> list = AgentService.selectByAgentId(Agent);
-        String access_token = list.get(0).getTicket();
-        String str = AgentProperties.getFollowUserList() + "?access_token=" + access_token;
-        String res = HttpUtil.get(str);
-        JSONObject json = JSON.parseObject(res);
-        JSONArray array = null;
-        if (json != null) {
-            array = json.getJSONArray("follow_user");
-            for (Object o : array) {
-                String userId = o.toString();
-            }
-        }
-        return res;
-    }
-
-    @CrossOrigin
-    @RequestMapping("/externalContactList") // 内部人员 获取客户列表
-    private String getExternalContactList(String userId, String agentId) {
-        String url = AgentProperties.getExternalContactList();
-        Agent Agent = new Agent();
-        Agent.setType("access_token");
-        Agent.setAgentId(agentId);
-        List<Agent> list = AgentService.selectByAgentId(Agent);
-        String access_token = list.get(0).getTicket();
-        String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
-        return HttpUtil.get(lastUrl);
-    }
-
     private String getCorpToken(String corpId, String corpSecret, String agentId) {
         JSONObject JSONObject = new JSONObject();
         String url = AgentProperties.getGetToken() + "?corpid=" + corpId + "&corpsecret=" + corpSecret;
@@ -154,26 +132,36 @@ public class QyAgentController {
         AgentService.updateByAgentId(Agent);
     }
 
-//    private String checkToken(Agent Agent) { // 检查token
-//        long expired = Long.parseLong(Agent.getExpires_in()) * 800;
-//        long date = Agent.getDate().getTime();
-//        long sys = System.currentTimeMillis();
-//        if (expired + date <= sys) { //是否过期
-//            return getAccessToken(Agent.getAgentId());
-//        } else {
-//            return Agent.getTicket();
-//        }
-//    }
-//    private String getAccessToken(String agentId) {
+//    @CrossOrigin
+//    @RequestMapping("/externalContactList") // 内部人员 获取客户列表
+//    private String getExternalContactList(String userId, String agentId) {
+//        String url = AgentProperties.getExternalContactList();
 //        Agent Agent = new Agent();
-//        Agent.setType("permanent_code");
+//        Agent.setType("access_token");
 //        Agent.setAgentId(agentId);
 //        List<Agent> list = AgentService.selectByAgentId(Agent);
-//        Agent Agent1 = new Agent();
-//        Agent1.setType("corpId");
-//        List<Agent> list1 = AgentService.select(Agent1);
-//        String corpSecret = list.get(0).getTicket();
-//        String corpId = list1.get(0).getTicket();
-//        return getCorpToken(corpId, corpSecret, agentId);
+//        String access_token = list.get(0).getTicket();
+//        String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
+//        return HttpUtil.get(lastUrl);
+//    }
+//    @CrossOrigin
+//    @RequestMapping("/followUserList") // 获取配置了客户联系功能的成员列表
+//    private String getFollowUserList(String agentId) {
+//        Agent Agent = new Agent();
+//        Agent.setType("access_token");
+//        Agent.setAgentId(agentId);
+//        List<Agent> list = AgentService.selectByAgentId(Agent);
+//        String access_token = list.get(0).getTicket();
+//        String str = AgentProperties.getFollowUserList() + "?access_token=" + access_token;
+//        String res = HttpUtil.get(str);
+//        JSONObject json = JSON.parseObject(res);
+//        JSONArray array = null;
+//        if (json != null) {
+//            array = json.getJSONArray("follow_user");
+//            for (Object o : array) {
+//                String userId = o.toString();
+//            }
+//        }
+//        return res;
 //    }
 }

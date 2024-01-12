@@ -7,14 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AButton: typeof import('ant-design-vue/es')['Button']
-    AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
-    AForm: typeof import('ant-design-vue/es')['Form']
-    AFormItem: typeof import('ant-design-vue/es')['FormItem']
-    AInput: typeof import('ant-design-vue/es')['Input']
-    ASelect: typeof import('ant-design-vue/es')['Select']
-    ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
-    ASpace: typeof import('ant-design-vue/es')['Space']
+    AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     Customer: typeof import('./src/components/customer/customer.vue')['default']
     Foot: typeof import('./src/components/foot/foot.vue')['default']
     Project: typeof import('./src/components/project/project.vue')['default']

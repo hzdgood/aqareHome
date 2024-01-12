@@ -1,11 +1,46 @@
 <template>
   <div>
-    sidebar
+    <a-menu 
+      v-model:selectedKeys="current" 
+      mode="horizontal" 
+      :items="items"
+      @click="handleClick"
+    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, ref, VueElement } from 'vue';
+import type { MenuProps } from 'ant-design-vue';
+
+const current = ref<string[]>(['mail']);
+const items = ref<MenuProps['items']>([
+  {
+    key: '1',
+    label: '项目',
+    title: '项目',
+  },
+  {
+    key: '2',
+    label: '跟进',
+    title: '跟进',
+  },
+  {
+    key: '3',
+    label: '收款',
+    title: '收款',
+  },
+  {
+    key: '4',
+    label: '方案',
+    title: '方案',
+  }
+])
+
+const handleClick: MenuProps['onClick'] = e => {
+  console.log('click', e);
+};
+
 </script>
 
 <style>

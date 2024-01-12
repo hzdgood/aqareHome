@@ -1,0 +1,1 @@
+import{d as o,o as e,c as n,a as t}from"./index.1705048342355.js";const a={class:"appbody"},p=o({__name:"LoginView",setup(s){return e(function(){}),(c,_)=>(t(),n("div",a," login "))}});export{p as default};
