@@ -7,7 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
+    AMenu: typeof import('ant-design-vue/es')['Menu']
     Customer: typeof import('./src/components/customer/customer.vue')['default']
     Foot: typeof import('./src/components/foot/foot.vue')['default']
     Project: typeof import('./src/components/project/project.vue')['default']

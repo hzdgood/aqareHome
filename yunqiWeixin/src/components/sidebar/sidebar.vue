@@ -10,10 +10,11 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, reactive, ref, VueElement } from 'vue';
+import { ref } from 'vue';
 import type { MenuProps } from 'ant-design-vue';
+import router from '@/router';
 
-const current = ref<string[]>(['mail']);
+const current = ref<string[]>(['1']);
 const items = ref<MenuProps['items']>([
   {
     key: '1',
@@ -39,6 +40,11 @@ const items = ref<MenuProps['items']>([
 
 const handleClick: MenuProps['onClick'] = e => {
   console.log('click', e);
+  if(e.key === '1') {
+    router.push('/project')
+  } else if(e.key === '2') {
+    router.push('/follow')
+  }
 };
 
 </script>
