@@ -1,6 +1,6 @@
 <template>
   <div class="appbody">
-    login
+    project
   </div>
 </template>
 <script lang="ts" setup>
