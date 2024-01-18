@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/qy")
+@RequestMapping("/qyService")
 public class QyController {
     private QyProperties QyProperties;
 

@@ -28,7 +28,7 @@ import java.io.PrintWriter;
 import java.util.List;
 
 @Controller
-@RequestMapping("/suite")
+@RequestMapping("/suiteService")
 public class SuiteController {
     private QyProperties QyProperties;
 

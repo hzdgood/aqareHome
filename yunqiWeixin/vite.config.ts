@@ -9,7 +9,7 @@ import path from 'path';
 const timeStamp = new Date().getTime()
 
 export default defineConfig({
-  base: "./",
+  base: "/app/",
   plugins: [
     vue(),
     vueJsx(),

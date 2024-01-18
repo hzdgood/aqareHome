@@ -26,6 +26,7 @@ const getUserInfo = async () => {
     window.location.href = 'https://aqara.club'
   } else {
     localStorage.setItem("localUser", res.userid) // 获取登入用户userID
+    localStorage.setItem("user_ticket", res.user_ticket)
   }
 }
 
@@ -51,7 +52,7 @@ ww.register({
 ww.getContext({
   async success(result) {
     if(localStorage.getItem("localUser") === null || localStorage.getItem("localUser") === "undefined"){
-      await getUserInfo();
+        await getUserInfo();
     }
     if (result.entry === 'chain_single_chat_tools') {
       ww.getCurExternalContact({

@@ -57,6 +57,7 @@ agent:
   getToken: https://qyapi.weixin.qq.com/cgi-bin/gettoken
   followUserList: https://qyapi.weixin.qq.com/cgi-bin/externalcontact/get_follow_user_list
   userinfo: https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo
+  userdetail: https://qyapi.weixin.qq.com/cgi-bin/auth/getuserdetail
   compUser: https://qyapi.weixin.qq.com/cgi-bin/user/get
 
 program:

@@ -1,7 +1,6 @@
 package com.aqara.common.controller.agent;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.aqara.common.entity.Agent;
 import com.aqara.common.properties.AgentProperties;
@@ -121,7 +120,22 @@ public class QyAgentController {
         return HttpUtil.get(lastUrl);
     }
 
-    private String getCorpToken(String corpId, String corpSecret, String agentId) { // OK
+    @CrossOrigin
+    @RequestMapping("/userDetail") // 内部人员 访问用户敏感信息
+    private String userInfo(String user_ticket, String agentId) {
+        JSONObject JSONObject = new JSONObject();
+        JSONObject.put("user_ticket", user_ticket);
+        String url = AgentProperties.getUserdetail();
+        Agent Agent = new Agent();
+        Agent.setType("access_token");
+        Agent.setAgentId(agentId);
+        List<Agent> list = AgentService.selectByAgentId(Agent);
+        String access_token = list.get(0).getTicket();
+        String lastUrl = url + "?access_token=" + access_token;
+        return HttpUtil.dataPost(lastUrl, JSONObject);
+    }
+
+    private void getCorpToken(String corpId, String corpSecret, String agentId) { // OK
         JSONObject JSONObject = new JSONObject();
         String url = AgentProperties.getGetToken() + "?corpid=" + corpId + "&corpsecret=" + corpSecret;
         String str = HttpUtil.dataPost(url, JSONObject);
@@ -131,7 +145,6 @@ public class QyAgentController {
             access_token = json.getString("access_token");
             updateTable("access_token", access_token, "7200", agentId);
         }
-        return access_token;
     }
 
     public void updateTable(String type, String ticket, String expires_in, String agentId) {
@@ -142,37 +155,4 @@ public class QyAgentController {
         Agent.setAgentId(agentId);
         AgentService.updateByAgentId(Agent);
     }
-
-//    @CrossOrigin
-//    @RequestMapping("/externalContactList") // 内部人员 获取客户列表
-//    private String getExternalContactList(String userId, String agentId) {
-//        String url = AgentProperties.getExternalContactList();
-//        Agent Agent = new Agent();
-//        Agent.setType("access_token");
-//        Agent.setAgentId(agentId);
-//        List<Agent> list = AgentService.selectByAgentId(Agent);
-//        String access_token = list.get(0).getTicket();
-//        String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
-//        return HttpUtil.get(lastUrl);
-//    }
-//    @CrossOrigin
-//    @RequestMapping("/followUserList") // 获取配置了客户联系功能的成员列表
-//    private String getFollowUserList(String agentId) {
-//        Agent Agent = new Agent();
-//        Agent.setType("access_token");
-//        Agent.setAgentId(agentId);
-//        List<Agent> list = AgentService.selectByAgentId(Agent);
-//        String access_token = list.get(0).getTicket();
-//        String str = AgentProperties.getFollowUserList() + "?access_token=" + access_token;
-//        String res = HttpUtil.get(str);
-//        JSONObject json = JSON.parseObject(res);
-//        JSONArray array = null;
-//        if (json != null) {
-//            array = json.getJSONArray("follow_user");
-//            for (Object o : array) {
-//                String userId = o.toString();
-//            }
-//        }
-//        return res;
-//    }
 }

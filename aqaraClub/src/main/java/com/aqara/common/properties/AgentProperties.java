@@ -29,6 +29,7 @@ public class AgentProperties {
     private String getToken;
     private String userinfo;
     private String compUser;
+    private String userdetail;
 
     public String getSuiteID() {
         return SuiteID;
@@ -212,5 +213,13 @@ public class AgentProperties {
 
     public void setCompUser(String compUser) {
         this.compUser = compUser;
+    }
+
+    public String getUserdetail() {
+        return userdetail;
+    }
+
+    public void setUserdetail(String userdetail) {
+        this.userdetail = userdetail;
     }
 }
