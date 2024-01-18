@@ -28,7 +28,7 @@ public class QyAgentController {
     }
 
     @CrossOrigin
-    @RequestMapping("/corpToken") //获取企业凭证
+    @RequestMapping("/corpToken") //获取企业凭证 OK
     private void getCorpToken(String agentId) {
         Agent Agent = new Agent();
         Agent.setType("permanent_code");
@@ -44,7 +44,7 @@ public class QyAgentController {
     }
 
     @CrossOrigin
-    @RequestMapping("/userinfo") // 企业成员信息 userId
+    @RequestMapping("/userinfo") // 企业成员信息 userId OK
     private String getUserinfo(String agentId, String code) {
         Agent Agent = new Agent();
         Agent.setType("access_token");
@@ -56,7 +56,7 @@ public class QyAgentController {
     }
 
     @CrossOrigin
-    @RequestMapping("/jsapiTicket") // JSAPI 获取应用 jsapi_ticket
+    @RequestMapping("/jsapiTicket") // JSAPI 获取应用 jsapi_ticket OK
     private String getJsapiTicket(String agentId) {
         Agent Agent = new Agent();
         Agent.setType("access_token");
@@ -66,7 +66,6 @@ public class QyAgentController {
         JSONObject JSONObject = new JSONObject();
         String url = AgentProperties.getJsapiTicket() + "?access_token=" + access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
-        // System.out.println(str);
         JSONObject json = JSON.parseObject(str);
         String ticket = "";
         if (json != null) {
@@ -77,7 +76,7 @@ public class QyAgentController {
     }
 
     @CrossOrigin
-    @RequestMapping("/AppTicket") // JSAPI
+    @RequestMapping("/AppTicket") // JSAPI OK
     private String getAppTicket(String agentId) {
         Agent Agent = new Agent();
         Agent.setType("access_token");
@@ -87,7 +86,6 @@ public class QyAgentController {
         JSONObject JSONObject = new JSONObject();
         String url = AgentProperties.getAppTicket() + "?access_token=" + access_token + "&type=agent_config";
         String str = HttpUtil.dataPost(url, JSONObject);
-//        System.out.println(str);
         JSONObject json = JSON.parseObject(str);
         String ticket = "";
         if (json != null) {
@@ -98,7 +96,7 @@ public class QyAgentController {
     }
 
     @CrossOrigin
-    @RequestMapping("/externalContact") // 外部人员 获取客户详情
+    @RequestMapping("/externalContact") // 外部人员 获取客户详情 OK
     private String getExternalContact(String userId, String agentId) {
         String url = AgentProperties.getExternalContact();
         Agent Agent = new Agent();
@@ -110,7 +108,20 @@ public class QyAgentController {
         return HttpUtil.get(lastUrl);
     }
 
-    private String getCorpToken(String corpId, String corpSecret, String agentId) {
+    @CrossOrigin
+    @RequestMapping("/compUser") // 内部人员 获取客户详情
+    private String compUser(String userId, String agentId) {
+        String url = AgentProperties.getCompUser();
+        Agent Agent = new Agent();
+        Agent.setType("access_token");
+        Agent.setAgentId(agentId);
+        List<Agent> list = AgentService.selectByAgentId(Agent);
+        String access_token = list.get(0).getTicket();
+        String lastUrl = url + "?access_token=" + access_token + "&userid=" + userId;
+        return HttpUtil.get(lastUrl);
+    }
+
+    private String getCorpToken(String corpId, String corpSecret, String agentId) { // OK
         JSONObject JSONObject = new JSONObject();
         String url = AgentProperties.getGetToken() + "?corpid=" + corpId + "&corpsecret=" + corpSecret;
         String str = HttpUtil.dataPost(url, JSONObject);

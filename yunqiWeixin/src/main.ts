@@ -60,7 +60,7 @@ ww.getContext({
             agentId: agentId,
             userId: result.userId
           })
-          console.log(res);
+          localStorage.setItem('agentId', agentId)
           localStorage.setItem('avatar', res.external_contact.avatar)
           localStorage.setItem('userName', res.external_contact.name)
           localStorage.setItem("userId", result.userId) // 客户userID

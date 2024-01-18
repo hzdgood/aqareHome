@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="footDiv" @click="selectOption()">+</div>
-    <div class="footContent" v-show="optionStatus">
+    <div class="footDiv" @click="openOption()">+</div>
+    <div class="footContent" v-show="formState.optionStatus">
       <div>信息</div>
       <div>方案</div>
       <div>收款</div>
@@ -12,14 +12,21 @@
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue';
 
-let optionStatus = false
-const selectOption = function () {
-  if (optionStatus) {
-    optionStatus = false
+const openOption = function () {
+  if (formState.optionStatus) {
+    formState.optionStatus = false
   } else {
-    optionStatus = true
+    formState.optionStatus = true
   }
 }
+
+interface FormState {
+  optionStatus: boolean
+}
+
+const formState = reactive<FormState>({
+  optionStatus: false
+})
 
 </script>
 

@@ -19,23 +19,21 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue';
-const userId: any = localStorage.getItem('userId')
 const avatar: any = localStorage.getItem('avatar')
 const name = localStorage.getItem('userName')
-
 onMounted(function(){
 
 })
 
 interface FormState {
-  userId: String
+  userId: any
 }
+
+const formState = reactive<FormState>({
+  userId: localStorage.getItem('userId')
+})
 
 const editPage = function(){
 
 }
-
-const formState = reactive<FormState>({
-  userId: ''
-})
 </script>
