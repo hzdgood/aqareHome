@@ -20,18 +20,15 @@ const items = ref<MenuProps['items']>([
     key: '1',
     label: '项目',
     title: '项目',
-  },
-  {
+  }, {
     key: '2',
     label: '跟进',
     title: '跟进',
-  },
-  {
+  }, {
     key: '3',
     label: '收款',
     title: '收款',
-  },
-  {
+  }, {
     key: '4',
     label: '方案',
     title: '方案',

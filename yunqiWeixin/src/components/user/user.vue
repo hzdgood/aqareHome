@@ -15,12 +15,6 @@
         </tr>
       </table>
     </div>
-    <!-- <div v-if="editShow">
-      <custom-edit @close="closeEdit()" @reload="reloadPage()"></custom-edit>
-    </div>
-    <div v-if="chatShow">
-      <project-edit @close="closeEdit()" @reload="reloadPage()"></project-edit>
-    </div> -->
   </div>
 </template>
 <script lang="ts" setup>

@@ -67,15 +67,16 @@
 
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue';
+
+const custominto: any[] = [];
+const hometype: any[] = [];
 const houseInfo: any[] = [];
 const personInfo: any[] = [];
+
+const houseNeed: any[] = [];
 const cAttribute: any[] = [];
 const oneCustom: any[] = [];
 const lostStatus: any[] = [];
-const hometype: any[] = [];
-const custominto: any[] = [];
-const houseNeed: any[] = [];
-const telephone: any = ''
 
 
 </script>
