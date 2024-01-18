@@ -126,8 +126,8 @@ public class Customer {
         return SPcustomer;
     }
 
-    public void setSPcustomer(String sPcustomer) {
-        SPcustomer = sPcustomer;
+    public void setSPcustomer(String SPcustomer) {
+        this.SPcustomer = SPcustomer;
     }
 
     public String getHouseDemand() {
@@ -201,5 +201,4 @@ public class Customer {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
-
 }

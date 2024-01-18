@@ -44,6 +44,10 @@ const handleClick: MenuProps['onClick'] = e => {
     router.push('/project')
   } else if(e.key === '2') {
     router.push('/follow')
+  } else if(e.key === '3') {
+    router.push('/collent')
+  } else if(e.key === '4') {
+    router.push('/scheme')
   }
 };
 

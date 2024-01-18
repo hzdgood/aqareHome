@@ -66,7 +66,7 @@ public class QyAgentController {
         JSONObject JSONObject = new JSONObject();
         String url = AgentProperties.getJsapiTicket() + "?access_token=" + access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
-        System.out.println(str);
+        // System.out.println(str);
         JSONObject json = JSON.parseObject(str);
         String ticket = "";
         if (json != null) {
@@ -87,7 +87,7 @@ public class QyAgentController {
         JSONObject JSONObject = new JSONObject();
         String url = AgentProperties.getAppTicket() + "?access_token=" + access_token + "&type=agent_config";
         String str = HttpUtil.dataPost(url, JSONObject);
-        System.out.println(str);
+//        System.out.println(str);
         JSONObject json = JSON.parseObject(str);
         String ticket = "";
         if (json != null) {

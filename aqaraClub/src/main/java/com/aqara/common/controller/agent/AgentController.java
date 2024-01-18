@@ -77,7 +77,7 @@ public class AgentController {
             PrintWriter out = response.getWriter();
             out.print("success");
         } catch (Exception e) {
-            System.out.println("suit 65");
+            // System.out.println("suit 65");
         }
         String InfoType = null;
         if (json != null) {
@@ -137,7 +137,7 @@ public class AgentController {
         String url = AgentProperties.getPermanent_code() + "?suite_access_token=" + suite_access_token;
         String str = HttpUtil.dataPost(url, JSONObject);
         JSONObject json = JSON.parseObject(str);
-        System.out.println(json);
+        // System.out.println(json);
         if (json != null) {
             JSONObject auth_info = json.getJSONObject("auth_info");
             JSONArray agent = auth_info.getJSONArray("agent");

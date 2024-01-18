@@ -11,7 +11,9 @@
       </div>
       <div class="appdiv">
         <sidebar></sidebar>
-        <router-view />
+        <a-config-provider :getPopupContainer="getPopupContainer" :locale="zhCN">
+          <RouterView></RouterView>
+        </a-config-provider>
         <foot></foot>
       </div>
     </div>
@@ -24,22 +26,12 @@ import sidebar from './components/sidebar/sidebar.vue'
 import foot from './components/foot/foot.vue'
 import customer from './components/customer/customer.vue'
 import stage from './components/stage/stage.vue'
+import 'dayjs/locale/zh-cn';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
 
 onMounted(async function() {
   
 })
-</script>
-
-
-<!-- <template>
-  <a-config-provider :getPopupContainer="getPopupContainer" :locale="zhCN">
-    <RouterView></RouterView>
-  </a-config-provider>
-</template>
-
-<script setup lang="ts">
-import 'dayjs/locale/zh-cn';
-import zhCN from 'ant-design-vue/es/locale/zh_CN';
 
 const getPopupContainer = (el:any, dialogContext:any) => {
   if (dialogContext) {
@@ -49,20 +41,3 @@ const getPopupContainer = (el:any, dialogContext:any) => {
   }
 }
 </script>
-
-<style>
-.ant-card .ant-card-head {
-  padding: 0 10px !important;
-}
-.ant-card .ant-card-body {
-  padding: 10px !important;
-}
-.filings {
-  font-size: 14px;
-  position: absolute;
-  bottom: 5px;
-  width: 170px;
-  padding-left: 10px;
-  background-color: beige;
-}
-</style> -->
