@@ -1,5 +1,5 @@
 <template>
-  <div class="appbody">
+  <div>
     scheme
   </div>
 </template>

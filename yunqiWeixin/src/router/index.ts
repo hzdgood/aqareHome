@@ -19,6 +19,10 @@ const router = createRouter({
       path: '/follow',
       name: 'follow',
       component:  () => import('../views/followView.vue'),
+    }, {
+      path: '/customer',
+      name: 'customer',
+      component:  () => import('../views/customerView.vue'),
     }
   ]
 })

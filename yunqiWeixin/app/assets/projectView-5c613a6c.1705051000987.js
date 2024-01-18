@@ -1,1 +1,0 @@
-import{d as e,o,c as t,a as n}from"./index.1705051000987.js";const c={class:"appbody"},_=e({__name:"projectView",setup(a){return o(function(){}),(s,p)=>(n(),t("div",c," project "))}});export{_ as default};

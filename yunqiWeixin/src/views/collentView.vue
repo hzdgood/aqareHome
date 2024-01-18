@@ -1,5 +1,5 @@
 <template>
-  <div class="appbody">
+  <div>
     collent
   </div>
 </template>

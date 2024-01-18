@@ -14,9 +14,13 @@ import { ref } from 'vue';
 import type { MenuProps } from 'ant-design-vue';
 import router from '@/router';
 
-const current = ref<string[]>(['1']);
+const current = ref<string[]>(['0']);
 const items = ref<MenuProps['items']>([
   {
+    key: '0',
+    label: '客户',
+    title: '客户',
+  }, {
     key: '1',
     label: '项目',
     title: '项目',
@@ -37,7 +41,9 @@ const items = ref<MenuProps['items']>([
 
 const handleClick: MenuProps['onClick'] = e => {
   console.log('click', e);
-  if(e.key === '1') {
+  if(e.key === '0') {
+    router.push('/customer')
+  } if(e.key === '1') {
     router.push('/project')
   } else if(e.key === '2') {
     router.push('/follow')

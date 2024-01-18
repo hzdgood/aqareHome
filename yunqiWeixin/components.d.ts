@@ -7,10 +7,10 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AConfigProvider: typeof import('ant-design-vue/es')['ConfigProvider']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     Customer: typeof import('./src/components/customer/customer.vue')['default']
     Foot: typeof import('./src/components/foot/foot.vue')['default']
-    Project: typeof import('./src/components/project/project.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Sidebar: typeof import('./src/components/sidebar/sidebar.vue')['default']
