@@ -1,6 +1,7 @@
 <template>
   <div>
     <a-menu 
+      v-model:openKeys="openKeys"
       v-model:selectedKeys="current" 
       mode="horizontal" 
       :items="items"
@@ -15,6 +16,8 @@ import type { MenuProps } from 'ant-design-vue';
 import router from '@/router';
 
 const current = ref<string[]>(['0']);
+const openKeys = ref<string[]>(['0']);
+
 const items = ref<MenuProps['items']>([
   {
     key: '0',

@@ -12,12 +12,8 @@ declare module 'vue' {
     AMenu: typeof import('ant-design-vue/es')['Menu']
     ASelect: typeof import('ant-design-vue/es')['Select']
     ASelectOption: typeof import('ant-design-vue/es')['SelectOption']
-    Customer: typeof import('./src/components/customer/customer.vue')['default']
     Foot: typeof import('./src/components/foot/foot.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Sidebar: typeof import('./src/components/sidebar/sidebar.vue')['default']
-    Stage: typeof import('./src/components/stage/stage.vue')['default']
-    User: typeof import('./src/components/user/user.vue')['default']
   }
 }
