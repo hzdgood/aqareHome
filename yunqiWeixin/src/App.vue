@@ -3,8 +3,6 @@
     <div style="background-color: #f2f3fb;">
       <div class="appdiv">
         <user></user>
-        <!-- <div class="lineType"></div>
-        <customer></customer> -->
       </div>
       <div class="appdiv">
         <stage></stage>

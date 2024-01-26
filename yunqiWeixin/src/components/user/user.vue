@@ -15,25 +15,34 @@
         </tr>
       </table>
     </div>
+    <div v-if="formState.customerShow">
+      <customer @close="close()"></customer>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue';
+import customer from '../edit/customer.vue'
 const avatar: any = localStorage.getItem('avatar')
 const name = localStorage.getItem('userName')
 onMounted(function(){
-
+  // name 需要转
 })
 
 interface FormState {
-  userId: any
+  customerShow: boolean
 }
 
 const formState = reactive<FormState>({
-  userId: localStorage.getItem('userId')
+  customerShow: false
 })
 
 const editPage = function(){
-
+  formState.customerShow = true
 }
+
+const close = function () {
+  formState.customerShow = false
+}
+
 </script>
