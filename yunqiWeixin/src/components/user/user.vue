@@ -10,19 +10,17 @@
             <span class="username">{{ name }}</span>
           </td>
           <td>
-            <button @click="editPage()">编辑</button>
+            <buttons></buttons>
           </td>
         </tr>
       </table>
-    </div>
-    <div v-if="formState.customerShow">
-      <customer @close="close()"></customer>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue';
-import customer from '../edit/customer.vue'
+import buttons from '../button/button.vue'
+
 const avatar: any = localStorage.getItem('avatar')
 const name = localStorage.getItem('userName')
 onMounted(function(){
@@ -32,17 +30,4 @@ onMounted(function(){
 interface FormState {
   customerShow: boolean
 }
-
-const formState = reactive<FormState>({
-  customerShow: false
-})
-
-const editPage = function(){
-  formState.customerShow = true
-}
-
-const close = function () {
-  formState.customerShow = false
-}
-
 </script>

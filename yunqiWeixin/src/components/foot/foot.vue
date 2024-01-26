@@ -89,7 +89,3 @@ const close = function () {
 }
 
 </script>
-
-<style>
-
-</style>

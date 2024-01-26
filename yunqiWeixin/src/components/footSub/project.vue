@@ -2,6 +2,7 @@
   <div>
     <div class="floatDiv"></div>
     <div class="infoDiv">
+      <div class="headerDiv">项目编辑</div>
       <table width="100%" class="projectTable">
         <tr>
           <td width="70px">项目类型</td>
@@ -61,7 +62,7 @@
 import { onMounted, reactive, ref } from 'vue';
 const emit = defineEmits(['close'])
 
-onMounted(function() {
+onMounted(async function() {
   
 })
 
