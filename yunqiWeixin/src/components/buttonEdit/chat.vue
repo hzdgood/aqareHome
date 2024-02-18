@@ -2,7 +2,7 @@
   <div>
     <div class="floatDiv"></div>
     <div class="infoDiv">
-      <div class="headerDiv">客户编辑</div>
+      <div class="headerDiv">客户动态</div>
       <div class="buttonPos">
         <a-button type="primary">提交</a-button>
         <a-button type="primary" @click="closePage()">关闭</a-button>
